@@ -1,0 +1,1 @@
+This folder houses the functions and scripts that will scrape odds data from each bookmaker.
