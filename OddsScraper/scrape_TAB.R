@@ -9,9 +9,6 @@ tab_url = "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/com
 # Fix team names function
 source("Scripts/fix_team_names.R")
 
-# Get empirical probability function
-source("Scripts/get_empirical_probabilities.R")
-
 main_tab <- function() {
 
 # Make request and get response
@@ -160,6 +157,7 @@ alternate_player_points_markets <-
 # Extract player names
 player_points_markets <-
     player_points_markets |> 
+    filter(str_detect(prop_name, "Over|Under")) |>
     mutate(player_name = str_extract(prop_name, "^.*(?=\\s(\\d+))")) |> 
     mutate(player_name = str_remove_all(player_name, "( Over)|( Under)")) |> 
     mutate(line = str_extract(prop_name, "[0-9\\.]{1,4}")) |> 
@@ -220,6 +218,7 @@ alternate_player_assists_markets <-
 # Extract player names
 player_assists_markets <-
     player_assists_markets |> 
+    filter(str_detect(prop_name, "Over|Under")) |>
     mutate(player_name = str_extract(prop_name, "^.*(?=\\s(\\d+))")) |> 
     mutate(player_name = str_remove_all(player_name, "( Over)|( Under)")) |> 
     mutate(line = str_extract(prop_name, "[0-9\\.]{1,4}")) |> 
@@ -280,6 +279,7 @@ alternate_player_rebounds_markets <-
 # Extract player names
 player_rebounds_markets <-
     player_rebounds_markets |> 
+    filter(str_detect(prop_name, "Over|Under")) |>
     mutate(player_name = str_extract(prop_name, "^.*(?=\\s(\\d+))")) |> 
     mutate(player_name = str_remove_all(player_name, "( Over)|( Under)")) |> 
     mutate(line = str_extract(prop_name, "[0-9\\.]{1,4}")) |> 
@@ -564,75 +564,6 @@ tab_player_rebounds_markets <-
     under_price,
     agency
   )
-
-# Add empirical probabilities---------------------------------------------------
-
-# Points
-distinct_point_combos <-
-tab_player_points_markets |> 
-  distinct(player_name, line)
-
-player_emp_probs <-
-  pmap(distinct_point_combos, get_empirical_prob, "PTS", .progress = TRUE) |> 
-  bind_rows()
-
-tab_player_points_markets <-
-  tab_player_points_markets |>
-  mutate(implied_prob_over = 1 / over_price,
-         implied_prob_under = 1 / under_price) |>
-  left_join(player_emp_probs, by = c("player_name", "line")) |>
-  rename(empirical_prob_over = empirical_prob) |> 
-  mutate(empirical_prob_under = 1 - empirical_prob_over) |> 
-  mutate(diff_over = empirical_prob_over - implied_prob_over,
-         diff_under = empirical_prob_under - implied_prob_under) |> 
-  relocate(agency, .after = diff_under) |> 
-  mutate_if(is.double, round, 2)|> 
-  filter(!is.na(opposition_team))
-
-# Assists
-distinct_assist_combos <-
-  tab_player_assists_markets |> 
-  distinct(player_name, line)
-
-player_emp_probs_assists <-
-  pmap(distinct_assist_combos, get_empirical_prob, "AST", .progress = TRUE) |> 
-  bind_rows()
-
-tab_player_assists_markets <-
-  tab_player_assists_markets |>
-  mutate(implied_prob_over = 1 / over_price,
-         implied_prob_under = 1 / under_price) |>
-  left_join(player_emp_probs_assists, by = c("player_name", "line")) |>
-  rename(empirical_prob_over = empirical_prob) |> 
-  mutate(empirical_prob_under = 1 - empirical_prob_over) |> 
-  mutate(diff_over = empirical_prob_over - implied_prob_over,
-         diff_under = empirical_prob_under - implied_prob_under) |> 
-  relocate(agency, .after = diff_under) |> 
-  mutate_if(is.double, round, 2) |> 
-  filter(!is.na(opposition_team))
-
-
-# Rebounds
-distinct_rebound_combos <-
-  tab_player_rebounds_markets |> 
-  distinct(player_name, line)
-
-player_emp_probs_rebounds <-
-  pmap(distinct_rebound_combos, get_empirical_prob, "REB", .progress = TRUE) |> 
-  bind_rows()
-
-tab_player_rebounds_markets <-
-  tab_player_rebounds_markets |>
-  mutate(implied_prob_over = 1 / over_price,
-         implied_prob_under = 1 / under_price) |>
-  left_join(player_emp_probs_rebounds, by = c("player_name", "line")) |>
-  rename(empirical_prob_over = empirical_prob) |> 
-  mutate(empirical_prob_under = 1 - empirical_prob_over) |> 
-  mutate(diff_over = empirical_prob_over - implied_prob_over,
-         diff_under = empirical_prob_under - implied_prob_under) |> 
-  relocate(agency, .after = diff_under) |> 
-  mutate_if(is.double, round, 2) |> 
-  filter(!is.na(opposition_team))
 
 #===============================================================================
 # Write to CSV------------------------------------------------------------------

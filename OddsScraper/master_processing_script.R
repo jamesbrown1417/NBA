@@ -3,20 +3,23 @@ library(tidyverse)
 library(googlesheets4)
 library(googledrive)
 
+# Get empirical probability function
+source("Scripts/get_empirical_probabilities.R")
+
 # Google sheets authentification -----------------------------------------------
 options(gargle_oauth_cache = ".secrets")
 drive_auth(cache = ".secrets", email = "cuzzy.punting@gmail.com")
 gs4_auth(token = drive_token())
 
-# Run all odds scraping scripts-------------------------------------------------
-source("OddsScraper/scrape_betr.R")
-source("OddsScraper/scrape_BetRight.R")
-source("OddsScraper/scrape_Palmerbet.R")
+# # Run all odds scraping scripts-------------------------------------------------
+# source("OddsScraper/scrape_betr.R")
+# source("OddsScraper/scrape_BetRight.R")
+# source("OddsScraper/scrape_Palmerbet.R")
 source("OddsScraper/scrape_pointsbet.R")
 source("OddsScraper/scrape_sportsbet.R")
 source("OddsScraper/scrape_TAB.R")
 source("OddsScraper/scrape_TopSport.R")
-source("OddsScraper/scrape_bet365.R")
+# source("OddsScraper/scrape_bet365.R")
 source("OddsScraper/scrape_bluebet.R")
 
 ##%######################################################%##
@@ -55,9 +58,9 @@ all_odds_h2h <-
     mutate(margin = round(100*(margin - 1), digits = 3)) |> 
     arrange(margin)
 
-# Google Sheets-----------------------------------------------------
-sheet <- gs4_find("NBL Data")
-sheet_write(sheet, data = all_odds_h2h, sheet = "H2H")
+# # Google Sheets-----------------------------------------------------
+# sheet <- gs4_find("NBL Data")
+# sheet_write(sheet, data = all_odds_h2h, sheet = "H2H")
 
 ##%######################################################%##
 #                                                          #
@@ -92,8 +95,8 @@ all_odds_totals <-
     mutate(margin = round(100*(margin - 1), digits = 3)) |> 
     arrange(margin)
 
-# Google Sheets-----------------------------------------------------
-sheet_write(sheet, data = all_odds_totals, sheet = "Total Points")
+# # Google Sheets-----------------------------------------------------
+# sheet_write(sheet, data = all_odds_totals, sheet = "Total Points")
 
 ##%######################################################%##
 #                                                          #
@@ -110,8 +113,39 @@ all_player_points <-
     reduce(bind_rows) |> 
     arrange(player_name, line, desc(over_price))
 
-# Add to google sheets
-sheet_write(sheet, data = all_player_points, sheet = "Player Points")
+# Add empirical probabilities---------------------------------------------------
+
+# Points
+distinct_point_combos <-
+    all_player_points |> 
+    distinct(player_name, line)
+
+player_emp_probs <-
+    pmap(distinct_point_combos, get_empirical_prob, "PTS", .progress = TRUE) |> 
+    bind_rows()
+
+all_player_points <-
+    all_player_points |>
+    mutate(implied_prob_over = 1 / over_price,
+           implied_prob_under = 1 / under_price) |>
+    left_join(player_emp_probs, by = c("player_name", "line")) |>
+    rename(empirical_prob_over = empirical_prob) |> 
+    mutate(empirical_prob_under = 1 - empirical_prob_over) |> 
+    mutate(diff_over = empirical_prob_over - implied_prob_over,
+           diff_under = empirical_prob_under - implied_prob_under) |> 
+    relocate(agency, .after = diff_under) |> 
+    mutate_if(is.double, round, 2)|> 
+    filter(!is.na(opposition_team)) |> 
+    group_by(player_name, line) |> 
+    mutate(min_implied_prob = min(implied_prob_over, na.rm = TRUE),
+           max_implied_prob = max(implied_prob_over, na.rm = TRUE)) |>
+    mutate(variation = max_implied_prob - min_implied_prob) |>
+    ungroup() |> 
+    select(-min_implied_prob, -max_implied_prob) |>
+    arrange(desc(variation), player_name, desc(over_price), line)
+
+# # Add to google sheets
+# sheet_write(sheet, data = all_player_points, sheet = "Player Points")
 
 ##%######################################################%##
 #                                                          #
@@ -127,8 +161,39 @@ all_player_assists <-
     keep(~nrow(.x) > 0) |>
     reduce(bind_rows)
 
-# Add to google sheets
-sheet_write(sheet, data = all_player_assists, sheet = "Player Assists")
+# Add empirical probabilities---------------------------------------------------
+
+# Assists
+distinct_assist_combos <-
+    all_player_assists |> 
+    distinct(player_name, line)
+
+player_emp_probs_assists <-
+    pmap(distinct_assist_combos, get_empirical_prob, "AST", .progress = TRUE) |> 
+    bind_rows()
+
+all_player_assists <-
+    all_player_assists |>
+    mutate(implied_prob_over = 1 / over_price,
+           implied_prob_under = 1 / under_price) |>
+    left_join(player_emp_probs_assists, by = c("player_name", "line")) |>
+    rename(empirical_prob_over = empirical_prob) |> 
+    mutate(empirical_prob_under = 1 - empirical_prob_over) |> 
+    mutate(diff_over = empirical_prob_over - implied_prob_over,
+           diff_under = empirical_prob_under - implied_prob_under) |> 
+    relocate(agency, .after = diff_under) |> 
+    mutate_if(is.double, round, 2) |> 
+    filter(!is.na(opposition_team)) |> 
+    group_by(player_name, line) |> 
+    mutate(min_implied_prob = min(implied_prob_over, na.rm = TRUE),
+           max_implied_prob = max(implied_prob_over, na.rm = TRUE)) |>
+    mutate(variation = max_implied_prob - min_implied_prob) |>
+    ungroup() |> 
+    select(-min_implied_prob, -max_implied_prob) |>
+    arrange(desc(variation), player_name, desc(over_price), line)
+
+# # Add to google sheets
+# sheet_write(sheet, data = all_player_assists, sheet = "Player Assists")
 
 ##%######################################################%##
 #                                                          #
@@ -144,5 +209,37 @@ all_player_rebounds <-
     keep(~nrow(.x) > 0) |>
     reduce(bind_rows)
 
-# Add to google sheets
-sheet_write(sheet, data = all_player_rebounds, sheet = "Player Rebounds")
+# Add empirical probabilities---------------------------------------------------
+
+# Rebounds
+distinct_rebound_combos <-
+    all_player_rebounds |> 
+    distinct(player_name, line)
+
+player_emp_probs_rebounds <-
+    pmap(distinct_rebound_combos, get_empirical_prob, "REB", .progress = TRUE) |> 
+    bind_rows()
+
+all_player_rebounds <-
+    all_player_rebounds |>
+    mutate(implied_prob_over = 1 / over_price,
+           implied_prob_under = 1 / under_price) |>
+    left_join(player_emp_probs_rebounds, by = c("player_name", "line")) |>
+    rename(empirical_prob_over = empirical_prob) |> 
+    mutate(empirical_prob_under = 1 - empirical_prob_over) |> 
+    mutate(diff_over = empirical_prob_over - implied_prob_over,
+           diff_under = empirical_prob_under - implied_prob_under) |> 
+    relocate(agency, .after = diff_under) |> 
+    mutate_if(is.double, round, 2) |> 
+    filter(!is.na(opposition_team)) |> 
+    group_by(player_name, line) |> 
+    mutate(min_implied_prob = min(implied_prob_over, na.rm = TRUE),
+           max_implied_prob = max(implied_prob_over, na.rm = TRUE)) |>
+    mutate(variation = max_implied_prob - min_implied_prob) |>
+    ungroup() |> 
+    select(-min_implied_prob, -max_implied_prob) |>
+    arrange(desc(variation), player_name, desc(over_price), line)
+
+
+# # Add to google sheets
+# sheet_write(sheet, data = all_player_rebounds, sheet = "Player Rebounds")

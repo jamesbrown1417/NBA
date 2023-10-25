@@ -3,19 +3,45 @@ library(tidyverse)
 library(rvest)
 library(httr2)
 
-# Load user functions
-source("Scripts/04-helper-functions.R")
+# Get teams table
+teams <-
+    read_csv("Data/all_teams.csv")
 
-# Get player name and team data
-player_names_teams <-
-    read_csv("Data/supercoach-data.csv") |> 
-    mutate(first_initial = str_sub(player_first_name, 1, 1)) |>
-    select(player_first_name, first_initial, player_last_name, player_team) |> 
-    mutate(player_name_initials = paste(first_initial, player_last_name, sep = " ")) |> 
-    mutate(player_full_name = paste(player_first_name, player_last_name, sep = " "))
+# Get player names table
+player_names_all <-
+    read_csv("Data/all_rosters.csv") |>
+    select(player_full_name = PLAYER, TeamID) |> 
+    left_join(teams[, c("id", "full_name")], by = c("TeamID" = "id")) |> 
+    mutate(first_initial = str_sub(player_full_name, 1, 1)) |>
+    mutate(surname = str_extract(player_full_name, "(?<=\\s).*$")) |> 
+    mutate(join_name = paste(first_initial, surname, sep = " ")) |> 
+    rename(team_name = full_name)
+
+# unique join names
+player_names_unique <-
+    player_names_all |>
+    group_by(join_name) |> 
+    filter(n() == 1) |> 
+    ungroup()
+
+# Non unique names (take first two letters of first name)
+player_names_non_unique <-
+    player_names_all |>
+    group_by(join_name) |> 
+    filter(n() > 1) |> 
+    mutate(first_initial = str_sub(player_full_name, 1, 2)) |>
+    mutate(join_name = paste(first_initial, surname, sep = " ")) |> 
+    ungroup()
+
+player_names <-
+    bind_rows(player_names_unique, player_names_non_unique) |> 
+    mutate(join_name = ifelse(player_full_name == "Keyontae Johnson", "Key Johnson", join_name)) |> 
+    mutate(join_name = ifelse(player_full_name == "Miles Bridges", "Mil Bridges", join_name)) |> 
+    mutate(join_name = ifelse(player_full_name == "Jaylin Williams", "Jay Williams", join_name)) |> 
+    mutate(join_name = ifelse(player_full_name == "Bojan Bogdanovic", "Boj Bogdanovic", join_name))
 
 # URL to get responses
-bluebet_url = "https://web20-api.bluebet.com.au/SportsCategory?CategoryId=39384&format=json"
+bluebet_url = "https://web20-api.bluebet.com.au/SportsCategory?CategoryId=39251&format=json"
 
 # Make request and get response
 bluebet_response <-
@@ -73,7 +99,7 @@ all_bluebet_markets <-
 # Home teams
 home_teams <-
     all_bluebet_markets |>
-    separate(match, into = c("home_team", "away_team"), sep = " v ", remove = FALSE) |>
+    separate(match, into = c("away_team", "home_team"), sep = " @ ", remove = FALSE) |>
     filter(str_detect(market_name, "Money Line")) |> 
     mutate(market_name = "Head To Head") |> 
     group_by(match) |> 
@@ -84,7 +110,7 @@ home_teams <-
 # Away teams
 away_teams <-
     all_bluebet_markets |>
-    separate(match, into = c("home_team", "away_team"), sep = " v ", remove = FALSE) |>
+    separate(match, into = c("away_team", "home_team"), sep = " @ ", remove = FALSE) |>
     filter(str_detect(market_name, "Money Line")) |> 
     mutate(market_name = "Head To Head") |>
     group_by(match) |> 
@@ -103,8 +129,6 @@ bluebet_head_to_head_markets <-
 # Fix team names
 bluebet_head_to_head_markets <-
     bluebet_head_to_head_markets |> 
-    mutate(home_team = fix_team_names(home_team)) |>
-    mutate(away_team = fix_team_names(away_team)) |>
     mutate(match = paste(home_team, "v", away_team))
 
 # Write to csv
@@ -175,25 +199,63 @@ bluebet_player_points <-
 map(player_points_links, safe_get_prop_data) |> 
     map("result") |>
     bind_rows() |>
-    separate(outcome_title, into = c("market_name", "player_name"), sep = " - ") |>
+    separate(outcome_name, into = c("market_name", "player_name"), sep = " - ") |>
+    mutate(line = as.numeric(str_extract(player_name, "\\d+")) - 0.5) |>
     mutate(match = str_extract(event_name, "\\(.*\\)")) |>
-    mutate(match = str_remove(match, "\\(|\\)")) |>
-    separate(match, into = c("home_team", "away_team"), sep = " v ", remove = FALSE) |>
-    mutate(home_team = fix_team_names(home_team)) |>
-    mutate(away_team = fix_team_names(away_team)) |>
+    mutate(match = str_remove_all(match, "\\(|\\)")) |>
+    separate(match, into = c("away_team", "home_team"), sep = " @ ", remove = FALSE) |>
     mutate(match = paste(home_team, "v", away_team)) |>
-    mutate(player_name = str_replace(player_name, "^Mitch", "Mitchell")) |>
-    left_join(player_names_teams[, c("player_full_name", "player_team")], by = c("player_name" = "player_full_name")) |>
-    mutate(opposition_team = if_else(home_team == player_team, away_team, home_team)) |>
+    mutate(player_name = str_remove_all(player_name, "\\(.*\\)")) |>
+    mutate(player_name = str_remove_all(player_name, " \\d+\\+ ")) |> 
+    mutate(first_initial = str_sub(player_name, 1, 1)) |>
+    mutate(surname = str_extract(player_name, "(?<=\\s).*$")) |>
+    mutate(join_name = paste(first_initial, surname, sep = " ")) |>
+    select(-first_initial,-surname) |>
+    mutate(join_name = case_when(
+        str_detect(player_name, "D. Mitchell") ~ "Do Mitchell",
+        str_detect(player_name, "Bogdan Bogdanovic") ~ "Bo Bogdanovic",
+        str_detect(player_name, "C-Pope") ~ "K Caldwell-Pope",
+        str_detect(player_name, "M Porter") ~ "M Porter Jr.",
+        str_detect(player_name, "St.* Curry$") ~ "St Curry",
+        str_detect(player_name, "D. Schröder$") ~ "D Schroder",
+        str_detect(player_name, "A. Sengün$") ~ "A Sengun",
+        str_detect(player_name, "A-kounmpo") ~ "G Antetokounmpo",
+        str_detect(player_name, "K.* Johnson$") ~ "Ke Johnson",
+        str_detect(player_name, "Ke.* Murray$") ~ "Ke Murray",
+        str_detect(player_name, "J.* Butler$") ~ "Ji Butler",
+        str_detect(player_name, "An.* Wiggins$") ~ "An Wiggins",
+        str_detect(player_name, "Tr.* Young$") ~ "Tr Young",
+        str_detect(player_name, "Jr.* Holiday$") ~ "Jr Holiday",
+        str_detect(player_name, "J.* Green$") ~ "Ja Green",
+        str_detect(player_name, "Jal.* Williams$") ~ "Ja Williams",
+        str_detect(player_name, "Jal.* Wiliams$") ~ "Ja Williams",
+        str_detect(player_name, "Z.* Wiliamson$") ~ "Z Williamson",
+        str_detect(player_name, "C.* Cuni.*$") ~ "C Cunningham",
+        str_detect(player_name, "Au.* Thompson$") ~ "Au Thompson",
+        str_detect(player_name, "Ty.* Jones$") ~ "Ty Jones",
+        str_detect(player_name, "Valanciunas") ~ "J Valanciunas",
+        str_detect(player_name, "F.* Wagnr$") ~ "F Wagner",
+        str_detect(player_name, "Haliburto") ~ "T Haliburton",
+        str_detect(player_name, "P.* Wshington$") ~ "P Washington",
+        str_detect(player_name, "W.* Carter.*$") ~ "W Carter Jr.",
+        str_detect(player_name, "J.* Jackson.*$") ~ "J Jackson Jr.",
+        str_detect(player_name, "B Brown Jr") ~ "B Brown",
+        str_detect(player_name, "La.* Ball$") ~ "La Ball",
+        str_detect(player_name, "Te.* Mann$") ~ "Te Mann",
+        str_detect(player_name, "Mik.* Bridges$") ~ "Mi Bridges",
+        str_detect(player_name, "G-Alexander") ~ "S Gilgeous-Alexander",
+        .default = join_name
+    )) |>
+    left_join(player_names[, c("player_full_name", "team_name", "join_name")], by = c("join_name")) |>
+    mutate(opposition_team = if_else(home_team == team_name, away_team, home_team)) |>
     mutate(agency = "BlueBet") |>
-    mutate(line = as.numeric(str_remove(outcome_name, "\\+")) - 0.5) |>
     select(
         "match",
         "home_team",
         "away_team",
         "market_name",
-        "player_name",
-        "player_team",
+        "player_name" = "player_full_name",
+        "player_team" = "team_name",
         "line",
         "over_price" = "price",
         "agency",
@@ -205,60 +267,138 @@ bluebet_player_assists <-
     map(player_assists_links, safe_get_prop_data) |> 
     map("result") |>
     bind_rows() |>
-    separate(outcome_title, into = c("market_name", "player_name"), sep = " - ") |>
+    separate(outcome_name, into = c("market_name", "player_name"), sep = " - ") |>
+    mutate(line = as.numeric(str_extract(player_name, "\\d+")) - 0.5) |>
     mutate(match = str_extract(event_name, "\\(.*\\)")) |>
-    mutate(match = str_remove(match, "\\(|\\)")) |>
-    separate(match, into = c("home_team", "away_team"), sep = " v ", remove = FALSE) |>
-    mutate(home_team = fix_team_names(home_team)) |>
-    mutate(away_team = fix_team_names(away_team)) |>
+    mutate(match = str_remove_all(match, "\\(|\\)")) |>
+    separate(match, into = c("away_team", "home_team"), sep = " @ ", remove = FALSE) |>
     mutate(match = paste(home_team, "v", away_team)) |>
-    mutate(player_name = str_replace(player_name, "^Mitch", "Mitchell")) |>
-    left_join(player_names_teams[, c("player_full_name", "player_team")], by = c("player_name" = "player_full_name")) |>
-    mutate(opposition_team = if_else(home_team == player_team, away_team, home_team)) |>
+    mutate(player_name = str_remove_all(player_name, "\\(.*\\)")) |>
+    mutate(player_name = str_remove_all(player_name, " \\d+\\+ ")) |> 
+    mutate(first_initial = str_sub(player_name, 1, 1)) |>
+    mutate(surname = str_extract(player_name, "(?<=\\s).*$")) |>
+    mutate(join_name = paste(first_initial, surname, sep = " ")) |>
+    select(-first_initial,-surname) |>
+    mutate(join_name = case_when(
+        str_detect(player_name, "D. Mitchell") ~ "Do Mitchell",
+        str_detect(player_name, "Bogdan Bogdanovic") ~ "Bo Bogdanovic",
+        str_detect(player_name, "C-Pope") ~ "K Caldwell-Pope",
+        str_detect(player_name, "M Porter") ~ "M Porter Jr.",
+        str_detect(player_name, "St.* Curry$") ~ "St Curry",
+        str_detect(player_name, "D. Schröder$") ~ "D Schroder",
+        str_detect(player_name, "A. Sengün$") ~ "A Sengun",
+        str_detect(player_name, "A-kounmpo") ~ "G Antetokounmpo",
+        str_detect(player_name, "K.* Johnson$") ~ "Ke Johnson",
+        str_detect(player_name, "Ke.* Murray$") ~ "Ke Murray",
+        str_detect(player_name, "J.* Butler$") ~ "Ji Butler",
+        str_detect(player_name, "An.* Wiggins$") ~ "An Wiggins",
+        str_detect(player_name, "Tr.* Young$") ~ "Tr Young",
+        str_detect(player_name, "Jr.* Holiday$") ~ "Jr Holiday",
+        str_detect(player_name, "J.* Green$") ~ "Ja Green",
+        str_detect(player_name, "Jal.* Williams$") ~ "Ja Williams",
+        str_detect(player_name, "Jal.* Wiliams$") ~ "Ja Williams",
+        str_detect(player_name, "Z.* Wiliamson$") ~ "Z Williamson",
+        str_detect(player_name, "C.* Cuni.*$") ~ "C Cunningham",
+        str_detect(player_name, "Au.* Thompson$") ~ "Au Thompson",
+        str_detect(player_name, "Ty.* Jones$") ~ "Ty Jones",
+        str_detect(player_name, "Valanciunas") ~ "J Valanciunas",
+        str_detect(player_name, "F.* Wagnr$") ~ "F Wagner",
+        str_detect(player_name, "Haliburto") ~ "T Haliburton",
+        str_detect(player_name, "P.* Wshington$") ~ "P Washington",
+        str_detect(player_name, "W.* Carter.*$") ~ "W Carter Jr.",
+        str_detect(player_name, "J.* Jackson.*$") ~ "J Jackson Jr.",
+        str_detect(player_name, "B Brown Jr") ~ "B Brown",
+        str_detect(player_name, "La.* Ball$") ~ "La Ball",
+        str_detect(player_name, "Te.* Mann$") ~ "Te Mann",
+        str_detect(player_name, "Mik.* Bridges$") ~ "Mi Bridges",
+        str_detect(player_name, "G-Alexander") ~ "S Gilgeous-Alexander",
+        .default = join_name
+    )) |>
+    left_join(player_names[, c("player_full_name", "team_name", "join_name")], by = c("join_name")) |>
+    mutate(opposition_team = if_else(home_team == team_name, away_team, home_team)) |>
     mutate(agency = "BlueBet") |>
-    mutate(line = as.numeric(str_remove(outcome_name, "\\+")) - 0.5) |>
     select(
         "match",
         "home_team",
         "away_team",
         "market_name",
-        "player_name",
-        "player_team",
+        "player_name" = "player_full_name",
+        "player_team" = "team_name",
         "line",
         "over_price" = "price",
         "agency",
         "opposition_team"
     )
 
+
 # Get player rebounds data------------------------------------------------------
 bluebet_player_rebounds <-
     map(player_rebounds_links, safe_get_prop_data) |> 
     map("result") |>
     bind_rows() |>
-    separate(outcome_title, into = c("market_name", "player_name"), sep = " - ") |>
+    separate(outcome_name, into = c("market_name", "player_name"), sep = " - ") |>
+    mutate(line = as.numeric(str_extract(player_name, "\\d+")) - 0.5) |>
     mutate(match = str_extract(event_name, "\\(.*\\)")) |>
-    mutate(match = str_remove(match, "\\(|\\)")) |>
-    separate(match, into = c("home_team", "away_team"), sep = " v ", remove = FALSE) |>
-    mutate(home_team = fix_team_names(home_team)) |>
-    mutate(away_team = fix_team_names(away_team)) |>
+    mutate(match = str_remove_all(match, "\\(|\\)")) |>
+    separate(match, into = c("away_team", "home_team"), sep = " @ ", remove = FALSE) |>
     mutate(match = paste(home_team, "v", away_team)) |>
-    mutate(player_name = str_replace(player_name, "^Mitch", "Mitchell")) |>
-    left_join(player_names_teams[, c("player_full_name", "player_team")], by = c("player_name" = "player_full_name")) |>
-    mutate(opposition_team = if_else(home_team == player_team, away_team, home_team)) |>
+    mutate(player_name = str_remove_all(player_name, "\\(.*\\)")) |>
+    mutate(player_name = str_remove_all(player_name, " \\d+\\+ ")) |> 
+    mutate(first_initial = str_sub(player_name, 1, 1)) |>
+    mutate(surname = str_extract(player_name, "(?<=\\s).*$")) |>
+    mutate(join_name = paste(first_initial, surname, sep = " ")) |>
+    select(-first_initial,-surname) |>
+    mutate(join_name = case_when(
+        str_detect(player_name, "D. Mitchell") ~ "Do Mitchell",
+        str_detect(player_name, "Bogdan Bogdanovic") ~ "Bo Bogdanovic",
+        str_detect(player_name, "C-Pope") ~ "K Caldwell-Pope",
+        str_detect(player_name, "M Porter") ~ "M Porter Jr.",
+        str_detect(player_name, "St.* Curry$") ~ "St Curry",
+        str_detect(player_name, "D. Schröder$") ~ "D Schroder",
+        str_detect(player_name, "A. Sengün$") ~ "A Sengun",
+        str_detect(player_name, "A-kounmpo") ~ "G Antetokounmpo",
+        str_detect(player_name, "K.* Johnson$") ~ "Ke Johnson",
+        str_detect(player_name, "Ke.* Murray$") ~ "Ke Murray",
+        str_detect(player_name, "J.* Butler$") ~ "Ji Butler",
+        str_detect(player_name, "An.* Wiggins$") ~ "An Wiggins",
+        str_detect(player_name, "Tr.* Young$") ~ "Tr Young",
+        str_detect(player_name, "Jr.* Holiday$") ~ "Jr Holiday",
+        str_detect(player_name, "J.* Green$") ~ "Ja Green",
+        str_detect(player_name, "Jal.* Williams$") ~ "Ja Williams",
+        str_detect(player_name, "Jal.* Wiliams$") ~ "Ja Williams",
+        str_detect(player_name, "Z.* Wiliamson$") ~ "Z Williamson",
+        str_detect(player_name, "C.* Cuni.*$") ~ "C Cunningham",
+        str_detect(player_name, "Au.* Thompson$") ~ "Au Thompson",
+        str_detect(player_name, "Ty.* Jones$") ~ "Ty Jones",
+        str_detect(player_name, "Valanciunas") ~ "J Valanciunas",
+        str_detect(player_name, "F.* Wagnr$") ~ "F Wagner",
+        str_detect(player_name, "Haliburto") ~ "T Haliburton",
+        str_detect(player_name, "P.* Wshington$") ~ "P Washington",
+        str_detect(player_name, "W.* Carter.*$") ~ "W Carter Jr.",
+        str_detect(player_name, "J.* Jackson.*$") ~ "J Jackson Jr.",
+        str_detect(player_name, "B Brown Jr") ~ "B Brown",
+        str_detect(player_name, "La.* Ball$") ~ "La Ball",
+        str_detect(player_name, "Te.* Mann$") ~ "Te Mann",
+        str_detect(player_name, "Mik.* Bridges$") ~ "Mi Bridges",
+        str_detect(player_name, "G-Alexander") ~ "S Gilgeous-Alexander",
+        .default = join_name
+    )) |>
+    left_join(player_names[, c("player_full_name", "team_name", "join_name")], by = c("join_name")) |>
+    mutate(opposition_team = if_else(home_team == team_name, away_team, home_team)) |>
     mutate(agency = "BlueBet") |>
-    mutate(line = as.numeric(str_remove(outcome_name, "\\+")) - 0.5) |>
     select(
         "match",
         "home_team",
         "away_team",
         "market_name",
-        "player_name",
-        "player_team",
+        "player_name" = "player_full_name",
+        "player_team" = "team_name",
         "line",
         "over_price" = "price",
         "agency",
         "opposition_team"
     )
+
 
 #===============================================================================
 # Write to CSV
