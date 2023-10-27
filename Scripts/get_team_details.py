@@ -1,7 +1,6 @@
 from nba_api.stats.static import teams
 from nba_api.stats.endpoints import commonteamroster
 import pandas as pd
-import time
 
 #===============================================================================
 # Get list of all teams
