@@ -646,6 +646,7 @@ pointsbet_player_rebounds_over_under <-
 # Points
 pointsbet_player_points_lines |>
     bind_rows(pointsbet_player_points_over_under) |>
+    mutate(match = paste(home_team, away_team, sep = " v ")) |> 
     select(
         "match",
         "home_team",
@@ -666,6 +667,7 @@ pointsbet_player_points_lines |>
 # Rebounds
 pointsbet_player_rebounds_lines |>
     bind_rows(pointsbet_player_rebounds_over_under) |>
+  mutate(match = paste(home_team, away_team, sep = " v ")) |> 
     select(
         "match",
         "home_team",
@@ -686,6 +688,7 @@ pointsbet_player_rebounds_lines |>
 # Assists
 pointsbet_player_assists_lines |>
     bind_rows(pointsbet_player_assists_over_under) |>
+  mutate(match = paste(home_team, away_team, sep = " v ")) |> 
     select(
         "match",
         "home_team",

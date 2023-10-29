@@ -17,4 +17,4 @@ all_odds_files <-
   reduce(bind_rows) |> 
   mutate(timestamp = Sys.time()) |> 
   relocate(timestamp, .before = match) |> 
-  write_csv(glue("Data/odds_archive_scraped_odds_{Sys.Date()}.csv"))
+  write_csv(glue("Data/odds_archive/scraped_odds_{Sys.Date()}.csv"))

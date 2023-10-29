@@ -58,9 +58,9 @@ all_odds_h2h <-
     mutate(margin = round(100*(margin - 1), digits = 3)) |> 
     arrange(margin)
 
-# # Google Sheets-----------------------------------------------------
-# sheet <- gs4_find("NBL Data")
-# sheet_write(sheet, data = all_odds_h2h, sheet = "H2H")
+# Google Sheets-----------------------------------------------------
+sheet <- gs4_find("NBA Data")
+sheet_write(sheet, data = all_odds_h2h, sheet = "H2H")
 
 ##%######################################################%##
 #                                                          #
@@ -95,8 +95,8 @@ all_odds_totals <-
     mutate(margin = round(100*(margin - 1), digits = 3)) |> 
     arrange(margin)
 
-# # Google Sheets-----------------------------------------------------
-# sheet_write(sheet, data = all_odds_totals, sheet = "Total Points")
+# Google Sheets-----------------------------------------------------
+sheet_write(sheet, data = all_odds_totals, sheet = "Total Points")
 
 ##%######################################################%##
 #                                                          #
@@ -144,8 +144,8 @@ all_player_points <-
     select(-min_implied_prob, -max_implied_prob) |>
     arrange(desc(variation), player_name, desc(over_price), line)
 
-# # Add to google sheets
-# sheet_write(sheet, data = all_player_points, sheet = "Player Points")
+# Add to google sheets
+sheet_write(sheet, data = all_player_points, sheet = "Player Points")
 
 ##%######################################################%##
 #                                                          #
@@ -192,8 +192,8 @@ all_player_assists <-
     select(-min_implied_prob, -max_implied_prob) |>
     arrange(desc(variation), player_name, desc(over_price), line)
 
-# # Add to google sheets
-# sheet_write(sheet, data = all_player_assists, sheet = "Player Assists")
+# Add to google sheets
+sheet_write(sheet, data = all_player_assists, sheet = "Player Assists")
 
 ##%######################################################%##
 #                                                          #
@@ -241,5 +241,5 @@ all_player_rebounds <-
     arrange(desc(variation), player_name, desc(over_price), line)
 
 
-# # Add to google sheets
-# sheet_write(sheet, data = all_player_rebounds, sheet = "Player Rebounds")
+# Add to google sheets
+sheet_write(sheet, data = all_player_rebounds, sheet = "Player Rebounds")
