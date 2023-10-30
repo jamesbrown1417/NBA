@@ -12,15 +12,47 @@ drive_auth(cache = ".secrets", email = "cuzzy.punting@gmail.com")
 gs4_auth(token = drive_token())
 
 # # Run all odds scraping scripts-------------------------------------------------
-# source("OddsScraper/scrape_betr.R")
-# source("OddsScraper/scrape_BetRight.R")
-# source("OddsScraper/scrape_Palmerbet.R")
-source("OddsScraper/scrape_pointsbet.R")
-source("OddsScraper/scrape_sportsbet.R")
-source("OddsScraper/scrape_TAB.R")
-source("OddsScraper/scrape_TopSport.R")
-# source("OddsScraper/scrape_bet365.R")
-source("OddsScraper/scrape_bluebet.R")
+run_scraping <- function(script_name) {
+  tryCatch({
+    source(script_name)
+  }, error = function(e) {
+    cat("Odds not released yet for:", script_name, "\n")
+  })
+}
+
+# Run all odds scraping scripts
+# run_scraping("OddsScraper/scrape_betr.R")
+# run_scraping("OddsScraper/scrape_BetRight.R")
+# run_scraping("OddsScraper/scrape_Palmerbet.R")
+run_scraping("OddsScraper/scrape_pointsbet.R")
+run_scraping("OddsScraper/scrape_sportsbet.R")
+run_scraping("OddsScraper/scrape_TAB.R")
+run_scraping("OddsScraper/scrape_TopSport.R")
+# run_scraping("OddsScraper/scrape_bet365.R")
+run_scraping("OddsScraper/scrape_bluebet.R")
+run_scraping("OddsScraper/scrape_neds.R")
+
+# Get schedule
+NBA_schedule <-
+  read_csv("Data/NBA_schedule.csv") |> 
+  filter(match_date_utc >= lubridate::now(tzone = "UTC")) |>
+  transmute(match = paste(home_team_name, away_team_name, sep = " v "),
+            start_time = match_date_utc) |> 
+  arrange(start_time, match) |> 
+  group_by(match) |>
+  slice_head(n = 1) |> 
+  ungroup() |> 
+  mutate(start_time = with_tz(start_time, tzone = "Australia/Adelaide"))
+
+# Get all games between today and one week
+next_week_games <-
+read_csv("Data/NBA_schedule.csv") |> 
+  filter(match_date_utc >= lubridate::now(tzone = "UTC")) |> 
+  mutate(one_week = lubridate::now(tzone = "UTC") + lubridate::weeks(1)) |>
+  filter(match_date_utc <= one_week) |> 
+  transmute(match = paste(home_team_name, away_team_name, sep = " v "),
+            start_time = match_date_utc) |> 
+  mutate(start_time = with_tz(start_time, tzone = "Australia/Adelaide"))
 
 ##%######################################################%##
 #                                                          #
@@ -56,47 +88,14 @@ all_odds_h2h <-
     full_join(all_away, relationship = "many-to-many", by = c("match", "market_name")) |>
     mutate(margin = (1/home_win + 1/away_win)) |> 
     mutate(margin = round(100*(margin - 1), digits = 3)) |> 
-    arrange(margin)
+    arrange(margin) |> 
+  left_join(NBA_schedule, by = "match") |> 
+  relocate(start_time, .after = match) |> 
+  filter(match %in% next_week_games$match)
 
 # Google Sheets-----------------------------------------------------
 sheet <- gs4_find("NBA Data")
 sheet_write(sheet, data = all_odds_h2h, sheet = "H2H")
-
-##%######################################################%##
-#                                                          #
-####                    Total Points                    ####
-#                                                          #
-##%######################################################%##
-
-# Get all scraped odds files and combine
-all_totals_files <-
-    list.files("Data/scraped_odds", full.names = TRUE, pattern = "total") |>
-    map(read_csv) |>
-    reduce(bind_rows) |> 
-    mutate(market_name = "Total Points")
-
-# For each match, get all unders
-all_unders <-
-    all_totals_files |>
-    arrange(start_time, match, total_points_line, desc(under_price)) |>
-    select(match, start_time, market_name, home_team, away_team, total_points_line, under_price, under_agency = agency)
-
-# For each match, get all overs
-all_overs <-
-    all_totals_files |>
-    arrange(start_time, match, total_points_line, desc(over_price)) |>
-    select(match, start_time, market_name, home_team, away_team, total_points_line, over_price, over_agency = agency)
-
-# Combine
-all_odds_totals <-
-    all_unders |>
-    full_join(all_overs, relationship = "many-to-many") |>
-    mutate(margin = (1/under_price + 1/over_price)) |> 
-    mutate(margin = round(100*(margin - 1), digits = 3)) |> 
-    arrange(margin)
-
-# Google Sheets-----------------------------------------------------
-sheet_write(sheet, data = all_odds_totals, sheet = "Total Points")
 
 ##%######################################################%##
 #                                                          #
@@ -125,24 +124,33 @@ player_emp_probs <-
     bind_rows()
 
 all_player_points <-
-    all_player_points |>
-    mutate(implied_prob_over = 1 / over_price,
-           implied_prob_under = 1 / under_price) |>
-    left_join(player_emp_probs, by = c("player_name", "line")) |>
-    rename(empirical_prob_over = empirical_prob) |> 
-    mutate(empirical_prob_under = 1 - empirical_prob_over) |> 
-    mutate(diff_over = empirical_prob_over - implied_prob_over,
-           diff_under = empirical_prob_under - implied_prob_under) |> 
-    relocate(agency, .after = diff_under) |> 
-    mutate_if(is.double, round, 2)|> 
-    filter(!is.na(opposition_team)) |> 
-    group_by(player_name, line) |> 
-    mutate(min_implied_prob = min(implied_prob_over, na.rm = TRUE),
-           max_implied_prob = max(implied_prob_over, na.rm = TRUE)) |>
-    mutate(variation = max_implied_prob - min_implied_prob) |>
-    ungroup() |> 
-    select(-min_implied_prob, -max_implied_prob) |>
-    arrange(desc(variation), player_name, desc(over_price), line)
+  all_player_points |>
+  mutate(
+    implied_prob_over = 1 / over_price,
+    implied_prob_under = 1 / under_price
+  ) |>
+  left_join(player_emp_probs, by = c("player_name", "line")) |>
+  rename(empirical_prob_over = empirical_prob) |>
+  mutate(empirical_prob_under = 1 - empirical_prob_over) |>
+  mutate(
+    diff_over = empirical_prob_over - implied_prob_over,
+    diff_under = empirical_prob_under - implied_prob_under
+  ) |>
+  relocate(agency, .after = diff_under) |>
+  mutate_if(is.double, round, 2) |>
+  filter(!is.na(opposition_team)) |>
+  group_by(player_name, line) |>
+  mutate(
+    min_implied_prob = min(implied_prob_over, na.rm = TRUE),
+    max_implied_prob = max(implied_prob_over, na.rm = TRUE)
+  ) |>
+  mutate(variation = max_implied_prob - min_implied_prob) |>
+  ungroup() |>
+  select(-min_implied_prob,-max_implied_prob) |>
+  arrange(desc(variation), player_name, desc(over_price), line) |>
+  left_join(NBA_schedule, by = "match") |>
+  relocate(start_time, .after = match) |> 
+  filter(match %in% next_week_games$match)
 
 # Add to google sheets
 sheet_write(sheet, data = all_player_points, sheet = "Player Points")
@@ -173,24 +181,33 @@ player_emp_probs_assists <-
     bind_rows()
 
 all_player_assists <-
-    all_player_assists |>
-    mutate(implied_prob_over = 1 / over_price,
-           implied_prob_under = 1 / under_price) |>
-    left_join(player_emp_probs_assists, by = c("player_name", "line")) |>
-    rename(empirical_prob_over = empirical_prob) |> 
-    mutate(empirical_prob_under = 1 - empirical_prob_over) |> 
-    mutate(diff_over = empirical_prob_over - implied_prob_over,
-           diff_under = empirical_prob_under - implied_prob_under) |> 
-    relocate(agency, .after = diff_under) |> 
-    mutate_if(is.double, round, 2) |> 
-    filter(!is.na(opposition_team)) |> 
-    group_by(player_name, line) |> 
-    mutate(min_implied_prob = min(implied_prob_over, na.rm = TRUE),
-           max_implied_prob = max(implied_prob_over, na.rm = TRUE)) |>
-    mutate(variation = max_implied_prob - min_implied_prob) |>
-    ungroup() |> 
-    select(-min_implied_prob, -max_implied_prob) |>
-    arrange(desc(variation), player_name, desc(over_price), line)
+  all_player_assists |>
+  mutate(
+    implied_prob_over = 1 / over_price,
+    implied_prob_under = 1 / under_price
+  ) |>
+  left_join(player_emp_probs_assists, by = c("player_name", "line")) |>
+  rename(empirical_prob_over = empirical_prob) |>
+  mutate(empirical_prob_under = 1 - empirical_prob_over) |>
+  mutate(
+    diff_over = empirical_prob_over - implied_prob_over,
+    diff_under = empirical_prob_under - implied_prob_under
+  ) |>
+  relocate(agency, .after = diff_under) |>
+  mutate_if(is.double, round, 2) |>
+  filter(!is.na(opposition_team)) |>
+  group_by(player_name, line) |>
+  mutate(
+    min_implied_prob = min(implied_prob_over, na.rm = TRUE),
+    max_implied_prob = max(implied_prob_over, na.rm = TRUE)
+  ) |>
+  mutate(variation = max_implied_prob - min_implied_prob) |>
+  ungroup() |>
+  select(-min_implied_prob,-max_implied_prob) |>
+  arrange(desc(variation), player_name, desc(over_price), line) |>
+  left_join(NBA_schedule, by = "match") |>
+  relocate(start_time, .after = match) |> 
+  filter(match %in% next_week_games$match)
 
 # Add to google sheets
 sheet_write(sheet, data = all_player_assists, sheet = "Player Assists")
@@ -221,25 +238,33 @@ player_emp_probs_rebounds <-
     bind_rows()
 
 all_player_rebounds <-
-    all_player_rebounds |>
-    mutate(implied_prob_over = 1 / over_price,
-           implied_prob_under = 1 / under_price) |>
-    left_join(player_emp_probs_rebounds, by = c("player_name", "line")) |>
-    rename(empirical_prob_over = empirical_prob) |> 
-    mutate(empirical_prob_under = 1 - empirical_prob_over) |> 
-    mutate(diff_over = empirical_prob_over - implied_prob_over,
-           diff_under = empirical_prob_under - implied_prob_under) |> 
-    relocate(agency, .after = diff_under) |> 
-    mutate_if(is.double, round, 2) |> 
-    filter(!is.na(opposition_team)) |> 
-    group_by(player_name, line) |> 
-    mutate(min_implied_prob = min(implied_prob_over, na.rm = TRUE),
-           max_implied_prob = max(implied_prob_over, na.rm = TRUE)) |>
-    mutate(variation = max_implied_prob - min_implied_prob) |>
-    ungroup() |> 
-    select(-min_implied_prob, -max_implied_prob) |>
-    arrange(desc(variation), player_name, desc(over_price), line)
-
+  all_player_rebounds |>
+  mutate(
+    implied_prob_over = 1 / over_price,
+    implied_prob_under = 1 / under_price
+  ) |>
+  left_join(player_emp_probs_rebounds, by = c("player_name", "line")) |>
+  rename(empirical_prob_over = empirical_prob) |>
+  mutate(empirical_prob_under = 1 - empirical_prob_over) |>
+  mutate(
+    diff_over = empirical_prob_over - implied_prob_over,
+    diff_under = empirical_prob_under - implied_prob_under
+  ) |>
+  relocate(agency, .after = diff_under) |>
+  mutate_if(is.double, round, 2) |>
+  filter(!is.na(opposition_team)) |>
+  group_by(player_name, line) |>
+  mutate(
+    min_implied_prob = min(implied_prob_over, na.rm = TRUE),
+    max_implied_prob = max(implied_prob_over, na.rm = TRUE)
+  ) |>
+  mutate(variation = max_implied_prob - min_implied_prob) |>
+  ungroup() |>
+  select(-min_implied_prob,-max_implied_prob) |>
+  arrange(desc(variation), player_name, desc(over_price), line) |>
+  left_join(NBA_schedule, by = "match") |>
+  relocate(start_time, .after = match) |> 
+  filter(match %in% next_week_games$match)
 
 # Add to google sheets
 sheet_write(sheet, data = all_player_rebounds, sheet = "Player Rebounds")

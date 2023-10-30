@@ -10,6 +10,13 @@ library(tidyverse)
 #===============================================================================
 
 combined_stats_2022_2023 <- read_csv("Data/all_player_stats_2022-2023.csv")
+all_rosters <- read_csv("Data/all_rosters.csv")
+
+# Add names and rename vars
+combined_stats_2022_2023 <-
+  combined_stats_2022_2023 |> 
+  left_join(all_rosters[c("PLAYER", "PLAYER_ID")], by = c("personId" = "PLAYER_ID")) |> 
+  rename(PLAYER_NAME = PLAYER, PTS = points, REB = reboundsTotal, AST = assists)
 
 #===============================================================================
 # Create a function that takes a player name + line and returns their hit rate

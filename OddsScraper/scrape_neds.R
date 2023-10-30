@@ -3,6 +3,42 @@ library(tidyverse)
 library(rvest)
 library(httr2)
 
+# Get teams table
+teams <-
+  read_csv("Data/all_teams.csv")
+
+# Get player names table
+player_names_all <-
+  read_csv("Data/all_rosters.csv") |>
+  select(player_full_name = PLAYER, TeamID) |> 
+  left_join(teams[, c("id", "full_name")], by = c("TeamID" = "id")) |> 
+  mutate(first_initial = str_sub(player_full_name, 1, 1)) |>
+  mutate(surname = str_extract(player_full_name, "(?<=\\s).*$")) |> 
+  mutate(join_name = paste(first_initial, surname, sep = " ")) |> 
+  rename(team_name = full_name)
+
+# unique join names
+player_names_unique <-
+  player_names_all |>
+  group_by(join_name) |> 
+  filter(n() == 1) |> 
+  ungroup()
+
+# Non unique names (take first two letters of first name)
+player_names_non_unique <-
+  player_names_all |>
+  group_by(join_name) |> 
+  filter(n() > 1) |> 
+  mutate(first_initial = str_sub(player_full_name, 1, 2)) |>
+  mutate(join_name = paste(first_initial, surname, sep = " ")) |> 
+  ungroup()
+
+player_names <-
+  bind_rows(player_names_unique, player_names_non_unique) |> 
+  mutate(join_name = ifelse(player_full_name == "Keyontae Johnson", "Key Johnson", join_name)) |> 
+  mutate(join_name = ifelse(player_full_name == "Miles Bridges", "Mil Bridges", join_name)) |> 
+  mutate(join_name = ifelse(player_full_name == "Jaylin Williams", "Jay Williams", join_name))
+
 # URL to get responses
 neds_url = "https://api.neds.com.au/v2/sport/event-request?category_ids=%5B%223c34d075-dc14-436d-bfc4-9272a49c2b39%22%5D&include_any_team_vs_any_team_events=true"
 
@@ -206,10 +242,11 @@ player_points_data <-
     points_overs |> 
     full_join(points_unders, by = c("match", "player_name", "line", "agency", "market_name")) |> 
     select(match, market_name, player_name, line, over_price, under_price, agency) |> 
-    mutate(player_name = case_when(player_name == "Jake Wiley" ~ "Jacob Wiley",
-                                   player_name == "Zylan Chetham" ~ "Zylan Cheatham",
+    mutate(player_name = case_when(player_name == "PJ Washington" ~ "P.J. Washington",
                                    .default = player_name)) |> 
-    left_join(player_names_teams[, c("player_name", "player_team")]) |> 
+    left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |> 
+    rename(player_team = team_name) |>
+    mutate(match = str_replace(match, " vs ", " v ")) |>
     separate(match, into = c("home_team", "away_team"), sep = " v ", remove = FALSE) |> 
     mutate(opposition_team = case_when(player_team == home_team ~ away_team,
                                        player_team == away_team ~ home_team)) |>
@@ -270,15 +307,15 @@ player_assists_data <-
     assists_overs |> 
     full_join(assists_unders, by = c("match", "player_name", "line", "agency", "market_name")) |> 
     select(match, market_name, player_name, line, over_price, under_price, agency) |> 
-    mutate(player_name = case_when(player_name == "Jake Wiley" ~ "Jacob Wiley",
-                                   player_name == "Zylan Chetham" ~ "Zylan Cheatham",
-                                   .default = player_name)) |> 
-    left_join(player_names_teams[, c("player_name", "player_team")]) |> 
-    separate(match, into = c("home_team", "away_team"), sep = " v ", remove = FALSE) |> 
-    mutate(opposition_team = case_when(player_team == home_team ~ away_team,
-                                       player_team == away_team ~ home_team)) |>
-    relocate(player_team, opposition_team, .after = player_name)
-
+  mutate(player_name = case_when(player_name == "PJ Washington" ~ "P.J. Washington",
+                                 .default = player_name)) |> 
+  left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |> 
+  rename(player_team = team_name) |>
+  mutate(match = str_replace(match, " vs ", " v ")) |>
+  separate(match, into = c("home_team", "away_team"), sep = " v ", remove = FALSE) |> 
+  mutate(opposition_team = case_when(player_team == home_team ~ away_team,
+                                     player_team == away_team ~ home_team)) |>
+  relocate(player_team, opposition_team, .after = player_name)
 
 ##%######################################################%##
 #                                                          #
@@ -335,15 +372,15 @@ player_rebounds_data <-
     rebounds_overs |> 
     full_join(rebounds_unders, by = c("match", "player_name", "line", "agency", "market_name")) |> 
     select(match, market_name, player_name, line, over_price, under_price, agency) |> 
-    mutate(player_name = case_when(player_name == "Jake Wiley" ~ "Jacob Wiley",
-                                   player_name == "Zylan Chetham" ~ "Zylan Cheatham",
-                                   .default = player_name)) |> 
-    left_join(player_names_teams[, c("player_name", "player_team")]) |> 
-    separate(match, into = c("home_team", "away_team"), sep = " v ", remove = FALSE) |> 
-    mutate(opposition_team = case_when(player_team == home_team ~ away_team,
-                                       player_team == away_team ~ home_team)) |>
-    relocate(player_team, opposition_team, .after = player_name)
-
+  mutate(player_name = case_when(player_name == "PJ Washington" ~ "P.J. Washington",
+                                 .default = player_name)) |> 
+  left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |> 
+  rename(player_team = team_name) |>
+  mutate(match = str_replace(match, " vs ", " v ")) |>
+  separate(match, into = c("home_team", "away_team"), sep = " v ", remove = FALSE) |> 
+  mutate(opposition_team = case_when(player_team == home_team ~ away_team,
+                                     player_team == away_team ~ home_team)) |>
+  relocate(player_team, opposition_team, .after = player_name)
 
 ##%######################################################%##
 #                                                          #

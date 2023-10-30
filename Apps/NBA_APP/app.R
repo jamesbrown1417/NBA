@@ -6,22 +6,39 @@ library(tidyverse)
 library(googlesheets4)
 library(googledrive)
 
+convert_time_to_decimal_hms <- function(time_obj) {
+  # Convert to hms object
+  time_obj <- hms(time_obj)
+  
+  # Extract hours and minutes
+  hours <- hour(time_obj)
+  minutes <- minute(time_obj)
+  
+  # Convert to decimal
+  decimal_time <- hours + (minutes / 60)
+  return(decimal_time)
+}
+
 #===============================================================================
 # Read in Data
 #===============================================================================
 
 all_rosters <- read_csv("../../Data/all_rosters.csv")
 all_teams <- read_csv("../../Data/all_teams.csv")
-all_player_stats_2021_2022 <- read_csv("../../Data/all_player_stats_2021-2022.csv")
-all_player_stats_2022_2023 <- read_csv("../../Data/all_player_stats_2022-2023.csv")
-all_player_stats_2023_2024 <- read_csv("../../Data/all_player_stats_2023-2024.csv")
+all_player_stats_2021_2022 <- read_csv("../../Data/all_player_stats_2021-2022.csv") |> mutate(SEASON_YEAR = "2021-22")
+all_player_stats_2022_2023 <- read_csv("../../Data/all_player_stats_2022-2023.csv") |> mutate(SEASON_YEAR = "2022-23")
+all_player_stats_2023_2024 <- read_csv("../../Data/all_player_stats_2023-2024.csv") |> mutate(SEASON_YEAR = "2023-24")
 
 # Combine player stats
 all_player_stats <-
   all_player_stats_2023_2024 |>
   bind_rows(all_player_stats_2022_2023) |>
   bind_rows(all_player_stats_2021_2022) |>
-  mutate(MIN = round(MIN, 2))
+  left_join(all_rosters[c("PLAYER", "PLAYER_ID")], by = c("personId" = "PLAYER_ID")) |> 
+  rename(PLAYER_NAME = PLAYER, PTS = points, REB = reboundsTotal, AST = assists) |> 
+  mutate(MIN = convert_time_to_decimal_hms(minutes)) |> 
+  mutate(MIN = round(MIN, 2)) |> 
+  relocate(MIN, .after = minutes)
 
 # Google sheets authentication -------------------------------------------------
 options(gargle_oauth_cache = ".secrets")
@@ -308,12 +325,18 @@ server <- function(input, output) {
       
       # Basic Elements
       geom_point(size = 3) +
+      geom_smooth(
+        method = "loess",
+        se = TRUE,
+        inherit.aes = FALSE,
+        mapping = aes(x = game_number, y = !!sym(input$stat_input_a))
+      ) +
       geom_hline(
         yintercept = input$reference_line,
         linetype = "dashed",
         color = "grey4",
         size = 1
-      ) +
+      )+
       
       # Add text
       annotate(

@@ -1,48 +1,125 @@
 import pandas as pd
-from nba_api.stats.static import players
-from nba_api.stats.endpoints import playergamelogs
+from nba_api.stats.static import teams
+from nba_api.stats.endpoints import leaguegamefinder, boxscoretraditionalv3
+from urllib3.exceptions import ReadTimeoutError
+from requests.exceptions import HTTPError
+import time
 
-def fetch_player_stats(player_name: str, seasons: list):
-    # Retrieve player's ID
-    player_info = players.find_players_by_full_name(player_name)
-    if not player_info:
-        print(f"No data found for player: {player_name}")
-        return pd.DataFrame()
-    player_id = player_info[0]['id']
+# Get list of all NBA teams
+nba_teams = teams.get_teams()
 
-    # Fetch game logs for the player for the specified seasons
-    frames = [playergamelogs.PlayerGameLogs(player_id_nullable=player_id, season_nullable=season).get_data_frames()[0] for season in seasons]
+# ==========================================
+# Function to Get Match IDs
+# ==========================================
 
-    # Combine game logs from all specified seasons
-    df_player = pd.concat(frames)
+from nba_api.stats.endpoints import leaguegamefinder
+import pandas as pd
+
+def get_all_match_ids(season_name):
+    # Fetch all games for the specified season and season type
+    gamefinder = leaguegamefinder.LeagueGameFinder(season_nullable=season_name, season_type_nullable='Regular Season')
+    games_dict = gamefinder.get_dict()
+    games = games_dict['resultSets'][0]['rowSet']
     
-    # Add player name to DataFrame and return
-    df_player['Player'] = player_name
-    return df_player
+    # Create a DataFrame to hold the data
+    df_match_ids = pd.DataFrame(games, columns=games_dict['resultSets'][0]['headers'])
+    
+    # Create home and away team columns
+    df_match_ids['IS_HOME'] = df_match_ids['MATCHUP'].str.contains('vs.')
+    df_match_ids['TEAM_TYPE'] = df_match_ids.apply(lambda row: 'HOME_TEAM' if row['IS_HOME'] else 'AWAY_TEAM', axis=1)
+    
+    # Filter to only team IDs in the NBA
+    df_match_ids = df_match_ids[df_match_ids['TEAM_ID'].isin([team['id'] for team in nba_teams])]
+    
+    # Pivot the DataFrame so each GAME_ID has a single row
+    df_pivot = df_match_ids.pivot(index='GAME_ID', columns='TEAM_TYPE', values='TEAM_NAME')
+    
+    # Reset the index for the new DataFrame
+    df_pivot.reset_index(inplace=True)
+    
+    # Add GAME_DATE (it will be the same for both rows so we just take the first one)
+    game_dates = df_match_ids.groupby('GAME_ID')['GAME_DATE'].first().reset_index()
+    df_pivot = pd.merge(df_pivot, game_dates, on='GAME_ID', how='left')
+    
+    # Filter to only games where 
+    
+    return df_pivot
 
-# Get list of all player names and IDs active in the 2023-24 season
-all_players = players.get_players()
-df_all_players = pd.DataFrame(all_players)
-df_all_players = df_all_players[df_all_players['is_active'] == True]
+# ==========================================
+# Fetch Match ID, Game Date, Match Name
+# ==========================================
 
-# 2022-23 season----------------------------------------------
+# 2022-23 season 
+matches_2022_23 = get_all_match_ids("2022-23")
+match_id_list_2022_23 = list(set(matches_2022_23.GAME_ID))
 
-# Fetch stats for all active players using list comprehension
-all_player_stats = [fetch_player_stats(row['full_name'], ["2022-23"]) for _, row in df_all_players.iterrows()]
+# 2021-22 season
+matches_2021_22 = get_all_match_ids("2021-22")
+match_id_list_2021_22 = list(set(matches_2021_22.GAME_ID))
 
-# Concatenate all player stats into a single DataFrame
-df_all_player_stats = pd.concat(all_player_stats)
+# ==========================================
+# Functions to Fetch Season Data
+# ==========================================
+def fetch_single_match_data(match_id, retries=3, delay=10):
+    for i in range(retries):
+        try:
+            player_stats = boxscoretraditionalv3.BoxScoreTraditionalV3(game_id=match_id, timeout=120)  # Increased timeout to 120 seconds
+            return player_stats.get_data_frames()[0]
+        except (HTTPError, ReadTimeoutError) as e:
+            wait_time = delay * (2 ** i)  # Exponential backoff
+            print(f"An error occurred: {e}. Retrying in {wait_time} seconds.")
+            time.sleep(wait_time)
+    print(f"Failed to fetch data for {match_id} after {retries} retries.")
+    return None
+
+def fetch_season_data(match_id_list):
+    all_player_stats = []
+    
+    total_matches = len(match_id_list)
+    completed_matches = 0
+    
+    for match_id in match_id_list:
+        try:
+            player_stats_df = fetch_single_match_data(match_id)
+            all_player_stats.append(player_stats_df)
+            
+            completed_matches += 1
+            progress = (completed_matches / total_matches) * 100
+            
+            print(f"Done with match_id: {match_id} - Progress: {progress:.2f}%")
+        except Exception as e:
+            print(f"An error occurred while processing match_id: {match_id}. Error: {e}")
+
+    all_player_stats_df = pd.concat(all_player_stats)
+    return all_player_stats_df
+
+# ==========================================
+# Fetch and Save Data for 2022-23 Season
+# ==========================================
+
+# Get data for 2022-23 season
+df_2022_23 = fetch_season_data(match_id_list_2022_23)
+
+# Add match information
+df_2022_23 = pd.merge(df_2022_23, matches_2022_23, left_on='gameId', right_on='GAME_ID', how='left')
+
+# Reset Index
+df_2022_23.reset_index(inplace=True)
 
 # Write out as a CSV file
-df_all_player_stats.to_csv('Data/all_player_stats_2022-2023.csv', index=False)
+df_2022_23.to_csv('Data/all_player_stats_2022-2023.csv', index=False)
 
-# 2021-22 season----------------------------------------------
+# ==========================================
+# Fetch and Save Data for 2021-22 Season
+# ==========================================
+# Get data for 2021-22 season
+df_2021_22 = fetch_season_data(match_id_list_2021_22)
 
-# Fetch stats for all active players using list comprehension
-all_player_stats = [fetch_player_stats(row['full_name'], ["2021-22"]) for _, row in df_all_players.iterrows()]
+# Add match information
+df_2021_22 = pd.merge(df_2021_22, matches_2021_22, left_on='gameId', right_on='GAME_ID', how='left')
 
-# Concatenate all player stats into a single DataFrame
-df_all_player_stats = pd.concat(all_player_stats)
+# Reset Index
+df_2021_22.reset_index(inplace=True)
 
 # Write out as a CSV file
-df_all_player_stats.to_csv('Data/all_player_stats_2021-2022.csv', index=False)
+df_2021_22.to_csv('Data/all_player_stats_2021-2022.csv', index=False)
