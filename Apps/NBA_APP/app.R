@@ -40,6 +40,12 @@ all_player_stats <-
   mutate(MIN = round(MIN, 2)) |> 
   relocate(MIN, .after = minutes)
 
+# Create Home / Away variable
+all_player_stats <-
+  all_player_stats |>
+  mutate(team_full = paste(teamCity, teamName)) |>
+  mutate(home_away = if_else(team_full == HOME_TEAM, "Home", "Away"))
+  
 # Google sheets authentication -------------------------------------------------
 options(gargle_oauth_cache = ".secrets")
 drive_auth(cache = ".secrets", email = "cuzzy.punting@gmail.com")
@@ -104,14 +110,16 @@ ui <- page_navbar(
             choices = c("PTS",
                         "REB",
                         "AST",
+                        "BLK",
                         "MIN"),
             multiple = FALSE,
             selected = "PTS"
           ),
           checkboxGroupInput(
-            inputId = "starter_status",
-            label = "Starting Status:",
-            choices = list("choice a" = "a", "choice b" = "b")
+            inputId = "home_status",
+            label = "Home / Away Games",
+            choices = list("Home" = "Home", "Away" = "Away"),
+            selected = c("Home", "Away")
           ),
           markdown(mds = c("__Select Only Last n Games:__")),
           numericInput(
@@ -217,9 +225,19 @@ ui <- page_navbar(
                             selectize = FALSE,
                             selected = h2h_data$match |> unique()
                           ),
+                          textInput(
+                            inputId = "player_name_input_b",
+                            label = "Select Player:",
+                            value = NA
+                          ),
                           checkboxInput(
                             inputId = "only_unders",
                             label = "Only Show Markets With Unders",
+                            value = FALSE
+                          ),
+                          checkboxInput(
+                            inputId = "only_best",
+                            label = "Only Show Best Market Odds",
                             value = FALSE
                           ),
                           markdown(mds = c("__Select Difference Range:__")),
@@ -258,11 +276,33 @@ server <- function(input, output) {
         PLAYER_NAME == input$player_name_input_a,
         SEASON_YEAR %in% input$season_input_a,
         MIN >= input$minutes_minimum,
-        MIN <= input$minutes_maximum
+        MIN <= input$minutes_maximum,
+        home_away %in% input$home_status
       ) |>
       arrange(GAME_DATE) |>
-      mutate(game_number = row_number())
-    
+      mutate(game_number = row_number()) |> 
+      select(Date = GAME_DATE,
+             Home = HOME_TEAM,
+             Away = AWAY_TEAM,
+             Player = PLAYER_NAME,
+             Team = teamTricode,
+             MIN,
+             FGM = fieldGoalsMade,
+             FGA = fieldGoalsAttempted,
+             FG_PCT = fieldGoalsPercentage,
+             FG3M = threePointersMade,
+             FG3A = threePointersAttempted,
+             FG3_PCT = threePointersPercentage,
+             FTM = freeThrowsMade,
+             FTA = freeThrowsAttempted,
+             FT_PCT = freeThrowsPercentage,
+             PTS,
+             REB,
+             AST,
+             BLK = blocks,
+             game_number) |> 
+      arrange(desc(Date))
+             
     # Filter by last n games
     if (!is.na(input$last_games)) {
       filtered_player_stats <-
@@ -291,11 +331,14 @@ server <- function(input, output) {
     
     # Get string to output
     output_string <- paste0(
-      "Proportion above reference line: ",
+      "Proportion Above Reference Line: ",
       round(proportion_above_reference_line, 2),
       "\n",
       "Implied Odds: ",
-      round(implied_odds, 2)
+      round(implied_odds, 2),
+      "\n",
+      "Sample Size: ",
+      nrow(filtered_player_stats())
     )
     
     return(output_string)
@@ -446,6 +489,21 @@ server <- function(input, output) {
       odds <-
         odds |>
         filter(!is.na(under_price))
+    }
+    
+    if (input$only_best == TRUE) {
+      odds <-
+        odds |> 
+        arrange(player_name, line, desc(over_price)) |>
+        group_by(player_name, line, over_price) |> 
+        slice_head(n = 1) |>
+        ungroup()
+    }
+    
+    if (input$player_name_input_b != "") {
+      odds <-
+        odds |>
+        filter(str_detect(player_name, input$player_name_input_b))
     }
       
     # Return odds
