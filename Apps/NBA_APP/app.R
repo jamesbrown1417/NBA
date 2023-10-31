@@ -23,11 +23,16 @@ convert_time_to_decimal_hms <- function(time_obj) {
 # Read in Data
 #===============================================================================
 
+# Player Info
 all_rosters <- read_csv("../../Data/all_rosters.csv")
 all_teams <- read_csv("../../Data/all_teams.csv")
 all_player_stats_2021_2022 <- read_csv("../../Data/all_player_stats_2021-2022.csv") |> mutate(SEASON_YEAR = "2021-22")
 all_player_stats_2022_2023 <- read_csv("../../Data/all_player_stats_2022-2023.csv") |> mutate(SEASON_YEAR = "2022-23")
 all_player_stats_2023_2024 <- read_csv("../../Data/all_player_stats_2023-2024.csv") |> mutate(SEASON_YEAR = "2023-24")
+
+# Team Info
+all_team_stats_2021_2022 <- read_csv("../../Data/advanced_box_scores_2021-2022.csv") |> mutate(SEASON_YEAR = "2021-22")
+all_team_stats_2022_2023 <- read_csv("../../Data/advanced_box_scores_2022-2023.csv") |> mutate(SEASON_YEAR = "2022-23")
 
 # Combine player stats
 all_player_stats <-
@@ -39,6 +44,51 @@ all_player_stats <-
   mutate(MIN = convert_time_to_decimal_hms(minutes)) |> 
   mutate(MIN = round(MIN, 2)) |> 
   relocate(MIN, .after = minutes)
+
+# Get Game Dates DF
+game_dates <-
+  all_player_stats |> 
+  distinct(gameId, GAME_DATE)
+
+# Get Home Teams DF
+home_teams <-
+  all_player_stats |> 
+  distinct(gameId, HOME_TEAM)
+
+# Get Away Teams DF
+away_teams <-
+  all_player_stats |> 
+  distinct(gameId, AWAY_TEAM)
+
+# Combine team stats
+all_team_stats <-
+  all_team_stats_2022_2023 |>
+  bind_rows(all_team_stats_2021_2022) |>
+  left_join(game_dates) |>
+  left_join(home_teams) |> 
+  left_join(away_teams) |>
+  filter(!is.na(GAME_DATE)) |>
+  transmute(
+    gameId,
+    teamId,
+    teamName = paste(teamCity, teamName),
+    homeTeam = HOME_TEAM,
+    awayTeam = AWAY_TEAM,
+    oppositionTeam = if_else(teamName == HOME_TEAM, AWAY_TEAM, HOME_TEAM),
+    date = GAME_DATE,
+    minutes,
+    possessions,
+    pacePer40,
+    offensiveRating,
+    defensiveRating,
+    netRating,
+    assistPercentage,
+    defensiveReboundPercentage,
+    offensiveReboundPercentage,
+    reboundPercentage,
+    trueShootingPercentage,
+    effectiveFieldGoalPercentage,
+    season = SEASON_YEAR)
 
 # Create Home / Away variable
 all_player_stats <-
@@ -183,9 +233,14 @@ ui <- page_navbar(
                     choices = all_player_stats$SEASON_YEAR |> unique(),
                     multiple = TRUE,
                     selectize = TRUE,
-                    selected = c("2021-22",
-                                 "2022-23")
-                  )
+                    selected = all_player_stats$SEASON_YEAR |> unique()
+                  ),
+                  markdown(mds = c("__Select Only Last n Games:__")),
+                  numericInput(
+                    inputId = "last_games_team",
+                    label = "Number of Games",
+                    value = NA
+                  ),
                 )),
       grid_card(area = "team_stat_table",
                 card_body(

@@ -173,10 +173,27 @@ map(pick_your_own_points_markets, read_topsport_html) |>
     mutate(line = line - 0.5) |>
     rename(over_price = Win) |> 
     rename(player_name = Selection) |> 
+    mutate(player_name = str_remove(player_name, " \\(.*\\)$")) |>
     mutate(
         player_name =
             case_when(
                 player_name == "PJ Washington" ~ "P.J. Washington",
+                player_name == "Lebron James" ~ "LeBron James",
+                player_name == "Michael Porter Jr" ~ "Michael Porter Jr.",
+                player_name == "Dangelo Russell" ~ "D'Angelo Russell",
+                player_name == "Kentavious Caldwell Pope" ~ "Kentavious Caldwell-Pope",
+                player_name == "Wendell Carter Jr" ~ "Wendell Carter Jr.",
+                player_name == "Cj Mccollum" ~ "CJ McCollum",
+                player_name ==  "Shai Gilgeous Alexander" ~ "Shai Gilgeous-Alexander",
+                player_name == "Jaren Jackson Jr" ~ "Jaren Jackson Jr.",
+                player_name == "Xavier Tillman Sr" ~ "Xavier Tillman",
+                player_name == "Deandre Hunter" ~ "De'Andre Hunter",
+                player_name == "DeAndre Ayton" ~ "Deandre Ayton",
+                player_name == "Dereck Lively" ~ "Dereck Lively II",
+                player_name == "Karl Anthony Towns" ~ "Karl-Anthony Towns",
+                player_name == "Jimmy Butler III" ~ "Jimmy Butler",
+                player_name == "Talen Horton Tucker" ~ "Talen Horton-Tucker",
+                player_name == "Anthony Davis Jr" ~ "Anthony Davis",
                 player_name == "De'andre Hunter" ~ "De'Andre Hunter",
                 player_name == "Lamelo Ball" ~ "LaMelo Ball",
                 player_name == "Rj Barrett" ~ "RJ Barrett",
@@ -216,16 +233,32 @@ player_points_lines_overs <-
     mutate(line = as.numeric(line)) |>
     mutate(
         player_name =
-            case_when(
-                player_name == "PJ Washington" ~ "P.J. Washington",
-                player_name == "De'andre Hunter" ~ "De'Andre Hunter",
-                player_name == "Lamelo Ball" ~ "LaMelo Ball",
-                player_name == "Rj Barrett" ~ "RJ Barrett",
-                player_name == "Bruce Brown Jr" ~ "Bruce Brown",
-                player_name == "Alperen Seng?n" ~ "Alperen Sengun",
-                player_name == "Franz Wagnr" ~ "Franz Wagner",
-                player_name == "Fred Vanvleet" ~ "Fred VanVleet",
-                .default = player_name)) |>
+          case_when(
+            player_name == "PJ Washington" ~ "P.J. Washington",
+            player_name == "Lebron James" ~ "LeBron James",
+            player_name == "Michael Porter Jr" ~ "Michael Porter Jr.",
+            player_name == "Dangelo Russell" ~ "D'Angelo Russell",
+            player_name == "Kentavious Caldwell Pope" ~ "Kentavious Caldwell-Pope",
+            player_name == "Wendell Carter Jr" ~ "Wendell Carter Jr.",
+            player_name == "Cj Mccollum" ~ "CJ McCollum",
+            player_name ==  "Shai Gilgeous Alexander" ~ "Shai Gilgeous-Alexander",
+            player_name == "Jaren Jackson Jr" ~ "Jaren Jackson Jr.",
+            player_name == "Xavier Tillman Sr" ~ "Xavier Tillman",
+            player_name == "Deandre Hunter" ~ "De'Andre Hunter",
+            player_name == "DeAndre Ayton" ~ "Deandre Ayton",
+            player_name == "Dereck Lively" ~ "Dereck Lively II",
+            player_name == "Karl Anthony Towns" ~ "Karl-Anthony Towns",
+            player_name == "Jimmy Butler III" ~ "Jimmy Butler",
+            player_name == "Talen Horton Tucker" ~ "Talen Horton-Tucker",
+            player_name == "Anthony Davis Jr" ~ "Anthony Davis",
+            player_name == "De'andre Hunter" ~ "De'Andre Hunter",
+            player_name == "Lamelo Ball" ~ "LaMelo Ball",
+            player_name == "Rj Barrett" ~ "RJ Barrett",
+            player_name == "Bruce Brown Jr" ~ "Bruce Brown",
+            player_name == "Alperen Seng?n" ~ "Alperen Sengun",
+            player_name == "Franz Wagnr" ~ "Franz Wagner",
+            player_name == "Fred Vanvleet" ~ "Fred VanVleet",
+            .default = player_name)) |>
     left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
     relocate(match, .before = player_name) |> 
     separate(match, into = c("away_team", "home_team"), sep = " v ", remove = FALSE) |> 
@@ -242,16 +275,32 @@ player_points_lines_unders <-
     mutate(line = as.numeric(line)) |>
     mutate(
         player_name =
-            case_when(
-                player_name == "PJ Washington" ~ "P.J. Washington",
-                player_name == "De'andre Hunter" ~ "De'Andre Hunter",
-                player_name == "Lamelo Ball" ~ "LaMelo Ball",
-                player_name == "Rj Barrett" ~ "RJ Barrett",
-                player_name == "Bruce Brown Jr" ~ "Bruce Brown",
-                player_name == "Alperen Seng?n" ~ "Alperen Sengun",
-                player_name == "Franz Wagnr" ~ "Franz Wagner",
-                player_name == "Fred Vanvleet" ~ "Fred VanVleet",
-                .default = player_name)) |>
+          case_when(
+            player_name == "PJ Washington" ~ "P.J. Washington",
+            player_name == "Lebron James" ~ "LeBron James",
+            player_name == "Michael Porter Jr" ~ "Michael Porter Jr.",
+            player_name == "Dangelo Russell" ~ "D'Angelo Russell",
+            player_name == "Kentavious Caldwell Pope" ~ "Kentavious Caldwell-Pope",
+            player_name == "Wendell Carter Jr" ~ "Wendell Carter Jr.",
+            player_name == "Cj Mccollum" ~ "CJ McCollum",
+            player_name ==  "Shai Gilgeous Alexander" ~ "Shai Gilgeous-Alexander",
+            player_name == "Jaren Jackson Jr" ~ "Jaren Jackson Jr.",
+            player_name == "Xavier Tillman Sr" ~ "Xavier Tillman",
+            player_name == "Deandre Hunter" ~ "De'Andre Hunter",
+            player_name == "DeAndre Ayton" ~ "Deandre Ayton",
+            player_name == "Dereck Lively" ~ "Dereck Lively II",
+            player_name == "Karl Anthony Towns" ~ "Karl-Anthony Towns",
+            player_name == "Jimmy Butler III" ~ "Jimmy Butler",
+            player_name == "Talen Horton Tucker" ~ "Talen Horton-Tucker",
+            player_name == "Anthony Davis Jr" ~ "Anthony Davis",
+            player_name == "De'andre Hunter" ~ "De'Andre Hunter",
+            player_name == "Lamelo Ball" ~ "LaMelo Ball",
+            player_name == "Rj Barrett" ~ "RJ Barrett",
+            player_name == "Bruce Brown Jr" ~ "Bruce Brown",
+            player_name == "Alperen Seng?n" ~ "Alperen Sengun",
+            player_name == "Franz Wagnr" ~ "Franz Wagner",
+            player_name == "Fred Vanvleet" ~ "Fred VanVleet",
+            .default = player_name)) |>
     left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
     relocate(match, .before = player_name) |> 
     separate(match, into = c("away_team", "home_team"), sep = " v ", remove = FALSE) |> 
@@ -281,19 +330,36 @@ player_assists_alternate <-
     bind_rows() |> 
     mutate(line = line - 0.5) |>
     rename(over_price = Win) |> 
-    rename(player_name = Selection) |> 
+    rename(player_name = Selection) |>
+    mutate(player_name = str_remove(player_name, " \\(.*\\)$")) |> 
     mutate(
         player_name =
-            case_when(
-                player_name == "PJ Washington" ~ "P.J. Washington",
-                player_name == "De'andre Hunter" ~ "De'Andre Hunter",
-                player_name == "Lamelo Ball" ~ "LaMelo Ball",
-                player_name == "Rj Barrett" ~ "RJ Barrett",
-                player_name == "Bruce Brown Jr" ~ "Bruce Brown",
-                player_name == "Alperen Seng?n" ~ "Alperen Sengun",
-                player_name == "Franz Wagnr" ~ "Franz Wagner",
-                player_name == "Fred Vanvleet" ~ "Fred VanVleet",
-                .default = player_name)) |>
+          case_when(
+            player_name == "PJ Washington" ~ "P.J. Washington",
+            player_name == "Lebron James" ~ "LeBron James",
+            player_name == "Michael Porter Jr" ~ "Michael Porter Jr.",
+            player_name == "Dangelo Russell" ~ "D'Angelo Russell",
+            player_name == "Kentavious Caldwell Pope" ~ "Kentavious Caldwell-Pope",
+            player_name == "Wendell Carter Jr" ~ "Wendell Carter Jr.",
+            player_name == "Cj Mccollum" ~ "CJ McCollum",
+            player_name ==  "Shai Gilgeous Alexander" ~ "Shai Gilgeous-Alexander",
+            player_name == "Jaren Jackson Jr" ~ "Jaren Jackson Jr.",
+            player_name == "Xavier Tillman Sr" ~ "Xavier Tillman",
+            player_name == "Deandre Hunter" ~ "De'Andre Hunter",
+            player_name == "DeAndre Ayton" ~ "Deandre Ayton",
+            player_name == "Dereck Lively" ~ "Dereck Lively II",
+            player_name == "Karl Anthony Towns" ~ "Karl-Anthony Towns",
+            player_name == "Jimmy Butler III" ~ "Jimmy Butler",
+            player_name == "Talen Horton Tucker" ~ "Talen Horton-Tucker",
+            player_name == "Anthony Davis Jr" ~ "Anthony Davis",
+            player_name == "De'andre Hunter" ~ "De'Andre Hunter",
+            player_name == "Lamelo Ball" ~ "LaMelo Ball",
+            player_name == "Rj Barrett" ~ "RJ Barrett",
+            player_name == "Bruce Brown Jr" ~ "Bruce Brown",
+            player_name == "Alperen Seng?n" ~ "Alperen Sengun",
+            player_name == "Franz Wagnr" ~ "Franz Wagner",
+            player_name == "Fred Vanvleet" ~ "Fred VanVleet",
+            .default = player_name)) |>
     left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
     relocate(match, .before = player_name) |> 
     separate(match, into = c("away_team", "home_team"), sep = " v ", remove = FALSE) |> 
@@ -325,16 +391,32 @@ if (length(player_assists_markets) > 0) {
         mutate(line = as.numeric(line)) |>
         mutate(
             player_name =
-                case_when(
-                    player_name == "PJ Washington" ~ "P.J. Washington",
-                    player_name == "De'andre Hunter" ~ "De'Andre Hunter",
-                    player_name == "Lamelo Ball" ~ "LaMelo Ball",
-                    player_name == "Rj Barrett" ~ "RJ Barrett",
-                    player_name == "Bruce Brown Jr" ~ "Bruce Brown",
-                    player_name == "Alperen Seng?n" ~ "Alperen Sengun",
-                    player_name == "Franz Wagnr" ~ "Franz Wagner",
-                    player_name == "Fred Vanvleet" ~ "Fred VanVleet",
-                    .default = player_name)) |>
+              case_when(
+                player_name == "PJ Washington" ~ "P.J. Washington",
+                player_name == "Lebron James" ~ "LeBron James",
+                player_name == "Michael Porter Jr" ~ "Michael Porter Jr.",
+                player_name == "Dangelo Russell" ~ "D'Angelo Russell",
+                player_name == "Kentavious Caldwell Pope" ~ "Kentavious Caldwell-Pope",
+                player_name == "Wendell Carter Jr" ~ "Wendell Carter Jr.",
+                player_name == "Cj Mccollum" ~ "CJ McCollum",
+                player_name ==  "Shai Gilgeous Alexander" ~ "Shai Gilgeous-Alexander",
+                player_name == "Jaren Jackson Jr" ~ "Jaren Jackson Jr.",
+                player_name == "Xavier Tillman Sr" ~ "Xavier Tillman",
+                player_name == "Deandre Hunter" ~ "De'Andre Hunter",
+                player_name == "DeAndre Ayton" ~ "Deandre Ayton",
+                player_name == "Dereck Lively" ~ "Dereck Lively II",
+                player_name == "Karl Anthony Towns" ~ "Karl-Anthony Towns",
+                player_name == "Jimmy Butler III" ~ "Jimmy Butler",
+                player_name == "Talen Horton Tucker" ~ "Talen Horton-Tucker",
+                player_name == "Anthony Davis Jr" ~ "Anthony Davis",
+                player_name == "De'andre Hunter" ~ "De'Andre Hunter",
+                player_name == "Lamelo Ball" ~ "LaMelo Ball",
+                player_name == "Rj Barrett" ~ "RJ Barrett",
+                player_name == "Bruce Brown Jr" ~ "Bruce Brown",
+                player_name == "Alperen Seng?n" ~ "Alperen Sengun",
+                player_name == "Franz Wagnr" ~ "Franz Wagner",
+                player_name == "Fred Vanvleet" ~ "Fred VanVleet",
+                .default = player_name)) |>
         left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
         relocate(match, .before = player_name) |> 
         separate(match, into = c("away_team", "home_team"), sep = " v ", remove = FALSE) |> 
@@ -351,16 +433,32 @@ if (length(player_assists_markets) > 0) {
         mutate(line = as.numeric(line)) |>
         mutate(
             player_name =
-                case_when(
-                    player_name == "PJ Washington" ~ "P.J. Washington",
-                    player_name == "De'andre Hunter" ~ "De'Andre Hunter",
-                    player_name == "Lamelo Ball" ~ "LaMelo Ball",
-                    player_name == "Rj Barrett" ~ "RJ Barrett",
-                    player_name == "Bruce Brown Jr" ~ "Bruce Brown",
-                    player_name == "Alperen Seng?n" ~ "Alperen Sengun",
-                    player_name == "Franz Wagnr" ~ "Franz Wagner",
-                    player_name == "Fred Vanvleet" ~ "Fred VanVleet",
-                    .default = player_name)) |>
+              case_when(
+                player_name == "PJ Washington" ~ "P.J. Washington",
+                player_name == "Lebron James" ~ "LeBron James",
+                player_name == "Michael Porter Jr" ~ "Michael Porter Jr.",
+                player_name == "Dangelo Russell" ~ "D'Angelo Russell",
+                player_name == "Kentavious Caldwell Pope" ~ "Kentavious Caldwell-Pope",
+                player_name == "Wendell Carter Jr" ~ "Wendell Carter Jr.",
+                player_name == "Cj Mccollum" ~ "CJ McCollum",
+                player_name ==  "Shai Gilgeous Alexander" ~ "Shai Gilgeous-Alexander",
+                player_name == "Jaren Jackson Jr" ~ "Jaren Jackson Jr.",
+                player_name == "Xavier Tillman Sr" ~ "Xavier Tillman",
+                player_name == "Deandre Hunter" ~ "De'Andre Hunter",
+                player_name == "DeAndre Ayton" ~ "Deandre Ayton",
+                player_name == "Dereck Lively" ~ "Dereck Lively II",
+                player_name == "Karl Anthony Towns" ~ "Karl-Anthony Towns",
+                player_name == "Jimmy Butler III" ~ "Jimmy Butler",
+                player_name == "Talen Horton Tucker" ~ "Talen Horton-Tucker",
+                player_name == "Anthony Davis Jr" ~ "Anthony Davis",
+                player_name == "De'andre Hunter" ~ "De'Andre Hunter",
+                player_name == "Lamelo Ball" ~ "LaMelo Ball",
+                player_name == "Rj Barrett" ~ "RJ Barrett",
+                player_name == "Bruce Brown Jr" ~ "Bruce Brown",
+                player_name == "Alperen Seng?n" ~ "Alperen Sengun",
+                player_name == "Franz Wagnr" ~ "Franz Wagner",
+                player_name == "Fred Vanvleet" ~ "Fred VanVleet",
+                .default = player_name)) |>
         left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
         relocate(match, .before = player_name) |> 
         separate(match, into = c("away_team", "home_team"), sep = " v ", remove = FALSE) |> 
@@ -390,19 +488,36 @@ player_rebounds_alternate <-
     bind_rows() |> 
     mutate(line = line - 0.5) |>
     rename(over_price = Win) |> 
-    rename(player_name = Selection) |> 
+    rename(player_name = Selection) |>
+    mutate(player_name = str_remove(player_name, " \\(.*\\)$")) |> 
     mutate(
         player_name =
-            case_when(
-                player_name == "PJ Washington" ~ "P.J. Washington",
-                player_name == "De'andre Hunter" ~ "De'Andre Hunter",
-                player_name == "Lamelo Ball" ~ "LaMelo Ball",
-                player_name == "Rj Barrett" ~ "RJ Barrett",
-                player_name == "Bruce Brown Jr" ~ "Bruce Brown",
-                player_name == "Alperen Seng?n" ~ "Alperen Sengun",
-                player_name == "Franz Wagnr" ~ "Franz Wagner",
-                player_name == "Fred Vanvleet" ~ "Fred VanVleet",
-                .default = player_name)) |>
+          case_when(
+            player_name == "PJ Washington" ~ "P.J. Washington",
+            player_name == "Lebron James" ~ "LeBron James",
+            player_name == "Michael Porter Jr" ~ "Michael Porter Jr.",
+            player_name == "Dangelo Russell" ~ "D'Angelo Russell",
+            player_name == "Kentavious Caldwell Pope" ~ "Kentavious Caldwell-Pope",
+            player_name == "Wendell Carter Jr" ~ "Wendell Carter Jr.",
+            player_name == "Cj Mccollum" ~ "CJ McCollum",
+            player_name ==  "Shai Gilgeous Alexander" ~ "Shai Gilgeous-Alexander",
+            player_name == "Jaren Jackson Jr" ~ "Jaren Jackson Jr.",
+            player_name == "Xavier Tillman Sr" ~ "Xavier Tillman",
+            player_name == "Deandre Hunter" ~ "De'Andre Hunter",
+            player_name == "DeAndre Ayton" ~ "Deandre Ayton",
+            player_name == "Dereck Lively" ~ "Dereck Lively II",
+            player_name == "Karl Anthony Towns" ~ "Karl-Anthony Towns",
+            player_name == "Jimmy Butler III" ~ "Jimmy Butler",
+            player_name == "Talen Horton Tucker" ~ "Talen Horton-Tucker",
+            player_name == "Anthony Davis Jr" ~ "Anthony Davis",
+            player_name == "De'andre Hunter" ~ "De'Andre Hunter",
+            player_name == "Lamelo Ball" ~ "LaMelo Ball",
+            player_name == "Rj Barrett" ~ "RJ Barrett",
+            player_name == "Bruce Brown Jr" ~ "Bruce Brown",
+            player_name == "Alperen Seng?n" ~ "Alperen Sengun",
+            player_name == "Franz Wagnr" ~ "Franz Wagner",
+            player_name == "Fred Vanvleet" ~ "Fred VanVleet",
+            .default = player_name)) |>
     left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
     relocate(match, .before = player_name) |> 
     separate(match, into = c("away_team", "home_team"), sep = " v ", remove = FALSE) |> 
@@ -434,16 +549,32 @@ if (length(player_rebounds_markets) > 0) {
         mutate(line = as.numeric(line)) |>
         mutate(
             player_name =
-                case_when(
-                    player_name == "PJ Washington" ~ "P.J. Washington",
-                    player_name == "De'andre Hunter" ~ "De'Andre Hunter",
-                    player_name == "Lamelo Ball" ~ "LaMelo Ball",
-                    player_name == "Rj Barrett" ~ "RJ Barrett",
-                    player_name == "Bruce Brown Jr" ~ "Bruce Brown",
-                    player_name == "Alperen Seng?n" ~ "Alperen Sengun",
-                    player_name == "Franz Wagnr" ~ "Franz Wagner",
-                    player_name == "Fred Vanvleet" ~ "Fred VanVleet",
-                    .default = player_name)) |>
+              case_when(
+                player_name == "PJ Washington" ~ "P.J. Washington",
+                player_name == "Lebron James" ~ "LeBron James",
+                player_name == "Michael Porter Jr" ~ "Michael Porter Jr.",
+                player_name == "Dangelo Russell" ~ "D'Angelo Russell",
+                player_name == "Kentavious Caldwell Pope" ~ "Kentavious Caldwell-Pope",
+                player_name == "Wendell Carter Jr" ~ "Wendell Carter Jr.",
+                player_name == "Cj Mccollum" ~ "CJ McCollum",
+                player_name ==  "Shai Gilgeous Alexander" ~ "Shai Gilgeous-Alexander",
+                player_name == "Jaren Jackson Jr" ~ "Jaren Jackson Jr.",
+                player_name == "Xavier Tillman Sr" ~ "Xavier Tillman",
+                player_name == "Deandre Hunter" ~ "De'Andre Hunter",
+                player_name == "DeAndre Ayton" ~ "Deandre Ayton",
+                player_name == "Dereck Lively" ~ "Dereck Lively II",
+                player_name == "Karl Anthony Towns" ~ "Karl-Anthony Towns",
+                player_name == "Jimmy Butler III" ~ "Jimmy Butler",
+                player_name == "Talen Horton Tucker" ~ "Talen Horton-Tucker",
+                player_name == "Anthony Davis Jr" ~ "Anthony Davis",
+                player_name == "De'andre Hunter" ~ "De'Andre Hunter",
+                player_name == "Lamelo Ball" ~ "LaMelo Ball",
+                player_name == "Rj Barrett" ~ "RJ Barrett",
+                player_name == "Bruce Brown Jr" ~ "Bruce Brown",
+                player_name == "Alperen Seng?n" ~ "Alperen Sengun",
+                player_name == "Franz Wagnr" ~ "Franz Wagner",
+                player_name == "Fred Vanvleet" ~ "Fred VanVleet",
+                .default = player_name)) |>
         left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
         relocate(match, .before = player_name) |> 
         separate(match, into = c("away_team", "home_team"), sep = " v ", remove = FALSE) |> 
@@ -460,16 +591,32 @@ if (length(player_rebounds_markets) > 0) {
         mutate(line = as.numeric(line)) |>
         mutate(
             player_name =
-                case_when(
-                    player_name == "PJ Washington" ~ "P.J. Washington",
-                    player_name == "De'andre Hunter" ~ "De'Andre Hunter",
-                    player_name == "Lamelo Ball" ~ "LaMelo Ball",
-                    player_name == "Rj Barrett" ~ "RJ Barrett",
-                    player_name == "Bruce Brown Jr" ~ "Bruce Brown",
-                    player_name == "Alperen Seng?n" ~ "Alperen Sengun",
-                    player_name == "Franz Wagnr" ~ "Franz Wagner",
-                    player_name == "Fred Vanvleet" ~ "Fred VanVleet",
-                    .default = player_name)) |>
+              case_when(
+                player_name == "PJ Washington" ~ "P.J. Washington",
+                player_name == "Lebron James" ~ "LeBron James",
+                player_name == "Michael Porter Jr" ~ "Michael Porter Jr.",
+                player_name == "Dangelo Russell" ~ "D'Angelo Russell",
+                player_name == "Kentavious Caldwell Pope" ~ "Kentavious Caldwell-Pope",
+                player_name == "Wendell Carter Jr" ~ "Wendell Carter Jr.",
+                player_name == "Cj Mccollum" ~ "CJ McCollum",
+                player_name ==  "Shai Gilgeous Alexander" ~ "Shai Gilgeous-Alexander",
+                player_name == "Jaren Jackson Jr" ~ "Jaren Jackson Jr.",
+                player_name == "Xavier Tillman Sr" ~ "Xavier Tillman",
+                player_name == "Deandre Hunter" ~ "De'Andre Hunter",
+                player_name == "DeAndre Ayton" ~ "Deandre Ayton",
+                player_name == "Dereck Lively" ~ "Dereck Lively II",
+                player_name == "Karl Anthony Towns" ~ "Karl-Anthony Towns",
+                player_name == "Jimmy Butler III" ~ "Jimmy Butler",
+                player_name == "Talen Horton Tucker" ~ "Talen Horton-Tucker",
+                player_name == "Anthony Davis Jr" ~ "Anthony Davis",
+                player_name == "De'andre Hunter" ~ "De'Andre Hunter",
+                player_name == "Lamelo Ball" ~ "LaMelo Ball",
+                player_name == "Rj Barrett" ~ "RJ Barrett",
+                player_name == "Bruce Brown Jr" ~ "Bruce Brown",
+                player_name == "Alperen Seng?n" ~ "Alperen Sengun",
+                player_name == "Franz Wagnr" ~ "Franz Wagner",
+                player_name == "Fred Vanvleet" ~ "Fred VanVleet",
+                .default = player_name)) |>
         left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
         relocate(match, .before = player_name) |> 
         separate(match, into = c("away_team", "home_team"), sep = " v ", remove = FALSE) |> 
