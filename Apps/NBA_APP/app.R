@@ -19,6 +19,45 @@ convert_time_to_decimal_hms <- function(time_obj) {
   return(decimal_time)
 }
 
+compare_performance <- function(seasons = NULL, name, teammate_name, metric) {
+  # Filter the data for games with the main player
+  df_player <-
+    all_player_stats %>%
+    filter(PLAYER_NAME == name) %>%
+    filter(SEASON_YEAR %in% seasons)
+  
+  # Find the game IDs where the teammate also played
+  games_with_teammate <-
+    all_player_stats %>%
+    filter(SEASON_YEAR %in% seasons) %>%
+    filter(PLAYER_NAME == teammate_name) %>% pull(gameId)
+  
+  # Label each game as 'With Teammate' or 'Without Teammate'
+  df_player <- df_player %>% 
+    mutate(Teammate = if_else(gameId %in% games_with_teammate, 'With Teammate', 'Without Teammate'))
+  
+  # Calculate mean and count for both conditions
+  summary_stats <- df_player %>% group_by(Teammate) %>% summarise(mean_val = mean(!!sym(metric), na.rm = TRUE), n_games = n())
+  
+  # Create the violin plot
+  plot <- ggplot(df_player, aes(x = Teammate, y = !!sym(metric), fill = Teammate)) +
+    geom_violin(trim = FALSE, position = position_dodge(width = 0.9)) +
+    geom_boxplot(width = 0.1, position = position_dodge(width = 0.9)) +
+    labs(title = paste("Performance of", name, "with and without", teammate_name),
+         x = "Condition",
+         y = metric) +
+    scale_fill_manual(values = c("Without Teammate" = "orange1", "With Teammate" = "royalblue1")) +
+    annotate("text", x = Inf, y = Inf, 
+             label = paste("With Teammate: ", summary_stats$n_games[summary_stats$Teammate == "With Teammate"], 
+                           " games, Mean ", round(summary_stats$mean_val[summary_stats$Teammate == "With Teammate"], 2), "\n",
+                           "Without Teammate: ", summary_stats$n_games[summary_stats$Teammate == "Without Teammate"], 
+                           " games, Mean ", round(summary_stats$mean_val[summary_stats$Teammate == "Without Teammate"], 2)), 
+             hjust = 1, vjust = 1) +
+    theme_minimal()
+  
+  return(plot)
+}
+
 #===============================================================================
 # Read in Data
 #===============================================================================
@@ -33,6 +72,7 @@ all_player_stats_2023_2024 <- read_csv("../../Data/all_player_stats_2023-2024.cs
 # Team Info
 all_team_stats_2021_2022 <- read_csv("../../Data/advanced_box_scores_2021-2022.csv") |> mutate(SEASON_YEAR = "2021-22")
 all_team_stats_2022_2023 <- read_csv("../../Data/advanced_box_scores_2022-2023.csv") |> mutate(SEASON_YEAR = "2022-23")
+all_team_stats_2023_2024 <- read_csv("../../Data/advanced_box_scores_2023-2024.csv") |> mutate(SEASON_YEAR = "2023-24")
 
 # Combine player stats
 all_player_stats <-
@@ -62,7 +102,8 @@ away_teams <-
 
 # Combine team stats
 all_team_stats <-
-  all_team_stats_2022_2023 |>
+  all_team_stats_2023_2024 |> 
+  bind_rows(all_team_stats_2022_2023) |>
   bind_rows(all_team_stats_2021_2022) |>
   left_join(game_dates) |>
   left_join(home_teams) |> 
@@ -230,10 +271,10 @@ ui <- page_navbar(
                   selectInput(
                     inputId = "season_input_b",
                     label = "Select Season:",
-                    choices = all_player_stats$SEASON_YEAR |> unique(),
+                    choices = all_team_stats$season |> unique(),
                     multiple = TRUE,
                     selectize = TRUE,
-                    selected = all_player_stats$SEASON_YEAR |> unique()
+                    selected = all_team_stats$season |> unique()
                   ),
                   markdown(mds = c("__Select Only Last n Games:__")),
                   numericInput(
@@ -275,10 +316,10 @@ ui <- page_navbar(
                           selectInput(
                             inputId = "match_input",
                             label = "Select Matches:",
-                            choices = h2h_data$match |> unique(),
+                            choices = player_points_data$match |> unique(),
                             multiple = TRUE,
                             selectize = FALSE,
-                            selected = h2h_data$match |> unique()
+                            selected = player_points_data$match |> unique()
                           ),
                           textInput(
                             inputId = "player_name_input_b",
@@ -295,24 +336,81 @@ ui <- page_navbar(
                             label = "Only Show Best Market Odds",
                             value = FALSE
                           ),
-                          markdown(mds = c("__Select Difference Range:__")),
+                          markdown(mds = c("__Select Difference Range 2023:__")),
                           numericInput(
-                            inputId = "diff_minimum",
+                            inputId = "diff_minimum_23",
                             label = "Min Diff",
                             value = NA
                           ),
                           numericInput(
-                            inputId = "diff_maximum",
+                            inputId = "diff_maximum_23",
+                            label = "Max Diff",
+                            value = NA
+                          ),
+                          markdown(mds = c("__Select Difference Range 2022:__")),
+                          numericInput(
+                            inputId = "diff_minimum_22",
+                            label = "Min Diff",
+                            value = NA
+                          ),
+                          numericInput(
+                            inputId = "diff_maximum_22",
                             label = "Max Diff",
                             value = NA
                           )
                         )),
               grid_card(area = "odds_table",
                         card_body(
-                          DTOutput(outputId = "scraped_odds_table", width = "100%")
+                          DTOutput(outputId = "scraped_odds_table", height = "1000px")
                         ))
-            ))
+            )),
+  nav_panel(
+    title = "With / Without Teammate",
+    grid_container(
+      layout = c("with_without_settings with_without_plot"),
+      row_sizes = c("1fr"),
+      col_sizes = c("500px", "1fr"),
+      gap_size = "10px",
+      
+      grid_card(
+        area = "with_without_settings",
+        card_header("Settings"),
+        card_body(
+          textInput(
+            inputId = "player_name",
+            label = "Select Player:",
+            value = "LeBron James"
+          ),
+          textInput(
+            inputId = "teammate_name",
+            label = "Select Teammate:",
+            value = "Anthony Davis"
+          ),
+          selectInput(
+            inputId = "season_input",
+            label = "Select Season:",
+            choices = all_player_stats$SEASON_YEAR |> unique(),
+            multiple = TRUE,
+            selectize = TRUE
+          ),
+          selectInput(
+            inputId = "metric_input",
+            label = "Select Statistic:",
+            choices = c("PTS", "REB", "AST", "BLK", "MIN"),
+            multiple = FALSE,
+            selected = "PTS"
+          )
+        )
+      ),
+      
+      grid_card(area = "with_without_plot",
+                card_body(
+                  plotOutput(outputId = "with_without_plot_output", height = "800px", width = "50%")
+                ))
+    )
+  )
 )
+
 
 #===============================================================================
 # Server
@@ -362,7 +460,7 @@ server <- function(input, output) {
     if (!is.na(input$last_games)) {
       filtered_player_stats <-
         filtered_player_stats |>
-        slice_tail(n = input$last_games)
+        slice_head(n = input$last_games)
     }
     
     # Return filtered player stats
@@ -485,8 +583,65 @@ server <- function(input, output) {
   })
   
   #=============================================================================
+  # Filter team stats
+  #=============================================================================
+  
+  # Reactive function to filter team stats
+  filtered_team_stats <- reactive({
+    
+    # Filter team stats
+    filtered_team_stats <-
+      all_team_stats |>
+      filter(season %in% input$season_input_b)
+  
+      # Filter by last n games
+      if (!is.na(input$last_games_team)) {
+        filtered_team_stats <-
+          filtered_team_stats |>
+          group_by(teamId) |> 
+          slice_head(n = input$last_games_team) |> 
+          ungroup()
+      }
+      
+      # Summarise stats
+      filtered_team_stats <-
+        filtered_team_stats |>
+        select(
+          teamName,
+          possessions,
+          pacePer40,
+          offensiveRating,
+          defensiveRating,
+          netRating,
+          assistPercentage,
+          defensiveReboundPercentage,
+          offensiveReboundPercentage,
+          reboundPercentage,
+          trueShootingPercentage,
+          effectiveFieldGoalPercentage
+        ) |> 
+      group_by(teamName) |>
+        summarise(across(.cols = where(is.numeric),
+                         .fns = list(mean = mean))) |> 
+        mutate(across(.cols = where(is.numeric), .fns = round, 2))
+      
+      # Return filtered team stats
+      return(filtered_team_stats)
+    
+  })
+  
+  #=============================================================================
   # Table team stats
   #=============================================================================
+  
+  output$team_metric_table <- renderDT({
+    datatable(
+      filtered_team_stats(),
+      options = list(pageLength = 15, autoWidth = TRUE),
+      width = "100%",
+      height = "800px"
+    )
+  })
   
   #=============================================================================
   # Table Odds
@@ -528,16 +683,28 @@ server <- function(input, output) {
     }
     
     # Min and max differences
-    if (!is.na(input$diff_minimum)) {
+    if (!is.na(input$diff_minimum_22)) {
       odds <-
         odds |>
-        filter(diff_over >= input$diff_minimum)
+        filter(diff_over_2022_23 >= input$diff_minimum_22)
     }
     
-    if (!is.na(input$diff_maximum)) {
+    if (!is.na(input$diff_maximum_22)) {
       odds <-
         odds |>
-        filter(diff_over <= input$diff_maximum)
+        filter(diff_over_2022_23 <= input$diff_maximum_22)
+    }
+    
+    if (!is.na(input$diff_minimum_23)) {
+      odds <-
+        odds |>
+        filter(diff_over_2023_24 >= input$diff_minimum_23)
+    }
+    
+    if (!is.na(input$diff_maximum_23)) {
+      odds <-
+        odds |>
+        filter(diff_over_2023_24 <= input$diff_maximum_23)
     }
     
     if (input$only_unders == TRUE) {
@@ -550,7 +717,7 @@ server <- function(input, output) {
       odds <-
         odds |> 
         arrange(player_name, line, desc(over_price)) |>
-        group_by(player_name, line, over_price) |> 
+        group_by(player_name, line) |> 
         slice_head(n = 1) |>
         ungroup()
     }
@@ -567,11 +734,29 @@ server <- function(input, output) {
   
   # Table output
   output$scraped_odds_table <- renderDT({
-    datatable(
-      scraped_odds(),
-      options = list(pageLength = 15, autoWidth = FALSE)
-    )
+    datatable(scraped_odds(),
+              options = list(
+                pageLength = 17,
+                autoWidth = FALSE,
+                lengthMenu = c(5, 10, 15, 20, 25, 30)
+              ))
   })
+  
+  #=============================================================================
+  # With / Without Teammate
+  #=============================================================================
+  
+  output$with_without_plot_output <- renderPlot({
+    req(input$player_name, input$teammate_name, input$season_input, input$metric_input)
+    
+    plot <- compare_performance(season = input$season_input,
+                                name = input$player_name,
+                                teammate_name = input$teammate_name,
+                                metric = input$metric_input)
+    
+    return(plot)
+  })
+  
   
 }
 

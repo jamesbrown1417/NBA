@@ -646,6 +646,7 @@ if (!exists("player_assists_lines")) {
 # Points
 player_points_alternate |>
     bind_rows(player_points_lines) |>
+    mutate(match = paste(home_team, away_team, sep = " v ")) |>
     select(any_of(
         c(
         "match",
@@ -666,6 +667,7 @@ player_points_alternate |>
 # Rebounds
 player_rebounds_alternate |>
     bind_rows(player_rebounds_lines) |>
+    mutate(match = paste(home_team, away_team, sep = " v ")) |>
     select(any_of(
         c(
             "match",
@@ -686,6 +688,7 @@ player_rebounds_alternate |>
 # Assists
 player_assists_alternate |>
     bind_rows(player_assists_lines) |>
+    mutate(match = paste(home_team, away_team, sep = " v ")) |>
     select(any_of(
         c(
             "match",

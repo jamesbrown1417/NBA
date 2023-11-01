@@ -48,8 +48,8 @@ NBA_schedule <-
 next_week_games <-
 read_csv("Data/NBA_schedule.csv") |> 
   filter(match_date_utc >= lubridate::now(tzone = "UTC")) |> 
-  mutate(one_week = lubridate::now(tzone = "UTC") + lubridate::weeks(1)) |>
-  filter(match_date_utc <= one_week) |> 
+  mutate(two_days = lubridate::now(tzone = "UTC") + lubridate::days(2)) |>
+  filter(match_date_utc <= two_days) |> 
   transmute(match = paste(home_team_name, away_team_name, sep = " v "),
             start_time = match_date_utc) |> 
   mutate(start_time = with_tz(start_time, tzone = "Australia/Adelaide"))
@@ -119,9 +119,15 @@ distinct_point_combos <-
     all_player_points |> 
     distinct(player_name, line)
 
-player_emp_probs <-
-    pmap(distinct_point_combos, get_empirical_prob, "PTS", .progress = TRUE) |> 
-    bind_rows()
+player_emp_probs_2022_23 <-
+    pmap(distinct_point_combos, get_empirical_prob, "PTS", "2022_2023", .progress = TRUE) |> 
+    bind_rows() |> 
+  select(player_name, line, games_played_2022_2023 = games_played, empirical_prob_2022_2023)
+
+player_emp_probs_2023_24 <- 
+    pmap(distinct_point_combos, get_empirical_prob, "PTS", "2023_2024", .progress = TRUE) |> 
+    bind_rows() |> 
+    select(player_name, line, games_played_2023_2024 = games_played, empirical_prob_2023_2024)
 
 all_player_points <-
   all_player_points |>
@@ -129,16 +135,24 @@ all_player_points <-
     implied_prob_over = 1 / over_price,
     implied_prob_under = 1 / under_price
   ) |>
-  left_join(player_emp_probs, by = c("player_name", "line")) |>
-  rename(empirical_prob_over = empirical_prob) |>
-  mutate(empirical_prob_under = 1 - empirical_prob_over) |>
+  left_join(player_emp_probs_2022_23, by = c("player_name", "line")) |>
+  left_join(player_emp_probs_2023_24, by = c("player_name", "line")) |>
+  rename(empirical_prob_over_2022_23 = empirical_prob_2022_2023,
+         empirical_prob_over_2023_24 = empirical_prob_2023_2024) |>
+  mutate(empirical_prob_under_2022_23 = 1 - empirical_prob_over_2022_23,
+         empirical_prob_under_2023_24 = 1 - empirical_prob_over_2023_24) |>
   mutate(
-    diff_over = empirical_prob_over - implied_prob_over,
-    diff_under = empirical_prob_under - implied_prob_under
+    diff_over_2022_23 = empirical_prob_over_2022_23 - implied_prob_over,
+    diff_under_2022_23 = empirical_prob_under_2022_23 - implied_prob_under,
+    diff_over_2023_24 = empirical_prob_over_2023_24 - implied_prob_over,
+    diff_under_2023_24 = empirical_prob_under_2023_24 - implied_prob_under
   ) |>
-  relocate(agency, .after = diff_under) |>
+  relocate(agency, .after = diff_under_2023_24) |>
   mutate_if(is.double, round, 2) |>
   filter(!is.na(opposition_team)) |>
+  left_join(NBA_schedule, by = "match") |>
+  relocate(start_time, .after = match) |>
+  filter(match %in% next_week_games$match) |> 
   group_by(player_name, line) |>
   mutate(
     min_implied_prob = min(implied_prob_over, na.rm = TRUE),
@@ -147,10 +161,7 @@ all_player_points <-
   mutate(variation = max_implied_prob - min_implied_prob) |>
   ungroup() |>
   select(-min_implied_prob,-max_implied_prob) |>
-  arrange(desc(variation), player_name, desc(over_price), line) |>
-  left_join(NBA_schedule, by = "match") |>
-  relocate(start_time, .after = match) |> 
-  filter(match %in% next_week_games$match)
+  arrange(desc(variation), player_name, desc(over_price), line)
 
 # Add to google sheets
 sheet_write(sheet, data = all_player_points, sheet = "Player Points")
@@ -163,22 +174,28 @@ sheet_write(sheet, data = all_player_points, sheet = "Player Points")
 
 # Get all scraped odds files and combine
 all_player_assists <-
-    list.files("Data/scraped_odds", full.names = TRUE, pattern = "player_assists") |>
-    map(read_csv) |>
-    # Ignore null elements
-    keep(~nrow(.x) > 0) |>
-    reduce(bind_rows)
+  list.files("Data/scraped_odds", full.names = TRUE, pattern = "player_assists") |>
+  map(read_csv) |>
+  # Ignore null elements
+  keep(~nrow(.x) > 0) |>
+  reduce(bind_rows)
 
 # Add empirical probabilities---------------------------------------------------
 
 # Assists
 distinct_assist_combos <-
-    all_player_assists |> 
-    distinct(player_name, line)
+  all_player_assists |> 
+  distinct(player_name, line)
 
-player_emp_probs_assists <-
-    pmap(distinct_assist_combos, get_empirical_prob, "AST", .progress = TRUE) |> 
-    bind_rows()
+player_emp_probs_assists_2022_23 <-
+  pmap(distinct_assist_combos, get_empirical_prob, "AST", "2022_2023", .progress = TRUE) |> 
+  bind_rows() |> 
+  select(player_name, line, games_played_2022_2023 = games_played, empirical_prob_2022_2023)
+
+player_emp_probs_assists_2023_24 <-
+  pmap(distinct_assist_combos, get_empirical_prob, "AST", "2023_2024", .progress = TRUE) |> 
+  bind_rows() |> 
+  select(player_name, line, games_played_2023_2024 = games_played, empirical_prob_2023_2024)
 
 all_player_assists <-
   all_player_assists |>
@@ -186,16 +203,24 @@ all_player_assists <-
     implied_prob_over = 1 / over_price,
     implied_prob_under = 1 / under_price
   ) |>
-  left_join(player_emp_probs_assists, by = c("player_name", "line")) |>
-  rename(empirical_prob_over = empirical_prob) |>
-  mutate(empirical_prob_under = 1 - empirical_prob_over) |>
+  left_join(player_emp_probs_assists_2022_23, by = c("player_name", "line")) |>
+  left_join(player_emp_probs_assists_2023_24, by = c("player_name", "line")) |>
+  rename(empirical_prob_over_2022_23 = empirical_prob_2022_2023,
+         empirical_prob_over_2023_24 = empirical_prob_2023_2024) |>
+  mutate(empirical_prob_under_2022_23 = 1 - empirical_prob_over_2022_23,
+         empirical_prob_under_2023_24 = 1 - empirical_prob_over_2023_24) |>
   mutate(
-    diff_over = empirical_prob_over - implied_prob_over,
-    diff_under = empirical_prob_under - implied_prob_under
+    diff_over_2022_23 = empirical_prob_over_2022_23 - implied_prob_over,
+    diff_under_2022_23 = empirical_prob_under_2022_23 - implied_prob_under,
+    diff_over_2023_24 = empirical_prob_over_2023_24 - implied_prob_over,
+    diff_under_2023_24 = empirical_prob_under_2023_24 - implied_prob_under
   ) |>
-  relocate(agency, .after = diff_under) |>
+  relocate(agency, .after = diff_under_2023_24) |>
   mutate_if(is.double, round, 2) |>
   filter(!is.na(opposition_team)) |>
+  left_join(NBA_schedule, by = "match") |>
+  relocate(start_time, .after = match) |>
+  filter(match %in% next_week_games$match) |> 
   group_by(player_name, line) |>
   mutate(
     min_implied_prob = min(implied_prob_over, na.rm = TRUE),
@@ -204,10 +229,7 @@ all_player_assists <-
   mutate(variation = max_implied_prob - min_implied_prob) |>
   ungroup() |>
   select(-min_implied_prob,-max_implied_prob) |>
-  arrange(desc(variation), player_name, desc(over_price), line) |>
-  left_join(NBA_schedule, by = "match") |>
-  relocate(start_time, .after = match) |> 
-  filter(match %in% next_week_games$match)
+  arrange(desc(variation), player_name, desc(over_price), line)
 
 # Add to google sheets
 sheet_write(sheet, data = all_player_assists, sheet = "Player Assists")
@@ -220,22 +242,28 @@ sheet_write(sheet, data = all_player_assists, sheet = "Player Assists")
 
 # Get all scraped odds files and combine
 all_player_rebounds <-
-    list.files("Data/scraped_odds", full.names = TRUE, pattern = "player_rebounds") |>
-    map(read_csv) |>
-    # Ignore null elements
-    keep(~nrow(.x) > 0) |>
-    reduce(bind_rows)
+  list.files("Data/scraped_odds", full.names = TRUE, pattern = "player_rebounds") |>
+  map(read_csv) |>
+  # Ignore null elements
+  keep(~nrow(.x) > 0) |>
+  reduce(bind_rows)
 
 # Add empirical probabilities---------------------------------------------------
 
 # Rebounds
 distinct_rebound_combos <-
-    all_player_rebounds |> 
-    distinct(player_name, line)
+  all_player_rebounds |> 
+  distinct(player_name, line)
 
-player_emp_probs_rebounds <-
-    pmap(distinct_rebound_combos, get_empirical_prob, "REB", .progress = TRUE) |> 
-    bind_rows()
+player_emp_probs_rebounds_2022_23 <-
+  pmap(distinct_rebound_combos, get_empirical_prob, "REB", "2022_2023", .progress = TRUE) |> 
+  bind_rows() |> 
+  select(player_name, line, games_played_2022_2023 = games_played, empirical_prob_2022_2023)
+
+player_emp_probs_rebounds_2023_24 <-
+  pmap(distinct_rebound_combos, get_empirical_prob, "REB", "2023_2024", .progress = TRUE) |> 
+  bind_rows() |> 
+  select(player_name, line, games_played_2023_2024 = games_played, empirical_prob_2023_2024)
 
 all_player_rebounds <-
   all_player_rebounds |>
@@ -243,16 +271,24 @@ all_player_rebounds <-
     implied_prob_over = 1 / over_price,
     implied_prob_under = 1 / under_price
   ) |>
-  left_join(player_emp_probs_rebounds, by = c("player_name", "line")) |>
-  rename(empirical_prob_over = empirical_prob) |>
-  mutate(empirical_prob_under = 1 - empirical_prob_over) |>
+  left_join(player_emp_probs_rebounds_2022_23, by = c("player_name", "line")) |>
+  left_join(player_emp_probs_rebounds_2023_24, by = c("player_name", "line")) |>
+  rename(empirical_prob_over_2022_23 = empirical_prob_2022_2023,
+         empirical_prob_over_2023_24 = empirical_prob_2023_2024) |>
+  mutate(empirical_prob_under_2022_23 = 1 - empirical_prob_over_2022_23,
+         empirical_prob_under_2023_24 = 1 - empirical_prob_over_2023_24) |>
   mutate(
-    diff_over = empirical_prob_over - implied_prob_over,
-    diff_under = empirical_prob_under - implied_prob_under
+    diff_over_2022_23 = empirical_prob_over_2022_23 - implied_prob_over,
+    diff_under_2022_23 = empirical_prob_under_2022_23 - implied_prob_under,
+    diff_over_2023_24 = empirical_prob_over_2023_24 - implied_prob_over,
+    diff_under_2023_24 = empirical_prob_under_2023_24 - implied_prob_under
   ) |>
-  relocate(agency, .after = diff_under) |>
+  relocate(agency, .after = diff_under_2023_24) |>
   mutate_if(is.double, round, 2) |>
   filter(!is.na(opposition_team)) |>
+  left_join(NBA_schedule, by = "match") |>
+  relocate(start_time, .after = match) |>
+  filter(match %in% next_week_games$match) |> 
   group_by(player_name, line) |>
   mutate(
     min_implied_prob = min(implied_prob_over, na.rm = TRUE),
@@ -261,10 +297,8 @@ all_player_rebounds <-
   mutate(variation = max_implied_prob - min_implied_prob) |>
   ungroup() |>
   select(-min_implied_prob,-max_implied_prob) |>
-  arrange(desc(variation), player_name, desc(over_price), line) |>
-  left_join(NBA_schedule, by = "match") |>
-  relocate(start_time, .after = match) |> 
-  filter(match %in% next_week_games$match)
+  arrange(desc(variation), player_name, desc(over_price), line)
 
 # Add to google sheets
 sheet_write(sheet, data = all_player_rebounds, sheet = "Player Rebounds")
+

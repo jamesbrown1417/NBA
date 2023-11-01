@@ -196,7 +196,7 @@ h2h_data <-
 # Filter to only include player points markets
 player_points_data <-
 market_df |> 
-    filter(str_detect(market_name, "(Player Points)|(To Score)"))
+    filter(str_detect(market_name, "(Player Points O/U)|(To Score)"))
 
 # Overs
 points_overs <-
@@ -261,7 +261,7 @@ player_points_data <-
 # Filter to only include player assists markets
 player_assists_data <-
     market_df |> 
-    filter(str_detect(market_name, "Assists"))
+    filter(str_detect(market_name, "(Player Assists O/U)|(^To Have .* Assists$)"))
 
 # Overs
 assists_overs <-
@@ -326,7 +326,7 @@ player_assists_data <-
 # Filter to only include player rebounds markets
 player_rebounds_data <-
     market_df |> 
-    filter(str_detect(market_name, "Rebounds"))
+  filter(str_detect(market_name, "(Player Rebounds O/U)|(^To Have .* Rebounds$)"))
 
 # Overs
 rebounds_overs <-

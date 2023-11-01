@@ -1,6 +1,6 @@
 import pandas as pd
 from nba_api.stats.static import teams
-from nba_api.stats.endpoints import leaguegamefinder, boxscoretraditionalv3
+from nba_api.stats.endpoints import leaguegamefinder, boxscoretraditionalv3, boxscoreadvancedv3
 from urllib3.exceptions import ReadTimeoutError
 from requests.exceptions import HTTPError
 import time
@@ -89,34 +89,57 @@ def fetch_season_data(match_id_list):
     all_player_stats_df = pd.concat(all_player_stats)
     return all_player_stats_df
 
-#==============================================================================
-# Get 2023-24 season data
-#==============================================================================
+# ==========================================
+# Get IDs already done
+# ==========================================
 
-# Get schedule-----------------------------------------------------------------
-schedule = pd.read_csv("Data/NBA_schedule.csv")
+# Read in current dataset
+current_data = pd.read_csv('Data/all_player_stats_2023-2024.csv', dtype={'gameId': str})
 
-# Make match_date_utc a datetime object
-schedule['match_date_utc'] = pd.to_datetime(schedule['match_date_utc'])
+# Filter to only games not in current dataset
+match_id_list_2023_24_new = list(set(matches_2023_24.GAME_ID) - set(current_data.gameId))
 
-# Filter to only on or before today
-schedule = schedule[schedule['match_date_utc'] <= pd.to_datetime('today').tz_localize('UTC')]
+# ==========================================
+# Fetch and Save Data for 2023-24 Season
+# ==========================================
 
-# Get already existing data-----------------------------------------------------
-current_2023_24_data = pd.read_csv("Data/all_player_stats_2023-2024.csv")
-ids_to_get = set(schedule['match_id']) - set(current_2023_24_data['gameId'])
-
-# Get new data------------------------------------------------------------------
-df_2023_24 = fetch_season_data(ids_to_get)
+# Get data for 2023-24 season
+df_2023_24 = fetch_season_data(match_id_list_2023_24_new)
 
 # Add match information
 df_2023_24 = pd.merge(df_2023_24, matches_2023_24, left_on='gameId', right_on='GAME_ID', how='left')
 
-# Combine with existing data
-df_2023_24 = pd.concat([df_2023_24, current_2023_24_data])
-
-# Reset Index
-df_2023_24.reset_index(inplace=True)
+# Bind rows of old and new data
+df_2023_24 = pd.concat([current_data, df_2023_24])
 
 # Write out as a CSV file
 df_2023_24.to_csv('Data/all_player_stats_2023-2024.csv', index=False)
+
+#====================================================================================================
+# Get Advanced Team Stats   
+#====================================================================================================
+
+#=====================================================#
+#                Get for season 2023-24               #
+#=====================================================#
+
+current_season_match_ids_all = list(matches_2023_24.GAME_ID)
+
+# Remove duplicates
+all_match_ids = list(set(current_season_match_ids_all))
+
+# Initialize an empty list to store dataframes
+all_team_stats = []
+
+# Loop through all match IDs to get team stats
+for match_id in all_match_ids:
+    team_stats = boxscoreadvancedv3.BoxScoreAdvancedV3(game_id=match_id)
+    team_stats_df = team_stats.get_data_frames()[1]
+    all_team_stats.append(team_stats_df)
+    print("done with match_id: " + str(match_id))
+    
+# Concatenate all dataframes
+all_team_stats_df = pd.concat(all_team_stats)
+
+# Save dataframe to csv
+all_team_stats_df.to_csv('Data/advanced_box_scores_2023-2024.csv', index=False)
