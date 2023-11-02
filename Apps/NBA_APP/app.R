@@ -6,6 +6,7 @@ library(tidyverse)
 library(googlesheets4)
 library(googledrive)
 
+# Function to convert time to decimal-------------------------------------------
 convert_time_to_decimal_hms <- function(time_obj) {
   # Convert to hms object
   time_obj <- hms(time_obj)
@@ -19,6 +20,43 @@ convert_time_to_decimal_hms <- function(time_obj) {
   return(decimal_time)
 }
 
+# Function to get correlation between players-----------------------------------
+get_player_correlation <- function(seasons = NULL, name_a, name_b, metric_a, metric_b) {
+  # Column names for later use
+  col_name_a <- paste0(name_a, " ", metric_a)
+  col_name_b <- paste0(name_b, " ", metric_b)
+  
+  # Get dataframe for player A
+  df_player_a <- 
+    all_player_stats %>%
+    filter(PLAYER_NAME == name_a & SEASON_YEAR %in% seasons) |> 
+    select(gameId, PLAYER_NAME, all_of(metric_a)) |> 
+    rename(!!col_name_a := all_of(metric_a))
+  
+  # Get dataframe for player B
+  df_player_b <- 
+    all_player_stats %>%
+    filter(PLAYER_NAME == name_b & SEASON_YEAR %in% seasons) |> 
+    select(gameId, PLAYER_NAME, all_of(metric_b)) |> 
+    rename(!!col_name_b := all_of(metric_b))
+  
+  # Merge the two dataframes
+  df_merged <- inner_join(df_player_a, df_player_b, by = "gameId")
+  
+  # Compute correlation
+  correlation <- cor(df_merged[[col_name_a]], df_merged[[col_name_b]], method = "pearson")
+  cat(sprintf("The correlation between %s and %s is: %f\n", col_name_a, col_name_b, correlation))
+  
+  # Plot data
+  ggplot(df_merged, mapping = aes(x = .data[[col_name_a]], y = .data[[col_name_b]])) +
+    geom_point() +
+    geom_smooth(method = "lm", se = FALSE) +
+    labs(x = col_name_a, y = col_name_b)
+}
+
+get_player_correlation(seasons = c("2022-23"), name_a = "James Harden", name_b = "Joel Embiid", metric_a = "AST", metric_b = "PTS")
+
+# Function to compare player performance w or w/o teammate----------------------
 compare_performance <- function(seasons = NULL, name, teammate_name, metric) {
   # Filter the data for games with the main player
   df_player <-
