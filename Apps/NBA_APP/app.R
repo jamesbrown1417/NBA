@@ -54,8 +54,6 @@ get_player_correlation <- function(seasons = NULL, name_a, name_b, metric_a, met
     labs(x = col_name_a, y = col_name_b)
 }
 
-get_player_correlation(seasons = c("2022-23"), name_a = "James Harden", name_b = "Joel Embiid", metric_a = "AST", metric_b = "PTS")
-
 # Function to compare player performance w or w/o teammate----------------------
 compare_performance <- function(seasons = NULL, name, teammate_name, metric) {
   # Filter the data for games with the main player
