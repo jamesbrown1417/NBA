@@ -124,7 +124,7 @@ bluebet_head_to_head_markets <-
     left_join(away_teams) |> 
     select(match, start_time, market_name, home_team, home_win, away_team, away_win) |> 
     mutate(margin = round((1/home_win + 1/away_win), digits = 3)) |> 
-    mutate(agency = "Bluebet")
+    mutate(agency = "BlueBet")
 
 # Fix team names
 bluebet_head_to_head_markets <-

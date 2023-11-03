@@ -47,12 +47,34 @@ get_player_correlation <- function(seasons = NULL, name_a, name_b, metric_a, met
   correlation <- cor(df_merged[[col_name_a]], df_merged[[col_name_b]], method = "pearson")
   cat(sprintf("The correlation between %s and %s is: %f\n", col_name_a, col_name_b, correlation))
   
-  # Plot data
-  ggplot(df_merged, mapping = aes(x = .data[[col_name_a]], y = .data[[col_name_b]])) +
-    geom_point() +
-    geom_smooth(method = "lm", se = FALSE) +
-    labs(x = col_name_a, y = col_name_b)
+  # Create plot
+  ggplot(df_merged, aes(x = .data[[col_name_a]], y = .data[[col_name_b]])) +
+    geom_point(color = "#3498db", alpha = 0.6, size = 3) +
+    geom_smooth(method = "lm", se = FALSE, color = "#e74c3c", linetype = "dashed") +
+    labs(
+      x = col_name_a, 
+      y = col_name_b,
+      title = "Player Performance Correlation",
+      subtitle = sprintf("Correlation between %s and %s", col_name_a, col_name_b),
+      caption = sprintf("Pearson's r: %.2f", correlation)
+    ) +
+    theme_minimal() +
+    theme(
+      plot.title = element_text(hjust = 0.5),
+      plot.subtitle = element_text(hjust = 0.5, color = "grey50"),
+      plot.caption = element_text(hjust = 1, color = "grey50"),
+      text = element_text(size = 12),
+      axis.title = element_text(face = "bold"),
+      legend.position = "none"
+    ) +
+    annotate(
+      "text", x = max(df_merged[[col_name_a]]), y = min(df_merged[[col_name_b]]), 
+      label = sprintf("r = %.2f", correlation), 
+      hjust = 1, vjust = 0, size = 5, color = "red1", fontface = "italic"
+    )
 }
+
+get_player_correlation(seasons = c("2022-23"), name_a = "Stephen Curry", name_b = "Klay Thompson", metric_a = "PTS", metric_b = "PTS")
 
 # Function to compare player performance w or w/o teammate----------------------
 compare_performance <- function(seasons = NULL, name, teammate_name, metric) {
@@ -116,7 +138,13 @@ all_player_stats <-
   bind_rows(all_player_stats_2022_2023) |>
   bind_rows(all_player_stats_2021_2022) |>
   left_join(all_rosters[c("PLAYER", "PLAYER_ID")], by = c("personId" = "PLAYER_ID")) |> 
-  rename(PLAYER_NAME = PLAYER, PTS = points, REB = reboundsTotal, AST = assists) |> 
+  mutate(PRA = points + reboundsTotal + assists) |>
+  rename(PLAYER_NAME = PLAYER,
+         PTS = points,
+         REB = reboundsTotal,
+         AST = assists,
+         STL = steals,
+         BLK = blocks) |> 
   mutate(MIN = convert_time_to_decimal_hms(minutes)) |> 
   mutate(MIN = round(MIN, 2)) |> 
   relocate(MIN, .after = minutes)
@@ -172,7 +200,7 @@ all_player_stats <-
   all_player_stats |>
   mutate(team_full = paste(teamCity, teamName)) |>
   mutate(home_away = if_else(team_full == HOME_TEAM, "Home", "Away"))
-  
+
 # Google sheets authentication -------------------------------------------------
 options(gargle_oauth_cache = ".secrets")
 drive_auth(cache = ".secrets", email = "cuzzy.punting@gmail.com")
@@ -184,6 +212,44 @@ h2h_data <- read_sheet(ss = ss_name, sheet = "H2H")
 player_points_data <- read_sheet(ss = ss_name, sheet = "Player Points")
 player_assists_data <- read_sheet(ss = ss_name, sheet = "Player Assists")
 player_rebounds_data <- read_sheet(ss = ss_name, sheet = "Player Rebounds")
+
+# Add opposition defensive rating-----------------------------------------------
+
+# Get defensive rating in last 5 games
+def_rating_last_5 <-
+  all_team_stats |> 
+  arrange(teamName, desc(date)) |>
+  group_by(teamName) |>
+  slice_head(n = 5) |>
+  summarise(def_rating = mean(defensiveRating, na.rm = TRUE)) |> 
+  mutate(def_rating = round((def_rating - min(def_rating)) / (max(def_rating) - min(def_rating)) * 100, digits = 1))
+
+# Get Pace per 40 vs opposition in last 5 games
+pace_per_40_last_5 <-
+  all_team_stats |> 
+  arrange(oppositionTeam, desc(date)) |>
+  group_by(oppositionTeam) |>
+  slice_head(n = 5) |>
+  summarise(pace_per_40 = mean(pacePer40, na.rm = TRUE)) |> 
+  mutate(pace_per_40 = round((pace_per_40 - min(pace_per_40)) / (max(pace_per_40) - min(pace_per_40)) * 100, digits = 1))
+
+# Add to player points
+player_points_data <-
+  player_points_data |> 
+  left_join(def_rating_last_5, by = c("opposition_team" = "teamName")) |>
+  left_join(pace_per_40_last_5, by = c("opposition_team" = "oppositionTeam"))
+
+# Add to player assists
+player_assists_data <-
+  player_assists_data |> 
+  left_join(def_rating_last_5, by = c("opposition_team" = "teamName")) |>
+  left_join(pace_per_40_last_5, by = c("opposition_team" = "oppositionTeam"))
+
+# Add to player rebounds
+player_rebounds_data <-
+  player_rebounds_data |> 
+  left_join(def_rating_last_5, by = c("opposition_team" = "teamName")) |>
+  left_join(pace_per_40_last_5, by = c("opposition_team" = "oppositionTeam"))
 
 #===============================================================================
 # UI
@@ -237,7 +303,9 @@ ui <- page_navbar(
             choices = c("PTS",
                         "REB",
                         "AST",
+                        "PRA",
                         "BLK",
+                        "STL",
                         "MIN"),
             multiple = FALSE,
             selected = "PTS"
@@ -372,6 +440,17 @@ ui <- page_navbar(
                             label = "Only Show Best Market Odds",
                             value = FALSE
                           ),
+                          markdown(mds = c("__Select Odds Range:__")),
+                          numericInput(
+                            inputId = "odds_minimum",
+                            label = "Min Odds",
+                            value = NA
+                          ),
+                          numericInput(
+                            inputId = "odds_maximum",
+                            label = "Max Odds",
+                            value = NA
+                          ),
                           markdown(mds = c("__Select Difference Range 2023:__")),
                           numericInput(
                             inputId = "diff_minimum_23",
@@ -444,6 +523,58 @@ ui <- page_navbar(
                   plotOutput(outputId = "with_without_plot_output", height = "800px", width = "50%")
                 ))
     )
+  ),
+  nav_panel(
+    title = "Player Correlations",
+    grid_container(
+      layout = c("corr_settings corr_plot"),
+      row_sizes = c("1fr"),
+      col_sizes = c("500px", "1fr"),
+      gap_size = "10px",
+      
+      grid_card(
+        area = "corr_settings",
+        card_header("Settings"),
+        card_body(
+          textInput(
+            inputId = "player_name_corr",
+            label = "Select Player 1:",
+            value = "LeBron James"
+          ),
+          selectInput(
+            inputId = "metric_input_corr_a",
+            label = "Select Statistic:",
+            choices = c("PTS", "REB", "AST", "BLK", "STL", "MIN"),
+            multiple = FALSE,
+            selected = "PTS"
+          ),
+          textInput(
+            inputId = "teammate_name_corr",
+            label = "Select Player 2:",
+            value = "Anthony Davis"
+          ),
+          selectInput(
+            inputId = "metric_input_corr_b",
+            label = "Select Statistic:",
+            choices = c("PTS", "REB", "AST", "BLK", "STL", "MIN"),
+            multiple = FALSE,
+            selected = "PTS"
+          ),
+          selectInput(
+            inputId = "season_input_corr",
+            label = "Select Season:",
+            choices = all_player_stats$SEASON_YEAR |> unique(),
+            multiple = TRUE,
+            selectize = TRUE
+          )
+        )
+      ),
+      
+      grid_card(area = "corr_plot",
+                card_body(
+                  plotOutput(outputId = "corr_plot_output", height = "800px", width = "50%")
+                ))
+    )
   )
 )
 
@@ -488,7 +619,9 @@ server <- function(input, output) {
              PTS,
              REB,
              AST,
-             BLK = blocks,
+             PRA,
+             BLK,
+             STL,
              game_number) |> 
       arrange(desc(Date))
              
@@ -612,7 +745,7 @@ server <- function(input, output) {
   output$player_stat_table <- renderDT({
     datatable(
       filtered_player_stats(),
-      options = list(pageLength = 15, autoWidth = TRUE),
+      options = list(pageLength = 15, autoWidth = TRUE, scrollX = TRUE, scrollY = TRUE),
       width = "100%",
       height = "800px"
     )
@@ -718,6 +851,15 @@ server <- function(input, output) {
         select(-match)
     }
     
+    if (input$only_best == TRUE) {
+      odds <-
+        odds |> 
+        arrange(player_name, line, desc(over_price)) |>
+        group_by(player_name, line) |> 
+        slice_head(n = 1) |>
+        ungroup()
+    }
+    
     # Min and max differences
     if (!is.na(input$diff_minimum_22)) {
       odds <-
@@ -743,19 +885,23 @@ server <- function(input, output) {
         filter(diff_over_2023_24 <= input$diff_maximum_23)
     }
     
+    # Odds Range
+        if (!is.na(input$odds_minimum)) {
+      odds <-
+        odds |>
+        filter(over_price >= input$odds_minimum)
+    }
+    
+    if (!is.na(input$odds_maximum)) {
+      odds <-
+        odds |>
+        filter(over_price <= input$odds_maximum)
+    }
+    
     if (input$only_unders == TRUE) {
       odds <-
         odds |>
         filter(!is.na(under_price))
-    }
-    
-    if (input$only_best == TRUE) {
-      odds <-
-        odds |> 
-        arrange(player_name, line, desc(over_price)) |>
-        group_by(player_name, line) |> 
-        slice_head(n = 1) |>
-        ungroup()
     }
     
     if (input$player_name_input_b != "") {
@@ -774,6 +920,7 @@ server <- function(input, output) {
               options = list(
                 pageLength = 17,
                 autoWidth = FALSE,
+                scrollX = TRUE, scrollY = TRUE,
                 lengthMenu = c(5, 10, 15, 20, 25, 30)
               ))
   })
@@ -793,6 +940,24 @@ server <- function(input, output) {
     return(plot)
   })
   
+  #=============================================================================
+  # Player Correlations
+  #=============================================================================
+  
+  output$corr_plot_output <- renderPlot({
+    req(input$player_name_corr, input$teammate_name_corr, input$season_input_corr, input$metric_input_corr_b, input$metric_input_corr_a)
+    
+    plot <-
+      get_player_correlation(
+        seasons = input$season_input_corr,
+        name_a = input$player_name_corr,
+        name_b = input$teammate_name_corr,
+        metric_a = input$metric_input_corr_a,
+        metric_b = input$metric_input_corr_b
+      )
+    
+    return(plot)
+  })
   
 }
 
