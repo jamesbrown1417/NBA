@@ -123,23 +123,59 @@ df_2023_24.to_csv('Data/all_player_stats_2023-2024.csv', index=False)
 #                Get for season 2023-24               #
 #=====================================================#
 
-current_season_match_ids_all = list(matches_2023_24.GAME_ID)
+# ==========================================
+# Functions to Fetch Advanced Team Stats
+# ==========================================
 
-# Remove duplicates
-all_match_ids = list(set(current_season_match_ids_all))
+def fetch_single_match_team_stats(match_id, retries=3, delay=10):
+    for i in range(retries):
+        try:
+            team_stats = boxscoreadvancedv3.BoxScoreAdvancedV3(game_id=match_id, timeout=120)  # Increased timeout
+            return team_stats.get_data_frames()[1]
+        except (HTTPError, ReadTimeoutError) as e:
+            wait_time = delay * (2 ** i)  # Exponential backoff
+            print(f"An error occurred: {e}. Retrying in {wait_time} seconds.")
+            time.sleep(wait_time)
+    print(f"Failed to fetch team stats for {match_id} after {retries} retries.")
+    return None
 
-# Initialize an empty list to store dataframes
-all_team_stats = []
-
-# Loop through all match IDs to get team stats
-for match_id in all_match_ids:
-    team_stats = boxscoreadvancedv3.BoxScoreAdvancedV3(game_id=match_id)
-    team_stats_df = team_stats.get_data_frames()[1]
-    all_team_stats.append(team_stats_df)
-    print("done with match_id: " + str(match_id))
+def fetch_advanced_team_stats(match_id_list):
+    all_team_stats = []
     
-# Concatenate all dataframes
-all_team_stats_df = pd.concat(all_team_stats)
+    total_matches = len(match_id_list)
+    completed_matches = 0
+    
+    for match_id in match_id_list:
+        team_stats_df = fetch_single_match_team_stats(match_id)
+        if team_stats_df is not None:
+            all_team_stats.append(team_stats_df)
+            completed_matches += 1
+            progress = (completed_matches / total_matches) * 100
+            print(f"Done with match_id: {match_id} - Progress: {progress:.2f}%")
+    
+    all_team_stats_df = pd.concat(all_team_stats, ignore_index=True)
+    return all_team_stats_df
 
-# Save dataframe to csv
-all_team_stats_df.to_csv('Data/advanced_box_scores_2023-2024.csv', index=False)
+# ==========================================
+# Fetch and Save Advanced Data for 2023-24 Season
+# ==========================================
+
+# Assuming you have an existing CSV with previous data for advanced team stats
+try:
+    current_advanced_data = pd.read_csv('Data/advanced_box_scores_2023-2024.csv', dtype={'gameId': str})
+    existing_match_ids = current_advanced_data['gameId'].unique()
+except FileNotFoundError:
+    current_advanced_data = pd.DataFrame()
+    existing_match_ids = []
+
+# Filter out match IDs that have already been fetched
+new_match_ids = list(set(matches_2023_24.GAME_ID) - set(existing_match_ids))
+
+# Fetch new data
+new_advanced_team_stats_df = fetch_advanced_team_stats(new_match_ids)
+
+# Combine old and new data
+combined_advanced_team_stats_df = pd.concat([current_advanced_data, new_advanced_team_stats_df], ignore_index=True)
+
+# Write out as a CSV file
+combined_advanced_team_stats_df.to_csv('Data/advanced_box_scores_2023-2024.csv', index=False)
