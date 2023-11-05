@@ -166,6 +166,9 @@ all_player_points <-
 # Add to google sheets
 sheet_write(sheet, data = all_player_points, sheet = "Player Points")
 
+# Write as RDS
+all_player_points |> write_rds("Data/processed_odds/all_player_points.rds")
+
 ##%######################################################%##
 #                                                          #
 ####                   Player Assists                   ####
@@ -233,6 +236,9 @@ all_player_assists <-
 
 # Add to google sheets
 sheet_write(sheet, data = all_player_assists, sheet = "Player Assists")
+
+# Write as RDS
+all_player_assists |> write_rds("Data/processed_odds/all_player_assists.rds")
 
 ##%######################################################%##
 #                                                          #
@@ -302,3 +308,5 @@ all_player_rebounds <-
 # Add to google sheets
 sheet_write(sheet, data = all_player_rebounds, sheet = "Player Rebounds")
 
+# Write as RDS
+all_player_rebounds |> write_rds("Data/processed_odds/all_player_rebounds.rds")
