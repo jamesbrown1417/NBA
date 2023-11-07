@@ -1,0 +1,237 @@
+---
+title: "Home vs Away Performance"
+execute:
+  echo: false
+  message: false
+  warning: false
+author: "James Brown"
+date: "2023-11-07"
+format:
+  html:
+    df-print: default
+    theme: cosmo
+    self-contained: true
+    toc: true
+    toc-depth: 3
+    fig-width: 8
+    fig-height: 6
+editor: visual
+---
+
+```{r}
+# Libraries
+library(tidyverse)
+
+# Functions
+convert_time_to_decimal_hms <- function(time_obj) {
+  # Convert to hms object
+  time_obj <- hms(time_obj)
+  
+  # Extract hours and minutes
+  hours <- hour(time_obj)
+  minutes <- minute(time_obj)
+  
+  # Convert to decimal
+  decimal_time <- hours + (minutes / 60)
+  return(decimal_time)
+}
+
+# Read in data------------------------------------------------------------------
+
+# Player Info
+all_rosters <- read_csv("../Data/all_rosters.csv")
+all_teams <- read_csv("../Data/all_teams.csv")
+all_player_stats_2022_2023 <- read_csv("../Data/all_player_stats_2022-2023.csv") |> mutate(SEASON_YEAR = "2022-23")
+all_player_stats_2023_2024 <- read_csv("../Data/all_player_stats_2023-2024.csv") |> mutate(SEASON_YEAR = "2023-24")
+
+# Team Info
+all_team_stats_2022_2023 <- read_csv("../Data/advanced_box_scores_2022-2023.csv") |> mutate(SEASON_YEAR = "2022-23")
+all_team_stats_2023_2024 <- read_csv("../Data/advanced_box_scores_2023-2024.csv") |> mutate(SEASON_YEAR = "2023-24")
+
+# Combine player stats
+all_player_stats <-
+  all_player_stats_2023_2024 |>
+  bind_rows(all_player_stats_2022_2023) |> 
+  left_join(all_rosters[c("PLAYER", "PLAYER_ID")], by = c("personId" = "PLAYER_ID")) |> 
+  mutate(PRA = points + reboundsTotal + assists) |>
+  rename(PLAYER_NAME = PLAYER,
+         PTS = points,
+         REB = reboundsTotal,
+         AST = assists,
+         STL = steals,
+         BLK = blocks) |> 
+  mutate(MIN = convert_time_to_decimal_hms(minutes)) |> 
+  mutate(MIN = round(MIN, 2)) |> 
+  relocate(MIN, .after = minutes)
+
+# Create Home / Away variable
+all_player_stats <-
+  all_player_stats |>
+  mutate(team_full = paste(teamCity, teamName)) |>
+  mutate(home_away = if_else(team_full == HOME_TEAM, "Home", "Away"))
+```
+
+# Home vs Away Performance
+
+```{r}
+# Get Home Dataset
+home_stats <-
+all_player_stats |> 
+  filter(home_away == "Home") |>
+  filter(MIN > 0) |> 
+  select(PLAYER_NAME, PTS, FG3M = threePointersMade, REB, AST, STL, BLK, MIN)
+
+# Get Away Dataset
+away_stats <-
+all_player_stats |> 
+  filter(home_away == "Away") |>
+  filter(MIN > 0) |> 
+  select(PLAYER_NAME, PTS, FG3M = threePointersMade, REB, AST, STL, BLK, MIN)
+
+```
+
+## Points
+
+```{r}
+home_pts <-
+home_stats |> 
+  group_by(PLAYER_NAME) |>
+  summarise(home_pts = median(PTS), home_games = n())
+
+away_pts <-
+away_stats |> 
+  group_by(PLAYER_NAME) |>
+  summarise(away_pts = median(PTS), away_games = n())
+
+pts_df <-
+  inner_join(home_pts, away_pts, by = "PLAYER_NAME") |>
+  filter(home_games >= 10 & away_games >= 10) |> 
+  mutate(diff = home_pts - away_pts) |>
+  arrange(desc(diff)) |>
+  mutate(across(where(is.numeric), round, 2)) |>
+  relocate(home_games, away_games, .after = PLAYER_NAME) |> 
+  rename(player = PLAYER_NAME)
+```
+
+## Threes Made
+
+```{r}
+home_threes <-
+home_stats |> 
+  group_by(PLAYER_NAME) |>
+  summarise(home_threes = median(FG3M), home_games = n())
+
+away_threes <-
+away_stats |> 
+  group_by(PLAYER_NAME) |>
+  summarise(away_threes = median(FG3M), away_games = n())
+
+threes_df <-
+  inner_join(home_threes, away_threes, by = "PLAYER_NAME") |>
+  filter(home_games >= 10 & away_games >= 10) |> 
+  mutate(diff = home_threes - away_threes) |>
+  arrange(desc(diff)) |>
+  mutate(across(where(is.numeric), round, 2)) |>
+  relocate(home_games, away_games, .after = PLAYER_NAME) |> 
+    rename(player = PLAYER_NAME)
+
+```
+
+## Rebounds
+
+```{r}
+home_reb <-
+home_stats |> 
+  group_by(PLAYER_NAME) |>
+  summarise(home_reb = median(REB), home_games = n())
+
+away_reb <-
+away_stats |> 
+  group_by(PLAYER_NAME) |>
+  summarise(away_reb = median(REB), away_games = n())
+
+reb_df <-
+  inner_join(home_reb, away_reb, by = "PLAYER_NAME") |>
+  filter(home_games >= 10 & away_games >= 10) |> 
+  mutate(diff = home_reb - away_reb) |>
+  arrange(desc(diff)) |>
+  mutate(across(where(is.numeric), round, 2)) |>
+  relocate(home_games, away_games, .after = PLAYER_NAME) |> 
+    rename(player = PLAYER_NAME)
+```
+
+## Assists
+
+```{r}
+home_ast <-
+home_stats |> 
+  group_by(PLAYER_NAME) |>
+  summarise(home_ast = median(AST), home_games = n())
+
+away_ast <-
+away_stats |> 
+  group_by(PLAYER_NAME) |>
+  summarise(away_ast = median(AST), away_games = n())
+
+ast_df <-
+  inner_join(home_ast, away_ast, by = "PLAYER_NAME") |>
+  filter(home_games >= 10 & away_games >= 10) |> 
+  mutate(diff = home_ast - away_ast) |>
+  arrange(desc(diff)) |>
+  mutate(across(where(is.numeric), round, 2)) |>
+  relocate(home_games, away_games, .after = PLAYER_NAME) |> 
+    rename(player = PLAYER_NAME)
+```
+
+## Steals
+
+```{r}
+home_stl <-
+home_stats |> 
+  group_by(PLAYER_NAME) |>
+  summarise(home_stl = median(STL), home_games = n())
+
+away_stl <-
+away_stats |> 
+  group_by(PLAYER_NAME) |>
+  summarise(away_stl = median(STL), away_games = n())
+
+stl_df <-
+  inner_join(home_stl, away_stl, by = "PLAYER_NAME") |>
+  filter(home_games >= 10 & away_games >= 10) |> 
+  mutate(diff = home_stl - away_stl) |>
+  arrange(desc(diff)) |>
+  mutate(across(where(is.numeric), round, 2)) |>
+  relocate(home_games, away_games, .after = PLAYER_NAME) |> 
+    rename(player = PLAYER_NAME)
+
+```
+
+## Blocks
+
+```{r}
+home_blk <-
+home_stats |> 
+  group_by(PLAYER_NAME) |>
+  summarise(home_blk = median(BLK), home_games = n())
+
+away_blk <-
+away_stats |> 
+  group_by(PLAYER_NAME) |>
+  summarise(away_blk = median(BLK), away_games = n())
+
+blk_df <-
+  inner_join(home_blk, away_blk, by = "PLAYER_NAME") |>
+  filter(home_games >= 10 & away_games >= 10) |> 
+  mutate(diff = home_blk - away_blk) |>
+  arrange(desc(diff)) |>
+  mutate(across(where(is.numeric), round, 2)) |>
+  relocate(home_games, away_games, .after = PLAYER_NAME) |> 
+    rename(player = PLAYER_NAME)
+
+```
+
+
+
+
+
