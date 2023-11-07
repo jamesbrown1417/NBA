@@ -440,7 +440,12 @@ ui <- page_navbar(
                           ),
                           checkboxInput(
                             inputId = "only_best",
-                            label = "Only Show Best Market Odds",
+                            label = "Only Show Best Market Odds - Overs",
+                            value = FALSE
+                          ),
+                          checkboxInput(
+                            inputId = "only_best_unders",
+                            label = "Only Show Best Market Odds - Unders",
                             value = FALSE
                           ),
                           markdown(mds = c("__Select Odds Range:__")),
@@ -473,6 +478,28 @@ ui <- page_navbar(
                           ),
                           numericInput(
                             inputId = "diff_maximum_22",
+                            label = "Max Diff",
+                            value = NA
+                          ),
+                          markdown(mds = c("__Select Difference Range 2023 - Unders:__")),
+                          numericInput(
+                            inputId = "diff_minimum_23_unders",
+                            label = "Min Diff",
+                            value = NA
+                          ),
+                          numericInput(
+                            inputId = "diff_maximum_23_unders",
+                            label = "Max Diff",
+                            value = NA
+                          ),
+                          markdown(mds = c("__Select Difference Range 2022 - Unders:__")),
+                          numericInput(
+                            inputId = "diff_minimum_22_unders",
+                            label = "Min Diff",
+                            value = NA
+                          ),
+                          numericInput(
+                            inputId = "diff_maximum_22_unders",
                             label = "Max Diff",
                             value = NA
                           )
@@ -653,14 +680,18 @@ server <- function(input, output) {
     
     # Get implied Odds
     implied_odds <- 1 / proportion_above_reference_line
+    implied_odds_under <- 1 / (1 - proportion_above_reference_line)
     
     # Get string to output
     output_string <- paste0(
       "Proportion Above Reference Line: ",
       round(proportion_above_reference_line, 2),
       "\n",
-      "Implied Odds: ",
+      "Implied Odds - Over: ",
       round(implied_odds, 2),
+      "\n",
+      "Implied Odds - Under: ",
+      round(implied_odds_under, 2),
       "\n",
       "Sample Size: ",
       nrow(filtered_player_stats())
@@ -863,6 +894,15 @@ server <- function(input, output) {
         ungroup()
     }
     
+    if (input$only_best_unders == TRUE) {
+      odds <-
+        odds |> 
+        arrange(player_name, line, desc(under_price)) |>
+        group_by(player_name, line) |> 
+        slice_head(n = 1) |>
+        ungroup()
+    }
+    
     # Min and max differences
     if (!is.na(input$diff_minimum_22)) {
       odds <-
@@ -886,6 +926,30 @@ server <- function(input, output) {
       odds <-
         odds |>
         filter(diff_over_2023_24 <= input$diff_maximum_23)
+    }
+    
+    if (!is.na(input$diff_minimum_23_unders)) {
+      odds <-
+        odds |>
+        filter(diff_under_2023_24 >= input$diff_minimum_23_unders)
+    }
+    
+    if (!is.na(input$diff_maximum_23_unders)) {
+      odds <-
+        odds |>
+        filter(diff_under_2023_24 <= input$diff_maximum_23_unders)
+    }
+    
+    if (!is.na(input$diff_minimum_22_unders)) {
+      odds <-
+        odds |>
+        filter(diff_under_2022_23 >= input$diff_minimum_22_unders)
+    }
+    
+    if (!is.na(input$diff_maximum_22_unders)) {
+      odds <-
+        odds |>
+        filter(diff_under_2022_23 <= input$diff_maximum_22_unders)
     }
     
     # Odds Range
