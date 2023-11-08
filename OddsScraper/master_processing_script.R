@@ -11,7 +11,7 @@ options(gargle_oauth_cache = ".secrets")
 drive_auth(cache = ".secrets", email = "cuzzy.punting@gmail.com")
 gs4_auth(token = drive_token())
 
-# # Run all odds scraping scripts-------------------------------------------------
+# # Run all odds scraping scripts-----------------------------------------------
 run_scraping <- function(script_name) {
   tryCatch({
     source(script_name)

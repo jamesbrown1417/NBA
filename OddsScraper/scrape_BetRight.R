@@ -748,6 +748,6 @@ betright_player_steals <-
 betright_player_points |> write_csv("Data/scraped_odds/betright_player_points.csv")
 betright_player_assists |> write_csv("Data/scraped_odds/betright_player_assists.csv")
 betright_player_rebounds |> write_csv("Data/scraped_odds/betright_player_rebounds.csv")
-betright_player_three_pointers |> write_csv("Data/scraped_odds/betright_player_three_pointers.csv")
+betright_player_three_pointers |> write_csv("Data/scraped_odds/betright_player_threes.csv")
 betright_player_blocks |> write_csv("Data/scraped_odds/betright_player_blocks.csv")
 betright_player_steals |> write_csv("Data/scraped_odds/betright_player_steals.csv")
