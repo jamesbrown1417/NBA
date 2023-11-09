@@ -19,7 +19,6 @@ for team_id in df_teams['id'].unique():
     roster = commonteamroster.CommonTeamRoster(team_id=team_id)
     data_frames = roster.get_data_frames()
     roster_df = data_frames[0]
-    print(roster_df)
     all_rosters.append(roster_df)
     
 df_rosters = pd.concat(all_rosters)
