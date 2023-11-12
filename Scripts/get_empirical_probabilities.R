@@ -15,14 +15,32 @@ all_rosters <- read_csv("Data/all_rosters.csv")
 
 # Add names and rename vars
 combined_stats_2022_2023 <-
-  combined_stats_2022_2023 |> 
-  left_join(all_rosters[c("PLAYER", "PLAYER_ID")], by = c("personId" = "PLAYER_ID")) |> 
-  rename(PLAYER_NAME = PLAYER, PTS = points, REB = reboundsTotal, AST = assists)
+  combined_stats_2022_2023 |>
+  left_join(all_rosters[c("PLAYER", "PLAYER_ID")], by = c("personId" = "PLAYER_ID")) |>
+  rename(
+    PLAYER_NAME = PLAYER,
+    PTS = points,
+    REB = reboundsTotal,
+    AST = assists,
+    STL = steals,
+    BLK = blocks,
+    Threes = threePointersMade
+  ) |> 
+  mutate(PRA = PTS + REB + AST)
 
 combined_stats_2023_2024 <-
-  combined_stats_2023_2024 |> 
-  left_join(all_rosters[c("PLAYER", "PLAYER_ID")], by = c("personId" = "PLAYER_ID")) |> 
-  rename(PLAYER_NAME = PLAYER, PTS = points, REB = reboundsTotal, AST = assists)
+  combined_stats_2023_2024 |>
+  left_join(all_rosters[c("PLAYER", "PLAYER_ID")], by = c("personId" = "PLAYER_ID")) |>
+  rename(
+    PLAYER_NAME = PLAYER,
+    PTS = points,
+    REB = reboundsTotal,
+    AST = assists,
+    STL = steals,
+    BLK = blocks,
+    Threes = threePointersMade
+  ) |> 
+  mutate(PRA = PTS + REB + AST)
 
 #===============================================================================
 # Create a function that takes a player name + line and returns their hit rate
@@ -55,8 +73,24 @@ get_empirical_prob <- function(player_name, line, stat, season) {
     empirical_prob <- player_stats |> 
       summarise(games_played = n(),
                 empirical_prob = mean(AST >= line))
+  } else if (stat == "STL") {
+    empirical_prob <- player_stats |> 
+      summarise(games_played = n(),
+                empirical_prob = mean(STL >= line))
+  } else if (stat == "BLK") {
+    empirical_prob <- player_stats |> 
+      summarise(games_played = n(),
+                empirical_prob = mean(BLK >= line))
+  } else if (stat == "Threes") {
+    empirical_prob <- player_stats |> 
+      summarise(games_played = n(),
+                empirical_prob = mean(Threes >= line))
+  } else if (stat == "PRA") {
+    empirical_prob <- player_stats |> 
+      summarise(games_played = n(),
+                empirical_prob = mean(PRA >= line))
   } else {
-    stop("stat must be one of PTS, REB or AST")
+    stop("stat must be one of PTS, REB, AST, STL, BLK, Threes, or PRA")
   }
   
   # Add line, player_name, and season information

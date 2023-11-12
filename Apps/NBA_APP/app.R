@@ -215,6 +215,10 @@ gs4_auth(token = drive_token())
 player_points_data <- read_rds("../../Data/processed_odds/all_player_points.rds")
 player_assists_data <- read_rds("../../Data/processed_odds/all_player_assists.rds")
 player_rebounds_data <- read_rds("../../Data/processed_odds/all_player_rebounds.rds")
+player_pras_data <- read_rds("../../Data/processed_odds/all_player_pras.rds")
+player_steals_data <- read_rds("../../Data/processed_odds/all_player_steals.rds")
+player_threes_data <- read_rds("../../Data/processed_odds/all_player_threes.rds")
+player_blocks_data <- read_rds("../../Data/processed_odds/all_player_blocks.rds")
 
 # Add opposition defensive rating-----------------------------------------------
 
@@ -417,7 +421,7 @@ ui <- page_navbar(
                           selectInput(
                             inputId = "market_input",
                             label = "Select Market:",
-                            choices = c("Points", "Rebounds", "Assists"),
+                            choices = c("Points", "Rebounds", "Assists", "PRAs", "Blocks", "Steals", "Threes"),
                             multiple = FALSE
                           ),
                           selectInput(
@@ -879,6 +883,46 @@ server <- function(input, output) {
     if (input$market_input == "Assists") {
       odds <-
         player_assists_data |> 
+        mutate(variation = round(variation, 2)) |>
+        filter(agency %in% input$agency_input) |> 
+        filter(match %in% input$match_input) |>
+        select(-match)
+    }
+    
+    # Blocks
+    if (input$market_input == "Blocks") {
+      odds <-
+        player_blocks_data |> 
+        mutate(variation = round(variation, 2)) |>
+        filter(agency %in% input$agency_input) |> 
+        filter(match %in% input$match_input) |>
+        select(-match)
+    }
+    
+    # Steals
+    if (input$market_input == "Steals") {
+      odds <-
+        player_steals_data |> 
+        mutate(variation = round(variation, 2)) |>
+        filter(agency %in% input$agency_input) |> 
+        filter(match %in% input$match_input) |>
+        select(-match)
+    }
+    
+    # Threes
+    if (input$market_input == "Threes") {
+      odds <-
+        player_threes_data |> 
+        mutate(variation = round(variation, 2)) |>
+        filter(agency %in% input$agency_input) |> 
+        filter(match %in% input$match_input) |>
+        select(-match)
+    }
+    
+    # PRAs
+    if (input$market_input == "PRAs") {
+      odds <-
+        player_pras_data |> 
         mutate(variation = round(variation, 2)) |>
         filter(agency %in% input$agency_input) |> 
         filter(match %in% input$match_input) |>
