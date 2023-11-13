@@ -244,6 +244,8 @@ player_points_data <-
     select(match, market_name, player_name, line, over_price, under_price, agency) |> 
     mutate(player_name = case_when(player_name == "PJ Washington" ~ "P.J. Washington",
                                    player_name == "Kelly Oubre" ~ "Kelly Oubre Jr.",
+                                   player_name == "Derrick Jones" ~ "Derrick Jones Jr.",
+                                   player_name == "Jabari Smith Jr" ~ "Jabari Smith Jr.",
                                    .default = player_name)) |> 
     left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |> 
     rename(player_team = team_name) |>
@@ -310,6 +312,8 @@ player_assists_data <-
     select(match, market_name, player_name, line, over_price, under_price, agency) |> 
   mutate(player_name = case_when(player_name == "PJ Washington" ~ "P.J. Washington",
                                  player_name == "Kelly Oubre" ~ "Kelly Oubre Jr.",
+                                 player_name == "Derrick Jones" ~ "Derrick Jones Jr.",
+                                 player_name == "Jabari Smith Jr" ~ "Jabari Smith Jr.",
                                  .default = player_name)) |> 
   left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |> 
   rename(player_team = team_name) |>
@@ -376,6 +380,8 @@ player_rebounds_data <-
     select(match, market_name, player_name, line, over_price, under_price, agency) |> 
   mutate(player_name = case_when(player_name == "PJ Washington" ~ "P.J. Washington",
                                  player_name == "Kelly Oubre" ~ "Kelly Oubre Jr.",
+                                 player_name == "Derrick Jones" ~ "Derrick Jones Jr.",
+                                 player_name == "Jabari Smith Jr" ~ "Jabari Smith Jr.",
                                  .default = player_name)) |> 
   left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |> 
   rename(player_team = team_name) |>
@@ -387,7 +393,7 @@ player_rebounds_data <-
 
 ##%######################################################%##
 #                                                          #
-####                  Player Threess Data                  ####
+####                Player Threes Data                  ####
 #                                                          #
 ##%######################################################%##
 
@@ -442,6 +448,8 @@ player_pras_data <-
   select(match, market_name, player_name, line, over_price, under_price, agency) |> 
   mutate(player_name = case_when(player_name == "PJ Washington" ~ "P.J. Washington",
                                  player_name == "Kelly Oubre" ~ "Kelly Oubre Jr.",
+                                 player_name == "Derrick Jones" ~ "Derrick Jones Jr.",
+                                 player_name == "Jabari Smith Jr" ~ "Jabari Smith Jr.",
                                  .default = player_name)) |> 
   left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |> 
   rename(player_team = team_name) |>
@@ -460,7 +468,7 @@ player_pras_data <-
 # Filter to only include player threes markets
 player_threes_data <-
   market_df |> 
-  filter(str_detect(market_name, "Three"))
+  filter(str_detect(market_name, "Three Point FG"))
 
 # Overs
 threes_overs <-
@@ -508,6 +516,8 @@ player_threes_data <-
   select(match, market_name, player_name, line, over_price, under_price, agency) |> 
   mutate(player_name = case_when(player_name == "PJ Washington" ~ "P.J. Washington",
                                  player_name == "Kelly Oubre" ~ "Kelly Oubre Jr.",
+                                 player_name == "Derrick Jones" ~ "Derrick Jones Jr.",
+                                 player_name == "Jabari Smith Jr" ~ "Jabari Smith Jr.",
                                  .default = player_name)) |> 
   left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |> 
   rename(player_team = team_name) |>

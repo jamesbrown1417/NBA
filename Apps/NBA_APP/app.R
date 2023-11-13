@@ -130,6 +130,9 @@ all_team_stats_2021_2022 <- read_csv("../../Data/advanced_box_scores_2021-2022.c
 all_team_stats_2022_2023 <- read_csv("../../Data/advanced_box_scores_2022-2023.csv") |> mutate(SEASON_YEAR = "2022-23")
 all_team_stats_2023_2024 <- read_csv("../../Data/advanced_box_scores_2023-2024.csv") |> mutate(SEASON_YEAR = "2023-24")
 
+# Player Tracker Data
+all_player_tracking_2023_2024 <- read_csv("../../Data/player_track_box_scores_2023-2024.csv") |> mutate(SEASON_YEAR = "2023-24")
+
 # Combine player stats
 all_player_stats <-
   all_player_stats_2023_2024 |>
