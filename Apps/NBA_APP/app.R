@@ -261,6 +261,30 @@ player_rebounds_data <-
   left_join(def_rating_last_5, by = c("opposition_team" = "teamName")) |>
   left_join(pace_per_40_last_5, by = c("opposition_team" = "oppositionTeam"))
 
+# Add to player pras
+player_pras_data <-
+  player_pras_data |> 
+  left_join(def_rating_last_5, by = c("opposition_team" = "teamName")) |>
+  left_join(pace_per_40_last_5, by = c("opposition_team" = "oppositionTeam"))
+
+# Add to player blocks
+player_blocks_data <-
+  player_blocks_data |> 
+  left_join(def_rating_last_5, by = c("opposition_team" = "teamName")) |>
+  left_join(pace_per_40_last_5, by = c("opposition_team" = "oppositionTeam"))
+
+# Add to player steals
+player_steals_data <-
+  player_steals_data |> 
+  left_join(def_rating_last_5, by = c("opposition_team" = "teamName")) |>
+  left_join(pace_per_40_last_5, by = c("opposition_team" = "oppositionTeam"))
+
+# Add to player threes
+player_threes_data <-
+  player_threes_data |> 
+  left_join(def_rating_last_5, by = c("opposition_team" = "teamName")) |>
+  left_join(pace_per_40_last_5, by = c("opposition_team" = "oppositionTeam"))
+
 #===============================================================================
 # UI
 #===============================================================================
