@@ -202,27 +202,35 @@ all_player_stats <-
   mutate(team_full = paste(teamCity, teamName)) |>
   mutate(home_away = if_else(team_full == HOME_TEAM, "Home", "Away"))
 
+# Determine the operating system
+os_type <- Sys.info()["sysname"]
+
 # Google sheets authentication -------------------------------------------------
 options(gargle_oauth_cache = ".secrets")
 drive_auth(cache = ".secrets", email = "cuzzy.punting@gmail.com")
 gs4_auth(token = drive_token())
 
-# # Google Sheets Data------------------------------------------------------------
-# ss_name <- gs4_find("NBA Data")
-# h2h_data <- read_sheet(ss = ss_name, sheet = "H2H")
-# player_points_data <- read_sheet(ss = ss_name, sheet = "Player Points")
-# player_assists_data <- read_sheet(ss = ss_name, sheet = "Player Assists")
-# player_rebounds_data <- read_sheet(ss = ss_name, sheet = "Player Rebounds")
-
-# RDS Data-----------------------------------------------------------------------
-player_points_data <- read_rds("../../Data/processed_odds/all_player_points.rds")
-player_assists_data <- read_rds("../../Data/processed_odds/all_player_assists.rds")
-player_rebounds_data <- read_rds("../../Data/processed_odds/all_player_rebounds.rds")
-player_pras_data <- read_rds("../../Data/processed_odds/all_player_pras.rds")
-player_steals_data <- read_rds("../../Data/processed_odds/all_player_steals.rds")
-player_threes_data <- read_rds("../../Data/processed_odds/all_player_threes.rds")
-player_blocks_data <- read_rds("../../Data/processed_odds/all_player_blocks.rds")
-
+# Conditional logic for loading data based on OS
+if (os_type == "Windows") {
+  # Read RDS Data for Windows
+  player_points_data <- read_rds("../../Data/processed_odds/all_player_points.rds")
+  player_assists_data <- read_rds("../../Data/processed_odds/all_player_assists.rds")
+  player_rebounds_data <- read_rds("../../Data/processed_odds/all_player_rebounds.rds")
+  player_pras_data <- read_rds("../../Data/processed_odds/all_player_pras.rds")
+  player_steals_data <- read_rds("../../Data/processed_odds/all_player_steals.rds")
+  player_threes_data <- read_rds("../../Data/processed_odds/all_player_threes.rds")
+  player_blocks_data <- read_rds("../../Data/processed_odds/all_player_blocks.rds")
+} else {
+  # Google Sheets Data for other OS
+  ss_name <- gs4_find("NBA Data")
+  player_points_data <- read_sheet(ss = ss_name, sheet = "Player Points")
+  player_assists_data <- read_sheet(ss = ss_name, sheet = "Player Assists")
+  player_rebounds_data <- read_sheet(ss = ss_name, sheet = "Player Rebounds")
+  player_pras_data <- read_sheet(ss = ss_name, sheet = "Player PRAs")
+  player_steals_data <- read_sheet(ss = ss_name, sheet = "Player Steals")
+  player_threes_data <- read_sheet(ss = ss_name, sheet = "Player Threes")
+  player_blocks_data <- read_sheet(ss = ss_name, sheet = "Player Blocks")
+}
 # Add opposition defensive rating-----------------------------------------------
 
 # Get defensive rating in last 5 games
