@@ -152,7 +152,7 @@ def fetch_advanced_team_stats(match_id_list):
             completed_matches += 1
             progress = (completed_matches / total_matches) * 100
             print(f"Done with match_id: {match_id} - Progress: {progress:.2f}%")
-    
+     
     all_team_stats_df = pd.concat(all_team_stats, ignore_index=True)
     return all_team_stats_df
 
