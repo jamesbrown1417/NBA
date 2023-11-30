@@ -241,14 +241,19 @@ betright_player_points_alternate <-
   filter(!is.na(outcome_name))
 
 # Points O/U
-betright_player_points_over_under_all <-
-  map(player_points_over_under_links, safe_get_prop_data) |> 
-  map("result") |>
-  bind_rows() |> 
-  rename(match_id = link) |> 
-  mutate(match_id = as.integer(str_extract(match_id, "[0-9]{4,7}"))) |> 
-  left_join(match_names) |> 
-  filter(!is.na(outcome_name))
+betright_player_points_over_under_all <- tryCatch({
+  
+  map(player_points_over_under_links, safe_get_prop_data) |>
+    map("result") |>
+    bind_rows() |>
+    rename(match_id = link) |>
+    mutate(match_id = as.integer(str_extract(match_id, "[0-9]{4,7}"))) |>
+    left_join(match_names) |>
+    filter(!is.na(outcome_name))
+  
+}, error = function(e) {
+  NULL  # This will assign NULL to 'betright_player_points_over_under_all' if an error occurs
+})
 
 # Combine
 betright_player_points_all <-
@@ -302,6 +307,7 @@ betright_player_points <-
     str_detect(player_name, "Xavier Tillman Sr.") ~ "Xavier Tillman",
     str_detect(player_name, "Alperen Sengün") ~ "Alperen Sengun",
     str_detect(player_name, "Lauri Elias Markkanen") ~ "Lauri Markkanen",
+    str_detect(player_name, "Nicolas Claxton") ~ "Nic Claxton",
     str_detect(player_name, "Jae'Sean  Tate") ~ "Jae'Sean Tate",
     .default = player_name)) |> 
   left_join(player_names[,c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |> 
@@ -336,13 +342,19 @@ betright_player_assists_alternate <-
 
 # Assists O/U
 betright_player_assists_over_under_all <-
-  map(player_assists_over_under_links, safe_get_prop_data) |> 
-  map("result") |>
-  bind_rows() |> 
-  rename(match_id = link) |> 
-  mutate(match_id = as.integer(str_extract(match_id, "[0-9]{4,7}"))) |> 
-  left_join(match_names) |> 
-  filter(!is.na(outcome_name))
+  tryCatch({
+    
+    map(player_assists_over_under_links, safe_get_prop_data) |>
+      map("result") |>
+      bind_rows() |>
+      rename(match_id = link) |>
+      mutate(match_id = as.integer(str_extract(match_id, "[0-9]{4,7}"))) |>
+      left_join(match_names) |>
+      filter(!is.na(outcome_name))
+    
+  }, error = function(e) {
+    NULL  # This will assign NULL to 'betright_player_points_over_under_all' if an error occurs
+  })
 
 # Combine
 betright_player_assists_all <-
@@ -394,7 +406,9 @@ betright_player_assists <-
     str_detect(player_name, "R.J. Barrett") ~ "RJ Barrett",
     str_detect(player_name, "Cameron Thomas") ~ "Cam Thomas",
     str_detect(player_name, "Xavier Tillman Sr.") ~ "Xavier Tillman",
+    str_detect(player_name, "Nicolas Claxton") ~ "Nic Claxton",
     str_detect(player_name, "Alperen Sengün") ~ "Alperen Sengun",
+    
     str_detect(player_name, "Lauri Elias Markkanen") ~ "Lauri Markkanen",
     str_detect(player_name, "Jae'Sean  Tate") ~ "Jae'Sean Tate",
     .default = player_name)) |> 
@@ -430,13 +444,19 @@ betright_player_rebounds_alternate <-
 
 # Rebounds O/U
 betright_player_rebounds_over_under_all <-
-  map(player_rebounds_over_under_links, safe_get_prop_data) |> 
-  map("result") |>
-  bind_rows() |> 
-  rename(match_id = link) |> 
-  mutate(match_id = as.integer(str_extract(match_id, "[0-9]{4,7}"))) |> 
-  left_join(match_names) |> 
-  filter(!is.na(outcome_name))
+  tryCatch({
+    
+    map(player_rebounds_over_under_links, safe_get_prop_data) |>
+      map("result") |>
+      bind_rows() |>
+      rename(match_id = link) |>
+      mutate(match_id = as.integer(str_extract(match_id, "[0-9]{4,7}"))) |>
+      left_join(match_names) |>
+      filter(!is.na(outcome_name))
+    
+  }, error = function(e) {
+    NULL  # This will assign NULL to 'betright_player_points_over_under_all' if an error occurs
+  })
 
 # Combine
 betright_player_rebounds_all <-
@@ -488,6 +508,7 @@ betright_player_rebounds <-
     str_detect(player_name, "R.J. Barrett") ~ "RJ Barrett",
     str_detect(player_name, "Cameron Thomas") ~ "Cam Thomas",
     str_detect(player_name, "Xavier Tillman Sr.") ~ "Xavier Tillman",
+    str_detect(player_name, "Nicolas Claxton") ~ "Nic Claxton",
     str_detect(player_name, "Alperen Sengün") ~ "Alperen Sengun",
     str_detect(player_name, "Lauri Elias Markkanen") ~ "Lauri Markkanen",
     str_detect(player_name, "Jae'Sean  Tate") ~ "Jae'Sean Tate",
@@ -565,6 +586,7 @@ betright_player_three_pointers <-
     str_detect(player_name, "R.J. Barrett") ~ "RJ Barrett",
     str_detect(player_name, "Cameron Thomas") ~ "Cam Thomas",
     str_detect(player_name, "Xavier Tillman Sr.") ~ "Xavier Tillman",
+    str_detect(player_name, "Nicolas Claxton") ~ "Nic Claxton",
     str_detect(player_name, "Alperen Sengün") ~ "Alperen Sengun",
     str_detect(player_name, "Lauri Elias Markkanen") ~ "Lauri Markkanen",
     str_detect(player_name, "Jae'Sean  Tate") ~ "Jae'Sean Tate",
@@ -642,6 +664,7 @@ betright_player_blocks <-
     str_detect(player_name, "R.J. Barrett") ~ "RJ Barrett",
     str_detect(player_name, "Cameron Thomas") ~ "Cam Thomas",
     str_detect(player_name, "Xavier Tillman Sr.") ~ "Xavier Tillman",
+    str_detect(player_name, "Nicolas Claxton") ~ "Nic Claxton",
     str_detect(player_name, "Alperen Sengün") ~ "Alperen Sengun",
     str_detect(player_name, "Lauri Elias Markkanen") ~ "Lauri Markkanen",
     str_detect(player_name, "Jae'Sean  Tate") ~ "Jae'Sean Tate",
@@ -719,6 +742,7 @@ betright_player_steals <-
     str_detect(player_name, "R.J. Barrett") ~ "RJ Barrett",
     str_detect(player_name, "Cameron Thomas") ~ "Cam Thomas",
     str_detect(player_name, "Xavier Tillman Sr.") ~ "Xavier Tillman",
+    str_detect(player_name, "Nicolas Claxton") ~ "Nic Claxton",
     str_detect(player_name, "Alperen Sengün") ~ "Alperen Sengun",
     str_detect(player_name, "Lauri Elias Markkanen") ~ "Lauri Markkanen",
     str_detect(player_name, "Jae'Sean  Tate") ~ "Jae'Sean Tate",
