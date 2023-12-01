@@ -549,6 +549,6 @@ player_threes_data <-
 h2h_data |> write_csv("Data/scraped_odds/neds_h2h.csv")
 player_points_data |> write_csv("Data/scraped_odds/neds_player_points.csv")
 player_assists_data |> write_csv("Data/scraped_odds/neds_player_assists.csv")
-player_rebounds_data |> write_csv("Data/scraped_odds/tab_player_rebounds.csv")
+player_rebounds_data |> write_csv("Data/scraped_odds/neds_player_rebounds.csv")
 player_pras_data |> write_csv("Data/scraped_odds/neds_player_pras.csv")
 player_threes_data |> write_csv("Data/scraped_odds/neds_player_threes.csv")
