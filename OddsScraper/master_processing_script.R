@@ -31,6 +31,7 @@ run_scraping("OddsScraper/scrape_TopSport.R")
 # run_scraping("OddsScraper/scrape_bet365.R")
 run_scraping("OddsScraper/scrape_bluebet.R")
 run_scraping("OddsScraper/scrape_neds.R")
+run_scraping("OddsScraper/scrape_unibet.R")
 
 # Get schedule
 NBA_schedule <-

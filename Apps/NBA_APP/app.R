@@ -1063,6 +1063,8 @@ server <- function(input, output) {
   # Table output
   output$scraped_odds_table <- renderDT({
     datatable(scraped_odds(),
+              fillContainer = TRUE,
+              filter = "top",
               options = list(
                 pageLength = 17,
                 autoWidth = FALSE,

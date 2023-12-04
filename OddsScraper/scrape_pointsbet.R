@@ -1537,7 +1537,7 @@ pointsbet_player_pras_lines |>
     "agency",
     "opposition_team"
   ) |>
-  mutate(market_name = "Player Blocks") |>
+  mutate(market_name = "Player PRAs") |>
   mutate(agency = "Pointsbet") |>
   write_csv("Data/scraped_odds/pointsbet_player_pras.csv")
 }

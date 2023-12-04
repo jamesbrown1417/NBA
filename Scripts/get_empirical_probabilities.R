@@ -50,9 +50,9 @@ get_empirical_prob <- function(player_name, line, stat, season) {
   
   # Choose the data based on the selected season
   if (season == "2022_2023") {
-    player_stats <- combined_stats_2022_2023 |> filter(PLAYER_NAME == player_name)
+    player_stats <- combined_stats_2022_2023 |> filter(PLAYER_NAME == player_name) |> filter(!is.na(minutes))
   } else if (season == "2023_2024") {
-    player_stats <- combined_stats_2023_2024 |> filter(PLAYER_NAME == player_name)
+    player_stats <- combined_stats_2023_2024 |> filter(PLAYER_NAME == player_name) |> filter(!is.na(minutes))
   } else {
     stop("Invalid season selected")
   }
