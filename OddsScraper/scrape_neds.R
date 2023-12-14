@@ -393,20 +393,20 @@ player_rebounds_data <-
 
 ##%######################################################%##
 #                                                          #
-####                Player Threes Data                  ####
+####                Player PRAs Data                    ####
 #                                                          #
 ##%######################################################%##
 
 # Filter to only include player pras markets
 player_pras_data <-
   market_df |> 
-  filter(str_detect(market_name, "Threes"))
+  filter(str_detect(market_name, "PRA"))
 
 # Overs
 pras_overs <-
   player_pras_data |>
   filter(str_detect(entrants, "Over") |
-           str_detect(market_name, "Threes")) |>
+           str_detect(market_name, "PRA")) |>
   mutate(handicap_1 = as.numeric(str_extract(market_name, "\\d+")) - 0.5) |>
   mutate(handicap = coalesce(handicaps, handicap_1)) |>
   mutate(player_name_1 = str_extract(entrants, pattern <-
@@ -415,7 +415,7 @@ pras_overs <-
   mutate(player_name = coalesce(player_name_1, player_name_2)) |>
   transmute(
     match = match_name,
-    market_name = "Player Threess",
+    market_name = "Player PRAs",
     player_name,
     line = handicap,
     over_price = price,
@@ -434,7 +434,7 @@ pras_unders <-
   mutate(player_name = coalesce(player_name_1, player_name_2)) |>
   transmute(
     match = match_name,
-    market_name = "Player Threess",
+    market_name = "Player PRAs",
     player_name,
     line = handicap,
     under_price = price,

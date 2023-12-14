@@ -128,7 +128,7 @@ player_emp_probs_2022_23 <-
 player_emp_probs_2023_24 <- 
     pmap(distinct_point_combos, get_empirical_prob, "PTS", "2023_2024", .progress = TRUE) |> 
     bind_rows() |> 
-    select(player_name, line, games_played_2023_2024 = games_played, empirical_prob_2023_2024)
+    select(player_name, line, games_played_2023_2024 = games_played, empirical_prob_2023_2024, empirical_prob_last_10)
 
 all_player_points <-
   all_player_points |>
@@ -146,9 +146,11 @@ all_player_points <-
     diff_over_2022_23 = empirical_prob_over_2022_23 - implied_prob_over,
     diff_under_2022_23 = empirical_prob_under_2022_23 - implied_prob_under,
     diff_over_2023_24 = empirical_prob_over_2023_24 - implied_prob_over,
-    diff_under_2023_24 = empirical_prob_under_2023_24 - implied_prob_under
+    diff_under_2023_24 = empirical_prob_under_2023_24 - implied_prob_under,
+    diff_over_last_10 = empirical_prob_last_10 - implied_prob_over,
+    diff_under_last_10 = (1 - empirical_prob_last_10) - implied_prob_under
   ) |>
-  relocate(agency, .after = diff_under_2023_24) |>
+  relocate(agency, .after = diff_under_last_10) |>
   mutate_if(is.double, round, 2) |>
   filter(!is.na(opposition_team)) |>
   left_join(NBA_schedule, by = "match") |>
@@ -199,7 +201,7 @@ player_emp_probs_assists_2022_23 <-
 player_emp_probs_assists_2023_24 <-
   pmap(distinct_assist_combos, get_empirical_prob, "AST", "2023_2024", .progress = TRUE) |> 
   bind_rows() |> 
-  select(player_name, line, games_played_2023_2024 = games_played, empirical_prob_2023_2024)
+  select(player_name, line, games_played_2023_2024 = games_played, empirical_prob_2023_2024, empirical_prob_last_10)
 
 all_player_assists <-
   all_player_assists |>
@@ -217,9 +219,11 @@ all_player_assists <-
     diff_over_2022_23 = empirical_prob_over_2022_23 - implied_prob_over,
     diff_under_2022_23 = empirical_prob_under_2022_23 - implied_prob_under,
     diff_over_2023_24 = empirical_prob_over_2023_24 - implied_prob_over,
-    diff_under_2023_24 = empirical_prob_under_2023_24 - implied_prob_under
+    diff_under_2023_24 = empirical_prob_under_2023_24 - implied_prob_under,
+    diff_over_last_10 = empirical_prob_last_10 - implied_prob_over,
+    diff_under_last_10 = (1 - empirical_prob_last_10) - implied_prob_under
   ) |>
-  relocate(agency, .after = diff_under_2023_24) |>
+  relocate(agency, .after = diff_under_last_10) |>
   mutate_if(is.double, round, 2) |>
   filter(!is.na(opposition_team)) |>
   left_join(NBA_schedule, by = "match") |>
@@ -270,7 +274,7 @@ player_emp_probs_rebounds_2022_23 <-
 player_emp_probs_rebounds_2023_24 <-
   pmap(distinct_rebound_combos, get_empirical_prob, "REB", "2023_2024", .progress = TRUE) |> 
   bind_rows() |> 
-  select(player_name, line, games_played_2023_2024 = games_played, empirical_prob_2023_2024)
+  select(player_name, line, games_played_2023_2024 = games_played, empirical_prob_2023_2024, empirical_prob_last_10)
 
 all_player_rebounds <-
   all_player_rebounds |>
@@ -288,9 +292,11 @@ all_player_rebounds <-
     diff_over_2022_23 = empirical_prob_over_2022_23 - implied_prob_over,
     diff_under_2022_23 = empirical_prob_under_2022_23 - implied_prob_under,
     diff_over_2023_24 = empirical_prob_over_2023_24 - implied_prob_over,
-    diff_under_2023_24 = empirical_prob_under_2023_24 - implied_prob_under
+    diff_under_2023_24 = empirical_prob_under_2023_24 - implied_prob_under,
+    diff_over_last_10 = empirical_prob_last_10 - implied_prob_over,
+    diff_under_last_10 = (1 - empirical_prob_last_10) - implied_prob_under
   ) |>
-  relocate(agency, .after = diff_under_2023_24) |>
+  relocate(agency, .after = diff_under_last_10) |>
   mutate_if(is.double, round, 2) |>
   filter(!is.na(opposition_team)) |>
   left_join(NBA_schedule, by = "match") |>
@@ -341,7 +347,7 @@ player_emp_probs_steals_2022_23 <-
 player_emp_probs_steals_2023_24 <-
   pmap(distinct_steals_combos, get_empirical_prob, "STL", "2023_2024", .progress = TRUE) |> 
   bind_rows() |> 
-  select(player_name, line, games_played_2023_2024 = games_played, empirical_prob_2023_2024)
+  select(player_name, line, games_played_2023_2024 = games_played, empirical_prob_2023_2024, empirical_prob_last_10)
 
 all_player_steals <-
   all_player_steals |>
@@ -359,9 +365,11 @@ all_player_steals <-
     diff_over_2022_23 = empirical_prob_over_2022_23 - implied_prob_over,
     diff_under_2022_23 = empirical_prob_under_2022_23 - implied_prob_under,
     diff_over_2023_24 = empirical_prob_over_2023_24 - implied_prob_over,
-    diff_under_2023_24 = empirical_prob_under_2023_24 - implied_prob_under
+    diff_under_2023_24 = empirical_prob_under_2023_24 - implied_prob_under,
+    diff_over_last_10 = empirical_prob_last_10 - implied_prob_over,
+    diff_under_last_10 = (1 - empirical_prob_last_10) - implied_prob_under
   ) |>
-  relocate(agency, .after = diff_under_2023_24) |>
+  relocate(agency, .after = diff_under_last_10) |>
   mutate_if(is.double, round, 2) |>
   filter(!is.na(opposition_team)) |>
   left_join(NBA_schedule, by = "match") |>
@@ -412,7 +420,7 @@ player_emp_probs_blocks_2022_23 <-
 player_emp_probs_blocks_2023_24 <-
   pmap(distinct_blocks_combos, get_empirical_prob, "BLK", "2023_2024", .progress = TRUE) |> 
   bind_rows() |> 
-  select(player_name, line, games_played_2023_2024 = games_played, empirical_prob_2023_2024)
+  select(player_name, line, games_played_2023_2024 = games_played, empirical_prob_2023_2024, empirical_prob_last_10)
 
 all_player_blocks <-
   all_player_blocks |>
@@ -430,9 +438,11 @@ all_player_blocks <-
     diff_over_2022_23 = empirical_prob_over_2022_23 - implied_prob_over,
     diff_under_2022_23 = empirical_prob_under_2022_23 - implied_prob_under,
     diff_over_2023_24 = empirical_prob_over_2023_24 - implied_prob_over,
-    diff_under_2023_24 = empirical_prob_under_2023_24 - implied_prob_under
+    diff_under_2023_24 = empirical_prob_under_2023_24 - implied_prob_under,
+    diff_over_last_10 = empirical_prob_last_10 - implied_prob_over,
+    diff_under_last_10 = (1 - empirical_prob_last_10) - implied_prob_under
   ) |>
-  relocate(agency, .after = diff_under_2023_24) |>
+  relocate(agency, .after = diff_under_last_10) |>
   mutate_if(is.double, round, 2) |>
   filter(!is.na(opposition_team)) |>
   left_join(NBA_schedule, by = "match") |>
@@ -483,7 +493,7 @@ player_emp_probs_threes_2022_23 <-
 player_emp_probs_threes_2023_24 <-
   pmap(distinct_threes_combos, get_empirical_prob, "Threes", "2023_2024", .progress = TRUE) |> 
   bind_rows() |> 
-  select(player_name, line, games_played_2023_2024 = games_played, empirical_prob_2023_2024)
+  select(player_name, line, games_played_2023_2024 = games_played, empirical_prob_2023_2024, empirical_prob_last_10)
 
 all_player_threes <-
   all_player_threes |>
@@ -501,9 +511,11 @@ all_player_threes <-
     diff_over_2022_23 = empirical_prob_over_2022_23 - implied_prob_over,
     diff_under_2022_23 = empirical_prob_under_2022_23 - implied_prob_under,
     diff_over_2023_24 = empirical_prob_over_2023_24 - implied_prob_over,
-    diff_under_2023_24 = empirical_prob_under_2023_24 - implied_prob_under
+    diff_under_2023_24 = empirical_prob_under_2023_24 - implied_prob_under,
+    diff_over_last_10 = empirical_prob_last_10 - implied_prob_over,
+    diff_under_last_10 = (1 - empirical_prob_last_10) - implied_prob_under
   ) |>
-  relocate(agency, .after = diff_under_2023_24) |>
+  relocate(agency, .after = diff_under_last_10) |>
   mutate_if(is.double, round, 2) |>
   filter(!is.na(opposition_team)) |>
   left_join(NBA_schedule, by = "match") |>
@@ -554,7 +566,7 @@ player_emp_probs_pras_2022_23 <-
 player_emp_probs_pras_2023_24 <-
   pmap(distinct_pra_combos, get_empirical_prob, "PRA", "2023_2024", .progress = TRUE) |> 
   bind_rows() |> 
-  select(player_name, line, games_played_2023_2024 = games_played, empirical_prob_2023_2024)
+  select(player_name, line, games_played_2023_2024 = games_played, empirical_prob_2023_2024, empirical_prob_last_10)
 
 all_player_pras <-
   all_player_pras |>
@@ -572,9 +584,11 @@ all_player_pras <-
     diff_over_2022_23 = empirical_prob_over_2022_23 - implied_prob_over,
     diff_under_2022_23 = empirical_prob_under_2022_23 - implied_prob_under,
     diff_over_2023_24 = empirical_prob_over_2023_24 - implied_prob_over,
-    diff_under_2023_24 = empirical_prob_under_2023_24 - implied_prob_under
+    diff_under_2023_24 = empirical_prob_under_2023_24 - implied_prob_under,
+    diff_over_last_10 = empirical_prob_last_10 - implied_prob_over,
+    diff_under_last_10 = (1 - empirical_prob_last_10) - implied_prob_under
   ) |>
-  relocate(agency, .after = diff_under_2023_24) |>
+  relocate(agency, .after = diff_under_last_10) |>
   mutate_if(is.double, round, 2) |>
   filter(!is.na(opposition_team)) |>
   left_join(NBA_schedule, by = "match") |>
