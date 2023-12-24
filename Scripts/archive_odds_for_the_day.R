@@ -12,8 +12,8 @@ library(glue)
 
 # Get all scraped odds files and combine
 all_odds_files <-
-  list.files("Data/scraped_odds", full.names = TRUE) |>
-  map(read_csv) |>
+  list.files("Data/processed_odds", full.names = TRUE) |>
+  map(read_rds) |>
   reduce(bind_rows) |> 
   mutate(timestamp = Sys.time()) |> 
   relocate(timestamp, .before = match) |> 
