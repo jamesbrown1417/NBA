@@ -18,6 +18,16 @@ all_player_points_overs <-
   ungroup() |>
   arrange(desc(variation), player_name, line)
 
+player_points_overs_to_bet <-
+  all_player_points_overs |> 
+  group_by(player_name, line) |>
+  slice_head(n = 1) |> 
+  ungroup() |>
+  arrange(desc(variation), player_name, line) |> 
+  filter(variation >= 0.025) |> 
+  filter(diff_over_last_10 >= 0 & diff_over_2023_24 >= 0) |> 
+  filter(over_price >= 1.3)
+
 # Unders-------------------------------------------------------------
 all_player_points_unders <-
   all_player_points |> 
@@ -33,6 +43,16 @@ all_player_points_unders <-
   mutate(variation = max(implied_prob_under) - min(implied_prob_under)) |>
   ungroup() |>
   arrange(desc(variation), player_name, line)
+
+player_points_unders_to_bet <-
+  all_player_points_unders |> 
+  group_by(player_name, line) |>
+  slice_head(n = 1) |> 
+  ungroup() |>
+  arrange(desc(variation), player_name, line) |> 
+  filter(variation >= 0.025) |> 
+  filter(diff_under_last_10 >= 0 & diff_under_2023_24 >= 0) |> 
+  filter(under_price >= 1.3)
 
 #===============================================================================
 # Player Rebounds
@@ -53,6 +73,16 @@ all_player_rebounds_overs <-
   ungroup() |>
   arrange(desc(variation), player_name, line)
 
+player_rebounds_overs_to_bet <-
+  all_player_rebounds_overs |> 
+  group_by(player_name, line) |>
+  slice_head(n = 1) |> 
+  ungroup() |>
+  arrange(desc(variation), player_name, line) |> 
+  filter(variation >= 0.025) |> 
+  filter(diff_over_last_10 >= 0 & diff_over_2023_24 >= 0) |> 
+  filter(over_price >= 1.3)
+
 # Unders-------------------------------------------------------------
 all_player_rebounds_unders <-
   all_player_rebounds |> 
@@ -68,6 +98,16 @@ all_player_rebounds_unders <-
   mutate(variation = max(implied_prob_under) - min(implied_prob_under)) |>
   ungroup() |>
   arrange(desc(variation), player_name, line)
+
+player_rebounds_unders_to_bet <-
+  all_player_rebounds_unders |> 
+  group_by(player_name, line) |>
+  slice_head(n = 1) |> 
+  ungroup() |>
+  arrange(desc(variation), player_name, line) |> 
+  filter(variation >= 0.025) |> 
+  filter(diff_under_last_10 >= 0 & diff_under_2023_24 >= 0) |> 
+  filter(under_price >= 1.3)
 
 #===============================================================================
 # Player Assists
@@ -88,6 +128,16 @@ all_player_assists_overs <-
   ungroup() |>
   arrange(desc(variation), player_name, line)
 
+player_assists_overs_to_bet <-
+  all_player_assists_overs |> 
+  group_by(player_name, line) |>
+  slice_head(n = 1) |> 
+  ungroup() |>
+  arrange(desc(variation), player_name, line) |> 
+  filter(variation >= 0.025) |> 
+  filter(diff_over_last_10 >= 0 & diff_over_2023_24 >= 0) |> 
+  filter(over_price >= 1.3)
+
 # Unders-------------------------------------------------------------
 all_player_assists_unders <-
   all_player_assists |> 
@@ -103,6 +153,16 @@ all_player_assists_unders <-
   mutate(variation = max(implied_prob_under) - min(implied_prob_under)) |>
   ungroup() |>
   arrange(desc(variation), player_name, line)
+
+player_assists_unders_to_bet <-
+  all_player_assists_unders |> 
+  group_by(player_name, line) |>
+  slice_head(n = 1) |> 
+  ungroup() |>
+  arrange(desc(variation), player_name, line) |> 
+  filter(variation >= 0.025) |> 
+  filter(diff_under_last_10 >= 0 & diff_under_2023_24 >= 0) |> 
+  filter(under_price >= 1.3)
 
 #===============================================================================
 # Player PRAs
@@ -123,6 +183,16 @@ all_player_pras_overs <-
   ungroup() |>
   arrange(desc(variation), player_name, line)
 
+player_pras_overs_to_bet <-
+  all_player_pras_overs |> 
+  group_by(player_name, line) |>
+  slice_head(n = 1) |> 
+  ungroup() |>
+  arrange(desc(variation), player_name, line) |> 
+  filter(variation >= 0.025) |> 
+  filter(diff_over_last_10 >= 0 & diff_over_2023_24 >= 0) |> 
+  filter(over_price >= 1.3)
+
 # Unders-------------------------------------------------------------
 all_player_pras_unders <-
   all_player_pras |> 
@@ -139,3 +209,12 @@ all_player_pras_unders <-
   ungroup() |>
   arrange(desc(variation), player_name, line)
 
+player_pras_unders_to_bet <-
+  all_player_pras_unders |> 
+  group_by(player_name, line) |>
+  slice_head(n = 1) |> 
+  ungroup() |>
+  arrange(desc(variation), player_name, line) |> 
+  filter(variation >= 0.025) |> 
+  filter(diff_under_last_10 >= 0 & diff_under_2023_24 >= 0) |> 
+  filter(under_price >= 1.3)
