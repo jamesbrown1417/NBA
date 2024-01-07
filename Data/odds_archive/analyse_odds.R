@@ -61,7 +61,8 @@ all_player_stats <-
     REB = reboundsTotal,
     AST = assists,
     STL = steals,
-    BLK = blocks
+    BLK = blocks,
+    FG3M = threePointersMade,
   ) |>
   mutate(MIN = convert_time_to_decimal_hms(minutes)) |>
   mutate(MIN = round(MIN, 2)) |>
@@ -144,7 +145,8 @@ player_results <-
     steals = STL,
     blocks = BLK,
     minutes = MIN,
-    PRA
+    PRA,
+    FG3M
   )
 
 ##%######################################################%##
@@ -442,6 +444,225 @@ strategy_1_pras_unders <-
 
 ##%######################################################%##
 #                                                          #
+####              Get Player Threes Markets               ####
+#                                                          #
+##%######################################################%##
+
+#===============================================================================
+# Overs
+#===============================================================================
+
+player_threes_markets <-
+  all_scraped_odds |>
+  filter(market_name == "Player Threes")
+
+# Propogate Start Date forward if missing
+player_threes_markets <-
+  player_threes_markets |>
+  group_by(match) |>
+  fill(date, .direction = "downup") |>
+  ungroup() |>
+  left_join(player_results, by = c("match", "player_name", "date"))
+
+# Get only the best market odds available---------------------------------------
+player_threes_markets_overs_best <-
+  player_threes_markets
+
+# Test Positive diff last 10 and season strategy--------------------------------
+strategy_1_threes_overs <-
+  player_threes_markets_overs_best |>
+  
+  filter(!is.na(minutes)) |>
+  arrange(player_name, desc(diff_over_2023_24)) |>
+  mutate(
+    stake = case_when(
+      over_price <= 1.5 ~ 150,
+      over_price <= 2.4 ~ 100,
+      over_price <= 5 ~ 50,
+      over_price > 5 ~ 25
+    )
+  ) |>
+  mutate(bet_won = ifelse(FG3M >= line, TRUE, FALSE)) |>
+  mutate(profit = ifelse(bet_won, stake * (over_price - 1),-stake))
+
+# Test Diff vs average market odds strategy-------------------------------------
+
+
+#===============================================================================
+# Unders
+#===============================================================================
+
+# Get only the best market odds available---------------------------------------
+player_threes_markets_unders_best <-
+  player_threes_markets |>
+  filter(!is.na(under_price))
+
+# Test Positive diff last 10 and season strategy--------------------------------
+strategy_1_threes_unders <-
+  player_threes_markets_unders_best |>
+  filter(!is.na(minutes)) |>
+  arrange(player_name, desc(diff_under_2023_24)) |>
+  mutate(
+    stake = case_when(
+      under_price <= 1.5 ~ 150,
+      under_price <= 2.4 ~ 100,
+      under_price <= 5 ~ 50,
+      under_price > 5 ~ 25
+    )
+  ) |>
+  mutate(bet_won = ifelse(FG3M <= line, TRUE, FALSE)) |>
+  mutate(profit = ifelse(bet_won, stake * (under_price - 1),-stake))
+
+# Test Diff vs average market odds strategy-------------------------------------
+
+##%######################################################%##
+#                                                          #
+####             Get Player Steals Markets              ####
+#                                                          #
+##%######################################################%##
+
+#===============================================================================
+# Overs
+#===============================================================================
+
+player_steals_markets <-
+  all_scraped_odds |>
+  filter(market_name == "Player Steals")
+
+# Propogate Start Date forward if missing
+player_steals_markets <-
+  player_steals_markets |>
+  mutate(date = as.Date(start_time)) |>
+  group_by(match) |>
+  ungroup() |>
+  left_join(player_results, by = c("match", "player_name", "date"))
+
+# Get only the best market odds available---------------------------------------
+player_steals_markets_overs_best <-
+  player_steals_markets
+
+# Test Positive diff last 10 and season strategy--------------------------------
+strategy_1_steals_overs <-
+  player_steals_markets_overs_best |>
+  
+  filter(!is.na(minutes)) |>
+  arrange(player_name, desc(diff_over_2023_24)) |>
+  mutate(
+    stake = case_when(
+      over_price <= 1.5 ~ 150,
+      over_price <= 2.4 ~ 100,
+      over_price <= 5 ~ 50,
+      over_price > 5 ~ 25
+    )
+  ) |>
+  mutate(bet_won = ifelse(steals >= line, TRUE, FALSE)) |>
+  mutate(profit = ifelse(bet_won, stake * (over_price - 1),-stake))
+
+# Test Diff vs average market odds strategy-------------------------------------
+
+
+#===============================================================================
+# Unders
+#===============================================================================
+
+# Get only the best market odds available---------------------------------------
+player_steals_markets_unders_best <-
+  player_steals_markets |>
+  filter(!is.na(under_price))
+
+# Test Positive diff last 10 and season strategy--------------------------------
+strategy_1_steals_unders <-
+  player_steals_markets_unders_best |>
+  filter(!is.na(minutes)) |>
+  arrange(player_name, desc(diff_under_2023_24)) |>
+  mutate(
+    stake = case_when(
+      under_price <= 1.5 ~ 150,
+      under_price <= 2.4 ~ 100,
+      under_price <= 5 ~ 50,
+      under_price > 5 ~ 25
+    )
+  ) |>
+  mutate(bet_won = ifelse(steals <= line, TRUE, FALSE)) |>
+  mutate(profit = ifelse(bet_won, stake * (under_price - 1),-stake))
+
+# Test Diff vs average market odds strategy-------------------------------------
+
+##%######################################################%##
+#                                                          #
+####             Get Player Blocks Markets              ####
+#                                                          #
+##%######################################################%##
+
+#===============================================================================
+# Overs
+#===============================================================================
+
+player_blocks_markets <-
+  all_scraped_odds |>
+  filter(market_name == "Player Blocks")
+
+# Propogate Start Date forward if missing
+player_blocks_markets <-
+  player_blocks_markets |>
+  mutate(date = as.Date(start_time)) |>
+  group_by(match) |>
+  ungroup() |>
+  left_join(player_results, by = c("match", "player_name", "date"))
+
+# Get only the best market odds available---------------------------------------
+player_blocks_markets_overs_best <-
+  player_blocks_markets
+
+# Test Positive diff last 10 and season strategy--------------------------------
+strategy_1_blocks_overs <-
+  player_blocks_markets_overs_best |>
+  
+  filter(!is.na(minutes)) |>
+  arrange(player_name, desc(diff_over_2023_24)) |>
+  mutate(
+    stake = case_when(
+      over_price <= 1.5 ~ 150,
+      over_price <= 2.4 ~ 100,
+      over_price <= 5 ~ 50,
+      over_price > 5 ~ 25
+    )
+  ) |>
+  mutate(bet_won = ifelse(blocks >= line, TRUE, FALSE)) |>
+  mutate(profit = ifelse(bet_won, stake * (over_price - 1),-stake))
+
+# Test Diff vs average market odds strategy-------------------------------------
+
+
+#===============================================================================
+# Unders
+#===============================================================================
+
+# Get only the best market odds available---------------------------------------
+player_blocks_markets_unders_best <-
+  player_blocks_markets |>
+  filter(!is.na(under_price))
+
+# Test Positive diff last 10 and season strategy--------------------------------
+strategy_1_blocks_unders <-
+  player_blocks_markets_unders_best |>
+  filter(!is.na(minutes)) |>
+  arrange(player_name, desc(diff_under_2023_24)) |>
+  mutate(
+    stake = case_when(
+      under_price <= 1.5 ~ 150,
+      under_price <= 2.4 ~ 100,
+      under_price <= 5 ~ 50,
+      under_price > 5 ~ 25
+    )
+  ) |>
+  mutate(bet_won = ifelse(blocks <= line, TRUE, FALSE)) |>
+  mutate(profit = ifelse(bet_won, stake * (under_price - 1),-stake))
+
+# Test Diff vs average market odds strategy-------------------------------------
+
+##%######################################################%##
+#                                                          #
 ####                Analyse scraped odds                ####
 #                                                          #
 ##%######################################################%##
@@ -452,7 +673,10 @@ all_overs <-
     strategy_1_points_overs,
     strategy_1_assists_overs,
     strategy_1_rebounds_overs,
-    strategy_1_pras_overs
+    strategy_1_pras_overs,
+    strategy_1_threes_overs,
+    strategy_1_steals_overs,
+    strategy_1_blocks_overs
   )
 
 all_overs |>
@@ -467,7 +691,10 @@ all_unders <-
     strategy_1_points_unders,
     strategy_1_assists_unders,
     strategy_1_rebounds_unders,
-    strategy_1_pras_unders
+    strategy_1_pras_unders,
+    strategy_1_threes_unders,
+    strategy_1_steals_unders,
+    strategy_1_blocks_unders
   )
 
 all_unders |>
@@ -491,7 +718,7 @@ all_overs |>
   ungroup() |>
   arrange(desc(variation), player_name, line) |> 
   filter(variation >= 0.025) |> 
-  filter(diff_over_last_10 >= 0 & diff_over_2023_24 >= 0) |> 
+  filter(diff_over_last_10 >= 0.1 & diff_over_2023_24 >= 0) |> 
   filter(over_price >= 1.3)
 
 overs_outlier_method |> 
@@ -511,7 +738,7 @@ unders_outlier_method <-
   ungroup() |>
   arrange(desc(variation), player_name, line) |> 
   filter(variation >= 0.025) |> 
-  filter(diff_under_last_10 >= 0 & diff_under_2023_24 >= 0) |> 
+  filter(diff_under_last_10 >= 0.1 & diff_under_2023_24 >= 0) |> 
   filter(under_price >= 1.3)
 
 unders_outlier_method |> 
