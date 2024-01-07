@@ -218,3 +218,58 @@ player_pras_unders_to_bet <-
   filter(variation >= 0.025) |> 
   filter(diff_under_last_10 >= 0 & diff_under_2023_24 >= 0) |> 
   filter(under_price >= 1.3)
+
+#===============================================================================
+# Player Steals
+#===============================================================================
+
+# Overs--------------------------------------------------------------
+all_player_steals_overs <-
+  all_player_steals |> 
+  group_by(player_name, line, agency) |>
+  arrange(player_name, line, desc(over_price)) |>
+  slice_head(n = 1) |> 
+  ungroup() |> 
+  arrange(player_name, line, desc(over_price)) |> 
+  group_by(player_name, line) |>
+  filter(n() > 1) |>
+  slice_head(n = 2) |>
+  mutate(variation = max(implied_prob_over) - min(implied_prob_over)) |>
+  ungroup() |>
+  arrange(desc(variation), player_name, line)
+
+player_steals_overs_to_bet <-
+  all_player_steals_overs |> 
+  group_by(player_name, line) |>
+  slice_head(n = 1) |> 
+  ungroup() |>
+  arrange(desc(variation), player_name, line) |> 
+  filter(variation >= 0.025) |> 
+  filter(diff_over_last_10 >= 0 & diff_over_2023_24 >= 0) |> 
+  filter(over_price >= 1.3)
+
+# Unders-------------------------------------------------------------
+all_player_steals_unders <-
+  all_player_steals |> 
+  filter(!is.na(under_price)) |> 
+  group_by(player_name, line, agency) |>
+  arrange(player_name, line, desc(under_price)) |>
+  slice_head(n = 1) |> 
+  ungroup() |> 
+  arrange(player_name, line, desc(under_price)) |> 
+  group_by(player_name, line) |>
+  filter(n() > 1) |>
+  slice_head(n = 2) |>
+  mutate(variation = max(implied_prob_under) - min(implied_prob_under)) |>
+  ungroup() |>
+  arrange(desc(variation), player_name, line)
+
+player_steals_unders_to_bet <-
+  all_player_steals_unders |> 
+  group_by(player_name, line) |>
+  slice_head(n = 1) |> 
+  ungroup() |>
+  arrange(desc(variation), player_name, line) |> 
+  filter(variation >= 0.025) |> 
+  filter(diff_under_last_10 >= 0 & diff_under_2023_24 >= 0) |> 
+  filter(under_price >= 1.3)
