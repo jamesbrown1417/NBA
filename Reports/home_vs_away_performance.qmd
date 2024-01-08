@@ -5,7 +5,7 @@ execute:
   message: false
   warning: false
 author: "James Brown"
-date: "2023-11-07"
+date: "`r Sys.Date()`"
 format:
   html:
     df-print: default
@@ -111,6 +111,8 @@ pts_df <-
   mutate(across(where(is.numeric), round, 2)) |>
   relocate(home_games, away_games, .after = PLAYER_NAME) |> 
   rename(player = PLAYER_NAME)
+
+pts_df
 ```
 
 ## Threes Made
@@ -135,6 +137,7 @@ threes_df <-
   relocate(home_games, away_games, .after = PLAYER_NAME) |> 
     rename(player = PLAYER_NAME)
 
+threes_df
 ```
 
 ## Rebounds
@@ -158,6 +161,8 @@ reb_df <-
   mutate(across(where(is.numeric), round, 2)) |>
   relocate(home_games, away_games, .after = PLAYER_NAME) |> 
     rename(player = PLAYER_NAME)
+
+reb_df
 ```
 
 ## Assists
@@ -181,6 +186,8 @@ ast_df <-
   mutate(across(where(is.numeric), round, 2)) |>
   relocate(home_games, away_games, .after = PLAYER_NAME) |> 
     rename(player = PLAYER_NAME)
+
+ast_df
 ```
 
 ## Steals
@@ -205,6 +212,7 @@ stl_df <-
   relocate(home_games, away_games, .after = PLAYER_NAME) |> 
     rename(player = PLAYER_NAME)
 
+stl_df
 ```
 
 ## Blocks
@@ -229,9 +237,5 @@ blk_df <-
   relocate(home_games, away_games, .after = PLAYER_NAME) |> 
     rename(player = PLAYER_NAME)
 
+blk_df
 ```
-
-
-
-
-
