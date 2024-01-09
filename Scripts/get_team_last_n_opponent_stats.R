@@ -1,0 +1,148 @@
+##%######################################################%##
+#                                                          #
+####          Get last  n games opponent stats          ####
+####           for each team at a given date            ####
+#                                                          #
+##%######################################################%##
+
+# Function to convert time to decimal-------------------------------------------
+convert_time_to_decimal_hms <- function(time_obj) {
+  # Convert to hms object
+  time_obj <- hms(time_obj)
+  
+  # Extract hours and minutes
+  hours <- hour(time_obj)
+  minutes <- minute(time_obj)
+  
+  # Convert to decimal
+  decimal_time <- hours + (minutes / 60)
+  return(decimal_time)
+}
+
+#===============================================================================
+# Load packages
+#===============================================================================
+
+library(tidyverse)
+library(zoo)
+
+#===============================================================================
+# Read in data
+#===============================================================================
+
+# Player Info
+all_rosters <- read_csv("Data/all_rosters.csv")
+all_teams <- read_csv("Data/all_teams.csv")
+all_player_stats_2021_2022 <- read_csv("Data/all_player_stats_2021-2022.csv") |> mutate(SEASON_YEAR = "2021-22")
+all_player_stats_2022_2023 <- read_csv("Data/all_player_stats_2022-2023.csv") |> mutate(SEASON_YEAR = "2022-23")
+all_player_stats_2023_2024 <- read_csv("Data/all_player_stats_2023-2024.csv") |> mutate(SEASON_YEAR = "2023-24")
+
+# Team Info
+all_team_stats_2021_2022 <- read_csv("Data/advanced_box_scores_2021-2022.csv") |> mutate(SEASON_YEAR = "2021-22")
+all_team_stats_2022_2023 <- read_csv("Data/advanced_box_scores_2022-2023.csv") |> mutate(SEASON_YEAR = "2022-23")
+all_team_stats_2023_2024 <- read_csv("Data/advanced_box_scores_2023-2024.csv") |> mutate(SEASON_YEAR = "2023-24")
+
+# Player Tracker Data
+all_player_tracking_2023_2024 <- read_csv("Data/player_track_box_scores_2023-2024.csv") |> mutate(SEASON_YEAR = "2023-24")
+
+# Combine player stats
+all_player_stats <-
+  all_player_stats_2023_2024 |>
+  bind_rows(all_player_stats_2022_2023) |>
+  bind_rows(all_player_stats_2021_2022) |>
+  left_join(all_rosters[c("PLAYER", "PLAYER_ID")], by = c("personId" = "PLAYER_ID")) |> 
+  mutate(PRA = points + reboundsTotal + assists) |>
+  rename(PLAYER_NAME = PLAYER,
+         PTS = points,
+         REB = reboundsTotal,
+         AST = assists,
+         STL = steals,
+         BLK = blocks) |> 
+  mutate(MIN = convert_time_to_decimal_hms(minutes)) |> 
+  mutate(MIN = round(MIN, 2)) |> 
+  relocate(MIN, .after = minutes)
+
+# Get Game Dates DF
+game_dates <-
+  all_player_stats |> 
+  distinct(gameId, GAME_DATE)
+
+# Get Home Teams DF
+home_teams <-
+  all_player_stats |> 
+  distinct(gameId, HOME_TEAM)
+
+# Get Away Teams DF
+away_teams <-
+  all_player_stats |> 
+  distinct(gameId, AWAY_TEAM)
+
+# Create Home / Away variable
+all_player_stats <-
+  all_player_stats |>
+  mutate(team_full = paste(teamCity, teamName)) |>
+  mutate(home_away = if_else(team_full == HOME_TEAM, "Home", "Away"))
+
+#===============================================================================
+# Convert player stats table into teams
+#===============================================================================
+
+team_stats_2023_2024 <-
+all_player_stats_2023_2024 |>
+  select(
+    gameId,
+    GAME_DATE,
+    HOME_TEAM,
+    AWAY_TEAM,
+    teamName,
+    teamCity,
+    firstName,
+    familyName,
+    points,
+    reboundsTotal,
+    assists,
+    steals,
+    blocks) |>
+  group_by(gameId, GAME_DATE, HOME_TEAM, AWAY_TEAM, teamName, teamCity) |>
+  summarise(
+    points = sum(points),
+    rebounds = sum(reboundsTotal),
+    assists = sum(assists),
+    steals = sum(steals),
+    blocks = sum(blocks)) |> 
+  ungroup() |> 
+  mutate(team = paste(teamCity, teamName)) |>
+  mutate(oppositionTeam = if_else(team == HOME_TEAM, AWAY_TEAM, HOME_TEAM)) |> 
+  select(-teamName, -teamCity, -HOME_TEAM, -AWAY_TEAM) |>
+  relocate(team, oppositionTeam, .after = GAME_DATE) |> 
+  arrange(team, GAME_DATE) |> 
+  rename(date = GAME_DATE) |> 
+  mutate(date = date + days(1))
+  
+#===============================================================================
+# Get team stats for each opposition
+#===============================================================================
+
+stats_vs_opp <-
+  team_stats_2023_2024 |> 
+  select(oppositionTeam, date, points, rebounds, assists, steals, blocks) |> 
+  arrange(oppositionTeam, date) |> 
+  group_by(oppositionTeam) |>
+  # Calculate rolling 10 game average
+  mutate(rolling_10_game_points = rollmean(points, 10, fill = NA, align = "right"),
+         rolling_10_game_assists = rollmean(assists, 10, fill = NA, align = "right"),
+         rolling_10_game_rebounds = rollmean(rebounds, 10, fill = NA, align = "right"),
+         rolling_10_game_steals = rollmean(steals, 10, fill = NA, align = "right"),
+         rolling_10_game_blocks = rollmean(blocks, 10, fill = NA, align = "right")) |>
+  mutate(rolling_10_game_points = lag(rolling_10_game_points),
+         rolling_10_game_assists = lag(rolling_10_game_assists),
+         rolling_10_game_rebounds = lag(rolling_10_game_rebounds),
+         rolling_10_game_steals = lag(rolling_10_game_steals),
+         rolling_10_game_blocks = lag(rolling_10_game_blocks)) |> 
+  filter(!is.na(rolling_10_game_points))
+
+#===============================================================================
+# Write out as RDS
+#===============================================================================
+
+write_rds(stats_vs_opp, "Data/stats_vs_opp.rds")

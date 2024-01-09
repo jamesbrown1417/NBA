@@ -1,27 +1,462 @@
 match,home_team,away_team,market_name,player_name,player_team,line,over_price,under_price,agency,opposition_team
-Charlotte Hornets v Chicago Bulls,Charlotte Hornets,Chicago Bulls,Player PRAs,DeMar DeRozan,Chicago Bulls,29.5,1.8,1.93,Sportsbet,Charlotte Hornets
-Charlotte Hornets v Chicago Bulls,Charlotte Hornets,Chicago Bulls,Player PRAs,Coby White,Chicago Bulls,29.5,1.83,1.9,Sportsbet,Charlotte Hornets
-Charlotte Hornets v Chicago Bulls,Charlotte Hornets,Chicago Bulls,Player PRAs,Terry Rozier,Charlotte Hornets,35.5,1.88,1.85,Sportsbet,Chicago Bulls
-Charlotte Hornets v Chicago Bulls,Charlotte Hornets,Chicago Bulls,Player PRAs,Miles Bridges,Charlotte Hornets,34.5,1.9,1.83,Sportsbet,Chicago Bulls
-Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Jayson Tatum,Boston Celtics,44.5,1.86,1.87,Sportsbet,Indiana Pacers
-Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Tyrese Haliburton,Indiana Pacers,40.5,1.89,1.84,Sportsbet,Boston Celtics
-Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Shai Gilgeous-Alexander,Oklahoma City Thunder,48.5,1.93,1.8,Sportsbet,Washington Wizards
-Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Chet Holmgren,Oklahoma City Thunder,30.5,1.9,1.83,Sportsbet,Washington Wizards
-Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Jalen Williams,Oklahoma City Thunder,25.5,1.85,1.88,Sportsbet,Washington Wizards
-Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Josh Giddey,Oklahoma City Thunder,24.5,1.95,1.78,Sportsbet,Washington Wizards
-Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Luguentz Dort,Oklahoma City Thunder,18.5,1.87,1.87,Sportsbet,Washington Wizards
-Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Kyle Kuzma,Washington Wizards,31.5,1.79,1.95,Sportsbet,Oklahoma City Thunder
-Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Jordan Poole,Washington Wizards,21.5,1.89,1.84,Sportsbet,Oklahoma City Thunder
-Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Deni Avdija,Washington Wizards,24.5,1.94,1.8,Sportsbet,Oklahoma City Thunder
-Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Tyus Jones,Washington Wizards,22.5,1.97,1.77,Sportsbet,Oklahoma City Thunder
-Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Daniel Gafford,Washington Wizards,19.5,1.99,1.76,Sportsbet,Oklahoma City Thunder
-Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Alperen Sengun,Houston Rockets,35.5,1.88,1.85,Sportsbet,Miami Heat
-Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Jalen Green,Houston Rockets,26.5,1.93,1.81,Sportsbet,Miami Heat
-Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Fred VanVleet,Houston Rockets,28.5,1.87,1.86,Sportsbet,Miami Heat
-Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Bam Adebayo,Miami Heat,39.5,1.89,1.84,Sportsbet,Houston Rockets
-Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Tyler Herro,Miami Heat,33.5,1.84,1.89,Sportsbet,Houston Rockets
-Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Jaime Jaquez Jr.,Miami Heat,22.5,1.82,1.91,Sportsbet,Houston Rockets
-Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Kyle Lowry,Miami Heat,14.5,1.82,1.91,Sportsbet,Houston Rockets
-Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Giannis Antetokounmpo,Milwaukee Bucks,56.5,1.83,1.89,Sportsbet,Utah Jazz
-Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Khris Middleton,Milwaukee Bucks,32.5,1.89,1.84,Sportsbet,Utah Jazz
-Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Collin Sexton,Utah Jazz,25.5,1.9,1.83,Sportsbet,Milwaukee Bucks
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Tyrese Haliburton,Indiana Pacers,40.5,1.79,1.94,Sportsbet,Boston Celtics
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Jrue Holiday,Boston Celtics,27.5,1.89,1.84,Sportsbet,Indiana Pacers
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Jaylen Brown,Boston Celtics,38.5,1.75,2,Sportsbet,Indiana Pacers
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Derrick White,Boston Celtics,29.5,1.85,1.88,Sportsbet,Indiana Pacers
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Tyrese Haliburton 30.5,NA,NA,1.08,NA,Sportsbet,NA
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Tyrese Haliburton 31.5,NA,NA,1.11,NA,Sportsbet,NA
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Tyrese Haliburton 32.5,NA,NA,1.15,NA,Sportsbet,NA
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Tyrese Haliburton 33.5,NA,NA,1.2,NA,Sportsbet,NA
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Tyrese Haliburton 34.5,NA,NA,1.25,3.8,Sportsbet,NA
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Tyrese Haliburton 35.5,NA,NA,1.32,3.35,Sportsbet,NA
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Tyrese Haliburton 36.5,NA,NA,1.39,2.95,Sportsbet,NA
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Tyrese Haliburton 37.5,NA,NA,1.48,2.65,Sportsbet,NA
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Tyrese Haliburton 38.5,NA,NA,1.57,2.4,Sportsbet,NA
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Tyrese Haliburton 39.5,NA,NA,1.68,2.18,Sportsbet,NA
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Tyrese Haliburton 40.5,NA,NA,1.82,1.98,Sportsbet,NA
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Tyrese Haliburton 41.5,NA,NA,1.98,1.82,Sportsbet,NA
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Tyrese Haliburton 42.5,NA,NA,2.15,1.69,Sportsbet,NA
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Tyrese Haliburton 43.5,NA,NA,2.35,1.58,Sportsbet,NA
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Tyrese Haliburton 44.5,NA,NA,2.6,1.48,Sportsbet,NA
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Tyrese Haliburton 45.5,NA,NA,2.9,1.4,Sportsbet,NA
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Tyrese Haliburton 46.5,NA,NA,3.25,1.33,Sportsbet,NA
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Tyrese Haliburton 47.5,NA,NA,3.6,1.27,Sportsbet,NA
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Jrue Holiday 18.5,NA,NA,1.1,NA,Sportsbet,NA
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Jrue Holiday 19.5,NA,NA,1.14,NA,Sportsbet,NA
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Jrue Holiday 20.5,NA,NA,1.18,NA,Sportsbet,NA
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Jrue Holiday 21.5,NA,NA,1.24,3.9,Sportsbet,NA
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Jrue Holiday 22.5,NA,NA,1.31,3.35,Sportsbet,NA
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Jrue Holiday 23.5,NA,NA,1.4,2.9,Sportsbet,NA
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Jrue Holiday 24.5,NA,NA,1.5,2.55,Sportsbet,NA
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Jrue Holiday 25.5,NA,NA,1.62,2.25,Sportsbet,NA
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Jrue Holiday 26.5,NA,NA,1.75,2.07,Sportsbet,NA
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Jrue Holiday 27.5,NA,NA,1.92,1.88,Sportsbet,NA
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Jrue Holiday 28.5,NA,NA,2.12,1.71,Sportsbet,NA
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Jrue Holiday 29.5,NA,NA,2.35,1.58,Sportsbet,NA
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Jrue Holiday 30.5,NA,NA,2.6,1.49,Sportsbet,NA
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Jrue Holiday 31.5,NA,NA,2.9,1.4,Sportsbet,NA
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Jrue Holiday 32.5,NA,NA,3.3,1.33,Sportsbet,NA
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Jrue Holiday 33.5,NA,NA,3.8,1.25,Sportsbet,NA
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Derrick White 20.5,NA,NA,1.09,NA,Sportsbet,NA
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Derrick White 21.5,NA,NA,1.13,NA,Sportsbet,NA
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Derrick White 22.5,NA,NA,1.17,NA,Sportsbet,NA
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Derrick White 23.5,NA,NA,1.23,NA,Sportsbet,NA
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Derrick White 24.5,NA,NA,1.3,3.45,Sportsbet,NA
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Derrick White 25.5,NA,NA,1.38,3,Sportsbet,NA
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Derrick White 26.5,NA,NA,1.47,2.65,Sportsbet,NA
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Derrick White 27.5,NA,NA,1.59,2.35,Sportsbet,NA
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Derrick White 28.5,NA,NA,1.72,2.12,Sportsbet,NA
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Derrick White 29.5,NA,NA,1.88,1.91,Sportsbet,NA
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Derrick White 30.5,NA,NA,2.05,1.76,Sportsbet,NA
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Derrick White 31.5,NA,NA,2.25,1.63,Sportsbet,NA
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Derrick White 32.5,NA,NA,2.5,1.51,Sportsbet,NA
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Derrick White 33.5,NA,NA,2.85,1.42,Sportsbet,NA
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Derrick White 34.5,NA,NA,3.2,1.34,Sportsbet,NA
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Derrick White 35.5,NA,NA,3.6,1.27,Sportsbet,NA
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Jaylen Brown 28.5,NA,NA,1.09,NA,Sportsbet,NA
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Jaylen Brown 29.5,NA,NA,1.11,NA,Sportsbet,NA
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Jaylen Brown 30.5,NA,NA,1.15,NA,Sportsbet,NA
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Jaylen Brown 31.5,NA,NA,1.2,NA,Sportsbet,NA
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Jaylen Brown 32.5,NA,NA,1.25,3.8,Sportsbet,NA
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Jaylen Brown 33.5,NA,NA,1.32,3.35,Sportsbet,NA
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Jaylen Brown 34.5,NA,NA,1.4,2.9,Sportsbet,NA
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Jaylen Brown 35.5,NA,NA,1.5,2.55,Sportsbet,NA
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Jaylen Brown 36.5,NA,NA,1.59,2.3,Sportsbet,NA
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Jaylen Brown 37.5,NA,NA,1.71,2.12,Sportsbet,NA
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Jaylen Brown 38.5,NA,NA,1.78,1.95,Sportsbet,NA
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Jaylen Brown 39.5,NA,NA,1.96,1.81,Sportsbet,NA
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Jaylen Brown 40.5,NA,NA,2.18,1.68,Sportsbet,NA
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Jaylen Brown 41.5,NA,NA,2.35,1.58,Sportsbet,NA
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Jaylen Brown 42.5,NA,NA,2.6,1.48,Sportsbet,NA
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Jaylen Brown 43.5,NA,NA,2.95,1.39,Sportsbet,NA
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Jaylen Brown 44.5,NA,NA,3.3,1.33,Sportsbet,NA
+Indiana Pacers v Boston Celtics,Indiana Pacers,Boston Celtics,Player PRAs,Jaylen Brown 45.5,NA,NA,3.7,1.27,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Shai Gilgeous-Alexander,Oklahoma City Thunder,46.5,1.86,1.87,Sportsbet,Washington Wizards
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Chet Holmgren,Oklahoma City Thunder,29.5,1.81,1.93,Sportsbet,Washington Wizards
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Jalen Williams,Oklahoma City Thunder,25.5,1.8,1.94,Sportsbet,Washington Wizards
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Josh Giddey,Oklahoma City Thunder,23.5,1.82,1.91,Sportsbet,Washington Wizards
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Luguentz Dort,Oklahoma City Thunder,18.5,1.95,1.79,Sportsbet,Washington Wizards
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Kyle Kuzma,Washington Wizards,32.5,1.92,1.81,Sportsbet,Oklahoma City Thunder
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Shai Gilgeous-Alexander 37.5,NA,NA,1.16,NA,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Shai Gilgeous-Alexander 38.5,NA,NA,1.2,NA,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Shai Gilgeous-Alexander 39.5,NA,NA,1.25,3.8,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Shai Gilgeous-Alexander 40.5,NA,NA,1.31,3.4,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Shai Gilgeous-Alexander 41.5,NA,NA,1.38,3,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Shai Gilgeous-Alexander 42.5,NA,NA,1.46,2.65,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Shai Gilgeous-Alexander 43.5,NA,NA,1.55,2.4,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Shai Gilgeous-Alexander 44.5,NA,NA,1.64,2.25,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Shai Gilgeous-Alexander 45.5,NA,NA,1.76,2.05,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Shai Gilgeous-Alexander 46.5,NA,NA,1.89,1.9,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Shai Gilgeous-Alexander 47.5,NA,NA,2.03,1.78,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Shai Gilgeous-Alexander 48.5,NA,NA,2.2,1.65,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Shai Gilgeous-Alexander 49.5,NA,NA,2.4,1.55,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Shai Gilgeous-Alexander 50.5,NA,NA,2.65,1.47,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Shai Gilgeous-Alexander 51.5,NA,NA,2.95,1.39,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Shai Gilgeous-Alexander 52.5,NA,NA,3.3,1.33,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Shai Gilgeous-Alexander 53.5,NA,NA,3.7,1.27,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Josh Giddey 15.5,NA,NA,1.1,NA,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Josh Giddey 16.5,NA,NA,1.14,NA,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Josh Giddey 17.5,NA,NA,1.19,NA,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Josh Giddey 18.5,NA,NA,1.26,3.8,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Josh Giddey 19.5,NA,NA,1.34,3.2,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Josh Giddey 20.5,NA,NA,1.44,2.75,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Josh Giddey 21.5,NA,NA,1.55,2.4,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Josh Giddey 22.5,NA,NA,1.68,2.18,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Josh Giddey 23.5,NA,NA,1.85,1.95,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Josh Giddey 24.5,NA,NA,2.05,1.77,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Josh Giddey 25.5,NA,NA,2.25,1.62,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Josh Giddey 26.5,NA,NA,2.55,1.5,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Josh Giddey 27.5,NA,NA,2.95,1.4,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Josh Giddey 28.5,NA,NA,3.35,1.32,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Josh Giddey 29.5,NA,NA,3.9,1.25,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Jalen Williams 17.5,NA,NA,1.1,NA,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Jalen Williams 18.5,NA,NA,1.14,NA,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Jalen Williams 19.5,NA,NA,1.2,NA,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Jalen Williams 20.5,NA,NA,1.27,3.7,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Jalen Williams 21.5,NA,NA,1.35,3.15,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Jalen Williams 22.5,NA,NA,1.45,2.7,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Jalen Williams 23.5,NA,NA,1.55,2.45,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Jalen Williams 24.5,NA,NA,1.68,2.18,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Jalen Williams 25.5,NA,NA,1.83,1.97,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Jalen Williams 26.5,NA,NA,1.99,1.81,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Jalen Williams 27.5,NA,NA,2.18,1.67,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Jalen Williams 28.5,NA,NA,2.4,1.55,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Jalen Williams 29.5,NA,NA,2.7,1.45,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Jalen Williams 30.5,NA,NA,3.1,1.36,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Jalen Williams 31.5,NA,NA,3.5,1.29,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Chet Holmgren 20.5,NA,NA,1.09,NA,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Chet Holmgren 21.5,NA,NA,1.13,NA,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Chet Holmgren 22.5,NA,NA,1.17,NA,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Chet Holmgren 23.5,NA,NA,1.23,NA,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Chet Holmgren 24.5,NA,NA,1.3,3.5,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Chet Holmgren 25.5,NA,NA,1.38,3,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Chet Holmgren 26.5,NA,NA,1.47,2.65,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Chet Holmgren 27.5,NA,NA,1.58,2.35,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Chet Holmgren 28.5,NA,NA,1.71,2.12,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Chet Holmgren 29.5,NA,NA,1.84,1.96,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Chet Holmgren 30.5,NA,NA,2,1.8,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Chet Holmgren 31.5,NA,NA,2.2,1.67,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Chet Holmgren 32.5,NA,NA,2.45,1.55,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Chet Holmgren 33.5,NA,NA,2.7,1.46,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Chet Holmgren 34.5,NA,NA,3.05,1.37,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Chet Holmgren 35.5,NA,NA,3.45,1.3,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Chet Holmgren 36.5,NA,NA,3.9,1.24,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Kyle Kuzma 21.5,NA,NA,1.07,NA,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Kyle Kuzma 22.5,NA,NA,1.09,NA,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Kyle Kuzma 23.5,NA,NA,1.13,NA,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Kyle Kuzma 24.5,NA,NA,1.16,NA,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Kyle Kuzma 25.5,NA,NA,1.22,NA,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Kyle Kuzma 26.5,NA,NA,1.28,3.6,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Kyle Kuzma 27.5,NA,NA,1.36,3.1,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Kyle Kuzma 28.5,NA,NA,1.45,2.7,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Kyle Kuzma 29.5,NA,NA,1.56,2.4,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Kyle Kuzma 30.5,NA,NA,1.67,2.18,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Kyle Kuzma 31.5,NA,NA,1.8,2,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Kyle Kuzma 32.5,NA,NA,1.95,1.84,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Kyle Kuzma 33.5,NA,NA,2.15,1.69,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Kyle Kuzma 34.5,NA,NA,2.35,1.58,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Kyle Kuzma 35.5,NA,NA,2.65,1.48,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Kyle Kuzma 36.5,NA,NA,2.95,1.39,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Kyle Kuzma 37.5,NA,NA,3.35,1.32,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Kyle Kuzma 38.5,NA,NA,3.8,1.25,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Luguentz Dort 11.5,NA,NA,1.12,NA,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Luguentz Dort 12.5,NA,NA,1.18,NA,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Luguentz Dort 13.5,NA,NA,1.26,3.75,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Luguentz Dort 14.5,NA,NA,1.36,3.1,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Luguentz Dort 15.5,NA,NA,1.48,2.65,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Luguentz Dort 16.5,NA,NA,1.62,2.3,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Luguentz Dort 17.5,NA,NA,1.77,2.03,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Luguentz Dort 18.5,NA,NA,1.98,1.82,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Luguentz Dort 19.5,NA,NA,2.2,1.64,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Luguentz Dort 20.5,NA,NA,2.5,1.52,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Luguentz Dort 21.5,NA,NA,2.9,1.4,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Luguentz Dort 22.5,NA,NA,3.45,1.3,Sportsbet,NA
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Jordan Poole,Washington Wizards,21.5,1.79,1.94,Sportsbet,Oklahoma City Thunder
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Deni Avdija,Washington Wizards,23.5,1.95,1.79,Sportsbet,Oklahoma City Thunder
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Tyus Jones,Washington Wizards,21.5,1.96,1.78,Sportsbet,Oklahoma City Thunder
+Washington Wizards v Oklahoma City Thunder,Washington Wizards,Oklahoma City Thunder,Player PRAs,Daniel Gafford,Washington Wizards,19.5,1.79,1.95,Sportsbet,Oklahoma City Thunder
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Alperen Sengun,Houston Rockets,34.5,1.82,1.91,Sportsbet,Miami Heat
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Jalen Green,Houston Rockets,24.5,1.8,1.93,Sportsbet,Miami Heat
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Fred VanVleet,Houston Rockets,28.5,1.86,1.87,Sportsbet,Miami Heat
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Bam Adebayo,Miami Heat,37.5,1.79,1.95,Sportsbet,Houston Rockets
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Tyler Herro,Miami Heat,33.5,1.91,1.82,Sportsbet,Houston Rockets
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Jaime Jaquez Jr.,Miami Heat,22.5,1.8,1.93,Sportsbet,Houston Rockets
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Bam Adebayo 29.5,NA,NA,1.14,NA,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Bam Adebayo 30.5,NA,NA,1.18,NA,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Bam Adebayo 31.5,NA,NA,1.23,NA,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Bam Adebayo 32.5,NA,NA,1.3,3.45,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Bam Adebayo 33.5,NA,NA,1.37,3,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Bam Adebayo 34.5,NA,NA,1.46,2.7,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Bam Adebayo 35.5,NA,NA,1.56,2.4,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Bam Adebayo 36.5,NA,NA,1.68,2.15,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Bam Adebayo 37.5,NA,NA,1.82,1.98,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Bam Adebayo 38.5,NA,NA,1.99,1.81,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Bam Adebayo 39.5,NA,NA,2.2,1.67,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Bam Adebayo 40.5,NA,NA,2.4,1.55,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Bam Adebayo 41.5,NA,NA,2.7,1.45,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Bam Adebayo 42.5,NA,NA,3.05,1.37,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Bam Adebayo 43.5,NA,NA,3.5,1.3,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Jalen Green 17.5,NA,NA,1.13,NA,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Jalen Green 18.5,NA,NA,1.18,NA,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Jalen Green 19.5,NA,NA,1.25,3.8,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Jalen Green 20.5,NA,NA,1.33,3.25,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Jalen Green 21.5,NA,NA,1.43,2.8,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Jalen Green 22.5,NA,NA,1.54,2.45,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Jalen Green 23.5,NA,NA,1.67,2.18,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Jalen Green 24.5,NA,NA,1.83,1.97,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Jalen Green 25.5,NA,NA,2.03,1.78,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Jalen Green 26.5,NA,NA,2.25,1.62,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Jalen Green 27.5,NA,NA,2.55,1.5,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Jalen Green 28.5,NA,NA,2.9,1.4,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Jalen Green 29.5,NA,NA,3.35,1.31,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Jalen Green 30.5,NA,NA,3.9,1.25,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Tyler Herro 23.5,NA,NA,1.08,NA,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Tyler Herro 24.5,NA,NA,1.11,NA,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Tyler Herro 25.5,NA,NA,1.15,NA,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Tyler Herro 26.5,NA,NA,1.19,NA,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Tyler Herro 27.5,NA,NA,1.25,3.8,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Tyler Herro 28.5,NA,NA,1.33,3.3,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Tyler Herro 29.5,NA,NA,1.41,2.85,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Tyler Herro 30.5,NA,NA,1.53,2.5,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Tyler Herro 31.5,NA,NA,1.64,2.2,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Tyler Herro 32.5,NA,NA,1.78,2.03,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Tyler Herro 33.5,NA,NA,1.94,1.86,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Tyler Herro 34.5,NA,NA,2.12,1.71,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Tyler Herro 35.5,NA,NA,2.35,1.59,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Tyler Herro 36.5,NA,NA,2.6,1.48,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Tyler Herro 37.5,NA,NA,3,1.38,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Tyler Herro 38.5,NA,NA,3.4,1.31,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Tyler Herro 39.5,NA,NA,3.9,1.24,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Fred VanVleet 19.5,NA,NA,1.07,NA,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Fred VanVleet 20.5,NA,NA,1.1,NA,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Fred VanVleet 21.5,NA,NA,1.14,NA,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Fred VanVleet 22.5,NA,NA,1.19,NA,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Fred VanVleet 23.5,NA,NA,1.26,3.75,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Fred VanVleet 24.5,NA,NA,1.35,3.15,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Fred VanVleet 25.5,NA,NA,1.46,2.7,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Fred VanVleet 26.5,NA,NA,1.57,2.4,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Fred VanVleet 27.5,NA,NA,1.71,2.12,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Fred VanVleet 28.5,NA,NA,1.9,1.9,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Fred VanVleet 29.5,NA,NA,2.08,1.74,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Fred VanVleet 30.5,NA,NA,2.3,1.59,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Fred VanVleet 31.5,NA,NA,2.6,1.49,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Fred VanVleet 32.5,NA,NA,2.95,1.39,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Fred VanVleet 33.5,NA,NA,3.35,1.32,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Fred VanVleet 34.5,NA,NA,3.9,1.25,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Jaime Jaquez Jr. 15.5,NA,NA,1.11,NA,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Jaime Jaquez Jr. 16.5,NA,NA,1.16,NA,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Jaime Jaquez Jr. 17.5,NA,NA,1.23,NA,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Jaime Jaquez Jr. 18.5,NA,NA,1.31,3.4,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Jaime Jaquez Jr. 19.5,NA,NA,1.4,2.9,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Jaime Jaquez Jr. 20.5,NA,NA,1.54,2.45,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Jaime Jaquez Jr. 21.5,NA,NA,1.67,2.18,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Jaime Jaquez Jr. 22.5,NA,NA,1.84,1.96,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Jaime Jaquez Jr. 23.5,NA,NA,2.03,1.77,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Jaime Jaquez Jr. 24.5,NA,NA,2.25,1.62,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Jaime Jaquez Jr. 25.5,NA,NA,2.6,1.49,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Jaime Jaquez Jr. 26.5,NA,NA,2.95,1.39,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Jaime Jaquez Jr. 27.5,NA,NA,3.45,1.3,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Alperen Sengun 25.5,NA,NA,1.1,NA,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Alperen Sengun 26.5,NA,NA,1.14,NA,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Alperen Sengun 27.5,NA,NA,1.19,NA,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Alperen Sengun 28.5,NA,NA,1.24,3.9,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Alperen Sengun 29.5,NA,NA,1.31,3.35,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Alperen Sengun 30.5,NA,NA,1.39,2.95,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Alperen Sengun 31.5,NA,NA,1.48,2.6,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Alperen Sengun 32.5,NA,NA,1.58,2.35,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Alperen Sengun 33.5,NA,NA,1.7,2.12,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Alperen Sengun 34.5,NA,NA,1.85,1.94,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Alperen Sengun 35.5,NA,NA,2.03,1.77,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Alperen Sengun 36.5,NA,NA,2.25,1.64,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Alperen Sengun 37.5,NA,NA,2.5,1.52,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Alperen Sengun 38.5,NA,NA,2.75,1.44,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Alperen Sengun 39.5,NA,NA,3.1,1.36,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Alperen Sengun 40.5,NA,NA,3.5,1.29,Sportsbet,NA
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Kyle Lowry,Miami Heat,14.5,1.83,1.9,Sportsbet,Houston Rockets
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Kevin Love,Miami Heat,19.5,1.77,1.97,Sportsbet,Houston Rockets
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Duncan Robinson,Miami Heat,17.5,1.96,1.78,Sportsbet,Houston Rockets
+Miami Heat v Houston Rockets,Miami Heat,Houston Rockets,Player PRAs,Josh Richardson,Miami Heat,15.5,1.92,1.81,Sportsbet,Houston Rockets
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Giannis Antetokounmpo,Milwaukee Bucks,56.5,1.85,1.88,Sportsbet,Utah Jazz
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Khris Middleton,Milwaukee Bucks,32.5,1.86,1.87,Sportsbet,Utah Jazz
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Collin Sexton,Utah Jazz,25.5,1.89,1.84,Sportsbet,Milwaukee Bucks
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Kris Dunn,Utah Jazz,13.5,1.75,2,Sportsbet,Milwaukee Bucks
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Jordan Clarkson,Utah Jazz,25.5,1.94,1.8,Sportsbet,Milwaukee Bucks
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Kris Dunn 7.5,NA,NA,1.06,NA,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Kris Dunn 8.5,NA,NA,1.1,NA,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Kris Dunn 9.5,NA,NA,1.16,NA,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Kris Dunn 10.5,NA,NA,1.26,3.75,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Kris Dunn 11.5,NA,NA,1.38,2.95,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Kris Dunn 12.5,NA,NA,1.56,2.4,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Kris Dunn 13.5,NA,NA,1.78,2.03,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Kris Dunn 14.5,NA,NA,2.07,1.76,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Kris Dunn 15.5,NA,NA,2.4,1.56,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Kris Dunn 16.5,NA,NA,2.9,1.4,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Kris Dunn 17.5,NA,NA,3.5,1.29,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Giannis Antetokounmpo 46.5,NA,NA,1.13,NA,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Giannis Antetokounmpo 47.5,NA,NA,1.17,NA,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Giannis Antetokounmpo 48.5,NA,NA,1.21,NA,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Giannis Antetokounmpo 49.5,NA,NA,1.25,3.8,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Giannis Antetokounmpo 50.5,NA,NA,1.31,3.35,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Giannis Antetokounmpo 51.5,NA,NA,1.38,3,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Giannis Antetokounmpo 52.5,NA,NA,1.46,2.7,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Giannis Antetokounmpo 53.5,NA,NA,1.54,2.45,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Giannis Antetokounmpo 54.5,NA,NA,1.64,2.25,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Giannis Antetokounmpo 55.5,NA,NA,1.74,2.08,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Giannis Antetokounmpo 56.5,NA,NA,1.88,1.91,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Giannis Antetokounmpo 57.5,NA,NA,2.03,1.78,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Giannis Antetokounmpo 58.5,NA,NA,2.2,1.67,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Giannis Antetokounmpo 59.5,NA,NA,2.4,1.57,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Giannis Antetokounmpo 60.5,NA,NA,2.65,1.47,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Giannis Antetokounmpo 61.5,NA,NA,2.9,1.4,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Giannis Antetokounmpo 62.5,NA,NA,3.2,1.34,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Giannis Antetokounmpo 63.5,NA,NA,3.6,1.28,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Collin Sexton 16.5,NA,NA,1.08,NA,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Collin Sexton 17.5,NA,NA,1.11,NA,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Collin Sexton 18.5,NA,NA,1.17,NA,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Collin Sexton 19.5,NA,NA,1.23,NA,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Collin Sexton 20.5,NA,NA,1.3,3.45,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Collin Sexton 21.5,NA,NA,1.39,2.95,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Collin Sexton 22.5,NA,NA,1.49,2.55,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Collin Sexton 23.5,NA,NA,1.62,2.3,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Collin Sexton 24.5,NA,NA,1.76,2.05,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Collin Sexton 25.5,NA,NA,1.92,1.87,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Collin Sexton 26.5,NA,NA,2.12,1.71,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Collin Sexton 27.5,NA,NA,2.35,1.58,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Collin Sexton 28.5,NA,NA,2.6,1.48,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Collin Sexton 29.5,NA,NA,2.95,1.39,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Collin Sexton 30.5,NA,NA,3.35,1.32,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Collin Sexton 31.5,NA,NA,3.9,1.25,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Khris Middleton 22.5,NA,NA,1.09,NA,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Khris Middleton 23.5,NA,NA,1.12,NA,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Khris Middleton 24.5,NA,NA,1.16,NA,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Khris Middleton 25.5,NA,NA,1.22,NA,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Khris Middleton 26.5,NA,NA,1.28,3.6,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Khris Middleton 27.5,NA,NA,1.35,3.15,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Khris Middleton 28.5,NA,NA,1.43,2.8,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Khris Middleton 29.5,NA,NA,1.53,2.5,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Khris Middleton 30.5,NA,NA,1.62,2.25,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Khris Middleton 31.5,NA,NA,1.76,2.05,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Khris Middleton 32.5,NA,NA,1.89,1.91,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Khris Middleton 33.5,NA,NA,2.05,1.77,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Khris Middleton 34.5,NA,NA,2.2,1.64,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Khris Middleton 35.5,NA,NA,2.45,1.54,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Khris Middleton 36.5,NA,NA,2.75,1.45,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Khris Middleton 37.5,NA,NA,3.05,1.37,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Khris Middleton 38.5,NA,NA,3.45,1.3,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Khris Middleton 39.5,NA,NA,3.9,1.24,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Jordan Clarkson 16.5,NA,NA,1.09,NA,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Jordan Clarkson 17.5,NA,NA,1.13,NA,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Jordan Clarkson 18.5,NA,NA,1.19,NA,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Jordan Clarkson 19.5,NA,NA,1.25,3.9,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Jordan Clarkson 20.5,NA,NA,1.32,3.3,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Jordan Clarkson 21.5,NA,NA,1.41,2.9,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Jordan Clarkson 22.5,NA,NA,1.52,2.5,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Jordan Clarkson 23.5,NA,NA,1.64,2.25,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Jordan Clarkson 24.5,NA,NA,1.79,2,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Jordan Clarkson 25.5,NA,NA,1.97,1.83,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Jordan Clarkson 26.5,NA,NA,2.18,1.68,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Jordan Clarkson 27.5,NA,NA,2.4,1.56,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Jordan Clarkson 28.5,NA,NA,2.7,1.45,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Jordan Clarkson 29.5,NA,NA,3.1,1.36,Sportsbet,NA
+Milwaukee Bucks v Utah Jazz,Milwaukee Bucks,Utah Jazz,Player PRAs,Jordan Clarkson 30.5,NA,NA,3.5,1.29,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Kawhi Leonard,Los Angeles Clippers,33.5,1.87,1.86,Sportsbet,Phoenix Suns
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Paul George,Los Angeles Clippers,32.5,1.92,1.81,Sportsbet,Phoenix Suns
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,James Harden,Los Angeles Clippers,32.5,1.87,1.86,Sportsbet,Phoenix Suns
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Bradley Beal,Phoenix Suns,26.5,1.82,1.91,Sportsbet,Los Angeles Clippers
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Devin Booker,Phoenix Suns,35.5,1.93,1.81,Sportsbet,Los Angeles Clippers
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Grayson Allen,Phoenix Suns,18.5,1.97,1.77,Sportsbet,Los Angeles Clippers
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Kawhi Leonard 23.5,NA,NA,1.08,NA,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Kawhi Leonard 24.5,NA,NA,1.11,NA,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Kawhi Leonard 25.5,NA,NA,1.16,NA,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Kawhi Leonard 26.5,NA,NA,1.21,NA,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Kawhi Leonard 27.5,NA,NA,1.26,3.75,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Kawhi Leonard 28.5,NA,NA,1.33,3.25,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Kawhi Leonard 29.5,NA,NA,1.41,2.85,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Kawhi Leonard 30.5,NA,NA,1.51,2.55,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Kawhi Leonard 31.5,NA,NA,1.61,2.3,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Kawhi Leonard 32.5,NA,NA,1.75,2.07,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Kawhi Leonard 33.5,NA,NA,1.91,1.89,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Kawhi Leonard 34.5,NA,NA,2.08,1.74,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Kawhi Leonard 35.5,NA,NA,2.3,1.61,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Kawhi Leonard 36.5,NA,NA,2.55,1.5,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Kawhi Leonard 37.5,NA,NA,2.9,1.41,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Kawhi Leonard 38.5,NA,NA,3.25,1.33,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Kawhi Leonard 39.5,NA,NA,3.75,1.26,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Kevin Durant 25.5,NA,NA,1.1,NA,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Kevin Durant 26.5,NA,NA,1.14,NA,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Kevin Durant 27.5,NA,NA,1.17,NA,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Kevin Durant 28.5,NA,NA,1.23,NA,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Kevin Durant 29.5,NA,NA,1.3,3.5,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Kevin Durant 30.5,NA,NA,1.38,3,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Kevin Durant 31.5,NA,NA,1.47,2.65,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Kevin Durant 32.5,NA,NA,1.57,2.35,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Kevin Durant 33.5,NA,NA,1.69,2.15,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Kevin Durant 34.5,NA,NA,1.83,1.97,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Kevin Durant 35.5,NA,NA,1.99,1.82,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Kevin Durant 36.5,NA,NA,2.18,1.68,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Kevin Durant 37.5,NA,NA,2.4,1.57,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Kevin Durant 38.5,NA,NA,2.65,1.46,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Kevin Durant 39.5,NA,NA,3.05,1.37,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Kevin Durant 40.5,NA,NA,3.4,1.31,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Kevin Durant 41.5,NA,NA,3.9,1.24,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Grayson Allen 11.5,NA,NA,1.12,NA,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Grayson Allen 12.5,NA,NA,1.18,NA,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Grayson Allen 13.5,NA,NA,1.25,3.8,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Grayson Allen 14.5,NA,NA,1.35,3.15,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Grayson Allen 15.5,NA,NA,1.47,2.65,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Grayson Allen 16.5,NA,NA,1.61,2.3,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Grayson Allen 17.5,NA,NA,1.79,2.02,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Grayson Allen 18.5,NA,NA,2,1.8,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Grayson Allen 19.5,NA,NA,2.25,1.64,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Grayson Allen 20.5,NA,NA,2.55,1.5,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Grayson Allen 21.5,NA,NA,2.95,1.39,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Grayson Allen 22.5,NA,NA,3.5,1.29,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Devin Booker 25.5,NA,NA,1.09,NA,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Devin Booker 26.5,NA,NA,1.12,NA,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Devin Booker 27.5,NA,NA,1.16,NA,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Devin Booker 28.5,NA,NA,1.22,NA,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Devin Booker 29.5,NA,NA,1.28,3.6,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Devin Booker 30.5,NA,NA,1.35,3.15,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Devin Booker 31.5,NA,NA,1.44,2.75,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Devin Booker 32.5,NA,NA,1.54,2.45,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Devin Booker 33.5,NA,NA,1.66,2.2,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Devin Booker 34.5,NA,NA,1.79,2.02,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Devin Booker 35.5,NA,NA,1.96,1.84,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Devin Booker 36.5,NA,NA,2.15,1.7,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Devin Booker 37.5,NA,NA,2.35,1.57,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Devin Booker 38.5,NA,NA,2.6,1.48,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Devin Booker 39.5,NA,NA,2.95,1.39,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Devin Booker 40.5,NA,NA,3.35,1.32,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Devin Booker 41.5,NA,NA,3.8,1.26,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Jusuf Nurkic 17.5,NA,NA,1.11,NA,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Jusuf Nurkic 18.5,NA,NA,1.15,NA,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Jusuf Nurkic 19.5,NA,NA,1.21,NA,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Jusuf Nurkic 20.5,NA,NA,1.27,3.6,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Jusuf Nurkic 21.5,NA,NA,1.35,3.15,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Jusuf Nurkic 22.5,NA,NA,1.45,2.7,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Jusuf Nurkic 23.5,NA,NA,1.57,2.35,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Jusuf Nurkic 24.5,NA,NA,1.72,2.1,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Jusuf Nurkic 25.5,NA,NA,1.89,1.9,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Jusuf Nurkic 26.5,NA,NA,2.08,1.74,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Jusuf Nurkic 27.5,NA,NA,2.3,1.6,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Jusuf Nurkic 28.5,NA,NA,2.6,1.48,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Jusuf Nurkic 29.5,NA,NA,3,1.38,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Jusuf Nurkic 30.5,NA,NA,3.5,1.3,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Bradley Beal 18.5,NA,NA,1.11,NA,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Bradley Beal 19.5,NA,NA,1.15,NA,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Bradley Beal 20.5,NA,NA,1.2,NA,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Bradley Beal 21.5,NA,NA,1.27,3.7,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Bradley Beal 22.5,NA,NA,1.35,3.15,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Bradley Beal 23.5,NA,NA,1.45,2.7,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Bradley Beal 24.5,NA,NA,1.56,2.4,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Bradley Beal 25.5,NA,NA,1.69,2.15,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Bradley Beal 26.5,NA,NA,1.85,1.95,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Bradley Beal 27.5,NA,NA,2.03,1.77,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Bradley Beal 28.5,NA,NA,2.25,1.63,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Bradley Beal 29.5,NA,NA,2.5,1.51,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Bradley Beal 30.5,NA,NA,2.85,1.42,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Bradley Beal 31.5,NA,NA,3.2,1.34,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Bradley Beal 32.5,NA,NA,3.7,1.27,Sportsbet,NA
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Jusuf Nurkic,Phoenix Suns,25.5,1.86,1.87,Sportsbet,Los Angeles Clippers
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Kevin Durant,Phoenix Suns,34.5,1.79,1.94,Sportsbet,Los Angeles Clippers
+Los Angeles Clippers v Phoenix Suns,Los Angeles Clippers,Phoenix Suns,Player PRAs,Russell Westbrook,Los Angeles Clippers,16.5,1.88,1.85,Sportsbet,Phoenix Suns
