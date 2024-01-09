@@ -102,14 +102,18 @@ all_player_stats_2023_2024 |>
     reboundsTotal,
     assists,
     steals,
-    blocks) |>
+    blocks,
+    threes = threePointersMade) |>
+  mutate(PRAs = points + reboundsTotal + assists) |> 
   group_by(gameId, GAME_DATE, HOME_TEAM, AWAY_TEAM, teamName, teamCity) |>
   summarise(
     points = sum(points),
     rebounds = sum(reboundsTotal),
     assists = sum(assists),
     steals = sum(steals),
-    blocks = sum(blocks)) |> 
+    blocks = sum(blocks),
+    threes = sum(threes),
+    PRAs = sum(PRAs)) |>
   ungroup() |> 
   mutate(team = paste(teamCity, teamName)) |>
   mutate(oppositionTeam = if_else(team == HOME_TEAM, AWAY_TEAM, HOME_TEAM)) |> 
@@ -125,7 +129,7 @@ all_player_stats_2023_2024 |>
 
 stats_vs_opp <-
   team_stats_2023_2024 |> 
-  select(oppositionTeam, date, points, rebounds, assists, steals, blocks) |> 
+  select(oppositionTeam, date, points, rebounds, assists, steals, blocks, threes, PRAs) |> 
   arrange(oppositionTeam, date) |> 
   group_by(oppositionTeam) |>
   # Calculate rolling 10 game average
@@ -133,11 +137,15 @@ stats_vs_opp <-
          rolling_10_game_assists = rollmean(assists, 10, fill = NA, align = "right"),
          rolling_10_game_rebounds = rollmean(rebounds, 10, fill = NA, align = "right"),
          rolling_10_game_steals = rollmean(steals, 10, fill = NA, align = "right"),
-         rolling_10_game_blocks = rollmean(blocks, 10, fill = NA, align = "right")) |>
+         rolling_10_game_blocks = rollmean(blocks, 10, fill = NA, align = "right"),
+         rolling_10_game_threes = rollmean(threes, 10, fill = NA, align = "right"),
+         rolling_10_game_PRAs = rollmean(PRAs, 10, fill = NA, align = "right")) |>
   mutate(rolling_10_game_points = lag(rolling_10_game_points),
          rolling_10_game_assists = lag(rolling_10_game_assists),
          rolling_10_game_rebounds = lag(rolling_10_game_rebounds),
          rolling_10_game_steals = lag(rolling_10_game_steals),
+         rolling_10_game_threes = lag(rolling_10_game_threes),
+         rolling_10_game_PRAs = lag(rolling_10_game_PRAs),
          rolling_10_game_blocks = lag(rolling_10_game_blocks)) |> 
   filter(!is.na(rolling_10_game_points))
 
