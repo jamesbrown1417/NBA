@@ -124,8 +124,23 @@ all_player_stats_2023_2024 |>
   mutate(date = date + days(1))
   
 #===============================================================================
-# Get team stats for each opposition
+# Get team stats for each opposition - Means
 #===============================================================================
+
+stats_vs_opp_for_todays_bets <-
+  team_stats_2023_2024 |> 
+  select(oppositionTeam, date, points, rebounds, assists, steals, blocks, threes, PRAs) |> 
+  arrange(oppositionTeam, date) |> 
+  group_by(oppositionTeam) |>
+  # Calculate rolling 10 game average
+  mutate(rolling_10_game_points = rollmean(points, 10, fill = NA, align = "right"),
+         rolling_10_game_assists = rollmean(assists, 10, fill = NA, align = "right"),
+         rolling_10_game_rebounds = rollmean(rebounds, 10, fill = NA, align = "right"),
+         rolling_10_game_steals = rollmean(steals, 10, fill = NA, align = "right"),
+         rolling_10_game_blocks = rollmean(blocks, 10, fill = NA, align = "right"),
+         rolling_10_game_threes = rollmean(threes, 10, fill = NA, align = "right"),
+         rolling_10_game_PRAs = rollmean(PRAs, 10, fill = NA, align = "right")) |> 
+  filter(!is.na(rolling_10_game_points))
 
 stats_vs_opp <-
   team_stats_2023_2024 |> 
@@ -150,7 +165,13 @@ stats_vs_opp <-
   filter(!is.na(rolling_10_game_points))
 
 #===============================================================================
+# Get team stats for each opposition - Medians
+#===============================================================================
+
+
+#===============================================================================
 # Write out as RDS
 #===============================================================================
 
 write_rds(stats_vs_opp, "Data/stats_vs_opp.rds")
+write_rds(stats_vs_opp_for_todays_bets, "Data/stats_vs_opp_today.rds")
