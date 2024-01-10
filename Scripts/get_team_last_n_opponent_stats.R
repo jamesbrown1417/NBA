@@ -168,6 +168,42 @@ stats_vs_opp <-
 # Get team stats for each opposition - Medians
 #===============================================================================
 
+stats_vs_opp_for_todays_bets_med <-
+  team_stats_2023_2024 |> 
+  select(oppositionTeam, date, points, rebounds, assists, steals, blocks, threes, PRAs) |> 
+  arrange(oppositionTeam, date) |> 
+  group_by(oppositionTeam) |>
+  # Calculate rolling 15 game median
+  mutate(rolling_15_game_points = rollmedian(points, 15, fill = NA, align = "right"),
+         rolling_15_game_assists = rollmedian(assists, 15, fill = NA, align = "right"),
+         rolling_15_game_rebounds = rollmedian(rebounds, 15, fill = NA, align = "right"),
+         rolling_15_game_steals = rollmedian(steals, 15, fill = NA, align = "right"),
+         rolling_15_game_blocks = rollmedian(blocks, 15, fill = NA, align = "right"),
+         rolling_15_game_threes = rollmedian(threes, 15, fill = NA, align = "right"),
+         rolling_15_game_PRAs = rollmedian(PRAs, 15, fill = NA, align = "right")) |> 
+  filter(!is.na(rolling_15_game_points))
+
+stats_vs_opp_med <-
+  team_stats_2023_2024 |> 
+  select(oppositionTeam, date, points, rebounds, assists, steals, blocks, threes, PRAs) |> 
+  arrange(oppositionTeam, date) |> 
+  group_by(oppositionTeam) |>
+  # Calculate rolling 15 game average
+  mutate(rolling_15_game_points = rollmedian(points, 15, fill = NA, align = "right"),
+         rolling_15_game_assists = rollmedian(assists, 15, fill = NA, align = "right"),
+         rolling_15_game_rebounds = rollmedian(rebounds, 15, fill = NA, align = "right"),
+         rolling_15_game_steals = rollmedian(steals, 15, fill = NA, align = "right"),
+         rolling_15_game_blocks = rollmedian(blocks, 15, fill = NA, align = "right"),
+         rolling_15_game_threes = rollmedian(threes, 15, fill = NA, align = "right"),
+         rolling_15_game_PRAs = rollmedian(PRAs, 15, fill = NA, align = "right")) |>
+  mutate(rolling_15_game_points = lag(rolling_15_game_points),
+         rolling_15_game_assists = lag(rolling_15_game_assists),
+         rolling_15_game_rebounds = lag(rolling_15_game_rebounds),
+         rolling_15_game_steals = lag(rolling_15_game_steals),
+         rolling_15_game_threes = lag(rolling_15_game_threes),
+         rolling_15_game_PRAs = lag(rolling_15_game_PRAs),
+         rolling_15_game_blocks = lag(rolling_15_game_blocks)) |> 
+  filter(!is.na(rolling_15_game_points))
 
 #===============================================================================
 # Write out as RDS
@@ -175,3 +211,6 @@ stats_vs_opp <-
 
 write_rds(stats_vs_opp, "Data/stats_vs_opp.rds")
 write_rds(stats_vs_opp_for_todays_bets, "Data/stats_vs_opp_today.rds")
+write_rds(stats_vs_opp_med, "Data/stats_vs_opp_med.rds")
+write_rds(stats_vs_opp_for_todays_bets_med, "Data/stats_vs_opp_today_med.rds")
+

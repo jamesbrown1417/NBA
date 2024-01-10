@@ -31,52 +31,53 @@ for (file in all_files) {
 }
 
 # Get offensive rating and pace vs opposition
-opp_stats <- read_rds("../Data/stats_vs_opp_today.rds")
+opp_stats <- read_rds("../Data/stats_vs_opp_today_med.rds")
 
-# Normalise rolling averages to percentile
+# Normalise rolling averages to have mean zero
 opp_stats <-
 opp_stats |> 
+  ungroup() |>
+  mutate_at(vars(contains("rolling")), ~ .x - mean(.x, na.rm = TRUE)) |> 
   group_by(oppositionTeam) |>
   slice_tail(n = 1) |> 
-  ungroup() |>
-  mutate_at(vars(contains("rolling")), ~rank(.)/max(rank(.))) |>
+  ungroup() |> 
   select(date, oppositionTeam, contains("rolling"))
 
 # Join opp stats with lines files
 all_player_points <-
   all_player_points |>
   left_join(opp_stats, by = c("opposition_team" = "oppositionTeam")) |> 
-  mutate(fixture_difficulty = rolling_10_game_points)
+  mutate(fixture_difficulty = rolling_15_game_points)
 
 all_player_assists <-
   all_player_assists |>
   left_join(opp_stats, by = c("opposition_team" = "oppositionTeam")) |> 
-  mutate(fixture_difficulty = rolling_10_game_assists)
+  mutate(fixture_difficulty = rolling_15_game_assists)
 
 all_player_rebounds <-
   all_player_rebounds |>
   left_join(opp_stats, by = c("opposition_team" = "oppositionTeam")) |> 
-  mutate(fixture_difficulty = rolling_10_game_rebounds)
+  mutate(fixture_difficulty = rolling_15_game_rebounds)
 
 all_player_threes <-
   all_player_threes |>
   left_join(opp_stats, by = c("opposition_team" = "oppositionTeam")) |> 
-  mutate(fixture_difficulty = rolling_10_game_threes)
+  mutate(fixture_difficulty = rolling_15_game_threes)
 
 all_player_steals <-
   all_player_steals |>
   left_join(opp_stats, by = c("opposition_team" = "oppositionTeam")) |> 
-  mutate(fixture_difficulty = rolling_10_game_steals)
+  mutate(fixture_difficulty = rolling_15_game_steals)
 
 all_player_blocks <-
   all_player_blocks |>
   left_join(opp_stats, by = c("opposition_team" = "oppositionTeam")) |> 
-  mutate(fixture_difficulty = rolling_10_game_blocks)
+  mutate(fixture_difficulty = rolling_15_game_blocks)
 
 all_player_pras <-
   all_player_pras |>
   left_join(opp_stats, by = c("opposition_team" = "oppositionTeam")) |> 
-  mutate(fixture_difficulty = rolling_10_game_PRAs)
+  mutate(fixture_difficulty = rolling_15_game_PRAs)
 
 
 ```
@@ -110,7 +111,7 @@ player_points_overs_to_bet <-
   arrange(desc(variation), player_name, line) |> 
   filter(variation >= 0.025) |> 
   filter(diff_over_last_10 >= 0.1 & diff_over_2023_24 >= 0) |> 
-  filter(over_price >= 1.3) |> filter(fixture_difficulty >= 0.45)
+  filter(over_price >= 1.3)
 
 # Unders-------------------------------------------------------------
 all_player_points_unders <-
@@ -136,7 +137,7 @@ player_points_unders_to_bet <-
   arrange(desc(variation), player_name, line) |> 
   filter(variation >= 0.025) |> 
   filter(diff_under_last_10 >= 0.05 & diff_under_2023_24 >= 0) |> 
-  filter(under_price >= 1.3) |> filter(fixture_difficulty <= 0.55)
+  filter(under_price >= 1.3)
 
 #===============================================================================
 # Player Rebounds
@@ -165,7 +166,7 @@ player_rebounds_overs_to_bet <-
   arrange(desc(variation), player_name, line) |> 
   filter(variation >= 0.025) |> 
   filter(diff_over_last_10 >= 0.1 & diff_over_2023_24 >= 0) |> 
-  filter(over_price >= 1.3) |> filter(fixture_difficulty >= 0.45)
+  filter(over_price >= 1.3) 
 
 # Unders-------------------------------------------------------------
 all_player_rebounds_unders <-
@@ -191,7 +192,7 @@ player_rebounds_unders_to_bet <-
   arrange(desc(variation), player_name, line) |> 
   filter(variation >= 0.025) |> 
   filter(diff_under_last_10 >= 0.05 & diff_under_2023_24 >= 0) |> 
-  filter(under_price >= 1.3) |> filter(fixture_difficulty <= 0.55)
+  filter(under_price >= 1.3)
 
 #===============================================================================
 # Player Assists
@@ -220,7 +221,7 @@ player_assists_overs_to_bet <-
   arrange(desc(variation), player_name, line) |> 
   filter(variation >= 0.025) |> 
   filter(diff_over_last_10 >= 0.1 & diff_over_2023_24 >= 0) |> 
-  filter(over_price >= 1.3) |> filter(fixture_difficulty >= 0.45)
+  filter(over_price >= 1.3) 
 
 # Unders-------------------------------------------------------------
 all_player_assists_unders <-
@@ -246,7 +247,7 @@ player_assists_unders_to_bet <-
   arrange(desc(variation), player_name, line) |> 
   filter(variation >= 0.025) |> 
   filter(diff_under_last_10 >= 0.05 & diff_under_2023_24 >= 0) |> 
-  filter(under_price >= 1.3) |> filter(fixture_difficulty <= 0.55)
+  filter(under_price >= 1.3)
 
 #===============================================================================
 # Player PRAs
@@ -275,7 +276,7 @@ player_pras_overs_to_bet <-
   arrange(desc(variation), player_name, line) |> 
   filter(variation >= 0.025) |> 
   filter(diff_over_last_10 >= 0.1 & diff_over_2023_24 >= 0) |> 
-  filter(over_price >= 1.3) |> filter(fixture_difficulty >= 0.45)
+  filter(over_price >= 1.3) 
 
 # Unders-------------------------------------------------------------
 all_player_pras_unders <-
@@ -301,7 +302,7 @@ player_pras_unders_to_bet <-
   arrange(desc(variation), player_name, line) |> 
   filter(variation >= 0.025) |> 
   filter(diff_under_last_10 >= 0.05 & diff_under_2023_24 >= 0) |> 
-  filter(under_price >= 1.3) |> filter(fixture_difficulty <= 0.55)
+  filter(under_price >= 1.3)
 
 #===============================================================================
 # Player Steals
@@ -330,7 +331,7 @@ player_steals_overs_to_bet <-
   arrange(desc(variation), player_name, line) |> 
   filter(variation >= 0.025) |> 
   filter(diff_over_last_10 >= 0.1 & diff_over_2023_24 >= 0) |> 
-  filter(over_price >= 1.3) |> filter(fixture_difficulty >= 0.45)
+  filter(over_price >= 1.3) 
 
 # Unders-------------------------------------------------------------
 all_player_steals_unders <-
@@ -356,7 +357,7 @@ player_steals_unders_to_bet <-
   arrange(desc(variation), player_name, line) |> 
   filter(variation >= 0.025) |> 
   filter(diff_under_last_10 >= 0.05 & diff_under_2023_24 >= 0) |> 
-  filter(under_price >= 1.3) |> filter(fixture_difficulty <= 0.55)
+  filter(under_price >= 1.3)
 
 #===============================================================================
 # Player Blocks
@@ -385,7 +386,7 @@ player_blocks_overs_to_bet <-
   arrange(desc(variation), player_name, line) |> 
   filter(variation >= 0.025) |> 
   filter(diff_over_last_10 >= 0.1 & diff_over_2023_24 >= 0) |> 
-  filter(over_price >= 1.3) |> filter(fixture_difficulty >= 0.45)
+  filter(over_price >= 1.3) 
 
 # Unders-------------------------------------------------------------
 all_player_blocks_unders <-
@@ -411,7 +412,7 @@ player_blocks_unders_to_bet <-
   arrange(desc(variation), player_name, line) |> 
   filter(variation >= 0.025) |> 
   filter(diff_under_last_10 >= 0.05 & diff_under_2023_24 >= 0) |> 
-  filter(under_price >= 1.3) |> filter(fixture_difficulty <= 0.55)
+  filter(under_price >= 1.3)
 
 #===============================================================================
 # Player Threes
@@ -440,7 +441,7 @@ player_threes_overs_to_bet <-
   arrange(desc(variation), player_name, line) |> 
   filter(variation >= 0.025) |> 
   filter(diff_over_last_10 >= 0.1 & diff_over_2023_24 >= 0) |> 
-  filter(over_price >= 1.3) |> filter(fixture_difficulty >= 0.45)
+  filter(over_price >= 1.3) 
 
 # Unders-------------------------------------------------------------
 all_player_threes_unders <-
@@ -466,7 +467,7 @@ player_threes_unders_to_bet <-
   arrange(desc(variation), player_name, line) |> 
   filter(variation >= 0.025) |> 
   filter(diff_under_last_10 >= 0.05 & diff_under_2023_24 >= 0) |> 
-  filter(under_price >= 1.3) |> filter(fixture_difficulty <= 0.55)
+  filter(under_price >= 1.3)
 ```
 
 # All Overs
@@ -483,7 +484,7 @@ all_overs <-
     player_threes_overs_to_bet
   ) |> 
   arrange(agency,match, desc(variation), desc(diff_over_last_10)) |> 
-  select(player_team, player_name, market_name, agency, line,over_price, diff_over_last_10, variation)
+  select(player_team, player_name, market_name, agency, line,over_price, diff_over_last_10, variation, fixture_difficulty)
 
 all_overs
 ```
@@ -502,7 +503,7 @@ all_unders <-
     player_threes_unders_to_bet
   ) |> 
   arrange(agency, match, desc(variation), desc(diff_under_last_10)) |> 
-  select(player_team, player_name, market_name, agency, line,under_price, diff_under_last_10, variation)
+  select(player_team, player_name, market_name, agency, line,under_price, diff_under_last_10, variation, fixture_difficulty)
 
 all_unders
 ```
