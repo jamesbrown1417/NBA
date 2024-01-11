@@ -49,7 +49,7 @@ all_scraped_odds <-
   mutate(date = as_date(start_time)) |> 
   mutate(home_away = if_else(opposition_team != home_team, "home", "away")) |> 
   mutate(market_name = str_to_title(market_name)) |>
-  distinct(date, player_name, market_name, line, over_price, under_price, .keep_all = TRUE)
+  distinct(date, player_name, agency, market_name, line, over_price, under_price, .keep_all = TRUE)
 
 # Read in stats-----------------------------------------------------------------
 
