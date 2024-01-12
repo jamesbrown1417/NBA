@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="James Brown">
-<meta name="dcterms.date" content="2024-01-11">
+<meta name="dcterms.date" content="2024-01-12">
 
 <title>Performance Review</title>
 <style>
@@ -2993,27 +2993,8 @@ vertical-align: -.125em;
   <ul>
   <li><a href="#outlier-method" id="toc-outlier-method" class="nav-link active" data-scroll-target="#outlier-method">Outlier Method</a>
   <ul class="collapse">
-  <li><a href="#overs" id="toc-overs" class="nav-link" data-scroll-target="#overs">Overs</a>
-  <ul class="collapse">
-  <li><a href="#by-date" id="toc-by-date" class="nav-link" data-scroll-target="#by-date">By Date</a></li>
-  <li><a href="#overall" id="toc-overall" class="nav-link" data-scroll-target="#overall">Overall</a></li>
-  </ul></li>
-  <li><a href="#unders" id="toc-unders" class="nav-link" data-scroll-target="#unders">Unders</a>
-  <ul class="collapse">
-  <li><a href="#by-date-1" id="toc-by-date-1" class="nav-link" data-scroll-target="#by-date-1">By Date</a></li>
-  <li><a href="#overall-1" id="toc-overall-1" class="nav-link" data-scroll-target="#overall-1">Overall</a></li>
-  </ul></li>
-  </ul></li>
-  <li><a href="#diff-method" id="toc-diff-method" class="nav-link" data-scroll-target="#diff-method">Diff Method</a>
-  <ul class="collapse">
-  <li><a href="#overs-1" id="toc-overs-1" class="nav-link" data-scroll-target="#overs-1">Overs</a>
-  <ul class="collapse">
-  <li><a href="#overall-2" id="toc-overall-2" class="nav-link" data-scroll-target="#overall-2">Overall</a></li>
-  </ul></li>
-  <li><a href="#unders-1" id="toc-unders-1" class="nav-link" data-scroll-target="#unders-1">Unders</a>
-  <ul class="collapse">
-  <li><a href="#overall-3" id="toc-overall-3" class="nav-link" data-scroll-target="#overall-3">Overall</a></li>
-  </ul></li>
+  <li><a href="#overs" id="toc-overs" class="nav-link" data-scroll-target="#overs">Overs</a></li>
+  <li><a href="#unders" id="toc-unders" class="nav-link" data-scroll-target="#unders">Unders</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -3039,7 +3020,7 @@ vertical-align: -.125em;
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">January 11, 2024</p>
+      <p class="date">January 12, 2024</p>
     </div>
   </div>
   
@@ -3053,8 +3034,106 @@ vertical-align: -.125em;
 <h1>Outlier Method</h1>
 <section id="overs" class="level2">
 <h2 class="anchored" data-anchor-id="overs">Overs</h2>
-<section id="by-date" class="level3">
-<h3 class="anchored" data-anchor-id="by-date">By Date</h3>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href>Overall</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href>By Market</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href>By Date</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="kable-table">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: right;">bets_placed</th>
+<th style="text-align: right;">total_stake</th>
+<th style="text-align: right;">profit</th>
+<th style="text-align: right;">ROI</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">242</td>
+<td style="text-align: right;">18050</td>
+<td style="text-align: right;">417.5</td>
+<td style="text-align: right;">2.313019</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="kable-table">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">market_name</th>
+<th style="text-align: right;">bets_placed</th>
+<th style="text-align: right;">total_stake</th>
+<th style="text-align: right;">profit</th>
+<th style="text-align: right;">ROI</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Player Pras</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">1500</td>
+<td style="text-align: right;">205.0</td>
+<td style="text-align: right;">13.6666667</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Player Threes</td>
+<td style="text-align: right;">65</td>
+<td style="text-align: right;">3250</td>
+<td style="text-align: right;">277.5</td>
+<td style="text-align: right;">8.5384615</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Player Rebounds</td>
+<td style="text-align: right;">36</td>
+<td style="text-align: right;">3175</td>
+<td style="text-align: right;">262.0</td>
+<td style="text-align: right;">8.2519685</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Player Points</td>
+<td style="text-align: right;">69</td>
+<td style="text-align: right;">4850</td>
+<td style="text-align: right;">-28.5</td>
+<td style="text-align: right;">-0.5876289</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Player Blocks</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">1000</td>
+<td style="text-align: right;">-21.5</td>
+<td style="text-align: right;">-2.1500000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Player Assists</td>
+<td style="text-align: right;">42</td>
+<td style="text-align: right;">3375</td>
+<td style="text-align: right;">-209.5</td>
+<td style="text-align: right;">-6.2074074</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Player Steals</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">900</td>
+<td style="text-align: right;">-67.5</td>
+<td style="text-align: right;">-7.5000000</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div class="kable-table">
@@ -3070,60 +3149,32 @@ vertical-align: -.125em;
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">2023-12-23</td>
-<td style="text-align: right;">13</td>
-<td style="text-align: right;">1075</td>
-<td style="text-align: right;">-458.00</td>
-<td style="text-align: right;">-42.604651</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">2023-12-26</td>
+<td style="text-align: left;">2024-01-12</td>
 <td style="text-align: right;">12</td>
-<td style="text-align: right;">725</td>
-<td style="text-align: right;">174.50</td>
-<td style="text-align: right;">24.068966</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">2023-12-28</td>
-<td style="text-align: right;">9</td>
-<td style="text-align: right;">550</td>
-<td style="text-align: right;">-36.25</td>
-<td style="text-align: right;">-6.590909</td>
+<td style="text-align: right;">875</td>
+<td style="text-align: right;">-81.00</td>
+<td style="text-align: right;">-9.257143</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">2023-12-30</td>
+<td style="text-align: left;">2024-01-11</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">1025</td>
+<td style="text-align: right;">164.50</td>
+<td style="text-align: right;">16.048780</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2024-01-10</td>
 <td style="text-align: right;">11</td>
-<td style="text-align: right;">700</td>
-<td style="text-align: right;">346.25</td>
-<td style="text-align: right;">49.464286</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">2024-01-04</td>
-<td style="text-align: right;">39</td>
-<td style="text-align: right;">2450</td>
-<td style="text-align: right;">-524.50</td>
-<td style="text-align: right;">-21.408163</td>
+<td style="text-align: right;">675</td>
+<td style="text-align: right;">232.50</td>
+<td style="text-align: right;">34.444444</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">2024-01-05</td>
-<td style="text-align: right;">7</td>
-<td style="text-align: right;">575</td>
-<td style="text-align: right;">554.50</td>
-<td style="text-align: right;">96.434783</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">2024-01-06</td>
-<td style="text-align: right;">51</td>
-<td style="text-align: right;">3975</td>
-<td style="text-align: right;">-185.00</td>
-<td style="text-align: right;">-4.654088</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">2024-01-07</td>
-<td style="text-align: right;">17</td>
-<td style="text-align: right;">1325</td>
-<td style="text-align: right;">107.50</td>
-<td style="text-align: right;">8.113207</td>
+<td style="text-align: left;">2024-01-09</td>
+<td style="text-align: right;">21</td>
+<td style="text-align: right;">1525</td>
+<td style="text-align: right;">311.50</td>
+<td style="text-align: right;">20.426230</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2024-01-08</td>
@@ -3133,34 +3184,76 @@ vertical-align: -.125em;
 <td style="text-align: right;">-29.959184</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">2024-01-09</td>
-<td style="text-align: right;">20</td>
-<td style="text-align: right;">1425</td>
-<td style="text-align: right;">234.50</td>
-<td style="text-align: right;">16.456140</td>
+<td style="text-align: left;">2024-01-07</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: right;">1325</td>
+<td style="text-align: right;">107.50</td>
+<td style="text-align: right;">8.113207</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">2024-01-10</td>
-<td style="text-align: right;">10</td>
-<td style="text-align: right;">625</td>
-<td style="text-align: right;">282.50</td>
-<td style="text-align: right;">45.200000</td>
+<td style="text-align: left;">2024-01-06</td>
+<td style="text-align: right;">54</td>
+<td style="text-align: right;">4275</td>
+<td style="text-align: right;">-485.00</td>
+<td style="text-align: right;">-11.345029</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">2024-01-11</td>
-<td style="text-align: right;">12</td>
-<td style="text-align: right;">1025</td>
-<td style="text-align: right;">164.50</td>
-<td style="text-align: right;">16.048780</td>
+<td style="text-align: left;">2024-01-05</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">575</td>
+<td style="text-align: right;">554.50</td>
+<td style="text-align: right;">96.434783</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2024-01-04</td>
+<td style="text-align: right;">42</td>
+<td style="text-align: right;">2750</td>
+<td style="text-align: right;">-172.50</td>
+<td style="text-align: right;">-6.272727</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2023-12-30</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">950</td>
+<td style="text-align: right;">505.25</td>
+<td style="text-align: right;">53.184210</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2023-12-28</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">750</td>
+<td style="text-align: right;">-236.25</td>
+<td style="text-align: right;">-31.500000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2023-12-26</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">925</td>
+<td style="text-align: right;">289.50</td>
+<td style="text-align: right;">31.297297</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2023-12-23</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">1175</td>
+<td style="text-align: right;">-406.00</td>
+<td style="text-align: right;">-34.553191</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 </div>
+</div>
+</div>
+</div>
 </section>
-<section id="overall" class="level3">
-<h3 class="anchored" data-anchor-id="overall">Overall</h3>
+<section id="unders" class="level2">
+<h2 class="anchored" data-anchor-id="unders">Unders</h2>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href>Overall</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href>By Market</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false" href>By Date</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div class="kable-table">
@@ -3175,22 +3268,88 @@ vertical-align: -.125em;
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">215</td>
-<td style="text-align: right;">15675</td>
-<td style="text-align: right;">293.5</td>
-<td style="text-align: right;">1.872408</td>
+<td style="text-align: right;">254</td>
+<td style="text-align: right;">25350</td>
+<td style="text-align: right;">2009.5</td>
+<td style="text-align: right;">7.927022</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 </div>
-</section>
-</section>
-<section id="unders" class="level2">
-<h2 class="anchored" data-anchor-id="unders">Unders</h2>
-<section id="by-date-1" class="level3">
-<h3 class="anchored" data-anchor-id="by-date-1">By Date</h3>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="kable-table">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">market_name</th>
+<th style="text-align: right;">bets_placed</th>
+<th style="text-align: right;">total_stake</th>
+<th style="text-align: right;">profit</th>
+<th style="text-align: right;">ROI</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Player Rebounds</td>
+<td style="text-align: right;">64</td>
+<td style="text-align: right;">6350</td>
+<td style="text-align: right;">1652.0</td>
+<td style="text-align: right;">26.015748</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Player Steals</td>
+<td style="text-align: right;">25</td>
+<td style="text-align: right;">2300</td>
+<td style="text-align: right;">469.0</td>
+<td style="text-align: right;">20.391304</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Player Points</td>
+<td style="text-align: right;">70</td>
+<td style="text-align: right;">7000</td>
+<td style="text-align: right;">798.0</td>
+<td style="text-align: right;">11.400000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Player Pras</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: right;">1900</td>
+<td style="text-align: right;">34.0</td>
+<td style="text-align: right;">1.789474</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Player Assists</td>
+<td style="text-align: right;">30</td>
+<td style="text-align: right;">2850</td>
+<td style="text-align: right;">-206.0</td>
+<td style="text-align: right;">-7.228070</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Player Threes</td>
+<td style="text-align: right;">31</td>
+<td style="text-align: right;">3400</td>
+<td style="text-align: right;">-315.5</td>
+<td style="text-align: right;">-9.279412</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Player Blocks</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">1550</td>
+<td style="text-align: right;">-422.0</td>
+<td style="text-align: right;">-27.225807</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div class="kable-table">
@@ -3206,192 +3365,130 @@ vertical-align: -.125em;
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">2023-12-23</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">300</td>
-<td style="text-align: right;">-105</td>
-<td style="text-align: right;">-35.000000</td>
+<td style="text-align: left;">2024-01-12</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">1500</td>
+<td style="text-align: right;">126.5</td>
+<td style="text-align: right;">8.433333</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">2023-12-26</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">300</td>
-<td style="text-align: right;">-93</td>
-<td style="text-align: right;">-31.000000</td>
+<td style="text-align: left;">2024-01-11</td>
+<td style="text-align: right;">28</td>
+<td style="text-align: right;">2750</td>
+<td style="text-align: right;">1165.0</td>
+<td style="text-align: right;">42.363636</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">2023-12-28</td>
-<td style="text-align: right;">10</td>
-<td style="text-align: right;">1000</td>
-<td style="text-align: right;">310</td>
-<td style="text-align: right;">31.000000</td>
+<td style="text-align: left;">2024-01-10</td>
+<td style="text-align: right;">28</td>
+<td style="text-align: right;">2800</td>
+<td style="text-align: right;">-70.0</td>
+<td style="text-align: right;">-2.500000</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">2023-12-30</td>
-<td style="text-align: right;">5</td>
-<td style="text-align: right;">500</td>
-<td style="text-align: right;">512</td>
-<td style="text-align: right;">102.400000</td>
+<td style="text-align: left;">2024-01-09</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">1400</td>
+<td style="text-align: right;">273.0</td>
+<td style="text-align: right;">19.500000</td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;">2024-01-08</td>
+<td style="text-align: right;">24</td>
+<td style="text-align: right;">2300</td>
+<td style="text-align: right;">224.0</td>
+<td style="text-align: right;">9.739130</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2024-01-07</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">1150</td>
+<td style="text-align: right;">20.0</td>
+<td style="text-align: right;">1.739130</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2024-01-06</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: right;">3150</td>
+<td style="text-align: right;">539.0</td>
+<td style="text-align: right;">17.111111</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2024-01-05</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">1200</td>
+<td style="text-align: right;">119.0</td>
+<td style="text-align: right;">9.916667</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2024-01-04</td>
+<td style="text-align: right;">41</td>
+<td style="text-align: right;">4100</td>
+<td style="text-align: right;">-56.0</td>
+<td style="text-align: right;">-1.365854</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">2023-12-31</td>
 <td style="text-align: right;">3</td>
 <td style="text-align: right;">300</td>
-<td style="text-align: right;">-95</td>
+<td style="text-align: right;">-95.0</td>
 <td style="text-align: right;">-31.666667</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">2024-01-04</td>
-<td style="text-align: right;">32</td>
-<td style="text-align: right;">3150</td>
-<td style="text-align: right;">162</td>
-<td style="text-align: right;">5.142857</td>
-</tr>
 <tr class="odd">
-<td style="text-align: left;">2024-01-05</td>
-<td style="text-align: right;">9</td>
-<td style="text-align: right;">900</td>
-<td style="text-align: right;">215</td>
-<td style="text-align: right;">23.888889</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">2024-01-06</td>
-<td style="text-align: right;">23</td>
-<td style="text-align: right;">2250</td>
-<td style="text-align: right;">210</td>
-<td style="text-align: right;">9.333333</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">2024-01-07</td>
-<td style="text-align: right;">7</td>
-<td style="text-align: right;">700</td>
-<td style="text-align: right;">94</td>
-<td style="text-align: right;">13.428571</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">2024-01-08</td>
-<td style="text-align: right;">16</td>
-<td style="text-align: right;">1550</td>
-<td style="text-align: right;">-20</td>
-<td style="text-align: right;">-1.290323</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">2024-01-09</td>
+<td style="text-align: left;">2023-12-30</td>
 <td style="text-align: right;">11</td>
-<td style="text-align: right;">1100</td>
-<td style="text-align: right;">233</td>
-<td style="text-align: right;">21.181818</td>
+<td style="text-align: right;">1150</td>
+<td style="text-align: right;">49.0</td>
+<td style="text-align: right;">4.260870</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">2024-01-10</td>
-<td style="text-align: right;">20</td>
-<td style="text-align: right;">2000</td>
-<td style="text-align: right;">252</td>
-<td style="text-align: right;">12.600000</td>
+<td style="text-align: left;">2023-12-28</td>
+<td style="text-align: right;">25</td>
+<td style="text-align: right;">2500</td>
+<td style="text-align: right;">195.0</td>
+<td style="text-align: right;">7.800000</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">2024-01-11</td>
-<td style="text-align: right;">16</td>
-<td style="text-align: right;">1600</td>
-<td style="text-align: right;">595</td>
-<td style="text-align: right;">37.187500</td>
+<td style="text-align: left;">2023-12-26</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">300</td>
+<td style="text-align: right;">-93.0</td>
+<td style="text-align: right;">-31.000000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2023-12-23</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">750</td>
+<td style="text-align: right;">-387.0</td>
+<td style="text-align: right;">-51.600000</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 </div>
-</section>
-<section id="overall-1" class="level3">
-<h3 class="anchored" data-anchor-id="overall-1">Overall</h3>
-<div class="cell">
-<div class="cell-output-display">
-<div class="kable-table">
-<table class="table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th style="text-align: right;">bets_placed</th>
-<th style="text-align: right;">total_stake</th>
-<th style="text-align: right;">profit</th>
-<th style="text-align: right;">ROI</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: right;">158</td>
-<td style="text-align: right;">15650</td>
-<td style="text-align: right;">2270</td>
-<td style="text-align: right;">14.50479</td>
-</tr>
-</tbody>
-</table>
 </div>
 </div>
 </div>
-</section>
-</section>
-</section>
-<section id="diff-method" class="level1">
-<h1>Diff Method</h1>
-<section id="overs-1" class="level2">
-<h2 class="anchored" data-anchor-id="overs-1">Overs</h2>
-<section id="overall-2" class="level3">
-<h3 class="anchored" data-anchor-id="overall-2">Overall</h3>
-<div class="cell">
-<div class="cell-output-display">
-<div class="kable-table">
-<table class="table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th style="text-align: right;">bets_placed</th>
-<th style="text-align: right;">total_stake</th>
-<th style="text-align: right;">profit</th>
-<th style="text-align: right;">ROI</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: right;">289</td>
-<td style="text-align: right;">22725</td>
-<td style="text-align: right;">-4010.75</td>
-<td style="text-align: right;">-17.64906</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-</section>
-</section>
-<section id="unders-1" class="level2">
-<h2 class="anchored" data-anchor-id="unders-1">Unders</h2>
-<section id="overall-3" class="level3">
-<h3 class="anchored" data-anchor-id="overall-3">Overall</h3>
-<div class="cell">
-<div class="cell-output-display">
-<div class="kable-table">
-<table class="table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th style="text-align: right;">bets_placed</th>
-<th style="text-align: right;">total_stake</th>
-<th style="text-align: right;">profit</th>
-<th style="text-align: right;">ROI</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: right;">52</td>
-<td style="text-align: right;">5150</td>
-<td style="text-align: right;">602</td>
-<td style="text-align: right;">11.68932</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-</section>
+<!-- # Diff Method -->
+<!-- ## Overs -->
+<!-- ### Overall -->
+<!-- ```{r} -->
+<!-- overs_diff_method |>  -->
+<!--   summarise(bets_placed = n(), -->
+<!--             total_stake = sum(stake), -->
+<!--             profit = sum(profit), -->
+<!--             ROI = 100*(profit / total_stake)) -->
+<!-- ``` -->
+<!-- ## Unders -->
+<!-- ### Overall -->
+<!-- ```{r} -->
+<!-- unders_diff_method |>  -->
+<!--   summarise(bets_placed = n(), -->
+<!--             total_stake = sum(stake), -->
+<!--             profit = sum(profit), -->
+<!--             ROI = 100*(profit / total_stake)) -->
+<!-- ``` -->
 </section>
 </section>
 

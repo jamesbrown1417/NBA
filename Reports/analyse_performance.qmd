@@ -417,7 +417,7 @@ strategy_1_assists_unders <-
 
 player_pras_markets <-
   all_scraped_odds |>
-  filter(market_name == "Player PRAs")
+  filter(market_name == "Player Pras")
 
 # Propogate Start Date forward if missing
 player_pras_markets <-
@@ -793,6 +793,8 @@ unders_diff_method <-
 # Outlier Method
 #===============================================================================
 
+markets_with_two <- c("Player Threes", "Player Steals", "Player Blocks")
+
 overs_outlier_method <-
 all_overs |> 
   arrange(date, player_name, market_name, line, desc(over_price)) |> 
@@ -809,8 +811,26 @@ all_overs |>
     # filter(fixture_difficulty >= 0) |> 
   relocate(fixture_difficulty, .after = date)
 
-unders_outlier_method <-
+unders_outlier_method_1 <-
+  all_unders |>
+  filter(market_name %in% markets_with_two) |>
+  arrange(date, player_name, market_name, line, desc(under_price)) |> 
+  group_by(date, player_name, market_name, line) |>
+  filter(n() > 1) |> 
+  slice_head(n = 2) |>
+  mutate(variation = max(implied_prob_under) - min(implied_prob_under)) |>
+  slice_head(n = 1) |> 
+  ungroup() |>
+  arrange(desc(variation), player_name, line) |> 
+  filter(variation >= 0.025) |> 
+  filter(diff_under_last_10 >= 0.05 & diff_under_2023_24 >= 0) |>
+  filter(under_price >= 1.3) |> 
+  # filter(fixture_difficulty <= 0) |> 
+  relocate(fixture_difficulty, .after = date)
+
+unders_outlier_method_2 <-
   all_unders |> 
+  filter(!market_name %in% markets_with_two) |>
   arrange(date, player_name, market_name, line, desc(under_price)) |> 
   group_by(date, player_name, market_name, line) |>
   filter(n() > 2) |> 
@@ -825,22 +845,16 @@ unders_outlier_method <-
   # filter(fixture_difficulty <= 0) |> 
   relocate(fixture_difficulty, .after = date)
 
+unders_outlier_method <-
+  bind_rows(unders_outlier_method_1, unders_outlier_method_2) |>
+  arrange(desc(date), player_name, line)
 ```
 
 # Outlier Method
 
 ## Overs
 
-### By Date
-
-```{r}
-overs_outlier_method |> 
-    group_by(date) |>
-  summarise(bets_placed = n(),
-            total_stake = sum(stake),
-            profit = sum(profit),
-            ROI = 100*(profit / total_stake))
-```
+::: panel-tabset
 
 ### Overall
 
@@ -852,7 +866,58 @@ overs_outlier_method |>
             ROI = 100*(profit / total_stake))
 ```
 
+### By Market
+
+```{r}
+overs_outlier_method |> 
+    group_by(market_name) |>
+  summarise(bets_placed = n(),
+            total_stake = sum(stake),
+            profit = sum(profit),
+            ROI = 100*(profit / total_stake)) |> 
+  arrange(desc(ROI))
+```
+
+### By Date
+
+```{r}
+overs_outlier_method |> 
+    group_by(date) |>
+  summarise(bets_placed = n(),
+            total_stake = sum(stake),
+            profit = sum(profit),
+            ROI = 100*(profit / total_stake)) |> 
+  arrange(desc(date))
+```
+
+
+:::
+
 ## Unders
+
+::: panel-tabset
+
+### Overall
+
+```{r}
+unders_outlier_method |> 
+  summarise(bets_placed = n(),
+            total_stake = sum(stake),
+            profit = sum(profit),
+            ROI = 100*(profit / total_stake))
+```
+
+### By Market
+
+```{r}
+unders_outlier_method |> 
+    group_by(market_name) |>
+  summarise(bets_placed = n(),
+            total_stake = sum(stake),
+            profit = sum(profit),
+            ROI = 100*(profit / total_stake)) |> 
+  arrange(desc(ROI))
+```
 
 ### By Date
 
@@ -862,41 +927,46 @@ unders_outlier_method |>
   summarise(bets_placed = n(),
             total_stake = sum(stake),
             profit = sum(profit),
-            ROI = 100*(profit / total_stake))
+            ROI = 100*(profit / total_stake)) |> 
+  arrange(desc(date))
 ```
 
-### Overall
+:::
 
-```{r}
-unders_outlier_method |> 
-  summarise(bets_placed = n(),
-            total_stake = sum(stake),
-            profit = sum(profit),
-            ROI = 100*(profit / total_stake))
-```
+<!-- # Diff Method -->
 
-# Diff Method
+<!-- ## Overs -->
 
-## Overs
+<!-- ### Overall -->
 
-### Overall
+<!-- ```{r} -->
 
-```{r}
-overs_diff_method |> 
-  summarise(bets_placed = n(),
-            total_stake = sum(stake),
-            profit = sum(profit),
-            ROI = 100*(profit / total_stake))
-```
+<!-- overs_diff_method |>  -->
 
-## Unders
+<!--   summarise(bets_placed = n(), -->
 
-### Overall
+<!--             total_stake = sum(stake), -->
 
-```{r}
-unders_diff_method |> 
-  summarise(bets_placed = n(),
-            total_stake = sum(stake),
-            profit = sum(profit),
-            ROI = 100*(profit / total_stake))
-```
+<!--             profit = sum(profit), -->
+
+<!--             ROI = 100*(profit / total_stake)) -->
+
+<!-- ``` -->
+
+<!-- ## Unders -->
+
+<!-- ### Overall -->
+
+<!-- ```{r} -->
+
+<!-- unders_diff_method |>  -->
+
+<!--   summarise(bets_placed = n(), -->
+
+<!--             total_stake = sum(stake), -->
+
+<!--             profit = sum(profit), -->
+
+<!--             ROI = 100*(profit / total_stake)) -->
+
+<!-- ``` -->
