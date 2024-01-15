@@ -62,6 +62,7 @@ all_tab_markets |>
            "start_time",
            "market_name")),
            prop_name = propositions_name,
+           prop_id = propositions_id,
            price = propositions_returnWin)
 
 #===============================================================================
@@ -113,7 +114,7 @@ under_lines <-
     filter(market_name == "Total Points Over/Under") |> 
     filter(str_detect(prop_name, "Under")) |> 
     mutate(total_points_line = as.numeric(str_extract(prop_name, "\\d+\\.\\d+"))) |>
-    select(match, start_time, market_name, total_points_line, under_price = price)
+    select(match, start_time, market_name, total_points_line, under_price = price, under_prop_id = prop_id)
 
 # Over lines
 over_lines <-
@@ -121,7 +122,7 @@ over_lines <-
     filter(market_name == "Total Points Over/Under") |> 
     filter(str_detect(prop_name, "Over")) |> 
     mutate(total_points_line = as.numeric(str_extract(prop_name, "\\d+\\.\\d+"))) |>
-    select(match, start_time, market_name, total_points_line, over_price = price)
+    select(match, start_time, market_name, total_points_line, over_price = price, prop_id)
 
 # Combine
 tab_total_line_markets <-
@@ -170,15 +171,14 @@ alternate_player_points_markets <-
     mutate(player_name = str_remove(prop_name, " \\(.*\\)")) |>
     mutate(line = str_extract(market_name, "\\d+")) |> 
     mutate(line = as.numeric(line) - 0.5) |> 
-    transmute(match, market_name = "Player Points", player_name, line, over_price = price)
-
+    transmute(match, market_name = "Player Points", player_name, line, over_price = price, prop_id)
 
 # Over lines
 over_lines <-
     player_points_markets |> 
     filter(type == "Over") |> 
     mutate(market_name = "Player Points") |>
-    select(match, market_name, player_name, line, over_price = price) |> 
+    select(match, market_name, player_name, line, over_price = price, prop_id) |> 
     bind_rows(alternate_player_points_markets)
 
 # Under lines
@@ -186,13 +186,13 @@ under_lines <-
     player_points_markets |> 
     filter(type == "Under") |> 
     mutate(market_name = "Player Points") |>
-    select(match, market_name, player_name, line, under_price = price)
+    select(match, market_name, player_name, line, under_price = price, under_prop_id = prop_id)
 
 # Combine
 tab_player_points_markets <-
     over_lines |>
     full_join(under_lines) |> 
-    select(match, market_name, player_name, line, over_price, under_price) |> 
+    select(match, market_name, player_name, line, over_price, under_price, prop_id, under_prop_id) |> 
     mutate(agency = "TAB")
 
 # Fix team names
@@ -232,14 +232,14 @@ alternate_player_assists_markets <-
     mutate(player_name = str_remove(prop_name, " \\(.*\\)")) |>
     mutate(line = str_extract(market_name, "\\d+")) |> 
     mutate(line = as.numeric(line) - 0.5) |> 
-    transmute(match, market_name = "Player Assists", player_name, line, over_price = price)
+    transmute(match, market_name = "Player Assists", player_name, line, over_price = price, prop_id)
 
 # Over lines
 over_lines <-
     player_assists_markets |> 
     filter(type == "Over") |> 
     mutate(market_name = "Player Assists") |>
-    select(match, market_name, player_name, line, over_price = price) |> 
+    select(match, market_name, player_name, line, over_price = price, prop_id) |> 
     bind_rows(alternate_player_assists_markets)
 
 # Under lines
@@ -247,13 +247,13 @@ under_lines <-
     player_assists_markets |> 
     filter(type == "Under") |> 
     mutate(market_name = "Player Assists") |>
-    select(match, market_name, player_name, line, under_price = price)
+    select(match, market_name, player_name, line, under_price = price, under_prop_id = prop_id)
 
 # Combine
 tab_player_assists_markets <-
     over_lines |>
     full_join(under_lines) |> 
-    select(match, market_name, player_name, line, over_price, under_price) |> 
+    select(match, market_name, player_name, line, over_price, under_price, prop_id, under_prop_id) |> 
     mutate(agency = "TAB")
 
 # Fix team names
@@ -293,14 +293,14 @@ alternate_player_rebounds_markets <-
     mutate(player_name = str_remove(prop_name, " \\(.*\\)")) |>
     mutate(line = str_extract(market_name, "\\d+")) |>
     mutate(line = as.numeric(line) - 0.5) |>
-    transmute(match, market_name = "Player Rebounds", player_name, line, over_price = price)
+    transmute(match, market_name = "Player Rebounds", player_name, line, over_price = price, prop_id)
 
 # Over lines
 over_lines <-
     player_rebounds_markets |> 
     filter(type == "Over") |> 
     mutate(market_name = "Player Rebounds") |>
-    select(match, market_name, player_name, line, over_price = price) |> 
+    select(match, market_name, player_name, line, over_price = price, prop_id) |> 
     bind_rows(alternate_player_rebounds_markets)
 
 # Under lines
@@ -308,13 +308,13 @@ under_lines <-
     player_rebounds_markets |> 
     filter(type == "Under") |> 
     mutate(market_name = "Player Rebounds") |>
-    select(match, market_name, player_name, line, under_price = price)
+    select(match, market_name, player_name, line, under_price = price, under_prop_id = prop_id)
 
 # Combine
 tab_player_rebounds_markets <-
     over_lines |>
     full_join(under_lines) |> 
-    select(match, market_name, player_name, line, over_price, under_price) |> 
+    select(match, market_name, player_name, line, over_price, under_price, prop_id, under_prop_id) |> 
     mutate(agency = "TAB")
 
 # Fix team names
@@ -354,7 +354,7 @@ alternate_player_pras_markets_1 <-
   mutate(player_name = str_remove(prop_name, " \\(.*\\)")) |>
   mutate(line = str_extract(market_name, "\\d+")) |>
   mutate(line = as.numeric(line) - 0.5) |>
-  transmute(match, market_name = "Player PRAs", player_name, line, over_price = price)
+  transmute(match, market_name = "Player PRAs", player_name, line, over_price = price, prop_id)
 
 alternate_player_pras_markets_2 <-
   alternate_player_pras_markets |>
@@ -362,7 +362,7 @@ alternate_player_pras_markets_2 <-
   mutate(player_name = str_extract(prop_name, "^.*(?=\\s(\\d+))")) |> 
   mutate(line = str_extract(prop_name, "[0-9\\.]{1,4}")) |> 
   mutate(line = as.numeric(line) - 0.5) |>
-  transmute(match, market_name = "Player PRAs", player_name, line, over_price = price)
+  transmute(match, market_name = "Player PRAs", player_name, line, over_price = price, prop_id)
 
 alternate_player_pras_markets <-
   bind_rows(alternate_player_pras_markets_1, alternate_player_pras_markets_2)
@@ -372,7 +372,7 @@ over_lines <-
   player_pras_markets |> 
   filter(type == "Over") |> 
   mutate(market_name = "Player PRAs") |>
-  select(match, market_name, player_name, line, over_price = price) |> 
+  select(match, market_name, player_name, line, over_price = price, prop_id) |> 
   bind_rows(alternate_player_pras_markets)
 
 # Under lines
@@ -380,13 +380,13 @@ under_lines <-
   player_pras_markets |> 
   filter(type == "Under") |> 
   mutate(market_name = "Player PRAs") |>
-  select(match, market_name, player_name, line, under_price = price)
+  select(match, market_name, player_name, line, under_price = price, under_prop_id = prop_id)
 
 # Combine
 tab_player_pras_markets <-
   over_lines |>
   full_join(under_lines) |> 
-  select(match, market_name, player_name, line, over_price, under_price) |> 
+  select(match, market_name, player_name, line, over_price, under_price, prop_id, under_prop_id) |> 
   mutate(agency = "TAB")
 
 # Fix team names
@@ -426,7 +426,7 @@ alternate_player_blocks_markets_1 <-
   mutate(player_name = str_remove(prop_name, " \\(.*\\)")) |>
   mutate(line = str_extract(market_name, "\\d+")) |>
   mutate(line = as.numeric(line) - 0.5) |>
-  transmute(match, market_name = "Player Blocks", player_name, line, over_price = price)
+  transmute(match, market_name = "Player Blocks", player_name, line, over_price = price, prop_id)
 
 alternate_player_blocks_markets_2 <-
   alternate_player_blocks_markets |>
@@ -434,7 +434,7 @@ alternate_player_blocks_markets_2 <-
   mutate(player_name = str_extract(prop_name, "^.*(?=\\s(\\d+))")) |> 
   mutate(line = str_extract(prop_name, "[0-9\\.]{1,4}")) |> 
   mutate(line = as.numeric(line) - 0.5) |>
-  transmute(match, market_name = "Player Blocks", player_name, line, over_price = price)
+  transmute(match, market_name = "Player Blocks", player_name, line, over_price = price, prop_id)
 
 alternate_player_blocks_markets <-
   bind_rows(alternate_player_blocks_markets_1, alternate_player_blocks_markets_2)
@@ -444,7 +444,7 @@ over_lines <-
   player_blocks_markets |> 
   filter(type == "Over") |> 
   mutate(market_name = "Player Blocks") |>
-  select(match, market_name, player_name, line, over_price = price) |> 
+  select(match, market_name, player_name, line, over_price = price, prop_id) |> 
   bind_rows(alternate_player_blocks_markets)
 
 # Under lines
@@ -452,13 +452,13 @@ under_lines <-
   player_blocks_markets |> 
   filter(type == "Under") |> 
   mutate(market_name = "Player Blocks") |>
-  select(match, market_name, player_name, line, under_price = price)
+  select(match, market_name, player_name, line, under_price = price, under_prop_id = prop_id)
 
 # Combine
 tab_player_blocks_markets <-
   over_lines |>
   full_join(under_lines) |> 
-  select(match, market_name, player_name, line, over_price, under_price) |> 
+  select(match, market_name, player_name, line, over_price, under_price, prop_id, under_prop_id) |> 
   mutate(agency = "TAB")
 
 # Fix team names
@@ -498,7 +498,7 @@ alternate_player_steals_markets_1 <-
   mutate(player_name = str_remove(prop_name, " \\(.*\\)")) |>
   mutate(line = str_extract(market_name, "\\d+")) |>
   mutate(line = as.numeric(line) - 0.5) |>
-  transmute(match, market_name = "Player Steals", player_name, line, over_price = price)
+  transmute(match, market_name = "Player Steals", player_name, line, over_price = price, prop_id)
 
 alternate_player_steals_markets_2 <-
   alternate_player_steals_markets |>
@@ -506,7 +506,7 @@ alternate_player_steals_markets_2 <-
   mutate(player_name = str_extract(prop_name, "^.*(?=\\s(\\d+))")) |> 
   mutate(line = str_extract(prop_name, "[0-9\\.]{1,4}")) |> 
   mutate(line = as.numeric(line) - 0.5) |>
-  transmute(match, market_name = "Player Steals", player_name, line, over_price = price)
+  transmute(match, market_name = "Player Steals", player_name, line, over_price = price, prop_id)
 
 alternate_player_steals_markets <-
   bind_rows(alternate_player_steals_markets_1, alternate_player_steals_markets_2)
@@ -516,7 +516,7 @@ over_lines <-
   player_steals_markets |> 
   filter(type == "Over") |> 
   mutate(market_name = "Player Steals") |>
-  select(match, market_name, player_name, line, over_price = price) |> 
+  select(match, market_name, player_name, line, over_price = price, prop_id) |> 
   bind_rows(alternate_player_steals_markets)
 
 # Under lines
@@ -524,13 +524,13 @@ under_lines <-
   player_steals_markets |> 
   filter(type == "Under") |> 
   mutate(market_name = "Player Steals") |>
-  select(match, market_name, player_name, line, under_price = price)
+  select(match, market_name, player_name, line, under_price = price, under_prop_id = prop_id)
 
 # Combine
 tab_player_steals_markets <-
   over_lines |>
   full_join(under_lines) |> 
-  select(match, market_name, player_name, line, over_price, under_price) |> 
+  select(match, market_name, player_name, line, over_price, under_price, prop_id, under_prop_id) |> 
   mutate(agency = "TAB")
 
 # Fix team names
@@ -570,7 +570,7 @@ alternate_player_threes_markets_1 <-
   mutate(player_name = str_remove(prop_name, " \\(.*\\)")) |>
   mutate(line = str_extract(market_name, "\\d+")) |>
   mutate(line = as.numeric(line) - 0.5) |>
-  transmute(match, market_name = "Player Threes", player_name, line, over_price = price)
+  transmute(match, market_name = "Player Threes", player_name, line, over_price = price, prop_id)
 
 alternate_player_threes_markets_2 <-
   alternate_player_threes_markets |>
@@ -578,7 +578,7 @@ alternate_player_threes_markets_2 <-
   mutate(player_name = str_extract(prop_name, "^.*(?=\\s(\\d+))")) |> 
   mutate(line = str_extract(prop_name, "[0-9\\.]{1,4}")) |> 
   mutate(line = as.numeric(line) - 0.5) |>
-  transmute(match, market_name = "Player Threes", player_name, line, over_price = price)
+  transmute(match, market_name = "Player Threes", player_name, line, over_price = price, prop_id)
 
 alternate_player_threes_markets <-
   bind_rows(alternate_player_threes_markets_1, alternate_player_threes_markets_2)
@@ -588,7 +588,7 @@ over_lines <-
   player_threes_markets |> 
   filter(type == "Over") |> 
   mutate(market_name = "Player Threes") |>
-  select(match, market_name, player_name, line, over_price = price) |> 
+  select(match, market_name, player_name, line, over_price = price, prop_id) |> 
   bind_rows(alternate_player_threes_markets)
 
 # Under lines
@@ -596,13 +596,13 @@ under_lines <-
   player_threes_markets |> 
   filter(type == "Under") |> 
   mutate(market_name = "Player Threes") |>
-  select(match, market_name, player_name, line, under_price = price)
+  select(match, market_name, player_name, line, under_price = price, under_prop_id = prop_id)
 
 # Combine
 tab_player_threes_markets <-
   over_lines |>
   full_join(under_lines) |> 
-  select(match, market_name, player_name, line, over_price, under_price) |> 
+  select(match, market_name, player_name, line, over_price, under_price, prop_id, under_prop_id) |> 
   mutate(agency = "TAB")
 
 # Fix team names
@@ -649,12 +649,15 @@ player_names <-
   bind_rows(player_names_unique, player_names_non_unique) |> 
   mutate(join_name = ifelse(player_full_name == "Keyontae Johnson", "Key Johnson", join_name)) |> 
   mutate(join_name = ifelse(player_full_name == "Miles Bridges", "Mil Bridges", join_name)) |> 
-  mutate(join_name = ifelse(player_full_name == "Jaylin Williams", "Jay Williams", join_name))
+  mutate(join_name = ifelse(player_full_name == "Jaylin Williams", "Jay Williams", join_name)) |> 
+  mutate(join_name = ifelse(player_full_name == "James Johnson", "Jam Johnson", join_name))
+
 
 # Fix player names--------------------------------------------------------------
 
 # Points
 tab_player_points_markets <-
+  a <-
   tab_player_points_markets |>
   mutate(first_initial = str_sub(player_name, 1, 1)) |>
   mutate(surname = str_extract(player_name, "(?<=\\s).*$")) |>
@@ -696,6 +699,10 @@ tab_player_points_markets <-
     str_detect(player_name, "M Bagley") ~ "M Bagley III",
     str_detect(player_name, "Ki Lewis Jr") ~ "K Lewis Jr.",
     str_detect(player_name, "Tre Jones") ~ "Tr Jones",
+    str_detect(player_name, "T Hardawy") ~ "T Hardaway Jr.",
+    str_detect(player_name, "Josh Green") ~ "Jo Green",
+    str_detect(player_name, "Jal.* Johnson$") ~ "Ja Johnson",
+    str_detect(player_name, "J Champagni") ~ "J Champagnie",
     .default = join_name
   )) |>
   left_join(player_names |> select(join_name, player_full_name, team_name),
@@ -744,6 +751,10 @@ tab_player_rebounds_markets <-
     str_detect(player_name, "M Bagley") ~ "M Bagley III",
     str_detect(player_name, "Ki Lewis Jr") ~ "K Lewis Jr.",
     str_detect(player_name, "Tre Jones") ~ "Tr Jones",
+    str_detect(player_name, "T Hardawy") ~ "T Hardaway Jr.",
+    str_detect(player_name, "Josh Green") ~ "Jo Green",
+    str_detect(player_name, "Jal.* Johnson$") ~ "Ja Johnson",
+    str_detect(player_name, "J Champagni") ~ "J Champagnie",
     .default = join_name
   )) |>
   left_join(player_names |> select(join_name, player_full_name, team_name),
@@ -792,6 +803,10 @@ tab_player_assists_markets <-
     str_detect(player_name, "M Bagley") ~ "M Bagley III",
     str_detect(player_name, "Ki Lewis Jr") ~ "K Lewis Jr.",
     str_detect(player_name, "Tre Jones") ~ "Tr Jones",
+    str_detect(player_name, "T Hardawy") ~ "T Hardaway Jr.",
+    str_detect(player_name, "Josh Green") ~ "Jo Green",
+    str_detect(player_name, "Jal.* Johnson$") ~ "Ja Johnson",
+    str_detect(player_name, "J Champagni") ~ "J Champagnie",
     .default = join_name
   )) |>
   left_join(player_names |> select(join_name, player_full_name, team_name),
@@ -840,6 +855,10 @@ tab_player_pras_markets <-
     str_detect(player_name, "M Bagley") ~ "M Bagley III",
     str_detect(player_name, "Ki Lewis Jr") ~ "K Lewis Jr.",
     str_detect(player_name, "Tre Jones") ~ "Tr Jones",
+    str_detect(player_name, "T Hardawy") ~ "T Hardaway Jr.",
+    str_detect(player_name, "Josh Green") ~ "Jo Green",
+    str_detect(player_name, "Jal.* Johnson$") ~ "Ja Johnson",
+    str_detect(player_name, "J Champagni") ~ "J Champagnie",
     .default = join_name
   )) |>
   left_join(player_names |> select(join_name, player_full_name, team_name),
@@ -888,6 +907,10 @@ tab_player_blocks_markets <-
     str_detect(player_name, "M Bagley") ~ "M Bagley III",
     str_detect(player_name, "Ki Lewis Jr") ~ "K Lewis Jr.",
     str_detect(player_name, "Tre Jones") ~ "Tr Jones",
+    str_detect(player_name, "T Hardawy") ~ "T Hardaway Jr.",
+    str_detect(player_name, "Josh Green") ~ "Jo Green",
+    str_detect(player_name, "Jal.* Johnson$") ~ "Ja Johnson",
+    str_detect(player_name, "J Champagni") ~ "J Champagnie",
     .default = join_name
   )) |>
   left_join(player_names |> select(join_name, player_full_name, team_name),
@@ -936,6 +959,10 @@ tab_player_steals_markets <-
     str_detect(player_name, "M Bagley") ~ "M Bagley III",
     str_detect(player_name, "Ki Lewis Jr") ~ "K Lewis Jr.",
     str_detect(player_name, "Tre Jones") ~ "Tr Jones",
+    str_detect(player_name, "T Hardawy") ~ "T Hardaway Jr.",
+    str_detect(player_name, "Josh Green") ~ "Jo Green",
+    str_detect(player_name, "Jal.* Johnson$") ~ "Ja Johnson",
+    str_detect(player_name, "J Champagni") ~ "J Champagnie",
     .default = join_name
   )) |>
   left_join(player_names |> select(join_name, player_full_name, team_name),
@@ -984,6 +1011,10 @@ tab_player_threes_markets <-
     str_detect(player_name, "M Bagley") ~ "M Bagley III",
     str_detect(player_name, "Ki Lewis Jr") ~ "K Lewis Jr.",
     str_detect(player_name, "Tre Jones") ~ "Tr Jones",
+    str_detect(player_name, "T Hardawy") ~ "T Hardaway Jr.",
+    str_detect(player_name, "Josh Green") ~ "Jo Green",
+    str_detect(player_name, "Jal.* Johnson$") ~ "Ja Johnson",
+    str_detect(player_name, "J Champagni") ~ "J Champagnie",
     .default = join_name
   )) |>
   left_join(player_names |> select(join_name, player_full_name, team_name),
@@ -1013,7 +1044,9 @@ tab_player_points_markets <-
     line,
     over_price,
     under_price,
-    agency
+    agency,
+    prop_id,
+    under_prop_id
   )
 
 # Assists
@@ -1037,7 +1070,9 @@ tab_player_assists_markets <-
     line,
     over_price,
     under_price,
-    agency
+    agency,
+    prop_id,
+    under_prop_id
   )
 
 # Rebounds
@@ -1061,7 +1096,9 @@ tab_player_rebounds_markets <-
     line,
     over_price,
     under_price,
-    agency
+    agency,
+    prop_id,
+    under_prop_id
   )
 
 # PRAs
@@ -1085,7 +1122,9 @@ tab_player_pras_markets <-
     line,
     over_price,
     under_price,
-    agency
+    agency,
+    prop_id,
+    under_prop_id
   )
 
 # Blocks
@@ -1109,7 +1148,9 @@ tab_player_blocks_markets <-
     line,
     over_price,
     under_price,
-    agency
+    agency,
+    prop_id,
+    under_prop_id
   )
 
 # Steals
@@ -1133,7 +1174,9 @@ tab_player_steals_markets <-
     line,
     over_price,
     under_price,
-    agency
+    agency,
+    prop_id,
+    under_prop_id
   )
 
 # Threes
@@ -1157,7 +1200,9 @@ tab_player_threes_markets <-
     line,
     over_price,
     under_price,
-    agency
+    agency,
+    prop_id,
+    under_prop_id
   )
 
 #===============================================================================

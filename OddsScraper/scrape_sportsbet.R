@@ -184,6 +184,9 @@ team_names <-
     map_dfr(matches, get_team_names) |> 
     bind_cols("match_id" = match_ids)
 
+# Match info links
+match_info_links <- glue("https://www.sportsbet.com.au/apigw/sportsbook-sports/Sportsbook/Sports/Events/{match_ids}/SportCard?displayWinnersPriceMkt=true&includeLiveMarketGroupings=true&includeCollection=true")
+
 # Player points links
 player_points_links <- glue("https://www.sportsbet.com.au/apigw/sportsbook-sports/Sportsbook/Sports/Events/{match_ids}/MarketGroupings/567/Markets")
 
@@ -198,6 +201,48 @@ player_PRAs_links <- glue("https://www.sportsbet.com.au/apigw/sportsbook-sports/
 
 # Player threes links
 player_threes_links <- glue("https://www.sportsbet.com.au/apigw/sportsbook-sports/Sportsbook/Sports/Events/{match_ids}/MarketGroupings/710/Markets")
+
+# Get IDs needed for SGM engine-------------------------------------------------
+read_prop_url_metadata <- function(url) {
+    
+    # Make request and get response
+    sb_response <-
+        request(url) |>
+        req_perform() |> 
+        resp_body_json()
+    
+    # Empty vectors to append to
+    class_external_id = c()
+    competition_external_id = c()
+    event_external_id = c()
+
+    # Append to vectors
+    class_external_id = c(class_external_id, sb_response$classExternalId)
+    competition_external_id = c(competition_external_id, sb_response$competitionExternalId)
+    event_external_id = c(event_external_id, sb_response$externalId)
+    
+    # Output
+    tibble(class_external_id,
+           competition_external_id,
+           event_external_id,
+           url) |> 
+        mutate(url = str_extract(as.character(url), "[0-9]{6,8}")) |> 
+        rename(match_id = url) |> 
+        mutate(match_id = as.numeric(match_id))
+}
+
+# Safe version that just returns NULL if there is an error
+safe_read_prop_metadata <- safely(read_prop_url_metadata, otherwise = NULL)
+
+# Map function to player points urls
+player_prop_metadata <-
+    map(match_info_links, safe_read_prop_metadata)
+
+# Get just result part from output
+player_prop_metadata <-
+    player_prop_metadata |>
+    map("result") |>
+    map_df(bind_rows)
 
 # Function to read a url and get the player props-------------------------------
 
@@ -276,7 +321,8 @@ player_points_data <-
     rename(match_id = url) |> 
     mutate(match_id = as.numeric(match_id)) |> 
     left_join(team_names, by = "match_id") |> 
-    mutate(match = paste(home_team, "v", away_team))
+    mutate(match = paste(home_team, "v", away_team)) |> 
+    left_join(player_prop_metadata)
 
 # Get player points alternate lines---------------------------------------------
 
@@ -309,7 +355,12 @@ player_points_alternate <-
         opposition_team,
         line,
         over_price,
-        agency = "Sportsbet"
+        agency = "Sportsbet",
+        class_external_id,
+        competition_external_id,
+        event_external_id,
+        market_id,
+        player_id
     )
 
 # Get player points over / under -----------------------------------------------
@@ -343,7 +394,12 @@ player_points_over <-
         opposition_team,
         line,
         over_price,
-        agency = "Sportsbet"
+        agency = "Sportsbet",
+        class_external_id,
+        competition_external_id,
+        event_external_id,
+        market_id,
+        player_id
     )
  
 player_points_under <-
@@ -375,7 +431,12 @@ player_points_under <-
         opposition_team,
         line,
         under_price,
-        agency = "Sportsbet"
+        agency = "Sportsbet",
+        class_external_id,
+        competition_external_id,
+        event_external_id,
+        market_id,
+        player_id_unders = player_id
     )
 
 
@@ -407,7 +468,8 @@ player_assists_data <-
     rename(match_id = url) |> 
     mutate(match_id = as.numeric(match_id)) |> 
     left_join(team_names, by = "match_id") |> 
-    mutate(match = paste(home_team, "v", away_team))
+    mutate(match = paste(home_team, "v", away_team)) |> 
+    left_join(player_prop_metadata)
 
 # Get player assists alternate lines---------------------------------------------
 
@@ -440,7 +502,12 @@ player_assists_alternate <-
         opposition_team,
         line,
         over_price,
-        agency = "Sportsbet"
+        agency = "Sportsbet",
+        class_external_id,
+        competition_external_id,
+        event_external_id,
+        market_id,
+        player_id
     )
 
 # Get player assists over / under -----------------------------------------------
@@ -474,7 +541,12 @@ player_assists_over <-
         opposition_team,
         line,
         over_price,
-        agency = "Sportsbet"
+        agency = "Sportsbet",
+        class_external_id,
+        competition_external_id,
+        event_external_id,
+        market_id,
+        player_id
     )
 
 player_assists_under <-
@@ -506,7 +578,12 @@ player_assists_under <-
         opposition_team,
         line,
         under_price,
-        agency = "Sportsbet"
+        agency = "Sportsbet",
+        class_external_id,
+        competition_external_id,
+        event_external_id,
+        market_id,
+        player_id_unders = player_id
     )
 
 
@@ -538,7 +615,8 @@ player_rebounds_data <-
     rename(match_id = url) |> 
     mutate(match_id = as.numeric(match_id)) |> 
     left_join(team_names, by = "match_id") |> 
-    mutate(match = paste(home_team, "v", away_team))
+    mutate(match = paste(home_team, "v", away_team)) |> 
+    left_join(player_prop_metadata)
 
 # Get player rebounds alternate lines---------------------------------------------
 
@@ -571,7 +649,12 @@ player_rebounds_alternate <-
         opposition_team,
         line,
         over_price,
-        agency = "Sportsbet"
+        agency = "Sportsbet",
+        class_external_id,
+        competition_external_id,
+        event_external_id,
+        market_id,
+        player_id
     )
 
 # Get player rebounds over / under -----------------------------------------------
@@ -605,7 +688,12 @@ player_rebounds_over <-
         opposition_team,
         line,
         over_price,
-        agency = "Sportsbet"
+        agency = "Sportsbet",
+        class_external_id,
+        competition_external_id,
+        event_external_id,
+        market_id,
+        player_id
     )
 
 player_rebounds_under <-
@@ -637,7 +725,12 @@ player_rebounds_under <-
         opposition_team,
         line,
         under_price,
-        agency = "Sportsbet"
+        agency = "Sportsbet",
+        class_external_id,
+        competition_external_id,
+        event_external_id,
+        market_id,
+        player_id_unders = player_id
     )
 
 
@@ -669,7 +762,8 @@ player_pras_data <-
     rename(match_id = url) |> 
     mutate(match_id = as.numeric(match_id)) |> 
     left_join(team_names, by = "match_id") |> 
-    mutate(match = paste(home_team, "v", away_team))
+    mutate(match = paste(home_team, "v", away_team)) |> 
+    left_join(player_prop_metadata)
 
 # # Get player pras alternate lines---------------------------------------------
 
@@ -702,7 +796,12 @@ player_pras_alternate <-
         opposition_team,
         line,
         over_price,
-        agency = "Sportsbet"
+        agency = "Sportsbet",
+        class_external_id,
+        competition_external_id,
+        event_external_id,
+        market_id,
+        player_id
     )
 
 # Get player pras over / under -----------------------------------------------
@@ -736,7 +835,12 @@ player_pras_over <-
         opposition_team,
         line,
         over_price,
-        agency = "Sportsbet"
+        agency = "Sportsbet",
+        class_external_id,
+        competition_external_id,
+        event_external_id,
+        market_id,
+        player_id
     )
 
 player_pras_under <-
@@ -768,7 +872,12 @@ player_pras_under <-
         opposition_team,
         line,
         under_price,
-        agency = "Sportsbet"
+        agency = "Sportsbet",
+        class_external_id,
+        competition_external_id,
+        event_external_id,
+        market_id,
+        player_id_unders = player_id
     )
 
 
@@ -800,7 +909,8 @@ player_threes_data <-
     rename(match_id = url) |> 
     mutate(match_id = as.numeric(match_id)) |> 
     left_join(team_names, by = "match_id") |> 
-    mutate(match = paste(home_team, "v", away_team))
+    mutate(match = paste(home_team, "v", away_team)) |> 
+    left_join(player_prop_metadata)
 
 # Get player threes alternate lines---------------------------------------------
 
@@ -833,7 +943,12 @@ player_threes_alternate <-
         opposition_team,
         line,
         over_price,
-        agency = "Sportsbet"
+        agency = "Sportsbet",
+        class_external_id,
+        competition_external_id,
+        event_external_id,
+        market_id,
+        player_id
     )
 
 # Get player threes over / under -----------------------------------------------
@@ -867,7 +982,12 @@ player_threes_over <-
         opposition_team,
         line,
         over_price,
-        agency = "Sportsbet"
+        agency = "Sportsbet",
+        class_external_id,
+        competition_external_id,
+        event_external_id,
+        market_id,
+        player_id
     )
 
 player_threes_under <-
@@ -899,7 +1019,12 @@ player_threes_under <-
         opposition_team,
         line,
         under_price,
-        agency = "Sportsbet"
+        agency = "Sportsbet",
+        class_external_id,
+        competition_external_id,
+        event_external_id,
+        market_id,
+        player_id_unders = player_id
     )
 
 
@@ -927,7 +1052,13 @@ player_points_alternate |>
         "over_price",
         "under_price",
         "agency",
-        "opposition_team"
+        "opposition_team",
+        "class_external_id",
+        "competition_external_id",
+        "event_external_id",
+        "market_id",
+        "player_id",
+        "player_id_unders"
     ) |>
     mutate(market_name = "Player Points") |>
     mutate(agency = "Sportsbet") |> 
@@ -947,7 +1078,13 @@ player_rebounds_alternate |>
         "over_price",
         "under_price",
         "agency",
-        "opposition_team"
+        "opposition_team",
+        "class_external_id",
+        "competition_external_id",
+        "event_external_id",
+        "market_id",
+        "player_id",
+        "player_id_unders"
     ) |>
     mutate(market_name = "Player Rebounds") |>
     mutate(agency = "Sportsbet") |> 
@@ -967,7 +1104,13 @@ player_assists_alternate |>
         "over_price",
         "under_price",
         "agency",
-        "opposition_team"
+        "opposition_team",
+        "class_external_id",
+        "competition_external_id",
+        "event_external_id",
+        "market_id",
+        "player_id",
+        "player_id_unders"
     ) |>
     mutate(market_name = "Player Assists") |>
     mutate(agency = "Sportsbet") |> 
@@ -987,7 +1130,13 @@ player_pras_alternate |>
         "over_price",
         "under_price",
         "agency",
-        "opposition_team"
+        "opposition_team",
+        "class_external_id",
+        "competition_external_id",
+        "event_external_id",
+        "market_id",
+        "player_id",
+        "player_id_unders"
     ) |>
     mutate(market_name = "Player PRAs") |>
     mutate(agency = "Sportsbet") |>
@@ -1007,7 +1156,13 @@ player_threes_alternate |>
         "over_price",
         "under_price",
         "agency",
-        "opposition_team"
+        "opposition_team",
+        "class_external_id",
+        "competition_external_id",
+        "event_external_id",
+        "market_id",
+        "player_id",
+        "player_id_unders"
     ) |>
     mutate(market_name = "Player Threes") |>
     mutate(agency = "Sportsbet") |>
