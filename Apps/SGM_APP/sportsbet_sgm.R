@@ -1,6 +1,6 @@
 library(httr)
 library(jsonlite)
-library(dplyr)
+library(tidyverse)
 library(purrr)
 
 
@@ -143,5 +143,4 @@ call_sgm_sportsbet <- function(data, player_names, prop_line, prop_type, over_un
   return(output_data)
 }
 
-call_sgm_sportsbet(data = sportsbet_sgm, player_names = c("Zach LaVine", "Zach LaVine"), prop_line = c("19.5", "5.5"), prop_type = c("Player Points", "Player Rebounds"), over_under = c("Overs", "Overs"))
-
+# call_sgm_sportsbet(data = sportsbet_sgm, player_names = c("Zach LaVine", "Zach LaVine"), prop_line = c("19.5", "5.5"), prop_type = c("Player Points", "Player Rebounds"), over_under = c("Overs", "Overs"))

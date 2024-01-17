@@ -677,3 +677,6 @@ player_assists_data |> write_csv("Data/scraped_odds/neds_player_assists.csv")
 player_rebounds_data |> write_csv("Data/scraped_odds/neds_player_rebounds.csv")
 player_pras_data |> write_csv("Data/scraped_odds/neds_player_pras.csv")
 player_threes_data |> write_csv("Data/scraped_odds/neds_player_threes.csv")
+player_blocks_data |> write_csv("Data/scraped_odds/neds_player_blocks.csv")
+player_steals_data |> write_csv("Data/scraped_odds/neds_player_steals.csv")
+

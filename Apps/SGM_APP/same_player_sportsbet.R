@@ -31,8 +31,8 @@ assists_unders |>
 all_lines <-
 points_unders_lines |>
   left_join(rebounds_unders_lines, by = "player_name") |> 
-  left_join(assists_unders_lines, by = "player_name") |>
-  filter(!is.na(rebound_line) & !is.na(point_line) & !is.na(assist_line))
+  # left_join(assists_unders_lines, by = "player_name") |>
+  filter(!is.na(rebound_line) & !is.na(point_line))
 
 empty_list <- list()
 
@@ -41,10 +41,10 @@ for (i in 1:length(all_lines$player_name)) {
   result <-
   call_sgm_sportsbet(
     sportsbet_sgm,
-    player_names = c(all_lines$player_name[i], all_lines$player_name[i], all_lines$player_name[i]),
-    prop_line = c(all_lines$point_line[i], all_lines$rebound_line[i], all_lines$assist_line[i]),
-    prop_type = c("Player Points", "Player Rebounds", "Player Assists"),
-    over_under = c("Unders", "Unders", "Unders")
+    player_names = c(all_lines$player_name[i], all_lines$player_name[i]),
+    prop_line = c(all_lines$point_line[i], all_lines$rebound_line[i]),
+    prop_type = c("Player Points", "Player Rebounds"),
+    over_under = c("Unders", "Unders")
   )
   
   empty_list[[i]] <- result

@@ -1,6 +1,6 @@
 library(httr)
 library(jsonlite)
-library(dplyr)
+library(tidyverse)
 library(purrr)
 library(mongolite)
 uri <- Sys.getenv("mongodb_connection_string")
@@ -95,7 +95,7 @@ call_sgm_tab <- function(data, player_names, prop_line, prop_type, over_under) {
     unadjusted_price <- prod(filtered_df$price)
     
     # Get propositions
-    propositions <- get_sgm_tab(data, player_names, prop_line)
+    propositions <- get_sgm_tab(data, player_names, prop_line, prop_type, over_under)
     
     url <- "https://api.beta.tab.com.au/v1/pricing-service/enquiry"
     
@@ -153,4 +153,4 @@ call_sgm_tab <- function(data, player_names, prop_line, prop_type, over_under) {
   })
 }
 
-call_sgm_tab(data = tab_sgm, player_names = c("Joel Embiid", "Joel Embiid"), prop_line = c("29.5", "9.5"), prop_type = c("Player Points", "Player Rebounds"), over_under = c("Overs", "Overs"))
+# call_sgm_tab(data = tab_sgm, player_names = c("Kentavious Caldwell-Pope", "Aaron Gordon"), prop_line = c("4.5", "9.5"), prop_type = c("Player Points", "Player Points"), over_under = c("Overs", "Overs"))
