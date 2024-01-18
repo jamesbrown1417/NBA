@@ -134,6 +134,7 @@ call_sgm_sportsbet <- function(data, player_names, prop_line, prop_type, over_un
   
   output_data <- data.frame(
     Selections = player_string,
+    Markets = paste(prop_type, sep = ": ", collapse = ", "),
     Unadjusted_Price = unadjusted_price,
     Adjusted_Price = adjusted_price,
     Adjustment_Factor = adjustment_factor,

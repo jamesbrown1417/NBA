@@ -131,6 +131,7 @@ call_sgm_tab <- function(data, player_names, prop_line, prop_type, over_under) {
     output_data <- tryCatch({
       data.frame(
         Selections = player_string,
+        Markets = paste(prop_type, sep = ": ", collapse = ", "),
         Unadjusted_Price = unadjusted_price,
         Adjusted_Price = adjusted_price,
         Adjustment_Factor = adjustment_factor,
@@ -139,6 +140,7 @@ call_sgm_tab <- function(data, player_names, prop_line, prop_type, over_under) {
     }, error = function(e) {
       data.frame(
         Selections = NA_character_,
+        Markets = NA_character_,
         Unadjusted_Price = NA_real_,
         Adjusted_Price = NA_real_,
         Adjustment_Factor = NA_real_,
@@ -153,4 +155,4 @@ call_sgm_tab <- function(data, player_names, prop_line, prop_type, over_under) {
   })
 }
 
-# call_sgm_tab(data = tab_sgm, player_names = c("Kentavious Caldwell-Pope", "Aaron Gordon"), prop_line = c("4.5", "9.5"), prop_type = c("Player Points", "Player Points"), over_under = c("Overs", "Overs"))
+# call_sgm_tab(data = tab_sgm, player_names = c("Zach LaVine", "Zach LaVine"), prop_line = c("19.5", "5.5"), prop_type = c("Player Points", "Player Rebounds"), over_under = c("Overs", "Overs"))

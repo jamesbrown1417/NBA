@@ -111,7 +111,8 @@ all_player_points <-
     # Ignore null elements
     keep(~nrow(.x) > 0) |>
     reduce(bind_rows) |> 
-    arrange(player_name, line, desc(over_price))
+    arrange(player_name, line, desc(over_price)) |> 
+  select(-matches("id"))
 
 # Add empirical probabilities---------------------------------------------------
 
@@ -184,7 +185,8 @@ all_player_assists <-
   map(read_csv) |>
   # Ignore null elements
   keep(~nrow(.x) > 0) |>
-  reduce(bind_rows)
+  reduce(bind_rows) |> 
+  select(-matches("id"))
 
 # Add empirical probabilities---------------------------------------------------
 
@@ -257,7 +259,8 @@ all_player_rebounds <-
   map(read_csv) |>
   # Ignore null elements
   keep(~nrow(.x) > 0) |>
-  reduce(bind_rows)
+  reduce(bind_rows) |> 
+  select(-matches("id"))
 
 # Add empirical probabilities---------------------------------------------------
 
@@ -330,7 +333,8 @@ all_player_steals <-
   map(read_csv) |>
   # Ignore null elements
   keep(~nrow(.x) > 0) |>
-  reduce(bind_rows)
+  reduce(bind_rows) |> 
+  select(-matches("id"))
 
 # Add empirical probabilities---------------------------------------------------
 
@@ -403,7 +407,8 @@ all_player_blocks <-
   map(read_csv) |>
   # Ignore null elements
   keep(~nrow(.x) > 0) |>
-  reduce(bind_rows)
+  reduce(bind_rows) |> 
+  select(-matches("id"))
 
 # Add empirical probabilities---------------------------------------------------
 
@@ -476,7 +481,8 @@ all_player_threes <-
   map(read_csv) |>
   # Ignore null elements
   keep(~nrow(.x) > 0) |>
-  reduce(bind_rows)
+  reduce(bind_rows) |> 
+  select(-matches("id"))
 
 # Add empirical probabilities---------------------------------------------------
 
@@ -549,7 +555,8 @@ all_player_pras <-
   map(read_csv) |>
   # Ignore null elements
   keep(~nrow(.x) > 0) |>
-  reduce(bind_rows)
+  reduce(bind_rows) |> 
+  select(-matches("id"))
 
 # Add empirical probabilities---------------------------------------------------
 
