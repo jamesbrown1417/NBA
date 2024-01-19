@@ -367,9 +367,13 @@ player_points_alternate <-
 
 player_points_over <-
     player_points_data |> 
-    filter(str_detect(selection_name_prop, "Over")) |> 
+    filter(str_detect(selection_name_prop, "Over")) |>
+    separate(selection_name_prop, into = c("name_2", "line_2"), sep = " Over ", remove = FALSE) |>
+    mutate(line_2 = as.numeric(line_2)) |>
+    mutate(handicap = coalesce(handicap, line_2)) |>
     rename(player_name = selection_name_prop) |> 
     mutate(player_name = str_remove(player_name, " Over")) |>
+    mutate(player_name = str_remove(player_name, " \\d+\\.\\d+")) |>
     rename(line = handicap) |> 
     mutate(
         player_name =
@@ -378,7 +382,6 @@ player_points_over <-
                 player_name == "Bruce Brown Jr" ~ "Bruce Brown",
                 player_name == "Wendell Carter" ~ "Wendell Carter Jr.",
                 player_name == "Jabari Smith" ~ "Jabari Smith Jr.",
-                player_name == "OG Anunoby" ~ "O.G. Anunoby",
                 .default = player_name)) |>
     rename(over_price = prop_market_price) |>
     left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
@@ -405,8 +408,12 @@ player_points_over <-
 player_points_under <-
     player_points_data |> 
     filter(str_detect(selection_name_prop, "Under")) |> 
+    separate(selection_name_prop, into = c("name_2", "line_2"), sep = " Under ", remove = FALSE) |>
+    mutate(line_2 = as.numeric(line_2)) |>
+    mutate(handicap = coalesce(handicap, line_2)) |>
     rename(player_name = selection_name_prop) |> 
     mutate(player_name = str_remove(player_name, " Under")) |>
+    mutate(player_name = str_remove(player_name, " \\d+\\.\\d+")) |>
     rename(line = handicap) |> 
     mutate(
         player_name =
@@ -415,7 +422,6 @@ player_points_under <-
                 player_name == "Bruce Brown Jr" ~ "Bruce Brown",
                 player_name == "Wendell Carter" ~ "Wendell Carter Jr.",
                 player_name == "Jabari Smith" ~ "Jabari Smith Jr.",
-                player_name == "OG Anunoby" ~ "O.G. Anunoby",
                 .default = player_name)) |>
     rename(under_price = prop_market_price) |>
     left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
@@ -486,7 +492,6 @@ player_assists_alternate <-
                 player_name == "Bruce Brown Jr" ~ "Bruce Brown",
                 player_name == "Wendell Carter" ~ "Wendell Carter Jr.",
                 player_name == "Jabari Smith" ~ "Jabari Smith Jr.",
-                player_name == "OG Anunoby" ~ "O.G. Anunoby",
                 .default = player_name)) |>
     rename(over_price = prop_market_price) |>
     left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
@@ -514,10 +519,14 @@ player_assists_alternate <-
 
 player_assists_over <-
     player_assists_data |> 
-    filter(str_detect(selection_name_prop, "Over")) |> 
-    rename(player_name = selection_name_prop) |> 
-    mutate(player_name = str_remove(player_name, " Over")) |>
-    rename(line = handicap) |> 
+  filter(str_detect(selection_name_prop, "Over")) |>
+  separate(selection_name_prop, into = c("name_2", "line_2"), sep = " Over ", remove = FALSE) |>
+  mutate(line_2 = as.numeric(line_2)) |>
+  mutate(handicap = coalesce(handicap, line_2)) |>
+  rename(player_name = selection_name_prop) |> 
+  mutate(player_name = str_remove(player_name, " Over")) |>
+  mutate(player_name = str_remove(player_name, " \\d+\\.\\d+")) |>
+  rename(line = handicap) |>  
     mutate(
         player_name =
             case_when(
@@ -525,7 +534,6 @@ player_assists_over <-
                 player_name == "Bruce Brown Jr" ~ "Bruce Brown",
                 player_name == "Wendell Carter" ~ "Wendell Carter Jr.",
                 player_name == "Jabari Smith" ~ "Jabari Smith Jr.",
-                player_name == "OG Anunoby" ~ "O.G. Anunoby",
                 .default = player_name)) |>
     rename(over_price = prop_market_price) |>
     left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
@@ -551,10 +559,14 @@ player_assists_over <-
 
 player_assists_under <-
     player_assists_data |> 
-    filter(str_detect(selection_name_prop, "Under")) |> 
-    rename(player_name = selection_name_prop) |> 
-    mutate(player_name = str_remove(player_name, " Under")) |>
-    rename(line = handicap) |> 
+  filter(str_detect(selection_name_prop, "Under")) |> 
+  separate(selection_name_prop, into = c("name_2", "line_2"), sep = " Under ", remove = FALSE) |>
+  mutate(line_2 = as.numeric(line_2)) |>
+  mutate(handicap = coalesce(handicap, line_2)) |>
+  rename(player_name = selection_name_prop) |> 
+  mutate(player_name = str_remove(player_name, " Under")) |>
+  mutate(player_name = str_remove(player_name, " \\d+\\.\\d+")) |>
+  rename(line = handicap) |> 
     mutate(
         player_name =
             case_when(
@@ -562,7 +574,6 @@ player_assists_under <-
                 player_name == "Bruce Brown Jr" ~ "Bruce Brown",
                 player_name == "Wendell Carter" ~ "Wendell Carter Jr.",
                 player_name == "Jabari Smith" ~ "Jabari Smith Jr.",
-                player_name == "OG Anunoby" ~ "O.G. Anunoby",
                 .default = player_name)) |>
     rename(under_price = prop_market_price) |>
     left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
@@ -633,7 +644,6 @@ player_rebounds_alternate <-
                 player_name == "Bruce Brown Jr" ~ "Bruce Brown",
                 player_name == "Wendell Carter" ~ "Wendell Carter Jr.",
                 player_name == "Jabari Smith" ~ "Jabari Smith Jr.",
-                player_name == "OG Anunoby" ~ "O.G. Anunoby",
                 .default = player_name)) |>
     rename(over_price = prop_market_price) |>
     left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
@@ -661,10 +671,14 @@ player_rebounds_alternate <-
 
 player_rebounds_over <-
     player_rebounds_data |> 
-    filter(str_detect(selection_name_prop, "Over")) |> 
-    rename(player_name = selection_name_prop) |> 
-    mutate(player_name = str_remove(player_name, " Over")) |>
-    rename(line = handicap) |> 
+  filter(str_detect(selection_name_prop, "Over")) |>
+  separate(selection_name_prop, into = c("name_2", "line_2"), sep = " Over ", remove = FALSE) |>
+  mutate(line_2 = as.numeric(line_2)) |>
+  mutate(handicap = coalesce(handicap, line_2)) |>
+  rename(player_name = selection_name_prop) |> 
+  mutate(player_name = str_remove(player_name, " Over")) |>
+  mutate(player_name = str_remove(player_name, " \\d+\\.\\d+")) |>
+  rename(line = handicap) |> 
     mutate(
         player_name =
             case_when(
@@ -672,7 +686,6 @@ player_rebounds_over <-
                 player_name == "Bruce Brown Jr" ~ "Bruce Brown",
                 player_name == "Wendell Carter" ~ "Wendell Carter Jr.",
                 player_name == "Jabari Smith" ~ "Jabari Smith Jr.",
-                player_name == "OG Anunoby" ~ "O.G. Anunoby",
                 .default = player_name)) |>
     rename(over_price = prop_market_price) |>
     left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
@@ -698,10 +711,14 @@ player_rebounds_over <-
 
 player_rebounds_under <-
     player_rebounds_data |> 
-    filter(str_detect(selection_name_prop, "Under")) |> 
-    rename(player_name = selection_name_prop) |> 
-    mutate(player_name = str_remove(player_name, " Under")) |>
-    rename(line = handicap) |> 
+  filter(str_detect(selection_name_prop, "Under")) |> 
+  separate(selection_name_prop, into = c("name_2", "line_2"), sep = " Under ", remove = FALSE) |>
+  mutate(line_2 = as.numeric(line_2)) |>
+  mutate(handicap = coalesce(handicap, line_2)) |>
+  rename(player_name = selection_name_prop) |> 
+  mutate(player_name = str_remove(player_name, " Under")) |>
+  mutate(player_name = str_remove(player_name, " \\d+\\.\\d+")) |>
+  rename(line = handicap) |> 
     mutate(
         player_name =
             case_when(
@@ -709,7 +726,6 @@ player_rebounds_under <-
                 player_name == "Bruce Brown Jr" ~ "Bruce Brown",
                 player_name == "Wendell Carter" ~ "Wendell Carter Jr.",
                 player_name == "Jabari Smith" ~ "Jabari Smith Jr.",
-                player_name == "OG Anunoby" ~ "O.G. Anunoby",
                 .default = player_name)) |>
     rename(under_price = prop_market_price) |>
     left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
@@ -780,7 +796,6 @@ player_pras_alternate <-
                 player_name == "Bruce Brown Jr" ~ "Bruce Brown",
                 player_name == "Wendell Carter" ~ "Wendell Carter Jr.",
                 player_name == "Jabari Smith" ~ "Jabari Smith Jr.",
-                player_name == "OG Anunoby" ~ "O.G. Anunoby",
                 .default = player_name)) |>
     rename(over_price = prop_market_price) |>
     left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
@@ -808,10 +823,14 @@ player_pras_alternate <-
 
 player_pras_over <-
     player_pras_data |> 
-    filter(str_detect(selection_name_prop, "Over")) |> 
-    rename(player_name = selection_name_prop) |> 
-    mutate(player_name = str_remove(player_name, " Over")) |>
-    rename(line = handicap) |> 
+  filter(str_detect(selection_name_prop, "Over")) |>
+  separate(selection_name_prop, into = c("name_2", "line_2"), sep = " Over ", remove = FALSE) |>
+  mutate(line_2 = as.numeric(line_2)) |>
+  mutate(handicap = coalesce(handicap, line_2)) |>
+  rename(player_name = selection_name_prop) |> 
+  mutate(player_name = str_remove(player_name, " Over")) |>
+  mutate(player_name = str_remove(player_name, " \\d+\\.\\d+")) |>
+  rename(line = handicap) |> 
     mutate(
         player_name =
             case_when(
@@ -819,7 +838,6 @@ player_pras_over <-
                 player_name == "Bruce Brown Jr" ~ "Bruce Brown",
                 player_name == "Wendell Carter" ~ "Wendell Carter Jr.",
                 player_name == "Jabari Smith" ~ "Jabari Smith Jr.",
-                player_name == "OG Anunoby" ~ "O.G. Anunoby",
                 .default = player_name)) |>
     rename(over_price = prop_market_price) |>
     left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
@@ -845,10 +863,14 @@ player_pras_over <-
 
 player_pras_under <-
     player_pras_data |> 
-    filter(str_detect(selection_name_prop, "Under")) |> 
-    rename(player_name = selection_name_prop) |> 
-    mutate(player_name = str_remove(player_name, " Under")) |>
-    rename(line = handicap) |> 
+  filter(str_detect(selection_name_prop, "Under")) |> 
+  separate(selection_name_prop, into = c("name_2", "line_2"), sep = " Under ", remove = FALSE) |>
+  mutate(line_2 = as.numeric(line_2)) |>
+  mutate(handicap = coalesce(handicap, line_2)) |>
+  rename(player_name = selection_name_prop) |> 
+  mutate(player_name = str_remove(player_name, " Under")) |>
+  mutate(player_name = str_remove(player_name, " \\d+\\.\\d+")) |>
+  rename(line = handicap) |> 
     mutate(
         player_name =
             case_when(
@@ -856,7 +878,6 @@ player_pras_under <-
                 player_name == "Bruce Brown Jr" ~ "Bruce Brown",
                 player_name == "Wendell Carter" ~ "Wendell Carter Jr.",
                 player_name == "Jabari Smith" ~ "Jabari Smith Jr.",
-                player_name == "OG Anunoby" ~ "O.G. Anunoby",
                 .default = player_name)) |>
     rename(under_price = prop_market_price) |>
     left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
@@ -927,7 +948,6 @@ player_threes_alternate <-
                 player_name == "Bruce Brown Jr" ~ "Bruce Brown",
                 player_name == "Wendell Carter" ~ "Wendell Carter Jr.",
                 player_name == "Jabari Smith" ~ "Jabari Smith Jr.",
-                player_name == "OG Anunoby" ~ "O.G. Anunoby",
                 .default = player_name)) |>
     rename(over_price = prop_market_price) |>
     left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
@@ -955,10 +975,14 @@ player_threes_alternate <-
 
 player_threes_over <-
     player_threes_data |> 
-    filter(str_detect(selection_name_prop, "Over")) |> 
-    rename(player_name = selection_name_prop) |> 
-    mutate(player_name = str_remove(player_name, " Over")) |>
-    rename(line = handicap) |> 
+  filter(str_detect(selection_name_prop, "Over")) |>
+  separate(selection_name_prop, into = c("name_2", "line_2"), sep = " Over ", remove = FALSE) |>
+  mutate(line_2 = as.numeric(line_2)) |>
+  mutate(handicap = coalesce(handicap, line_2)) |>
+  rename(player_name = selection_name_prop) |> 
+  mutate(player_name = str_remove(player_name, " Over")) |>
+  mutate(player_name = str_remove(player_name, " \\d+\\.\\d+")) |>
+  rename(line = handicap) |> 
     mutate(
         player_name =
             case_when(
@@ -966,7 +990,6 @@ player_threes_over <-
                 player_name == "Bruce Brown Jr" ~ "Bruce Brown",
                 player_name == "Wendell Carter" ~ "Wendell Carter Jr.",
                 player_name == "Jabari Smith" ~ "Jabari Smith Jr.",
-                player_name == "OG Anunoby" ~ "O.G. Anunoby",
                 .default = player_name)) |>
     rename(over_price = prop_market_price) |>
     left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
@@ -992,10 +1015,14 @@ player_threes_over <-
 
 player_threes_under <-
     player_threes_data |> 
-    filter(str_detect(selection_name_prop, "Under")) |> 
-    rename(player_name = selection_name_prop) |> 
-    mutate(player_name = str_remove(player_name, " Under")) |>
-    rename(line = handicap) |> 
+  filter(str_detect(selection_name_prop, "Under")) |> 
+  separate(selection_name_prop, into = c("name_2", "line_2"), sep = " Under ", remove = FALSE) |>
+  mutate(line_2 = as.numeric(line_2)) |>
+  mutate(handicap = coalesce(handicap, line_2)) |>
+  rename(player_name = selection_name_prop) |> 
+  mutate(player_name = str_remove(player_name, " Under")) |>
+  mutate(player_name = str_remove(player_name, " \\d+\\.\\d+")) |>
+  rename(line = handicap) |> 
     mutate(
         player_name =
             case_when(
@@ -1003,7 +1030,6 @@ player_threes_under <-
                 player_name == "Bruce Brown Jr" ~ "Bruce Brown",
                 player_name == "Wendell Carter" ~ "Wendell Carter Jr.",
                 player_name == "Jabari Smith" ~ "Jabari Smith Jr.",
-                player_name == "OG Anunoby" ~ "O.G. Anunoby",
                 .default = player_name)) |>
     rename(under_price = prop_market_price) |>
     left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>

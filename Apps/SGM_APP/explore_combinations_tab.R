@@ -8,6 +8,62 @@ library(tidyverse)
 # Read in data
 #===============================================================================
 
+# Get Data
+source("tab_sgm.R")
+player_points_data <- read_rds("../../Data/processed_odds/all_player_points.rds")
+player_assists_data <- read_rds("../../Data/processed_odds/all_player_assists.rds")
+player_rebounds_data <- read_rds("../../Data/processed_odds/all_player_rebounds.rds")
+player_pras_data <- read_rds("../../Data/processed_odds/all_player_pras.rds")
+player_steals_data <- read_rds("../../Data/processed_odds/all_player_steals.rds")
+player_threes_data <- read_rds("../../Data/processed_odds/all_player_threes.rds")
+player_blocks_data <- read_rds("../../Data/processed_odds/all_player_blocks.rds")
+
+# Get those markets where tab has the best odds in the market
+tab_best <-
+  player_points_data |>
+  bind_rows(player_assists_data) |>
+  bind_rows(player_rebounds_data) |>
+  bind_rows(player_pras_data) |>
+  bind_rows(player_steals_data) |>
+  bind_rows(player_threes_data) |>
+  bind_rows(player_blocks_data) |>
+  arrange(player_name, market_name, line, desc(over_price)) |>
+  group_by(player_name, market_name, line) |>
+  slice_head(n = 1) |>
+  ungroup() |>
+  filter(agency == "TAB") |>
+  transmute(match,
+            player_name,
+            player_team,
+            market_name,
+            line,
+            price = over_price,
+            type = "Overs",
+            diff_over_2023_24,
+            diff_over_last_10)
+
+# Get those where the tab Odds diff for the season is greater than 0
+tab_positive <-
+  player_points_data |>
+  bind_rows(player_assists_data) |>
+  bind_rows(player_rebounds_data) |>
+  bind_rows(player_pras_data) |>
+  bind_rows(player_steals_data) |>
+  bind_rows(player_threes_data) |>
+  bind_rows(player_blocks_data) |>
+  arrange(player_name, market_name, line, desc(over_price)) |>
+  filter(agency == "TAB") |>
+  transmute(match,
+            player_name,
+            player_team,
+            market_name,
+            line,
+            price = over_price,
+            type = "Overs",
+            diff_over_2023_24,
+            diff_over_last_10) |> 
+  filter(diff_over_2023_24 > 0)
+
 #===============================================================================
 # Get all 2 way combinations
 #===============================================================================
@@ -15,14 +71,18 @@ library(tidyverse)
 # All bets
 tab_sgm_bets <-
   tab_sgm |> 
-  select(match, player_name, player_team, market_name, line, price,type, contains("id"))
+  select(match, player_name, player_team, market_name, line, price,type, contains("id")) |> 
+  left_join(tab_positive) |> 
+  filter(!is.na(diff_over_2023_24))
 
 # Filter to only points and rebounds for now
 tab_sgm_bets <-
   tab_sgm_bets |> 
-  filter(market_name %in% c("Player Points", "Player Assists", "Player Rebounds")) |> 
+  # filter(market_name %in% c("Player Points", "Player Assists", "Player Rebounds")) |> 
   filter(type == "Overs") |> 
-  filter(match == "Toronto Raptors v Chicago Bulls")
+  filter(match != "Utah Jazz v Oklahoma City Thunder") |> 
+  distinct(match, player_name, market_name, line, .keep_all = TRUE) |> 
+  filter(!is.na(player_name))
 
 # Generate all combinations of two rows
 row_combinations <- combn(nrow(tab_sgm_bets), 2)
@@ -40,7 +100,9 @@ list_of_dataframes <-
 # Keep only those where prod of price is between 1.4 and 3
 retained_combinations <-
   list_of_dataframes |> 
-  keep(~prod(.x$price) >= 1.8 & prod(.x$price) <= 2.2)
+  keep(~prod(.x$price) >= 1.5 & prod(.x$price) <= 3) |> 
+  # Keep only dataframes where first and second row match are equal
+  keep(~.x$match[1] == .x$match[2])
 
 #===============================================================================
 # Call function
@@ -49,8 +111,9 @@ retained_combinations <-
 # Custom function to apply call_sgm_tab to a tibble
 apply_sgm_function <- function(tibble) {
   
-  # Wait 0.5 seconds
-  Sys.sleep(0.5)
+  # Random Pause between 0.5 and 0.7 seconds
+  Sys.sleep(runif(1, 0.5, 0.7))
+  
   
   # Call function
   call_sgm_tab(
