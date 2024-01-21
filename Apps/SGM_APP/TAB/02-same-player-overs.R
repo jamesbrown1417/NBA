@@ -9,7 +9,7 @@ library(tidyverse)
 #===============================================================================
 
 # Get Data
-source("tab_sgm.R")
+source("TAB/tab_sgm.R")
 player_points_data <- read_rds("../../Data/processed_odds/all_player_points.rds")
 player_assists_data <- read_rds("../../Data/processed_odds/all_player_assists.rds")
 player_rebounds_data <- read_rds("../../Data/processed_odds/all_player_rebounds.rds")
@@ -62,7 +62,7 @@ tab_positive <-
             type = "Overs",
             diff_over_2023_24,
             diff_over_last_10) |> 
-  filter(diff_over_2023_24 > 0)
+  filter(diff_over_2023_24 > 0.05)
 
 #===============================================================================
 # Get all 2 way combinations
@@ -71,18 +71,13 @@ tab_positive <-
 # All bets
 tab_sgm_bets <-
   tab_sgm |> 
-  select(match, player_name, player_team, market_name, line, price,type, contains("id")) |> 
-  left_join(tab_positive) |> 
-  filter(!is.na(diff_over_2023_24))
+  select(match, player_name, player_team, market_name, line, price,type, contains("id"))
 
-# Filter to only points and rebounds for now
+# Filter to only Unders
 tab_sgm_bets <-
   tab_sgm_bets |> 
-  # filter(market_name %in% c("Player Points", "Player Assists", "Player Rebounds")) |> 
   filter(type == "Overs") |> 
-  filter(match != "Utah Jazz v Oklahoma City Thunder") |> 
-  distinct(match, player_name, market_name, line, .keep_all = TRUE) |> 
-  filter(!is.na(player_name))
+  distinct(match, player_name, market_name, line, .keep_all = TRUE)
 
 # Generate all combinations of two rows
 row_combinations <- combn(nrow(tab_sgm_bets), 2)
@@ -97,12 +92,14 @@ list_of_dataframes <-
     }
   )
 
-# Keep only those where prod of price is between 1.4 and 3
+# Keep only those where the match is the same, player name is the same and market name is not the same
 retained_combinations <-
   list_of_dataframes |> 
-  keep(~prod(.x$price) >= 1.5 & prod(.x$price) <= 3) |> 
   # Keep only dataframes where first and second row match are equal
-  keep(~.x$match[1] == .x$match[2])
+  keep(~.x$match[1] == .x$match[2]) |> 
+  keep(~.x$player_name[1] == .x$player_name[2]) |>
+  keep(~.x$market_name[1] != .x$market_name[2]) |>
+  keep(~prod(.x$price) >= 1.5 & prod(.x$price) <= 4)
 
 #===============================================================================
 # Call function
@@ -112,7 +109,7 @@ retained_combinations <-
 apply_sgm_function <- function(tibble) {
   
   # Random Pause between 0.5 and 0.7 seconds
-  Sys.sleep(runif(1, 0.5, 0.7))
+  Sys.sleep(runif(1, 0.5, 0.8))
   
   
   # Call function
@@ -130,5 +127,11 @@ results <- map(retained_combinations, apply_sgm_function, .progress = TRUE)
 
 # Bind all results together
 results <-
-  bind_rows(results) |> 
-  arrange(desc(Adjustment_Factor))
+  results |>
+  keep(~is.data.frame(.x)) |>
+  bind_rows() |> 
+  arrange(desc(Adjustment_Factor)) |> 
+  mutate(Diff = 1/Unadjusted_Price - 1/Adjusted_Price) |> 
+  mutate(Diff = round(Diff, 2)) |>
+  arrange(desc(Diff))
+

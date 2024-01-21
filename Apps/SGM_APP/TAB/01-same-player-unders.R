@@ -9,7 +9,7 @@ library(tidyverse)
 #===============================================================================
 
 # Get Data
-source("sportsbet_sgm.R")
+source("TAB/tab_sgm.R")
 player_points_data <- read_rds("../../Data/processed_odds/all_player_points.rds")
 player_assists_data <- read_rds("../../Data/processed_odds/all_player_assists.rds")
 player_rebounds_data <- read_rds("../../Data/processed_odds/all_player_rebounds.rds")
@@ -18,8 +18,8 @@ player_steals_data <- read_rds("../../Data/processed_odds/all_player_steals.rds"
 player_threes_data <- read_rds("../../Data/processed_odds/all_player_threes.rds")
 player_blocks_data <- read_rds("../../Data/processed_odds/all_player_blocks.rds")
 
-# Get those markets where sportsbet has the best odds in the market
-sportsbet_best <-
+# Get those markets where tab has the best odds in the market
+tab_best <-
   player_points_data |>
   bind_rows(player_assists_data) |>
   bind_rows(player_rebounds_data) |>
@@ -31,7 +31,7 @@ sportsbet_best <-
   group_by(player_name, market_name, line) |>
   slice_head(n = 1) |>
   ungroup() |>
-  filter(agency == "Sportsbet") |>
+  filter(agency == "TAB") |>
   transmute(match,
             player_name,
             player_team,
@@ -42,8 +42,8 @@ sportsbet_best <-
             diff_over_2023_24,
             diff_over_last_10)
 
-# Get those where the sportsbet Odds diff for the season is greater than 0
-sportsbet_positive <-
+# Get those where the tab Odds diff for the season is greater than 0
+tab_positive <-
   player_points_data |>
   bind_rows(player_assists_data) |>
   bind_rows(player_rebounds_data) |>
@@ -52,7 +52,7 @@ sportsbet_positive <-
   bind_rows(player_threes_data) |>
   bind_rows(player_blocks_data) |>
   arrange(player_name, market_name, line, desc(over_price)) |>
-  filter(agency == "Sportsbet") |>
+  filter(agency == "TAB") |>
   transmute(match,
             player_name,
             player_team,
@@ -69,45 +69,43 @@ sportsbet_positive <-
 #===============================================================================
 
 # All bets
-sportsbet_sgm_bets <-
-  sportsbet_sgm |> 
-  select(match, player_name, player_team, market_name, line, price,type, contains("id")) |> 
-  left_join(sportsbet_positive) |> 
-  filter(!is.na(diff_over_2023_24))
+tab_sgm_bets <-
+  tab_sgm |> 
+  select(match, player_name, player_team, market_name, line, price,type, contains("id"))
 
-# Filter to only points and rebounds for now
-sportsbet_sgm_bets <-
-  sportsbet_sgm_bets |> 
-  # filter(market_name %in% c("Player Points", "Player Assists", "Player Rebounds")) |> 
-  filter(type == "Overs") |> 
-  filter(match != "Utah Jazz v Oklahoma City Thunder") |> 
-  distinct(match, player_name, market_name, line, .keep_all = TRUE)
+# Filter to only Unders
+tab_sgm_bets <-
+  tab_sgm_bets |> 
+  filter(type == "Unders") |> 
+  distinct(match, player_name, market_name, line, .keep_all = TRUE) |> 
+  filter(!is.na(player_name))
            
 # Generate all combinations of two rows
-row_combinations <- combn(nrow(sportsbet_sgm_bets), 2)
+row_combinations <- combn(nrow(tab_sgm_bets), 2)
 
 # Get list of tibbles of the two selected rows
 list_of_dataframes <-
   map(
     .x = seq_len(ncol(row_combinations)),
     .f = function(i) {
-      sportsbet_sgm_bets[row_combinations[, i], ] |> 
+      tab_sgm_bets[row_combinations[, i], ] |> 
         mutate(combination = i)
     }
   )
 
-# Keep only those where prod of price is between 1.4 and 3
+# Keep only those where the match is the same, player name is the same and market name is not the same
 retained_combinations <-
   list_of_dataframes |> 
-  keep(~prod(.x$price) >= 1 & prod(.x$price) <= 5) |> 
   # Keep only dataframes where first and second row match are equal
-  keep(~.x$match[1] == .x$match[2])
+  keep(~.x$match[1] == .x$match[2]) |> 
+  keep(~.x$player_name[1] == .x$player_name[2]) |>
+  keep(~.x$market_name[1] != .x$market_name[2])
 
 #===============================================================================
 # Call function
 #===============================================================================
 
-# Custom function to apply call_sgm_sportsbet to a tibble
+# Custom function to apply call_sgm_tab to a tibble
 apply_sgm_function <- function(tibble) {
   
   # Random Pause between 0.5 and 0.7 seconds
@@ -115,7 +113,7 @@ apply_sgm_function <- function(tibble) {
   
   
   # Call function
-  call_sgm_sportsbet(
+  call_sgm_tab(
     data = tibble,
     player_names = tibble$player_name,
     prop_line = tibble$line,
@@ -129,5 +127,12 @@ results <- map(retained_combinations, apply_sgm_function, .progress = TRUE)
 
 # Bind all results together
 results <-
-  bind_rows(results) |> 
-  arrange(desc(Adjustment_Factor))
+  results |>
+  keep(~is.data.frame(.x)) |>
+  bind_rows() |> 
+  filter(!is.na(Selections)) |> 
+  arrange(desc(Adjustment_Factor)) |>
+  mutate(Diff = 1/Unadjusted_Price - 1/Adjusted_Price) |> 
+  mutate(Diff = round(Diff, 2)) |>
+  arrange(desc(Diff))
+
