@@ -85,8 +85,8 @@ retained_combinations <-
 # Custom function to apply call_sgm_tab to a tibble
 apply_sgm_function <- function(tibble) {
   
-  # Random Pause between 0.5 and 0.7 seconds
-  Sys.sleep(runif(1, 0.5, 0.8))
+  # Random Pause between 0.4 and 0.8 seconds
+  Sys.sleep(runif(1, 0.4, 0.8))
   
   # Call function
   call_sgm_tab(

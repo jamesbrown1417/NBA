@@ -851,6 +851,266 @@ unders_outlier_method <-
   arrange(desc(date), player_name, line)
 ```
 
+```{r}
+# Unders Same Player Multi Method-----------------------------------------------
+
+# Rebounds
+rebound_unders <- 
+  all_unders |>
+  filter(market_name == "Player Rebounds") |>
+  select(
+    date,
+    match,
+    agency,
+    player_team,
+    player_name,
+    rebound_line = line,
+    rebound_under_price = under_price,
+    rebound_diff_under_2023_24 = diff_under_2023_24,
+    rebound_diff_under_last_10 = diff_under_last_10,
+    rebound_bet_won = bet_won
+  )
+
+# Points
+point_unders <- 
+  all_unders |>
+  filter(market_name == "Player Points") |>
+  select(
+    date,
+    match,
+    agency,
+    player_team,
+    player_name,
+    point_line = line,
+    point_under_price = under_price,
+    point_diff_under_2023_24 = diff_under_2023_24,
+    point_diff_under_last_10 = diff_under_last_10,
+    point_bet_won = bet_won
+  )
+
+# Assists
+assist_unders <- 
+  all_unders |>
+  filter(market_name == "Player Assists") |>
+  filter(!is.na(under_price)) |> 
+  select(
+    date,
+    match,
+    agency,
+    player_team,
+    player_name,
+    assist_line = line,
+    assist_under_price = under_price,
+    assist_diff_under_2023_24 = diff_under_2023_24,
+    assist_diff_under_last_10 = diff_under_last_10,
+    assist_bet_won = bet_won
+  )
+
+# Join Together
+unders_same_player_multi_method_1 <-
+  rebound_unders |>
+  left_join(point_unders,
+            by = c("date", "match", "agency", "player_team", "player_name")) |>
+  filter(agency != "Unibet") |> 
+  filter(
+    rebound_diff_under_last_10 > 0.05 &
+      point_diff_under_last_10 > 0.05 &
+      rebound_diff_under_2023_24 > 0.05 &
+      point_diff_under_2023_24 > 0.05
+  ) |> 
+  mutate(overall_diff_under_last_10 = (rebound_diff_under_last_10 * point_diff_under_last_10),
+         overall_diff_under_2023_24 = (rebound_diff_under_2023_24 * point_diff_under_2023_24)) |> 
+  mutate(uncorrelated_price = (rebound_under_price * point_under_price)) |> 
+  arrange(date, match, player_name, player_team, desc(uncorrelated_price)) |> 
+  group_by(date, match, player_name, player_team, point_line, rebound_line) |>
+  slice_head(n = 1) |> 
+  ungroup() |> 
+  filter(uncorrelated_price <= 4 & uncorrelated_price >= 2.85) |> 
+  mutate(bet_won = if_else(point_bet_won & rebound_bet_won, TRUE, FALSE)) |> 
+  mutate(profit = if_else(bet_won, ((uncorrelated_price * 100) - 100), -100))
+
+unders_same_player_multi_method_2 <-
+    rebound_unders |>
+  left_join(assist_unders,
+            by = c("date", "match", "agency", "player_team", "player_name")) |>
+  filter(agency != "Unibet") |> 
+  filter(
+    rebound_diff_under_last_10 > 0.05 &
+      assist_diff_under_last_10 > 0.05 &
+      rebound_diff_under_2023_24 > 0.05 &
+      assist_diff_under_2023_24 > 0.05
+  ) |> 
+  mutate(overall_diff_under_last_10 = (rebound_diff_under_last_10 * assist_diff_under_last_10),
+         overall_diff_under_2023_24 = (rebound_diff_under_2023_24 * assist_diff_under_2023_24)) |> 
+  mutate(uncorrelated_price = (rebound_under_price * assist_under_price)) |> 
+  arrange(date, match, player_name, player_team, desc(uncorrelated_price)) |> 
+  group_by(date, match, player_name, player_team, assist_line, rebound_line) |>
+  slice_head(n = 1) |> 
+  ungroup() |> 
+  filter(uncorrelated_price <= 4 & uncorrelated_price >= 2.85) |> 
+  mutate(bet_won = if_else(assist_bet_won & rebound_bet_won, TRUE, FALSE)) |> 
+  mutate(profit = if_else(bet_won, ((uncorrelated_price * 100) - 100), -100))
+
+unders_same_player_multi_method_3 <-
+    point_unders |>
+  left_join(assist_unders,
+            by = c("date", "match", "agency", "player_team", "player_name")) |>
+  filter(agency != "Unibet") |> 
+  filter(
+    point_diff_under_last_10 > 0.05 &
+      assist_diff_under_last_10 > 0.05 &
+      point_diff_under_2023_24 > 0.05 &
+      assist_diff_under_2023_24 > 0.05
+  ) |> 
+  mutate(overall_diff_under_last_10 = (point_diff_under_last_10 * assist_diff_under_last_10),
+         overall_diff_under_2023_24 = (point_diff_under_2023_24 * assist_diff_under_2023_24)) |> 
+  mutate(uncorrelated_price = (point_under_price * assist_under_price)) |> 
+  arrange(date, match, player_name, player_team, desc(uncorrelated_price)) |> 
+  group_by(date, match, player_name, player_team, assist_line, point_line) |>
+  slice_head(n = 1) |> 
+  ungroup() |> 
+  filter(uncorrelated_price <= 4 & uncorrelated_price >= 2.85) |> 
+  mutate(bet_won = if_else(assist_bet_won & point_bet_won, TRUE, FALSE)) |> 
+  mutate(profit = if_else(bet_won, ((uncorrelated_price * 100) - 100), -100))
+
+unders_same_player_multi_method <-
+  bind_rows(unders_same_player_multi_method_1,
+            unders_same_player_multi_method_2,
+            unders_same_player_multi_method_3)
+```
+
+
+```{r}
+# Overs Same Player Multi Method-----------------------------------------------
+
+# Rebounds
+rebound_overs <- 
+  all_overs |>
+  filter(market_name == "Player Rebounds") |>
+  # filter(!is.na(under_price)) |> 
+  select(
+    date,
+    match,
+    agency,
+    player_team,
+    player_name,
+    rebound_line = line,
+    rebound_over_price = over_price,
+    rebound_diff_over_2023_24 = diff_over_2023_24,
+    rebound_diff_over_last_10 = diff_over_last_10,
+    rebound_bet_won = bet_won
+  )
+
+# Points
+point_overs <- 
+  all_overs |>
+  filter(market_name == "Player Points") |>
+  # filter(!is.na(under_price)) |> 
+  select(
+    date,
+    match,
+    agency,
+    player_team,
+    player_name,
+    point_line = line,
+    point_over_price = over_price,
+    point_diff_over_2023_24 = diff_over_2023_24,
+    point_diff_over_last_10 = diff_over_last_10,
+    point_bet_won = bet_won
+  )
+
+# Assists
+assist_overs <- 
+  all_overs |>
+  filter(market_name == "Player Assists") |>
+  # filter(!is.na(under_price)) |> 
+  select(
+    date,
+    match,
+    agency,
+    player_team,
+    player_name,
+    assist_line = line,
+    assist_over_price = over_price,
+    assist_diff_over_2023_24 = diff_over_2023_24,
+    assist_diff_over_last_10 = diff_over_last_10,
+    assist_bet_won = bet_won
+  )
+
+# Join Together
+overs_same_player_multi_method_1 <-
+  rebound_overs |>
+  left_join(point_overs,
+            by = c("date", "match", "agency", "player_team", "player_name")) |>
+  filter(agency != "Unibet") |> 
+  filter(
+    rebound_diff_over_last_10 > 0.05 &
+      point_diff_over_last_10 > 0.05 &
+      rebound_diff_over_2023_24 > 0.05 &
+      point_diff_over_2023_24 > 0.05
+  ) |> 
+  mutate(overall_diff_over_last_10 = (rebound_diff_over_last_10 * point_diff_over_last_10),
+         overall_diff_over_2023_24 = (rebound_diff_over_2023_24 * point_diff_over_2023_24)) |> 
+  mutate(uncorrelated_price = (rebound_over_price * point_over_price)) |> 
+  arrange(date, match, player_name, player_team, desc(uncorrelated_price)) |> 
+  group_by(date, match, player_name, player_team, point_line, rebound_line) |>
+  slice_head(n = 1) |> 
+  ungroup() |> 
+  filter(uncorrelated_price <= 4 & uncorrelated_price >= 2.85) |> 
+  mutate(bet_won = if_else(point_bet_won & rebound_bet_won, TRUE, FALSE)) |> 
+  mutate(profit = if_else(bet_won, ((uncorrelated_price * 100) - 100), -100))
+
+overs_same_player_multi_method_2 <-
+    rebound_overs |>
+  left_join(assist_overs,
+            by = c("date", "match", "agency", "player_team", "player_name")) |>
+  filter(agency != "Unibet") |> 
+  filter(
+    rebound_diff_over_last_10 > 0.05 &
+      assist_diff_over_last_10 > 0.05 &
+      rebound_diff_over_2023_24 > 0.05 &
+      assist_diff_over_2023_24 > 0.05
+  ) |> 
+  mutate(overall_diff_over_last_10 = (rebound_diff_over_last_10 * assist_diff_over_last_10),
+         overall_diff_over_2023_24 = (rebound_diff_over_2023_24 * assist_diff_over_2023_24)) |> 
+  mutate(uncorrelated_price = (rebound_over_price * assist_over_price)) |> 
+  arrange(date, match, player_name, player_team, desc(uncorrelated_price)) |> 
+  group_by(date, match, player_name, player_team, assist_line, rebound_line) |>
+  slice_head(n = 1) |> 
+  ungroup() |> 
+  filter(uncorrelated_price <= 4 & uncorrelated_price >= 2.85) |> 
+  mutate(bet_won = if_else(assist_bet_won & rebound_bet_won, TRUE, FALSE)) |> 
+  mutate(profit = if_else(bet_won, ((uncorrelated_price * 100) - 100), -100))
+
+overs_same_player_multi_method_3 <-
+    point_overs |>
+  left_join(assist_overs,
+            by = c("date", "match", "agency", "player_team", "player_name")) |>
+  filter(agency != "Unibet") |> 
+  filter(
+    point_diff_over_last_10 > 0.05 &
+      assist_diff_over_last_10 > 0.05 &
+      point_diff_over_2023_24 > 0.05 &
+      assist_diff_over_2023_24 > 0.05
+  ) |> 
+  mutate(overall_diff_over_last_10 = (point_diff_over_last_10 * assist_diff_over_last_10),
+         overall_diff_over_2023_24 = (point_diff_over_2023_24 * assist_diff_over_2023_24)) |> 
+  mutate(uncorrelated_price = (point_over_price * assist_over_price)) |> 
+  arrange(date, match, player_name, player_team, desc(uncorrelated_price)) |> 
+  group_by(date, match, player_name, player_team, assist_line, point_line) |>
+  slice_head(n = 1) |> 
+  ungroup() |> 
+  filter(uncorrelated_price <= 4 & uncorrelated_price >= 2.85) |> 
+  mutate(bet_won = if_else(assist_bet_won & point_bet_won, TRUE, FALSE)) |> 
+  mutate(profit = if_else(bet_won, ((uncorrelated_price * 100) - 100), -100))
+
+overs_same_player_multi_method <-
+  bind_rows(overs_same_player_multi_method_1,
+            overs_same_player_multi_method_2,
+            overs_same_player_multi_method_3)
+
+```
+
 # Outlier Method
 
 ## Overs
@@ -923,6 +1183,60 @@ unders_outlier_method |>
     group_by(date) |>
   summarise(bets_placed = n(),
             total_stake = sum(stake),
+            profit = sum(profit),
+            ROI = 100*(profit / total_stake)) |> 
+  arrange(desc(date))
+```
+:::
+
+# Same Player Multi Method
+
+## Overs
+
+::: panel-tabset
+### Overall
+
+```{r}
+overs_same_player_multi_method |> 
+  summarise(bets_placed = n(),
+            total_stake = 100*n(),
+            profit = sum(profit),
+            ROI = 100*(profit / total_stake))
+```
+
+### By Date
+
+```{r}
+overs_same_player_multi_method |> 
+    group_by(date) |>
+  summarise(bets_placed = n(),
+            total_stake = 100*n(),
+            profit = sum(profit),
+            ROI = 100*(profit / total_stake)) |> 
+  arrange(desc(date))
+```
+:::
+
+## Unders
+
+::: panel-tabset
+### Overall
+
+```{r}
+unders_same_player_multi_method |> 
+  summarise(bets_placed = n(),
+            total_stake = 100*n(),
+            profit = sum(profit),
+            ROI = 100*(profit / total_stake))
+```
+
+### By Date
+
+```{r}
+unders_same_player_multi_method |> 
+    group_by(date) |>
+  summarise(bets_placed = n(),
+            total_stake = 100*n(),
             profit = sum(profit),
             ROI = 100*(profit / total_stake)) |> 
   arrange(desc(date))
