@@ -913,8 +913,8 @@ unders_same_player_multi_method_1 <-
             by = c("date", "match", "agency", "player_team", "player_name")) |>
   filter(agency != "Unibet") |> 
   filter(
-    rebound_diff_under_last_10 > 0.05 &
-      point_diff_under_last_10 > 0.05 &
+    rebound_diff_under_last_10 > 0.1 &
+      point_diff_under_last_10 > 0.1 &
       rebound_diff_under_2023_24 > 0.05 &
       point_diff_under_2023_24 > 0.05
   ) |> 
@@ -935,8 +935,8 @@ unders_same_player_multi_method_2 <-
             by = c("date", "match", "agency", "player_team", "player_name")) |>
   filter(agency != "Unibet") |> 
   filter(
-    rebound_diff_under_last_10 > 0.05 &
-      assist_diff_under_last_10 > 0.05 &
+    rebound_diff_under_last_10 > 0.1 &
+      assist_diff_under_last_10 > 0.1 &
       rebound_diff_under_2023_24 > 0.05 &
       assist_diff_under_2023_24 > 0.05
   ) |> 
@@ -957,8 +957,8 @@ unders_same_player_multi_method_3 <-
             by = c("date", "match", "agency", "player_team", "player_name")) |>
   filter(agency != "Unibet") |> 
   filter(
-    point_diff_under_last_10 > 0.05 &
-      assist_diff_under_last_10 > 0.05 &
+    point_diff_under_last_10 > 0.1 &
+      assist_diff_under_last_10 > 0.1 &
       point_diff_under_2023_24 > 0.05 &
       assist_diff_under_2023_24 > 0.05
   ) |> 
@@ -978,7 +978,6 @@ unders_same_player_multi_method <-
             unders_same_player_multi_method_2,
             unders_same_player_multi_method_3)
 ```
-
 
 ```{r}
 # Overs Same Player Multi Method-----------------------------------------------
