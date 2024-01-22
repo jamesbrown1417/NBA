@@ -9,59 +9,59 @@ library(tidyverse)
 #===============================================================================
 
 # Get Data
-source("Sportsbet/sportsbet_sgm.R")
+source("TAB/tab_sgm.R")
 
 #===============================================================================
 # Get all 2 way combinations
 #===============================================================================
 
 # All bets
-sportsbet_sgm_bets <-
-  sportsbet_sgm |> 
+tab_sgm_bets <-
+  tab_sgm |> 
   select(match, player_name, player_team, market_name, line, price,type, contains("id"))
 
 # Filter to only Overs
-sportsbet_sgm_bets <-
-  sportsbet_sgm_bets |> 
+tab_sgm_bets <-
+  tab_sgm_bets |> 
   filter(type == "Overs") |> 
   distinct(match, player_name, market_name, line, .keep_all = TRUE)
 
 # Odds below 1.2
-sportsbet_sgm_bets_combine <-
-  sportsbet_sgm_bets |> 
+tab_sgm_bets_combine <-
+  tab_sgm_bets |> 
   filter(price < 1.2)
 
 # Get Desired Player, line and Market
 desired_player <- "Jalen Duren"
-desired_market <- "Player Points"
-desired_line <- 14.5
+desired_market <- "Player Assists"
+desired_line <- 1.5
 
 # Get row number of desired player
 desired_player_row <-
-  sportsbet_sgm_bets |> 
+  tab_sgm_bets |> 
   mutate(rn = row_number()) |> 
   filter(player_name == desired_player,
          market_name == desired_market,
          line == desired_line)
 
 # Add to odds below 1.2
-sportsbet_sgm_bets_combine <-
-  sportsbet_sgm_bets_combine |> 
+tab_sgm_bets_combine <-
+  tab_sgm_bets_combine |> 
   bind_rows(desired_player_row) |> 
   filter(match %in% desired_player_row$match)
 
 # Get index of last row
-last_row <- nrow(sportsbet_sgm_bets_combine)
+last_row <- nrow(tab_sgm_bets_combine)
 
 # Generate all combinations of two rows where one is the desired player row num
-row_combinations <- combn(nrow(sportsbet_sgm_bets_combine), 2)
+row_combinations <- combn(nrow(tab_sgm_bets_combine), 2)
 
 # Get list of tibbles of the two selected rows
 list_of_dataframes <-
   map(
     .x = seq_len(ncol(row_combinations)),
     .f = function(i) {
-      sportsbet_sgm_bets_combine[row_combinations[, i], ] |> 
+      tab_sgm_bets_combine[row_combinations[, i], ] |> 
         mutate(combination = i)
     }
   )
@@ -72,22 +72,22 @@ retained_combinations <-
   # Keep only dataframes where first and second row match are equal
   keep(~.x$match[1] == .x$match[2]) |>
   # Keep only dataframes where the desired player is one of the two rows
-  keep(~desired_player_row$outcomeExternalId %in% .x$outcomeExternalId) |> 
+  keep(~desired_player_row$id %in% .x$id) |> 
   # Keep only dataframes where the rows are not the same
-  keep(~.x$outcomeExternalId[1] != .x$outcomeExternalId[2])
+  keep(~.x$id[1] != .x$id[2])
 
 #===============================================================================
 # Call function
 #===============================================================================
 
-# Custom function to apply call_sgm_sportsbet to a tibble
+# Custom function to apply call_sgm_tab to a tibble
 apply_sgm_function <- function(tibble) {
   
   # Random Pause between 0.5 and 0.7 seconds
-  Sys.sleep(runif(1, 0.5, 0.7))
+  Sys.sleep(runif(1, 0.3, 0.7))
   
   # Call function
-  call_sgm_sportsbet(
+  call_sgm_tab(
     data = tibble,
     player_names = tibble$player_name,
     prop_line = tibble$line,
