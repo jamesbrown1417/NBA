@@ -79,7 +79,7 @@ retained_combinations <-
   list_of_dataframes |> 
   # Keep only dataframes where first and second row match are equal
   keep(~.x$match[1] == .x$match[2]) |>
-  keep(~prod(.x$price) >= 1.5 & prod(.x$price) <= 4)
+  keep(~prod(.x$price) >= 1.95 & prod(.x$price) <= 2.15)
 
 #===============================================================================
 # Call function
@@ -88,8 +88,8 @@ retained_combinations <-
 # Custom function to apply call_sgm_tab to a tibble
 apply_sgm_function <- function(tibble) {
   
-  # Random Pause between 0.5 and 0.7 seconds
-  Sys.sleep(runif(1, 0.5, 0.8))
+  # Random Pause between 0.4 and 0.8 seconds
+  Sys.sleep(runif(1, 0.4, 0.6))
   
   # Call function
   call_sgm_tab(
