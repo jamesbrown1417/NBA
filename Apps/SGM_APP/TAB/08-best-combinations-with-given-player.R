@@ -23,8 +23,8 @@ tab_sgm_bets <-
 # Filter to only Overs
 tab_sgm_bets <-
   tab_sgm_bets |> 
-  filter(type == "Overs") |> 
-  distinct(match, player_name, market_name, line, .keep_all = TRUE)
+  # filter(type == "Overs") |> 
+  distinct(match, player_name, market_name, line, type, .keep_all = TRUE)
 
 # Odds below 1.2
 tab_sgm_bets_combine <-
@@ -32,9 +32,10 @@ tab_sgm_bets_combine <-
   filter(price < 1.2)
 
 # Get Desired Player, line and Market
-desired_player <- "Jalen Duren"
-desired_market <- "Player Assists"
-desired_line <- 1.5
+desired_player <- "Jericho Sims"
+desired_market <- "Player Rebounds"
+desired_line <- 6.5
+desired_type <- "Unders"
 
 # Get row number of desired player
 desired_player_row <-
@@ -42,7 +43,8 @@ desired_player_row <-
   mutate(rn = row_number()) |> 
   filter(player_name == desired_player,
          market_name == desired_market,
-         line == desired_line)
+         line == desired_line,
+         type == desired_type)
 
 # Add to odds below 1.2
 tab_sgm_bets_combine <-
@@ -104,4 +106,8 @@ results <-
   results |>
   keep(~is.data.frame(.x)) |>
   bind_rows() |> 
-  arrange(desc(Adjustment_Factor))
+  arrange(desc(Adjustment_Factor)) |> 
+  mutate(Diff = 1/Unadjusted_Price - 1/Adjusted_Price) |> 
+  mutate(Diff = round(Diff, 2)) |>
+  arrange(desc(Diff))
+
