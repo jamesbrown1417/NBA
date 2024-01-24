@@ -161,6 +161,9 @@ all_player_stats <-
 # Get results data to join to odds----------------------------------------------
 player_results <-
   all_player_stats |>
+  mutate(HOME_TEAM = ifelse(HOME_TEAM == "LA Clippers", "Los Angeles Clippers", HOME_TEAM)) |>
+  mutate(AWAY_TEAM = ifelse(AWAY_TEAM == "LA Clippers", "Los Angeles Clippers", AWAY_TEAM)) |>
+  mutate(team_full = ifelse(team_full == "LA Clippers", "Los Angeles Clippers", team_full)) |>
   transmute(
     match = paste(HOME_TEAM, AWAY_TEAM, sep = " v "),
     player_name = PLAYER_NAME,
