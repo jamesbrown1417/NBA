@@ -1,38 +1,69 @@
 library(httr)
 library(jsonlite)
-library(dplyr)
+library(tidyverse)
 library(purrr)
-library(mongolite)
-uri <- Sys.getenv("mongodb_connection_string")
 
 # Pointsbet SGM-----------------------------------------------------------------
-pbsgm_con <- mongo(collection = "Pointsbet-SGM", db = "Odds", url = uri)
-pointsbet_sgm <- pbsgm_con$find('{}') |> tibble()
+# Read in all odds
+all_files <-
+  list.files("../../Data/scraped_odds", pattern = "pointsbet_player")
+
+# Read in a loop
+pointsbet_sgm <-
+  map(all_files, function(x) {
+    read_csv(paste0("../../Data/scraped_odds/", x))
+  }) |> 
+  bind_rows()
+
+# Split overs and unders into separate rows
+pointsbet_sgm_overs <-
+  pointsbet_sgm |> 
+  filter(!is.na(over_price)) |> 
+  select(-OutcomeKey_unders) |> 
+  rename(price = over_price) |> 
+  mutate(type = "Overs") |> 
+  select(-under_price) |> 
+  distinct(player_name, market_name, line, type, .keep_all = TRUE)
+
+pointsbet_sgm_unders <-
+  pointsbet_sgm |> 
+  filter(!is.na(under_price)) |> 
+  select(-OutcomeKey) |> 
+  rename(OutcomeKey = OutcomeKey_unders) |> 
+  rename(price = under_price) |> 
+  mutate(type = "Unders") |> 
+  select(-over_price) |> 
+  distinct(player_name, market_name, line, type, .keep_all = TRUE)
+
+pointsbet_sgm <-
+  bind_rows(pointsbet_sgm_overs, pointsbet_sgm_unders)
 
 #===============================================================================
 # Function to get SGM data
 #=-=============================================================================
 
 # Create function to call the API
-get_sgm_pointsbet <- function(data, player_names, disposal_counts) {
-  if (length(player_names) != length(disposal_counts)) {
+get_sgm_pointsbet <- function(data, player_names, prop_line, prop_type, over_under) {
+  if (length(player_names) != length(prop_line)) {
     stop("Both lists should have the same length")
   }
   
   filtered_df <- data.frame()
   for (i in seq_along(player_names)) {
-    temp_df <- data %>% 
-      filter(player_name == player_names[[i]] &
-             number_of_disposals == disposal_counts[i])
+    temp_df <- data %>%
+      filter(player_name == player_names[i],
+             market_name == prop_type[i],
+             type == over_under[i],
+             line == prop_line[i])
     filtered_df <- bind_rows(filtered_df, temp_df)
   }
   
-  id_list <- as.character(filtered_df$outcome_id)
-  market_id_list <- as.character(filtered_df$market_id)
-  event_key <- as.character(filtered_df$match_id[1])
+  id_list <- as.character(filtered_df$OutcomeKey)
+  MarketKey_list <- as.character(filtered_df$MarketKey)
+  event_key <- as.character(filtered_df$EventKey[1])
   
   selected_outcomes <- lapply(1:length(id_list), function(i) 
-    list(MarketKey = unbox(market_id_list[i]), OutcomeKey = unbox(id_list[i]))
+    list(MarketKey = unbox(MarketKey_list[i]), OutcomeKey = unbox(id_list[i]))
   )
   
   payload <- list(
@@ -47,22 +78,24 @@ get_sgm_pointsbet <- function(data, player_names, disposal_counts) {
 # Make Post Request
 #==============================================================================
 
-call_sgm_pointsbet <- function(data, player_names, disposal_counts) {
-  if (length(player_names) != length(disposal_counts)) {
+call_sgm_pointsbet <- function(data, player_names, prop_line, prop_type, over_under) {
+  if (length(player_names) != length(prop_line)) {
     stop("Both lists should have the same length")
   }
   
   filtered_df <- data.frame()
   for (i in seq_along(player_names)) {
-    temp_df <- data %>% 
+    temp_df <- data %>%
       filter(player_name == player_names[i],
-             number_of_disposals == disposal_counts[i])
+             market_name == prop_type[i],
+             type == over_under[i],
+             line == prop_line[i])
     filtered_df <- bind_rows(filtered_df, temp_df)
   }
   
   unadjusted_price <- prod(filtered_df$price)
   
-  payload <- get_sgm_pointsbet(data, player_names, disposal_counts)
+  payload <- get_sgm_pointsbet(data, player_names, prop_line, prop_type, over_under)
   
   url <- 'https://api.au.pointsbet.com/api/v2/sgm/price'
   
@@ -87,11 +120,12 @@ call_sgm_pointsbet <- function(data, player_names, disposal_counts) {
   response_content <- content(response, "parsed")
   adjusted_price <- as.numeric(response_content$price)
   adjustment_factor <- adjusted_price / unadjusted_price
-  combined_list <- paste(player_names, disposal_counts, sep = ": ")
+  combined_list <- paste(player_names, prop_line, sep = ": ")
   player_string <- paste(combined_list, collapse = ", ")
   
   output_data <- data.frame(
     Selections = player_string,
+    Markets = paste(prop_type, sep = ": ", collapse = ", "),
     Unadjusted_Price = unadjusted_price,
     Adjusted_Price = adjusted_price,
     Adjustment_Factor = adjustment_factor,
@@ -101,6 +135,5 @@ call_sgm_pointsbet <- function(data, player_names, disposal_counts) {
   return(output_data)
 }
 
-data = pointsbet_sgm
-player_names = c("Jack Sinclair", "Sam Docherty")
-disposal_counts = c("25+", "25+")
+call_sgm_pointsbet(data = pointsbet_sgm, player_names = c("Paul George", "Paul George"), prop_line = c("24.5", "5.5"), prop_type = c("Player Points", "Player Rebounds"), over_under = c("Unders", "Unders"))
+
