@@ -43,6 +43,11 @@ opp_stats |>
   ungroup() |> 
   select(date, oppositionTeam, contains("rolling"))
 
+# Change name of clippers
+opp_stats <-
+  opp_stats |> 
+  mutate(oppositionTeam = ifelse(oppositionTeam == "LA Clippers", "Los Angeles Clippers", oppositionTeam))
+
 # Join opp stats with lines files
 all_player_points <-
   all_player_points |>
