@@ -23,8 +23,8 @@ pointsbet_sgm_bets <-
 # Filter to only Overs
 pointsbet_sgm_bets <-
   pointsbet_sgm_bets |> 
-  filter(type == "Overs") |> 
-  distinct(match, player_name, market_name, line, .keep_all = TRUE)
+  # filter(type == "Overs") |> 
+  distinct(match, player_name, market_name, line, type, .keep_all = TRUE)
 
 # Odds below 1.2
 pointsbet_sgm_bets_combine <-
@@ -32,9 +32,10 @@ pointsbet_sgm_bets_combine <-
   filter(price < 1.2)
 
 # Get Desired Player, line and Market
-desired_player <- "Paul George"
-desired_market <- "Player Points"
-desired_line <- 19.5
+desired_player <- "Luke Kennard"
+desired_market <- "Player Rebounds"
+desired_line <- 3.5
+desired_type <- "Unders"
 
 # Get row number of desired player
 desired_player_row <-
@@ -42,7 +43,8 @@ desired_player_row <-
   mutate(rn = row_number()) |> 
   filter(player_name == desired_player,
          market_name == desired_market,
-         line == desired_line)
+         line == desired_line,
+         type == desired_type)
 
 # Add to odds below 1.2
 pointsbet_sgm_bets_combine <-

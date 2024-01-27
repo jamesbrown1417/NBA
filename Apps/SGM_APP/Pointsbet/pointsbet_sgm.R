@@ -135,5 +135,5 @@ call_sgm_pointsbet <- function(data, player_names, prop_line, prop_type, over_un
   return(output_data)
 }
 
-call_sgm_pointsbet(data = pointsbet_sgm, player_names = c("Paul George", "Paul George"), prop_line = c("24.5", "5.5"), prop_type = c("Player Points", "Player Rebounds"), over_under = c("Unders", "Unders"))
+# call_sgm_pointsbet(data = pointsbet_sgm, player_names = c("Paul George", "Paul George"), prop_line = c("24.5", "5.5"), prop_type = c("Player Points", "Player Rebounds"), over_under = c("Unders", "Unders"))
 

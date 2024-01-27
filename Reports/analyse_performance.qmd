@@ -1190,7 +1190,7 @@ unders_outlier_method |>
 
 ```{r}
 unders_outlier_method |> 
-    group_by(fixture_difficulty < 1) |>
+    group_by(date) |>
   summarise(bets_placed = n(),
             total_stake = sum(stake),
             profit = sum(profit),
