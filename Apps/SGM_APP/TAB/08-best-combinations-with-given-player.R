@@ -26,15 +26,15 @@ tab_sgm_bets <-
   # filter(type == "Overs") |> 
   distinct(match, player_name, market_name, line, type, .keep_all = TRUE)
 
-# Odds below 1.2
+# Odds below 1.3
 tab_sgm_bets_combine <-
   tab_sgm_bets |> 
-  filter(price < 1.2)
+  filter(price <= 1.3)
 
 # Get Desired Player, line and Market
-desired_player <- "Jericho Sims"
-desired_market <- "Player Rebounds"
-desired_line <- 6.5
+desired_player <- "Coby White"
+desired_market <- "Player Assists"
+desired_line <- 5.5
 desired_type <- "Unders"
 
 # Get row number of desired player
@@ -46,7 +46,7 @@ desired_player_row <-
          line == desired_line,
          type == desired_type)
 
-# Add to odds below 1.2
+# Add to odds below 1.3
 tab_sgm_bets_combine <-
   tab_sgm_bets_combine |> 
   bind_rows(desired_player_row) |> 
