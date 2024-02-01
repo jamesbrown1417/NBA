@@ -42,6 +42,7 @@ all_scraped_odds <-
   list.files("../Data/odds_archive/night_before", full.names = TRUE) |>
   keep( ~ str_detect(.x, ".csv$")) |>
   map(read_csv) |>
+  map(~ mutate(.x, date = as.Date(date))) |> 
   reduce(bind_rows) |>
   filter(timestamp >= "2023-12-01") |>
   # Change start time to adelaide time

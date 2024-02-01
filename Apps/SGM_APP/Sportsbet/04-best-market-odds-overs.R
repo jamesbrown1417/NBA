@@ -79,7 +79,7 @@ retained_combinations <-
   list_of_dataframes |> 
   # Keep only dataframes where first and second row match are equal
   keep(~.x$match[1] == .x$match[2]) |> 
-  keep(~prod(.x$price) >= 1.6 & prod(.x$price) <= 2.5)
+  keep(~prod(.x$price) >= 2.15 & prod(.x$price) <= 2.25)
 
 #===============================================================================
 # Call function

@@ -42,6 +42,18 @@ all_scraped_odds <-
   list.files("../Data/odds_archive", full.names = TRUE) |>
   keep( ~ str_detect(.x, ".csv$")) |>
   map(read_csv) |>
+  # If date column exists, remove it
+  map(~ if ("date" %in% colnames(.x)) {
+    .x |> select(-date)
+  } else {
+    .x
+  }) |>
+  # If timestamp column exists as character, convert to datetime
+  map(~ if ("timestamp" %in% colnames(.x)) {
+    .x |> mutate(timestamp = as_datetime(timestamp))
+  } else {
+    .x
+  }) |>
   reduce(bind_rows) |>
   filter(timestamp >= "2023-12-01") |>
   # Change start time to adelaide time

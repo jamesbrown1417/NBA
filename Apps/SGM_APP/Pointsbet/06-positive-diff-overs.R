@@ -48,7 +48,7 @@ pointsbet_positive <-
 # All bets
 pointsbet_sgm_bets <-
   pointsbet_sgm |> 
-  select(match, player_name, player_team, market_name, line, price,type, contains("id")) |> 
+  select(match, player_name, player_team, market_name, line, price,type, contains("Key")) |> 
   left_join(pointsbet_positive) |> 
   filter(!is.na(diff_over_last_10))
 
