@@ -29,13 +29,13 @@ tab_sgm_bets <-
 # Odds below 1.3
 tab_sgm_bets_combine <-
   tab_sgm_bets |> 
-  filter(price <= 1.3)
+  filter(price <= 1.4)
 
 # Get Desired Player, line and Market
-desired_player <- "Coby White"
-desired_market <- "Player Assists"
-desired_line <- 5.5
-desired_type <- "Unders"
+desired_player <- "Anthony Davis"
+desired_market <- "Player Rebounds"
+desired_line <- 9.5
+desired_type <- "Overs"
 
 # Get row number of desired player
 desired_player_row <-

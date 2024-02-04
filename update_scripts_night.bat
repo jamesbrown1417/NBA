@@ -2,5 +2,4 @@ cd /d "C:\Users\james\R_Projects\NBA"
 Rscript OddsScraper\master_processing_script.R
 Rscript Scripts\archive_odds_for_the_day_night_before.R
 Rscript Scripts\get_team_last_n_opponent_stats.R
-quarto render Reports\todays_bets.qmd --to html
-copy /Y Reports\todays_bets.html "C:\Users\james\OneDrive\NBA Odds Archive"
+echo 1 | quarto publish quarto-pub Reports\todays_bets.qmd
