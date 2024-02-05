@@ -54,13 +54,182 @@ all_player_stats_2023_2024 <-
   all_player_stats_2023_2024 |> 
   left_join(player_positions_cleaning_the_glass) |> 
   filter(!is.na(Pos)) |> 
-  arrange(Player, Team, desc(date))
+  arrange(desc(date), game_id, Team, Opponent, desc(Points))
+
 
 #===============================================================================
-# GET DVP
+# Function to get DVP for a position
 #===============================================================================
 
+get_dvp <- function(team, stat, num_games = 15) {
+  
+  # Match IDs to keep
+  match_ids <-
+  all_player_stats_2023_2024 |> 
+    filter(Opponent == team) |>
+    arrange(desc(date)) |> 
+    distinct(game_id, date, .keep_all = TRUE) |> 
+    transmute(game_id, date, match_num = row_number()) |>
+    slice_head(n = num_games)
+    
+  # Stats
+  stats_table <-
+    all_player_stats_2023_2024 |> 
+    mutate(minutes = hms(minutes)) |> 
+    mutate(mins = hour(minutes)) |> 
+    mutate(seconds = minute(minutes)) |>
+    mutate(minutes = mins + (seconds / 60)) |>
+    filter(minutes >= 15) |> 
+    transmute(Player,
+              game_id,
+              Team,
+              Opponent,
+              date,
+              minutes,
+              Points,
+              Assists,
+              Rebounds,
+              Pos) |> 
+    mutate(Points = 36 * (Points / minutes),
+           Assists = 36 * (Assists / minutes),
+           Rebounds = 36 * (Rebounds / minutes))
+  
+  # Vs team
+  stats_table_vs_team <-
+    stats_table |> 
+    filter(Opponent == team) |>
+    arrange(desc(date)) |>
+    filter(game_id %in% match_ids$game_id)
+  
+  # Vs others
+  stats_table_vs_others <-
+    stats_table |> 
+    filter(Opponent != team) |>
+    arrange(Player, desc(date)) |> 
+    group_by(Player) |> 
+    mutate(match_number = dense_rank(date)) |> 
+    mutate(games_played = max(match_number)) |>
+    filter(games_played >= num_games) |>
+    slice_head(n = num_games)
+  
+  # Get median vs team
+  med_vs_team <-
+    stats_table_vs_team |> 
+    group_by(Player, Pos, Team, Opponent) |> 
+    summarise(med_points_vs = median(Points, na.rm = TRUE),
+              med_assists_vs = median(Assists, na.rm = TRUE),
+              med_rebounds_vs = median(Rebounds, na.rm = TRUE))
+  
+  # Get median vs all other teams in period
+  med_vs_others <-
+    stats_table_vs_others |> 
+    group_by(Player, Pos, Team) |> 
+    summarise(med_points_others = median(Points, na.rm = TRUE),
+              med_assists_others = median(Assists, na.rm = TRUE),
+              med_rebounds_others = median(Rebounds, na.rm = TRUE))
+  
+  # Join Together
+  dvp_data <-
+    med_vs_team |>
+    left_join(med_vs_others, by = c("Player", "Pos", "Team")) |> 
+    transmute(Player,
+              Pos,
+              Team,
+              Opponent,
+              point_diff = med_points_vs - med_points_others,
+              assist_diff = med_assists_vs - med_assists_others,
+              rebound_diff = med_rebounds_vs - med_rebounds_others)
+  
+  # Get for desired stat
+  if (stat == "points") {
+    dvp_data |> 
+      group_by(Pos, Opponent) |>
+      summarise(games = n(),
+                med_points = median(point_diff, na.rm = TRUE)) |> 
+      arrange(desc(med_points))
+  } else if (stat == "rebounds") {
+    dvp_data |> 
+      group_by(Pos, Opponent) |>
+      summarise(games = n(),
+                med_rebounds = median(rebound_diff, na.rm = TRUE)) |> 
+      arrange(desc(med_rebounds))
+  } else {
+    dvp_data |> 
+      group_by(Pos, Opponent) |>
+      summarise(
+        games = n(),
+        med_assists = median(assist_diff, na.rm = TRUE)) |> 
+      arrange(desc(med_assists))
+  }
+}
 
+# Get team list
+team_list <-
+  all_player_stats_2023_2024 |> 
+  pull(Opponent) |> 
+  unique()
 
+#===============================================================================
+# Get DVP for each stat
+#===============================================================================
 
+# Get points DVP
+points_dvp <-
+  team_list |> 
+  map_df(get_dvp, stat = "points") |> 
+  arrange(Pos, desc(med_points))
 
+# Get rebounds DVP
+rebounds_dvp <-
+  team_list |> 
+  map_df(get_dvp, stat = "rebounds") |> 
+  arrange(Pos, desc(med_rebounds))
+
+# Get assists DVP
+assists_dvp <-
+  team_list |> 
+  map_df(get_dvp, stat = "assists") |> 
+  arrange(Pos, desc(med_assists))
+
+#===============================================================================
+# Create Heatmaps
+#===============================================================================
+
+# Create points heatmap
+points_heatmap <-
+  points_dvp |> 
+  ggplot(aes(x = Pos, y = Opponent, fill = med_points)) +
+  geom_tile() +
+  scale_fill_gradient2(low = "red", mid = "white", high = "green", midpoint = 0) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  theme(legend.position = "none") +
+  scale_x_discrete(position = "top") +
+  labs(x = NULL, y = NULL, title = "Player Points") +
+  geom_text(aes(label = round(med_points, 1)), size = 3)
+
+# Create rebounds heatmap
+rebounds_heatmap <-
+  rebounds_dvp |> 
+  ggplot(aes(x = Pos, y = Opponent, fill = med_rebounds)) +
+  geom_tile() +
+  scale_fill_gradient2(low = "red", mid = "white", high = "green", midpoint = 0) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  theme(legend.position = "none") +
+  scale_x_discrete(position = "top") +
+  labs(x = NULL, y = NULL, title = "Player Rebounds") +
+  geom_text(aes(label = round(med_rebounds, 1)), size = 3)
+
+# Create assists heatmap
+assists_heatmap <-
+  assists_dvp |> 
+  ggplot(aes(x = Pos, y = Opponent, fill = med_assists)) +
+  geom_tile() +
+  scale_fill_gradient2(low = "red", mid = "white", high = "green", midpoint = 0) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  theme(legend.position = "none") +
+  scale_x_discrete(position = "top") +
+  labs(x = NULL, y = NULL, title = "Player Assists") +
+  geom_text(aes(label = round(med_assists, 1)), size = 3)
