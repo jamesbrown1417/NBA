@@ -195,15 +195,23 @@ get_prop_data <- function(link) {
   
   # Empty vectors to append to
   event_name <- c()
+  event_id <- c()
   outcome_title <- c()
   outcome_name <- c()
+  outcome_id <- c()
+  group_by_header <- c()
+  fixed_market_id <- c()
   price <- c()
   
   for (event in response$events) {
     for (outcome in event$outcomes) {
       event_name <- c(event_name, event$eventName)
+      event_id <- c(event_id, event$eventId)
       outcome_title <- c(outcome_title, outcome$eventName)
       outcome_name <- c(outcome_name, outcome$outcomeName)
+      outcome_id <- c(outcome_id, outcome$outcomeId)
+      group_by_header <- c(group_by_header, outcome$groupByHeader)
+      fixed_market_id <- c(fixed_market_id, outcome$fixedMarketId)
       price <- c(price, outcome$price)
     }
   }
@@ -211,8 +219,12 @@ get_prop_data <- function(link) {
   # Output Tibble
   tibble(
     event_name = event_name,
+    event_id = event_id,
     outcome_title = outcome_title,
     outcome_name = outcome_name,
+    outcome_id = outcome_id,
+    group_by_header = group_by_header,
+    fixed_market_id = fixed_market_id,
     price = price,
     link
   )
@@ -267,20 +279,20 @@ betright_player_points_overs <-
   betright_player_points_all |>
   filter(str_detect(outcome_title, "Over/Under")) |>
   filter(str_detect(outcome_name, "Over")) |> 
-  separate(outcome_name, into = c("player_name", "line"), sep = " Over ") |> 
+  separate(outcome_name, into = c("player_name", "line"), sep = " Over ", remove = FALSE) |> 
   mutate(line = as.numeric(line)) |> 
   rename(over_price = price) |> 
-  select(match, player_name, line, over_price)
+  select(match, player_name, line, over_price, group_by_header, event_id, outcome_name, outcome_id, fixed_market_id)
 
 # Get Unders (over under markets)
 betright_player_points_unders <-
   betright_player_points_all |>
   filter(str_detect(outcome_title, "Over/Under")) |>
   filter(str_detect(outcome_name, "Under")) |> 
-  separate(outcome_name, into = c("player_name", "line"), sep = " Under ") |> 
+  separate(outcome_name, into = c("player_name", "line"), sep = " Under ", remove = FALSE) |> 
   mutate(line = as.numeric(line)) |> 
   rename(under_price = price) |> 
-  select(match, player_name, line, under_price)
+  select(match, player_name, line, under_price, group_by_header, event_id, outcome_name, outcome_id, fixed_market_id)
 
 # Get alternate player points markets
 betright_alternate_points <-
@@ -291,29 +303,37 @@ betright_alternate_points <-
   mutate(line = str_remove(line, "\\+$")) |>
   mutate(line = as.integer(line) - 0.5) |> 
   rename(over_price = price) |> 
-  select(match, player_name, line, over_price)
+  select(match, player_name, line, over_price, group_by_header, event_id, outcome_name, outcome_id, fixed_market_id)
 
 # Combine
 betright_player_points <-
   betright_player_points_overs |>
   bind_rows(betright_alternate_points) |>
-  left_join(betright_player_points_unders) |> 
-  mutate(agency = "BetRight") |> 
-  mutate(market_type = "Player Points") |> 
-  separate(match, into = c("away_team", "home_team"), sep = " @ ") |>
-  mutate(player_name = case_when(
-    str_detect(player_name, "R.J. Barrett") ~ "RJ Barrett",
-    str_detect(player_name, "Cameron Thomas") ~ "Cam Thomas",
-    str_detect(player_name, "Xavier Tillman Sr.") ~ "Xavier Tillman",
-    str_detect(player_name, "Alperen Sengün") ~ "Alperen Sengun",
-    str_detect(player_name, "Lauri Elias Markkanen") ~ "Lauri Markkanen",
-    str_detect(player_name, "Nicolas Claxton") ~ "Nic Claxton",
-    str_detect(player_name, "Jae'Sean  Tate") ~ "Jae'Sean Tate",
-    .default = player_name)) |> 
-  left_join(player_names[,c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |> 
-  mutate(opposition_team = case_when(
-    team_name == away_team ~ home_team,
-    team_name == home_team ~ away_team)) |>
+  left_join(betright_player_points_unders) |>
+  mutate(agency = "BetRight") |>
+  mutate(market_type = "Player Points") |>
+  separate(match,
+           into = c("away_team", "home_team"),
+           sep = " @ ") |>
+  mutate(
+    player_name = case_when(
+      str_detect(player_name, "R.J. Barrett") ~ "RJ Barrett",
+      str_detect(player_name, "Cameron Thomas") ~ "Cam Thomas",
+      str_detect(player_name, "Xavier Tillman Sr.") ~ "Xavier Tillman",
+      str_detect(player_name, "Alperen Sengün") ~ "Alperen Sengun",
+      str_detect(player_name, "Lauri Elias Markkanen") ~ "Lauri Markkanen",
+      str_detect(player_name, "Nicolas Claxton") ~ "Nic Claxton",
+      str_detect(player_name, "Jae'Sean  Tate") ~ "Jae'Sean Tate",
+      .default = player_name
+    )
+  ) |>
+  left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
+  mutate(
+    opposition_team = case_when(
+      team_name == away_team ~ home_team,
+      team_name == home_team ~ away_team
+    )
+  ) |>
   transmute(
     match = paste0(home_team, " v ", away_team),
     home_team,
@@ -325,7 +345,12 @@ betright_player_points <-
     over_price,
     under_price,
     agency = "BetRight",
-    opposition_team
+    opposition_team,
+    group_by_header,
+    event_id,
+    outcome_name,
+    outcome_id,
+    fixed_market_id
   )
 
 # Get Player Assists Data-------------------------------------------------------
@@ -368,20 +393,20 @@ betright_player_assists_overs <-
   betright_player_assists_all |>
   filter(str_detect(outcome_title, "Over/Under")) |>
   filter(str_detect(outcome_name, "Over")) |> 
-  separate(outcome_name, into = c("player_name", "line"), sep = " Over ") |> 
+  separate(outcome_name, into = c("player_name", "line"), sep = " Over ", remove = FALSE) |> 
   mutate(line = as.numeric(line)) |> 
   rename(over_price = price) |> 
-  select(match, player_name, line, over_price)
+  select(match, player_name, line, over_price, group_by_header, event_id, outcome_name, outcome_id, fixed_market_id)
 
 # Get Unders (over under markets)
 betright_player_assists_unders <-
   betright_player_assists_all |>
   filter(str_detect(outcome_title, "Over/Under")) |>
   filter(str_detect(outcome_name, "Under")) |> 
-  separate(outcome_name, into = c("player_name", "line"), sep = " Under ") |> 
+  separate(outcome_name, into = c("player_name", "line"), sep = " Under ", remove = FALSE) |> 
   mutate(line = as.numeric(line)) |> 
   rename(under_price = price) |> 
-  select(match, player_name, line, under_price)
+  select(match, player_name, line, under_price, group_by_header, event_id, outcome_name, outcome_id, fixed_market_id)
 
 # Get alternate player assists markets
 betright_alternate_assists <-
@@ -392,7 +417,7 @@ betright_alternate_assists <-
   mutate(line = str_remove(line, "\\+$")) |>
   mutate(line = as.integer(line) - 0.5) |> 
   rename(over_price = price) |> 
-  select(match, player_name, line, over_price)
+  select(match, player_name, line, over_price, group_by_header, event_id, outcome_name, outcome_id, fixed_market_id)
 
 # Combine
 betright_player_assists <-
@@ -427,7 +452,12 @@ betright_player_assists <-
     over_price,
     under_price,
     agency = "BetRight",
-    opposition_team
+    opposition_team,
+    group_by_header,
+    event_id,
+    outcome_name,
+    outcome_id,
+    fixed_market_id
   )
 
 # Get Player Rebounds Data-------------------------------------------------------
@@ -470,20 +500,20 @@ betright_player_rebounds_overs <-
   betright_player_rebounds_all |>
   filter(str_detect(outcome_title, "Over/Under")) |>
   filter(str_detect(outcome_name, "Over")) |> 
-  separate(outcome_name, into = c("player_name", "line"), sep = " Over ") |> 
+  separate(outcome_name, into = c("player_name", "line"), sep = " Over ", remove = FALSE) |> 
   mutate(line = as.numeric(line)) |> 
   rename(over_price = price) |> 
-  select(match, player_name, line, over_price)
+  select(match, player_name, line, over_price, group_by_header, event_id, outcome_name, outcome_id, fixed_market_id)
 
 # Get Unders (over under markets)
 betright_player_rebounds_unders <-
   betright_player_rebounds_all |>
   filter(str_detect(outcome_title, "Over/Under")) |>
   filter(str_detect(outcome_name, "Under")) |> 
-  separate(outcome_name, into = c("player_name", "line"), sep = " Under ") |> 
+  separate(outcome_name, into = c("player_name", "line"), sep = " Under ", remove = FALSE) |> 
   mutate(line = as.numeric(line)) |> 
   rename(under_price = price) |> 
-  select(match, player_name, line, under_price)
+  select(match, player_name, line, under_price, group_by_header, event_id, outcome_name, outcome_id, fixed_market_id)
 
 # Get alternate player rebounds markets
 betright_alternate_rebounds <-
@@ -494,7 +524,7 @@ betright_alternate_rebounds <-
   mutate(line = str_remove(line, "\\+$")) |>
   mutate(line = as.integer(line) - 0.5) |> 
   rename(over_price = price) |> 
-  select(match, player_name, line, over_price)
+  select(match, player_name, line, over_price, group_by_header, event_id, outcome_name, outcome_id, fixed_market_id)
 
 # Combine
 betright_player_rebounds <-
@@ -528,7 +558,12 @@ betright_player_rebounds <-
     over_price,
     under_price,
     agency = "BetRight",
-    opposition_team
+    opposition_team,
+    group_by_header,
+    event_id,
+    outcome_name,
+    outcome_id,
+    fixed_market_id
   )
 
 # Get player three pointers data------------------------------------------------
@@ -548,20 +583,20 @@ betright_player_three_pointers_overs <-
   betright_player_three_pointers_all |>
   filter(str_detect(outcome_title, "Over/Under")) |>
   filter(str_detect(outcome_name, "Over")) |> 
-  separate(outcome_name, into = c("player_name", "line"), sep = " Over ") |> 
+  separate(outcome_name, into = c("player_name", "line"), sep = " Over ", remove = FALSE) |> 
   mutate(line = as.numeric(line)) |> 
   rename(over_price = price) |> 
-  select(match, player_name, line, over_price)
+  select(match, player_name, line, over_price, group_by_header, event_id, outcome_name, outcome_id, fixed_market_id)
 
 # Get Unders (over under markets)
 betright_player_three_pointers_unders <-
   betright_player_three_pointers_all |>
   filter(str_detect(outcome_title, "Over/Under")) |>
   filter(str_detect(outcome_name, "Under")) |> 
-  separate(outcome_name, into = c("player_name", "line"), sep = " Under ") |> 
+  separate(outcome_name, into = c("player_name", "line"), sep = " Under ", remove = FALSE) |> 
   mutate(line = as.numeric(line)) |> 
   rename(under_price = price) |> 
-  select(match, player_name, line, under_price)
+  select(match, player_name, line, under_price, group_by_header, event_id, outcome_name, outcome_id, fixed_market_id)
 
 # Get alternate player three_pointers markets
 betright_alternate_three_pointers <-
@@ -572,7 +607,7 @@ betright_alternate_three_pointers <-
   mutate(line = str_remove(line, "\\+$")) |>
   mutate(line = as.integer(line) - 0.5) |> 
   rename(over_price = price) |> 
-  select(match, player_name, line, over_price)
+  select(match, player_name, line, over_price, group_by_header, event_id, outcome_name, outcome_id, fixed_market_id)
 
 # Combine
 betright_player_three_pointers <-
@@ -606,7 +641,12 @@ betright_player_three_pointers <-
     over_price,
     under_price,
     agency = "BetRight",
-    opposition_team
+    opposition_team,
+    group_by_header,
+    event_id,
+    outcome_name,
+    outcome_id,
+    fixed_market_id
   )
 
 # Get Player Blocks Data--------------------------------------------------------
@@ -626,20 +666,20 @@ betright_player_blocks_overs <-
   betright_player_blocks_all |>
   filter(str_detect(outcome_title, "Over/Under")) |>
   filter(str_detect(outcome_name, "Over")) |> 
-  separate(outcome_name, into = c("player_name", "line"), sep = " Over ") |> 
+  separate(outcome_name, into = c("player_name", "line"), sep = " Over ", remove = FALSE) |> 
   mutate(line = as.numeric(line)) |> 
   rename(over_price = price) |> 
-  select(match, player_name, line, over_price)
+  select(match, player_name, line, over_price, group_by_header, event_id, outcome_name, outcome_id, fixed_market_id)
 
 # Get Unders (over under markets)
 betright_player_blocks_unders <-
   betright_player_blocks_all |>
   filter(str_detect(outcome_title, "Over/Under")) |>
   filter(str_detect(outcome_name, "Under")) |> 
-  separate(outcome_name, into = c("player_name", "line"), sep = " Under ") |> 
+  separate(outcome_name, into = c("player_name", "line"), sep = " Under ", remove = FALSE) |> 
   mutate(line = as.numeric(line)) |> 
   rename(under_price = price) |> 
-  select(match, player_name, line, under_price)
+  select(match, player_name, line, under_price, group_by_header, event_id, outcome_name, outcome_id, fixed_market_id)
 
 # Get alternate player blocks markets
 betright_alternate_blocks <-
@@ -650,7 +690,7 @@ betright_alternate_blocks <-
   mutate(line = str_remove(line, "\\+$")) |>
   mutate(line = as.integer(line) - 0.5) |> 
   rename(over_price = price) |> 
-  select(match, player_name, line, over_price)
+  select(match, player_name, line, over_price, group_by_header, event_id, outcome_name, outcome_id, fixed_market_id)
 
 # Combine
 betright_player_blocks <-
@@ -684,7 +724,12 @@ betright_player_blocks <-
     over_price,
     under_price,
     agency = "BetRight",
-    opposition_team
+    opposition_team,
+    group_by_header,
+    event_id,
+    outcome_name,
+    outcome_id,
+    fixed_market_id
   )
 
 # Get Player Steals Data--------------------------------------------------------
@@ -704,20 +749,20 @@ betright_player_steals_overs <-
   betright_player_steals_all |>
   filter(str_detect(outcome_title, "Over/Under")) |>
   filter(str_detect(outcome_name, "Over")) |> 
-  separate(outcome_name, into = c("player_name", "line"), sep = " Over ") |> 
+  separate(outcome_name, into = c("player_name", "line"), sep = " Over ", remove = FALSE) |> 
   mutate(line = as.numeric(line)) |> 
   rename(over_price = price) |> 
-  select(match, player_name, line, over_price)
+  select(match, player_name, line, over_price, group_by_header, event_id, outcome_name, outcome_id, fixed_market_id)
 
 # Get Unders (over under markets)
 betright_player_steals_unders <-
   betright_player_steals_all |>
   filter(str_detect(outcome_title, "Over/Under")) |>
   filter(str_detect(outcome_name, "Under")) |> 
-  separate(outcome_name, into = c("player_name", "line"), sep = " Under ") |> 
+  separate(outcome_name, into = c("player_name", "line"), sep = " Under ", remove = FALSE) |> 
   mutate(line = as.numeric(line)) |> 
   rename(under_price = price) |> 
-  select(match, player_name, line, under_price)
+  select(match, player_name, line, under_price, group_by_header, event_id, outcome_name, outcome_id, fixed_market_id)
 
 # Get alternate player steals markets
 betright_alternate_steals <-
@@ -728,7 +773,7 @@ betright_alternate_steals <-
   mutate(line = str_remove(line, "\\+$")) |>
   mutate(line = as.integer(line) - 0.5) |> 
   rename(over_price = price) |> 
-  select(match, player_name, line, over_price)
+  select(match, player_name, line, over_price, group_by_header, event_id, outcome_name, outcome_id, fixed_market_id)
 
 # Combine
 betright_player_steals <-
@@ -762,7 +807,12 @@ betright_player_steals <-
     over_price,
     under_price,
     agency = "BetRight",
-    opposition_team
+    opposition_team,
+    group_by_header,
+    event_id,
+    outcome_name,
+    outcome_id,
+    fixed_market_id
   )
 
 #===============================================================================
