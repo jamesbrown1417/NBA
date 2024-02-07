@@ -89,6 +89,12 @@ all_player_stats <-
 
 team_stats_2023_2024 <-
 all_player_stats_2023_2024 |>
+  distinct(gameId, teamId, playerSlug, GAME_DATE, .keep_all = TRUE) |> 
+  mutate(minutes = hms(minutes)) |> 
+  mutate(mins = hour(minutes)) |> 
+  mutate(seconds = minute(minutes)) |>
+  mutate(minutes = mins + (seconds / 60)) |>
+  select(-c(mins, seconds)) |>
   select(
     gameId,
     GAME_DATE,
@@ -98,6 +104,7 @@ all_player_stats_2023_2024 |>
     teamCity,
     firstName,
     familyName,
+    minutes,
     points,
     reboundsTotal,
     assists,
@@ -107,6 +114,7 @@ all_player_stats_2023_2024 |>
   mutate(PRAs = points + reboundsTotal + assists) |> 
   group_by(gameId, GAME_DATE, HOME_TEAM, AWAY_TEAM, teamName, teamCity) |>
   summarise(
+    minutes = sum(minutes, na.rm = TRUE),
     points = sum(points),
     rebounds = sum(reboundsTotal),
     assists = sum(assists),
@@ -121,7 +129,12 @@ all_player_stats_2023_2024 |>
   relocate(team, oppositionTeam, .after = GAME_DATE) |> 
   arrange(team, GAME_DATE) |> 
   rename(date = GAME_DATE) |> 
-  mutate(date = date + days(1))
+  mutate(date = date + days(1)) |> 
+  filter(!is.na(oppositionTeam)) |> 
+  filter(minutes >= 235) |> 
+  mutate(norm_factor = 240 / minutes) |>
+  mutate_at(vars(points:PRAs), ~ . * norm_factor) |> 
+  select(-norm_factor, -minutes)
   
 #===============================================================================
 # Get team stats for each opposition - Means

@@ -1,0 +1,93 @@
+---
+title: "DVP Plots"
+execute:
+  echo: false
+  message: false
+  warning: false
+author: "James Brown"
+date: "`r Sys.Date()`"
+format:
+  html:
+    df-print: kable
+    theme: cosmo
+    self-contained: true
+    toc: true
+    toc-depth: 3
+    fig-width: 8
+    fig-height: 6
+editor: visual
+---
+
+```{r}
+library(tidyverse)
+
+# Read in data
+dvp_data <- read_csv("../Data/dvp_data.csv")
+
+points_dvp <- 
+  dvp_data |> 
+  filter(market_name == "Player Points")
+
+assists_dvp <- 
+  dvp_data |> 
+  filter(market_name == "Player Assists")
+
+rebounds_dvp <-
+  dvp_data |> 
+  filter(market_name == "Player Rebounds")
+
+```
+
+::: {.panel-tabset}
+
+### Points
+
+```{r}
+# Create points heatmap
+  points_dvp |> 
+  ggplot(aes(x = Pos, y = Opponent, fill = dvp)) +
+  geom_tile() +
+  scale_fill_gradient2(low = "red", mid = "white", high = "green", midpoint = 0) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  theme(legend.position = "none") +
+  scale_x_discrete(position = "top") +
+  labs(x = NULL, y = NULL, title = "Player Points") +
+  geom_text(aes(label = round(dvp, 1)), size = 3)
+
+```
+
+### Rebounds
+
+```{r}
+
+# Create rebounds heatmap
+  rebounds_dvp |> 
+  ggplot(aes(x = Pos, y = Opponent, fill = dvp)) +
+  geom_tile() +
+  scale_fill_gradient2(low = "red", mid = "white", high = "green", midpoint = 0) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  theme(legend.position = "none") +
+  scale_x_discrete(position = "top") +
+  labs(x = NULL, y = NULL, title = "Player Rebounds") +
+  geom_text(aes(label = round(dvp, 1)), size = 3)
+```
+
+### Assists
+
+```{r}
+# Create assists heatmap
+  assists_dvp |> 
+  ggplot(aes(x = Pos, y = Opponent, fill = dvp)) +
+  geom_tile() +
+  scale_fill_gradient2(low = "red", mid = "white", high = "green", midpoint = 0) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  theme(legend.position = "none") +
+  scale_x_discrete(position = "top") +
+  labs(x = NULL, y = NULL, title = "Player Assists") +
+  geom_text(aes(label = round(dvp, 1)), size = 3)
+```
+
+:::

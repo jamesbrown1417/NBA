@@ -199,66 +199,23 @@ assists_dvp <-
 points_dvp_combine <-
 points_dvp |> 
   rename(dvp = med_points) |> 
-  mutate(market = "Player Points")
+  mutate(market_name = "Player Points")
 
 rebounds_dvp_combine <-
 rebounds_dvp |> 
   rename(dvp = med_rebounds) |> 
-  mutate(market = "Player Rebounds")
+  mutate(market_name = "Player Rebounds")
 
 assists_dvp_combine <-
 assists_dvp |> 
   rename(dvp = med_assists) |> 
-  mutate(market = "Player Assists")
+  mutate(market_name = "Player Assists")
 
 dvp_data <-
   bind_rows(points_dvp_combine,
             rebounds_dvp_combine,
             assists_dvp_combine) |>
-  arrange(market, Pos, desc(dvp))
+  arrange(market_name, Pos, desc(dvp))
 
 # Write out
 write_csv(dvp_data, "Data/dvp_data.csv")
-  
-#===============================================================================
-# Create Heatmaps
-#===============================================================================
-
-# Create points heatmap
-points_heatmap <-
-  points_dvp |> 
-  ggplot(aes(x = Pos, y = Opponent, fill = med_points)) +
-  geom_tile() +
-  scale_fill_gradient2(low = "red", mid = "white", high = "green", midpoint = 0) +
-  theme_minimal() +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
-  theme(legend.position = "none") +
-  scale_x_discrete(position = "top") +
-  labs(x = NULL, y = NULL, title = "Player Points") +
-  geom_text(aes(label = round(med_points, 1)), size = 3)
-
-# Create rebounds heatmap
-rebounds_heatmap <-
-  rebounds_dvp |> 
-  ggplot(aes(x = Pos, y = Opponent, fill = med_rebounds)) +
-  geom_tile() +
-  scale_fill_gradient2(low = "red", mid = "white", high = "green", midpoint = 0) +
-  theme_minimal() +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
-  theme(legend.position = "none") +
-  scale_x_discrete(position = "top") +
-  labs(x = NULL, y = NULL, title = "Player Rebounds") +
-  geom_text(aes(label = round(med_rebounds, 1)), size = 3)
-
-# Create assists heatmap
-assists_heatmap <-
-  assists_dvp |> 
-  ggplot(aes(x = Pos, y = Opponent, fill = med_assists)) +
-  geom_tile() +
-  scale_fill_gradient2(low = "red", mid = "white", high = "green", midpoint = 0) +
-  theme_minimal() +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
-  theme(legend.position = "none") +
-  scale_x_discrete(position = "top") +
-  labs(x = NULL, y = NULL, title = "Player Assists") +
-  geom_text(aes(label = round(med_assists, 1)), size = 3)

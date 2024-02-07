@@ -22,6 +22,8 @@ editor: visual
 # Libraries and functions-------------------------------------------------------
 library(tidyverse)
 
+`%notin%` <- Negate(`%in%`)
+
 # Function to convert time to decimal-------------------------------------------
 convert_time_to_decimal_hms <- function(time_obj) {
   # Convert to hms object
@@ -771,26 +773,24 @@ overs_diff_method <-
 all_overs |> 
   arrange(date, player_name, market_name, line, desc(over_price)) |> 
   group_by(date, player_name, market_name, line) |>
-  filter(n() > 2) |> 
   slice_head(n = 2) |>
   mutate(variation = max(implied_prob_over) - min(implied_prob_over)) |>
   slice_head(n = 1) |> 
   ungroup() |>
   arrange(desc(variation), player_name, line) |> 
-  filter(variation >= 0.05) |> 
+  filter(diff_under_last_10 >= 0.05 & diff_under_2023_24 >= 0.05) |>
   filter(over_price >= 1.3)
 
 unders_diff_method <-
   all_unders |> 
   arrange(date, player_name, market_name, line, desc(under_price)) |> 
   group_by(date, player_name, market_name, line) |>
-  filter(n() > 2) |> 
   slice_head(n = 2) |>
   mutate(variation = max(implied_prob_under) - min(implied_prob_under)) |>
   slice_head(n = 1) |> 
   ungroup() |>
   arrange(desc(variation), player_name, line) |> 
-  filter(variation >= 0.05) |> 
+  filter(diff_under_last_10 >= 0.05 & diff_under_2023_24 >= 0.05) |>
   filter(under_price >= 1.3)
 
 #===============================================================================
@@ -853,6 +853,146 @@ unders_outlier_method_2 <-
 unders_outlier_method <-
   bind_rows(unders_outlier_method_1, unders_outlier_method_2) |>
   arrange(desc(date), player_name, line)
+```
+
+```{r}
+# Unders Same Player Multi Method-----------------------------------------------
+
+# Rebounds
+rebound_unders <- 
+  all_unders |>
+  filter(market_name == "Player Rebounds") |>
+  select(
+    date,
+    match,
+    agency,
+    home_away,
+    player_team,
+    player_name,
+    rebound_line = line,
+    rebound_under_price = under_price,
+    rebound_diff_under_2023_24 = diff_under_2023_24,
+    rebound_diff_under_last_10 = diff_under_last_10,
+    rebound_bet_won = bet_won
+  )
+
+# Points
+point_unders <- 
+  all_unders |>
+  filter(market_name == "Player Points") |>
+  select(
+    date,
+    match,
+    agency,
+    home_away,
+    player_team,
+    player_name,
+    point_line = line,
+    point_under_price = under_price,
+    point_diff_under_2023_24 = diff_under_2023_24,
+    point_diff_under_last_10 = diff_under_last_10,
+    point_bet_won = bet_won
+  )
+
+# Assists
+assist_unders <- 
+  all_unders |>
+  filter(market_name == "Player Assists") |>
+  filter(!is.na(under_price)) |> 
+  select(
+    date,
+    match,
+    agency,
+    home_away,
+    player_team,
+    player_name,
+    assist_line = line,
+    assist_under_price = under_price,
+    assist_diff_under_2023_24 = diff_under_2023_24,
+    assist_diff_under_last_10 = diff_under_last_10,
+    assist_bet_won = bet_won
+  )
+
+# Join Together
+unders_same_player_multi_method_1 <-
+  rebound_unders |>
+  left_join(point_unders,
+            by = c("date", "home_away", "match", "agency", "player_team", "player_name")) |>
+  filter(agency != "Unibet") |> 
+  filter(
+    rebound_diff_under_last_10 > 0.05 &
+      point_diff_under_last_10 > 0.05 &
+      rebound_diff_under_2023_24 > 0.05 &
+      point_diff_under_2023_24 > 0.05
+  ) |> 
+  mutate(overall_diff_under_last_10 = (rebound_diff_under_last_10 * point_diff_under_last_10),
+         overall_diff_under_2023_24 = (rebound_diff_under_2023_24 * point_diff_under_2023_24)) |> 
+  mutate(uncorrelated_price = (rebound_under_price * point_under_price)) |> 
+  arrange(date, match, player_name, player_team, desc(uncorrelated_price)) |> 
+  group_by(date, match, player_name, player_team, point_line, rebound_line) |>
+  slice_head(n = 1) |> 
+  ungroup() |> 
+  filter(uncorrelated_price <= 4 & uncorrelated_price >= 2.85) |> 
+  mutate(correlated_price = 1/uncorrelated_price + 0.03) |>
+  mutate(correlated_price = 1/correlated_price) |>
+  mutate(bet_won = if_else(point_bet_won & rebound_bet_won, TRUE, FALSE)) |> 
+  mutate(profit = if_else(bet_won, ((uncorrelated_price * 100) - 100), -100)) |> 
+  mutate(profit_correlated = if_else(bet_won, ((correlated_price * 100) - 100), -100))
+
+unders_same_player_multi_method_2 <-
+    rebound_unders |>
+  left_join(assist_unders,
+            by = c("date", "home_away", "match", "agency", "player_team", "player_name")) |>
+  filter(agency != "Unibet") |> 
+  filter(
+    rebound_diff_under_last_10 > 0.05 &
+      assist_diff_under_last_10 > 0.05 &
+      rebound_diff_under_2023_24 > 0.05 &
+      assist_diff_under_2023_24 > 0.05
+  ) |> 
+  mutate(overall_diff_under_last_10 = (rebound_diff_under_last_10 * assist_diff_under_last_10),
+         overall_diff_under_2023_24 = (rebound_diff_under_2023_24 * assist_diff_under_2023_24)) |> 
+  mutate(uncorrelated_price = (rebound_under_price * assist_under_price)) |> 
+  arrange(date, match, player_name, player_team, desc(uncorrelated_price)) |> 
+  group_by(date, match, player_name, player_team, assist_line, rebound_line) |>
+  slice_head(n = 1) |> 
+  ungroup() |> 
+  filter(uncorrelated_price <= 4 & uncorrelated_price >= 2.85) |> 
+  mutate(correlated_price = 1/uncorrelated_price + 0.03) |>
+  mutate(correlated_price = 1/correlated_price) |>
+  mutate(bet_won = if_else(rebound_bet_won & assist_bet_won, TRUE, FALSE)) |> 
+  mutate(profit = if_else(bet_won, ((uncorrelated_price * 100) - 100), -100)) |> 
+  mutate(profit_correlated = if_else(bet_won, ((correlated_price * 100) - 100), -100))
+
+unders_same_player_multi_method_3 <-
+    point_unders |>
+  left_join(assist_unders,
+            by = c("date", "home_away", "match", "agency", "player_team", "player_name")) |>
+  filter(agency != "Unibet") |> 
+  filter(
+    point_diff_under_last_10 > 0.05 &
+      assist_diff_under_last_10 > 0.05 &
+      point_diff_under_2023_24 > 0.05 &
+      assist_diff_under_2023_24 > 0.05
+  ) |> 
+  mutate(overall_diff_under_last_10 = (point_diff_under_last_10 * assist_diff_under_last_10),
+         overall_diff_under_2023_24 = (point_diff_under_2023_24 * assist_diff_under_2023_24)) |> 
+  mutate(uncorrelated_price = (point_under_price * assist_under_price)) |> 
+  arrange(date, match, player_name, player_team, desc(uncorrelated_price)) |> 
+  group_by(date, match, player_name, player_team, assist_line, point_line) |>
+  slice_head(n = 1) |> 
+  ungroup() |> 
+  filter(uncorrelated_price <= 4 & uncorrelated_price >= 2.85) |> 
+  mutate(correlated_price = 1/uncorrelated_price + 0.03) |>
+  mutate(correlated_price = 1/correlated_price) |>
+  mutate(bet_won = if_else(point_bet_won & assist_bet_won, TRUE, FALSE)) |> 
+  mutate(profit = if_else(bet_won, ((uncorrelated_price * 100) - 100), -100)) |> 
+  mutate(profit_correlated = if_else(bet_won, ((correlated_price * 100) - 100), -100))
+
+unders_same_player_multi_method <-
+  bind_rows(unders_same_player_multi_method_1,
+            unders_same_player_multi_method_2,
+            unders_same_player_multi_method_3)
 ```
 
 # Outlier Method
@@ -933,40 +1073,164 @@ unders_outlier_method |>
 ```
 :::
 
-<!-- # Diff Method -->
 
-<!-- ## Overs -->
+# Same Player Multi Method
 
-<!-- ### Overall -->
+## Unders
 
-<!-- ```{r} -->
+::: panel-tabset
+### Overall
 
-<!-- overs_diff_method |>  -->
+```{r}
+unders_same_player_multi_method |> 
+  summarise(bets_placed = n(),
+            total_stake = 100*n(),
+            profit = sum(profit_correlated),
+            ROI = 100*(profit / total_stake))
+```
 
-<!--   summarise(bets_placed = n(), -->
+### By Home or Away Status
 
-<!--             total_stake = sum(stake), -->
+```{r}
+unders_same_player_multi_method |> 
+    group_by(home_away) |>
+  summarise(bets_placed = n(),
+            total_stake = 100*n(),
+            profit = sum(profit_correlated),
+            ROI = 100*(profit / total_stake)) |> 
+  arrange(desc(ROI))
+```
 
-<!--             profit = sum(profit), -->
+### By Date
 
-<!--             ROI = 100*(profit / total_stake)) -->
+```{r}
+unders_same_player_multi_method |> 
+    group_by(date) |>
+  summarise(bets_placed = n(),
+            total_stake = 100*n(),
+            profit = sum(profit_correlated),
+            ROI = 100*(profit / total_stake)) |> 
+  arrange(desc(date))
+```
+:::
 
-<!-- ``` -->
 
-<!-- ## Unders -->
+# Diff Method
 
-<!-- ### Overall -->
+## Overs
 
-<!-- ```{r} -->
+### Overall
 
-<!-- unders_diff_method |>  -->
+```{r}
 
-<!--   summarise(bets_placed = n(), -->
+overs_diff_method |>
+  summarise(bets_placed = n(),
+            total_stake = sum(stake),
+            profit = sum(profit),
+            ROI = 100*(profit / total_stake))
 
-<!--             total_stake = sum(stake), -->
+```
 
-<!--             profit = sum(profit), -->
+### By Market
 
-<!--             ROI = 100*(profit / total_stake)) -->
+```{r}
+overs_diff_method |>
+  group_by(market_name) |>
+  summarise(bets_placed = n(),
+            total_stake = sum(stake),
+            profit = sum(profit),
+            ROI = 100*(profit / total_stake)) |> 
+  arrange(desc(ROI))
 
-<!-- ``` -->
+```
+
+### By Fixture Difficulty
+
+```{r}
+overs_diff_method |>
+  filter(!is.na(fixture_difficulty)) |> 
+  group_by(fixture_difficulty < 0) |> 
+  summarise(bets_placed = n(),
+            total_stake = sum(stake),
+            profit = sum(profit),
+            ROI = 100*(profit / total_stake))
+```
+
+### By Home / Away Status
+
+```{r}
+overs_diff_method |>
+  group_by(home_away) |> 
+  summarise(bets_placed = n(),
+            total_stake = sum(stake),
+            profit = sum(profit),
+            ROI = 100*(profit / total_stake))
+```
+
+## Unders
+
+### Overall
+
+```{r}
+unders_diff_method |>
+  summarise(bets_placed = n(),
+            total_stake = sum(stake),
+            profit = sum(profit),
+            ROI = 100*(profit / total_stake))
+```
+
+### By Market
+
+```{r}
+unders_diff_method |>
+  group_by(market_name) |>
+  summarise(bets_placed = n(),
+            total_stake = sum(stake),
+            profit = sum(profit),
+            ROI = 100*(profit / total_stake)) |> 
+  arrange(desc(ROI))
+
+```
+
+### By Fixture Difficulty
+
+```{r}
+unders_diff_method |>
+  filter(!is.na(fixture_difficulty)) |> 
+  group_by(fixture_difficulty < 0) |> 
+  summarise(bets_placed = n(),
+            total_stake = sum(stake),
+            profit = sum(profit),
+            ROI = 100*(profit / total_stake))
+```
+
+### By Home / Away Status
+
+```{r}
+unders_diff_method |>
+  group_by(home_away) |> 
+  summarise(bets_placed = n(),
+            total_stake = sum(stake),
+            profit = sum(profit),
+            ROI = 100*(profit / total_stake))
+
+```
+
+### Best Combo
+
+```{r}
+unders_diff_method |>
+  filter(fixture_difficulty < 0) |>
+  filter(home_away == "away") |>
+  filter(market_name %notin% c("Player Pras",
+                               "Player Assists",
+                               "Player Blocks")) |>
+  filter(variation >= 0.01) |>
+  summarise(
+    bets_placed = n(),
+    total_stake = sum(stake),
+    profit = sum(profit),
+    ROI = 100 * (profit / total_stake)
+  )
+
+```
