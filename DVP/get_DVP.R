@@ -192,6 +192,35 @@ assists_dvp <-
   arrange(Pos, desc(med_assists))
 
 #===============================================================================
+# Save Data
+#===============================================================================
+
+# DVP Data
+points_dvp_combine <-
+points_dvp |> 
+  rename(dvp = med_points) |> 
+  mutate(market = "Player Points")
+
+rebounds_dvp_combine <-
+rebounds_dvp |> 
+  rename(dvp = med_rebounds) |> 
+  mutate(market = "Player Rebounds")
+
+assists_dvp_combine <-
+assists_dvp |> 
+  rename(dvp = med_assists) |> 
+  mutate(market = "Player Assists")
+
+dvp_data <-
+  bind_rows(points_dvp_combine,
+            rebounds_dvp_combine,
+            assists_dvp_combine) |>
+  arrange(market, Pos, desc(dvp))
+
+# Write out
+write_csv(dvp_data, "Data/dvp_data.csv")
+  
+#===============================================================================
 # Create Heatmaps
 #===============================================================================
 

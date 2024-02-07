@@ -282,7 +282,17 @@ betright_player_points_overs <-
   separate(outcome_name, into = c("player_name", "line"), sep = " Over ", remove = FALSE) |> 
   mutate(line = as.numeric(line)) |> 
   rename(over_price = price) |> 
-  select(match, player_name, line, over_price, group_by_header, event_id, outcome_name, outcome_id, fixed_market_id)
+  select(
+    match,
+    player_name,
+    line,
+    over_price,
+    group_by_header,
+    event_id,
+    outcome_name,
+    outcome_id,
+    fixed_market_id
+  )
 
 # Get Unders (over under markets)
 betright_player_points_unders <-
@@ -292,7 +302,17 @@ betright_player_points_unders <-
   separate(outcome_name, into = c("player_name", "line"), sep = " Under ", remove = FALSE) |> 
   mutate(line = as.numeric(line)) |> 
   rename(under_price = price) |> 
-  select(match, player_name, line, under_price, group_by_header, event_id, outcome_name, outcome_id, fixed_market_id)
+  select(
+    match,
+    player_name,
+    line,
+    under_price,
+    group_by_header,
+    event_id,
+    outcome_name_under = outcome_name,
+    outcome_id_under = outcome_id,
+    fixed_market_id_under = fixed_market_id
+  )
 
 # Get alternate player points markets
 betright_alternate_points <-
@@ -349,8 +369,11 @@ betright_player_points <-
     group_by_header,
     event_id,
     outcome_name,
+    outcome_name_under,
     outcome_id,
-    fixed_market_id
+    outcome_id_under,
+    fixed_market_id,
+    fixed_market_id_under
   )
 
 # Get Player Assists Data-------------------------------------------------------
@@ -406,7 +429,17 @@ betright_player_assists_unders <-
   separate(outcome_name, into = c("player_name", "line"), sep = " Under ", remove = FALSE) |> 
   mutate(line = as.numeric(line)) |> 
   rename(under_price = price) |> 
-  select(match, player_name, line, under_price, group_by_header, event_id, outcome_name, outcome_id, fixed_market_id)
+  select(
+    match,
+    player_name,
+    line,
+    under_price,
+    group_by_header,
+    event_id,
+    outcome_name_under = outcome_name,
+    outcome_id_under = outcome_id,
+    fixed_market_id_under = fixed_market_id
+  )
 
 # Get alternate player assists markets
 betright_alternate_assists <-
@@ -456,8 +489,11 @@ betright_player_assists <-
     group_by_header,
     event_id,
     outcome_name,
+    outcome_name_under,
     outcome_id,
-    fixed_market_id
+    outcome_id_under,
+    fixed_market_id,
+    fixed_market_id_under
   )
 
 # Get Player Rebounds Data-------------------------------------------------------
@@ -513,7 +549,17 @@ betright_player_rebounds_unders <-
   separate(outcome_name, into = c("player_name", "line"), sep = " Under ", remove = FALSE) |> 
   mutate(line = as.numeric(line)) |> 
   rename(under_price = price) |> 
-  select(match, player_name, line, under_price, group_by_header, event_id, outcome_name, outcome_id, fixed_market_id)
+  select(
+    match,
+    player_name,
+    line,
+    under_price,
+    group_by_header,
+    event_id,
+    outcome_name_under = outcome_name,
+    outcome_id_under = outcome_id,
+    fixed_market_id_under = fixed_market_id
+  )
 
 # Get alternate player rebounds markets
 betright_alternate_rebounds <-
@@ -562,8 +608,11 @@ betright_player_rebounds <-
     group_by_header,
     event_id,
     outcome_name,
+    outcome_name_under,
     outcome_id,
-    fixed_market_id
+    outcome_id_under,
+    fixed_market_id,
+    fixed_market_id_under
   )
 
 # Get player three pointers data------------------------------------------------
@@ -596,7 +645,17 @@ betright_player_three_pointers_unders <-
   separate(outcome_name, into = c("player_name", "line"), sep = " Under ", remove = FALSE) |> 
   mutate(line = as.numeric(line)) |> 
   rename(under_price = price) |> 
-  select(match, player_name, line, under_price, group_by_header, event_id, outcome_name, outcome_id, fixed_market_id)
+  select(
+    match,
+    player_name,
+    line,
+    under_price,
+    group_by_header,
+    event_id,
+    outcome_name_under = outcome_name,
+    outcome_id_under = outcome_id,
+    fixed_market_id_under = fixed_market_id
+  )
 
 # Get alternate player three_pointers markets
 betright_alternate_three_pointers <-
@@ -645,8 +704,11 @@ betright_player_three_pointers <-
     group_by_header,
     event_id,
     outcome_name,
+    outcome_name_under,
     outcome_id,
-    fixed_market_id
+    outcome_id_under,
+    fixed_market_id,
+    fixed_market_id_under
   )
 
 # Get Player Blocks Data--------------------------------------------------------
@@ -679,7 +741,17 @@ betright_player_blocks_unders <-
   separate(outcome_name, into = c("player_name", "line"), sep = " Under ", remove = FALSE) |> 
   mutate(line = as.numeric(line)) |> 
   rename(under_price = price) |> 
-  select(match, player_name, line, under_price, group_by_header, event_id, outcome_name, outcome_id, fixed_market_id)
+  select(
+    match,
+    player_name,
+    line,
+    under_price,
+    group_by_header,
+    event_id,
+    outcome_name_under = outcome_name,
+    outcome_id_under = outcome_id,
+    fixed_market_id_under = fixed_market_id
+  )
 
 # Get alternate player blocks markets
 betright_alternate_blocks <-
@@ -728,8 +800,11 @@ betright_player_blocks <-
     group_by_header,
     event_id,
     outcome_name,
+    outcome_name_under,
     outcome_id,
-    fixed_market_id
+    outcome_id_under,
+    fixed_market_id,
+    fixed_market_id_under
   )
 
 # Get Player Steals Data--------------------------------------------------------
@@ -762,7 +837,17 @@ betright_player_steals_unders <-
   separate(outcome_name, into = c("player_name", "line"), sep = " Under ", remove = FALSE) |> 
   mutate(line = as.numeric(line)) |> 
   rename(under_price = price) |> 
-  select(match, player_name, line, under_price, group_by_header, event_id, outcome_name, outcome_id, fixed_market_id)
+  select(
+    match,
+    player_name,
+    line,
+    under_price,
+    group_by_header,
+    event_id,
+    outcome_name_under = outcome_name,
+    outcome_id_under = outcome_id,
+    fixed_market_id_under = fixed_market_id
+  )
 
 # Get alternate player steals markets
 betright_alternate_steals <-
@@ -811,8 +896,11 @@ betright_player_steals <-
     group_by_header,
     event_id,
     outcome_name,
+    outcome_name_under,
     outcome_id,
-    fixed_market_id
+    outcome_id_under,
+    fixed_market_id,
+    fixed_market_id_under
   )
 
 #===============================================================================

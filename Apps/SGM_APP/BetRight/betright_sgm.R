@@ -2,30 +2,72 @@ library(httr)
 library(jsonlite)
 library(dplyr)
 library(purrr)
-library(mongolite)
-uri <- Sys.getenv("mongodb_connection_string")
 
-# BetRight SGM------------------------------------------------------------------
-betrightsgm_con <- mongo(collection = "BetRight-SGM", db = "Odds", url = uri)
-betright_sgm <- betrightsgm_con$find('{}') |> tibble()
+
+# BetRight SGM-----------------------------------------------------------------
+# Read in all odds
+all_files <-
+  list.files("../../Data/scraped_odds", pattern = "betright_player")
+
+# Read in a loop
+betright_sgm <-
+  map(all_files, function(x) {
+    read_csv(paste0("../../Data/scraped_odds/", x))
+  }) |> 
+  bind_rows()
+
+# Split overs and unders into separate rows
+betright_sgm_overs <-
+  betright_sgm |> 
+  filter(!is.na(over_price)) |> 
+  select(-outcome_name_under,
+         -outcome_id_under,
+         -fixed_market_id_under) |> 
+  rename(price = over_price) |> 
+  mutate(type = "Overs") |> 
+  select(-under_price) |> 
+  distinct(player_name, market_name, line, type, .keep_all = TRUE)
+
+betright_sgm_unders <-
+  betright_sgm |> 
+  filter(!is.na(under_price)) |> 
+  select(-outcome_name,
+         -outcome_id,
+         -fixed_market_id) |> 
+  rename(outcome_name = outcome_name_under,
+         outcome_id = outcome_id_under,
+         fixed_market_id = fixed_market_id_under) |>
+  rename(price = under_price) |> 
+  mutate(type = "Unders") |> 
+  select(-over_price) |> 
+  distinct(player_name, market_name, line, type, .keep_all = TRUE)
+
+if (nrow(betright_sgm_unders) > 0) {
+  betright_sgm <-
+    bind_rows(betright_sgm_overs, betright_sgm_unders)
+} else {
+  betright_sgm <- betright_sgm_overs
+}
 
 #===============================================================================
 # Function to get SGM data
 #=-=============================================================================
 
 # Function to get SGM data
-get_sgm_betright <- function(data, player_names, disposal_counts) {
+get_sgm_betright <- function(data, player_names, prop_line, prop_type, over_under) {
   
-  if (length(player_names) != length(disposal_counts)) {
+  if (length(player_names) != length(prop_line)) {
     stop("Both lists should have the same length")
   }
   
   filtered_df <- data.frame()
   for (i in 1:length(player_names)) {
     temp_df <- data[data$player_name == player_names[i] & 
-                      data$number_of_disposals == disposal_counts[i], ]
+                      data$line == prop_line[i] &
+                      data$market_name == prop_type[i] &
+                      data$type == over_under[i], ]
     if (nrow(temp_df) == 0) {
-      stop(paste("No data found for", player_names[i], "with", disposal_counts[i], "disposals."))
+      stop(paste("No data found for", player_names[i], "with", prop_line[i], prop_type[i], over_under, "."))
     }
     filtered_df <- rbind(filtered_df, temp_df)
   }
@@ -61,24 +103,26 @@ get_sgm_betright <- function(data, player_names, disposal_counts) {
 #==============================================================================
 
 # Make POST request
-call_sgm_betright <- function(data, player_names, disposal_counts) {
-  if (length(player_names) != length(disposal_counts)) {
+call_sgm_betright <- function(data, player_names, prop_line, prop_type, over_under) {
+  if (length(player_names) != length(prop_line)) {
     stop("Both lists should have the same length")
   }
   
   filtered_df <- data.frame()
   for (i in 1:length(player_names)) {
     temp_df <- data[data$player_name == player_names[i] & 
-                      data$number_of_disposals == disposal_counts[i], ]
+                      data$line == prop_line[i] &
+                      data$market_name == prop_type[i] &
+                      data$type == over_under[i], ]
     if (nrow(temp_df) == 0) {
-      stop(paste("No data found for", player_names[i], "with", disposal_counts[i], "disposals."))
+      stop(paste("No data found for", player_names[i], "with", prop_line[i], prop_type[i], over_under, "."))
     }
     filtered_df <- rbind(filtered_df, temp_df)
   }
   
   unadjusted_price <- prod(filtered_df$price)
   
-  payload <- get_sgm_betright(data, player_names, disposal_counts)
+  payload <- get_sgm_betright(data, player_names, prop_line, prop_type, over_under)
   
   url <- "https://sgm-api.betright.com.au/Pricing/SgmPrice?"
   
@@ -101,10 +145,11 @@ call_sgm_betright <- function(data, player_names, disposal_counts) {
   
   adjusted_price <- as.numeric(response_content$price)
   adjustment_factor <- adjusted_price / unadjusted_price
-  player_string <- paste(paste(player_names, disposal_counts, sep = ": "), collapse = ", ")
+  player_string <- paste(paste(player_names, prop_line, sep = ": "), collapse = ", ")
   
   output_data <- data.frame(
     Selections = player_string,
+    Markets = paste(prop_type, sep = ": ", collapse = ", "),
     Unadjusted_Price = unadjusted_price,
     Adjusted_Price = adjusted_price,
     Adjustment_Factor = adjustment_factor,
@@ -113,3 +158,12 @@ call_sgm_betright <- function(data, player_names, disposal_counts) {
   
   return(output_data)
 }
+
+# 
+# call_sgm_betright(
+#   data = betright_sgm,
+#   player_names = c("Mikal Bridges", "Mikal Bridges"),
+#   prop_line = c("2.5", "5.5"),
+#   prop_type = c("Player Assists", "Player Rebounds"),
+#   over_under = c("Overs", "Overs")
+# )
