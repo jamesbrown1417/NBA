@@ -343,6 +343,7 @@ betright_player_points <-
       str_detect(player_name, "Alperen Sengün") ~ "Alperen Sengun",
       str_detect(player_name, "Lauri Elias Markkanen") ~ "Lauri Markkanen",
       str_detect(player_name, "Nicolas Claxton") ~ "Nic Claxton",
+      str_detect(player_name, "Herb Jones") ~ "Herbert Jones",
       str_detect(player_name, "Jae'Sean  Tate") ~ "Jae'Sean Tate",
       .default = player_name
     )
@@ -465,6 +466,7 @@ betright_player_assists <-
     str_detect(player_name, "Cameron Thomas") ~ "Cam Thomas",
     str_detect(player_name, "Xavier Tillman Sr.") ~ "Xavier Tillman",
     str_detect(player_name, "Nicolas Claxton") ~ "Nic Claxton",
+    str_detect(player_name, "Herb Jones") ~ "Herbert Jones",
     str_detect(player_name, "Alperen Sengün") ~ "Alperen Sengun",
     
     str_detect(player_name, "Lauri Elias Markkanen") ~ "Lauri Markkanen",
@@ -585,6 +587,7 @@ betright_player_rebounds <-
     str_detect(player_name, "Cameron Thomas") ~ "Cam Thomas",
     str_detect(player_name, "Xavier Tillman Sr.") ~ "Xavier Tillman",
     str_detect(player_name, "Nicolas Claxton") ~ "Nic Claxton",
+    str_detect(player_name, "Herb Jones") ~ "Herbert Jones",
     str_detect(player_name, "Alperen Sengün") ~ "Alperen Sengun",
     str_detect(player_name, "Lauri Elias Markkanen") ~ "Lauri Markkanen",
     str_detect(player_name, "Jae'Sean  Tate") ~ "Jae'Sean Tate",
@@ -681,6 +684,7 @@ betright_player_three_pointers <-
     str_detect(player_name, "Cameron Thomas") ~ "Cam Thomas",
     str_detect(player_name, "Xavier Tillman Sr.") ~ "Xavier Tillman",
     str_detect(player_name, "Nicolas Claxton") ~ "Nic Claxton",
+    str_detect(player_name, "Herb Jones") ~ "Herbert Jones",
     str_detect(player_name, "Alperen Sengün") ~ "Alperen Sengun",
     str_detect(player_name, "Lauri Elias Markkanen") ~ "Lauri Markkanen",
     str_detect(player_name, "Jae'Sean  Tate") ~ "Jae'Sean Tate",
@@ -777,6 +781,7 @@ betright_player_blocks <-
     str_detect(player_name, "Cameron Thomas") ~ "Cam Thomas",
     str_detect(player_name, "Xavier Tillman Sr.") ~ "Xavier Tillman",
     str_detect(player_name, "Nicolas Claxton") ~ "Nic Claxton",
+    str_detect(player_name, "Herb Jones") ~ "Herbert Jones",
     str_detect(player_name, "Alperen Sengün") ~ "Alperen Sengun",
     str_detect(player_name, "Lauri Elias Markkanen") ~ "Lauri Markkanen",
     str_detect(player_name, "Jae'Sean  Tate") ~ "Jae'Sean Tate",
@@ -873,6 +878,7 @@ betright_player_steals <-
     str_detect(player_name, "Cameron Thomas") ~ "Cam Thomas",
     str_detect(player_name, "Xavier Tillman Sr.") ~ "Xavier Tillman",
     str_detect(player_name, "Nicolas Claxton") ~ "Nic Claxton",
+    str_detect(player_name, "Herb Jones") ~ "Herbert Jones",
     str_detect(player_name, "Alperen Sengün") ~ "Alperen Sengun",
     str_detect(player_name, "Lauri Elias Markkanen") ~ "Lauri Markkanen",
     str_detect(player_name, "Jae'Sean  Tate") ~ "Jae'Sean Tate",
