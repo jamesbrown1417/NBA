@@ -131,7 +131,7 @@ all_player_stats_2023_2024 |>
   rename(date = GAME_DATE) |> 
   mutate(date = date + days(1)) |> 
   filter(!is.na(oppositionTeam)) |> 
-  filter(minutes >= 235) |> 
+  mutate(minutes = if_else(minutes < 240, 240, minutes)) |> 
   mutate(norm_factor = 240 / minutes) |>
   mutate_at(vars(points:PRAs), ~ . * norm_factor) |> 
   select(-norm_factor, -minutes)

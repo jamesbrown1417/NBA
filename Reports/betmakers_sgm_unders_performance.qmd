@@ -21,7 +21,7 @@ editor: visual
 ```{r}
 # Libraries and functions-------------------------------------------------------
 library(tidyverse)
-
+library(glue)
 `%notin%` <- Negate(`%in%`)
 
 # Function to convert time to decimal-------------------------------------------
@@ -199,6 +199,7 @@ opp_stats <- read_rds("../Data/stats_vs_opp_med.rds")
 # Centre rolling averages
 opp_stats <-
 opp_stats |> 
+  ungroup() |> 
   mutate_at(vars(contains("rolling")), ~ .x - mean(.x, na.rm = TRUE)) |> 
   select(date, oppositionTeam, contains("rolling"))
 
@@ -598,10 +599,9 @@ unders_same_player_multi_method_1 <-
 
 unders_same_player_multi_method_1 |> 
   left_join(opp_stats |> mutate(date = date - days(1)), by = c("opposition_team" = "oppositionTeam", "as_at_date" = "date")) |> 
-  group_by(rolling_15_game_points < 0 | rolling_15_game_rebounds < 0) |> 
+  group_by(rolling_15_game_points < 0 & rolling_15_game_rebounds < 0) |> 
   summarise(bets = n(),
             profit = sum(profit),
             staked = bets * 100,
             roi = (profit / staked) * 100)
 ```
-

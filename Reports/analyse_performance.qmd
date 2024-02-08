@@ -199,6 +199,7 @@ opp_stats <- read_rds("../Data/stats_vs_opp_med.rds")
 # Centre rolling averages
 opp_stats <-
 opp_stats |> 
+  ungroup() |> 
   mutate_at(vars(contains("rolling")), ~ .x - mean(.x, na.rm = TRUE)) |> 
   select(date, oppositionTeam, contains("rolling"))
 
@@ -1230,6 +1231,29 @@ unders_outlier_method |>
             ROI = 100*(profit / total_stake)) |> 
   arrange(desc(date))
 ```
+
+### By Home / Away Status
+
+```{r}
+unders_outlier_method |> 
+    group_by(home_away) |>
+  summarise(bets_placed = n(),
+            total_stake = sum(stake),
+            profit = sum(profit),
+            ROI = 100*(profit / total_stake))
+```
+
+### By Fixture Difficulty
+
+```{r}
+unders_outlier_method |> 
+    group_by(fixture_difficulty < 0) |>
+  summarise(bets_placed = n(),
+            total_stake = sum(stake),
+            profit = sum(profit),
+            ROI = 100*(profit / total_stake))
+```
+
 :::
 
 # Same Player Multi Method
@@ -1271,6 +1295,18 @@ unders_same_player_multi_method |>
             total_stake = 100*n(),
             profit = sum(profit_correlated),
             ROI = 100*(profit / total_stake))
+```
+
+### By Home or Away Status
+
+```{r}
+unders_same_player_multi_method |> 
+    group_by(home_away) |>
+  summarise(bets_placed = n(),
+            total_stake = 100*n(),
+            profit = sum(profit_correlated),
+            ROI = 100*(profit / total_stake)) |> 
+  arrange(desc(ROI))
 ```
 
 ### By Home or Away Status
