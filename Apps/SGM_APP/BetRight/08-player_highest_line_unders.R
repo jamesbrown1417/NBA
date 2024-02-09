@@ -139,4 +139,10 @@ final_data <-
   left_join(assists_dvp, by = "player_name") |> 
   relocate(player_name, .before = Selections)
 
+points_rebounds_to_bet <-
+  final_data |> 
+  filter(Markets == "Player Points, Player Rebounds") |> 
+  filter(points_DVP < 0 & rebounds_DVP < 0)
+
+
 
