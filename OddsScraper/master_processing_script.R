@@ -65,6 +65,8 @@ read_csv("Data/NBA_schedule.csv") |>
 all_odds_files <-
     list.files("Data/scraped_odds", full.names = TRUE, pattern = "h2h") |>
     map(read_csv) |>
+    # Keep if nrow of dataframe greater than 0
+    keep(~nrow(.x) > 0) |>
     reduce(bind_rows)
 
 # For each match, get all home wins

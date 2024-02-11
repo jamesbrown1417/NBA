@@ -599,7 +599,7 @@ unders_same_player_multi_method_1 <-
 
 unders_same_player_multi_method_1 |> 
   left_join(opp_stats |> mutate(date = date - days(1)), by = c("opposition_team" = "oppositionTeam", "as_at_date" = "date")) |> 
-  group_by(rolling_15_game_points < 0 & rolling_15_game_rebounds < 0) |> 
+  filter(rolling_15_game_points < 0 & rolling_15_game_rebounds < 0) |> 
   summarise(bets = n(),
             profit = sum(profit),
             staked = bets * 100,

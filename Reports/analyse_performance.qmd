@@ -1253,7 +1253,6 @@ unders_outlier_method |>
             profit = sum(profit),
             ROI = 100*(profit / total_stake))
 ```
-
 :::
 
 # Same Player Multi Method
@@ -1445,11 +1444,13 @@ unders_diff_method |>
                                "Player Assists",
                                "Player Blocks")) |>
   filter(variation >= 0.01) |>
+  group_by(date) |>
   summarise(
     bets_placed = n(),
     total_stake = sum(stake),
     profit = sum(profit),
     ROI = 100 * (profit / total_stake)
-  )
+  ) |> 
+  arrange(desc(date))
 
 ```
