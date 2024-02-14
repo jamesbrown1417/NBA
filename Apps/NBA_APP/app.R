@@ -231,6 +231,7 @@ if (os_type == "Windows") {
   player_threes_data <- read_sheet(ss = ss_name, sheet = "Player Threes")
   player_blocks_data <- read_sheet(ss = ss_name, sheet = "Player Blocks")
 }
+
 # Add opposition defensive rating-----------------------------------------------
 
 # Get defensive rating in last 5 games
