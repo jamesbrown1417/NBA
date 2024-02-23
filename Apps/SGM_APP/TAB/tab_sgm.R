@@ -153,4 +153,4 @@ call_sgm_tab <- function(data, player_names, prop_line, prop_type, over_under) {
   })
 }
 
-# call_sgm_tab(data = tab_sgm, player_names = c("Zach LaVine", "Zach LaVine"), prop_line = c("19.5", "5.5"), prop_type = c("Player Points", "Player Rebounds"), over_under = c("Overs", "Overs"))
+# call_sgm_tab(data = tab_sgm, player_names = c("Paul George", "Paul George"), prop_line = c("19.5", "5.5"), prop_type = c("Player Points", "Player Rebounds"), over_under = c("Overs", "Overs"))

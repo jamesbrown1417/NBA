@@ -2,6 +2,7 @@
 library(tidyverse)
 library(rvest)
 library(httr2)
+library(jsonlite)
 
 # URL to get responses
 tab_url = "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA?jurisdiction=NSW&numTopMarkets=5"
@@ -11,12 +12,19 @@ source("Scripts/fix_team_names.R")
 
 main_tab <- function() {
 
-# Make request and get response
-tab_response <-
-    request(tab_url) |>
-    req_perform() |> 
-    resp_body_json()
+# # Make request and get response
+# tab_response <-
+#     request(tab_url) |>
+#     req_perform() |> 
+#     resp_body_json()
 
+  # Try to get json using rvest
+  tab_response <-
+    read_html_live(tab_url) |>
+    html_nodes("pre") |>
+    html_text() |>
+    fromJSON(simplifyVector = FALSE)  
+  
 # Function to extract market info from response---------------------------------
 get_market_info <- function(markets) {
     
