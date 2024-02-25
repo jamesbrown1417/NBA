@@ -103,7 +103,7 @@ all_odds_h2h <-
 
 # Google Sheets-----------------------------------------------------
 sheet <- gs4_find("NBA Data")
-sheet_write(sheet, data = all_odds_h2h, sheet = "H2H")
+# sheet_write(sheet, data = all_odds_h2h, sheet = "H2H")
 
 ##%######################################################%##
 #                                                          #
@@ -175,7 +175,7 @@ all_player_points <-
   arrange(desc(variation), player_name, desc(over_price), line)
 
 # Add to google sheets
-sheet_write(sheet, data = all_player_points, sheet = "Player Points")
+# sheet_write(sheet, data = all_player_points, sheet = "Player Points")
 
 # Write as RDS
 all_player_points |> write_rds("Data/processed_odds/all_player_points.rds")
@@ -249,7 +249,7 @@ all_player_assists <-
   arrange(desc(variation), player_name, desc(over_price), line)
 
 # Add to google sheets
-sheet_write(sheet, data = all_player_assists, sheet = "Player Assists")
+# sheet_write(sheet, data = all_player_assists, sheet = "Player Assists")
 
 # Write as RDS
 all_player_assists |> write_rds("Data/processed_odds/all_player_assists.rds")
@@ -323,7 +323,7 @@ all_player_rebounds <-
   arrange(desc(variation), player_name, desc(over_price), line)
 
 # Add to google sheets
-sheet_write(sheet, data = all_player_rebounds, sheet = "Player Rebounds")
+# sheet_write(sheet, data = all_player_rebounds, sheet = "Player Rebounds")
 
 # Write as RDS
 all_player_rebounds |> write_rds("Data/processed_odds/all_player_rebounds.rds")
@@ -397,7 +397,7 @@ all_player_steals <-
   arrange(desc(variation), player_name, desc(over_price), line)
 
 # Add to google sheets
-sheet_write(sheet, data = all_player_steals, sheet = "Player Steals")
+# sheet_write(sheet, data = all_player_steals, sheet = "Player Steals")
 
 # Write as RDS
 all_player_steals |> write_rds("Data/processed_odds/all_player_steals.rds")
@@ -471,7 +471,7 @@ all_player_blocks <-
   arrange(desc(variation), player_name, desc(over_price), line)
 
 # Add to google sheets
-sheet_write(sheet, data = all_player_blocks, sheet = "Player Blocks")
+# sheet_write(sheet, data = all_player_blocks, sheet = "Player Blocks")
 
 # Write as RDS
 all_player_blocks |> write_rds("Data/processed_odds/all_player_blocks.rds")
@@ -545,7 +545,7 @@ all_player_threes <-
   arrange(desc(variation), player_name, desc(over_price), line)
 
 # Add to google sheets
-sheet_write(sheet, data = all_player_threes, sheet = "Player Threes")
+# sheet_write(sheet, data = all_player_threes, sheet = "Player Threes")
 
 # Write as RDS
 all_player_threes |> write_rds("Data/processed_odds/all_player_threes.rds")
@@ -619,7 +619,7 @@ all_player_pras <-
   arrange(desc(variation), player_name, desc(over_price), line)
 
 # Add to google sheets
-sheet_write(sheet, data = all_player_pras, sheet = "Player PRAs")
+# sheet_write(sheet, data = all_player_pras, sheet = "Player PRAs")
 
 # Write as RDS
 all_player_pras |> write_rds("Data/processed_odds/all_player_pras.rds")
