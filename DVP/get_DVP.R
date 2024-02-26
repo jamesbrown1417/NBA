@@ -1,5 +1,10 @@
 # Libraries and functions-------------------------------------------------------
 library(tidyverse)
+library(future)
+library(furrr)
+
+# Set up parallel processing----------------------------------------------------
+plan(multisession)
 
 # Read in position data---------------------------------------------------------
 player_positions_cleaning_the_glass <-
@@ -176,6 +181,7 @@ team_list <-
 points_dvp <-
   team_list |> 
   map_df(get_dvp, stat = "points") |> 
+  bind_rows() |> 
   arrange(Pos, desc(med_points))
 
 # Get rebounds DVP

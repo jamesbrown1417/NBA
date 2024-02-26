@@ -595,7 +595,6 @@ unders_same_player_multi_method_1 <-
 ```
 
 ::: panel-tabset
-
 ## Overall
 
 ```{r}
@@ -606,6 +605,7 @@ unders_same_player_multi_method_1 <-
 unders_same_player_multi_method_1 |> 
   left_join(opp_stats |> mutate(date = date - days(1)), by = c("opposition_team" = "oppositionTeam", "as_at_date" = "date")) |> 
   filter(rolling_15_game_points < 0 & rolling_15_game_rebounds < 0) |> 
+  filter(rebound_line >= 5.5) |> 
   summarise(bets = n(),
             profit = sum(profit),
             staked = bets * 100,
@@ -613,11 +613,13 @@ unders_same_player_multi_method_1 |>
 ```
 
 ## By Date
+
 ```{r}
 unders_same_player_multi_method_1 |> 
   left_join(opp_stats |> mutate(date = date - days(1)), by = c("opposition_team" = "oppositionTeam", "as_at_date" = "date")) |> 
   filter(rolling_15_game_points < 0 & rolling_15_game_rebounds < 0) |> 
   mutate(date = as_at_date + days(1)) |>
+  filter(rebound_line >= 5.5) |> 
   group_by(date) |> 
   summarise(bets = n(),
             profit = sum(profit),
@@ -625,19 +627,6 @@ unders_same_player_multi_method_1 |>
             roi = (profit / staked) * 100) |> 
   arrange(desc(date))
 
-```
-
-## By Rebound line high or low
-```{r}
-unders_same_player_multi_method_1 |> 
-  left_join(opp_stats |> mutate(date = date - days(1)), by = c("opposition_team" = "oppositionTeam", "as_at_date" = "date")) |> 
-  filter(rolling_15_game_points < 0 & rolling_15_game_rebounds < 0) |> 
-  mutate(date = as_at_date + days(1)) |>
-  group_by(rebound_line >= 5.5) |> 
-  summarise(bets = n(),
-            profit = sum(profit),
-            staked = bets * 100,
-            roi = (profit / staked) * 100)
 ```
 
 :::
