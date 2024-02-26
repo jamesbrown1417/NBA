@@ -1,30 +1,326 @@
 match,home_team,away_team,player_name,player_team,opposition_team,market_name,line,over_price,under_price,agency,prop_id,under_prop_id
-Detroit Pistons v Orlando Magic,Detroit Pistons,Orlando Magic,Jalen Suggs,Orlando Magic,Detroit Pistons,Player Steals,1.5,2.15,NA,TAB,615114,NA
-Detroit Pistons v Orlando Magic,Detroit Pistons,Orlando Magic,Ausar Thompson,Detroit Pistons,Orlando Magic,Player Steals,1.5,2.4,NA,TAB,615109,NA
-Detroit Pistons v Orlando Magic,Detroit Pistons,Orlando Magic,Franz Wagner,Orlando Magic,Detroit Pistons,Player Steals,1.5,2.4,NA,TAB,615117,NA
-Detroit Pistons v Orlando Magic,Detroit Pistons,Orlando Magic,Paolo Banchero,Orlando Magic,Detroit Pistons,Player Steals,1.5,2.4,NA,TAB,615116,NA
-Detroit Pistons v Orlando Magic,Detroit Pistons,Orlando Magic,Cade Cunningham,Detroit Pistons,Orlando Magic,Player Steals,1.5,3.3,NA,TAB,615110,NA
-Detroit Pistons v Orlando Magic,Detroit Pistons,Orlando Magic,Simone Fontecchio,Detroit Pistons,Orlando Magic,Player Steals,1.5,4,NA,TAB,615111,NA
-Detroit Pistons v Orlando Magic,Detroit Pistons,Orlando Magic,Jaden Ivey,Detroit Pistons,Orlando Magic,Player Steals,1.5,4,NA,TAB,615112,NA
-Detroit Pistons v Orlando Magic,Detroit Pistons,Orlando Magic,Jalen Duren,Detroit Pistons,Orlando Magic,Player Steals,1.5,6,NA,TAB,615113,NA
-Detroit Pistons v Orlando Magic,Detroit Pistons,Orlando Magic,Wendell Carter Jr.,Orlando Magic,Detroit Pistons,Player Steals,1.5,6,NA,TAB,615118,NA
-Detroit Pistons v Orlando Magic,Detroit Pistons,Orlando Magic,Jalen Suggs,Orlando Magic,Detroit Pistons,Player Steals,3.5,9,NA,TAB,615119,NA
-Minnesota Timberwolves v Brooklyn Nets,Minnesota Timberwolves,Brooklyn Nets,Anthony Edwards,Minnesota Timberwolves,Brooklyn Nets,Player Steals,1.5,2.6,NA,TAB,615489,NA
-Minnesota Timberwolves v Brooklyn Nets,Minnesota Timberwolves,Brooklyn Nets,Mike Conley,Minnesota Timberwolves,Brooklyn Nets,Player Steals,1.5,2.8,NA,TAB,615490,NA
-Minnesota Timberwolves v Brooklyn Nets,Minnesota Timberwolves,Brooklyn Nets,NA,NA,NA,Player Steals,1.5,3,NA,TAB,615491,NA
-Minnesota Timberwolves v Brooklyn Nets,Minnesota Timberwolves,Brooklyn Nets,Ben Simmons,Brooklyn Nets,Minnesota Timberwolves,Player Steals,1.5,3,NA,TAB,615494,NA
-Minnesota Timberwolves v Brooklyn Nets,Minnesota Timberwolves,Brooklyn Nets,Mikal Bridges,Brooklyn Nets,Minnesota Timberwolves,Player Steals,1.5,3.1,NA,TAB,615495,NA
-Minnesota Timberwolves v Brooklyn Nets,Minnesota Timberwolves,Brooklyn Nets,Cam Thomas,Brooklyn Nets,Minnesota Timberwolves,Player Steals,1.5,3.4,NA,TAB,615496,NA
-Minnesota Timberwolves v Brooklyn Nets,Minnesota Timberwolves,Brooklyn Nets,Nic Claxton,Brooklyn Nets,Minnesota Timberwolves,Player Steals,1.5,3.75,NA,TAB,615497,NA
-Minnesota Timberwolves v Brooklyn Nets,Minnesota Timberwolves,Brooklyn Nets,Rudy Gobert,Minnesota Timberwolves,Brooklyn Nets,Player Steals,1.5,4.25,NA,TAB,615492,NA
-Minnesota Timberwolves v Brooklyn Nets,Minnesota Timberwolves,Brooklyn Nets,Karl-Anthony Towns,Minnesota Timberwolves,Brooklyn Nets,Player Steals,1.5,4.25,NA,TAB,615493,NA
-Minnesota Timberwolves v Brooklyn Nets,Minnesota Timberwolves,Brooklyn Nets,Dorian Finney-Smith,Brooklyn Nets,Minnesota Timberwolves,Player Steals,1.5,4.5,NA,TAB,615498,NA
-New York Knicks v Boston Celtics,New York Knicks,Boston Celtics,Donte DiVincenzo,New York Knicks,Boston Celtics,Player Steals,1.5,2.3,NA,TAB,615859,NA
-New York Knicks v Boston Celtics,New York Knicks,Boston Celtics,Jayson Tatum,Boston Celtics,New York Knicks,Player Steals,1.5,2.5,NA,TAB,615864,NA
-New York Knicks v Boston Celtics,New York Knicks,Boston Celtics,Jaylen Brown,Boston Celtics,New York Knicks,Player Steals,1.5,2.6,NA,TAB,615865,NA
-New York Knicks v Boston Celtics,New York Knicks,Boston Celtics,Jrue Holiday,Boston Celtics,New York Knicks,Player Steals,1.5,2.8,NA,TAB,615866,NA
-New York Knicks v Boston Celtics,New York Knicks,Boston Celtics,Derrick White,Boston Celtics,New York Knicks,Player Steals,1.5,2.8,NA,TAB,615867,NA
-New York Knicks v Boston Celtics,New York Knicks,Boston Celtics,Josh Hart,New York Knicks,Boston Celtics,Player Steals,1.5,3,NA,TAB,615860,NA
-New York Knicks v Boston Celtics,New York Knicks,Boston Celtics,Jalen Brunson,New York Knicks,Boston Celtics,Player Steals,1.5,3.4,NA,TAB,615862,NA
-New York Knicks v Boston Celtics,New York Knicks,Boston Celtics,Precious Achiuwa,New York Knicks,Boston Celtics,Player Steals,1.5,3.75,NA,TAB,615863,NA
-New York Knicks v Boston Celtics,New York Knicks,Boston Celtics,Kristaps Porzingis,Boston Celtics,New York Knicks,Player Steals,1.5,4,NA,TAB,615868,NA
+Washington Wizards v Cleveland Cavaliers,Washington Wizards,Cleveland Cavaliers,Bilal Coulibaly,Washington Wizards,Cleveland Cavaliers,Player Steals,1.5,3.2,1.32,TAB,587693,587694
+Washington Wizards v Cleveland Cavaliers,Washington Wizards,Cleveland Cavaliers,Corey Kispert,Washington Wizards,Cleveland Cavaliers,Player Steals,0.5,2.15,1.65,TAB,602357,602358
+Washington Wizards v Cleveland Cavaliers,Washington Wizards,Cleveland Cavaliers,Caris LeVert,Cleveland Cavaliers,Washington Wizards,Player Steals,0.5,1.72,2.05,TAB,589256,589257
+Washington Wizards v Cleveland Cavaliers,Washington Wizards,Cleveland Cavaliers,Darius Garland,Cleveland Cavaliers,Washington Wizards,Player Steals,1.5,2.3,1.58,TAB,585123,585124
+Washington Wizards v Cleveland Cavaliers,Washington Wizards,Cleveland Cavaliers,Dean Wade,Cleveland Cavaliers,Washington Wizards,Player Steals,0.5,2.9,1.38,TAB,593165,593166
+Washington Wizards v Cleveland Cavaliers,Washington Wizards,Cleveland Cavaliers,Donovan Mitchell,Cleveland Cavaliers,Washington Wizards,Player Steals,1.5,1.62,2.2,TAB,585038,585039
+Washington Wizards v Cleveland Cavaliers,Washington Wizards,Cleveland Cavaliers,Evan Mobley,Cleveland Cavaliers,Washington Wizards,Player Steals,0.5,1.62,2.2,TAB,584614,584615
+Washington Wizards v Cleveland Cavaliers,Washington Wizards,Cleveland Cavaliers,Georges Niang,Cleveland Cavaliers,Washington Wizards,Player Steals,0.5,4,1.22,TAB,589432,589433
+Washington Wizards v Cleveland Cavaliers,Washington Wizards,Cleveland Cavaliers,Isaac Okoro,Cleveland Cavaliers,Washington Wizards,Player Steals,0.5,1.95,1.8,TAB,589080,589081
+Washington Wizards v Cleveland Cavaliers,Washington Wizards,Cleveland Cavaliers,Jarrett Allen,Cleveland Cavaliers,Washington Wizards,Player Steals,0.5,1.95,1.8,TAB,585089,585090
+Washington Wizards v Cleveland Cavaliers,Washington Wizards,Cleveland Cavaliers,Kyle Kuzma,Washington Wizards,Cleveland Cavaliers,Player Steals,0.5,2.05,1.72,TAB,585111,585112
+Washington Wizards v Cleveland Cavaliers,Washington Wizards,Cleveland Cavaliers,Marvin Bagley III,Washington Wizards,Cleveland Cavaliers,Player Steals,0.5,1.85,1.9,TAB,584867,584868
+Washington Wizards v Cleveland Cavaliers,Washington Wizards,Cleveland Cavaliers,Max Strus,Cleveland Cavaliers,Washington Wizards,Player Steals,0.5,1.55,2.35,TAB,585322,585323
+Washington Wizards v Cleveland Cavaliers,Washington Wizards,Cleveland Cavaliers,Tyus Jones,Washington Wizards,Cleveland Cavaliers,Player Steals,1.5,3,1.36,TAB,584743,584778
+Atlanta Hawks v Orlando Magic,Atlanta Hawks,Orlando Magic,Bruno Fernando,Atlanta Hawks,Orlando Magic,Player Steals,0.5,2.25,1.6,TAB,597301,597302
+Atlanta Hawks v Orlando Magic,Atlanta Hawks,Orlando Magic,NA,NA,NA,Player Steals,1.5,2.75,1.42,TAB,550502,550503
+Atlanta Hawks v Orlando Magic,Atlanta Hawks,Orlando Magic,Clint Capela,Atlanta Hawks,Orlando Magic,Player Steals,0.5,1.9,1.85,TAB,550662,550663
+Atlanta Hawks v Orlando Magic,Atlanta Hawks,Orlando Magic,Cole Anthony,Orlando Magic,Atlanta Hawks,Player Steals,0.5,1.55,2.35,TAB,601821,601822
+Atlanta Hawks v Orlando Magic,Atlanta Hawks,Orlando Magic,De'Andre Hunter,Atlanta Hawks,Orlando Magic,Player Steals,0.5,1.55,2.35,TAB,597201,597202
+Atlanta Hawks v Orlando Magic,Atlanta Hawks,Orlando Magic,Dejounte Murray,Atlanta Hawks,Orlando Magic,Player Steals,1.5,2.45,1.52,TAB,551678,551679
+Atlanta Hawks v Orlando Magic,Atlanta Hawks,Orlando Magic,Franz Wagner,Orlando Magic,Atlanta Hawks,Player Steals,0.5,1.58,2.3,TAB,551373,551374
+Atlanta Hawks v Orlando Magic,Atlanta Hawks,Orlando Magic,Goga Bitadze,Orlando Magic,Atlanta Hawks,Player Steals,0.5,2.1,1.68,TAB,601567,601568
+Atlanta Hawks v Orlando Magic,Atlanta Hawks,Orlando Magic,Jonathan Isaac,Orlando Magic,Atlanta Hawks,Player Steals,0.5,1.9,1.85,TAB,602085,602086
+Atlanta Hawks v Orlando Magic,Atlanta Hawks,Orlando Magic,Jalen Johnson,Atlanta Hawks,Orlando Magic,Player Steals,1.5,2.2,1.62,TAB,551353,551354
+Atlanta Hawks v Orlando Magic,Atlanta Hawks,Orlando Magic,Jalen Suggs,Orlando Magic,Atlanta Hawks,Player Steals,1.5,3.3,1.3,TAB,551081,551082
+Atlanta Hawks v Orlando Magic,Atlanta Hawks,Orlando Magic,Joe Ingles,Orlando Magic,Atlanta Hawks,Player Steals,0.5,2.5,1.5,TAB,602153,602154
+Atlanta Hawks v Orlando Magic,Atlanta Hawks,Orlando Magic,Markelle Fultz,Orlando Magic,Atlanta Hawks,Player Steals,0.5,1.52,2.45,TAB,551627,551628
+Atlanta Hawks v Orlando Magic,Atlanta Hawks,Orlando Magic,Moritz Wagner,Orlando Magic,Atlanta Hawks,Player Steals,0.5,2.55,1.48,TAB,601959,601960
+Atlanta Hawks v Orlando Magic,Atlanta Hawks,Orlando Magic,Saddiq Bey,Atlanta Hawks,Orlando Magic,Player Steals,1.5,3.2,1.32,TAB,551053,551054
+Atlanta Hawks v Orlando Magic,Atlanta Hawks,Orlando Magic,Wendell Carter Jr.,Orlando Magic,Atlanta Hawks,Player Steals,0.5,2.15,1.65,TAB,550231,550232
+Golden State Warriors v Denver Nuggets,Golden State Warriors,Denver Nuggets,Aaron Gordon,Denver Nuggets,Golden State Warriors,Player Steals,0.5,1.53,2.4,TAB,573103,573108
+Golden State Warriors v Denver Nuggets,Golden State Warriors,Denver Nuggets,Andrew Wiggins,Golden State Warriors,Denver Nuggets,Player Steals,0.5,1.58,2.3,TAB,574016,574035
+Golden State Warriors v Denver Nuggets,Golden State Warriors,Denver Nuggets,NA,NA,NA,Player Steals,0.5,1.75,2,TAB,574246,574247
+Golden State Warriors v Denver Nuggets,Golden State Warriors,Denver Nuggets,Draymond Green,Golden State Warriors,Denver Nuggets,Player Steals,0.5,1.72,2.05,TAB,574144,574161
+Golden State Warriors v Denver Nuggets,Golden State Warriors,Denver Nuggets,Gary Payton II,Golden State Warriors,Denver Nuggets,Player Steals,0.5,1.68,2.1,TAB,597529,597530
+Golden State Warriors v Denver Nuggets,Golden State Warriors,Denver Nuggets,Jonathan Kuminga,Golden State Warriors,Denver Nuggets,Player Steals,0.5,1.68,2.1,TAB,573776,573777
+Golden State Warriors v Denver Nuggets,Golden State Warriors,Denver Nuggets,Jamal Murray,Denver Nuggets,Golden State Warriors,Player Steals,1.5,2.65,1.45,TAB,573469,573470
+Golden State Warriors v Denver Nuggets,Golden State Warriors,Denver Nuggets,Kentavious Caldwell-Pope,Denver Nuggets,Golden State Warriors,Player Steals,1.5,3.1,1.34,TAB,573504,573505
+Golden State Warriors v Denver Nuggets,Golden State Warriors,Denver Nuggets,Klay Thompson,Golden State Warriors,Denver Nuggets,Player Steals,0.5,1.87,1.87,TAB,574068,574072
+Golden State Warriors v Denver Nuggets,Golden State Warriors,Denver Nuggets,Michael Porter Jr.,Denver Nuggets,Golden State Warriors,Player Steals,0.5,1.6,2.25,TAB,572041,572042
+Golden State Warriors v Denver Nuggets,Golden State Warriors,Denver Nuggets,Nikola Jokic,Denver Nuggets,Golden State Warriors,Player Steals,1.5,2.45,1.52,TAB,573845,573846
+Golden State Warriors v Denver Nuggets,Golden State Warriors,Denver Nuggets,Stephen Curry,Golden State Warriors,Denver Nuggets,Player Steals,0.5,1.72,2.05,TAB,571947,571948
+Houston Rockets v Oklahoma City Thunder,Houston Rockets,Oklahoma City Thunder,Alperen Sengun,Houston Rockets,Oklahoma City Thunder,Player Steals,1.5,3.2,1.32,TAB,590293,590294
+Houston Rockets v Oklahoma City Thunder,Houston Rockets,Oklahoma City Thunder,NA,NA,NA,Player Steals,0.5,2.05,1.72,TAB,594165,594166
+Houston Rockets v Oklahoma City Thunder,Houston Rockets,Oklahoma City Thunder,NA,NA,NA,Player Steals,1.5,2.7,1.44,TAB,589880,589881
+Houston Rockets v Oklahoma City Thunder,Houston Rockets,Oklahoma City Thunder,Chet Holmgren,Oklahoma City Thunder,Houston Rockets,Player Steals,0.5,1.72,2.05,TAB,590053,590054
+Houston Rockets v Oklahoma City Thunder,Houston Rockets,Oklahoma City Thunder,Cam Whitmore,Houston Rockets,Oklahoma City Thunder,Player Steals,0.5,1.95,1.8,TAB,590385,590390
+Houston Rockets v Oklahoma City Thunder,Houston Rockets,Oklahoma City Thunder,Dillon Brooks,Houston Rockets,Oklahoma City Thunder,Player Steals,0.5,1.68,2.1,TAB,589754,589755
+Houston Rockets v Oklahoma City Thunder,Houston Rockets,Oklahoma City Thunder,Fred VanVleet,Houston Rockets,Oklahoma City Thunder,Player Steals,1.5,2.35,1.55,TAB,590712,590713
+Houston Rockets v Oklahoma City Thunder,Houston Rockets,Oklahoma City Thunder,Gordon Hayward,Oklahoma City Thunder,Houston Rockets,Player Steals,0.5,2.2,1.62,TAB,594370,594371
+Houston Rockets v Oklahoma City Thunder,Houston Rockets,Oklahoma City Thunder,Shai Gilgeous-Alexander,Oklahoma City Thunder,Houston Rockets,Player Steals,1.5,1.72,2.05,TAB,590279,590280
+Houston Rockets v Oklahoma City Thunder,Houston Rockets,Oklahoma City Thunder,Isaiah Joe,Oklahoma City Thunder,Houston Rockets,Player Steals,0.5,2.05,1.72,TAB,593260,593262
+Houston Rockets v Oklahoma City Thunder,Houston Rockets,Oklahoma City Thunder,Josh Giddey,Oklahoma City Thunder,Houston Rockets,Player Steals,0.5,2,1.75,TAB,590554,590555
+Houston Rockets v Oklahoma City Thunder,Houston Rockets,Oklahoma City Thunder,Jalen Smith,Indiana Pacers,NA,Player Steals,0.5,1.72,2.05,TAB,590157,590158
+Houston Rockets v Oklahoma City Thunder,Houston Rockets,Oklahoma City Thunder,Jalen Williams,Oklahoma City Thunder,Houston Rockets,Player Steals,1.5,2.8,1.4,TAB,590476,590477
+Houston Rockets v Oklahoma City Thunder,Houston Rockets,Oklahoma City Thunder,Jalen Green,Houston Rockets,Oklahoma City Thunder,Player Steals,0.5,1.9,1.85,TAB,590704,590705
+Houston Rockets v Oklahoma City Thunder,Houston Rockets,Oklahoma City Thunder,NA,NA,NA,Player Steals,0.5,4.2,1.2,TAB,589991,589992
+Houston Rockets v Oklahoma City Thunder,Houston Rockets,Oklahoma City Thunder,Kenrich Williams,Oklahoma City Thunder,Houston Rockets,Player Steals,0.5,2,1.75,TAB,596663,596664
+Houston Rockets v Oklahoma City Thunder,Houston Rockets,Oklahoma City Thunder,Luguentz Dort,Oklahoma City Thunder,Houston Rockets,Player Steals,0.5,1.55,2.35,TAB,590179,590180
+New Orleans Pelicans v Chicago Bulls,New Orleans Pelicans,Chicago Bulls,Alex Caruso,Chicago Bulls,New Orleans Pelicans,Player Steals,1.5,2.05,1.72,TAB,574823,574830
+New Orleans Pelicans v Chicago Bulls,New Orleans Pelicans,Chicago Bulls,Andre Drummond,Chicago Bulls,New Orleans Pelicans,Player Steals,0.5,1.52,2.45,TAB,596962,596963
+New Orleans Pelicans v Chicago Bulls,New Orleans Pelicans,Chicago Bulls,Ayo Dosunmu,Chicago Bulls,New Orleans Pelicans,Player Steals,1.5,3.1,1.34,TAB,575500,575591
+New Orleans Pelicans v Chicago Bulls,New Orleans Pelicans,Chicago Bulls,Brandon Ingram,New Orleans Pelicans,Chicago Bulls,Player Steals,0.5,1.52,2.45,TAB,592124,592125
+New Orleans Pelicans v Chicago Bulls,New Orleans Pelicans,Chicago Bulls,Coby White,Chicago Bulls,New Orleans Pelicans,Player Steals,0.5,1.6,2.25,TAB,575451,575475
+New Orleans Pelicans v Chicago Bulls,New Orleans Pelicans,Chicago Bulls,DeMar DeRozan,Chicago Bulls,New Orleans Pelicans,Player Steals,1.5,2.75,1.42,TAB,575344,575346
+New Orleans Pelicans v Chicago Bulls,New Orleans Pelicans,Chicago Bulls,Herbert Jones,New Orleans Pelicans,Chicago Bulls,Player Steals,1.5,2.5,1.5,TAB,592627,592628
+New Orleans Pelicans v Chicago Bulls,New Orleans Pelicans,Chicago Bulls,Nikola Vucevic,Chicago Bulls,New Orleans Pelicans,Player Steals,0.5,1.65,2.15,TAB,575725,575726
+New Orleans Pelicans v Chicago Bulls,New Orleans Pelicans,Chicago Bulls,NA,NA,NA,Player Steals,1.5,2.8,1.4,TAB,592905,592906
+New Orleans Pelicans v Chicago Bulls,New Orleans Pelicans,Chicago Bulls,Jonas Valanciunas,New Orleans Pelicans,Chicago Bulls,Player Steals,0.5,2.1,1.68,TAB,592575,592576
+New Orleans Pelicans v Chicago Bulls,New Orleans Pelicans,Chicago Bulls,Zion Williamson,New Orleans Pelicans,Chicago Bulls,Player Steals,0.5,1.52,2.45,TAB,592398,592399
+Utah Jazz v San Antonio Spurs,Utah Jazz,San Antonio Spurs,Blake Wesley,San Antonio Spurs,Utah Jazz,Player Steals,0.5,1.9,1.85,TAB,598329,598330
+Utah Jazz v San Antonio Spurs,Utah Jazz,San Antonio Spurs,Collin Sexton,Utah Jazz,San Antonio Spurs,Player Steals,0.5,1.68,2.1,TAB,579619,579620
+Utah Jazz v San Antonio Spurs,Utah Jazz,San Antonio Spurs,Devin Vassell,San Antonio Spurs,Utah Jazz,Player Steals,0.5,1.72,2.05,TAB,579540,579541
+Utah Jazz v San Antonio Spurs,Utah Jazz,San Antonio Spurs,Julian Champagnie,San Antonio Spurs,Utah Jazz,Player Steals,0.5,1.72,2.05,TAB,579444,579445
+Utah Jazz v San Antonio Spurs,Utah Jazz,San Antonio Spurs,Jordan Clarkson,Utah Jazz,San Antonio Spurs,Player Steals,0.5,1.75,2,TAB,578856,578858
+Utah Jazz v San Antonio Spurs,Utah Jazz,San Antonio Spurs,John Collins,Utah Jazz,San Antonio Spurs,Player Steals,0.5,1.55,2.35,TAB,577866,577893
+Utah Jazz v San Antonio Spurs,Utah Jazz,San Antonio Spurs,Jeremy Sochan,San Antonio Spurs,Utah Jazz,Player Steals,1.5,3,1.36,TAB,579379,579380
+Utah Jazz v San Antonio Spurs,Utah Jazz,San Antonio Spurs,Kris Dunn,Utah Jazz,San Antonio Spurs,Player Steals,1.5,2.9,1.38,TAB,598493,598494
+Utah Jazz v San Antonio Spurs,Utah Jazz,San Antonio Spurs,Keon Johnson,Brooklyn Nets,NA,Player Steals,0.5,1.58,2.3,TAB,577678,577679
+Utah Jazz v San Antonio Spurs,Utah Jazz,San Antonio Spurs,Keldon Johnson,San Antonio Spurs,Utah Jazz,Player Steals,0.5,1.58,2.3,TAB,577678,577679
+Utah Jazz v San Antonio Spurs,Utah Jazz,San Antonio Spurs,Lauri Markkanen,Utah Jazz,San Antonio Spurs,Player Steals,1.5,3.1,1.34,TAB,579778,579782
+Utah Jazz v San Antonio Spurs,Utah Jazz,San Antonio Spurs,Malaki Branham,San Antonio Spurs,Utah Jazz,Player Steals,0.5,2.55,1.48,TAB,598203,598204
+Utah Jazz v San Antonio Spurs,Utah Jazz,San Antonio Spurs,Tre Jones,San Antonio Spurs,Utah Jazz,Player Steals,1.5,2.75,1.42,TAB,578663,578664
+Utah Jazz v San Antonio Spurs,Utah Jazz,San Antonio Spurs,Victor Wembanyama,San Antonio Spurs,Utah Jazz,Player Steals,1.5,2,1.75,TAB,580004,580067
+Utah Jazz v San Antonio Spurs,Utah Jazz,San Antonio Spurs,Zach Collins,San Antonio Spurs,Utah Jazz,Player Steals,0.5,2.4,1.53,TAB,598001,598002
+Portland Trail Blazers v Charlotte Hornets,Portland Trail Blazers,Charlotte Hornets,Anfernee Simons,Portland Trail Blazers,Charlotte Hornets,Player Steals,0.5,1.68,2.1,TAB,591180,591181
+Portland Trail Blazers v Charlotte Hornets,Portland Trail Blazers,Charlotte Hornets,NA,NA,NA,Player Steals,1.5,2.75,1.42,TAB,590533,590534
+Portland Trail Blazers v Charlotte Hornets,Portland Trail Blazers,Charlotte Hornets,Deandre Ayton,Portland Trail Blazers,Charlotte Hornets,Player Steals,0.5,1.53,2.4,TAB,590366,590367
+Portland Trail Blazers v Charlotte Hornets,Portland Trail Blazers,Charlotte Hornets,Duop Reath,Portland Trail Blazers,Charlotte Hornets,Player Steals,0.5,2.5,1.5,TAB,598890,598891
+Portland Trail Blazers v Charlotte Hornets,Portland Trail Blazers,Charlotte Hornets,Grant Williams,Charlotte Hornets,Portland Trail Blazers,Player Steals,0.5,1.72,2.05,TAB,590517,590518
+Portland Trail Blazers v Charlotte Hornets,Portland Trail Blazers,Charlotte Hornets,Jerami Grant,Portland Trail Blazers,Charlotte Hornets,Player Steals,0.5,1.6,2.25,TAB,590636,590637
+Portland Trail Blazers v Charlotte Hornets,Portland Trail Blazers,Charlotte Hornets,NA,NA,NA,Player Steals,1.5,2.6,1.46,TAB,591099,591100
+Portland Trail Blazers v Charlotte Hornets,Portland Trail Blazers,Charlotte Hornets,Nick Richards,Charlotte Hornets,Portland Trail Blazers,Player Steals,0.5,1.95,1.8,TAB,590082,590092
+Portland Trail Blazers v Charlotte Hornets,Portland Trail Blazers,Charlotte Hornets,Toumani Camara,Portland Trail Blazers,Charlotte Hornets,Player Steals,1.5,2.8,1.4,TAB,598616,598617
+Portland Trail Blazers v Charlotte Hornets,Portland Trail Blazers,Charlotte Hornets,NA,NA,NA,Player Steals,1.5,2.6,1.46,TAB,591129,591140
+Los Angeles Clippers v Sacramento Kings,Los Angeles Clippers,Sacramento Kings,De'Aaron Fox,Sacramento Kings,Los Angeles Clippers,Player Steals,2.5,2.7,1.44,TAB,594000,594001
+Los Angeles Clippers v Sacramento Kings,Los Angeles Clippers,Sacramento Kings,Domantas Sabonis,Sacramento Kings,Los Angeles Clippers,Player Steals,0.5,1.52,2.45,TAB,593731,593732
+Los Angeles Clippers v Sacramento Kings,Los Angeles Clippers,Sacramento Kings,Harrison Barnes,Sacramento Kings,Los Angeles Clippers,Player Steals,0.5,1.62,2.2,TAB,594027,594028
+Los Angeles Clippers v Sacramento Kings,Los Angeles Clippers,Sacramento Kings,Ivica Zubac,Los Angeles Clippers,Sacramento Kings,Player Steals,0.5,3,1.36,TAB,593662,593663
+Los Angeles Clippers v Sacramento Kings,Los Angeles Clippers,Sacramento Kings,James Harden,Los Angeles Clippers,Sacramento Kings,Player Steals,0.5,1.52,2.45,TAB,594074,594075
+Los Angeles Clippers v Sacramento Kings,Los Angeles Clippers,Sacramento Kings,Kevin Huerter,Sacramento Kings,Los Angeles Clippers,Player Steals,0.5,1.62,2.2,TAB,593412,593413
+Los Angeles Clippers v Sacramento Kings,Los Angeles Clippers,Sacramento Kings,Kawhi Leonard,Los Angeles Clippers,Sacramento Kings,Player Steals,1.5,1.95,1.8,TAB,594039,594040
+Los Angeles Clippers v Sacramento Kings,Los Angeles Clippers,Sacramento Kings,Keegan Murray,Sacramento Kings,Los Angeles Clippers,Player Steals,1.5,3.2,1.32,TAB,593433,593434
+Los Angeles Clippers v Sacramento Kings,Los Angeles Clippers,Sacramento Kings,Malik Monk,Sacramento Kings,Los Angeles Clippers,Player Steals,0.5,1.75,2,TAB,593913,593914
+Los Angeles Clippers v Sacramento Kings,Los Angeles Clippers,Sacramento Kings,Paul George,Los Angeles Clippers,Sacramento Kings,Player Steals,1.5,2.2,1.62,TAB,593867,593868
+Los Angeles Clippers v Sacramento Kings,Los Angeles Clippers,Sacramento Kings,Trey Lyles,Sacramento Kings,Los Angeles Clippers,Player Steals,0.5,2.05,1.72,TAB,599049,599050
+Los Angeles Clippers v Sacramento Kings,Los Angeles Clippers,Sacramento Kings,Terance Mann,Los Angeles Clippers,Sacramento Kings,Player Steals,0.5,2.05,1.72,TAB,593834,593835
+Washington Wizards v Cleveland Cavaliers,Washington Wizards,Cleveland Cavaliers,Donovan Mitchell,Cleveland Cavaliers,Washington Wizards,Player Steals,1.5,1.6,NA,TAB,632403,NA
+Washington Wizards v Cleveland Cavaliers,Washington Wizards,Cleveland Cavaliers,Darius Garland,Cleveland Cavaliers,Washington Wizards,Player Steals,1.5,2.15,NA,TAB,632412,NA
+Washington Wizards v Cleveland Cavaliers,Washington Wizards,Cleveland Cavaliers,Tyus Jones,Washington Wizards,Cleveland Cavaliers,Player Steals,1.5,2.8,NA,TAB,632384,NA
+Washington Wizards v Cleveland Cavaliers,Washington Wizards,Cleveland Cavaliers,Bilal Coulibaly,Washington Wizards,Cleveland Cavaliers,Player Steals,1.5,3,NA,TAB,632389,NA
+Washington Wizards v Cleveland Cavaliers,Washington Wizards,Cleveland Cavaliers,Max Strus,Cleveland Cavaliers,Washington Wizards,Player Steals,1.5,3.1,NA,TAB,632418,NA
+Washington Wizards v Cleveland Cavaliers,Washington Wizards,Cleveland Cavaliers,Evan Mobley,Cleveland Cavaliers,Washington Wizards,Player Steals,1.5,3.6,NA,TAB,632423,NA
+Washington Wizards v Cleveland Cavaliers,Washington Wizards,Cleveland Cavaliers,Marvin Bagley III,Washington Wizards,Cleveland Cavaliers,Player Steals,1.5,4.25,NA,TAB,632396,NA
+Washington Wizards v Cleveland Cavaliers,Washington Wizards,Cleveland Cavaliers,Jarrett Allen,Cleveland Cavaliers,Washington Wizards,Player Steals,1.5,4.5,NA,TAB,632429,NA
+Washington Wizards v Cleveland Cavaliers,Washington Wizards,Cleveland Cavaliers,Kyle Kuzma,Washington Wizards,Cleveland Cavaliers,Player Steals,1.5,5.25,NA,TAB,632399,NA
+Washington Wizards v Cleveland Cavaliers,Washington Wizards,Cleveland Cavaliers,Donovan Mitchell,Cleveland Cavaliers,Washington Wizards,Player Steals,3.5,5,NA,TAB,632432,NA
+Washington Wizards v Cleveland Cavaliers,Washington Wizards,Cleveland Cavaliers,Darius Garland,Cleveland Cavaliers,Washington Wizards,Player Steals,3.5,9,NA,TAB,632436,NA
+Atlanta Hawks v Orlando Magic,Atlanta Hawks,Orlando Magic,Jalen Johnson,Atlanta Hawks,Orlando Magic,Player Steals,1.5,2.1,NA,TAB,640591,NA
+Atlanta Hawks v Orlando Magic,Atlanta Hawks,Orlando Magic,Dejounte Murray,Atlanta Hawks,Orlando Magic,Player Steals,1.5,2.3,NA,TAB,640593,NA
+Atlanta Hawks v Orlando Magic,Atlanta Hawks,Orlando Magic,NA,NA,NA,Player Steals,1.5,2.5,NA,TAB,640592,NA
+Atlanta Hawks v Orlando Magic,Atlanta Hawks,Orlando Magic,Jalen Suggs,Orlando Magic,Atlanta Hawks,Player Steals,1.5,2.9,1.3,TAB,640597,551082
+Atlanta Hawks v Orlando Magic,Atlanta Hawks,Orlando Magic,Saddiq Bey,Atlanta Hawks,Orlando Magic,Player Steals,1.5,3.1,NA,TAB,640594,NA
+Atlanta Hawks v Orlando Magic,Atlanta Hawks,Orlando Magic,Markelle Fultz,Orlando Magic,Atlanta Hawks,Player Steals,1.5,3.2,NA,TAB,640596,NA
+Atlanta Hawks v Orlando Magic,Atlanta Hawks,Orlando Magic,Franz Wagner,Orlando Magic,Atlanta Hawks,Player Steals,1.5,3.3,NA,TAB,640599,NA
+Atlanta Hawks v Orlando Magic,Atlanta Hawks,Orlando Magic,Clint Capela,Atlanta Hawks,Orlando Magic,Player Steals,1.5,5.5,NA,TAB,640595,NA
+Atlanta Hawks v Orlando Magic,Atlanta Hawks,Orlando Magic,Wendell Carter Jr.,Orlando Magic,Atlanta Hawks,Player Steals,1.5,5.5,NA,TAB,640600,NA
+Golden State Warriors v Denver Nuggets,Golden State Warriors,Denver Nuggets,Nikola Jokic,Denver Nuggets,Golden State Warriors,Player Steals,1.5,2.25,NA,TAB,637964,NA
+Golden State Warriors v Denver Nuggets,Golden State Warriors,Denver Nuggets,Jamal Murray,Denver Nuggets,Golden State Warriors,Player Steals,1.5,2.5,NA,TAB,637965,NA
+Golden State Warriors v Denver Nuggets,Golden State Warriors,Denver Nuggets,Kentavious Caldwell-Pope,Denver Nuggets,Golden State Warriors,Player Steals,1.5,2.8,NA,TAB,637966,NA
+Golden State Warriors v Denver Nuggets,Golden State Warriors,Denver Nuggets,Aaron Gordon,Denver Nuggets,Golden State Warriors,Player Steals,1.5,3.2,NA,TAB,637967,NA
+Golden State Warriors v Denver Nuggets,Golden State Warriors,Denver Nuggets,Michael Porter Jr.,Denver Nuggets,Golden State Warriors,Player Steals,1.5,3.4,NA,TAB,637968,NA
+Golden State Warriors v Denver Nuggets,Golden State Warriors,Denver Nuggets,Andrew Wiggins,Golden State Warriors,Denver Nuggets,Player Steals,1.5,3.5,NA,TAB,637959,NA
+Golden State Warriors v Denver Nuggets,Golden State Warriors,Denver Nuggets,Jonathan Kuminga,Golden State Warriors,Denver Nuggets,Player Steals,1.5,3.75,NA,TAB,637960,NA
+Golden State Warriors v Denver Nuggets,Golden State Warriors,Denver Nuggets,Draymond Green,Golden State Warriors,Denver Nuggets,Player Steals,1.5,4,NA,TAB,637961,NA
+Golden State Warriors v Denver Nuggets,Golden State Warriors,Denver Nuggets,Stephen Curry,Golden State Warriors,Denver Nuggets,Player Steals,1.5,4,NA,TAB,637962,NA
+Golden State Warriors v Denver Nuggets,Golden State Warriors,Denver Nuggets,Brandin Podziemski,Golden State Warriors,Denver Nuggets,Player Steals,1.5,4.25,NA,TAB,637963,NA
+Houston Rockets v Oklahoma City Thunder,Houston Rockets,Oklahoma City Thunder,Shai Gilgeous-Alexander,Oklahoma City Thunder,Houston Rockets,Player Steals,1.5,1.7,NA,TAB,636528,NA
+Houston Rockets v Oklahoma City Thunder,Houston Rockets,Oklahoma City Thunder,Fred VanVleet,Houston Rockets,Oklahoma City Thunder,Player Steals,1.5,2.2,NA,TAB,636510,NA
+Houston Rockets v Oklahoma City Thunder,Houston Rockets,Oklahoma City Thunder,Jalen Williams,Oklahoma City Thunder,Houston Rockets,Player Steals,1.5,2.6,NA,TAB,636531,NA
+Houston Rockets v Oklahoma City Thunder,Houston Rockets,Oklahoma City Thunder,Alperen Sengun,Houston Rockets,Oklahoma City Thunder,Player Steals,1.5,2.9,NA,TAB,636512,NA
+Houston Rockets v Oklahoma City Thunder,Houston Rockets,Oklahoma City Thunder,Luguentz Dort,Oklahoma City Thunder,Houston Rockets,Player Steals,1.5,3.3,NA,TAB,636533,NA
+Houston Rockets v Oklahoma City Thunder,Houston Rockets,Oklahoma City Thunder,Jabari Smith Jr.,Houston Rockets,Oklahoma City Thunder,Player Steals,1.5,4,NA,TAB,636517,NA
+Houston Rockets v Oklahoma City Thunder,Houston Rockets,Oklahoma City Thunder,Dillon Brooks,Houston Rockets,Oklahoma City Thunder,Player Steals,1.5,4,NA,TAB,636518,NA
+Houston Rockets v Oklahoma City Thunder,Houston Rockets,Oklahoma City Thunder,Chet Holmgren,Oklahoma City Thunder,Houston Rockets,Player Steals,1.5,4,NA,TAB,636537,NA
+Houston Rockets v Oklahoma City Thunder,Houston Rockets,Oklahoma City Thunder,Jalen Green,Houston Rockets,Oklahoma City Thunder,Player Steals,1.5,4.75,NA,TAB,636522,NA
+Houston Rockets v Oklahoma City Thunder,Houston Rockets,Oklahoma City Thunder,Josh Giddey,Oklahoma City Thunder,Houston Rockets,Player Steals,1.5,5,NA,TAB,636539,NA
+Houston Rockets v Oklahoma City Thunder,Houston Rockets,Oklahoma City Thunder,Shai Gilgeous-Alexander,Oklahoma City Thunder,Houston Rockets,Player Steals,3.5,5.5,NA,TAB,636543,NA
+New Orleans Pelicans v Chicago Bulls,New Orleans Pelicans,Chicago Bulls,Alex Caruso,Chicago Bulls,New Orleans Pelicans,Player Steals,1.5,2,NA,TAB,641238,NA
+New Orleans Pelicans v Chicago Bulls,New Orleans Pelicans,Chicago Bulls,Herbert Jones,New Orleans Pelicans,Chicago Bulls,Player Steals,1.5,2.3,NA,TAB,641233,NA
+New Orleans Pelicans v Chicago Bulls,New Orleans Pelicans,Chicago Bulls,DeMar DeRozan,Chicago Bulls,New Orleans Pelicans,Player Steals,1.5,2.6,NA,TAB,641239,NA
+New Orleans Pelicans v Chicago Bulls,New Orleans Pelicans,Chicago Bulls,Trey Murphy III,New Orleans Pelicans,Chicago Bulls,Player Steals,1.5,2.6,NA,TAB,641234,NA
+New Orleans Pelicans v Chicago Bulls,New Orleans Pelicans,Chicago Bulls,Ayo Dosunmu,Chicago Bulls,New Orleans Pelicans,Player Steals,1.5,2.9,1.34,TAB,641240,575591
+New Orleans Pelicans v Chicago Bulls,New Orleans Pelicans,Chicago Bulls,Brandon Ingram,New Orleans Pelicans,Chicago Bulls,Player Steals,1.5,3.1,NA,TAB,641236,NA
+New Orleans Pelicans v Chicago Bulls,New Orleans Pelicans,Chicago Bulls,Zion Williamson,New Orleans Pelicans,Chicago Bulls,Player Steals,1.5,3.2,NA,TAB,641235,NA
+New Orleans Pelicans v Chicago Bulls,New Orleans Pelicans,Chicago Bulls,Coby White,Chicago Bulls,New Orleans Pelicans,Player Steals,1.5,3.5,NA,TAB,641241,NA
+New Orleans Pelicans v Chicago Bulls,New Orleans Pelicans,Chicago Bulls,Nikola Vucevic,Chicago Bulls,New Orleans Pelicans,Player Steals,1.5,4,NA,TAB,641242,NA
+New Orleans Pelicans v Chicago Bulls,New Orleans Pelicans,Chicago Bulls,Jonas Valanciunas,New Orleans Pelicans,Chicago Bulls,Player Steals,1.5,5.5,NA,TAB,641237,NA
+New Orleans Pelicans v Chicago Bulls,New Orleans Pelicans,Chicago Bulls,Alex Caruso,Chicago Bulls,New Orleans Pelicans,Player Steals,3.5,8,NA,TAB,641243,NA
+Utah Jazz v San Antonio Spurs,Utah Jazz,San Antonio Spurs,Victor Wembanyama,San Antonio Spurs,Utah Jazz,Player Steals,1.5,1.9,NA,TAB,641644,NA
+Utah Jazz v San Antonio Spurs,Utah Jazz,San Antonio Spurs,Tre Jones,San Antonio Spurs,Utah Jazz,Player Steals,1.5,2.5,1.42,TAB,641645,578664
+Utah Jazz v San Antonio Spurs,Utah Jazz,San Antonio Spurs,Lauri Markkanen,Utah Jazz,San Antonio Spurs,Player Steals,1.5,2.8,NA,TAB,641639,NA
+Utah Jazz v San Antonio Spurs,Utah Jazz,San Antonio Spurs,Jeremy Sochan,San Antonio Spurs,Utah Jazz,Player Steals,1.5,2.8,NA,TAB,641646,NA
+Utah Jazz v San Antonio Spurs,Utah Jazz,San Antonio Spurs,Keyonte George,Utah Jazz,San Antonio Spurs,Player Steals,1.5,3,NA,TAB,641640,NA
+Utah Jazz v San Antonio Spurs,Utah Jazz,San Antonio Spurs,John Collins,Utah Jazz,San Antonio Spurs,Player Steals,1.5,3.2,NA,TAB,641641,NA
+Utah Jazz v San Antonio Spurs,Utah Jazz,San Antonio Spurs,Collin Sexton,Utah Jazz,San Antonio Spurs,Player Steals,1.5,3.75,NA,TAB,641643,NA
+Utah Jazz v San Antonio Spurs,Utah Jazz,San Antonio Spurs,Devin Vassell,San Antonio Spurs,Utah Jazz,Player Steals,1.5,4,NA,TAB,641647,NA
+Utah Jazz v San Antonio Spurs,Utah Jazz,San Antonio Spurs,Julian Champagnie,San Antonio Spurs,Utah Jazz,Player Steals,1.5,4,NA,TAB,641648,NA
+Utah Jazz v San Antonio Spurs,Utah Jazz,San Antonio Spurs,Victor Wembanyama,San Antonio Spurs,Utah Jazz,Player Steals,3.5,7.5,NA,TAB,641649,NA
+Portland Trail Blazers v Charlotte Hornets,Portland Trail Blazers,Charlotte Hornets,Brandon Miller,Charlotte Hornets,Portland Trail Blazers,Player Steals,1.5,2.3,NA,TAB,642050,NA
+Portland Trail Blazers v Charlotte Hornets,Portland Trail Blazers,Charlotte Hornets,NA,NA,NA,Player Steals,1.5,2.4,NA,TAB,642051,NA
+Portland Trail Blazers v Charlotte Hornets,Portland Trail Blazers,Charlotte Hornets,NA,NA,NA,Player Steals,1.5,2.5,1.46,TAB,642052,591140
+Portland Trail Blazers v Charlotte Hornets,Portland Trail Blazers,Charlotte Hornets,NA,NA,NA,Player Steals,1.5,2.5,1.42,TAB,642053,590534
+Portland Trail Blazers v Charlotte Hornets,Portland Trail Blazers,Charlotte Hornets,Toumani Camara,Portland Trail Blazers,Charlotte Hornets,Player Steals,1.5,2.6,NA,TAB,642046,NA
+Portland Trail Blazers v Charlotte Hornets,Portland Trail Blazers,Charlotte Hornets,Deandre Ayton,Portland Trail Blazers,Charlotte Hornets,Player Steals,1.5,3.3,NA,TAB,642047,NA
+Portland Trail Blazers v Charlotte Hornets,Portland Trail Blazers,Charlotte Hornets,Jerami Grant,Portland Trail Blazers,Charlotte Hornets,Player Steals,1.5,3.6,NA,TAB,642048,NA
+Portland Trail Blazers v Charlotte Hornets,Portland Trail Blazers,Charlotte Hornets,Anfernee Simons,Portland Trail Blazers,Charlotte Hornets,Player Steals,1.5,4,NA,TAB,642049,NA
+Portland Trail Blazers v Charlotte Hornets,Portland Trail Blazers,Charlotte Hornets,Nick Richards,Charlotte Hornets,Portland Trail Blazers,Player Steals,1.5,5.25,NA,TAB,642054,NA
+Los Angeles Clippers v Sacramento Kings,Los Angeles Clippers,Sacramento Kings,De'Aaron Fox,Sacramento Kings,Los Angeles Clippers,Player Steals,1.5,1.58,NA,TAB,642455,NA
+Los Angeles Clippers v Sacramento Kings,Los Angeles Clippers,Sacramento Kings,Kawhi Leonard,Los Angeles Clippers,Sacramento Kings,Player Steals,1.5,1.9,NA,TAB,642451,NA
+Los Angeles Clippers v Sacramento Kings,Los Angeles Clippers,Sacramento Kings,Paul George,Los Angeles Clippers,Sacramento Kings,Player Steals,1.5,2.05,1.62,TAB,642452,593868
+Los Angeles Clippers v Sacramento Kings,Los Angeles Clippers,Sacramento Kings,Keegan Murray,Sacramento Kings,Los Angeles Clippers,Player Steals,1.5,3,NA,TAB,642456,NA
+Los Angeles Clippers v Sacramento Kings,Los Angeles Clippers,Sacramento Kings,James Harden,Los Angeles Clippers,Sacramento Kings,Player Steals,1.5,3.1,NA,TAB,642453,NA
+Los Angeles Clippers v Sacramento Kings,Los Angeles Clippers,Sacramento Kings,Domantas Sabonis,Sacramento Kings,Los Angeles Clippers,Player Steals,1.5,3.3,NA,TAB,642457,NA
+Los Angeles Clippers v Sacramento Kings,Los Angeles Clippers,Sacramento Kings,Kevin Huerter,Sacramento Kings,Los Angeles Clippers,Player Steals,1.5,3.6,NA,TAB,642458,NA
+Los Angeles Clippers v Sacramento Kings,Los Angeles Clippers,Sacramento Kings,Harrison Barnes,Sacramento Kings,Los Angeles Clippers,Player Steals,1.5,3.75,NA,TAB,642459,NA
+Los Angeles Clippers v Sacramento Kings,Los Angeles Clippers,Sacramento Kings,Terance Mann,Los Angeles Clippers,Sacramento Kings,Player Steals,1.5,5.5,NA,TAB,642454,NA
+Los Angeles Clippers v Sacramento Kings,Los Angeles Clippers,Sacramento Kings,De'Aaron Fox,Sacramento Kings,Los Angeles Clippers,Player Steals,3.5,4.75,NA,TAB,642463,NA
+Los Angeles Clippers v Sacramento Kings,Los Angeles Clippers,Sacramento Kings,Kawhi Leonard,Los Angeles Clippers,Sacramento Kings,Player Steals,3.5,7.5,NA,TAB,642461,NA
+Washington Wizards v Cleveland Cavaliers,Washington Wizards,Cleveland Cavaliers,Bilal Coulibaly,Washington Wizards,Cleveland Cavaliers,Player Steals,0.5,1.48,NA,TAB,587547,NA
+Washington Wizards v Cleveland Cavaliers,Washington Wizards,Cleveland Cavaliers,Corey Kispert,Washington Wizards,Cleveland Cavaliers,Player Steals,0.5,2.1,1.65,TAB,602341,602358
+Washington Wizards v Cleveland Cavaliers,Washington Wizards,Cleveland Cavaliers,Caris LeVert,Cleveland Cavaliers,Washington Wizards,Player Steals,0.5,1.72,2.05,TAB,589316,589257
+Washington Wizards v Cleveland Cavaliers,Washington Wizards,Cleveland Cavaliers,Darius Garland,Cleveland Cavaliers,Washington Wizards,Player Steals,0.5,1.26,NA,TAB,585257,NA
+Washington Wizards v Cleveland Cavaliers,Washington Wizards,Cleveland Cavaliers,Darius Garland,Cleveland Cavaliers,Washington Wizards,Player Steals,1.5,2.25,1.58,TAB,585258,585124
+Washington Wizards v Cleveland Cavaliers,Washington Wizards,Cleveland Cavaliers,Dean Wade,Cleveland Cavaliers,Washington Wizards,Player Steals,0.5,2.8,1.38,TAB,593129,593166
+Washington Wizards v Cleveland Cavaliers,Washington Wizards,Cleveland Cavaliers,Donovan Mitchell,Cleveland Cavaliers,Washington Wizards,Player Steals,1.5,1.62,2.2,TAB,585230,585039
+Washington Wizards v Cleveland Cavaliers,Washington Wizards,Cleveland Cavaliers,Donovan Mitchell,Cleveland Cavaliers,Washington Wizards,Player Steals,2.5,2.8,NA,TAB,585233,NA
+Washington Wizards v Cleveland Cavaliers,Washington Wizards,Cleveland Cavaliers,Evan Mobley,Cleveland Cavaliers,Washington Wizards,Player Steals,0.5,1.62,2.2,TAB,585207,584615
+Washington Wizards v Cleveland Cavaliers,Washington Wizards,Cleveland Cavaliers,Isaac Okoro,Cleveland Cavaliers,Washington Wizards,Player Steals,0.5,1.95,1.8,TAB,589035,589081
+Washington Wizards v Cleveland Cavaliers,Washington Wizards,Cleveland Cavaliers,Jarrett Allen,Cleveland Cavaliers,Washington Wizards,Player Steals,0.5,1.9,1.8,TAB,584452,585090
+Washington Wizards v Cleveland Cavaliers,Washington Wizards,Cleveland Cavaliers,Kyle Kuzma,Washington Wizards,Cleveland Cavaliers,Player Steals,0.5,2,1.72,TAB,585185,585112
+Washington Wizards v Cleveland Cavaliers,Washington Wizards,Cleveland Cavaliers,Marvin Bagley III,Washington Wizards,Cleveland Cavaliers,Player Steals,0.5,1.8,1.9,TAB,585155,584868
+Washington Wizards v Cleveland Cavaliers,Washington Wizards,Cleveland Cavaliers,Max Strus,Cleveland Cavaliers,Washington Wizards,Player Steals,0.5,1.58,2.35,TAB,585167,585323
+Washington Wizards v Cleveland Cavaliers,Washington Wizards,Cleveland Cavaliers,Tyus Jones,Washington Wizards,Cleveland Cavaliers,Player Steals,0.5,1.42,NA,TAB,585127,NA
+Washington Wizards v Cleveland Cavaliers,Washington Wizards,Cleveland Cavaliers,Tyus Jones,Washington Wizards,Cleveland Cavaliers,Player Steals,1.5,2.9,1.36,TAB,585128,584778
+Atlanta Hawks v Orlando Magic,Atlanta Hawks,Orlando Magic,Bruno Fernando,Atlanta Hawks,Orlando Magic,Player Steals,0.5,2.2,1.6,TAB,597354,597302
+Atlanta Hawks v Orlando Magic,Atlanta Hawks,Orlando Magic,NA,NA,NA,Player Steals,0.5,1.36,NA,TAB,551059,NA
+Atlanta Hawks v Orlando Magic,Atlanta Hawks,Orlando Magic,NA,NA,NA,Player Steals,1.5,2.6,1.42,TAB,551060,550503
+Atlanta Hawks v Orlando Magic,Atlanta Hawks,Orlando Magic,Clint Capela,Atlanta Hawks,Orlando Magic,Player Steals,0.5,1.9,1.85,TAB,551139,550663
+Atlanta Hawks v Orlando Magic,Atlanta Hawks,Orlando Magic,Cole Anthony,Orlando Magic,Atlanta Hawks,Player Steals,0.5,1.55,2.35,TAB,601719,601822
+Atlanta Hawks v Orlando Magic,Atlanta Hawks,Orlando Magic,De'Andre Hunter,Atlanta Hawks,Orlando Magic,Player Steals,0.5,1.58,2.35,TAB,597059,597202
+Atlanta Hawks v Orlando Magic,Atlanta Hawks,Orlando Magic,Dejounte Murray,Atlanta Hawks,Orlando Magic,Player Steals,0.5,1.28,NA,TAB,551525,NA
+Atlanta Hawks v Orlando Magic,Atlanta Hawks,Orlando Magic,Dejounte Murray,Atlanta Hawks,Orlando Magic,Player Steals,1.5,2.3,1.52,TAB,551526,551679
+Atlanta Hawks v Orlando Magic,Atlanta Hawks,Orlando Magic,Franz Wagner,Orlando Magic,Atlanta Hawks,Player Steals,0.5,1.58,2.3,TAB,550861,551374
+Atlanta Hawks v Orlando Magic,Atlanta Hawks,Orlando Magic,Goga Bitadze,Orlando Magic,Atlanta Hawks,Player Steals,0.5,2.05,1.68,TAB,601644,601568
+Atlanta Hawks v Orlando Magic,Atlanta Hawks,Orlando Magic,Jonathan Isaac,Orlando Magic,Atlanta Hawks,Player Steals,0.5,1.85,1.85,TAB,602038,602086
+Atlanta Hawks v Orlando Magic,Atlanta Hawks,Orlando Magic,Jalen Johnson,Atlanta Hawks,Orlando Magic,Player Steals,0.5,1.22,NA,TAB,551584,NA
+Atlanta Hawks v Orlando Magic,Atlanta Hawks,Orlando Magic,Jalen Johnson,Atlanta Hawks,Orlando Magic,Player Steals,1.5,2.15,1.62,TAB,551585,551354
+Atlanta Hawks v Orlando Magic,Atlanta Hawks,Orlando Magic,Jalen Suggs,Orlando Magic,Atlanta Hawks,Player Steals,0.5,1.48,NA,TAB,551682,NA
+Atlanta Hawks v Orlando Magic,Atlanta Hawks,Orlando Magic,Joe Ingles,Orlando Magic,Atlanta Hawks,Player Steals,0.5,2.4,1.5,TAB,602164,602154
+Atlanta Hawks v Orlando Magic,Atlanta Hawks,Orlando Magic,Markelle Fultz,Orlando Magic,Atlanta Hawks,Player Steals,0.5,1.52,2.45,TAB,550233,551628
+Atlanta Hawks v Orlando Magic,Atlanta Hawks,Orlando Magic,Moritz Wagner,Orlando Magic,Atlanta Hawks,Player Steals,0.5,2.4,1.48,TAB,601961,601960
+Atlanta Hawks v Orlando Magic,Atlanta Hawks,Orlando Magic,Saddiq Bey,Atlanta Hawks,Orlando Magic,Player Steals,0.5,1.48,NA,TAB,551113,NA
+Atlanta Hawks v Orlando Magic,Atlanta Hawks,Orlando Magic,Wendell Carter Jr.,Orlando Magic,Atlanta Hawks,Player Steals,0.5,2.1,1.65,TAB,551389,550232
+Golden State Warriors v Denver Nuggets,Golden State Warriors,Denver Nuggets,Aaron Gordon,Denver Nuggets,Golden State Warriors,Player Steals,0.5,1.55,2.4,TAB,574508,573108
+Golden State Warriors v Denver Nuggets,Golden State Warriors,Denver Nuggets,Andrew Wiggins,Golden State Warriors,Denver Nuggets,Player Steals,0.5,1.58,2.3,TAB,574416,574035
+Golden State Warriors v Denver Nuggets,Golden State Warriors,Denver Nuggets,NA,NA,NA,Player Steals,0.5,1.75,2,TAB,573508,574247
+Golden State Warriors v Denver Nuggets,Golden State Warriors,Denver Nuggets,Draymond Green,Golden State Warriors,Denver Nuggets,Player Steals,0.5,1.7,2.05,TAB,574394,574161
+Golden State Warriors v Denver Nuggets,Golden State Warriors,Denver Nuggets,Gary Payton II,Golden State Warriors,Denver Nuggets,Player Steals,0.5,1.68,2.1,TAB,597473,597530
+Golden State Warriors v Denver Nuggets,Golden State Warriors,Denver Nuggets,Jonathan Kuminga,Golden State Warriors,Denver Nuggets,Player Steals,0.5,1.68,2.1,TAB,574265,573777
+Golden State Warriors v Denver Nuggets,Golden State Warriors,Denver Nuggets,Jamal Murray,Denver Nuggets,Golden State Warriors,Player Steals,0.5,1.33,NA,TAB,573215,NA
+Golden State Warriors v Denver Nuggets,Golden State Warriors,Denver Nuggets,Jamal Murray,Denver Nuggets,Golden State Warriors,Player Steals,1.5,2.6,1.45,TAB,573216,573470
+Golden State Warriors v Denver Nuggets,Golden State Warriors,Denver Nuggets,Kentavious Caldwell-Pope,Denver Nuggets,Golden State Warriors,Player Steals,0.5,1.42,NA,TAB,572091,NA
+Golden State Warriors v Denver Nuggets,Golden State Warriors,Denver Nuggets,Kentavious Caldwell-Pope,Denver Nuggets,Golden State Warriors,Player Steals,1.5,3,1.34,TAB,572093,573505
+Golden State Warriors v Denver Nuggets,Golden State Warriors,Denver Nuggets,Klay Thompson,Golden State Warriors,Denver Nuggets,Player Steals,0.5,1.85,1.87,TAB,572501,574072
+Golden State Warriors v Denver Nuggets,Golden State Warriors,Denver Nuggets,Michael Porter Jr.,Denver Nuggets,Golden State Warriors,Player Steals,0.5,1.6,2.25,TAB,572333,572042
+Golden State Warriors v Denver Nuggets,Golden State Warriors,Denver Nuggets,Nikola Jokic,Denver Nuggets,Golden State Warriors,Player Steals,0.5,1.3,NA,TAB,574202,NA
+Golden State Warriors v Denver Nuggets,Golden State Warriors,Denver Nuggets,Nikola Jokic,Denver Nuggets,Golden State Warriors,Player Steals,1.5,2.4,1.52,TAB,574203,573846
+Golden State Warriors v Denver Nuggets,Golden State Warriors,Denver Nuggets,Stephen Curry,Golden State Warriors,Denver Nuggets,Player Steals,0.5,1.72,2.05,TAB,573659,571948
+Houston Rockets v Oklahoma City Thunder,Houston Rockets,Oklahoma City Thunder,Alperen Sengun,Houston Rockets,Oklahoma City Thunder,Player Steals,0.5,1.45,NA,TAB,590594,NA
+Houston Rockets v Oklahoma City Thunder,Houston Rockets,Oklahoma City Thunder,NA,NA,NA,Player Steals,0.5,2,1.72,TAB,594238,594166
+Houston Rockets v Oklahoma City Thunder,Houston Rockets,Oklahoma City Thunder,NA,NA,NA,Player Steals,0.5,1.35,NA,TAB,590073,NA
+Houston Rockets v Oklahoma City Thunder,Houston Rockets,Oklahoma City Thunder,NA,NA,NA,Player Steals,1.5,2.6,1.44,TAB,590074,589881
+Houston Rockets v Oklahoma City Thunder,Houston Rockets,Oklahoma City Thunder,Chet Holmgren,Oklahoma City Thunder,Houston Rockets,Player Steals,0.5,1.72,2.05,TAB,590459,590054
+Houston Rockets v Oklahoma City Thunder,Houston Rockets,Oklahoma City Thunder,Cam Whitmore,Houston Rockets,Oklahoma City Thunder,Player Steals,0.5,1.95,1.8,TAB,590556,590390
+Houston Rockets v Oklahoma City Thunder,Houston Rockets,Oklahoma City Thunder,Dillon Brooks,Houston Rockets,Oklahoma City Thunder,Player Steals,0.5,1.7,2.1,TAB,590401,589755
+Houston Rockets v Oklahoma City Thunder,Houston Rockets,Oklahoma City Thunder,Fred VanVleet,Houston Rockets,Oklahoma City Thunder,Player Steals,0.5,1.26,NA,TAB,589884,NA
+Houston Rockets v Oklahoma City Thunder,Houston Rockets,Oklahoma City Thunder,Fred VanVleet,Houston Rockets,Oklahoma City Thunder,Player Steals,1.5,2.25,1.55,TAB,589885,590713
+Houston Rockets v Oklahoma City Thunder,Houston Rockets,Oklahoma City Thunder,Gordon Hayward,Oklahoma City Thunder,Houston Rockets,Player Steals,0.5,2.15,1.62,TAB,594230,594371
+Houston Rockets v Oklahoma City Thunder,Houston Rockets,Oklahoma City Thunder,Shai Gilgeous-Alexander,Oklahoma City Thunder,Houston Rockets,Player Steals,0.5,1.11,NA,TAB,589892,NA
+Houston Rockets v Oklahoma City Thunder,Houston Rockets,Oklahoma City Thunder,Shai Gilgeous-Alexander,Oklahoma City Thunder,Houston Rockets,Player Steals,1.5,1.7,2.05,TAB,589893,590280
+Houston Rockets v Oklahoma City Thunder,Houston Rockets,Oklahoma City Thunder,Shai Gilgeous-Alexander,Oklahoma City Thunder,Houston Rockets,Player Steals,2.5,3,NA,TAB,589909,NA
+Houston Rockets v Oklahoma City Thunder,Houston Rockets,Oklahoma City Thunder,Isaiah Joe,Oklahoma City Thunder,Houston Rockets,Player Steals,0.5,2,1.72,TAB,593294,593262
+Houston Rockets v Oklahoma City Thunder,Houston Rockets,Oklahoma City Thunder,Josh Giddey,Oklahoma City Thunder,Houston Rockets,Player Steals,0.5,2,1.75,TAB,590181,590555
+Houston Rockets v Oklahoma City Thunder,Houston Rockets,Oklahoma City Thunder,Jalen Smith,Indiana Pacers,NA,Player Steals,0.5,1.72,2.05,TAB,590311,590158
+Houston Rockets v Oklahoma City Thunder,Houston Rockets,Oklahoma City Thunder,Jalen Williams,Oklahoma City Thunder,Houston Rockets,Player Steals,0.5,1.38,NA,TAB,590341,NA
+Houston Rockets v Oklahoma City Thunder,Houston Rockets,Oklahoma City Thunder,Jalen Williams,Oklahoma City Thunder,Houston Rockets,Player Steals,1.5,2.7,1.4,TAB,590357,590477
+Houston Rockets v Oklahoma City Thunder,Houston Rockets,Oklahoma City Thunder,Jalen Green,Houston Rockets,Oklahoma City Thunder,Player Steals,0.5,1.9,1.85,TAB,590259,590705
+Houston Rockets v Oklahoma City Thunder,Houston Rockets,Oklahoma City Thunder,Kenrich Williams,Oklahoma City Thunder,Houston Rockets,Player Steals,0.5,2,1.75,TAB,596732,596664
+Houston Rockets v Oklahoma City Thunder,Houston Rockets,Oklahoma City Thunder,Luguentz Dort,Oklahoma City Thunder,Houston Rockets,Player Steals,0.5,1.55,2.35,TAB,589778,590180
+New Orleans Pelicans v Chicago Bulls,New Orleans Pelicans,Chicago Bulls,Alex Caruso,Chicago Bulls,New Orleans Pelicans,Player Steals,0.5,1.2,NA,TAB,575025,NA
+New Orleans Pelicans v Chicago Bulls,New Orleans Pelicans,Chicago Bulls,Alex Caruso,Chicago Bulls,New Orleans Pelicans,Player Steals,1.5,2,1.72,TAB,575027,574830
+New Orleans Pelicans v Chicago Bulls,New Orleans Pelicans,Chicago Bulls,Andre Drummond,Chicago Bulls,New Orleans Pelicans,Player Steals,0.5,1.52,2.45,TAB,596870,596963
+New Orleans Pelicans v Chicago Bulls,New Orleans Pelicans,Chicago Bulls,Ayo Dosunmu,Chicago Bulls,New Orleans Pelicans,Player Steals,0.5,1.45,NA,TAB,575169,NA
+New Orleans Pelicans v Chicago Bulls,New Orleans Pelicans,Chicago Bulls,Ayo Dosunmu,Chicago Bulls,New Orleans Pelicans,Player Steals,1.5,3,1.34,TAB,575171,575591
+New Orleans Pelicans v Chicago Bulls,New Orleans Pelicans,Chicago Bulls,Brandon Ingram,New Orleans Pelicans,Chicago Bulls,Player Steals,0.5,1.52,2.45,TAB,592108,592125
+New Orleans Pelicans v Chicago Bulls,New Orleans Pelicans,Chicago Bulls,Coby White,Chicago Bulls,New Orleans Pelicans,Player Steals,0.5,1.6,2.25,TAB,575011,575475
+New Orleans Pelicans v Chicago Bulls,New Orleans Pelicans,Chicago Bulls,DeMar DeRozan,Chicago Bulls,New Orleans Pelicans,Player Steals,0.5,1.36,NA,TAB,574838,NA
+New Orleans Pelicans v Chicago Bulls,New Orleans Pelicans,Chicago Bulls,DeMar DeRozan,Chicago Bulls,New Orleans Pelicans,Player Steals,1.5,2.7,1.42,TAB,574840,575346
+New Orleans Pelicans v Chicago Bulls,New Orleans Pelicans,Chicago Bulls,Herbert Jones,New Orleans Pelicans,Chicago Bulls,Player Steals,0.5,1.3,NA,TAB,592707,NA
+New Orleans Pelicans v Chicago Bulls,New Orleans Pelicans,Chicago Bulls,Herbert Jones,New Orleans Pelicans,Chicago Bulls,Player Steals,1.5,2.4,1.5,TAB,592708,592628
+New Orleans Pelicans v Chicago Bulls,New Orleans Pelicans,Chicago Bulls,Nikola Vucevic,Chicago Bulls,New Orleans Pelicans,Player Steals,0.5,1.65,2.15,TAB,574675,575726
+New Orleans Pelicans v Chicago Bulls,New Orleans Pelicans,Chicago Bulls,NA,NA,NA,Player Steals,0.5,1.38,NA,TAB,592938,NA
+New Orleans Pelicans v Chicago Bulls,New Orleans Pelicans,Chicago Bulls,NA,NA,NA,Player Steals,1.5,2.7,1.4,TAB,592939,592906
+New Orleans Pelicans v Chicago Bulls,New Orleans Pelicans,Chicago Bulls,Jonas Valanciunas,New Orleans Pelicans,Chicago Bulls,Player Steals,0.5,2.05,1.68,TAB,592266,592576
+New Orleans Pelicans v Chicago Bulls,New Orleans Pelicans,Chicago Bulls,Zion Williamson,New Orleans Pelicans,Chicago Bulls,Player Steals,0.5,1.52,2.45,TAB,592559,592399
+Utah Jazz v San Antonio Spurs,Utah Jazz,San Antonio Spurs,Blake Wesley,San Antonio Spurs,Utah Jazz,Player Steals,0.5,1.85,1.85,TAB,598381,598330
+Utah Jazz v San Antonio Spurs,Utah Jazz,San Antonio Spurs,Collin Sexton,Utah Jazz,San Antonio Spurs,Player Steals,0.5,1.68,2.1,TAB,577345,579620
+Utah Jazz v San Antonio Spurs,Utah Jazz,San Antonio Spurs,Devin Vassell,San Antonio Spurs,Utah Jazz,Player Steals,0.5,1.7,2.05,TAB,579286,579541
+Utah Jazz v San Antonio Spurs,Utah Jazz,San Antonio Spurs,Julian Champagnie,San Antonio Spurs,Utah Jazz,Player Steals,0.5,1.72,2.05,TAB,578345,579445
+Utah Jazz v San Antonio Spurs,Utah Jazz,San Antonio Spurs,Jordan Clarkson,Utah Jazz,San Antonio Spurs,Player Steals,0.5,1.75,2,TAB,577452,578858
+Utah Jazz v San Antonio Spurs,Utah Jazz,San Antonio Spurs,John Collins,Utah Jazz,San Antonio Spurs,Player Steals,0.5,1.58,2.35,TAB,579542,577893
+Utah Jazz v San Antonio Spurs,Utah Jazz,San Antonio Spurs,Jeremy Sochan,San Antonio Spurs,Utah Jazz,Player Steals,0.5,1.42,NA,TAB,580190,NA
+Utah Jazz v San Antonio Spurs,Utah Jazz,San Antonio Spurs,Jeremy Sochan,San Antonio Spurs,Utah Jazz,Player Steals,1.5,2.9,1.36,TAB,580239,579380
+Utah Jazz v San Antonio Spurs,Utah Jazz,San Antonio Spurs,Kris Dunn,Utah Jazz,San Antonio Spurs,Player Steals,0.5,1.4,NA,TAB,598568,NA
+Utah Jazz v San Antonio Spurs,Utah Jazz,San Antonio Spurs,Kris Dunn,Utah Jazz,San Antonio Spurs,Player Steals,1.5,2.8,1.38,TAB,598569,598494
+Utah Jazz v San Antonio Spurs,Utah Jazz,San Antonio Spurs,Keon Johnson,Brooklyn Nets,NA,Player Steals,0.5,1.58,2.3,TAB,580084,577679
+Utah Jazz v San Antonio Spurs,Utah Jazz,San Antonio Spurs,Keldon Johnson,San Antonio Spurs,Utah Jazz,Player Steals,0.5,1.58,2.3,TAB,580084,577679
+Utah Jazz v San Antonio Spurs,Utah Jazz,San Antonio Spurs,Lauri Markkanen,Utah Jazz,San Antonio Spurs,Player Steals,0.5,1.45,NA,TAB,580294,NA
+Utah Jazz v San Antonio Spurs,Utah Jazz,San Antonio Spurs,Lauri Markkanen,Utah Jazz,San Antonio Spurs,Player Steals,1.5,3,1.34,TAB,580295,579782
+Utah Jazz v San Antonio Spurs,Utah Jazz,San Antonio Spurs,Malaki Branham,San Antonio Spurs,Utah Jazz,Player Steals,0.5,2.5,1.48,TAB,598128,598204
+Utah Jazz v San Antonio Spurs,Utah Jazz,San Antonio Spurs,Tre Jones,San Antonio Spurs,Utah Jazz,Player Steals,0.5,1.36,NA,TAB,578697,NA
+Utah Jazz v San Antonio Spurs,Utah Jazz,San Antonio Spurs,Tre Jones,San Antonio Spurs,Utah Jazz,Player Steals,1.5,2.6,1.42,TAB,578698,578664
+Utah Jazz v San Antonio Spurs,Utah Jazz,San Antonio Spurs,Victor Wembanyama,San Antonio Spurs,Utah Jazz,Player Steals,0.5,1.18,NA,TAB,580251,NA
+Utah Jazz v San Antonio Spurs,Utah Jazz,San Antonio Spurs,Victor Wembanyama,San Antonio Spurs,Utah Jazz,Player Steals,1.5,1.95,1.75,TAB,580252,580067
+Utah Jazz v San Antonio Spurs,Utah Jazz,San Antonio Spurs,Zach Collins,San Antonio Spurs,Utah Jazz,Player Steals,0.5,2.3,1.53,TAB,598043,598002
+Portland Trail Blazers v Charlotte Hornets,Portland Trail Blazers,Charlotte Hornets,Anfernee Simons,Portland Trail Blazers,Charlotte Hornets,Player Steals,0.5,1.68,2.1,TAB,590569,591181
+Portland Trail Blazers v Charlotte Hornets,Portland Trail Blazers,Charlotte Hornets,NA,NA,NA,Player Steals,0.5,1.35,NA,TAB,590820,NA
+Portland Trail Blazers v Charlotte Hornets,Portland Trail Blazers,Charlotte Hornets,NA,NA,NA,Player Steals,1.5,2.6,1.42,TAB,590821,590534
+Portland Trail Blazers v Charlotte Hornets,Portland Trail Blazers,Charlotte Hornets,Deandre Ayton,Portland Trail Blazers,Charlotte Hornets,Player Steals,0.5,1.55,2.4,TAB,590175,590367
+Portland Trail Blazers v Charlotte Hornets,Portland Trail Blazers,Charlotte Hornets,Duop Reath,Portland Trail Blazers,Charlotte Hornets,Player Steals,0.5,2.4,1.5,TAB,598789,598891
+Portland Trail Blazers v Charlotte Hornets,Portland Trail Blazers,Charlotte Hornets,Grant Williams,Charlotte Hornets,Portland Trail Blazers,Player Steals,0.5,1.72,2.05,TAB,591204,590518
+Portland Trail Blazers v Charlotte Hornets,Portland Trail Blazers,Charlotte Hornets,Jerami Grant,Portland Trail Blazers,Charlotte Hornets,Player Steals,0.5,1.6,2.25,TAB,590269,590637
+Portland Trail Blazers v Charlotte Hornets,Portland Trail Blazers,Charlotte Hornets,NA,NA,NA,Player Steals,0.5,1.32,NA,TAB,590150,NA
+Portland Trail Blazers v Charlotte Hornets,Portland Trail Blazers,Charlotte Hornets,NA,NA,NA,Player Steals,1.5,2.5,1.46,TAB,590151,591100
+Portland Trail Blazers v Charlotte Hornets,Portland Trail Blazers,Charlotte Hornets,Nick Richards,Charlotte Hornets,Portland Trail Blazers,Player Steals,0.5,1.95,1.8,TAB,591115,590092
+Portland Trail Blazers v Charlotte Hornets,Portland Trail Blazers,Charlotte Hornets,Toumani Camara,Portland Trail Blazers,Charlotte Hornets,Player Steals,0.5,1.38,NA,TAB,598729,NA
+Portland Trail Blazers v Charlotte Hornets,Portland Trail Blazers,Charlotte Hornets,Toumani Camara,Portland Trail Blazers,Charlotte Hornets,Player Steals,1.5,2.7,1.4,TAB,598730,598617
+Portland Trail Blazers v Charlotte Hornets,Portland Trail Blazers,Charlotte Hornets,NA,NA,NA,Player Steals,0.5,1.32,NA,TAB,590343,NA
+Portland Trail Blazers v Charlotte Hornets,Portland Trail Blazers,Charlotte Hornets,NA,NA,NA,Player Steals,1.5,2.5,1.46,TAB,590344,591140
+Los Angeles Clippers v Sacramento Kings,Los Angeles Clippers,Sacramento Kings,De'Aaron Fox,Sacramento Kings,Los Angeles Clippers,Player Steals,1.5,1.55,NA,TAB,593390,NA
+Los Angeles Clippers v Sacramento Kings,Los Angeles Clippers,Sacramento Kings,De'Aaron Fox,Sacramento Kings,Los Angeles Clippers,Player Steals,2.5,2.6,1.44,TAB,593391,594001
+Los Angeles Clippers v Sacramento Kings,Los Angeles Clippers,Sacramento Kings,Domantas Sabonis,Sacramento Kings,Los Angeles Clippers,Player Steals,0.5,1.52,2.45,TAB,593788,593732
+Los Angeles Clippers v Sacramento Kings,Los Angeles Clippers,Sacramento Kings,Harrison Barnes,Sacramento Kings,Los Angeles Clippers,Player Steals,0.5,1.62,2.2,TAB,593452,594028
+Los Angeles Clippers v Sacramento Kings,Los Angeles Clippers,Sacramento Kings,Ivica Zubac,Los Angeles Clippers,Sacramento Kings,Player Steals,0.5,2.9,1.36,TAB,593521,593663
+Los Angeles Clippers v Sacramento Kings,Los Angeles Clippers,Sacramento Kings,James Harden,Los Angeles Clippers,Sacramento Kings,Player Steals,0.5,1.52,2.45,TAB,593530,594075
+Los Angeles Clippers v Sacramento Kings,Los Angeles Clippers,Sacramento Kings,Kevin Huerter,Sacramento Kings,Los Angeles Clippers,Player Steals,0.5,1.65,2.2,TAB,593664,593413
+Los Angeles Clippers v Sacramento Kings,Los Angeles Clippers,Sacramento Kings,Kawhi Leonard,Los Angeles Clippers,Sacramento Kings,Player Steals,0.5,1.18,NA,TAB,593915,NA
+Los Angeles Clippers v Sacramento Kings,Los Angeles Clippers,Sacramento Kings,Kawhi Leonard,Los Angeles Clippers,Sacramento Kings,Player Steals,1.5,1.95,1.8,TAB,593916,594040
+Los Angeles Clippers v Sacramento Kings,Los Angeles Clippers,Sacramento Kings,Keegan Murray,Sacramento Kings,Los Angeles Clippers,Player Steals,0.5,1.45,NA,TAB,593925,NA
+Los Angeles Clippers v Sacramento Kings,Los Angeles Clippers,Sacramento Kings,Malik Monk,Sacramento Kings,Los Angeles Clippers,Player Steals,0.5,1.75,2,TAB,594010,593914
+Los Angeles Clippers v Sacramento Kings,Los Angeles Clippers,Sacramento Kings,Paul George,Los Angeles Clippers,Sacramento Kings,Player Steals,0.5,1.22,NA,TAB,593674,NA
+Los Angeles Clippers v Sacramento Kings,Los Angeles Clippers,Sacramento Kings,Paul George,Los Angeles Clippers,Sacramento Kings,Player Steals,1.5,2.15,1.62,TAB,593675,593868
+Los Angeles Clippers v Sacramento Kings,Los Angeles Clippers,Sacramento Kings,Trey Lyles,Sacramento Kings,Los Angeles Clippers,Player Steals,0.5,2,1.72,TAB,599069,599050
+Los Angeles Clippers v Sacramento Kings,Los Angeles Clippers,Sacramento Kings,Terance Mann,Los Angeles Clippers,Sacramento Kings,Player Steals,0.5,2,1.72,TAB,593574,593835

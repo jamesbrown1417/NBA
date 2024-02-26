@@ -22,7 +22,12 @@ editor: visual
 # Libraries and functions-------------------------------------------------------
 library(tidyverse)
 library(glue)
+library(future)
+library(furrr)
 `%notin%` <- Negate(`%in%`)
+
+# Set up parallel processing
+plan(multisession)
 
 # Function to convert time to decimal-------------------------------------------
 convert_time_to_decimal_hms <- function(time_obj) {
@@ -463,18 +468,18 @@ get_sgm_emp_prob <- function(Selections, Markets, as_at_date = lubridate::today(
   emp_prob_1 <-
     last_15_stats |>
     filter(Player == player_name) |>
-    summarise(emp_prob = sum(get(str_remove(market_1, "Player ")) < line_1) / n())
+    summarise(emp_prob = sum(get(str_remove(market_1, "Player ")) > line_1) / n())
   
   emp_prob_2 <-
     last_15_stats |>
     filter(Player == player_name) |>
-    summarise(emp_prob = sum(get(str_remove(market_2, "Player ")) < line_2) / n())
+    summarise(emp_prob = sum(get(str_remove(market_2, "Player ")) > line_2) / n())
   
   # Get empirical probability of going under line for both selections combined
   emp_prob_both <-
     last_15_stats |>
     filter(Player == player_name) |>
-    summarise(emp_prob = sum(get(str_remove(market_1, "Player ")) < line_1 & get(str_remove(market_2, "Player ")) < line_2) / n())
+    summarise(emp_prob = sum(get(str_remove(market_1, "Player ")) > line_1 & get(str_remove(market_2, "Player ")) > line_2) / n())
   
   # Return in a tibble
   tibble(
@@ -486,12 +491,13 @@ get_sgm_emp_prob <- function(Selections, Markets, as_at_date = lubridate::today(
   
 ```
 
-## Highest Line Same Player SGM Unders Strategy
+## Lowest Line Same Player SGM Unders Strategy
 
 ```{r}
 # Assists
 assists_highest_lines <-
-  strategy_1_assists_unders |> 
+  strategy_1_assists_overs |> 
+  filter(!is.na(under_price)) |> 
   arrange(player_name, match, start_time, desc(line)) |> 
   group_by(player_name, match, start_time) |>
   slice_head(n = 1) |>
@@ -503,12 +509,13 @@ assists_highest_lines <-
          match,
          start_time,
          assist_line = line,
-         assist_under_price = under_price,
+         assist_over_price = over_price,
          assist_bet_won = bet_won)
 
 # Points
 points_highest_lines <-
-  strategy_1_points_unders |>
+  strategy_1_points_overs |>
+    filter(!is.na(under_price)) |> 
   arrange(player_name, match, start_time, desc(line)) |>
   group_by(player_name, match, start_time) |>
   slice_head(n = 1) |>
@@ -520,12 +527,13 @@ points_highest_lines <-
          match,
          start_time,
          point_line = line,
-         point_under_price = under_price,
+         point_over_price = over_price,
          point_bet_won = bet_won)
 
 # Rebounds
 rebounds_highest_lines <-
-  strategy_1_rebounds_unders |> 
+  strategy_1_rebounds_overs |> 
+    filter(!is.na(under_price)) |> 
   arrange(player_name, match, start_time, desc(line)) |> 
   group_by(player_name, match, start_time) |>
   slice_head(n = 1) |>
@@ -537,7 +545,7 @@ rebounds_highest_lines <-
          match,
          start_time,
          rebound_line = line,
-         rebound_under_price = under_price,
+         rebound_over_price = over_price,
          rebound_bet_won = bet_won)
 
 #===============================================================================
@@ -545,11 +553,11 @@ rebounds_highest_lines <-
 #===============================================================================
 
 # Points + Rebounds
-unders_same_player_multi_method_1 <-
+overs_same_player_multi_method_1 <-
   rebounds_highest_lines |>
   inner_join(points_highest_lines,
             by = c("start_time", "match", "player_name", "player_team", "opposition_team", "home_away")) |>
-  mutate(uncorrelated_price = (rebound_under_price * point_under_price)) |> 
+  mutate(uncorrelated_price = (rebound_over_price * point_over_price)) |> 
   mutate(bet_won = if_else(point_bet_won & rebound_bet_won, TRUE, FALSE)) |> 
   mutate(profit = if_else(bet_won, ((uncorrelated_price * 100) - 100), -100)) |> 
   mutate(Selections = glue("{player_name}: {point_line}, {player_name} {rebound_line}"),
@@ -557,20 +565,20 @@ unders_same_player_multi_method_1 <-
            as_at_date = as_date(start_time) - days(1))
 
 # Points + Assists
-unders_same_player_multi_method_2 <-
+overs_same_player_multi_method_2 <-
   points_highest_lines |> 
   inner_join(assists_highest_lines,
             by = c("start_time", "match", "player_name", "player_team", "opposition_team", "home_away")) |>
-  mutate(uncorrelated_price = (assist_under_price * point_under_price)) |>
+  mutate(uncorrelated_price = (assist_over_price * point_over_price)) |>
   mutate(bet_won = if_else(point_bet_won & assist_bet_won, TRUE, FALSE)) |>
   mutate(profit = if_else(bet_won, ((uncorrelated_price * 100) - 100), -100))
 
 # Rebounds + Assists
-unders_same_player_multi_method_3 <-
+overs_same_player_multi_method_3 <-
   rebounds_highest_lines |> 
   inner_join(assists_highest_lines,
             by = c("start_time", "match", "player_name", "player_team", "opposition_team", "home_away")) |>
-  mutate(uncorrelated_price = (assist_under_price * rebound_under_price)) |>
+  mutate(uncorrelated_price = (assist_over_price * rebound_over_price)) |>
   mutate(bet_won = if_else(assist_bet_won & rebound_bet_won, TRUE, FALSE)) |>
   mutate(profit = if_else(bet_won, ((uncorrelated_price * 100) - 100), -100))
   
@@ -579,18 +587,18 @@ unders_same_player_multi_method_3 <-
 #===============================================================================
 
 emp_probs_15 <-
-  pmap(unders_same_player_multi_method_1[,c("Selections", "Markets", "as_at_date")], get_sgm_emp_prob, .progress = TRUE)
+  future_pmap(overs_same_player_multi_method_1[,c("Selections", "Markets", "as_at_date")], get_sgm_emp_prob, .progress = TRUE)
 
 emp_probs_15 <-
   emp_probs_15 |> 
   bind_rows()
 
-unders_same_player_multi_method_1 <-
-  unders_same_player_multi_method_1 |>
+overs_same_player_multi_method_1 <-
+  overs_same_player_multi_method_1 |>
   bind_cols(emp_probs_15)
 
-unders_same_player_multi_method_1 <-
-  unders_same_player_multi_method_1 |>
+overs_same_player_multi_method_1 <-
+  overs_same_player_multi_method_1 |>
   mutate(edge = round(Emp_Prob_Both - 1/uncorrelated_price, 2))
 ```
 
@@ -603,9 +611,9 @@ unders_same_player_multi_method_1 <-
 # Assess performance
 #===============================================================================
 
-unders_same_player_multi_method_1 |> 
+overs_same_player_multi_method_1 |> 
   left_join(opp_stats |> mutate(date = date - days(1)), by = c("opposition_team" = "oppositionTeam", "as_at_date" = "date")) |> 
-  filter(rolling_15_game_points < 0 & rolling_15_game_rebounds < 0) |> 
+  filter(rolling_15_game_points > 0 & rolling_15_game_rebounds > 0) |> 
   summarise(bets = n(),
             profit = sum(profit),
             staked = bets * 100,
@@ -614,9 +622,9 @@ unders_same_player_multi_method_1 |>
 
 ## By Date
 ```{r}
-unders_same_player_multi_method_1 |> 
+overs_same_player_multi_method_1 |> 
   left_join(opp_stats |> mutate(date = date - days(1)), by = c("opposition_team" = "oppositionTeam", "as_at_date" = "date")) |> 
-  filter(rolling_15_game_points < 0 & rolling_15_game_rebounds < 0) |> 
+  filter(rolling_15_game_points > 0 & rolling_15_game_rebounds > 0) |> 
   mutate(date = as_at_date + days(1)) |>
   group_by(date) |> 
   summarise(bets = n(),
@@ -629,9 +637,9 @@ unders_same_player_multi_method_1 |>
 
 ## By Rebound line high or low
 ```{r}
-unders_same_player_multi_method_1 |> 
+overs_same_player_multi_method_1 |> 
   left_join(opp_stats |> mutate(date = date - days(1)), by = c("opposition_team" = "oppositionTeam", "as_at_date" = "date")) |> 
-  filter(rolling_15_game_points < 0 & rolling_15_game_rebounds < 0) |> 
+  filter(rolling_15_game_points > 0 & rolling_15_game_rebounds > 0) |> 
   mutate(date = as_at_date + days(1)) |>
   group_by(rebound_line >= 5.5) |> 
   summarise(bets = n(),
@@ -639,5 +647,4 @@ unders_same_player_multi_method_1 |>
             staked = bets * 100,
             roi = (profit / staked) * 100)
 ```
-
 :::

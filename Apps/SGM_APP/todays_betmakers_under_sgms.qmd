@@ -163,6 +163,12 @@ final_data <-
 points_rebounds_to_bet <-
   final_data |> 
   filter(Markets == "Player Points, Player Rebounds") |> 
+  separate(Selections, into = c("points_line", "rebounds_line"), sep = ", ", remove = FALSE) |>
+  mutate(points_line = str_extract(points_line, "\\d+\\.\\d+")) |>
+  mutate(rebounds_line = str_extract(rebounds_line, "\\d+\\.\\d+")) |>
+  mutate(points_line = as.numeric(points_line)) |>
+  mutate(rebounds_line = as.numeric(rebounds_line)) |>
+  filter(rebounds_line > 4.5) |> 
   filter(points_DVP < 0 & rebounds_DVP < 0)
 
 points_rebounds_to_bet

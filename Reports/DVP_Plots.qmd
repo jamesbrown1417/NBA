@@ -38,8 +38,7 @@ rebounds_dvp <-
 
 ```
 
-::: {.panel-tabset}
-
+::: panel-tabset
 ### Points
 
 ```{r}
@@ -89,5 +88,4 @@ rebounds_dvp <-
   labs(x = NULL, y = NULL, title = "Player Assists") +
   geom_text(aes(label = round(dvp, 1)), size = 3)
 ```
-
 :::

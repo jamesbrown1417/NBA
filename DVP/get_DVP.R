@@ -56,7 +56,6 @@ all_player_stats_2023_2024 <-
   filter(!is.na(Pos)) |> 
   arrange(desc(date), game_id, Team, Opponent, desc(Points))
 
-
 #===============================================================================
 # Function to get DVP for a position
 #===============================================================================

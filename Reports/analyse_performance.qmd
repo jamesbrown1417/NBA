@@ -1436,6 +1436,28 @@ unders_diff_method |>
 
 ### Best Combo
 
+::: panel-tabset
+## Overall
+
+```{r}
+unders_diff_method |>
+  filter(fixture_difficulty < 0) |>
+  filter(home_away == "away") |>
+  filter(market_name %notin% c("Player Pras",
+                               "Player Assists",
+                               "Player Blocks")) |>
+  filter(variation >= 0.01) |>
+  summarise(
+    bets_placed = n(),
+    total_stake = sum(stake),
+    profit = sum(profit),
+    ROI = 100 * (profit / total_stake)
+  )
+
+```
+
+## By Date
+
 ```{r}
 unders_diff_method |>
   filter(fixture_difficulty < 0) |>
@@ -1452,5 +1474,5 @@ unders_diff_method |>
     ROI = 100 * (profit / total_stake)
   ) |> 
   arrange(desc(date))
-
 ```
+:::
