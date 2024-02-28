@@ -29,13 +29,13 @@ sportsbet_sgm_bets <-
 # Odds below 1.2
 sportsbet_sgm_bets_combine <-
   sportsbet_sgm_bets |> 
-  filter(price < 1.2)
+  filter(price <= 1.2)
 
 # Get Desired Player, line and Market
-desired_player <- "Rui Hachimura"
-desired_market <- "Player Rebounds"
-desired_line <- 4.5
-desired_type <- "Unders"
+desired_player <- "Karl-Anthony Towns"
+desired_market <- "Player Points"
+desired_line <- 19.5
+desired_type <- "Overs"
 
 # Get row number of desired player
 desired_player_row <-
