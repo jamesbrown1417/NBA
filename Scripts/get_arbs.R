@@ -503,7 +503,7 @@ steals_unders <-
   rename(under_agency = agency)
 
 steals_overs <-
-  all_player_threes |>
+  all_player_steals |>
   filter(market_name == "Player Steals") |>
   select(
     match,
@@ -604,7 +604,6 @@ blocks_arbs <-
 
 all_arbs <-
   bind_rows(
-    h2h_arbs,
     points_arbs,
     assists_arbs,
     rebounds_arbs,
@@ -613,6 +612,7 @@ all_arbs <-
     threes_arbs,
     pra_arbs
   ) |>
-  arrange(desc(margin))
+  arrange(desc(margin)) |> 
+  filter(!is.na(player_name))
 
 all_arbs
