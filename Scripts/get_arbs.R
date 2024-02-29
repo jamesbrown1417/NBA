@@ -197,6 +197,12 @@ all_player_pras <-
 #                                                          #
 ##%######################################################%##
 
+# H2H---------------------------------------------------------------------------
+h2h_arbs <-
+  all_odds_h2h |> 
+  mutate(margin = -1*margin) |> 
+  filter(margin > 0)
+
 # Points------------------------------------------------------------------------
 points_unders <-
   all_player_points |>
@@ -598,6 +604,7 @@ blocks_arbs <-
 
 all_arbs <-
   bind_rows(
+    h2h_arbs,
     points_arbs,
     assists_arbs,
     rebounds_arbs,
@@ -608,3 +615,4 @@ all_arbs <-
   ) |>
   arrange(desc(margin))
 
+all_arbs
