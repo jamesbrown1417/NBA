@@ -6,7 +6,6 @@ library(tidyverse)
 library(googlesheets4)
 library(googledrive)
 
-
 #===============================================================================
 # Read in Data
 #===============================================================================
@@ -32,6 +31,45 @@ run_scraping("OddsScraper/scrape_TopSport.R")
 run_scraping("OddsScraper/scrape_bluebet.R")
 run_scraping("OddsScraper/scrape_neds.R")
 run_scraping("OddsScraper/scrape_unibet.R")
+
+
+##%######################################################%##
+#                                                          #
+####                    Head to Head                    ####
+#                                                          #
+##%######################################################%##
+
+# Get all scraped odds files and combine
+all_odds_files <-
+  list.files("Data/scraped_odds", full.names = TRUE, pattern = "h2h") |>
+  map(read_csv) |>
+  # Keep if nrow of dataframe greater than 0
+  keep(~nrow(.x) > 0) |>
+  reduce(bind_rows)
+
+# For each match, get all home wins
+all_home <-
+  all_odds_files |>
+  arrange(match, start_time, desc(home_win)) |>
+  select(match, start_time, market_name, home_team, home_win, home_agency = agency) |> 
+  mutate(start_time = date(start_time)) |> 
+  select(-start_time)
+
+# For each match, get all away wins
+all_away <-
+  all_odds_files |>
+  arrange(match, start_time, desc(away_win)) |>
+  select(match, start_time, market_name, away_team, away_win, away_agency = agency) |> 
+  mutate(start_time = date(start_time)) |> 
+  select(-start_time)
+
+# Combine
+all_odds_h2h <-
+  all_home |>
+  full_join(all_away, relationship = "many-to-many", by = c("match", "market_name")) |>
+  mutate(margin = (1/home_win + 1/away_win)) |> 
+  mutate(margin = round(100*(margin - 1), digits = 3)) |> 
+  arrange(margin)
 
 ##%######################################################%##
 #                                                          #
@@ -232,7 +270,7 @@ rebounds_unders <-
   rename(under_agency = agency)
 
 rebounds_overs <-
-  player_rebounds_data |>
+  all_player_rebounds |>
   filter(market_name == "Player Rebounds") |>
   select(
     match,
@@ -289,7 +327,7 @@ assists_unders <-
   rename(under_agency = agency)
 
 assists_overs <-
-  player_assists_data |>
+  all_player_assists |>
   filter(market_name == "Player Assists") |>
   select(
     match,
@@ -346,7 +384,7 @@ pra_unders <-
   rename(under_agency = agency)
 
 pra_overs <-
-  player_pras_data |>
+  all_player_pras |>
   filter(market_name == "Player PRAs") |>
   select(
     match,
@@ -366,7 +404,6 @@ pra_arbs <-
     pra_overs,
     by = c(
       "match",
-      
       "market_name",
       "player_name",
       "player_team",
@@ -403,7 +440,7 @@ threes_unders <-
   rename(under_agency = agency)
 
 threes_overs <-
-  player_threes_data |>
+  all_player_threes |>
   filter(market_name == "Player Threes") |>
   select(
     match,
@@ -460,7 +497,7 @@ steals_unders <-
   rename(under_agency = agency)
 
 steals_overs <-
-  player_steals_data |>
+  all_player_threes |>
   filter(market_name == "Player Steals") |>
   select(
     match,
@@ -517,7 +554,7 @@ blocks_unders <-
   rename(under_agency = agency)
 
 blocks_overs <-
-  player_blocks_data |>
+  all_player_blocks |>
   filter(market_name == "Player Blocks") |>
   select(
     match,
