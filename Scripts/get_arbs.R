@@ -615,4 +615,20 @@ all_arbs <-
   arrange(desc(margin)) |> 
   filter(!is.na(player_name))
 
-all_arbs
+# H2H Arbs
+h2h_arbs
+
+# Separate into Neds and Unibet and the rest
+neds_arbs <-
+  all_arbs |>
+  filter(over_agency %in% c("Neds") | under_agency %in% c("Neds"))
+
+unibet_arbs <-
+  all_arbs |>
+  filter(over_agency %in% c("Unibet") | under_agency %in% c("Unibet")) |> 
+  filter(!over_agency %in% c("Neds") & !under_agency %in% c("Neds"))
+
+other_arbs <-
+  all_arbs |>
+  filter(!over_agency %in% c("Neds", "Unibet") & !under_agency %in% c("Neds", "Unibet"))
+
