@@ -312,6 +312,96 @@ tryCatch(
       relocate(player_team, opposition_team, .after = player_name)
     
     #===================================================================================================
+    # Steals
+    #===================================================================================================
+    
+    # All Player Steals
+    all_player_steals <-
+      all_markets |> 
+      filter(label...4 == "Steals by the player - Including Overtime") |> 
+      select(match, date = closed, participant, oddsAmerican, line, type) |>
+      mutate(line = line / 1000) |> 
+      mutate(oddsAmerican = as.numeric(oddsAmerican)) |>
+      mutate(price = ifelse(oddsAmerican < 0, (100 / abs(oddsAmerican)) + 1, (oddsAmerican / 100) + 1)) |>
+      distinct(match, date, participant, price, line, type) |> 
+      separate(match, c("home_team", "away_team"), sep = " v ", remove = FALSE) |> 
+      mutate(date = as_date(ymd_hms(date))) |> 
+      separate(participant, c("last_name", "first_name"), sep = ", ", remove = TRUE) |> 
+      mutate(player_name = paste(first_name, last_name, sep = " ")) |>
+      select(-first_name, -last_name)
+    
+    # Overs
+    player_steals_overs <- 
+      all_player_steals |>
+      filter(type == "OT_OVER") |>
+      select(match, date, line, player_name, over_price = price)
+    
+    # Unders
+    player_steals_unders <- 
+      all_player_steals |>
+      filter(type == "OT_UNDER") |>
+      select(match, date, line, player_name, under_price = price)
+    
+    # Combine
+    player_steals_combined <-
+      player_steals_overs |>
+      full_join(player_steals_unders) |>
+      mutate(agency = "Unibet") |>
+      arrange(match, player_name, line) |>
+      mutate(over_price = round(over_price, 2),
+             under_price = round(under_price, 2)) |> 
+      left_join(player_names[,c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
+      rename(player_team = team_name) |> 
+      separate(match, c("home_team", "away_team"), sep = " v ", remove = FALSE) |>
+      mutate(opposition_team = ifelse(player_team == home_team, away_team, home_team)) |> 
+      relocate(player_team, opposition_team, .after = player_name)
+    
+    #===================================================================================================
+    # Blocks
+    #===================================================================================================
+    
+    # All Player Blocks
+    all_player_blocks <-
+      all_markets |> 
+      filter(label...4 == "Blocks by the player - Including Overtime") |> 
+      select(match, date = closed, participant, oddsAmerican, line, type) |>
+      mutate(line = line / 1000) |> 
+      mutate(oddsAmerican = as.numeric(oddsAmerican)) |>
+      mutate(price = ifelse(oddsAmerican < 0, (100 / abs(oddsAmerican)) + 1, (oddsAmerican / 100) + 1)) |>
+      distinct(match, date, participant, price, line, type) |> 
+      separate(match, c("home_team", "away_team"), sep = " v ", remove = FALSE) |> 
+      mutate(date = as_date(ymd_hms(date))) |> 
+      separate(participant, c("last_name", "first_name"), sep = ", ", remove = TRUE) |> 
+      mutate(player_name = paste(first_name, last_name, sep = " ")) |>
+      select(-first_name, -last_name)
+    
+    # Overs
+    player_blocks_overs <- 
+      all_player_blocks |>
+      filter(type == "OT_OVER") |>
+      select(match, date, line, player_name, over_price = price)
+    
+    # Unders
+    player_blocks_unders <- 
+      all_player_blocks |>
+      filter(type == "OT_UNDER") |>
+      select(match, date, line, player_name, under_price = price)
+    
+    # Combine
+    player_blocks_combined <-
+      player_blocks_overs |>
+      full_join(player_blocks_unders) |>
+      mutate(agency = "Unibet") |>
+      arrange(match, player_name, line) |>
+      mutate(over_price = round(over_price, 2),
+             under_price = round(under_price, 2)) |> 
+      left_join(player_names[,c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
+      rename(player_team = team_name) |> 
+      separate(match, c("home_team", "away_team"), sep = " v ", remove = FALSE) |>
+      mutate(opposition_team = ifelse(player_team == home_team, away_team, home_team)) |> 
+      relocate(player_team, opposition_team, .after = player_name)
+    
+    #===================================================================================================
     # PRAs
     #===================================================================================================
     
@@ -379,6 +469,16 @@ tryCatch(
     player_threes_combined |>
       mutate(market_name = "Player Threes") |>
       write_csv("Data/scraped_odds/unibet_player_threes.csv")
+    
+    # Steals
+    player_steals_combined |>
+      mutate(market_name = "Player Steals") |>
+      write_csv("Data/scraped_odds/unibet_player_steals.csv")
+    
+    # Blocks
+    player_blocks_combined |>
+      mutate(market_name = "Player Blocks") |>
+      write_csv("Data/scraped_odds/unibet_player_blocks.csv")
     
     # PRAs
     player_pras_combined |>

@@ -3,6 +3,11 @@ library(tidyverse)
 library(rvest)
 library(httr2)
 library(jsonlite)
+library(future)
+library(furrr)
+
+plan(multisession)
+
 # Get teams table
 teams <-
     read_csv("Data/all_teams.csv")
@@ -101,7 +106,7 @@ get_h2h <- function(market_table) {
 }
 
 # Map function to main markets list
-topsport_h2h <- map(main_markets, get_h2h) |> bind_rows()
+topsport_h2h <- future_map(main_markets, get_h2h) |> bind_rows()
 
 # Fix names
 topsport_h2h <-
@@ -168,7 +173,7 @@ pick_your_own_points_markets <-
 
 # Map function
 player_points_alternate <-
-map(pick_your_own_points_markets, read_topsport_html) |> 
+future_map(pick_your_own_points_markets, read_topsport_html) |> 
     bind_rows() |> 
     mutate(line = line - 0.5) |>
     rename(over_price = Win) |> 
@@ -217,9 +222,9 @@ player_points_markets <-
 # Only proceed if markets have been picked up above
 if (length(player_points_markets) > 0) {
 
-# Map function
+# future_map function
 player_points_lines <-
-    map(player_points_markets, read_topsport_html) |> 
+    future_map(player_points_markets, read_topsport_html) |> 
     bind_rows() |> 
     mutate(line = line - 0.5) |>
     rename(over_price = Win)
@@ -324,9 +329,9 @@ player_points_lines <-
 pick_your_own_assists_markets <- 
     topsport_other_markets[str_detect(topsport_other_markets, "Player_to_Have_[0-9]{1,2}_Assists")]
 
-# Map function
+# future_map function
 player_assists_alternate <-
-    map(pick_your_own_assists_markets, read_topsport_html) |> 
+    future_map(pick_your_own_assists_markets, read_topsport_html) |> 
     bind_rows() |> 
     mutate(line = line - 0.5) |>
     rename(over_price = Win) |> 
@@ -375,9 +380,9 @@ player_assists_markets <-
 # Only proceed if markets have been picked up above
 if (length(player_assists_markets) > 0) {
     
-    # Map function
+    # future_map function
     player_assists_lines <-
-        map(player_assists_markets, read_topsport_html) |> 
+        future_map(player_assists_markets, read_topsport_html) |> 
         bind_rows() |> 
         mutate(line = line - 0.5) |>
         rename(over_price = Win)
@@ -482,9 +487,9 @@ if (length(player_assists_markets) > 0) {
 pick_your_own_rebounds_markets <- 
     topsport_other_markets[str_detect(topsport_other_markets, "Player_to_Have_[0-9]{1,2}_Rebounds")]
 
-# Map function
+# future_map function
 player_rebounds_alternate <-
-    map(pick_your_own_rebounds_markets, read_topsport_html) |> 
+    future_map(pick_your_own_rebounds_markets, read_topsport_html) |> 
     bind_rows() |> 
     mutate(line = line - 0.5) |>
     rename(over_price = Win) |> 
@@ -533,9 +538,9 @@ player_rebounds_markets <-
 # Only proceed if markets have been picked up above
 if (length(player_rebounds_markets) > 0) {
     
-    # Map function
+    # future_map function
     player_rebounds_lines <-
-        map(player_rebounds_markets, read_topsport_html) |> 
+        future_map(player_rebounds_markets, read_topsport_html) |> 
         bind_rows() |> 
         mutate(line = line - 0.5) |>
         rename(over_price = Win)

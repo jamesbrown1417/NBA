@@ -18,12 +18,36 @@ main_tab <- function() {
 #     req_perform() |> 
 #     resp_body_json()
 
-  # Try to get json using rvest
-  tab_response <-
-    read_html_live(tab_url) |>
-    html_nodes("pre") |>
-    html_text() |>
-    fromJSON(simplifyVector = FALSE)  
+  # Function to fetch and parse JSON with exponential backoff
+  fetch_data_with_backoff <- function(url, delay = 1, max_retries = 5, backoff_multiplier = 2) {
+    tryCatch({
+      # Attempt to fetch and parse the JSON
+      tab_response <-
+        read_html_live(url) |> 
+        html_nodes("pre") %>%
+        html_text() %>%
+        fromJSON(simplifyVector = FALSE)
+      
+      # Return the parsed response
+      return(tab_response)
+    }, error = function(e) {
+      if (max_retries > 0) {
+        # Log the retry attempt
+        message(sprintf("Error encountered. Retrying in %s seconds...", delay))
+        
+        # Wait for the specified delay
+        Sys.sleep(delay)
+        
+        # Recursively call the function with updated parameters
+        return(fetch_data_with_backoff(url, delay * backoff_multiplier, max_retries - 1, backoff_multiplier))
+      } else {
+        # Max retries reached, throw an error
+        stop("Failed to fetch data after multiple retries.")
+      }
+    })
+  }
+  
+tab_response <- fetch_data_with_backoff(tab_url)
   
 # Function to extract market info from response---------------------------------
 get_market_info <- function(markets) {
@@ -665,7 +689,6 @@ player_names <-
 
 # Points
 tab_player_points_markets <-
-  a <-
   tab_player_points_markets |>
   mutate(first_initial = str_sub(player_name, 1, 1)) |>
   mutate(surname = str_extract(player_name, "(?<=\\s).*$")) |>
