@@ -1,6 +1,3 @@
-competitions_api_url = "https://api.dabble.com.au/competitions/active/?sportId=01408294-cb34-4cc0-8ab1-504f5c4c6e1f"
-fixture_url = "https://api.dabble.com.au/sportfixtures/details/adf1e4c1-768f-4f14-b089-99bc7e66273d"
-
 # Libraries
 library(tidyverse)
 library(rvest)
