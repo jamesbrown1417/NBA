@@ -3,3 +3,4 @@ Rscript OddsScraper\master_processing_script.R
 Rscript Scripts\archive_odds_for_the_day_night_before.R
 Rscript Scripts\get_team_last_n_opponent_stats.R
 echo 1 | quarto publish quarto-pub Reports\todays_bets.qmd
+Rscript OddsScraper\update_google_sheets.R

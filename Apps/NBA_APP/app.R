@@ -235,64 +235,64 @@ if (os_type == "Windows") {
 # Add opposition defensive rating-----------------------------------------------
 
 # Get defensive rating in last 5 games
-def_rating_last_5 <-
+def_rating_last_10 <-
   all_team_stats |> 
   arrange(teamName, desc(date)) |>
   group_by(teamName) |>
-  slice_head(n = 5) |>
+  slice_head(n = 10) |>
   summarise(def_rating = mean(defensiveRating, na.rm = TRUE)) |> 
   mutate(def_rating = round((def_rating - min(def_rating)) / (max(def_rating) - min(def_rating)) * 100, digits = 1))
 
 # Get Pace per 40 vs opposition in last 5 games
-pace_per_40_last_5 <-
+pace_per_40_last_10 <-
   all_team_stats |> 
   arrange(oppositionTeam, desc(date)) |>
   group_by(oppositionTeam) |>
-  slice_head(n = 5) |>
+  slice_head(n = 10) |>
   summarise(pace_per_40 = mean(pacePer40, na.rm = TRUE)) |> 
   mutate(pace_per_40 = round((pace_per_40 - min(pace_per_40)) / (max(pace_per_40) - min(pace_per_40)) * 100, digits = 1))
 
 # Add to player points
 player_points_data <-
   player_points_data |> 
-  left_join(def_rating_last_5, by = c("opposition_team" = "teamName")) |>
-  left_join(pace_per_40_last_5, by = c("opposition_team" = "oppositionTeam"))
+  left_join(def_rating_last_10, by = c("opposition_team" = "teamName")) |>
+  left_join(pace_per_40_last_10, by = c("opposition_team" = "oppositionTeam"))
 
 # Add to player assists
 player_assists_data <-
   player_assists_data |> 
-  left_join(def_rating_last_5, by = c("opposition_team" = "teamName")) |>
-  left_join(pace_per_40_last_5, by = c("opposition_team" = "oppositionTeam"))
+  left_join(def_rating_last_10, by = c("opposition_team" = "teamName")) |>
+  left_join(pace_per_40_last_10, by = c("opposition_team" = "oppositionTeam"))
 
 # Add to player rebounds
 player_rebounds_data <-
   player_rebounds_data |> 
-  left_join(def_rating_last_5, by = c("opposition_team" = "teamName")) |>
-  left_join(pace_per_40_last_5, by = c("opposition_team" = "oppositionTeam"))
+  left_join(def_rating_last_10, by = c("opposition_team" = "teamName")) |>
+  left_join(pace_per_40_last_10, by = c("opposition_team" = "oppositionTeam"))
 
 # Add to player pras
 player_pras_data <-
   player_pras_data |> 
-  left_join(def_rating_last_5, by = c("opposition_team" = "teamName")) |>
-  left_join(pace_per_40_last_5, by = c("opposition_team" = "oppositionTeam"))
+  left_join(def_rating_last_10, by = c("opposition_team" = "teamName")) |>
+  left_join(pace_per_40_last_10, by = c("opposition_team" = "oppositionTeam"))
 
 # Add to player blocks
 player_blocks_data <-
   player_blocks_data |> 
-  left_join(def_rating_last_5, by = c("opposition_team" = "teamName")) |>
-  left_join(pace_per_40_last_5, by = c("opposition_team" = "oppositionTeam"))
+  left_join(def_rating_last_10, by = c("opposition_team" = "teamName")) |>
+  left_join(pace_per_40_last_10, by = c("opposition_team" = "oppositionTeam"))
 
 # Add to player steals
 player_steals_data <-
   player_steals_data |> 
-  left_join(def_rating_last_5, by = c("opposition_team" = "teamName")) |>
-  left_join(pace_per_40_last_5, by = c("opposition_team" = "oppositionTeam"))
+  left_join(def_rating_last_10, by = c("opposition_team" = "teamName")) |>
+  left_join(pace_per_40_last_10, by = c("opposition_team" = "oppositionTeam"))
 
 # Add to player threes
 player_threes_data <-
   player_threes_data |> 
-  left_join(def_rating_last_5, by = c("opposition_team" = "teamName")) |>
-  left_join(pace_per_40_last_5, by = c("opposition_team" = "oppositionTeam"))
+  left_join(def_rating_last_10, by = c("opposition_team" = "teamName")) |>
+  left_join(pace_per_40_last_10, by = c("opposition_team" = "oppositionTeam"))
 
 #===============================================================================
 # UI
