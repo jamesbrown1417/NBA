@@ -2,6 +2,7 @@
 library(tidyverse)
 library(rvest)
 library(httr2)
+library(glue)
 
 # Get teams table
 teams <-
@@ -401,7 +402,6 @@ bluebet_player_rebounds <-
         "agency",
         "opposition_team"
     )
-
 
 #===============================================================================
 # Write to CSV
