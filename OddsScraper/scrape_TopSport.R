@@ -172,6 +172,8 @@ pick_your_own_points_markets <-
     topsport_other_markets[str_detect(topsport_other_markets, "Player_to_Score_[0-9]{1,2}_Points")]
 
 # Map function
+if (length(pick_your_own_points_markets) > 0) {
+  
 player_points_alternate <-
 future_map(pick_your_own_points_markets, read_topsport_html) |> 
     bind_rows() |> 
@@ -212,6 +214,7 @@ future_map(pick_your_own_points_markets, read_topsport_html) |>
     separate(match, into = c("away_team", "home_team"), sep = " v ", remove = FALSE) |> 
     rename(player_team = team_name) |> 
     mutate(opposition_team = if_else(player_team == home_team, away_team, home_team))
+}
 
 # Get data for player points over/under-----------------------------------------
 
@@ -330,6 +333,8 @@ pick_your_own_assists_markets <-
     topsport_other_markets[str_detect(topsport_other_markets, "Player_to_Have_[0-9]{1,2}_Assists")]
 
 # future_map function
+if (length(pick_your_own_assists_markets) > 0) {
+  
 player_assists_alternate <-
     future_map(pick_your_own_assists_markets, read_topsport_html) |> 
     bind_rows() |> 
@@ -370,6 +375,7 @@ player_assists_alternate <-
     separate(match, into = c("away_team", "home_team"), sep = " v ", remove = FALSE) |> 
     rename(player_team = team_name) |> 
     mutate(opposition_team = if_else(player_team == home_team, away_team, home_team))
+}
 
 # Get data for player assists over/under-----------------------------------------
 
@@ -488,6 +494,8 @@ pick_your_own_rebounds_markets <-
     topsport_other_markets[str_detect(topsport_other_markets, "Player_to_Have_[0-9]{1,2}_Rebounds")]
 
 # future_map function
+if (length(pick_your_own_rebounds_markets) > 0) {
+
 player_rebounds_alternate <-
     future_map(pick_your_own_rebounds_markets, read_topsport_html) |> 
     bind_rows() |> 
@@ -528,6 +536,7 @@ player_rebounds_alternate <-
     separate(match, into = c("away_team", "home_team"), sep = " v ", remove = FALSE) |> 
     rename(player_team = team_name) |> 
     mutate(opposition_team = if_else(player_team == home_team, away_team, home_team))
+}
 
 # Get data for player rebounds over/under---------------------------------------
 
@@ -642,11 +651,20 @@ if (length(player_rebounds_markets) > 0) {
 if (!exists("player_points_lines")) {
     player_points_lines <- tibble() } 
 
+if (!exists("player_points_alternate")) {
+  player_points_alternate <- tibble() } 
+
 if (!exists("player_rebounds_lines")) {
     player_rebounds_lines <- tibble() }
 
+if (!exists("player_rebounds_alternate")) {
+  player_rebounds_alternate <- tibble() }
+
 if (!exists("player_assists_lines")) {
     player_assists_lines <- tibble() }
+
+if (!exists("player_assists_alternate")) {
+  player_assists_alternate <- tibble() }
 
 # Points
 player_points_alternate |>

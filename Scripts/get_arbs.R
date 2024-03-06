@@ -47,6 +47,12 @@ all_odds_files <-
   keep(~nrow(.x) > 0) |>
   reduce(bind_rows)
 
+# Get Start Times
+start_times <-
+  all_odds_files |>
+  select(match, start_time) |>
+  distinct(match, .keep_all = TRUE)
+
 # For each match, get all home wins
 all_home <-
   all_odds_files |>
@@ -254,7 +260,7 @@ points_arbs <-
   arrange(margin) |>
   mutate(margin = (1 - margin)) |>
   mutate(margin = 100 * margin) |>
-  filter(margin > 0) |>
+  # filter(margin > 0) |>
   distinct(match, player_name, line, over_agency, under_agency, .keep_all = TRUE) |>
   relocate(over_price, over_agency, under_price, under_agency, .after = opposition_team)
 
@@ -310,7 +316,7 @@ rebounds_arbs <-
   arrange(margin) |>
   mutate(margin = (1 - margin)) |>
   mutate(margin = 100 * margin) |>
-  filter(margin > 0) |>
+  # filter(margin > 0) |>
   distinct(match, player_name, line, over_agency, under_agency, .keep_all = TRUE) |>
   relocate(over_price, over_agency, under_price, under_agency, .after = opposition_team)
 
@@ -367,7 +373,7 @@ assists_arbs <-
   arrange(margin) |>
   mutate(margin = (1 - margin)) |>
   mutate(margin = 100 * margin) |>
-  filter(margin > 0) |>
+  # filter(margin > 0) |>
   distinct(match, player_name, line, over_agency, under_agency, .keep_all = TRUE) |>
   relocate(over_price, over_agency, under_price, under_agency, .after = opposition_team)
 
@@ -423,7 +429,7 @@ pra_arbs <-
   arrange(margin) |>
   mutate(margin = (1 - margin)) |>
   mutate(margin = 100 * margin) |>
-  filter(margin > 0) |>
+  # filter(margin > 0) |>
   distinct(match, player_name, line, over_agency, under_agency, .keep_all = TRUE) |>
   relocate(over_price, over_agency, under_price, under_agency, .after = opposition_team)
 
@@ -480,7 +486,7 @@ threes_arbs <-
   arrange(margin) |>
   mutate(margin = (1 - margin)) |>
   mutate(margin = 100 * margin) |>
-  filter(margin > 0) |>
+  # filter(margin > 0) |>
   distinct(match, player_name, line, over_agency, under_agency, .keep_all = TRUE) |>
   relocate(over_price, over_agency, under_price, under_agency, .after = opposition_team)
 
@@ -537,7 +543,7 @@ steals_arbs <-
   arrange(margin) |>
   mutate(margin = (1 - margin)) |>
   mutate(margin = 100 * margin) |>
-  filter(margin > 0) |>
+  # filter(margin > 0) |>
   distinct(match, player_name, line, over_agency, under_agency, .keep_all = TRUE) |>
   relocate(over_price, over_agency, under_price, under_agency, .after = opposition_team)
 
@@ -593,13 +599,23 @@ blocks_arbs <-
   arrange(margin) |>
   mutate(margin = (1 - margin)) |>
   mutate(margin = 100 * margin) |>
-  filter(margin > 0) |>
+  # filter(margin > 0) |>
   distinct(match, player_name, line, over_agency, under_agency, .keep_all = TRUE) |>
   relocate(over_price, over_agency, under_price, under_agency, .after = opposition_team)
 
 #===============================================================================
 # Get all ARBs together
 #===============================================================================
+
+# Function to calculate hedge prices
+hedge_price <- function(odds_A, odds_B, stake_a) {
+  return((odds_A/odds_B) * stake_a)
+}
+
+# get current GMT datetime
+current_time <- Sys.time()
+gmt_time <- as.POSIXct(current_time, tz = "GMT")
+gmt_time_dttm <- as_datetime(gmt_time)
 
 all_arbs <-
   bind_rows(
@@ -612,7 +628,11 @@ all_arbs <-
     pra_arbs
   ) |>
   arrange(desc(margin)) |> 
-  filter(!is.na(player_name))
+  filter(!is.na(player_name)) |> 
+  left_join(start_times, by = "match") |>
+  # Filter out cases where current time is more than 5 mins after start time
+  filter(gmt_time_dttm < (start_time + 5 * 60)) |> 
+  select(-start_time)
 
 # H2H Arbs
 h2h_arbs
@@ -620,14 +640,81 @@ h2h_arbs
 # Separate into Neds and Unibet and the rest
 neds_arbs <-
   all_arbs |>
-  filter(over_agency %in% c("Neds") | under_agency %in% c("Neds"))
+  filter(margin > 0) |> 
+  filter(over_agency %in% c("Neds") | under_agency %in% c("Neds")) |> 
+  mutate(neds_stake = ifelse(over_agency == "Neds", (25 / (over_price - 1)), (25 / (under_price - 1)))) |> 
+  mutate(other_stake = hedge_price(over_price, under_price, neds_stake)) |> 
+  # Round stakes to nearest 5
+  mutate(neds_stake = round(neds_stake / 5) * 5) |>
+  mutate(other_stake = round(other_stake / 5) * 5) |>
+  mutate(profit_neds = ((neds_stake *over_price) - neds_stake) - other_stake) |> 
+  mutate(profit_other = ((other_stake *under_price) - other_stake) - neds_stake)
 
 unibet_arbs <-
   all_arbs |>
+  filter(margin > 0) |> 
   filter(over_agency %in% c("Unibet") | under_agency %in% c("Unibet")) |> 
-  filter(!over_agency %in% c("Neds") & !under_agency %in% c("Neds"))
+  filter(!over_agency %in% c("Neds") & !under_agency %in% c("Neds")) |> 
+  mutate(unibet_stake = ifelse(over_agency == "Unibet", (100 / (over_price - 1)), (100 / (under_price - 1)))) |> 
+  mutate(other_stake = hedge_price(over_price, under_price, unibet_stake))
 
 other_arbs <-
   all_arbs |>
+  filter(margin > 0) |> 
   filter(!over_agency %in% c("Neds", "Unibet") & !under_agency %in% c("Neds", "Unibet"))
 
+#===============================================================================
+# SGM ARBs
+#===============================================================================
+
+# All lines that exist on all agencies
+all_arbs_all_agencies <-
+  all_arbs |> 
+  arrange(match, player_name, market_name, line, under_agency) |> 
+  filter(under_agency %in% c("BetRight", "Pointsbet", "Sportsbet", "TAB")) |>
+  distinct(match, player_name, market_name, line, under_agency, .keep_all = TRUE) |>
+  group_by(match, player_name, market_name, line) |>
+  filter(n() == 4) |> 
+  ungroup() |> 
+  arrange(desc(margin))
+
+df <- all_arbs_all_agencies[1:2, ]
+
+# Read in SGM Functions
+source("SGM/BetRight/betright_sgm.R")
+source("SGM/PointsBet/pointsbet_sgm.R")
+source("SGM/Sportsbet/sportsbet_sgm.R")
+source("SGM/Tab/tab_sgm.R")
+
+# Function to take dataframe and return all possible outcome SGMs
+get_sgm_arbs <- function(df) {
+  
+player_names <- df$player_name
+prop_line <- df$line
+prop_type <- df$market_name
+
+# Combo 1 Over-Over
+pointsbet_price_1 <- call_sgm_pointsbet(data = pointsbet_sgm, player_names, prop_line, prop_type, over_under = c("Overs", "Overs"))
+betright_price_1 <- call_sgm_betright(data = betright_sgm, player_names, prop_line, prop_type, over_under = c("Overs", "Overs"))
+sportsbet_price_1 <- call_sgm_sportsbet(data = sportsbet_sgm, player_names, prop_line, prop_type, over_under = c("Overs", "Overs"))
+tab_price_1 <- call_sgm_tab(data = tab_sgm, player_names, prop_line, prop_type, over_under = c("Overs", "Overs"))
+
+# Combo 2 Over-Under
+pointsbet_price <- call_sgm_pointsbet(data = pointsbet_sgm, player_names, prop_line, prop_type, over_under = c("Overs", "Unders"))
+betright_price <- call_sgm_betright(data = betright_sgm, player_names, prop_line, prop_type, over_under = c("Overs", "Unders"))
+sportsbet_price <- call_sgm_sportsbet(data = sportsbet_sgm, player_names, prop_line, prop_type, over_under = c("Overs", "Unders"))
+tab_price <- call_sgm_tab(data = tab_sgm, player_names, prop_line, prop_type, over_under = c("Overs", "Unders"))
+
+# Combo 3 Under-Over
+pointsbet_price <- call_sgm_pointsbet(data = pointsbet_sgm, player_names, prop_line, prop_type, over_under = c("Unders", "Overs"))
+betright_price <- call_sgm_betright(data = betright_sgm, player_names, prop_line, prop_type, over_under = c("Unders", "Overs"))
+sportsbet_price <- call_sgm_sportsbet(data = sportsbet_sgm, player_names, prop_line, prop_type, over_under = c("Unders", "Overs"))
+tab_price <- call_sgm_tab(data = tab_sgm, player_names, prop_line, prop_type, over_under = c("Unders", "Overs"))
+
+# Combo 4 Under-Under
+pointsbet_price <- call_sgm_pointsbet(data = pointsbet_sgm, player_names, prop_line, prop_type, over_under = c("Unders", "Unders"))
+betright_price <- call_sgm_betright(data = betright_sgm, player_names, prop_line, prop_type, over_under = c("Unders", "Unders"))
+sportsbet_price <- call_sgm_sportsbet(data = sportsbet_sgm, player_names, prop_line, prop_type, over_under = c("Unders", "Unders"))
+tab_price <- call_sgm_tab(data = tab_sgm, player_names, prop_line, prop_type, over_under = c("Unders", "Unders"))
+
+}
