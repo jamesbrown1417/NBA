@@ -678,7 +678,7 @@ all_arbs_all_agencies <-
   ungroup() |> 
   arrange(desc(margin))
 
-df <- all_arbs_all_agencies[1:2, ]
+df <- all_arbs_all_agencies[3:4, ]
 
 # Read in SGM Functions
 source("SGM/BetRight/betright_sgm.R")
