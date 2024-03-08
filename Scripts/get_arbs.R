@@ -2,7 +2,7 @@
 library(bslib)
 library(gridlayout)
 library(DT)
-library(tidyverse)
+library(tidytable)
 library(googlesheets4)
 library(googledrive)
 
