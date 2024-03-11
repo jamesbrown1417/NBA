@@ -41,6 +41,9 @@ player_names <-
     mutate(join_name = ifelse(player_full_name == "Jaylin Williams", "Jay Williams", join_name)) |> 
     mutate(join_name = ifelse(player_full_name == "Bojan Bogdanovic", "Boj Bogdanovic", join_name))
 
+# Fix team names function
+source("Scripts/fix_team_names.R")
+
 # URL to get responses
 bluebet_url = "https://web20-api.bluebet.com.au/SportsCategory?CategoryId=39251&format=json"
 
@@ -157,6 +160,23 @@ player_rebounds_links <-
 player_3_pointers_links <-
     glue("https://web20-api.bluebet.com.au/MasterEvent?GroupTypeCode=G202&MasterEventId={unique(all_bluebet_markets$match_id)}&format=json")
 
+# Player Steals Links
+player_steals_links <-
+    glue("https://web20-api.bluebet.com.au/MasterEvent?GroupTypeCode=G338&MasterEventId={unique(all_bluebet_markets$match_id)}&format=json")
+
+# Player Blocks Links
+player_blocks_links <-
+    glue("https://web20-api.bluebet.com.au/MasterEvent?GroupTypeCode=G337&MasterEventId={unique(all_bluebet_markets$match_id)}&format=json")
+
+# Player PRAs Links
+player_pras_links <-
+    glue("https://web20-api.bluebet.com.au/MasterEvent?GroupTypeCode=G340&MasterEventId={unique(all_bluebet_markets$match_id)}&format=json")
+
+# Player Props Links
+player_props_links <-
+    glue("https://web20-api.bluebet.com.au/MasterEvent?GroupTypeCode=G106&MasterEventId={unique(all_bluebet_markets$match_id)}&format=json")
+
+
 # Function to extract prop data from links--------------------------------------
 
 get_prop_data <- function(link) {
@@ -194,8 +214,15 @@ get_prop_data <- function(link) {
 # Safe version of function
 safe_get_prop_data <- safely(get_prop_data)
 
+# Get Player Props Data (Lines)-------------------------------------------------
+bluebet_player_props <-
+map(player_props_links, safe_get_prop_data) |> 
+    map("result") |> 
+    bind_rows()
+
 # Get player points data--------------------------------------------------------
 
+# Alternate Points
 bluebet_player_points <-
 map(player_points_links, safe_get_prop_data) |> 
     map("result") |>
@@ -264,7 +291,110 @@ map(player_points_links, safe_get_prop_data) |>
         "opposition_team"
     )
 
+# Lines
+bluebet_player_points_lines <-
+bluebet_player_props |> 
+    filter(str_detect(outcome_title, "points over under")) |> 
+    separate(outcome_name, into = c("market_name", "player_name"), sep = " - ", remove = FALSE) |>
+    mutate(line = as.numeric(str_extract(player_name, "\\d+\\.\\d+"))) |>
+    mutate(match = str_extract(event_name, "\\(.*\\)")) |>
+    mutate(match = str_remove_all(match, "\\(|\\)")) |>
+    separate(match, into = c("away_team", "home_team"), sep = " @ ", remove = FALSE) |>
+    mutate(match = paste(home_team, "v", away_team)) |>
+    mutate(player_name = str_remove_all(player_name, " over")) |>
+    mutate(player_name = str_remove_all(player_name, " under")) |>
+    mutate(player_name = str_remove_all(player_name, "\\(.*\\)")) |>
+    mutate(player_name = str_remove_all(player_name, " \\d+\\.\\d+ ")) |> 
+    mutate(first_initial = str_sub(player_name, 1, 1)) |>
+    mutate(surname = str_extract(player_name, "(?<=\\s).*$")) |>
+    mutate(join_name = paste(first_initial, surname, sep = " ")) |>
+    select(-first_initial,-surname) |>
+    mutate(join_name = case_when(
+        str_detect(player_name, "D. Mitchell") ~ "Do Mitchell",
+        str_detect(player_name, "Bogdan Bogdanovic") ~ "Bo Bogdanovic",
+        str_detect(player_name, "C-Pope") ~ "K Caldwell-Pope",
+        str_detect(player_name, "M Porter") ~ "M Porter Jr.",
+        str_detect(player_name, "St.* Curry$") ~ "St Curry",
+        str_detect(player_name, "D. Schröder$") ~ "D Schroder",
+        str_detect(player_name, "A. Sengün$") ~ "A Sengun",
+        str_detect(player_name, "A-kounmpo") ~ "G Antetokounmpo",
+        str_detect(player_name, "K.* Johnson$") ~ "Ke Johnson",
+        str_detect(player_name, "Ke.* Murray$") ~ "Ke Murray",
+        str_detect(player_name, "J.* Butler$") ~ "Ji Butler",
+        str_detect(player_name, "An.* Wiggins$") ~ "An Wiggins",
+        str_detect(player_name, "Tr.* Young$") ~ "Tr Young",
+        str_detect(player_name, "Jr.* Holiday$") ~ "Jr Holiday",
+        str_detect(player_name, "Ja.* Green$") ~ "Ja Green",
+        str_detect(player_name, "Je.* Green$") ~ "Je Green",
+        str_detect(player_name, "Jal.* Williams$") ~ "Ja Williams",
+        str_detect(player_name, "Jal.* Wiliams$") ~ "Ja Williams",
+        str_detect(player_name, "Z.* Wiliamson$") ~ "Z Williamson",
+        str_detect(player_name, "C.* Cuni.*$") ~ "C Cunningham",
+        str_detect(player_name, "Au.* Thompson$") ~ "Au Thompson",
+        str_detect(player_name, "Ty.* Jones$") ~ "Ty Jones",
+        str_detect(player_name, "Valanciunas") ~ "J Valanciunas",
+        str_detect(player_name, "F.* Wagnr$") ~ "F Wagner",
+        str_detect(player_name, "Haliburto") ~ "T Haliburton",
+        str_detect(player_name, "P.* Wshington$") ~ "P Washington",
+        str_detect(player_name, "W.* Carter.*$") ~ "W Carter Jr.",
+        str_detect(player_name, "J.* Jackson.*$") ~ "J Jackson Jr.",
+        str_detect(player_name, "B Brown Jr") ~ "B Brown",
+        str_detect(player_name, "La.* Ball$") ~ "La Ball",
+        str_detect(player_name, "Te.* Mann$") ~ "Te Mann",
+        str_detect(player_name, "Mik.* Bridges$") ~ "Mi Bridges",
+        str_detect(player_name, "G-Alexander") ~ "S Gilgeous-Alexander",
+        .default = join_name
+    )) |>
+    left_join(player_names[, c("player_full_name", "team_name", "join_name")], by = c("join_name")) |>
+    mutate(opposition_team = if_else(home_team == team_name, away_team, home_team))
+
+    bluebet_points_overs_lines <-
+    bluebet_player_points_lines |> 
+    filter(str_detect(outcome_name, "over")) |>
+    mutate(agency = "BlueBet") |>
+    select(
+        "match",
+        "home_team",
+        "away_team",
+        "market_name",
+        "player_name" = "player_full_name",
+        "player_team" = "team_name",
+        "line",
+        "over_price" = "price",
+        "agency",
+        "opposition_team")
+    
+bluebet_points_unders_lines <-
+    bluebet_player_points_lines |> 
+    filter(str_detect(outcome_name, "under")) |>
+    mutate(agency = "BlueBet") |>
+    select(
+        "match",
+        "home_team",
+        "away_team",
+        "market_name",
+        "player_name" = "player_full_name",
+        "player_team" = "team_name",
+        "line",
+        "under_price" = "price",
+        "agency",
+        "opposition_team")
+
+bluebet_player_points_lines <-
+    bluebet_points_overs_lines |> 
+    left_join(bluebet_points_unders_lines)
+    
+# Combine
+bluebet_player_points <-
+    bluebet_player_points |> 
+    bind_rows(bluebet_player_points_lines) |>
+    mutate(home_team = fix_team_names(home_team)) |>
+    mutate(away_team = fix_team_names(away_team)) |>
+    mutate(match = paste(home_team, "v", away_team)) |>
+    mutate(market_name = "Player Points")
+
 # Get player assists data-------------------------------------------------------
+# Alternate Assists
 bluebet_player_assists <-
     map(player_assists_links, safe_get_prop_data) |> 
     map("result") |>
