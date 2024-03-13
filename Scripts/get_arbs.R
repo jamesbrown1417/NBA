@@ -50,6 +50,7 @@ all_odds_files <-
 # Get Start Times
 start_times <-
   all_odds_files |>
+  filter(agency == "TAB") |> 
   select(match, start_time) |>
   distinct(match, .keep_all = TRUE)
 
@@ -612,6 +613,15 @@ hedge_price <- function(odds_A, odds_B, stake_a) {
   return((odds_A/odds_B) * stake_a)
 }
 
+# Fix team names
+start_times <-
+  start_times |> 
+  separate(match, into = c("home_team", "away_team"), sep = " v ") |>
+  mutate(home_team = fix_team_names(home_team),
+         away_team = fix_team_names(away_team)) |> 
+  mutate(match = paste(home_team, away_team, sep = " v ")) |> 
+  select(-home_team, -away_team)
+
 # get current GMT datetime
 current_time <- Sys.time()
 gmt_time <- as.POSIXct(current_time, tz = "GMT")
@@ -631,7 +641,7 @@ all_arbs <-
   filter(!is.na(player_name)) |> 
   left_join(start_times, by = "match") |>
   # Filter out cases where current time is more than 5 mins after start time
-  filter(gmt_time_dttm < (start_time + 5 * 60)) |> 
+  filter(gmt_time_dttm < start_time) |>
   select(-start_time)
 
 # H2H Arbs
