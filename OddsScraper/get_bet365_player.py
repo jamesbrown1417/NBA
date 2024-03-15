@@ -26,7 +26,7 @@ async def main():
         for index, url in enumerate(url_df, start=1): # Start counting from 1 for match_n
             try:
                 await driver.get(url)
-                await driver.sleep(0.5)
+                await driver.sleep(1)
                 
                 # If there is a button that says Player Points Low, click it
                 try:
@@ -34,7 +34,7 @@ async def main():
                     await driver.execute_script("arguments[0].scrollIntoView(true);", player_points_low_button)
                     await driver.execute_script("window.scrollBy(0, -150)")
                     await player_points_low_button.click()
-                    await driver.sleep(0.5)
+                    await driver.sleep(1)
                 except:
                     pass
                 
@@ -44,47 +44,47 @@ async def main():
                     await driver.execute_script("arguments[0].scrollIntoView(true);", player_points_high_button)
                     await driver.execute_script("window.scrollBy(0, -150)")
                     await player_points_high_button.click()
-                    await driver.sleep(0.5)
+                    await driver.sleep(1)
                 except:
                     pass
                 
                 # If there is a button that says Player Assists, click it
                 try:
-                    player_assists_button = await driver.find_element(By.XPATH, "//div[contains(@class, 'gl-MarketGroupButton_Text') and text()='Player Assists']")
+                    player_assists_button = await driver.find_element(By.XPATH, "//div[contains(@class, 'gl-MarketGroupButton_Text') and starts-with(text(),'Player Assists')]")
                     await driver.execute_script("arguments[0].scrollIntoView(true);", player_assists_button)
                     await driver.execute_script("window.scrollBy(0, -150)")
                     await player_assists_button.click()
-                    await driver.sleep(0.5)
+                    await driver.sleep(1)
                 except:
                     pass
                 
                 # If there is a button that says Player Assists Milestones, click it
                 try:
-                    player_assists_milestones_button = await driver.find_element(By.XPATH, "//div[contains(@class, 'gl-MarketGroupButton_Text') and text()='Player Assists Milestones']")
+                    player_assists_milestones_button = await driver.find_element(By.XPATH, "//div[contains(@class, 'gl-MarketGroupButton_Text') and starts-with(text(),'Player Assists Milestones')]")
                     await driver.execute_script("arguments[0].scrollIntoView(true);", player_assists_milestones_button)
                     await driver.execute_script("window.scrollBy(0, -150)")
                     await player_assists_milestones_button.click()
-                    await driver.sleep(0.5)
+                    await driver.sleep(1)
                 except:
                     pass
 
                 # If there is a button that says Player Rebounds, click it
                 try:
-                    player_rebounds_button = await driver.find_element(By.XPATH, "//div[contains(@class, 'gl-MarketGroupButton_Text') and text()='Player Rebounds']")
+                    player_rebounds_button = await driver.find_element(By.XPATH, "//div[contains(@class, 'gl-MarketGroupButton_Text') and starts-with(text(),'Player Rebounds')]")
                     await driver.execute_script("arguments[0].scrollIntoView(true);", player_rebounds_button)
                     await driver.execute_script("window.scrollBy(0, -150)")
                     await player_rebounds_button.click()
-                    await driver.sleep(0.5)
+                    await driver.sleep(1)
                 except:
                     pass
  
                 # If there is a button that says Player Rebounds Milestones, click it
                 try:
-                    player_rebounds_milestones_button = await driver.find_element(By.XPATH, "//div[contains(@class, 'gl-MarketGroupButton_Text') and text()='Player Rebounds Milestones']")
+                    player_rebounds_milestones_button = await driver.find_element(By.XPATH, "//div[contains(@class, 'gl-MarketGroupButton_Text') and starts-with(text(),'Player Rebounds Milestones')]")
                     await driver.execute_script("arguments[0].scrollIntoView(true);", player_rebounds_milestones_button)
                     await driver.execute_script("window.scrollBy(0, -150)")
                     await player_rebounds_milestones_button.click()
-                    await driver.sleep(0.5)
+                    await driver.sleep(1)
                 except:
                     pass
                 
@@ -94,7 +94,7 @@ async def main():
                     await driver.execute_script("arguments[0].scrollIntoView(true);", player_steals_button)
                     await driver.execute_script("window.scrollBy(0, -150)")
                     await player_steals_button.click()
-                    await driver.sleep(0.5)
+                    await driver.sleep(1)
                 except:
                     pass                
 
@@ -104,7 +104,7 @@ async def main():
                     await driver.execute_script("arguments[0].scrollIntoView(true);", player_blocks_button)
                     await driver.execute_script("window.scrollBy(0, -150)")
                     await player_blocks_button.click()
-                    await driver.sleep(0.5)
+                    await driver.sleep(1)
                 except:
                     pass
 
@@ -114,7 +114,7 @@ async def main():
                     await driver.execute_script("arguments[0].scrollIntoView(true);", player_threes_made_button)
                     await driver.execute_script("window.scrollBy(0, -150)")
                     await player_threes_made_button.click()
-                    await driver.sleep(0.5)
+                    await driver.sleep(1)
                 except:
                     pass
  
@@ -124,7 +124,7 @@ async def main():
                     await driver.execute_script("arguments[0].scrollIntoView(true);", player_threes_made_milestones_button)
                     await driver.execute_script("window.scrollBy(0, -150)")
                     await player_threes_made_milestones_button.click()
-                    await driver.sleep(0.5)
+                    await driver.sleep(1)
                 except:
                     pass                
                 
@@ -134,7 +134,7 @@ async def main():
                     await driver.execute_script("arguments[0].scrollIntoView(true);", player_pras_button)
                     await driver.execute_script("window.scrollBy(0, -150)")
                     await player_pras_button.click()
-                    await driver.sleep(0.5)
+                    await driver.sleep(1)
                 except:
                     pass
                 
@@ -148,7 +148,7 @@ async def main():
                     await driver.execute_script("arguments[0].scrollIntoView(true);", button_element)
                     await driver.execute_script("window.scrollBy(0, -150)")
                     await button_element.click()
-                    await driver.sleep(0.5)
+                    await driver.sleep(1)
                     
                 # Write out html to file------------------------------------------------
                 # wait for elem to exist

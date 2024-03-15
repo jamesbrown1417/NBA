@@ -657,6 +657,7 @@ player_rebounds_index <- which(str_detect(all_nodes_names, "^Player Rebounds$"))
 bet365_player_rebounds <- get_player_rebounds(bet365_player_markets[player_rebounds_index])
 
 # Tidy
+if (nrow(bet365_player_rebounds) > 0) {
 bet365_player_rebounds <-
     bet365_player_rebounds |> 
     filter(Over_col_handicaps == Under_col_handicaps) |> 
@@ -668,7 +669,18 @@ bet365_player_rebounds <-
               over_price = as.numeric(Over_col_odds),
               under_price = as.numeric(Under_col_odds)) |>
     mutate(margin = round((1/over_price + 1/under_price), digits = 3)) |>
-    mutate(agency = "Bet365")
+    mutate(agency = "Bet365")}
+
+if (nrow(bet365_player_rebounds) == 0) {
+    bet365_player_rebounds <- tibble(player_name = character(),
+                                     team_name = character(),
+                                     market_name = character(),
+                                     line = numeric(),
+                                     over_price = numeric(),
+                                     under_price = numeric(),
+                                     margin = numeric(),
+                                     agency = "Bet365")
+}
 
 #===============================================================================
 # Player Rebounds Milestones---------------------------------------------------#
@@ -741,6 +753,7 @@ player_rebounds_index <- which(str_detect(all_nodes_names, "^Player Rebounds Mil
 bet365_player_rebounds_milestones <- get_player_rebounds_milestones(bet365_player_markets[player_rebounds_index])
 
 # Tidy
+if (nrow(bet365_player_rebounds_milestones) > 0) {
 bet365_player_rebounds_milestones <-
     bet365_player_rebounds_milestones |> 
     pivot_longer(cols = -c(market_name, team_names, player_names), names_to = "line", values_to = "price") |> 
@@ -752,7 +765,14 @@ bet365_player_rebounds_milestones <-
               market_name = "Player rebounds",
               line = as.numeric(line),
               over_price = as.numeric(price)) |> 
-    mutate(line = line - 0.5)
+    mutate(line = line - 0.5)}
+
+if (nrow(bet365_player_rebounds_milestones) == 0) {
+    bet365_player_rebounds_milestones <- tibble(player_name = character(),
+                                                team_name = character(),
+                                                market_name = character(),
+                                                line = numeric(),
+                                                over_price = numeric())}
 
 #===============================================================================
 # Player Threes Made-----------------------------------------------------------#
@@ -1205,6 +1225,8 @@ player_points_assists_rebounds_index <- which(str_detect(all_nodes_names, "^Play
 bet365_player_points_assists_rebounds <- get_player_points_assists_rebounds(bet365_player_markets[player_points_assists_rebounds_index])
 
 # Tidy
+if (nrow(bet365_player_points_assists_rebounds) > 0) {
+  
 bet365_player_points_assists_rebounds <-
     bet365_player_points_assists_rebounds |> 
     filter(Over_col_handicaps == Under_col_handicaps) |> 
@@ -1216,7 +1238,18 @@ bet365_player_points_assists_rebounds <-
               over_price = as.numeric(Over_col_odds),
               under_price = as.numeric(Under_col_odds)) |>
     mutate(margin = round((1/over_price + 1/under_price), digits = 3)) |>
-    mutate(agency = "Bet365")
+    mutate(agency = "Bet365")}
+
+if (nrow(bet365_player_points_assists_rebounds) == 0) {
+  bet365_player_points_assists_rebounds <- tibble(player_name = character(),
+                                                  team_name = character(),
+                                                  market_name = character(),
+                                                  line = numeric(),
+                                                  over_price = numeric(),
+                                                  under_price = numeric(),
+                                                  margin = numeric(),
+                                                  agency = character())
+}
 
 #===============================================================================
 # Get list of derived dataframes and return
