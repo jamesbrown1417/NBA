@@ -644,6 +644,8 @@ all_arbs <-
   filter(gmt_time_dttm < start_time) |>
   select(-start_time)
 
+all_arbs |> write_rds("Data/all_arbs.rds")
+
 # H2H Arbs
 h2h_arbs
 

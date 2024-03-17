@@ -93,6 +93,10 @@ for (i in 1:length(start_time_indices)) {
 start_dates <- map(result_list, ~ expand_grid(.x[1], .x[2:length(.x)])) |> bind_rows()
 names(start_dates) <- c("start_date", "team")
 
+start_dates <- 
+    start_dates |> 
+    distinct(team, .keep_all = TRUE)
+
 #===============================================================================
 # Create head to head table----------------------------------------------------#
 #===============================================================================
@@ -101,12 +105,25 @@ names(start_dates) <- c("start_date", "team")
 home_teams <- bet365_teams[seq(2, length(bet365_teams), 2)]
 home_odds <- bet365_h2h_odds[seq(2, length(bet365_h2h_odds), 2)]
 
+# Get only positions of elements of home odds that are numeric
+home_odds_to_keep <- which(str_detect(home_odds, "^\\d+\\.\\d+$"))
+
+home_teams <- home_teams[home_odds_to_keep]
+home_odds <- home_odds[home_odds_to_keep]
+
+
 home_h2h <- tibble(home_teams, home_odds) |>
     left_join(start_dates, by = c("home_teams" = "team"))
 
 # Get Away teams - Even elements
 away_teams <- bet365_teams[seq(1, length(bet365_teams), 2)]
 away_odds <- bet365_h2h_odds[seq(1, length(bet365_h2h_odds), 2)]
+
+# Get only positions of elements of away odds that are numeric
+away_odds_to_keep <- which(str_detect(away_odds, "^\\d+\\.\\d+$"))
+
+away_teams <- away_teams[away_odds_to_keep]
+away_odds <- away_odds[away_odds_to_keep]
 
 away_h2h <- tibble(away_teams, away_odds) |>
     left_join(start_dates, by = c("away_teams" = "team"))

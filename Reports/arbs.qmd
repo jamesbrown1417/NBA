@@ -1,0 +1,84 @@
+---
+title: "Arbs"
+execute:
+  echo: false
+  message: false
+  warning: false
+author: "James Brown"
+date: "`r Sys.Date()`"
+format:
+  html:
+    df-print: kable
+    theme: cosmo
+    self-contained: true
+    toc: true
+    toc-depth: 3
+    fig-width: 8
+    fig-height: 6
+editor: visual
+---
+
+```{r}
+# Libraries
+library(tidyverse)
+
+# Read in file
+all_arbs <- read_rds("../Data/all_arbs.rds")
+
+# Functions
+# Function to calculate hedge prices
+hedge_price <- function(odds_A, odds_B, stake_a) {
+  return((odds_A/odds_B) * stake_a)
+}
+
+```
+
+# Neds Arbs
+
+```{r}
+#| column: page
+
+# Separate into Neds and Unibet and the rest
+neds_arbs <-
+  all_arbs |>
+  filter(margin > 0) |> 
+  filter(over_agency %in% c("Neds") | under_agency %in% c("Neds")) |> 
+  mutate(neds_stake = ifelse(over_agency == "Neds", (25 / (over_price - 1)), (25 / (under_price - 1)))) |> 
+  mutate(other_stake = hedge_price(over_price, under_price, neds_stake)) |> 
+  # Round stakes to nearest 5
+  mutate(neds_stake = round(neds_stake / 5) * 5) |>
+  mutate(other_stake = round(other_stake / 5) * 5) |>
+  mutate(profit_neds = ((neds_stake *over_price) - neds_stake) - other_stake) |> 
+  mutate(profit_other = ((other_stake *under_price) - other_stake) - neds_stake)
+
+neds_arbs
+```
+
+# Unibet Arbs
+
+```{r}
+#| column: page
+
+unibet_arbs <-
+  all_arbs |>
+  filter(margin > 0) |> 
+  filter(over_agency %in% c("Unibet") | under_agency %in% c("Unibet")) |> 
+  filter(!over_agency %in% c("Neds") & !under_agency %in% c("Neds")) |> 
+  mutate(unibet_stake = ifelse(over_agency == "Unibet", (100 / (over_price - 1)), (100 / (under_price - 1)))) |> 
+  mutate(other_stake = hedge_price(over_price, under_price, unibet_stake))
+
+unibet_arbs
+```
+
+# Other Arbs
+
+```{r}
+#| column: page
+
+other_arbs <-
+  all_arbs |>
+  filter(margin > 0) |> 
+  filter(!over_agency %in% c("Neds", "Unibet") & !under_agency %in% c("Neds", "Unibet"))
+
+other_arbs
+```
