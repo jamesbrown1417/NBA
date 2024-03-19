@@ -7,6 +7,9 @@ library(httr2)
 teams <-
   read_csv("Data/all_teams.csv")
 
+# Fix team names function
+source("Scripts/fix_team_names.R")
+
 # Get player names table
 player_names_all <-
   read_csv("Data/all_rosters.csv") |>
@@ -69,6 +72,15 @@ df <- df |> filter(str_detect(event_name, ' vs '))
 # Only get NBL Games
 df <- df |> filter(str_detect(competition_name, 'NBA'))
 
+# Event IDs list
+event_ids_df <-
+  df |>
+  separate(event_name, into = c("home_team", "away_team"), sep = " vs ", remove = FALSE) |>
+  mutate(home_team = fix_team_names(home_team), away_team = fix_team_names(away_team)) |>
+  mutate(match = paste(home_team, "v", away_team)) |> 
+  select(match, event_id)
+
+
 #===============================================================================
 # Get event card data for each match
 #===============================================================================
@@ -84,15 +96,35 @@ event_json_list <- list()
 
 # Loop through each event URL and get the event card JSON data
 for (url in event_json) {
-    tryCatch({
-        response2 <- request(url) |>
-            req_perform() |>
-            resp_body_json()
-        event_json_list <- append(event_json_list, list(response2))
-    }, error = function(e) {
-        cat("Error:", url, "\n")
-    })
+  tryCatch({
+    # Perform the request
+    response2 <-
+      request(url) |>
+      req_headers(
+        accept = "*/*",
+        `User-Agent` = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36",
+        `Accept-Language` = "en-US,en;q=0.9"
+      ) |>
+      req_perform() |>
+      resp_body_json()
+    
+    # If successful, append the response to the list
+    event_json_list <- append(event_json_list, list(response2))
+  }, error = function(e) {
+    cat("Error:", url, "\n", e$message, "\n")
+    # Append NULL to the list in case of an error
+    event_json_list <<- append(event_json_list, list(NULL))
+  })
 }
+
+# Null elements
+index_to_remove <- which(sapply(event_json_list, is.null))
+
+# Remove null elements from all applicable objects
+if (length(index_to_remove) > 0) {
+  event_json_list <- event_json_list[-index_to_remove]
+  event_ids_df <- event_ids_df[-index_to_remove, ]
+  df <- df[-index_to_remove, ]}
 
 #===============================================================================
 # Get the market information for each match
