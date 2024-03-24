@@ -679,54 +679,54 @@ other_arbs <-
 # SGM ARBs
 #===============================================================================
 
-# All lines that exist on all agencies
-all_arbs_all_agencies <-
-  all_arbs |> 
-  arrange(match, player_name, market_name, line, under_agency) |> 
-  filter(under_agency %in% c("BetRight", "Pointsbet", "Sportsbet", "TAB")) |>
-  distinct(match, player_name, market_name, line, under_agency, .keep_all = TRUE) |>
-  group_by(match, player_name, market_name, line) |>
-  filter(n() == 4) |> 
-  ungroup() |> 
-  arrange(desc(margin))
-
-df <- all_arbs_all_agencies[3:4, ]
-
-# Read in SGM Functions
-source("SGM/BetRight/betright_sgm.R")
-source("SGM/PointsBet/pointsbet_sgm.R")
-source("SGM/Sportsbet/sportsbet_sgm.R")
-source("SGM/Tab/tab_sgm.R")
-
-# Function to take dataframe and return all possible outcome SGMs
-get_sgm_arbs <- function(df) {
-  
-player_names <- df$player_name
-prop_line <- df$line
-prop_type <- df$market_name
-
-# Combo 1 Over-Over
-pointsbet_price_1 <- call_sgm_pointsbet(data = pointsbet_sgm, player_names, prop_line, prop_type, over_under = c("Overs", "Overs"))
-betright_price_1 <- call_sgm_betright(data = betright_sgm, player_names, prop_line, prop_type, over_under = c("Overs", "Overs"))
-sportsbet_price_1 <- call_sgm_sportsbet(data = sportsbet_sgm, player_names, prop_line, prop_type, over_under = c("Overs", "Overs"))
-tab_price_1 <- call_sgm_tab(data = tab_sgm, player_names, prop_line, prop_type, over_under = c("Overs", "Overs"))
-
-# Combo 2 Over-Under
-pointsbet_price <- call_sgm_pointsbet(data = pointsbet_sgm, player_names, prop_line, prop_type, over_under = c("Overs", "Unders"))
-betright_price <- call_sgm_betright(data = betright_sgm, player_names, prop_line, prop_type, over_under = c("Overs", "Unders"))
-sportsbet_price <- call_sgm_sportsbet(data = sportsbet_sgm, player_names, prop_line, prop_type, over_under = c("Overs", "Unders"))
-tab_price <- call_sgm_tab(data = tab_sgm, player_names, prop_line, prop_type, over_under = c("Overs", "Unders"))
-
-# Combo 3 Under-Over
-pointsbet_price <- call_sgm_pointsbet(data = pointsbet_sgm, player_names, prop_line, prop_type, over_under = c("Unders", "Overs"))
-betright_price <- call_sgm_betright(data = betright_sgm, player_names, prop_line, prop_type, over_under = c("Unders", "Overs"))
-sportsbet_price <- call_sgm_sportsbet(data = sportsbet_sgm, player_names, prop_line, prop_type, over_under = c("Unders", "Overs"))
-tab_price <- call_sgm_tab(data = tab_sgm, player_names, prop_line, prop_type, over_under = c("Unders", "Overs"))
-
-# Combo 4 Under-Under
-pointsbet_price <- call_sgm_pointsbet(data = pointsbet_sgm, player_names, prop_line, prop_type, over_under = c("Unders", "Unders"))
-betright_price <- call_sgm_betright(data = betright_sgm, player_names, prop_line, prop_type, over_under = c("Unders", "Unders"))
-sportsbet_price <- call_sgm_sportsbet(data = sportsbet_sgm, player_names, prop_line, prop_type, over_under = c("Unders", "Unders"))
-tab_price <- call_sgm_tab(data = tab_sgm, player_names, prop_line, prop_type, over_under = c("Unders", "Unders"))
-
-}
+# # All lines that exist on all agencies
+# all_arbs_all_agencies <-
+#   all_arbs |> 
+#   arrange(match, player_name, market_name, line, under_agency) |> 
+#   filter(under_agency %in% c("BetRight", "Pointsbet", "Sportsbet", "TAB")) |>
+#   distinct(match, player_name, market_name, line, under_agency, .keep_all = TRUE) |>
+#   group_by(match, player_name, market_name, line) |>
+#   filter(n() == 4) |> 
+#   ungroup() |> 
+#   arrange(desc(margin))
+# 
+# df <- all_arbs_all_agencies[3:4, ]
+# 
+# # Read in SGM Functions
+# source("SGM/BetRight/betright_sgm.R")
+# source("SGM/PointsBet/pointsbet_sgm.R")
+# source("SGM/Sportsbet/sportsbet_sgm.R")
+# source("SGM/Tab/tab_sgm.R")
+# 
+# # Function to take dataframe and return all possible outcome SGMs
+# get_sgm_arbs <- function(df) {
+#   
+# player_names <- df$player_name
+# prop_line <- df$line
+# prop_type <- df$market_name
+# 
+# # Combo 1 Over-Over
+# pointsbet_price_1 <- call_sgm_pointsbet(data = pointsbet_sgm, player_names, prop_line, prop_type, over_under = c("Overs", "Overs"))
+# betright_price_1 <- call_sgm_betright(data = betright_sgm, player_names, prop_line, prop_type, over_under = c("Overs", "Overs"))
+# sportsbet_price_1 <- call_sgm_sportsbet(data = sportsbet_sgm, player_names, prop_line, prop_type, over_under = c("Overs", "Overs"))
+# tab_price_1 <- call_sgm_tab(data = tab_sgm, player_names, prop_line, prop_type, over_under = c("Overs", "Overs"))
+# 
+# # Combo 2 Over-Under
+# pointsbet_price <- call_sgm_pointsbet(data = pointsbet_sgm, player_names, prop_line, prop_type, over_under = c("Overs", "Unders"))
+# betright_price <- call_sgm_betright(data = betright_sgm, player_names, prop_line, prop_type, over_under = c("Overs", "Unders"))
+# sportsbet_price <- call_sgm_sportsbet(data = sportsbet_sgm, player_names, prop_line, prop_type, over_under = c("Overs", "Unders"))
+# tab_price <- call_sgm_tab(data = tab_sgm, player_names, prop_line, prop_type, over_under = c("Overs", "Unders"))
+# 
+# # Combo 3 Under-Over
+# pointsbet_price <- call_sgm_pointsbet(data = pointsbet_sgm, player_names, prop_line, prop_type, over_under = c("Unders", "Overs"))
+# betright_price <- call_sgm_betright(data = betright_sgm, player_names, prop_line, prop_type, over_under = c("Unders", "Overs"))
+# sportsbet_price <- call_sgm_sportsbet(data = sportsbet_sgm, player_names, prop_line, prop_type, over_under = c("Unders", "Overs"))
+# tab_price <- call_sgm_tab(data = tab_sgm, player_names, prop_line, prop_type, over_under = c("Unders", "Overs"))
+# 
+# # Combo 4 Under-Under
+# pointsbet_price <- call_sgm_pointsbet(data = pointsbet_sgm, player_names, prop_line, prop_type, over_under = c("Unders", "Unders"))
+# betright_price <- call_sgm_betright(data = betright_sgm, player_names, prop_line, prop_type, over_under = c("Unders", "Unders"))
+# sportsbet_price <- call_sgm_sportsbet(data = sportsbet_sgm, player_names, prop_line, prop_type, over_under = c("Unders", "Unders"))
+# tab_price <- call_sgm_tab(data = tab_sgm, player_names, prop_line, prop_type, over_under = c("Unders", "Unders"))
+# 
+# }
