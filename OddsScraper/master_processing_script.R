@@ -35,7 +35,7 @@ run_scraping("OddsScraper/scrape_TAB.R")
 run_scraping("OddsScraper/scrape_TopSport.R")
 run_scraping("OddsScraper/scrape_bet365.R")
 run_scraping("OddsScraper/scrape_bluebet.R")
-run_scraping("OddsScraper/scrape_neds.R")
+run_scraping("OddsScraper/Neds/scrape_neds.R")
 run_scraping("OddsScraper/scrape_unibet.R")
 run_scraping("OddsScraper/scrape_dabble.R")
 
