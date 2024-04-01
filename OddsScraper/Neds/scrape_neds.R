@@ -2,6 +2,7 @@
 library(tidyverse)
 library(rvest)
 library(httr2)
+library(jsonlite)
 
 # Get teams table
 teams <-

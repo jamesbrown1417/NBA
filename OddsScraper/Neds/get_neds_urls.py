@@ -20,9 +20,10 @@ async def main():
             if response.url == url_pattern:
                 # Fetch and decode the response body
                 body = await response.body()
-                # Write out the body of the response to a file
-                with open("OddsScraper\\Neds\\neds_response.json", "w") as f:
+                # Write out the body of the response to a file in UTF-8 encoding explicitly
+                with open("OddsScraper\\Neds\\neds_response.json", "w", encoding="utf-8") as f:
                     f.write(body.decode("utf-8"))
+
                 # Print a message to the console
                 print("Response captured!")
                 # Schedule browser to close
