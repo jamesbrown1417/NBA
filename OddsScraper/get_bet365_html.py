@@ -19,7 +19,7 @@ async def main():
         await driver.sleep(0.1)
         
         # wait 100s for elem to exist
-        elem = await driver.find_element(By.XPATH, "//div[contains(@class, 'src-MarketGroup')]", timeout=100)
+        elem = await driver.find_element(By.XPATH, "//div[contains(@class, 'gl-MarketGroup')]", timeout=100)
         body_html = await elem.get_attribute('outerHTML')
         
         # Write html to file - overwrite existing file

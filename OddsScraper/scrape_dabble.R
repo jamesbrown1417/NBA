@@ -592,76 +592,33 @@ player_names_unique <-
   select(player_name = player_full_name, player_team = team_name)
 
 # Fix player names--------------------------------------------------------------
+# Helper function to correct player names and join with player_names_unique
+correct_and_join_player_names <- function(data, player_names_unique) {
+  data |>
+    mutate(player_name = case_when(
+      str_detect(player_name, "PJ Washington") ~ "P.J. Washington",
+      str_detect(player_name, "Doncic") ~ "Luka Dončić",
+      str_detect(player_name, "Jokic") ~ "Nikola Jokić",
+      str_detect(player_name, "Nurkic") ~ "Jusuf Nurkić",
+      str_detect(player_name, "Poeltl") ~ "Jakob Pöltl",
+      str_detect(player_name, "Bojan Bogdanovic") ~ "Bojan Bogdanović",
+      str_detect(player_name, "Bogdan Bogdanovic") ~ "Bogdan Bogdanović",
+      str_detect(player_name, "Vucevic") ~ "Nikola Vučević",
+      str_detect(player_name, "Jovic") ~ "Nikola Jović",
+      str_detect(player_name, "Dennis Schroder") ~ "Dennis Schröder",
+      .default = player_name
+    )) |>
+    left_join(player_names_unique, by = c("player_name"))
+}
 
-# Points
-dabble_player_points_markets <-
-  dabble_player_points_markets |>
-  mutate(player_name = case_when(
-    str_detect(player_name, "PJ Washington") ~ "P.J. Washington",
-    .default = player_name
-  )) |>
-  left_join(player_names_unique,
-            by = c("player_name"))
-
-# Rebounds
-dabble_player_rebounds_markets <-
-  dabble_player_rebounds_markets |>
-  mutate(player_name = case_when(
-    str_detect(player_name, "PJ Washington") ~ "P.J. Washington",
-    .default = player_name
-  )) |>
-  left_join(player_names_unique,
-            by = c("player_name"))
-
-# Assists
-dabble_player_assists_markets <-
-  dabble_player_assists_markets |>
-  mutate(player_name = case_when(
-    str_detect(player_name, "PJ Washington") ~ "P.J. Washington",
-    .default = player_name
-  )) |>
-  left_join(player_names_unique,
-            by = c("player_name"))
-
-# Steals
-dabble_player_steals_markets <-
-  dabble_player_steals_markets |>
-  mutate(player_name = case_when(
-    str_detect(player_name, "PJ Washington") ~ "P.J. Washington",
-    .default = player_name
-  )) |>
-  left_join(player_names_unique,
-            by = c("player_name"))
-
-# Blocks
-dabble_player_blocks_markets <-
-  dabble_player_blocks_markets |>
-  mutate(player_name = case_when(
-    str_detect(player_name, "PJ Washington") ~ "P.J. Washington",
-    .default = player_name
-  )) |>
-  left_join(player_names_unique,
-            by = c("player_name"))
-
-# Threes
-dabble_player_threes_markets <-
-  dabble_player_threes_markets |>
-  mutate(player_name = case_when(
-    str_detect(player_name, "PJ Washington") ~ "P.J. Washington",
-    .default = player_name
-  )) |>
-  left_join(player_names_unique,
-            by = c("player_name"))
-
-# PRAs
-dabble_player_pras_markets <-
-  dabble_player_pras_markets |>
-  mutate(player_name = case_when(
-    str_detect(player_name, "PJ Washington") ~ "P.J. Washington",
-    .default = player_name
-  )) |>
-  left_join(player_names_unique,
-            by = c("player_name"))
+# Apply the helper function to all your tables
+dabble_player_points_markets <- correct_and_join_player_names(dabble_player_points_markets, player_names_unique)
+dabble_player_rebounds_markets <- correct_and_join_player_names(dabble_player_rebounds_markets, player_names_unique)
+dabble_player_assists_markets <- correct_and_join_player_names(dabble_player_assists_markets, player_names_unique)
+dabble_player_steals_markets <- correct_and_join_player_names(dabble_player_steals_markets, player_names_unique)
+dabble_player_blocks_markets <- correct_and_join_player_names(dabble_player_blocks_markets, player_names_unique)
+dabble_player_threes_markets <- correct_and_join_player_names(dabble_player_threes_markets, player_names_unique)
+dabble_player_pras_markets <- correct_and_join_player_names(dabble_player_pras_markets, player_names_unique)
 
 # Fix Team Names----------------------------------------------------------------
 

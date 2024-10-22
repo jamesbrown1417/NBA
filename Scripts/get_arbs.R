@@ -25,7 +25,7 @@ run_scraping("OddsScraper/scrape_BetRight.R")
 # run_scraping("OddsScraper/scrape_Palmerbet.R")
 run_scraping("OddsScraper/scrape_pointsbet.R")
 run_scraping("OddsScraper/scrape_sportsbet.R")
-run_scraping("OddsScraper/scrape_TAB.R")
+run_scraping("OddsScraper/TAB/scrape_TAB.R")
 run_scraping("OddsScraper/scrape_TopSport.R")
 run_scraping("OddsScraper/scrape_bet365.R")
 run_scraping("OddsScraper/scrape_bluebet.R")
@@ -320,7 +320,6 @@ rebounds_arbs <-
   # filter(margin > 0) |>
   distinct(match, player_name, line, over_agency, under_agency, .keep_all = TRUE) |>
   relocate(over_price, over_agency, under_price, under_agency, .after = opposition_team)
-
 
 # Assists-----------------------------------------------------------------------
 assists_unders <-

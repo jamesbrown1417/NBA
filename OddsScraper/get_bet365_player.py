@@ -15,6 +15,9 @@ url_df = pd.read_csv('Data/BET365_HTML/urls.csv', header=None)
 # Convert first column to a list
 url_df = url_df[0]
 
+# Keep only first two URLs for now
+# url_df = url_df[0:2]
+
 # Get H2H HTML===============================================================
 import asyncio
 
@@ -30,7 +33,7 @@ async def main():
                 
                 # If there is a button that says Player Points Low, click it
                 try:
-                    player_points_low_button = await driver.find_element(By.XPATH, "//div[contains(@class, 'gl-MarketGroupButton_Text') and text()='Player Points Low']")
+                    player_points_low_button = await driver.find_element(By.XPATH, "//div[contains(@class, 'cm-MarketGroupWithIconsButton_Text') and text()='Points Low']")
                     await driver.execute_script("arguments[0].scrollIntoView(true);", player_points_low_button)
                     await driver.execute_script("window.scrollBy(0, -150)")
                     await player_points_low_button.click()
@@ -40,7 +43,7 @@ async def main():
                 
                 # If there is a button that says Player Points High, click it
                 try:
-                    player_points_high_button = await driver.find_element(By.XPATH, "//div[contains(@class, 'gl-MarketGroupButton_Text') and text()='Player Points High']")
+                    player_points_high_button = await driver.find_element(By.XPATH, "//div[contains(@class, 'cm-MarketGroupWithIconsButton_Text') and text()='Points High']")
                     await driver.execute_script("arguments[0].scrollIntoView(true);", player_points_high_button)
                     await driver.execute_script("window.scrollBy(0, -150)")
                     await player_points_high_button.click()
@@ -48,9 +51,9 @@ async def main():
                 except:
                     pass
                 
-                # If there is a button that says Player Assists, click it
+                # If there is a button that says Assists O/U, click it
                 try:
-                    player_assists_button = await driver.find_element(By.XPATH, "//div[contains(@class, 'gl-MarketGroupButton_Text') and starts-with(text(),'Player Assists')]")
+                    player_assists_button = await driver.find_element(By.XPATH, "//div[contains(@class, 'cm-MarketGroupWithIconsButton_Text') and text()='Assists O/U')]")
                     await driver.execute_script("arguments[0].scrollIntoView(true);", player_assists_button)
                     await driver.execute_script("window.scrollBy(0, -150)")
                     await player_assists_button.click()
@@ -58,9 +61,9 @@ async def main():
                 except:
                     pass
                 
-                # If there is a button that says Player Assists Milestones, click it
+                # If there is a button that says Assists, click it
                 try:
-                    player_assists_milestones_button = await driver.find_element(By.XPATH, "//div[contains(@class, 'gl-MarketGroupButton_Text') and starts-with(text(),'Player Assists Milestones')]")
+                    player_assists_milestones_button = await driver.find_element(By.XPATH, "//div[contains(@class, 'cm-MarketGroupWithIconsButton_Text') and text()='Assists')]")
                     await driver.execute_script("arguments[0].scrollIntoView(true);", player_assists_milestones_button)
                     await driver.execute_script("window.scrollBy(0, -150)")
                     await player_assists_milestones_button.click()
@@ -68,39 +71,49 @@ async def main():
                 except:
                     pass
 
-                # If there is a button that says Player Rebounds, click it
+               # If there is a button that says Rebounds O/U, click it
                 try:
-                    player_rebounds_button = await driver.find_element(By.XPATH, "//div[contains(@class, 'gl-MarketGroupButton_Text') and starts-with(text(),'Player Rebounds')]")
+                    player_rebounds_button = await driver.find_element(By.XPATH, "//div[contains(@class, 'cm-MarketGroupWithIconsButton_Text') and text()='Rebounds O/U']")
                     await driver.execute_script("arguments[0].scrollIntoView(true);", player_rebounds_button)
                     await driver.execute_script("window.scrollBy(0, -150)")
                     await player_rebounds_button.click()
                     await driver.sleep(1)
                 except:
                     pass
- 
-                # If there is a button that says Player Rebounds Milestones, click it
+
+                # If there is a button that says Rebounds, click it
                 try:
-                    player_rebounds_milestones_button = await driver.find_element(By.XPATH, "//div[contains(@class, 'gl-MarketGroupButton_Text') and starts-with(text(),'Player Rebounds Milestones')]")
+                    player_rebounds_milestones_button = await driver.find_element(By.XPATH, "//div[contains(@class, 'cm-MarketGroupWithIconsButton_Text') and text()='Rebounds']")
                     await driver.execute_script("arguments[0].scrollIntoView(true);", player_rebounds_milestones_button)
                     await driver.execute_script("window.scrollBy(0, -150)")
                     await player_rebounds_milestones_button.click()
                     await driver.sleep(1)
                 except:
                     pass
-                
-                # If there is a button that says Player Steals, click it
+
+                # If there is a button that says Steals O/U, click it
                 try:
-                    player_steals_button = await driver.find_element(By.XPATH, "//div[contains(@class, 'gl-MarketGroupButton_Text') and text()='Player Steals']")
+                    player_steals_button = await driver.find_element(By.XPATH, "//div[contains(@class, 'cm-MarketGroupWithIconsButton_Text') and text()='Steals O/U']")
                     await driver.execute_script("arguments[0].scrollIntoView(true);", player_steals_button)
                     await driver.execute_script("window.scrollBy(0, -150)")
                     await player_steals_button.click()
                     await driver.sleep(1)
                 except:
-                    pass                
+                    pass
 
-                # If there is a button that says Player Blocks, click it
+                # If there is a button that says Steals, click it
                 try:
-                    player_blocks_button = await driver.find_element(By.XPATH, "//div[contains(@class, 'gl-MarketGroupButton_Text') and text()='Player Blocks']")
+                    player_steals_milestones_button = await driver.find_element(By.XPATH, "//div[contains(@class, 'cm-MarketGroupWithIconsButton_Text') and text()='Steals']")
+                    await driver.execute_script("arguments[0].scrollIntoView(true);", player_steals_milestones_button)
+                    await driver.execute_script("window.scrollBy(0, -150)")
+                    await player_steals_milestones_button.click()
+                    await driver.sleep(1)
+                except:
+                    pass
+
+                # If there is a button that says Blocks O/U, click it
+                try:
+                    player_blocks_button = await driver.find_element(By.XPATH, "//div[contains(@class, 'cm-MarketGroupWithIconsButton_Text') and text()='Blocks O/U']")
                     await driver.execute_script("arguments[0].scrollIntoView(true);", player_blocks_button)
                     await driver.execute_script("window.scrollBy(0, -150)")
                     await player_blocks_button.click()
@@ -108,32 +121,52 @@ async def main():
                 except:
                     pass
 
-                # If there is a button that says Player Threes Made, click it
+                # If there is a button that says Blocks, click it
                 try:
-                    player_threes_made_button = await driver.find_element(By.XPATH, "//div[contains(@class, 'gl-MarketGroupButton_Text') and text()='Player Threes Made']")
+                    player_blocks_milestones_button = await driver.find_element(By.XPATH, "//div[contains(@class, 'cm-MarketGroupWithIconsButton_Text') and text()='Blocks']")
+                    await driver.execute_script("arguments[0].scrollIntoView(true);", player_blocks_milestones_button)
+                    await driver.execute_script("window.scrollBy(0, -150)")
+                    await player_blocks_milestones_button.click()
+                    await driver.sleep(1)
+                except:
+                    pass
+
+                # If there is a button that says Threes Made O/U, click it
+                try:
+                    player_threes_made_button = await driver.find_element(By.XPATH, "//div[contains(@class, 'cm-MarketGroupWithIconsButton_Text') and text()='Threes Made O/U']")
                     await driver.execute_script("arguments[0].scrollIntoView(true);", player_threes_made_button)
                     await driver.execute_script("window.scrollBy(0, -150)")
                     await player_threes_made_button.click()
                     await driver.sleep(1)
                 except:
                     pass
- 
-                # If there is a button that says Player Threes Made Milestones, click it
+
+                # If there is a button that says Threes Made, click it
                 try:
-                    player_threes_made_milestones_button = await driver.find_element(By.XPATH, "//div[contains(@class, 'gl-MarketGroupButton_Text') and text()='Player Threes Made Milestones']")
+                    player_threes_made_milestones_button = await driver.find_element(By.XPATH, "//div[contains(@class, 'cm-MarketGroupWithIconsButton_Text') and text()='Threes Made']")
                     await driver.execute_script("arguments[0].scrollIntoView(true);", player_threes_made_milestones_button)
                     await driver.execute_script("window.scrollBy(0, -150)")
                     await player_threes_made_milestones_button.click()
                     await driver.sleep(1)
                 except:
-                    pass                
-                
-                # If there is a button that says Player Points, Assists and Rebounds click it
+                    pass
+
+                # If there is a button that says Points, Assists and Rebounds O/U, click it
                 try:
-                    player_pras_button = await driver.find_element(By.XPATH, "//div[contains(@class, 'gl-MarketGroupButton_Text') and text()='Player Points, Assists and Rebounds']")
+                    player_pras_button = await driver.find_element(By.XPATH, "//div[contains(@class, 'cm-MarketGroupWithIconsButton_Text') and text()='Points, Assists & Rebounds O/U']")
                     await driver.execute_script("arguments[0].scrollIntoView(true);", player_pras_button)
                     await driver.execute_script("window.scrollBy(0, -150)")
                     await player_pras_button.click()
+                    await driver.sleep(1)
+                except:
+                    pass
+
+                # If there is a button that says Points, Assists and Rebounds, click it
+                try:
+                    player_pras_milestones_button = await driver.find_element(By.XPATH, "//div[contains(@class, 'cm-MarketGroupWithIconsButton_Text') and text()='Points, Assists & Rebounds']")
+                    await driver.execute_script("arguments[0].scrollIntoView(true);", player_pras_milestones_button)
+                    await driver.execute_script("window.scrollBy(0, -150)")
+                    await player_pras_milestones_button.click()
                     await driver.sleep(1)
                 except:
                     pass

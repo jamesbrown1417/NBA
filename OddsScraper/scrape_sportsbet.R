@@ -301,6 +301,28 @@ read_prop_url <- function(url) {
 # Safe version that just returns NULL if there is an error
 safe_read_prop_url <- safely(read_prop_url, otherwise = NULL)
 
+# Helper function to clean player names
+clean_player_name <- function(player_name) {
+  player_name <- case_when(
+    player_name == "P.J Washington" ~ "P.J. Washington",
+    player_name == "Bruce Brown Jr" ~ "Bruce Brown",
+    player_name == "Wendell Carter" ~ "Wendell Carter Jr.",
+    player_name == "Jabari Smith" ~ "Jabari Smith Jr.",
+    player_name == "Bogdan Bogdanovic" ~ "Bogdan Bogdanović",
+    player_name == "Cam Johnson" ~ "Cameron Johnson",
+    player_name == "Dennis Schroder" ~ "Dennis Schröder",
+    player_name == "Jakob Poeltl" ~ "Jakob Pöltl",
+    player_name == "Jusuf Nurkic" ~ "Jusuf Nurkić",
+    player_name == "Luka Doncic" ~ "Luka Dončić",
+    player_name == "Nikola Jokic" ~ "Nikola Jokić",
+    player_name == "Nikola Jovic" ~ "Nikola Jović",
+    player_name == "Nikola Vucevic" ~ "Nikola Vučević",
+    player_name == "Dereck Lively" ~ "Dereck Lively II",
+    TRUE ~ player_name  # Default case to return the original player name
+  )
+  return(player_name)
+}
+
 #===============================================================================
 # Player Points
 #===============================================================================
@@ -336,14 +358,7 @@ player_points_alternate <-
     mutate(line = as.numeric(line) - 0.5) |>
     rename(player_name = selection_name_prop) |>
     mutate(
-        player_name =
-            case_when(
-                player_name == "P.J Washington" ~ "P.J. Washington",
-                player_name == "Bruce Brown Jr" ~ "Bruce Brown",
-                player_name == "Wendell Carter" ~ "Wendell Carter Jr.",
-                player_name == "Jabari Smith" ~ "Jabari Smith Jr.",
-                player_name == "OG Anunoby" ~ "O.G. Anunoby",
-                .default = player_name)) |>
+        player_name = clean_player_name(player_name)) |>
     rename(over_price = prop_market_price) |>
     left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
     mutate(opposition_team = if_else(team_name == home_team, away_team, home_team)) |>
@@ -378,14 +393,8 @@ player_points_over <-
     mutate(player_name = str_remove(player_name, " Over")) |>
     mutate(player_name = str_remove(player_name, " \\d+\\.\\d+")) |>
     rename(line = handicap) |> 
-    mutate(
-        player_name =
-            case_when(
-                player_name == "P.J Washington" ~ "P.J. Washington",
-                player_name == "Bruce Brown Jr" ~ "Bruce Brown",
-                player_name == "Wendell Carter" ~ "Wendell Carter Jr.",
-                player_name == "Jabari Smith" ~ "Jabari Smith Jr.",
-                .default = player_name)) |>
+  mutate(
+    player_name = clean_player_name(player_name)) |>
     rename(over_price = prop_market_price) |>
     left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
     mutate(opposition_team = if_else(team_name == home_team, away_team, home_team)) |>
@@ -418,14 +427,8 @@ player_points_under <-
     mutate(player_name = str_remove(player_name, " Under")) |>
     mutate(player_name = str_remove(player_name, " \\d+\\.\\d+")) |>
     rename(line = handicap) |> 
-    mutate(
-        player_name =
-            case_when(
-                player_name == "P.J Washington" ~ "P.J. Washington",
-                player_name == "Bruce Brown Jr" ~ "Bruce Brown",
-                player_name == "Wendell Carter" ~ "Wendell Carter Jr.",
-                player_name == "Jabari Smith" ~ "Jabari Smith Jr.",
-                .default = player_name)) |>
+  mutate(
+    player_name = clean_player_name(player_name)) |>
     rename(under_price = prop_market_price) |>
     left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
     mutate(opposition_team = if_else(team_name == home_team, away_team, home_team)) |>
@@ -488,14 +491,8 @@ player_assists_alternate <-
     mutate(line = str_extract(prop_market_name, "\\d{1,2}")) |>
     mutate(line = as.numeric(line) - 0.5) |>
     rename(player_name = selection_name_prop) |>
-    mutate(
-        player_name =
-            case_when(
-                player_name == "P.J Washington" ~ "P.J. Washington",
-                player_name == "Bruce Brown Jr" ~ "Bruce Brown",
-                player_name == "Wendell Carter" ~ "Wendell Carter Jr.",
-                player_name == "Jabari Smith" ~ "Jabari Smith Jr.",
-                .default = player_name)) |>
+  mutate(
+    player_name = clean_player_name(player_name)) |>
     rename(over_price = prop_market_price) |>
     left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
     mutate(opposition_team = if_else(team_name == home_team, away_team, home_team)) |>
@@ -530,14 +527,8 @@ player_assists_over <-
   mutate(player_name = str_remove(player_name, " Over")) |>
   mutate(player_name = str_remove(player_name, " \\d+\\.\\d+")) |>
   rename(line = handicap) |>  
-    mutate(
-        player_name =
-            case_when(
-                player_name == "P.J Washington" ~ "P.J. Washington",
-                player_name == "Bruce Brown Jr" ~ "Bruce Brown",
-                player_name == "Wendell Carter" ~ "Wendell Carter Jr.",
-                player_name == "Jabari Smith" ~ "Jabari Smith Jr.",
-                .default = player_name)) |>
+  mutate(
+    player_name = clean_player_name(player_name)) |>
     rename(over_price = prop_market_price) |>
     left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
     mutate(opposition_team = if_else(team_name == home_team, away_team, home_team)) |>
@@ -570,14 +561,8 @@ player_assists_under <-
   mutate(player_name = str_remove(player_name, " Under")) |>
   mutate(player_name = str_remove(player_name, " \\d+\\.\\d+")) |>
   rename(line = handicap) |> 
-    mutate(
-        player_name =
-            case_when(
-                player_name == "P.J Washington" ~ "P.J. Washington",
-                player_name == "Bruce Brown Jr" ~ "Bruce Brown",
-                player_name == "Wendell Carter" ~ "Wendell Carter Jr.",
-                player_name == "Jabari Smith" ~ "Jabari Smith Jr.",
-                .default = player_name)) |>
+  mutate(
+    player_name = clean_player_name(player_name)) |>
     rename(under_price = prop_market_price) |>
     left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
     mutate(opposition_team = if_else(team_name == home_team, away_team, home_team)) |>
@@ -640,14 +625,8 @@ player_rebounds_alternate <-
     mutate(line = str_extract(prop_market_name, "\\d{1,2}")) |>
     mutate(line = as.numeric(line) - 0.5) |>
     rename(player_name = selection_name_prop) |>
-    mutate(
-        player_name =
-            case_when(
-                player_name == "P.J Washington" ~ "P.J. Washington",
-                player_name == "Bruce Brown Jr" ~ "Bruce Brown",
-                player_name == "Wendell Carter" ~ "Wendell Carter Jr.",
-                player_name == "Jabari Smith" ~ "Jabari Smith Jr.",
-                .default = player_name)) |>
+  mutate(
+    player_name = clean_player_name(player_name)) |>
     rename(over_price = prop_market_price) |>
     left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
     mutate(opposition_team = if_else(team_name == home_team, away_team, home_team)) |>
@@ -682,14 +661,8 @@ player_rebounds_over <-
   mutate(player_name = str_remove(player_name, " Over")) |>
   mutate(player_name = str_remove(player_name, " \\d+\\.\\d+")) |>
   rename(line = handicap) |> 
-    mutate(
-        player_name =
-            case_when(
-                player_name == "P.J Washington" ~ "P.J. Washington",
-                player_name == "Bruce Brown Jr" ~ "Bruce Brown",
-                player_name == "Wendell Carter" ~ "Wendell Carter Jr.",
-                player_name == "Jabari Smith" ~ "Jabari Smith Jr.",
-                .default = player_name)) |>
+  mutate(
+    player_name = clean_player_name(player_name)) |>
     rename(over_price = prop_market_price) |>
     left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
     mutate(opposition_team = if_else(team_name == home_team, away_team, home_team)) |>
@@ -722,14 +695,8 @@ player_rebounds_under <-
   mutate(player_name = str_remove(player_name, " Under")) |>
   mutate(player_name = str_remove(player_name, " \\d+\\.\\d+")) |>
   rename(line = handicap) |> 
-    mutate(
-        player_name =
-            case_when(
-                player_name == "P.J Washington" ~ "P.J. Washington",
-                player_name == "Bruce Brown Jr" ~ "Bruce Brown",
-                player_name == "Wendell Carter" ~ "Wendell Carter Jr.",
-                player_name == "Jabari Smith" ~ "Jabari Smith Jr.",
-                .default = player_name)) |>
+  mutate(
+    player_name = clean_player_name(player_name)) |>
     rename(under_price = prop_market_price) |>
     left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
     mutate(opposition_team = if_else(team_name == home_team, away_team, home_team)) |>
@@ -792,14 +759,8 @@ player_pras_alternate <-
     mutate(line = str_extract(prop_market_name, "\\d{1,2}")) |>
     mutate(line = as.numeric(line) - 0.5) |>
     rename(player_name = selection_name_prop) |>
-    mutate(
-        player_name =
-            case_when(
-                player_name == "P.J Washington" ~ "P.J. Washington",
-                player_name == "Bruce Brown Jr" ~ "Bruce Brown",
-                player_name == "Wendell Carter" ~ "Wendell Carter Jr.",
-                player_name == "Jabari Smith" ~ "Jabari Smith Jr.",
-                .default = player_name)) |>
+  mutate(
+    player_name = clean_player_name(player_name)) |>
     rename(over_price = prop_market_price) |>
     left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
     mutate(opposition_team = if_else(team_name == home_team, away_team, home_team)) |>
@@ -834,14 +795,8 @@ player_pras_over <-
   mutate(player_name = str_remove(player_name, " Over")) |>
   mutate(player_name = str_remove(player_name, " \\d+\\.\\d+")) |>
   rename(line = handicap) |> 
-    mutate(
-        player_name =
-            case_when(
-                player_name == "P.J Washington" ~ "P.J. Washington",
-                player_name == "Bruce Brown Jr" ~ "Bruce Brown",
-                player_name == "Wendell Carter" ~ "Wendell Carter Jr.",
-                player_name == "Jabari Smith" ~ "Jabari Smith Jr.",
-                .default = player_name)) |>
+  mutate(
+    player_name = clean_player_name(player_name)) |>
     rename(over_price = prop_market_price) |>
     left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
     mutate(opposition_team = if_else(team_name == home_team, away_team, home_team)) |>
@@ -874,14 +829,8 @@ player_pras_under <-
   mutate(player_name = str_remove(player_name, " Under")) |>
   mutate(player_name = str_remove(player_name, " \\d+\\.\\d+")) |>
   rename(line = handicap) |> 
-    mutate(
-        player_name =
-            case_when(
-                player_name == "P.J Washington" ~ "P.J. Washington",
-                player_name == "Bruce Brown Jr" ~ "Bruce Brown",
-                player_name == "Wendell Carter" ~ "Wendell Carter Jr.",
-                player_name == "Jabari Smith" ~ "Jabari Smith Jr.",
-                .default = player_name)) |>
+  mutate(
+    player_name = clean_player_name(player_name)) |>
     rename(under_price = prop_market_price) |>
     left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
     mutate(opposition_team = if_else(team_name == home_team, away_team, home_team)) |>
@@ -944,14 +893,8 @@ player_threes_alternate <-
     mutate(line = str_extract(prop_market_name, "\\d{1,2}")) |>
     mutate(line = as.numeric(line) - 0.5) |>
     rename(player_name = selection_name_prop) |>
-    mutate(
-        player_name =
-            case_when(
-                player_name == "P.J Washington" ~ "P.J. Washington",
-                player_name == "Bruce Brown Jr" ~ "Bruce Brown",
-                player_name == "Wendell Carter" ~ "Wendell Carter Jr.",
-                player_name == "Jabari Smith" ~ "Jabari Smith Jr.",
-                .default = player_name)) |>
+  mutate(
+    player_name = clean_player_name(player_name)) |>
     rename(over_price = prop_market_price) |>
     left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
     mutate(opposition_team = if_else(team_name == home_team, away_team, home_team)) |>
@@ -986,14 +929,8 @@ player_threes_over <-
   mutate(player_name = str_remove(player_name, " Over")) |>
   mutate(player_name = str_remove(player_name, " \\d+\\.\\d+")) |>
   rename(line = handicap) |> 
-    mutate(
-        player_name =
-            case_when(
-                player_name == "P.J Washington" ~ "P.J. Washington",
-                player_name == "Bruce Brown Jr" ~ "Bruce Brown",
-                player_name == "Wendell Carter" ~ "Wendell Carter Jr.",
-                player_name == "Jabari Smith" ~ "Jabari Smith Jr.",
-                .default = player_name)) |>
+  mutate(
+    player_name = clean_player_name(player_name)) |>
     rename(over_price = prop_market_price) |>
     left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
     mutate(opposition_team = if_else(team_name == home_team, away_team, home_team)) |>
@@ -1026,14 +963,8 @@ player_threes_under <-
   mutate(player_name = str_remove(player_name, " Under")) |>
   mutate(player_name = str_remove(player_name, " \\d+\\.\\d+")) |>
   rename(line = handicap) |> 
-    mutate(
-        player_name =
-            case_when(
-                player_name == "P.J Washington" ~ "P.J. Washington",
-                player_name == "Bruce Brown Jr" ~ "Bruce Brown",
-                player_name == "Wendell Carter" ~ "Wendell Carter Jr.",
-                player_name == "Jabari Smith" ~ "Jabari Smith Jr.",
-                .default = player_name)) |>
+  mutate(
+    player_name = clean_player_name(player_name)) |>
     rename(under_price = prop_market_price) |>
     left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
     mutate(opposition_team = if_else(team_name == home_team, away_team, home_team)) |>
@@ -1098,13 +1029,7 @@ player_steals_alternate <-
   mutate(line = as.numeric(line) - 0.5) |>
   rename(player_name = selection_name_prop) |>
   mutate(
-    player_name =
-      case_when(
-        player_name == "P.J Washington" ~ "P.J. Washington",
-        player_name == "Bruce Brown Jr" ~ "Bruce Brown",
-        player_name == "Wendell Carter" ~ "Wendell Carter Jr.",
-        player_name == "Jabari Smith" ~ "Jabari Smith Jr.",
-        .default = player_name)) |>
+    player_name = clean_player_name(player_name)) |>
   rename(over_price = prop_market_price) |>
   left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
   mutate(opposition_team = if_else(team_name == home_team, away_team, home_team)) |>
@@ -1140,13 +1065,7 @@ player_steals_over <-
   mutate(player_name = str_remove(player_name, " \\d+\\.\\d+")) |>
   rename(line = handicap) |> 
   mutate(
-    player_name =
-      case_when(
-        player_name == "P.J Washington" ~ "P.J. Washington",
-        player_name == "Bruce Brown Jr" ~ "Bruce Brown",
-        player_name == "Wendell Carter" ~ "Wendell Carter Jr.",
-        player_name == "Jabari Smith" ~ "Jabari Smith Jr.",
-        .default = player_name)) |>
+    player_name = clean_player_name(player_name)) |>
   rename(over_price = prop_market_price) |>
   left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
   mutate(opposition_team = if_else(team_name == home_team, away_team, home_team)) |>
@@ -1180,14 +1099,7 @@ player_steals_under <-
   mutate(player_name = str_remove(player_name, " \\d+\\.\\d+")) |>
   rename(line = handicap) |> 
   mutate(
-    player_name =
-      case_when(
-        player_name == "P.J Washington" ~ "P.J. Washington",
-        player_name == "Bruce Brown Jr" ~ "Bruce Brown",
-        player_name == "Wendell Carter" ~ "Wendell Carter Jr.",
-        player_name == "Jabari Smith" ~ "Jabari Smith Jr.",
-        player_name == "Dereck Lively" ~ "Dereck Lively II",
-        .default = player_name)) |>
+    player_name = clean_player_name(player_name)) |>
   rename(under_price = prop_market_price) |>
   left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
   mutate(opposition_team = if_else(team_name == home_team, away_team, home_team)) |>
@@ -1252,14 +1164,7 @@ player_blocks_alternate <-
   mutate(line = as.numeric(line) - 0.5) |>
   rename(player_name = selection_name_prop) |>
   mutate(
-    player_name =
-      case_when(
-        player_name == "P.J Washington" ~ "P.J. Washington",
-        player_name == "Bruce Brown Jr" ~ "Bruce Brown",
-        player_name == "Wendell Carter" ~ "Wendell Carter Jr.",
-        player_name == "Jabari Smith" ~ "Jabari Smith Jr.",
-        player_name == "Dereck Lively" ~ "Dereck Lively II",
-        .default = player_name)) |>
+    player_name = clean_player_name(player_name)) |>
   rename(over_price = prop_market_price) |>
   left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
   mutate(opposition_team = if_else(team_name == home_team, away_team, home_team)) |>
@@ -1295,14 +1200,7 @@ player_blocks_over <-
   mutate(player_name = str_remove(player_name, " \\d+\\.\\d+")) |>
   rename(line = handicap) |> 
   mutate(
-    player_name =
-      case_when(
-        player_name == "P.J Washington" ~ "P.J. Washington",
-        player_name == "Bruce Brown Jr" ~ "Bruce Brown",
-        player_name == "Wendell Carter" ~ "Wendell Carter Jr.",
-        player_name == "Jabari Smith" ~ "Jabari Smith Jr.",
-        player_name == "Dereck Lively" ~ "Dereck Lively II",
-        .default = player_name)) |>
+    player_name = clean_player_name(player_name)) |>
   rename(over_price = prop_market_price) |>
   left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
   mutate(opposition_team = if_else(team_name == home_team, away_team, home_team)) |>
@@ -1336,14 +1234,7 @@ player_blocks_under <-
   mutate(player_name = str_remove(player_name, " \\d+\\.\\d+")) |>
   rename(line = handicap) |> 
   mutate(
-    player_name =
-      case_when(
-        player_name == "P.J Washington" ~ "P.J. Washington",
-        player_name == "Bruce Brown Jr" ~ "Bruce Brown",
-        player_name == "Wendell Carter" ~ "Wendell Carter Jr.",
-        player_name == "Jabari Smith" ~ "Jabari Smith Jr.",
-        player_name == "Dereck Lively" ~ "Dereck Lively II",
-        .default = player_name)) |>
+    player_name = clean_player_name(player_name)) |>
   rename(under_price = prop_market_price) |>
   left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
   mutate(opposition_team = if_else(team_name == home_team, away_team, home_team)) |>

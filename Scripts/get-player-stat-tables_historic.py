@@ -12,9 +12,6 @@ nba_teams = teams.get_teams()
 # Function to Get Match IDs
 # ==========================================
 
-from nba_api.stats.endpoints import leaguegamefinder
-import pandas as pd
-
 def get_all_match_ids(season_name):
     # Fetch all games for the specified season and season type
     gamefinder = leaguegamefinder.LeagueGameFinder(season_nullable=season_name, season_type_nullable='Regular Season')
@@ -41,21 +38,7 @@ def get_all_match_ids(season_name):
     game_dates = df_match_ids.groupby('GAME_ID')['GAME_DATE'].first().reset_index()
     df_pivot = pd.merge(df_pivot, game_dates, on='GAME_ID', how='left')
     
-    # Filter to only games where 
-    
     return df_pivot
-
-# ==========================================
-# Fetch Match ID, Game Date, Match Name
-# ==========================================
-
-# 2022-23 season 
-matches_2022_23 = get_all_match_ids("2022-23")
-match_id_list_2022_23 = list(set(matches_2022_23.GAME_ID))
-
-# 2021-22 season
-matches_2021_22 = get_all_match_ids("2021-22")
-match_id_list_2021_22 = list(set(matches_2021_22.GAME_ID))
 
 # ==========================================
 # Functions to Fetch Season Data
@@ -94,32 +77,21 @@ def fetch_season_data(match_id_list):
     return all_player_stats_df
 
 # ==========================================
-# Fetch and Save Data for 2022-23 Season
+# Fetch and Save Data for 2023-24 Season
 # ==========================================
 
-# Get data for 2022-23 season
-df_2022_23 = fetch_season_data(match_id_list_2022_23)
+# Fetch match IDs for 2023-24 season
+matches_2023_24 = get_all_match_ids("2023-24")
+match_id_list_2023_24 = list(set(matches_2023_24.GAME_ID))
+
+# Get data for 2023-24 season
+df_2023_24 = fetch_season_data(match_id_list_2023_24)
 
 # Add match information
-df_2022_23 = pd.merge(df_2022_23, matches_2022_23, left_on='gameId', right_on='GAME_ID', how='left')
+df_2023_24 = pd.merge(df_2023_24, matches_2023_24, left_on='gameId', right_on='GAME_ID', how='left')
 
 # Reset Index
-df_2022_23.reset_index(inplace=True)
+df_2023_24.reset_index(inplace=True)
 
 # Write out as a CSV file
-df_2022_23.to_csv('Data/all_player_stats_2022-2023.csv', index=False)
-
-# ==========================================
-# Fetch and Save Data for 2021-22 Season
-# ==========================================
-# Get data for 2021-22 season
-df_2021_22 = fetch_season_data(match_id_list_2021_22)
-
-# Add match information
-df_2021_22 = pd.merge(df_2021_22, matches_2021_22, left_on='gameId', right_on='GAME_ID', how='left')
-
-# Reset Index
-df_2021_22.reset_index(inplace=True)
-
-# Write out as a CSV file
-df_2021_22.to_csv('Data/all_player_stats_2021-2022.csv', index=False)
+df_2023_24.to_csv('Data/all_player_stats_2023-2024.csv', index=False)

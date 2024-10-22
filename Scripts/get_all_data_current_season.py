@@ -12,9 +12,6 @@ nba_teams = teams.get_teams()
 # Function to Get Match IDs
 # ==========================================
 
-from nba_api.stats.endpoints import leaguegamefinder
-import pandas as pd
-
 def get_all_match_ids(season_name):
     # Fetch all games for the specified season and season type
     gamefinder = leaguegamefinder.LeagueGameFinder(season_nullable=season_name, season_type_nullable='Regular Season')
@@ -41,17 +38,15 @@ def get_all_match_ids(season_name):
     game_dates = df_match_ids.groupby('GAME_ID')['GAME_DATE'].first().reset_index()
     df_pivot = pd.merge(df_pivot, game_dates, on='GAME_ID', how='left')
     
-    # Filter to only games where 
-    
     return df_pivot
 
 # ==========================================
 # Fetch Match ID, Game Date, Match Name
 # ==========================================
 
-# 2023-24 season 
-matches_2023_24 = get_all_match_ids("2023-24")
-match_id_list_2023_24 = list(set(matches_2023_24.GAME_ID))
+# 2024-25 season 
+matches_2024_25 = get_all_match_ids("2024-25")
+match_id_list_2024_25 = list(set(matches_2024_25.GAME_ID))
 
 # ==========================================
 # Functions to Fetch Season Data
@@ -94,33 +89,33 @@ def fetch_season_data(match_id_list):
 # ==========================================
 
 # Read in current dataset
-current_data = pd.read_csv('Data/all_player_stats_2023-2024.csv', dtype={'gameId': str})
+current_data = pd.read_csv('Data/all_player_stats_2024-2025.csv', dtype={'gameId': str})
 
 # Filter to only games not in current dataset
-match_id_list_2023_24_new = list(set(matches_2023_24.GAME_ID) - set(current_data.gameId))
+match_id_list_2024_25_new = list(set(matches_2024_25.GAME_ID) - set(current_data.gameId))
 
 # ==========================================
-# Fetch and Save Data for 2023-24 Season
+# Fetch and Save Data for 2024-25 Season
 # ==========================================
 
-# Get data for 2023-24 season
-df_2023_24 = fetch_season_data(match_id_list_2023_24_new)
+# Get data for 2024-25 season
+df_2024_25 = fetch_season_data(match_id_list_2024_25_new)
 
 # Add match information
-df_2023_24 = pd.merge(df_2023_24, matches_2023_24, left_on='gameId', right_on='GAME_ID', how='left')
+df_2024_25 = pd.merge(df_2024_25, matches_2024_25, left_on='gameId', right_on='GAME_ID', how='left')
 
 # Bind rows of old and new data
-df_2023_24 = pd.concat([current_data, df_2023_24])
+df_2024_25 = pd.concat([current_data, df_2024_25])
 
 # Write out as a CSV file
-df_2023_24.to_csv('Data/all_player_stats_2023-2024.csv', index=False)
+df_2024_25.to_csv('Data/all_player_stats_2024-2025.csv', index=False)
 
 #====================================================================================================
 # Get Advanced Team Stats   
 #====================================================================================================
 
 #=====================================================#
-#                Get for season 2023-24               #
+#                Get for season 2024-25               #
 #=====================================================#
 
 # ==========================================
@@ -157,19 +152,19 @@ def fetch_advanced_team_stats(match_id_list):
     return all_team_stats_df
 
 # =================================================
-# Fetch and Save Advanced Data for 2023-24 Season
+# Fetch and Save Advanced Data for 2024-25 Season
 # =================================================
 
 # Assuming you have an existing CSV with previous data for advanced team stats
 try:
-    current_advanced_data = pd.read_csv('Data/advanced_box_scores_2023-2024.csv', dtype={'gameId': str})
+    current_advanced_data = pd.read_csv('Data/advanced_box_scores_2024-2025.csv', dtype={'gameId': str})
     existing_match_ids = current_advanced_data['gameId'].unique()
 except FileNotFoundError:
     current_advanced_data = pd.DataFrame()
     existing_match_ids = []
 
 # Filter out match IDs that have already been fetched
-new_match_ids = list(set(matches_2023_24.GAME_ID) - set(existing_match_ids))
+new_match_ids = list(set(matches_2024_25.GAME_ID) - set(existing_match_ids))
 
 # Fetch new data
 new_advanced_team_stats_df = fetch_advanced_team_stats(new_match_ids)
@@ -178,14 +173,14 @@ new_advanced_team_stats_df = fetch_advanced_team_stats(new_match_ids)
 combined_advanced_team_stats_df = pd.concat([current_advanced_data, new_advanced_team_stats_df], ignore_index=True)
 
 # Write out as a CSV file
-combined_advanced_team_stats_df.to_csv('Data/advanced_box_scores_2023-2024.csv', index=False)
+combined_advanced_team_stats_df.to_csv('Data/advanced_box_scores_2024-2025.csv', index=False)
 
 #====================================================================================================
 # Get Player Track Stats   
 #====================================================================================================
 
 #=====================================================#
-#                Get for season 2023-24               #
+#                Get for season 2024-25               #
 #=====================================================#
 
 # ==========================================
@@ -219,22 +214,22 @@ def fetch_player_track_stats(match_id_list):
             print(f"Done with match_id: {match_id} - Progress: {progress:.2f}%")
     
     all_player_track_stats_df = pd.concat(all_player_track_stats, ignore_index=True)
-    return all_player_track_stats_df
+    return all_player_track_stats
 
 # ====================================================
-# Fetch and Save Player Track Data for 2023-24 Season
+# Fetch and Save Player Track Data for 2024-25 Season
 # ====================================================
 
 # Assuming you have an existing CSV with previous data for player track stats
 try:
-    current_player_track_data = pd.read_csv('Data/player_track_box_scores_2023-2024.csv', dtype={'gameId': str})
+    current_player_track_data = pd.read_csv('Data/player_track_box_scores_2024-2025.csv', dtype={'gameId': str})
     existing_match_ids = current_player_track_data['gameId'].unique()
 except FileNotFoundError:
     current_player_track_data = pd.DataFrame()
     existing_match_ids = []
 
 # Filter out match IDs that have already been fetched
-new_match_ids = list(set(matches_2023_24.GAME_ID) - set(existing_match_ids))
+new_match_ids = list(set(matches_2024_25.GAME_ID) - set(existing_match_ids))
 
 # Fetch new data
 new_player_track_stats_df = fetch_player_track_stats(new_match_ids)
@@ -243,14 +238,14 @@ new_player_track_stats_df = fetch_player_track_stats(new_match_ids)
 combined_player_track_stats_df = pd.concat([current_player_track_data, new_player_track_stats_df], ignore_index=True)
 
 # Write out as a CSV file
-combined_player_track_stats_df.to_csv('Data/player_track_box_scores_2023-2024.csv', index=False)
+combined_player_track_stats_df.to_csv('Data/player_track_box_scores_2024-2025.csv', index=False)
 
 #====================================================================================================
 # Get Team Misc Box Score Stats
 #====================================================================================================
 
 #=====================================================#
-#                Get for season 2023-24               #
+#                Get for season 2024-25               #
 #=====================================================#
 
 # ==========================================
@@ -287,19 +282,19 @@ def fetch_misc_team_stats(match_id_list):
     return all_team_stats_df
 
 # =================================================
-# Fetch and Save misc Data for 2023-24 Season
+# Fetch and Save misc Data for 2024-25 Season
 # =================================================
 
 # Assuming you have an existing CSV with previous data for misc team stats
 try:
-    current_misc_data = pd.read_csv('Data/misc_box_scores_2023-2024.csv', dtype={'gameId': str})
+    current_misc_data = pd.read_csv('Data/misc_box_scores_2024-2025.csv', dtype={'gameId': str})
     existing_match_ids = current_misc_data['gameId'].unique()
 except FileNotFoundError:
     current_misc_data = pd.DataFrame()
     existing_match_ids = []
 
 # Filter out match IDs that have already been fetched
-new_match_ids = list(set(matches_2023_24.GAME_ID) - set(existing_match_ids))
+new_match_ids = list(set(matches_2024_25.GAME_ID) - set(existing_match_ids))
 
 # Fetch new data
 new_misc_team_stats_df = fetch_misc_team_stats(new_match_ids)
@@ -308,15 +303,14 @@ new_misc_team_stats_df = fetch_misc_team_stats(new_match_ids)
 combined_misc_team_stats_df = pd.concat([current_misc_data, new_misc_team_stats_df], ignore_index=True)
 
 # Write out as a CSV file
-combined_misc_team_stats_df.to_csv('Data/misc_box_scores_2023-2024.csv', index=False)
-
+combined_misc_team_stats_df.to_csv('Data/misc_box_scores_2024-2025.csv', index=False)
 
 #====================================================================================================
 # Get Player Misc Box Score Stats
 #====================================================================================================
 
 #=====================================================#
-#                Get for season 2023-24               #
+#                Get for season 2024-25               #
 #=====================================================#
 
 # ==========================================
@@ -353,25 +347,25 @@ def fetch_misc_player_stats(match_id_list):
     return all_team_stats_df
 
 # =================================================
-# Fetch and Save misc Data for 2023-24 Season
+# Fetch and Save misc Data for 2024-25 Season
 # =================================================
 
 # Assuming you have an existing CSV with previous data for misc team stats
 try:
-    current_misc_data_player = pd.read_csv('Data/misc_box_scores_player_2023-2024.csv', dtype={'gameId': str})
+    current_misc_data_player = pd.read_csv('Data/misc_box_scores_player_2024-2025.csv', dtype={'gameId': str})
     existing_match_ids = current_misc_data['gameId'].unique()
 except FileNotFoundError:
     current_misc_data_player = pd.DataFrame()
     existing_match_ids = []
 
 # Filter out match IDs that have already been fetched
-new_match_ids = list(set(matches_2023_24.GAME_ID) - set(existing_match_ids))
+new_match_ids = list(set(matches_2024_25.GAME_ID) - set(existing_match_ids))
 
 # Fetch new data
 new_misc_player_stats_df = fetch_misc_player_stats(new_match_ids)
 
 # Combine old and new data
-combined_misc_player_stats_df = pd.concat([current_misc_data, new_misc_player_stats_df], ignore_index=True)
+combined_misc_player_stats_df = pd.concat([current_misc_data_player, new_misc_player_stats_df], ignore_index=True)
 
 # Write out as a CSV file
-combined_misc_player_stats_df.to_csv('Data/misc_box_scores_player_2023-2024.csv', index=False)
+combined_misc_player_stats_df.to_csv('Data/misc_box_scores_player_2024-2025.csv', index=False)
