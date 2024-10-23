@@ -133,43 +133,47 @@ write_csv(topsport_h2h, "Data/scraped_odds/topsport_h2h.csv")
 
 # Function to read the html of a given url
 read_topsport_html <- function(url) {
-    
-    # Get market name from url
-    market_name <- str_extract(url, "(?<=Basketball/).*")
-    market_name <- str_remove(market_name, "\\/.*$")
-    
-    # Get line from market name
-    line <- str_extract(market_name, "\\d+")
-    
-    # Get match name from html
-    match_name_html <-    
-        url |> 
-        read_html() |>
-        html_nodes("h1") |>
-        html_text() |> 
-        paste(collapse = " ")
-    
-    # Get match name from extracted text
-    match_name <- str_extract(match_name_html, "(?<=\\- )[A-Za-z0-9- ]+")
-    
-    # Get data from html
-    result <-    
+  
+  # Get market name from url
+  market_name <- str_extract(url, "(?<=Basketball/).*")
+  market_name <- str_remove(market_name, "\\/.*$")
+  
+  # Get line from market name
+  line <- str_extract(market_name, "\\d+\\.?\\d?")
+  
+  # Get match name from html
+  match_name_html <-    
     url |> 
-        read_html() |>
-        html_nodes(".marketTable") |> 
-        html_table()
-    
-    # Get tibble
-    result[[1]] |>
-        mutate(line = as.numeric(line)) |> 
-        mutate(match = match_name)
+    read_html() |>
+    html_nodes("h1") |>
+    html_text() |> 
+    paste(collapse = " ")
+  
+  # Get match name from extracted text
+  match_name_html <- strsplit(match_name_html, split = " - ")
+  match_name <- match_name_html[[1]][length(match_name_html[[1]])]
+  player_name <- match_name_html[[1]][length(match_name_html[[1]]) - 1]
+  
+  # Get data from html
+  result <-    
+    url |> 
+    read_html() |>
+    html_nodes(".marketTable") |> 
+    html_table()
+  
+  # Get tibble
+  result[[1]] |>
+    mutate(line = ifelse(!is.na(line), line, str_extract(Selection, "\\d+\\.?\\d?"))) |>
+    mutate(line = as.numeric(line)) |>
+    mutate(match = match_name) |>
+    mutate(Selection = if_else(str_detect(Selection, "(Over)|(Under)"), paste(player_name, Selection), Selection))
 }
 
 # Get data for pick your own player points--------------------------------------
 
 # Get URLs
 pick_your_own_points_markets <- 
-    topsport_other_markets[str_detect(topsport_other_markets, "Player_to_Score_[0-9]{1,2}_Points")]
+    topsport_other_markets[str_detect(topsport_other_markets, "Player_to_Have_[0-9]{1,2}_Points")]
 
 # Map function
 if (length(pick_your_own_points_markets) > 0) {
@@ -220,7 +224,7 @@ future_map(pick_your_own_points_markets, read_topsport_html) |>
 
 # Get URLs
 player_points_markets <- 
-    topsport_other_markets[str_detect(topsport_other_markets, "Total_Points_.*\\(")]
+    topsport_other_markets[str_detect(topsport_other_markets, "Player_Points_.*\\(")]
 
 # Only proceed if markets have been picked up above
 if (length(player_points_markets) > 0) {
@@ -228,17 +232,17 @@ if (length(player_points_markets) > 0) {
 # future_map function
 player_points_lines <-
     future_map(player_points_markets, read_topsport_html) |> 
-    bind_rows() |> 
-    mutate(line = line - 0.5) |>
-    rename(over_price = Win)
+    bind_rows()
 
 # Get Overs
 player_points_lines_overs <-
-    player_points_lines |> 
-    select(-line) |> 
-    filter(str_detect(Selection, "Over")) |>
-    separate(Selection, into = c("player_name", "line"), sep = " Over ") |> 
-    mutate(line = as.numeric(line)) |>
+  player_points_lines |> 
+  select(-line) |> 
+  filter(str_detect(Selection, "Over")) |>
+  rename(over_price = Win) |> 
+  mutate(Selection = str_remove(Selection, "\\(.*\\) ")) |>
+  separate(Selection, into = c("player_name", "line"), sep = " Over ") |> 
+  mutate(line = as.numeric(line)) |>
     mutate(
         player_name =
           case_when(
@@ -275,12 +279,13 @@ player_points_lines_overs <-
 
 # Get Unders
 player_points_lines_unders <-
-    player_points_lines |> 
-    select(-line) |> 
-    filter(str_detect(Selection, "Under")) |>
-    rename(under_price = over_price) |> 
-    separate(Selection, into = c("player_name", "line"), sep = " Under ") |> 
-    mutate(line = as.numeric(line)) |>
+  player_points_lines |> 
+  select(-line) |> 
+  filter(str_detect(Selection, "Under")) |>
+  mutate(Selection = str_remove(Selection, "\\(.*\\) ")) |> 
+  separate(Selection, into = c("player_name", "line"), sep = " Under ") |> 
+  rename(under_price = Win) |>
+  mutate(line = as.numeric(line)) |>
     mutate(
         player_name =
           case_when(
@@ -381,23 +386,23 @@ player_assists_alternate <-
 
 # Get URLs
 player_assists_markets <- 
-    topsport_other_markets[str_detect(topsport_other_markets, "Total_Assists_.*\\(")]
+  topsport_other_markets[str_detect(topsport_other_markets, "Total_Assists|Player_Assists")]
 
 # Only proceed if markets have been picked up above
 if (length(player_assists_markets) > 0) {
     
-    # future_map function
-    player_assists_lines <-
-        future_map(player_assists_markets, read_topsport_html) |> 
-        bind_rows() |> 
-        mutate(line = line - 0.5) |>
-        rename(over_price = Win)
+  # Map function
+  player_assists_lines <-
+    map(player_assists_markets, read_topsport_html) |> 
+    bind_rows()
     
     # Get Overs
     player_assists_lines_overs <-
         player_assists_lines |> 
         select(-line) |> 
         filter(str_detect(Selection, "Over")) |>
+      mutate(Selection = str_remove(Selection, "\\(.*\\) ")) |> 
+      rename(over_price = Win) |> 
         separate(Selection, into = c("player_name", "line"), sep = " Over ") |> 
         mutate(line = as.numeric(line)) |>
         mutate(
@@ -439,7 +444,8 @@ if (length(player_assists_markets) > 0) {
         player_assists_lines |> 
         select(-line) |> 
         filter(str_detect(Selection, "Under")) |>
-        rename(under_price = over_price) |> 
+      mutate(Selection = str_remove(Selection, "\\(.*\\) ")) |> 
+        rename(under_price = Win) |> 
         separate(Selection, into = c("player_name", "line"), sep = " Under ") |> 
         mutate(line = as.numeric(line)) |>
         mutate(
@@ -542,23 +548,23 @@ player_rebounds_alternate <-
 
 # Get URLs
 player_rebounds_markets <- 
-    topsport_other_markets[str_detect(topsport_other_markets, "Total_Rebounds_.*\\(")]
+  topsport_other_markets[str_detect(topsport_other_markets, "Total_Rebounds|Player_Rebounds")]
 
 # Only proceed if markets have been picked up above
 if (length(player_rebounds_markets) > 0) {
     
     # future_map function
-    player_rebounds_lines <-
-        future_map(player_rebounds_markets, read_topsport_html) |> 
-        bind_rows() |> 
-        mutate(line = line - 0.5) |>
-        rename(over_price = Win)
+  player_rebounds_lines <-
+    map(player_rebounds_markets, read_topsport_html) |> 
+    bind_rows()
     
     # Get Overs
     player_rebounds_lines_overs <-
         player_rebounds_lines |> 
         select(-line) |> 
         filter(str_detect(Selection, "Over")) |>
+      mutate(Selection = str_remove(Selection, "\\(.*\\) ")) |> 
+      rename(over_price = Win) |>
         separate(Selection, into = c("player_name", "line"), sep = " Over ") |> 
         mutate(line = as.numeric(line)) |>
         mutate(
@@ -600,6 +606,8 @@ if (length(player_rebounds_markets) > 0) {
         player_rebounds_lines |> 
         select(-line) |> 
         filter(str_detect(Selection, "Under")) |>
+        mutate(Selection = str_remove(Selection, "\\(.*\\) ")) |>
+      rename(under_price = Win) |>
         rename(under_price = over_price) |> 
         separate(Selection, into = c("player_name", "line"), sep = " Under ") |> 
         mutate(line = as.numeric(line)) |>
