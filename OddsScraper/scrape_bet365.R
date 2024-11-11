@@ -837,10 +837,12 @@ all_player_props <-
   left_join(player_names[,c("player_full_name", "team_name")], by = c("player" = "player_full_name")) |>
   rename(player_name = player) |> 
   mutate(player_team = fix_team_names(team_name)) |> 
-  separate(match, into = c("home_team", "away_team"), sep = " v ", remove = FALSE) |> 
+  separate(match, into = c("away_team", "home_team"), sep = " v ", remove = FALSE) |> 
+  mutate(match = paste(home_team, away_team, sep = " v ")) |>
   mutate(opposition_team = if_else(player_team == home_team, away_team, home_team)) |>
   # If line ends with .0 subtract 0.5
-  mutate(line = if_else(line %% 1 == 0, line - 0.5, line))
+  mutate(line = if_else(line %% 1 == 0, line - 0.5, line)) |> 
+  select(-team_name)
 
 # Separate into points, rebounds, assists, threes
 player_points <- all_player_props |> filter(market_name == "Player Points")
