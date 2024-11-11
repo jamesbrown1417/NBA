@@ -3,8 +3,6 @@ library(bslib)
 library(gridlayout)
 library(DT)
 library(tidyverse)
-library(googlesheets4)
-library(googledrive)
 
 # Function to convert time to decimal-------------------------------------------
 convert_time_to_decimal_hms <- function(time_obj) {
@@ -124,18 +122,22 @@ all_teams <- read_csv("../../Data/all_teams.csv")
 all_player_stats_2021_2022 <- read_csv("../../Data/all_player_stats_2021-2022.csv") |> mutate(SEASON_YEAR = "2021-22")
 all_player_stats_2022_2023 <- read_csv("../../Data/all_player_stats_2022-2023.csv") |> mutate(SEASON_YEAR = "2022-23")
 all_player_stats_2023_2024 <- read_csv("../../Data/all_player_stats_2023-2024.csv") |> mutate(SEASON_YEAR = "2023-24")
+all_player_stats_2024_2025 <- read_csv("../../Data/all_player_stats_2024-2025.csv") |> mutate(SEASON_YEAR = "2024-25")
 
 # Team Info
 all_team_stats_2021_2022 <- read_csv("../../Data/advanced_box_scores_2021-2022.csv") |> mutate(SEASON_YEAR = "2021-22")
 all_team_stats_2022_2023 <- read_csv("../../Data/advanced_box_scores_2022-2023.csv") |> mutate(SEASON_YEAR = "2022-23")
 all_team_stats_2023_2024 <- read_csv("../../Data/advanced_box_scores_2023-2024.csv") |> mutate(SEASON_YEAR = "2023-24")
+all_team_stats_2024_2025 <- read_csv("../../Data/advanced_box_scores_2024-2025.csv") |> mutate(SEASON_YEAR = "2024-25")
 
 # Player Tracker Data
 all_player_tracking_2023_2024 <- read_csv("../../Data/player_track_box_scores_2023-2024.csv") |> mutate(SEASON_YEAR = "2023-24")
+all_player_tracking_2024_2025 <- read_csv("../../Data/player_track_box_scores_2024-2025.csv") |> mutate(SEASON_YEAR = "2024-25")
 
 # Combine player stats
 all_player_stats <-
-  all_player_stats_2023_2024 |>
+  all_player_stats_2024_2025 |>
+  bind_rows(all_player_stats_2023_2024) |>
   bind_rows(all_player_stats_2022_2023) |>
   bind_rows(all_player_stats_2021_2022) |>
   left_join(all_rosters[c("PLAYER", "PLAYER_ID")], by = c("personId" = "PLAYER_ID")) |> 
@@ -167,7 +169,8 @@ away_teams <-
 
 # Combine team stats
 all_team_stats <-
-  all_team_stats_2023_2024 |> 
+  all_team_stats_2024_2025 |>
+  bind_rows(all_team_stats_2023_2024) |> 
   bind_rows(all_team_stats_2022_2023) |>
   bind_rows(all_team_stats_2021_2022) |>
   left_join(game_dates) |>
@@ -205,13 +208,13 @@ all_player_stats <-
 # Determine the operating system
 os_type <- Sys.info()["sysname"]
 
-# Google sheets authentication -------------------------------------------------
-options(gargle_oauth_cache = ".secrets")
-drive_auth(cache = ".secrets", email = "cuzzy.punting@gmail.com")
-gs4_auth(token = drive_token())
+# # Google sheets authentication -------------------------------------------------
+# options(gargle_oauth_cache = ".secrets")
+# drive_auth(cache = ".secrets", email = "cuzzy.punting@gmail.com")
+# gs4_auth(token = drive_token())
 
 # Conditional logic for loading data based on OS
-if (os_type == "Windows") {
+if (TRUE) {
   # Read RDS Data for Windows
   player_points_data <- read_rds("../../Data/processed_odds/all_player_points.rds")
   player_assists_data <- read_rds("../../Data/processed_odds/all_player_assists.rds")
@@ -338,7 +341,9 @@ ui <- page_navbar(
             selectize = TRUE,
             selected = c("2021-22",
                          "2022-23",
-                         "2023-24")
+                         "2023-24",
+                         "2024-25"
+                         )
           ),
           selectInput(
             inputId = "stat_input_a",
@@ -510,14 +515,14 @@ ui <- page_navbar(
                             label = "Max Diff",
                             value = NA
                           ),
-                          markdown(mds = c("__Select Difference Range 2022:__")),
+                          markdown(mds = c("__Select Difference Range 2024:__")),
                           numericInput(
-                            inputId = "diff_minimum_22",
+                            inputId = "diff_minimum_24",
                             label = "Min Diff",
                             value = NA
                           ),
                           numericInput(
-                            inputId = "diff_maximum_22",
+                            inputId = "diff_maximum_24",
                             label = "Max Diff",
                             value = NA
                           ),
@@ -532,14 +537,14 @@ ui <- page_navbar(
                             label = "Max Diff",
                             value = NA
                           ),
-                          markdown(mds = c("__Select Difference Range 2022 - Unders:__")),
+                          markdown(mds = c("__Select Difference Range 2024 - Unders:__")),
                           numericInput(
-                            inputId = "diff_minimum_22_unders",
+                            inputId = "diff_minimum_24_unders",
                             label = "Min Diff",
                             value = NA
                           ),
                           numericInput(
-                            inputId = "diff_maximum_22_unders",
+                            inputId = "diff_maximum_24_unders",
                             label = "Max Diff",
                             value = NA
                           )
@@ -985,16 +990,16 @@ server <- function(input, output) {
     }
     
     # Min and max differences
-    if (!is.na(input$diff_minimum_22)) {
+    if (!is.na(input$diff_minimum_24)) {
       odds <-
         odds |>
-        filter(diff_over_2022_23 >= input$diff_minimum_22)
+        filter(diff_over_2022_23 >= input$diff_minimum_24)
     }
     
-    if (!is.na(input$diff_maximum_22)) {
+    if (!is.na(input$diff_maximum_24)) {
       odds <-
         odds |>
-        filter(diff_over_2022_23 <= input$diff_maximum_22)
+        filter(diff_over_2022_23 <= input$diff_maximum_24)
     }
     
     if (!is.na(input$diff_minimum_23)) {
@@ -1021,16 +1026,16 @@ server <- function(input, output) {
         filter(diff_under_2023_24 <= input$diff_maximum_23_unders)
     }
     
-    if (!is.na(input$diff_minimum_22_unders)) {
+    if (!is.na(input$diff_minimum_24_unders)) {
       odds <-
         odds |>
-        filter(diff_under_2022_23 >= input$diff_minimum_22_unders)
+        filter(diff_under_2022_23 >= input$diff_minimum_24_unders)
     }
     
-    if (!is.na(input$diff_maximum_22_unders)) {
+    if (!is.na(input$diff_maximum_24_unders)) {
       odds <-
         odds |>
-        filter(diff_under_2022_23 <= input$diff_maximum_22_unders)
+        filter(diff_under_2022_23 <= input$diff_maximum_24_unders)
     }
     
     # Odds Range
@@ -1058,6 +1063,12 @@ server <- function(input, output) {
         filter(str_detect(player_name, input$player_name_input_b))
     }
       
+    # Remove columns we don't want
+    odds <-
+      odds |> 
+      select(-group_by_header, -outcome_name, -outcome_name_under, -EventKey, -MarketKey, -OutcomeKey, -OutcomeKey_unders) |> 
+      relocate(agency, .after = player_name)
+    
     # Return odds
     return(odds)
   })

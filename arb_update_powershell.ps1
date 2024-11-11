@@ -20,3 +20,4 @@ Remove-Item -Path "C:\Users\james\OneDrive\Desktop\Projects\NBA\Data\BET365_HTML
 
 # Publish report using Quarto
 echo "1" | & "quarto" "publish" "quarto-pub" "Reports\nba_arbs.qmd"
+# echo "1" | & "quarto" "publish" "quarto-pub" "Reports\Top_Down.qmd"

@@ -19,6 +19,9 @@ run_scraping <- function(script_name) {
   })
 }
 
+# Fix team names function
+source("Scripts/fix_team_names.R")
+
 # Run all odds scraping scripts
 # run_scraping("OddsScraper/scrape_betr.R")
 run_scraping("OddsScraper/scrape_BetRight.R")
@@ -256,6 +259,45 @@ points_arbs <-
     ),
     relationship = "many-to-many"
   ) |>
+  relocate(under_price, .after = over_price) |>
+  mutate(margin = 1 / under_price + 1 / over_price) |>
+  arrange(margin) |>
+  mutate(margin = (1 - margin)) |>
+  mutate(margin = 100 * margin) |>
+  # filter(margin > 0) |>
+  distinct(match, player_name, line, over_agency, under_agency, .keep_all = TRUE) |>
+  relocate(over_price, over_agency, under_price, under_agency, .after = opposition_team)
+
+# Tab miss-by-one points--------------------------------------------------------
+tab_points_miss_by_one <-
+  points_unders |>
+  inner_join(
+    (all_player_points |>
+         filter(market_name == "Player Points") |>
+         filter(is.na(under_price)) |> 
+         select(
+           match,
+           market_name,
+           player_name,
+           player_team,
+           line,
+           over_price,
+           opposition_team,
+           agency
+         ) |>
+         rename(over_agency = agency) |>
+      mutate(line = line - 1)),
+    by = c(
+      "match",
+      "market_name",
+      "player_name",
+      "player_team",
+      "line",
+      "opposition_team"
+    ),
+    relationship = "many-to-many"
+  ) |>
+  filter(over_agency == "TAB") |>
   relocate(under_price, .after = over_price) |>
   mutate(margin = 1 / under_price + 1 / over_price) |>
   arrange(margin) |>
@@ -645,34 +687,15 @@ all_arbs <-
 
 all_arbs |> write_rds("Data/all_arbs.rds")
 
-# H2H Arbs
-h2h_arbs
-
-# Separate into Neds and Unibet and the rest
-neds_arbs <-
-  all_arbs |>
+tab_points_miss_by_one |> 
+  arrange(desc(margin)) |> 
+  filter(!is.na(player_name)) |> 
+  left_join(start_times, by = "match") |>
   filter(margin > 0) |> 
-  filter(over_agency %in% c("Neds") | under_agency %in% c("Neds")) |> 
-  mutate(neds_stake = ifelse(over_agency == "Neds", (25 / (over_price - 1)), (25 / (under_price - 1)))) |> 
-  mutate(other_stake = hedge_price(over_price, under_price, neds_stake)) |> 
-  # Round stakes to nearest 5
-  mutate(neds_stake = round(neds_stake / 5) * 5) |>
-  mutate(other_stake = round(other_stake / 5) * 5) |>
-  mutate(profit_neds = ((neds_stake *over_price) - neds_stake) - other_stake) |> 
-  mutate(profit_other = ((other_stake *under_price) - other_stake) - neds_stake)
-
-unibet_arbs <-
-  all_arbs |>
-  filter(margin > 0) |> 
-  filter(over_agency %in% c("Unibet") | under_agency %in% c("Unibet")) |> 
-  filter(!over_agency %in% c("Neds") & !under_agency %in% c("Neds")) |> 
-  mutate(unibet_stake = ifelse(over_agency == "Unibet", (100 / (over_price - 1)), (100 / (under_price - 1)))) |> 
-  mutate(other_stake = hedge_price(over_price, under_price, unibet_stake))
-
-other_arbs <-
-  all_arbs |>
-  filter(margin > 0) |> 
-  filter(!over_agency %in% c("Neds", "Unibet") & !under_agency %in% c("Neds", "Unibet"))
+  # Filter out cases where current time is more than 5 mins after start time
+  filter(gmt_time_dttm < start_time) |>
+  select(-start_time) |>
+  write_rds("Data/tab_points_miss_by_one.rds")
 
 #===============================================================================
 # SGM ARBs

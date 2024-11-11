@@ -15,4 +15,5 @@ Remove-Item -Path "C:\Users\james\OneDrive\Desktop\Projects\NBA\OddsScraper\Neds
 & "Rscript" "Scripts\get_arbs.R"
 
 # Publish report using Quarto
-echo "1" | & "quarto" "publish" "quarto-pub" "Reports\arbs.qmd"
+echo "1" | & "quarto" "publish" "quarto-pub" "Reports\nba_arbs.qmd"
+# echo "1" | & "quarto" "publish" "quarto-pub" "Reports\Top_Down.qmd"

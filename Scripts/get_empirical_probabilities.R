@@ -9,13 +9,13 @@ library(tidyverse)
 # Read in past season stats
 #===============================================================================
 
-combined_stats_2022_2023 <- read_csv("Data/all_player_stats_2022-2023.csv")
+combined_stats_2024_2025 <- read_csv("Data/all_player_stats_2024-2025.csv")
 combined_stats_2023_2024 <- read_csv("Data/all_player_stats_2023-2024.csv")
 all_rosters <- read_csv("Data/all_rosters.csv")
 
 # Add names and rename vars
-combined_stats_2022_2023 <-
-  combined_stats_2022_2023 |>
+combined_stats_2024_2025 <-
+  combined_stats_2024_2025 |>
   left_join(all_rosters[c("PLAYER", "PLAYER_ID")], by = c("personId" = "PLAYER_ID")) |>
   rename(
     PLAYER_NAME = PLAYER,
@@ -49,8 +49,8 @@ combined_stats_2023_2024 <-
 get_empirical_prob <- function(player_name, line, stat, season) {
   
   # Choose the data based on the selected season
-  if (season == "2022_2023") {
-    player_stats <- combined_stats_2022_2023 |> filter(PLAYER_NAME == player_name) |> filter(!is.na(minutes))
+  if (season == "2024_2025") {
+    player_stats <- combined_stats_2024_2025 |> filter(PLAYER_NAME == player_name) |> filter(!is.na(minutes))
   } else if (season == "2023_2024") {
     player_stats <- combined_stats_2023_2024 |> filter(PLAYER_NAME == player_name) |> filter(!is.na(minutes))
   } else {
@@ -226,7 +226,7 @@ get_empirical_prob <- function(player_name, line, stat, season) {
            player_name = player_name, 
            season = season)
   
-  if (season == "2022_2023") {
+  if (season == "2024_2025") {
     empirical_prob <-
       empirical_prob |> 
       select(-PLAYER_NAME)

@@ -22,18 +22,29 @@ editor: visual
 # Libraries
 library(tidyverse)
 
-# Read in file
+# Read in files
 all_arbs <- read_rds("../Data/all_arbs.rds")
-
-# Functions
-# Function to calculate hedge prices
-hedge_price <- function(odds_A, odds_B, stake_a) {
-  return((odds_A/odds_B) * stake_a)
-}
-
+tab_miss_by_one <- read_rds("../Data/tab_points_miss_by_one.rds")
 ```
 
-# Neds Arbs
+::: panel-tabset
+
+
+## Other Arbs
+
+```{r}
+#| column: page
+
+other_arbs <-
+  all_arbs |>
+  filter(margin > 0) |> 
+  filter(!over_agency %in% c("Neds", "Unibet") & !under_agency %in% c("Neds", "Unibet")) |> 
+  mutate(margin = round(margin, 2))
+
+other_arbs
+```
+
+## Neds Arbs
 
 ```{r}
 #| column: page
@@ -43,18 +54,13 @@ neds_arbs <-
   all_arbs |>
   filter(margin > 0) |> 
   filter(over_agency %in% c("Neds") | under_agency %in% c("Neds")) |> 
-  mutate(neds_stake = ifelse(over_agency == "Neds", (25 / (over_price - 1)), (25 / (under_price - 1)))) |> 
-  mutate(other_stake = hedge_price(over_price, under_price, neds_stake)) |> 
-  # Round stakes to nearest 5
-  mutate(neds_stake = round(neds_stake / 5) * 5) |>
-  mutate(other_stake = round(other_stake / 5) * 5) |>
-  mutate(profit_neds = ((neds_stake *over_price) - neds_stake) - other_stake) |> 
-  mutate(profit_other = ((other_stake *under_price) - other_stake) - neds_stake)
+  filter(!over_agency %in% c("Unibet") | !under_agency %in% c("Unibet")) |> 
+  mutate(margin = round(margin, 2))
 
 neds_arbs
 ```
 
-# Unibet Arbs
+## Unibet Arbs
 
 ```{r}
 #| column: page
@@ -64,21 +70,25 @@ unibet_arbs <-
   filter(margin > 0) |> 
   filter(over_agency %in% c("Unibet") | under_agency %in% c("Unibet")) |> 
   filter(!over_agency %in% c("Neds") & !under_agency %in% c("Neds")) |> 
-  mutate(unibet_stake = ifelse(over_agency == "Unibet", (100 / (over_price - 1)), (100 / (under_price - 1)))) |> 
-  mutate(other_stake = hedge_price(over_price, under_price, unibet_stake))
+  mutate(margin = round(margin, 2)) |> 
+  arrange(match, desc(margin))
 
 unibet_arbs
 ```
 
-# Other Arbs
+## Tab Miss-by-1 Points Arbs
 
 ```{r}
 #| column: page
 
-other_arbs <-
-  all_arbs |>
+tab_miss_by_1_points_arbs <-
+  tab_miss_by_one |>
   filter(margin > 0) |> 
-  filter(!over_agency %in% c("Neds", "Unibet") & !under_agency %in% c("Neds", "Unibet"))
+  filter(over_agency %in% c("TAB") | under_agency %in% c("TAB")) |> 
+  filter(!over_agency %in% c("Neds", "Unibet") & !under_agency %in% c("Neds", "Unibet")) |> 
+  mutate(margin = round(margin, 2))
 
-other_arbs
+tab_miss_by_1_points_arbs
 ```
+
+:::

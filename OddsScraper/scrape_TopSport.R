@@ -608,7 +608,6 @@ if (length(player_rebounds_markets) > 0) {
         filter(str_detect(Selection, "Under")) |>
         mutate(Selection = str_remove(Selection, "\\(.*\\) ")) |>
       rename(under_price = Win) |>
-        rename(under_price = over_price) |> 
         separate(Selection, into = c("player_name", "line"), sep = " Under ") |> 
         mutate(line = as.numeric(line)) |>
         mutate(
@@ -677,6 +676,7 @@ if (!exists("player_assists_alternate")) {
 # Points
 player_points_alternate |>
     bind_rows(player_points_lines) |>
+  rename(home_team = away_team, away_team = home_team) |>
     mutate(match = paste(home_team, away_team, sep = " v ")) |>
     select(any_of(
         c(
@@ -698,6 +698,7 @@ player_points_alternate |>
 # Rebounds
 player_rebounds_alternate |>
     bind_rows(player_rebounds_lines) |>
+  rename(home_team = away_team, away_team = home_team) |>
     mutate(match = paste(home_team, away_team, sep = " v ")) |>
     select(any_of(
         c(
@@ -719,6 +720,7 @@ player_rebounds_alternate |>
 # Assists
 player_assists_alternate |>
     bind_rows(player_assists_lines) |>
+    rename(home_team = away_team, away_team = home_team) |>
     mutate(match = paste(home_team, away_team, sep = " v ")) |>
     select(any_of(
         c(

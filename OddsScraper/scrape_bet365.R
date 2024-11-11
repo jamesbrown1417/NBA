@@ -5,1418 +5,815 @@ library(httr2)
 library(jsonlite)
 library(glue)
 
-# Get teams table
-teams <-
-    read_csv("Data/all_teams.csv")
-
-# Get player names table
-player_names_all <-
-    read_csv("Data/all_rosters.csv") |>
-    select(player_full_name = PLAYER, TeamID) |> 
-    left_join(teams[, c("id", "full_name")], by = c("TeamID" = "id")) |> 
-    mutate(first_initial = str_sub(player_full_name, 1, 1)) |>
-    mutate(surname = str_extract(player_full_name, "(?<=\\s).*$")) |> 
-    mutate(join_name = paste(first_initial, surname, sep = " ")) |> 
-    rename(team_name = full_name)
-
-# unique join names
-player_names_unique <-
-    player_names_all |>
-    group_by(join_name) |> 
-    filter(n() == 1) |> 
-    ungroup()
-
-# Non unique names (take first two letters of first name)
-player_names_non_unique <-
-    player_names_all |>
-    group_by(join_name) |> 
-    filter(n() > 1) |> 
-    mutate(first_initial = str_sub(player_full_name, 1, 2)) |>
-    mutate(join_name = paste(first_initial, surname, sep = " ")) |> 
-    ungroup()
-
-player_names <-
-    bind_rows(player_names_unique, player_names_non_unique) |> 
-    mutate(join_name = ifelse(player_full_name == "Keyontae Johnson", "Key Johnson", join_name)) |> 
-    mutate(join_name = ifelse(player_full_name == "Miles Bridges", "Mil Bridges", join_name)) |> 
-    mutate(join_name = ifelse(player_full_name == "Jaylin Williams", "Jay Williams", join_name))
-
 # Fix team names function
 source("Scripts/fix_team_names.R")
 
-#===============================================================================
-# Use rvest to get main market information-------------------------------------#
-#===============================================================================
-
-get_head_to_head <- function() {
-
 # Read scraped HTML from the BET365_HTML Folder
-scraped_file <- list.files("Data/BET365_HTML", full.names = TRUE, pattern = "h2h")[[1]]
-
-# Get Teams
-bet365_teams <-
-    read_html(scraped_file) |> 
-    html_nodes(".scb-ParticipantFixtureDetailsHigherBasketball_TeamWrapper") |> 
-    html_text()
-
-# Get H2H Odds
-bet365_h2h_odds <-
-    read_html(scraped_file) |> 
-    html_nodes(".sac-ParticipantOddsOnly50OTB") |> 
-    html_text()
-
-# Get Start Time
-bet365_start_time <-
-    read_html(scraped_file) |> 
-    html_nodes(".sgl-MarketFixtureDetailsLabel") |>
-    html_nodes(".rcl-MarketHeaderLabel-isdate, .scb-ParticipantFixtureDetailsHigherBasketball_TeamWrapper") |> 
-    html_text()
-
-# Get indices that contain a number surrounded by spaces
-start_time_indices <- which(str_detect(bet365_start_time, " \\d+ "))
-
-# Empty list
-result_list <- list()
-
-# Split into chunks from each index to the next and from the last to the end of the vector
-for (i in 1:length(start_time_indices)) {
-    if (i != length(start_time_indices)) {
-        result = (bet365_start_time[start_time_indices[i]:start_time_indices[i + 1]])
-        result = result[-length(result)]
-    } else {
-        result = (bet365_start_time[start_time_indices[i]:length(bet365_start_time)])
-    }
-    result_list[[i]] <- result
-}
-
-# Turn each vector into a tibble
-start_dates <- map(result_list, ~ expand_grid(.x[1], .x[2:length(.x)])) |> bind_rows()
-names(start_dates) <- c("start_date", "team")
-
-start_dates <- 
-    start_dates |> 
-    distinct(team, .keep_all = TRUE)
-
-#===============================================================================
-# Create head to head table----------------------------------------------------#
-#===============================================================================
-
-# Get Home teams - Odd elements
-home_teams <- bet365_teams[seq(2, length(bet365_teams), 2)]
-home_odds <- bet365_h2h_odds[seq(2, length(bet365_h2h_odds), 2)]
-
-# Get only positions of elements of home odds that are numeric
-home_odds_to_keep <- which(str_detect(home_odds, "^\\d+\\.\\d+$"))
-
-home_teams <- home_teams[home_odds_to_keep]
-home_odds <- home_odds[home_odds_to_keep]
-
-
-home_h2h <- tibble(home_teams, home_odds) |>
-    left_join(start_dates, by = c("home_teams" = "team"))
-
-# Get Away teams - Even elements
-away_teams <- bet365_teams[seq(1, length(bet365_teams), 2)]
-away_odds <- bet365_h2h_odds[seq(1, length(bet365_h2h_odds), 2)]
-
-# Get only positions of elements of away odds that are numeric
-away_odds_to_keep <- which(str_detect(away_odds, "^\\d+\\.\\d+$"))
-
-away_teams <- away_teams[away_odds_to_keep]
-away_odds <- away_odds[away_odds_to_keep]
-
-away_h2h <- tibble(away_teams, away_odds) |>
-    left_join(start_dates, by = c("away_teams" = "team"))
-
-# Combine together into one table
-bet365_h2h <-
-    bind_cols(home_h2h, away_h2h) |>
-    mutate(home_teams = fix_team_names(home_teams),
-           away_teams = fix_team_names(away_teams)) |>
-    transmute(match = paste(home_teams, away_teams, sep = " v "),
-              start_time = `start_date...3`,
-              market_name = "Head To Head",
-              home_team = home_teams,
-              home_win = as.numeric(home_odds),
-              away_team = away_teams,
-              away_win = as.numeric(away_odds)) |>
-    mutate(start_time = dmy(paste(start_time, "2023"))) |> 
-    mutate(start_time = if_else(month(start_time) < 9, start_time + years(1), start_time)) |> 
-    mutate(margin = round((1/home_win + 1/away_win), digits = 3)) |> 
-    mutate(agency = "Bet365")
-
-# Write to csv
-bet365_h2h
-}
-
-# Run function
-bet365_h2h <- get_head_to_head()
-
-# Write to csv
-write_csv(bet365_h2h, "Data/scraped_odds/bet365_h2h.csv")
-
-##%######################################################%##
-#                                                          #
-####                    Player Props                    ####
-#                                                          #
-##%######################################################%##
-
-# Read scraped HTML from the BET365_HTML Folder
-scraped_files_player <- list.files("Data/BET365_HTML", full.names = TRUE, pattern = "player")
-
-get_player_props <- function() {
+scraped_files_player <- list.files("Data/BET365_HTML/", full.names = TRUE, pattern = "player")
 
 # Main Function
-main <- function(scraped_file) {
-
-# Get Markets
-bet365_player_markets <-
-    read_html(scraped_file) |> 
-    html_nodes(".gl-MarketGroup ")
-
-# Functions to get the information from each section----------------------------
-
-#===============================================================================
-# Player Points----------------------------------------------------------------#
-#===============================================================================
-
-# Function to get player points
-get_player_points <- function(html_market_node) {
-    # Market Name
-    market_name <-
-        html_market_node |> 
-        html_elements(".gl-MarketGroupButton_Text ") |> 
-        html_text()
-    
-    # Player Names
-    player_names <-
-        html_market_node |> 
-        html_elements(".srb-ParticipantLabelWithTeam_Name ") |> 
-        html_text()
-    
-    # Team Names
-    team_names <-
-        html_market_node |> 
-        html_elements(".srb-ParticipantLabelWithTeam_Team ") |> 
-        html_text()
-    
-    # Get column list
-    column_list <-
-        html_market_node |> 
-        html_elements(".gl-Market_General-columnheader")
-    
-    # Function to get odds and handicap from each column header-----------------
-    get_handicaps_and_odds <- function(column) {
-        # Name
-        col_name <-
-        column |>
-            html_elements(".gl-MarketColumnHeader ") |>
-            html_text()
-        
-        # Handicaps
-        col_handicaps <-
-        column |>
-            html_elements(".gl-ParticipantCenteredStacked_Handicap") |>
-            html_text()
-        
-        # Odds
-        col_odds <-
-        column |>
-            html_elements(".gl-ParticipantCenteredStacked_Odds") |>
-            html_text()
-        
-        # Combine into tibble
-        output <- tibble(col_handicaps, col_odds)
-        
-        # Append column name to tibble columns
-        names(output) <- paste(col_name, names(output), sep = "_")
-        
-        # Return tibble
-        return(output)
-    }
-    
-    # Get odds and handicaps for each column
-    handicaps_and_odds <-
-        map(column_list, get_handicaps_and_odds) |>
-        map(~ if (nrow(.) == 0) NULL else .) |>
-        bind_cols()
-    
-    # Combine into one tibble
-        tibble(market_name, team_names, player_names) |>
-        bind_cols(handicaps_and_odds)
-}
-
-# Get player points node
-all_nodes_names <-  
-    bet365_player_markets |> 
-    html_elements(".gl-MarketGroupButton_Text ") |> 
-    html_text()
-
-player_points_index <- which(str_detect(all_nodes_names, "^Player Points$"))
-
-# Get player points data
-bet365_player_points <- get_player_points(bet365_player_markets[player_points_index])
-
-# Tidy
-bet365_player_points <-
-    bet365_player_points |> 
-    filter(Over_col_handicaps == Under_col_handicaps) |> 
-    mutate(team_names = fix_team_names(team_names)) |>
-    transmute(player_name = player_names,
-              team_name = team_names,
-              market_name,
-              line = as.numeric(Over_col_handicaps),
-              over_price = as.numeric(Over_col_odds),
-              under_price = as.numeric(Under_col_odds)) |>
-    mutate(margin = round((1/over_price + 1/under_price), digits = 3)) |>
-    mutate(agency = "Bet365")
-
-#===============================================================================
-# Player Points Milestones-----------------------------------------------------#
-#===============================================================================
-
-# Function to get player points milestones
-get_player_points_milestones <- function(html_market_node) {
-    # Market Name
-    market_name <-
-        html_market_node |> 
-        html_elements(".gl-MarketGroupButton_Text ") |> 
-        html_text()
-    
-    # Player Names
-    player_names <-
-        html_market_node |> 
-        html_elements(".srb-ParticipantLabelWithTeam_Name ") |> 
-        html_text()
-    
-    # Team Names
-    team_names <-
-        html_market_node |> 
-        html_elements(".srb-ParticipantLabelWithTeam_Team ") |> 
-        html_text()
-    
-    # Get column list
-    column_list <-
-        html_market_node |> 
-        html_elements(".srb-HScrollPlaceColumnMarket")
-    
-    # Function to get odds and handicap from each column header-----------------
-    get_handicaps_and_odds <- function(column) {
-        # Name
-        col_name <-
-            column |>
-            html_elements(".srb-HScrollPlaceHeader ") |>
-            html_text()
-        
-        # Odds
-        col_odds <-
-            column |>
-            html_elements(".gl-ParticipantOddsOnly_Odds") |>
-            html_text()
-        
-        # Combine into tibble
-        output <- tibble(col_odds)
-        
-        # Append column name to tibble columns
-        names(output) <- paste(col_name, names(output), sep = "_")
-        
-        # Return tibble
-        return(output)
-    }
-    
-    # Get odds and handicaps for each column
-    handicaps_and_odds <-
-        map(column_list, get_handicaps_and_odds) |>
-        map(~ if (nrow(.) == 0) NULL else .) |>
-        bind_cols()
-    
-    # Combine into one tibble
-    tibble(market_name, team_names, player_names) |>
-        bind_cols(handicaps_and_odds)
-}
-
-# Get player points milestones node
-player_points_index <- which(str_detect(all_nodes_names, "^Player Points Milestones$"))
-
-# Get player points data
-bet365_player_points_milestones <- get_player_points_milestones(bet365_player_markets[player_points_index])
-
-# Tidy
-bet365_player_points_milestones <-
-    bet365_player_points_milestones |> 
-    pivot_longer(cols = -c(market_name, team_names, player_names), names_to = "line", values_to = "price") |> 
-    mutate(line = str_extract(line, "\\d+")) |> 
-    filter(price != "") |> 
-    mutate(team_names = fix_team_names(team_names)) |>
-    transmute(player_name = player_names,
-              team_name = team_names,
-              market_name = "Player Points",
-              line = as.numeric(line),
-              over_price = as.numeric(price)) |> 
-    mutate(line = line - 0.5)
-
-#===============================================================================
-# Player Points Low------------------------------------------------------------#
-#===============================================================================
-
-# Get player points node
-all_nodes_names <-  
-    bet365_player_markets |> 
-    html_elements(".gl-MarketGroupButton_Text ") |> 
-    html_text()
-
-player_points_low_index <- which(str_detect(all_nodes_names, "^Player Points Low$"))
-
-# Get player points data
-bet365_player_points_low <- get_player_points(bet365_player_markets[player_points_low_index])
-
-# Tidy
-bet365_player_points_low <-
-    bet365_player_points_low |> 
-    filter(Over_col_handicaps == Under_col_handicaps) |> 
-    mutate(team_names = fix_team_names(team_names)) |>
-    transmute(player_name = player_names,
-              team_name = team_names,
-              market_name,
-              line = as.numeric(Over_col_handicaps),
-              over_price = as.numeric(Over_col_odds),
-              under_price = as.numeric(Under_col_odds)) |>
-    mutate(margin = round((1/over_price + 1/under_price), digits = 3)) |>
-    mutate(agency = "Bet365")
-
-#===============================================================================
-# Player Points High-----------------------------------------------------------#
-#===============================================================================
-
-# Get player points node
-all_nodes_names <-  
-    bet365_player_markets |> 
-    html_elements(".gl-MarketGroupButton_Text ") |> 
-    html_text()
-
-player_points_high_index <- which(str_detect(all_nodes_names, "^Player Points High$"))
-
-# Get player points data
-bet365_player_points_high <- get_player_points(bet365_player_markets[player_points_high_index])
-
-# Tidy
-bet365_player_points_high <-
-    bet365_player_points_high |> 
-    filter(Over_col_handicaps == Under_col_handicaps) |> 
-    mutate(team_names = fix_team_names(team_names)) |>
-    transmute(player_name = player_names,
-              team_name = team_names,
-              market_name,
-              line = as.numeric(Over_col_handicaps),
-              over_price = as.numeric(Over_col_odds),
-              under_price = as.numeric(Under_col_odds)) |>
-    mutate(margin = round((1/over_price + 1/under_price), digits = 3)) |>
-    mutate(agency = "Bet365")
-
-#===============================================================================
-# Player Assists---------------------------------------------------------------#
-#===============================================================================
-
-# Function to get player assists
-get_player_assists <- function(html_market_node) {
-    # Market Name
-    market_name <-
-        html_market_node |> 
-        html_elements(".gl-MarketGroupButton_Text ") |> 
-        html_text()
-    
-    # Player Names
-    player_names <-
-        html_market_node |> 
-        html_elements(".srb-ParticipantLabelWithTeam_Name ") |> 
-        html_text()
-    
-    # Team Names
-    team_names <-
-        html_market_node |> 
-        html_elements(".srb-ParticipantLabelWithTeam_Team ") |> 
-        html_text()
-    
-    # Get column list
-    column_list <-
-        html_market_node |> 
-        html_elements(".gl-Market_General-columnheader")
-    
-    # Function to get odds and handicap from each column header-----------------
-    get_handicaps_and_odds <- function(column) {
-        # Name
-        col_name <-
-            column |>
-            html_elements(".gl-MarketColumnHeader ") |>
-            html_text()
-        
-        # Handicaps
-        col_handicaps <-
-            column |>
-            html_elements(".gl-ParticipantCenteredStacked_Handicap") |>
-            html_text()
-        
-        # Odds
-        col_odds <-
-            column |>
-            html_elements(".gl-ParticipantCenteredStacked_Odds") |>
-            html_text()
-        
-        # Combine into tibble
-        output <- tibble(col_handicaps, col_odds)
-        
-        # Append column name to tibble columns
-        names(output) <- paste(col_name, names(output), sep = "_")
-        
-        # Return tibble
-        return(output)
-    }
-    
-    # Get odds and handicaps for each column
-    handicaps_and_odds <-
-        map(column_list, get_handicaps_and_odds) |>
-        map(~ if (nrow(.) == 0) NULL else .) |>
-        bind_cols()
-    
-    # Combine into one tibble
-    tibble(market_name, team_names, player_names) |>
-        bind_cols(handicaps_and_odds)
-}
-
-# Get player assists node
-all_nodes_names <-  
-    bet365_player_markets |> 
-    html_elements(".gl-MarketGroupButton_Text ") |> 
-    html_text()
-
-player_assists_index <- which(str_detect(all_nodes_names, "^Player Assists$"))
-
-# Get player assists data
-bet365_player_assists <- get_player_assists(bet365_player_markets[player_assists_index])
-
-# Tidy
-bet365_player_assists <-
-    bet365_player_assists |> 
-    filter(Over_col_handicaps == Under_col_handicaps) |> 
-    mutate(team_names = fix_team_names(team_names)) |>
-    transmute(player_name = player_names,
-              team_name = team_names,
-              market_name,
-              line = as.numeric(Over_col_handicaps),
-              over_price = as.numeric(Over_col_odds),
-              under_price = as.numeric(Under_col_odds)) |>
-    mutate(margin = round((1/over_price + 1/under_price), digits = 3)) |>
-    mutate(agency = "Bet365")
-
-#===============================================================================
-# Player Assists Milestones----------------------------------------------------#
-#===============================================================================
-
-# Function to get player assists milestones
-get_player_assists_milestones <- function(html_market_node) {
-    # Market Name
-    market_name <-
-        html_market_node |> 
-        html_elements(".gl-MarketGroupButton_Text ") |> 
-        html_text()
-    
-    # Player Names
-    player_names <-
-        html_market_node |> 
-        html_elements(".srb-ParticipantLabelWithTeam_Name ") |> 
-        html_text()
-    
-    # Team Names
-    team_names <-
-        html_market_node |> 
-        html_elements(".srb-ParticipantLabelWithTeam_Team ") |> 
-        html_text()
-    
-    # Get column list
-    column_list <-
-        html_market_node |> 
-        html_elements(".srb-HScrollPlaceColumnMarket")
-    
-    # Function to get odds and handicap from each column header-----------------
-    get_handicaps_and_odds <- function(column) {
-        # Name
-        col_name <-
-            column |>
-            html_elements(".srb-HScrollPlaceHeader ") |>
-            html_text()
-        
-        # Odds
-        col_odds <-
-            column |>
-            html_elements(".gl-ParticipantOddsOnly_Odds") |>
-            html_text()
-        
-        # Combine into tibble
-        output <- tibble(col_odds)
-        
-        # Append column name to tibble columns
-        names(output) <- paste(col_name, names(output), sep = "_")
-        
-        # Return tibble
-        return(output)
-    }
-    
-    # Get odds and handicaps for each column
-    handicaps_and_odds <-
-        map(column_list, get_handicaps_and_odds) |>
-        map(~ if (nrow(.) == 0) NULL else .) |>
-        bind_cols()
-    
-    # Combine into one tibble
-    tibble(market_name, team_names, player_names) |>
-        bind_cols(handicaps_and_odds)
-}
-
-# Get player assists milestones node
-player_assists_index <- which(str_detect(all_nodes_names, "^Player Assists Milestones$"))
-
-# Get player assists data
-bet365_player_assists_milestones <- get_player_assists_milestones(bet365_player_markets[player_assists_index])
-
-# Tidy
-bet365_player_assists_milestones <-
-    bet365_player_assists_milestones |> 
-    pivot_longer(cols = -c(market_name, team_names, player_names), names_to = "line", values_to = "price") |> 
-    mutate(line = str_extract(line, "\\d+")) |> 
-    filter(price != "") |> 
-    mutate(team_names = fix_team_names(team_names)) |>
-    transmute(player_name = player_names,
-              team_name = team_names,
-              market_name = "Player Assists",
-              line = as.numeric(line),
-              over_price = as.numeric(price)) |> 
-    mutate(line = line - 0.5)
-
-#===============================================================================
-# Player Rebounds--------------------------------------------------------------#
-#===============================================================================
-
-# Function to get player rebounds
-get_player_rebounds <- function(html_market_node) {
-    # Market Name
-    market_name <-
-        html_market_node |> 
-        html_elements(".gl-MarketGroupButton_Text ") |> 
-        html_text()
-    
-    # Player Names
-    player_names <-
-        html_market_node |> 
-        html_elements(".srb-ParticipantLabelWithTeam_Name ") |> 
-        html_text()
-    
-    # Team Names
-    team_names <-
-        html_market_node |> 
-        html_elements(".srb-ParticipantLabelWithTeam_Team ") |> 
-        html_text()
-    
-    # Get column list
-    column_list <-
-        html_market_node |> 
-        html_elements(".gl-Market_General-columnheader")
-    
-    # Function to get odds and handicap from each column header-----------------
-    get_handicaps_and_odds <- function(column) {
-        # Name
-        col_name <-
-            column |>
-            html_elements(".gl-MarketColumnHeader ") |>
-            html_text()
-        
-        # Handicaps
-        col_handicaps <-
-            column |>
-            html_elements(".gl-ParticipantCenteredStacked_Handicap") |>
-            html_text()
-        
-        # Odds
-        col_odds <-
-            column |>
-            html_elements(".gl-ParticipantCenteredStacked_Odds") |>
-            html_text()
-        
-        # Combine into tibble
-        output <- tibble(col_handicaps, col_odds)
-        
-        # Append column name to tibble columns
-        names(output) <- paste(col_name, names(output), sep = "_")
-        
-        # Return tibble
-        return(output)
-    }
-    
-    # Get odds and handicaps for each column
-    handicaps_and_odds <-
-        map(column_list, get_handicaps_and_odds) |>
-        map(~ if (nrow(.) == 0) NULL else .) |>
-        bind_cols()
-    
-    # Combine into one tibble
-    tibble(market_name, team_names, player_names) |>
-        bind_cols(handicaps_and_odds)
-}
-
-# Get player rebounds node
-all_nodes_names <-  
-    bet365_player_markets |> 
-    html_elements(".gl-MarketGroupButton_Text ") |> 
-    html_text()
-
-player_rebounds_index <- which(str_detect(all_nodes_names, "^Player Rebounds$"))
-
-# Get player rebounds data
-bet365_player_rebounds <- get_player_rebounds(bet365_player_markets[player_rebounds_index])
-
-# Tidy
-if (nrow(bet365_player_rebounds) > 0) {
-bet365_player_rebounds <-
-    bet365_player_rebounds |> 
-    filter(Over_col_handicaps == Under_col_handicaps) |> 
-    mutate(team_names = fix_team_names(team_names)) |>
-    transmute(player_name = player_names,
-              team_name = team_names,
-              market_name,
-              line = as.numeric(Over_col_handicaps),
-              over_price = as.numeric(Over_col_odds),
-              under_price = as.numeric(Under_col_odds)) |>
-    mutate(margin = round((1/over_price + 1/under_price), digits = 3)) |>
-    mutate(agency = "Bet365")}
-
-if (nrow(bet365_player_rebounds) == 0) {
-    bet365_player_rebounds <- tibble(player_name = character(),
-                                     team_name = character(),
-                                     market_name = character(),
-                                     line = numeric(),
-                                     over_price = numeric(),
-                                     under_price = numeric(),
-                                     margin = numeric(),
-                                     agency = "Bet365")
-}
-
-#===============================================================================
-# Player Rebounds Milestones---------------------------------------------------#
-#===============================================================================
-
-# Function to get player rebounds milestones
-get_player_rebounds_milestones <- function(html_market_node) {
-    # Market Name
-    market_name <-
-        html_market_node |> 
-        html_elements(".gl-MarketGroupButton_Text ") |> 
-        html_text()
-    
-    # Player Names
-    player_names <-
-        html_market_node |> 
-        html_elements(".srb-ParticipantLabelWithTeam_Name ") |> 
-        html_text()
-    
-    # Team Names
-    team_names <-
-        html_market_node |> 
-        html_elements(".srb-ParticipantLabelWithTeam_Team ") |> 
-        html_text()
-    
-    # Get column list
-    column_list <-
-        html_market_node |> 
-        html_elements(".srb-HScrollPlaceColumnMarket")
-    
-    # Function to get odds and handicap from each column header-----------------
-    get_handicaps_and_odds <- function(column) {
-        # Name
-        col_name <-
-            column |>
-            html_elements(".srb-HScrollPlaceHeader ") |>
-            html_text()
-        
-        # Odds
-        col_odds <-
-            column |>
-            html_elements(".gl-ParticipantOddsOnly_Odds") |>
-            html_text()
-        
-        # Combine into tibble
-        output <- tibble(col_odds)
-        
-        # Append column name to tibble columns
-        names(output) <- paste(col_name, names(output), sep = "_")
-        
-        # Return tibble
-        return(output)
-    }
-    
-    # Get odds and handicaps for each column
-    handicaps_and_odds <-
-        map(column_list, get_handicaps_and_odds) |>
-        map(~ if (nrow(.) == 0) NULL else .) |>
-        bind_cols()
-    
-    # Combine into one tibble
-    tibble(market_name, team_names, player_names) |>
-        bind_cols(handicaps_and_odds)
-}
-
-# Get player rebounds milestones node
-player_rebounds_index <- which(str_detect(all_nodes_names, "^Player Rebounds Milestones$"))
-
-# Get player rebounds data
-bet365_player_rebounds_milestones <- get_player_rebounds_milestones(bet365_player_markets[player_rebounds_index])
-
-# Tidy
-if (nrow(bet365_player_rebounds_milestones) > 0) {
-bet365_player_rebounds_milestones <-
-    bet365_player_rebounds_milestones |> 
-    pivot_longer(cols = -c(market_name, team_names, player_names), names_to = "line", values_to = "price") |> 
-    mutate(line = str_extract(line, "\\d+")) |> 
-    filter(price != "") |> 
-    mutate(team_names = fix_team_names(team_names)) |>
-    transmute(player_name = player_names,
-              team_name = team_names,
-              market_name = "Player rebounds",
-              line = as.numeric(line),
-              over_price = as.numeric(price)) |> 
-    mutate(line = line - 0.5)}
-
-if (nrow(bet365_player_rebounds_milestones) == 0) {
-    bet365_player_rebounds_milestones <- tibble(player_name = character(),
-                                                team_name = character(),
-                                                market_name = character(),
-                                                line = numeric(),
-                                                over_price = numeric())}
-
-#===============================================================================
-# Player Threes Made-----------------------------------------------------------#
-#===============================================================================
-
-# Function to get player threes
-get_player_threes <- function(html_market_node) {
-    # Market Name
-    market_name <-
-        html_market_node |> 
-        html_elements(".gl-MarketGroupButton_Text ") |>
-        html_text()
-    
-    # Player Names
-    player_names <-
-        html_market_node |> 
-        html_elements(".srb-ParticipantLabelWithTeam_Name ") |> 
-        html_text()
-    
-    # Team Names
-    team_names <-
-        html_market_node |> 
-        html_elements(".srb-ParticipantLabelWithTeam_Team ") |> 
-        html_text()
-    
-    # Get column list
-    column_list <-
-        html_market_node |> 
-        html_elements(".gl-Market_General-columnheader")
-    
-    # Function to get odds and handicap from each column header-----------------
-    get_handicaps_and_odds <- function(column) {
-        # Name
-        col_name <-
-            column |>
-            html_elements(".gl-MarketColumnHeader ") |>
-            html_text()
-        
-        # Handicaps
-        col_handicaps <-
-            column |>
-            html_elements(".gl-ParticipantCenteredStacked_Handicap") |>
-            html_text()
-        
-        # Odds
-        col_odds <-
-            column |>
-            html_elements(".gl-ParticipantCenteredStacked_Odds") |>
-            html_text()
-        
-        # Combine into tibble
-        output <- tibble(col_handicaps, col_odds)
-        
-        # Append column name to tibble columns
-        names(output) <- paste(col_name, names(output), sep = "_")
-        
-        # Return tibble
-        return(output)
-    }
-    
-    # Get odds and handicaps for each column
-    handicaps_and_odds <-
-        map(column_list, get_handicaps_and_odds) |>
-        map(~ if (nrow(.) == 0) NULL else .) |>
-        bind_cols()
-    
-    # Combine into one tibble
-    tibble(market_name, team_names, player_names) |>
-        bind_cols(handicaps_and_odds)
-}
-
-# Get player threes node
-all_nodes_names <-  
-    bet365_player_markets |> 
-    html_elements(".gl-MarketGroupButton_Text ") |> 
-    html_text()
-
-player_threes_index <- which(str_detect(all_nodes_names, "^Player Threes Made$"))
-
-# Get player threes data
-bet365_player_threes <- get_player_threes(bet365_player_markets[player_threes_index])
-
-# Tidy
-bet365_player_threes <-
-    bet365_player_threes |> 
-    filter(Over_col_handicaps == Under_col_handicaps) |> 
-    mutate(team_names = fix_team_names(team_names)) |>
-    transmute(player_name = player_names,
-              team_name = team_names,
-              market_name = "Player Threes",
-              line = as.numeric(Over_col_handicaps),
-              over_price = as.numeric(Over_col_odds),
-              under_price = as.numeric(Under_col_odds)) |>
-    mutate(margin = round((1/over_price + 1/under_price), digits = 3)) |>
-    mutate(agency = "Bet365")
-
-#===============================================================================
-# Player Threes Made Milestones---------------------------------------------------#
-#===============================================================================
-
-# Function to get player threes_made milestones
-get_player_threes_made_milestones <- function(html_market_node) {
-    # Market Name
-    market_name <-
-        html_market_node |> 
-        html_elements(".gl-MarketGroupButton_Text ") |> 
-        html_text()
-    
-    # Player Names
-    player_names <-
-        html_market_node |> 
-        html_elements(".srb-ParticipantLabelWithTeam_Name ") |> 
-        html_text()
-    
-    # Team Names
-    team_names <-
-        html_market_node |> 
-        html_elements(".srb-ParticipantLabelWithTeam_Team ") |> 
-        html_text()
-    
-    # Get column list
-    column_list <-
-        html_market_node |> 
-        html_elements(".srb-HScrollPlaceColumnMarket")
-    
-    # Function to get odds and handicap from each column header-----------------
-    get_handicaps_and_odds <- function(column) {
-        # Name
-        col_name <-
-            column |>
-            html_elements(".srb-HScrollPlaceHeader ") |>
-            html_text()
-        
-        # Odds
-        col_odds <-
-            column |>
-            html_elements(".gl-ParticipantOddsOnly_Odds") |>
-            html_text()
-        
-        # Combine into tibble
-        output <- tibble(col_odds)
-        
-        # Append column name to tibble columns
-        names(output) <- paste(col_name, names(output), sep = "_")
-        
-        # Return tibble
-        return(output)
-    }
-    
-    # Get odds and handicaps for each column
-    handicaps_and_odds <-
-        map(column_list, get_handicaps_and_odds) |>
-        map(~ if (nrow(.) == 0) NULL else .) |>
-        bind_cols()
-    
-    # Combine into one tibble
-    tibble(market_name, team_names, player_names) |>
-        bind_cols(handicaps_and_odds)
-}
-
-# Get player threes_made milestones node
-player_threes_made_index <- which(str_detect(all_nodes_names, "^Player Threes Made Milestones$"))
-
-# Get player threes_made data
-bet365_player_threes_made_milestones <- get_player_threes_made_milestones(bet365_player_markets[player_threes_made_index])
-
-# Tidy
-bet365_player_threes_made_milestones <-
-    bet365_player_threes_made_milestones |> 
-    pivot_longer(cols = -c(market_name, team_names, player_names), names_to = "line", values_to = "price") |> 
-    mutate(line = str_extract(line, "\\d+")) |> 
-    filter(price != "") |> 
-    mutate(team_names = fix_team_names(team_names)) |>
-    transmute(player_name = player_names,
-              team_name = team_names,
-              market_name = "Player Threes",
-              line = as.numeric(line),
-              over_price = as.numeric(price)) |> 
-    mutate(line = line - 0.5)
-
-#===============================================================================
-# Player Steals----------------------------------------------------------------#
-#===============================================================================
-
-# Function to get player steals
-get_player_steals <- function(html_market_node) {
-    # Market Name
-    market_name <-
-        html_market_node |> 
-        html_elements(".gl-MarketGroupButton_Text ") |> 
-        html_text()
-    
-    # Player Names
-    player_names <-
-        html_market_node |> 
-        html_elements(".srb-ParticipantLabelWithTeam_Name ") |> 
-        html_text()
-    
-    # Team Names
-    team_names <-
-        html_market_node |> 
-        html_elements(".srb-ParticipantLabelWithTeam_Team ") |> 
-        html_text()
-    
-    # Get column list
-    column_list <-
-        html_market_node |> 
-        html_elements(".gl-Market_General-columnheader")
-    
-    # Function to get odds and handicap from each column header-----------------
-    get_handicaps_and_odds <- function(column) {
-        # Name
-        col_name <-
-            column |>
-            html_elements(".gl-MarketColumnHeader ") |>
-            html_text()
-        
-        # Handicaps
-        col_handicaps <-
-            column |>
-            html_elements(".gl-ParticipantCenteredStacked_Handicap") |>
-            html_text()
-        
-        # Odds
-        col_odds <-
-            column |>
-            html_elements(".gl-ParticipantCenteredStacked_Odds") |>
-            html_text()
-        
-        # Combine into tibble
-        output <- tibble(col_handicaps, col_odds)
-        
-        # Append column name to tibble columns
-        names(output) <- paste(col_name, names(output), sep = "_")
-        
-        # Return tibble
-        return(output)
-    }
-    
-    # Get odds and handicaps for each column
-    handicaps_and_odds <-
-        map(column_list, get_handicaps_and_odds) |>
-        map(~ if (nrow(.) == 0) NULL else .) |>
-        bind_cols()
-    
-    # Combine into one tibble
-    tibble(market_name, team_names, player_names) |>
-        bind_cols(handicaps_and_odds)
-}
-
-# Get player steals node
-all_nodes_names <-  
-    bet365_player_markets |> 
-    html_elements(".gl-MarketGroupButton_Text ") |> 
-    html_text()
-
-player_steals_index <- which(str_detect(all_nodes_names, "^Player Steals$"))
-
-# Get player steals data
-bet365_player_steals <- get_player_steals(bet365_player_markets[player_steals_index])
-
-# Tidy
-bet365_player_steals <-
-    bet365_player_steals |> 
-    filter(Over_col_handicaps == Under_col_handicaps) |> 
-    mutate(team_names = fix_team_names(team_names)) |>
-    transmute(player_name = player_names,
-              team_name = team_names,
-              market_name = "Player Steals",
-              line = as.numeric(Over_col_handicaps),
-              over_price = as.numeric(Over_col_odds),
-              under_price = as.numeric(Under_col_odds)) |>
-    mutate(margin = round((1/over_price + 1/under_price), digits = 3)) |>
-    mutate(agency = "Bet365")
-
-#===============================================================================
-# Player Blocks----------------------------------------------------------------#
-#===============================================================================
-
-# Function to get player blocks
-get_player_blocks <- function(html_market_node) {
-    # Market Name
-    market_name <-
-        html_market_node |> 
-        html_elements(".gl-MarketGroupButton_Text ") |> 
-        html_text()
-    
-    # Player Names
-    player_names <-
-        html_market_node |> 
-        html_elements(".srb-ParticipantLabelWithTeam_Name ") |> 
-        html_text()
-    
-    # Team Names
-    team_names <-
-        html_market_node |> 
-        html_elements(".srb-ParticipantLabelWithTeam_Team ") |> 
-        html_text()
-    
-    # Get column list
-    column_list <-
-        html_market_node |> 
-        html_elements(".gl-Market_General-columnheader")
-    
-    # Function to get odds and handicap from each column header-----------------
-    get_handicaps_and_odds <- function(column) {
-        # Name
-        col_name <-
-            column |>
-            html_elements(".gl-MarketColumnHeader ") |>
-            html_text()
-        
-        # Handicaps
-        col_handicaps <-
-            column |>
-            html_elements(".gl-ParticipantCenteredStacked_Handicap") |>
-            html_text()
-        
-        # Odds
-        col_odds <-
-            column |>
-            html_elements(".gl-ParticipantCenteredStacked_Odds") |>
-            html_text()
-        
-        # Combine into tibble
-        output <- tibble(col_handicaps, col_odds)
-        
-        # Append column name to tibble columns
-        names(output) <- paste(col_name, names(output), sep = "_")
-        
-        # Return tibble
-        return(output)
-    }
-    
-    # Get odds and handicaps for each column
-    handicaps_and_odds <-
-        map(column_list, get_handicaps_and_odds) |>
-        map(~ if (nrow(.) == 0) NULL else .) |>
-        bind_cols()
-    
-    # Combine into one tibble
-    tibble(market_name, team_names, player_names) |>
-        bind_cols(handicaps_and_odds)
-}
-
-# Get player blocks node
-all_nodes_names <-  
-    bet365_player_markets |> 
-    html_elements(".gl-MarketGroupButton_Text ") |> 
-    html_text()
-
-player_blocks_index <- which(str_detect(all_nodes_names, "^Player Blocks$"))
-
-# Get player blocks data
-bet365_player_blocks <- get_player_blocks(bet365_player_markets[player_blocks_index])
-
-# Tidy
-bet365_player_blocks <-
-    bet365_player_blocks |> 
-    filter(Over_col_handicaps == Under_col_handicaps) |> 
-    mutate(team_names = fix_team_names(team_names)) |>
-    transmute(player_name = player_names,
-              team_name = team_names,
-              market_name = "Player Blocks",
-              line = as.numeric(Over_col_handicaps),
-              over_price = as.numeric(Over_col_odds),
-              under_price = as.numeric(Under_col_odds)) |>
-    mutate(margin = round((1/over_price + 1/under_price), digits = 3)) |>
-    mutate(agency = "Bet365")
-
-#===============================================================================
-# Player Points, Assists and Rebounds------------------------------------------#
-#===============================================================================
-
-# Function to get player points_assists_rebounds
-get_player_points_assists_rebounds <- function(html_market_node) {
-    # Market Name
-    market_name <-
-        html_market_node |> 
-        html_elements(".gl-MarketGroupButton_Text ") |> 
-        html_text()
-    
-    # Player Names
-    player_names <-
-        html_market_node |> 
-        html_elements(".srb-ParticipantLabelWithTeam_Name ") |> 
-        html_text()
-    
-    # Team Names
-    team_names <-
-        html_market_node |> 
-        html_elements(".srb-ParticipantLabelWithTeam_Team ") |> 
-        html_text()
-    
-    # Get column list
-    column_list <-
-        html_market_node |> 
-        html_elements(".gl-Market_General-columnheader")
-    
-    # Function to get odds and handicap from each column header-----------------
-    get_handicaps_and_odds <- function(column) {
-        # Name
-        col_name <-
-            column |>
-            html_elements(".gl-MarketColumnHeader ") |>
-            html_text()
-        
-        # Handicaps
-        col_handicaps <-
-            column |>
-            html_elements(".gl-ParticipantCenteredStacked_Handicap") |>
-            html_text()
-        
-        # Odds
-        col_odds <-
-            column |>
-            html_elements(".gl-ParticipantCenteredStacked_Odds") |>
-            html_text()
-        
-        # Combine into tibble
-        output <- tibble(col_handicaps, col_odds)
-        
-        # Append column name to tibble columns
-        names(output) <- paste(col_name, names(output), sep = "_")
-        
-        # Return tibble
-        return(output)
-    }
-    
-    # Get odds and handicaps for each column
-    handicaps_and_odds <-
-        map(column_list, get_handicaps_and_odds) |>
-        map(~ if (nrow(.) == 0) NULL else .) |>
-        bind_cols()
-    
-    # Combine into one tibble
-    tibble(market_name, team_names, player_names) |>
-        bind_cols(handicaps_and_odds)
-}
-
-# Get player points_assists_rebounds node
-all_nodes_names <-  
-    bet365_player_markets |> 
-    html_elements(".gl-MarketGroupButton_Text ") |> 
-    html_text()
-
-player_points_assists_rebounds_index <- which(str_detect(all_nodes_names, "^Player Points, Assists and Rebounds$"))
-
-# Get player points_assists_rebounds data
-bet365_player_points_assists_rebounds <- get_player_points_assists_rebounds(bet365_player_markets[player_points_assists_rebounds_index])
-
-# Tidy
-if (nrow(bet365_player_points_assists_rebounds) > 0) {
+get_player_props <- function(scraped_file) {
+  # Get Markets
+  bet365_player_markets <-
+    read_html(scraped_file) |>
+    html_nodes(".gl-MarketGroupPod")
   
-bet365_player_points_assists_rebounds <-
-    bet365_player_points_assists_rebounds |> 
-    filter(Over_col_handicaps == Under_col_handicaps) |> 
-    mutate(team_names = fix_team_names(team_names)) |>
-    transmute(player_name = player_names,
-              team_name = team_names,
-              market_name = "Player PRAs",
-              line = as.numeric(Over_col_handicaps),
-              over_price = as.numeric(Over_col_odds),
-              under_price = as.numeric(Under_col_odds)) |>
-    mutate(margin = round((1/over_price + 1/under_price), digits = 3)) |>
-    mutate(agency = "Bet365")}
-
-if (nrow(bet365_player_points_assists_rebounds) == 0) {
-  bet365_player_points_assists_rebounds <- tibble(player_name = character(),
-                                                  team_name = character(),
-                                                  market_name = character(),
-                                                  line = numeric(),
-                                                  over_price = numeric(),
-                                                  under_price = numeric(),
-                                                  margin = numeric(),
-                                                  agency = character())
+  # Market Names
+  market_names <-
+    bet365_player_markets |>
+    html_elements(".cm-MarketGroupWithIconsButton_Text, .sc-MarketGroupButtonWithStats_Text") |>
+    html_text()
+  
+  #=============================================================================
+  # Player Points Over / Under
+  #=============================================================================
+  
+  # Get index for node with text "Player Points Over/Under"
+  points_over_under_index <- which(market_names == "Player Points")
+  
+  # Get Player Names from node
+  points_players <-
+    bet365_player_markets[[points_over_under_index]] |>
+    html_elements(".srb-ParticipantLabelWithTeam_Name") |>
+    html_text()
+  
+  # # Get Player Teams from node
+  # points_teams <-
+  #     bet365_player_markets[[points_over_under_index]] |>
+  #     html_elements(".srb-ParticipantLabelWithTeam_Team") |>
+  #     html_text()
+  
+  # Get Over Node Index
+  points_cols <-
+    bet365_player_markets[[points_over_under_index]] |>
+    html_elements(".gl-Market_General")
+  
+  points_over_index <- which(str_detect(points_cols |> html_text(), "Over"))
+  
+  # Get Over Lines
+  points_over_lines <-
+    points_cols[[points_over_index]] |>
+    html_elements(".gl-ParticipantCenteredStacked_Handicap") |>
+    html_text()
+  
+  # Get Over Odds
+  points_over_odds <-
+    points_cols[[points_over_index]] |>
+    html_elements(".gl-ParticipantCenteredStacked_Odds") |>
+    html_text()
+  
+  # Get Under Node Index
+  points_under_index <- which(str_detect(points_cols |> html_text(), "Under"))
+  
+  # Get Under Odds
+  points_under_odds <-
+    points_cols[[points_under_index]] |>
+    html_elements(".gl-ParticipantCenteredStacked_Odds") |>
+    html_text()
+  
+  # Create Player Points Table
+  player_points <-
+    tibble(player = points_players,
+           # team = points_teams,
+           line = as.numeric(points_over_lines),
+           over_price = as.numeric(points_over_odds),
+           under_price = as.numeric(points_under_odds)) |>
+    mutate(market_name = "Player Points Over/Under") |>
+    mutate(agency = "Bet365")
+  
+  #=============================================================================
+  # Alternate Player Points
+  #=============================================================================
+  
+  # Get index for node with text "Player Points Milestones"
+  alternate_points_index <- which(market_names == "Player Points Milestones")
+  
+  # Get Player Names from node
+  alternate_points_players <-
+    bet365_player_markets[[alternate_points_index]] |>
+    html_elements(".srb-ParticipantLabelWithTeam_Name") |>
+    html_text()
+  
+  # # Get Player Teams from node
+  # alternate_points_teams <-
+  #     bet365_player_markets[[alternate_points_index]] |>
+  #     html_elements(".srb-ParticipantLabelWithTeam_Team") |>
+  #     html_text()
+  
+  # Get Points Node Indexes for 5 to 40 points
+  alternate_points_cols <-
+    bet365_player_markets[[alternate_points_index]] |>
+    html_elements(".gl-Market_General")
+  
+  alternate_points_5_index <- which(str_detect(alternate_points_cols |> html_node(".srb-HScrollPlaceHeader ") |> html_text(), "^5$"))
+  alternate_points_10_index <- which(str_detect(alternate_points_cols |> html_node(".srb-HScrollPlaceHeader ") |> html_text(), "10"))
+  alternate_points_15_index <- which(str_detect(alternate_points_cols |> html_node(".srb-HScrollPlaceHeader ") |> html_text(), "15"))
+  alternate_points_20_index <- which(str_detect(alternate_points_cols |> html_node(".srb-HScrollPlaceHeader ") |> html_text(), "20"))
+  alternate_points_25_index <- which(str_detect(alternate_points_cols |> html_node(".srb-HScrollPlaceHeader ") |> html_text(), "25"))
+  alternate_points_30_index <- which(str_detect(alternate_points_cols |> html_node(".srb-HScrollPlaceHeader ") |> html_text(), "30"))
+  alternate_points_35_index <- which(str_detect(alternate_points_cols |> html_node(".srb-HScrollPlaceHeader ") |> html_text(), "35"))
+  alternate_points_40_index <- which(str_detect(alternate_points_cols |> html_node(".srb-HScrollPlaceHeader ") |> html_text(), "40"))
+  
+  # Get Odds for each points range
+  alternate_points_5_odds <-
+    alternate_points_cols[[alternate_points_5_index]] |>
+    html_elements(".gl-ParticipantOddsOnly_Odds") |>
+    html_text()
+  
+  alternate_points_10_odds <-
+    alternate_points_cols[[alternate_points_10_index]] |>
+    html_elements(".gl-ParticipantOddsOnly_Odds") |>
+    html_text()
+  
+  alternate_points_15_odds <-
+    alternate_points_cols[[alternate_points_15_index]] |>
+    html_elements(".gl-ParticipantOddsOnly_Odds") |>
+    html_text()
+  
+  alternate_points_20_odds <-
+    alternate_points_cols[[alternate_points_20_index]] |>
+    html_elements(".gl-ParticipantOddsOnly_Odds") |>
+    html_text()
+  
+  alternate_points_25_odds <-
+    alternate_points_cols[[alternate_points_25_index]] |>
+    html_elements(".gl-ParticipantOddsOnly_Odds") |>
+    html_text()
+  
+  alternate_points_30_odds <-
+    alternate_points_cols[[alternate_points_30_index]] |>
+    html_elements(".gl-ParticipantOddsOnly_Odds") |>
+    html_text()
+  
+  alternate_points_35_odds <-
+    alternate_points_cols[[alternate_points_35_index]] |>
+    html_elements(".gl-ParticipantOddsOnly_Odds") |>
+    html_text()
+  
+  alternate_points_40_odds <-
+    alternate_points_cols[[alternate_points_40_index]] |>
+    html_elements(".gl-ParticipantOddsOnly_Odds") |>
+    html_text()
+  
+  # Create Alternate Player Points Tables
+  alternate_points_5 <-
+    tibble(player = alternate_points_players,
+           # team = alternate_points_teams,
+           line = 5,
+           over_price = as.numeric(alternate_points_5_odds)) |>
+    mutate(market_name = "Alternate Player Points") |>
+    mutate(agency = "Bet365")
+  
+  alternate_points_10 <-
+    tibble(player = alternate_points_players,
+           # team = alternate_points_teams,
+           line = 10,
+           over_price = as.numeric(alternate_points_10_odds)) |>
+    mutate(market_name = "Alternate Player Points") |>
+    mutate(agency = "Bet365")
+  
+  alternate_points_15 <-
+    tibble(player = alternate_points_players,
+           # team = alternate_points_teams,
+           line = 15,
+           over_price = as.numeric(alternate_points_15_odds)) |>
+    mutate(market_name = "Alternate Player Points") |>
+    mutate(agency = "Bet365")
+  
+  alternate_points_20 <-
+    tibble(player = alternate_points_players,
+           # team = alternate_points_teams,
+           line = 20,
+           over_price = as.numeric(alternate_points_20_odds)) |>
+    mutate(market_name = "Alternate Player Points") |>
+    mutate(agency = "Bet365")
+  
+  alternate_points_25 <-
+    tibble(player = alternate_points_players,
+           # team = alternate_points_teams,
+           line = 25,
+           over_price = as.numeric(alternate_points_25_odds)) |>
+    mutate(market_name = "Alternate Player Points") |>
+    mutate(agency = "Bet365")
+  
+  alternate_points_30 <-
+    tibble(player = alternate_points_players,
+           # team = alternate_points_teams,
+           line = 30,
+           over_price = as.numeric(alternate_points_30_odds)) |>
+    mutate(market_name = "Alternate Player Points") |>
+    mutate(agency = "Bet365")
+  
+  alternate_points_35 <-
+    tibble(player = alternate_points_players,
+           # team = alternate_points_teams,
+           line = 35,
+           over_price = as.numeric(alternate_points_35_odds)) |>
+    mutate(market_name = "Alternate Player Points") |>
+    mutate(agency = "Bet365")
+  
+  alternate_points_40 <-
+    tibble(player = alternate_points_players,
+           # team = alternate_points_teams,
+           line = 40,
+           over_price = as.numeric(alternate_points_40_odds)) |>
+    mutate(market_name = "Alternate Player Points") |>
+    mutate(agency = "Bet365")
+  
+  # Combine
+  alternate_player_points <-
+    bind_rows(alternate_points_5, alternate_points_10, alternate_points_15, alternate_points_20,
+              alternate_points_25, alternate_points_30, alternate_points_35, alternate_points_40) |> 
+    filter(!is.na(over_price))
+  
+  
+  #=============================================================================
+  # Combine Lines and milestones for Player Points
+  #=============================================================================
+  
+  # Get teams
+  team_names <-
+    scraped_file |> 
+    read_html() |> 
+    html_nodes(".sph-FixturePodHeader_TeamName ") |> 
+    html_text()
+  
+  team_names <- fix_team_names(team_names)
+  
+  # Get Match Name
+  match_name <- paste(team_names, collapse = " v ")
+  
+  # Combine all tables
+  player_points_all <-
+    bind_rows(player_points,alternate_player_points) |> 
+    arrange(player, line, over_price) |> 
+    mutate(market_name = "Player Points") |> 
+    mutate(match = match_name) |> 
+    relocate(match, .before = player)
+  
+  #=============================================================================
+  # Player Rebounds Over / Under
+  #=============================================================================
+  
+  # Get index for node with text "Player Rebounds Over/Under"
+  rebounds_over_under_index <- which(market_names == "Player Rebounds")
+  
+  # Get Player Names from node
+  rebounds_players <-
+    bet365_player_markets[[rebounds_over_under_index]] |>
+    html_elements(".srb-ParticipantLabelWithTeam_Name") |>
+    html_text()
+  
+  # # Get Player Teams from node
+  # rebounds_teams <-
+  #     bet365_player_markets[[rebounds_over_under_index]] |>
+  #     html_elements(".srb-ParticipantLabelWithTeam_Team") |>
+  #     html_text()
+  
+  # Get Over Node Index
+  rebounds_cols <-
+    bet365_player_markets[[rebounds_over_under_index]] |>
+    html_elements(".gl-Market_General")
+  
+  rebounds_over_index <- which(str_detect(rebounds_cols |> html_text(), "Over"))
+  
+  # Get Over Lines
+  rebounds_over_lines <-
+    rebounds_cols[[rebounds_over_index]] |>
+    html_elements(".gl-ParticipantCenteredStacked_Handicap") |>
+    html_text()
+  
+  # Get Over Odds
+  rebounds_over_odds <-
+    rebounds_cols[[rebounds_over_index]] |>
+    html_elements(".gl-ParticipantCenteredStacked_Odds") |>
+    html_text()
+  
+  # Get Under Node Index
+  rebounds_under_index <- which(str_detect(rebounds_cols |> html_text(), "Under"))
+  
+  # Get Under Odds
+  rebounds_under_odds <-
+    rebounds_cols[[rebounds_under_index]] |>
+    html_elements(".gl-ParticipantCenteredStacked_Odds") |>
+    html_text()
+  
+  # Create Player Rebounds Table
+  player_rebounds <-
+    tibble(player = rebounds_players,
+           # team = rebounds_teams,
+           line = as.numeric(rebounds_over_lines),
+           over_price = as.numeric(rebounds_over_odds),
+           under_price = as.numeric(rebounds_under_odds)) |>
+    mutate(market_name = "Player Rebounds Over/Under") |>
+    mutate(agency = "Bet365")
+  
+  #=============================================================================
+  # Alternate Player Rebounds
+  #=============================================================================
+  
+  # Get index for node with text "Player Rebounds Milestones"
+  alternate_rebounds_index <- which(market_names == "Player Rebounds Milestones")
+  
+  # Get Player Names from node
+  alternate_rebounds_players <-
+    bet365_player_markets[[alternate_rebounds_index]] |>
+    html_elements(".srb-ParticipantLabelWithTeam_Name") |>
+    html_text()
+  
+  # # Get Player Teams from node
+  # alternate_rebounds_teams <-
+  #     bet365_player_markets[[alternate_rebounds_index]] |>
+  #     html_elements(".srb-ParticipantLabelWithTeam_Team") |>
+  #     html_text()
+  
+  # Get Rebounds Node Indexes for 3 to 17 rebounds
+  alternate_rebounds_cols <-
+    bet365_player_markets[[alternate_rebounds_index]] |>
+    html_elements(".gl-Market_General")
+  
+  alternate_rebounds_3_index <- which(str_detect(alternate_rebounds_cols |> html_node(".srb-HScrollPlaceHeader ") |> html_text(), "^3$"))
+  alternate_rebounds_5_index <- which(str_detect(alternate_rebounds_cols |> html_node(".srb-HScrollPlaceHeader ") |> html_text(), "^5$"))
+  alternate_rebounds_7_index <- which(str_detect(alternate_rebounds_cols |> html_node(".srb-HScrollPlaceHeader ") |> html_text(), "^7$"))
+  alternate_rebounds_10_index <- which(str_detect(alternate_rebounds_cols |> html_node(".srb-HScrollPlaceHeader ") |> html_text(), "10"))
+  alternate_rebounds_13_index <- which(str_detect(alternate_rebounds_cols |> html_node(".srb-HScrollPlaceHeader ") |> html_text(), "13"))
+  alternate_rebounds_15_index <- which(str_detect(alternate_rebounds_cols |> html_node(".srb-HScrollPlaceHeader ") |> html_text(), "15"))
+  alternate_rebounds_17_index <- which(str_detect(alternate_rebounds_cols |> html_node(".srb-HScrollPlaceHeader ") |> html_text(), "17"))
+  
+  # Get Odds for each rebounds range
+  alternate_rebounds_3_odds <-
+    alternate_rebounds_cols[[alternate_rebounds_3_index]] |>
+    html_elements(".gl-ParticipantOddsOnly_Odds") |>
+    html_text()
+  
+  alternate_rebounds_5_odds <-
+    alternate_rebounds_cols[[alternate_rebounds_5_index]] |>
+    html_elements(".gl-ParticipantOddsOnly_Odds") |>
+    html_text()
+  
+  alternate_rebounds_7_odds <-
+    alternate_rebounds_cols[[alternate_rebounds_7_index]] |>
+    html_elements(".gl-ParticipantOddsOnly_Odds") |>
+    html_text()
+  
+  alternate_rebounds_10_odds <-
+    alternate_rebounds_cols[[alternate_rebounds_10_index]] |>
+    html_elements(".gl-ParticipantOddsOnly_Odds") |>
+    html_text()
+  
+  alternate_rebounds_13_odds <-
+    alternate_rebounds_cols[[alternate_rebounds_13_index]] |>
+    html_elements(".gl-ParticipantOddsOnly_Odds") |>
+    html_text()
+  
+  alternate_rebounds_15_odds <-
+    alternate_rebounds_cols[[alternate_rebounds_15_index]] |>
+    html_elements(".gl-ParticipantOddsOnly_Odds") |>
+    html_text()
+  
+  alternate_rebounds_17_odds <-
+    alternate_rebounds_cols[[alternate_rebounds_17_index]] |>
+    html_elements(".gl-ParticipantOddsOnly_Odds") |>
+    html_text()
+  
+  # Create Alternate Player Rebounds Tables
+  alternate_rebounds_3 <-
+    tibble(player = alternate_rebounds_players,
+           # team = alternate_rebounds_teams,
+           line = 3,
+           over_price = as.numeric(alternate_rebounds_3_odds)) |>
+    mutate(market_name = "Alternate Player Rebounds") |>
+    mutate(agency = "Bet365")
+  
+  alternate_rebounds_5 <-
+    tibble(player = alternate_rebounds_players,
+           # team = alternate_rebounds_teams,
+           line = 5,
+           over_price = as.numeric(alternate_rebounds_5_odds)) |>
+    mutate(market_name = "Alternate Player Rebounds") |>
+    mutate(agency = "Bet365")
+  
+  alternate_rebounds_7 <-
+    tibble(player = alternate_rebounds_players,
+           # team = alternate_rebounds_teams,
+           line = 7,
+           over_price = as.numeric(alternate_rebounds_7_odds)) |>
+    mutate(market_name = "Alternate Player Rebounds") |>
+    mutate(agency = "Bet365")
+  
+  alternate_rebounds_10 <-
+    tibble(player = alternate_rebounds_players,
+           # team = alternate_rebounds_teams,
+           line = 10,
+           over_price = as.numeric(alternate_rebounds_10_odds)) |>
+    mutate(market_name = "Alternate Player Rebounds") |>
+    mutate(agency = "Bet365")
+  
+  alternate_rebounds_13 <-
+    tibble(player = alternate_rebounds_players,
+           # team = alternate_rebounds_teams,
+           line = 13,
+           over_price = as.numeric(alternate_rebounds_13_odds)) |>
+    mutate(market_name = "Alternate Player Rebounds") |>
+    mutate(agency = "Bet365")
+  
+  alternate_rebounds_15 <-
+    tibble(player = alternate_rebounds_players,
+           # team = alternate_rebounds_teams,
+           line = 15,
+           over_price = as.numeric(alternate_rebounds_15_odds)) |>
+    mutate(market_name = "Alternate Player Rebounds") |>
+    mutate(agency = "Bet365")
+  
+  alternate_rebounds_17 <-
+    tibble(player = alternate_rebounds_players,
+           # team = alternate_rebounds_teams,
+           line = 17,
+           over_price = as.numeric(alternate_rebounds_17_odds)) |>
+    mutate(market_name = "Alternate Player Rebounds") |>
+    mutate(agency = "Bet365")
+  
+  # Combine
+  alternate_player_rebounds <-
+    bind_rows(alternate_rebounds_3, alternate_rebounds_5, alternate_rebounds_7, alternate_rebounds_10,
+              alternate_rebounds_13, alternate_rebounds_15, alternate_rebounds_17) |> 
+    filter(!is.na(over_price))
+  
+  #=============================================================================
+  # Combine Lines and Milestones for Player Rebounds
+  #=============================================================================
+  
+  # Get teams
+  team_names <-
+    scraped_file |> 
+    read_html() |> 
+    html_nodes(".sph-FixturePodHeader_TeamName ") |> 
+    html_text()
+  
+  team_names <- fix_team_names(team_names)
+  
+  # Get Match Name
+  match_name <- paste(team_names, collapse = " v ")
+  
+  # Combine all tables
+  player_rebounds_all <-
+    bind_rows(player_rebounds, alternate_player_rebounds) |> 
+    arrange(player, line, over_price) |> 
+    mutate(market_name = "Player Rebounds") |> 
+    mutate(match = match_name) 
+  
+  #=============================================================================
+  # Player Assists Over / Under
+  #=============================================================================
+  
+  # Get index for node with text "Player Assists Over/Under"
+  assists_over_under_index <- which(market_names == "Player Assists")
+  
+  # Get Player Names from node
+  assists_players <-
+    bet365_player_markets[[assists_over_under_index]] |>
+    html_elements(".srb-ParticipantLabelWithTeam_Name") |>
+    html_text()
+  
+  # # Get Player Teams from node
+  # assists_teams <-
+  #     bet365_player_markets[[assists_over_under_index]] |>
+  #     html_elements(".srb-ParticipantLabelWithTeam_Team") |>
+  #     html_text()
+  
+  # Get Over Node Index
+  assists_cols <-
+    bet365_player_markets[[assists_over_under_index]] |>
+    html_elements(".gl-Market_General")
+  
+  assists_over_index <- which(str_detect(assists_cols |> html_text(), "Over"))
+  
+  # Get Over Lines
+  assists_over_lines <-
+    assists_cols[[assists_over_index]] |>
+    html_elements(".gl-ParticipantCenteredStacked_Handicap") |>
+    html_text()
+  
+  # Get Over Odds
+  assists_over_odds <-
+    assists_cols[[assists_over_index]] |>
+    html_elements(".gl-ParticipantCenteredStacked_Odds") |>
+    html_text()
+  
+  # Get Under Node Index
+  assists_under_index <- which(str_detect(assists_cols |> html_text(), "Under"))
+  
+  # Get Under Odds
+  assists_under_odds <-
+    assists_cols[[assists_under_index]] |>
+    html_elements(".gl-ParticipantCenteredStacked_Odds") |>
+    html_text()
+  
+  # Create Player Assists Table
+  player_assists <-
+    tibble(player = assists_players,
+           # team = assists_teams,
+           line = as.numeric(assists_over_lines),
+           over_price = as.numeric(assists_over_odds),
+           under_price = as.numeric(assists_under_odds)) |>
+    mutate(market_name = "Player Assists Over/Under") |>
+    mutate(agency = "Bet365")
+  
+  #=============================================================================
+  # Alternate Player Assists
+  #=============================================================================
+  
+  # Get index for node with text "Player Assists Milestones"
+  alternate_assists_index <- which(market_names == "Player Assists Milestones")
+  
+  # Get Player Names from node
+  alternate_assists_players <-
+    bet365_player_markets[[alternate_assists_index]] |>
+    html_elements(".srb-ParticipantLabelWithTeam_Name") |>
+    html_text()
+  
+  # # Get Player Teams from node
+  # alternate_assists_teams <-
+  #     bet365_player_markets[[alternate_assists_index]] |>
+  #     html_elements(".srb-ParticipantLabelWithTeam_Team") |>
+  #     html_text()
+  
+  # Get Assists Node Indexes for 3 to 10 assists
+  alternate_assists_cols <-
+    bet365_player_markets[[alternate_assists_index]] |>
+    html_elements(".gl-Market_General")
+  
+  alternate_assists_3_index <- which(str_detect(alternate_assists_cols |> html_node(".srb-HScrollPlaceHeader ") |> html_text(), "^3$"))
+  alternate_assists_5_index <- which(str_detect(alternate_assists_cols |> html_node(".srb-HScrollPlaceHeader ") |> html_text(), "^5$"))
+  alternate_assists_7_index <- which(str_detect(alternate_assists_cols |> html_node(".srb-HScrollPlaceHeader ") |> html_text(), "^7$"))
+  alternate_assists_10_index <- which(str_detect(alternate_assists_cols |> html_node(".srb-HScrollPlaceHeader ") |> html_text(), "10"))
+  
+  # Get Odds for each assists range
+  alternate_assists_3_odds <-
+    alternate_assists_cols[[alternate_assists_3_index]] |>
+    html_elements(".gl-ParticipantOddsOnly_Odds") |>
+    html_text()
+  
+  alternate_assists_5_odds <-
+    alternate_assists_cols[[alternate_assists_5_index]] |>
+    html_elements(".gl-ParticipantOddsOnly_Odds") |>
+    html_text()
+  
+  alternate_assists_7_odds <-
+    alternate_assists_cols[[alternate_assists_7_index]] |>
+    html_elements(".gl-ParticipantOddsOnly_Odds") |>
+    html_text()
+  
+  alternate_assists_10_odds <-
+    alternate_assists_cols[[alternate_assists_10_index]] |>
+    html_elements(".gl-ParticipantOddsOnly_Odds") |>
+    html_text()
+  
+  # Create Alternate Player Assists Tables
+  alternate_assists_3 <-
+    tibble(player = alternate_assists_players,
+           # team = alternate_assists_teams,
+           line = 3,
+           over_price = as.numeric(alternate_assists_3_odds)) |>
+    mutate(market_name = "Alternate Player Assists") |>
+    mutate(agency = "Bet365")
+  
+  alternate_assists_5 <-
+    tibble(player = alternate_assists_players,
+           # team = alternate_assists_teams,
+           line = 5,
+           over_price = as.numeric(alternate_assists_5_odds)) |>
+    mutate(market_name = "Alternate Player Assists") |>
+    mutate(agency = "Bet365")
+  
+  alternate_assists_7 <-
+    tibble(player = alternate_assists_players,
+           # team = alternate_assists_teams,
+           line = 7,
+           over_price = as.numeric(alternate_assists_7_odds)) |>
+    mutate(market_name = "Alternate Player Assists") |>
+    mutate(agency = "Bet365")
+  
+  alternate_assists_10 <-
+    tibble(player = alternate_assists_players,
+           # team = alternate_assists_teams,
+           line = 10,
+           over_price = as.numeric(alternate_assists_10_odds)) |>
+    mutate(market_name = "Alternate Player Assists") |>
+    mutate(agency = "Bet365")
+  
+  # Combine
+  alternate_player_assists <-
+    bind_rows(alternate_assists_3, alternate_assists_5, alternate_assists_7, alternate_assists_10) |> 
+    filter(!is.na(over_price))
+  
+  
+  #=============================================================================
+  # Combine Lines and Milestones for Player Assists
+  #=============================================================================
+  
+  # Get teams
+  team_names <-
+    scraped_file |> 
+    read_html() |> 
+    html_nodes(".sph-FixturePodHeader_TeamName ") |> 
+    html_text()
+  
+  team_names <- fix_team_names(team_names)
+  
+  # Get Match Name
+  match_name <- paste(team_names, collapse = " v ")
+  
+  # Combine all tables
+  player_assists_all <-
+    bind_rows(player_assists, alternate_player_assists) |> 
+    arrange(player, line, over_price) |> 
+    mutate(market_name = "Player Assists") |> 
+    mutate(match = match_name) |> 
+    relocate(match, .before = player)
+  
+  #=============================================================================
+  # Player Threes Made Over / Under
+  #=============================================================================
+  
+  # Get index for node with text "Player Threes Made Over/Under"
+  threes_over_under_index <- which(market_names == "Player Threes Made")
+  
+  # Get Player Names from node
+  threes_players <-
+    bet365_player_markets[[threes_over_under_index]] |>
+    html_elements(".srb-ParticipantLabelWithTeam_Name") |>
+    html_text()
+  
+  # # Get Player Teams from node
+  # threes_teams <-
+  #     bet365_player_markets[[threes_over_under_index]] |>
+  #     html_elements(".srb-ParticipantLabelWithTeam_Team") |>
+  #     html_text()
+  
+  # Get Over Node Index
+  threes_cols <-
+    bet365_player_markets[[threes_over_under_index]] |>
+    html_elements(".gl-Market_General")
+  
+  threes_over_index <- which(str_detect(threes_cols |> html_text(), "Over"))
+  
+  # Get Over Lines
+  threes_over_lines <-
+    threes_cols[[threes_over_index]] |>
+    html_elements(".gl-ParticipantCenteredStacked_Handicap") |>
+    html_text()
+  
+  # Get Over Odds
+  threes_over_odds <-
+    threes_cols[[threes_over_index]] |>
+    html_elements(".gl-ParticipantCenteredStacked_Odds") |>
+    html_text()
+  
+  # Get Under Node Index
+  threes_under_index <- which(str_detect(threes_cols |> html_text(), "Under"))
+  
+  # Get Under Odds
+  threes_under_odds <-
+    threes_cols[[threes_under_index]] |>
+    html_elements(".gl-ParticipantCenteredStacked_Odds") |>
+    html_text()
+  
+  # Create Player Threes Made Table
+  player_threes_made <-
+    tibble(player = threes_players,
+           # team = threes_teams,
+           line = as.numeric(threes_over_lines),
+           over_price = as.numeric(threes_over_odds),
+           under_price = as.numeric(threes_under_odds)) |>
+    mutate(market_name = "Player Threes Made Over/Under") |>
+    mutate(agency = "Bet365")
+  
+  #=============================================================================
+  # Alternate Player Threes Made
+  #=============================================================================
+  
+  # Get index for node with text "Player Threes Made Milestones"
+  alternate_threes_index <- which(market_names == "Player Threes Made Milestones")
+  
+  # Get Player Names from node
+  alternate_threes_players <-
+    bet365_player_markets[[alternate_threes_index]] |>
+    html_elements(".srb-ParticipantLabelWithTeam_Name") |>
+    html_text()
+  
+  # # Get Player Teams from node
+  # alternate_threes_teams <-
+  #     bet365_player_markets[[alternate_threes_index]] |>
+  #     html_elements(".srb-ParticipantLabelWithTeam_Team") |>
+  #     html_text()
+  
+  # Get Threes Made Node Indexes for 1 to 5 threes
+  alternate_threes_cols <-
+    bet365_player_markets[[alternate_threes_index]] |>
+    html_elements(".gl-Market_General")
+  
+  # Define indexes for each milestone (1 to 5 threes)
+  alternate_threes_indexes <- list()
+  for(i in 1:5) {
+    alternate_threes_indexes[[i]] <- which(str_detect(alternate_threes_cols |> html_node(".srb-HScrollPlaceHeader ") |> html_text(), paste0("^", i, "$")))
+  }
+  
+  # Get Odds for each threes range
+  alternate_threes_odds <- list()
+  for(i in 1:5) {
+    alternate_threes_odds[[i]] <- alternate_threes_cols[[alternate_threes_indexes[[i]]]] |>
+      html_elements(".gl-ParticipantOddsOnly_Odds") |>
+      html_text()
+  }
+  
+  # Create Alternate Player Threes Made Tables
+  alternate_threes_tables <- list()
+  for(i in 1:5) {
+    alternate_threes_tables[[i]] <-
+      tibble(player = alternate_threes_players,
+             # team = alternate_threes_teams,
+             line = i,
+             over_price = as.numeric(alternate_threes_odds[[i]])) |>
+      mutate(market_name = "Alternate Player Threes Made") |>
+      mutate(agency = "Bet365")
+  }
+  
+  # Combine all alternate tables into one
+  alternate_player_threes_made <-
+    bind_rows(alternate_threes_tables) |> 
+    filter(!is.na(over_price))
+  
+  
+  #=============================================================================
+  # Combine Lines and Milestones for Player Threes Made
+  #=============================================================================
+  
+  # Get teams
+  team_names <-
+    scraped_file |> 
+    read_html() |> 
+    html_nodes(".sph-FixturePodHeader_TeamName ") |> 
+    html_text()
+  
+  team_names <- fix_team_names(team_names)
+  
+  # Get Match Name
+  match_name <- paste(team_names, collapse = " v ")
+  
+  # Combine all tables
+  player_threes_made_all <-
+    bind_rows(player_threes_made, alternate_player_threes_made) |> 
+    arrange(player, line, over_price) |> 
+    mutate(market_name = "Player Threes Made") |> 
+    mutate(match = match_name) |> 
+    relocate(match, .before = player)
+  
+  #===============================================================================
+  # Combine markets together
+  #===============================================================================
+  
+  return(
+    player_points_all |> 
+      bind_rows(player_rebounds_all) |>
+      bind_rows(player_assists_all) |>
+      bind_rows(player_threes_made_all))
 }
 
-#===============================================================================
-# Get list of derived dataframes and return
-#===============================================================================
+# Create safe version of function
+get_player_props_safe <- safely(get_player_props)
 
-list(
-    "Player Points" = bet365_player_points,
-    "Player Points Low" = bet365_player_points_low,
-    "Player Points High" = bet365_player_points_high,
-    "Player Points Milestones" = bet365_player_points_milestones,
-    "Player Assists" = bet365_player_assists,
-    "Player Assists Milestones" = bet365_player_assists_milestones,
-    "Player Rebounds" = bet365_player_rebounds,
-    "Player Rebounds Milestones" = bet365_player_rebounds_milestones,
-    "Player Threes Made" = bet365_player_threes,
-    "Player Threes Made Milestones" = bet365_player_threes_made_milestones,
-    "Player PRAs" = bet365_player_points_assists_rebounds,
-    "Player Steals" = bet365_player_steals,
-    "Player Blocks" = bet365_player_blocks)
-}
+# Map Over all html files
+list_of_player_props <- map(scraped_files_player, get_player_props_safe)
 
-##%######################################################%##
-#                                                          #
-####            Map to files and output data            ####
-#                                                          #
-##%######################################################%##
+# Keep only successful results
+list_of_player_props <-
+  list_of_player_props |>
+  # Keep if the error is null
+  keep(~is.null(.x$error)) |>
+  # Extract the result
+  map_dfr("result")
 
-# Create safe version of main function
-main_safe <- safely(main)
+# Combine into a df
+all_player_props <-
+  list_of_player_props |> 
+  mutate(player = ifelse(player == "Derrick Walton Jr.", "Derrick Walton Jr", player)) |>
+  left_join(player_names_teams[,c("player_full_name", "player_team")], by = c("player" = "player_full_name")) |>
+  rename(player_name = player) |> 
+  mutate(player_team = fix_team_names(player_team)) |> 
+  separate(match, into = c("home_team", "away_team"), sep = " v ", remove = FALSE) |> 
+  mutate(opposition_team = if_else(player_team == home_team, away_team, home_team)) |>
+  # If line ends with .0 subtract 0.5
+  mutate(line = if_else(line %% 1 == 0, line - 0.5, line))
 
-# Get matches df to join
-match_info <- bet365_h2h |> select(match, home_team, away_team)
+# Separate into points, rebounds, assists, threes
+player_points <- all_player_props |> filter(market_name == "Player Points")
+player_rebounds <- all_player_props |> filter(market_name == "Player Rebounds")
+player_assists <- all_player_props |> filter(market_name == "Player Assists")
+player_threes <- all_player_props |> filter(market_name == "Player Threes Made") |> mutate(market_name = "Player Threes")
 
-# Get list of data
-list_of_scraped_data <-
-    map(scraped_files_player, main_safe) |> 
-    map("result") |>
-    keep(~ !is.null(.))
-
-# Map over list and get dataframes for player points
-player_points <- 
-    list_of_scraped_data |>
-    map(~.x[c("Player Points", "Player Points Low", "Player Points High", "Player Points Milestones")]) |>
-    map_df(bind_rows) |> 
-    mutate(agency = "Bet365") |> 
-    left_join(match_info, by = c("team_name" = "home_team")) |>
-    left_join(match_info, by = c("team_name" = "away_team")) |>
-    mutate(match = coalesce(match.x, match.y)) |>
-    separate(match, into = c("home_team", "away_team"), sep = " v ", remove = FALSE) |> 
-    rename(player_team = team_name) |> 
-    mutate(opposition_team = if_else(player_team == home_team, away_team, home_team)) |>
-    select(match, home_team, away_team, market_name, player_name, player_team, opposition_team, line, over_price, under_price, agency)
-
-# Map over list and get dataframes for player assists
-player_assists <- 
-    list_of_scraped_data |>
-    map(~.x[c("Player Assists", "Player Assists Milestones")]) |>
-    map_df(bind_rows) |> 
-    mutate(agency = "Bet365") |> 
-    left_join(match_info, by = c("team_name" = "home_team")) |>
-    left_join(match_info, by = c("team_name" = "away_team")) |>
-    mutate(match = coalesce(match.x, match.y)) |>
-    separate(match, into = c("home_team", "away_team"), sep = " v ", remove = FALSE) |>
-    rename(player_team = team_name) |>
-    mutate(opposition_team = if_else(player_team == home_team, away_team, home_team)) |>
-    select(match, home_team, away_team, market_name, player_name, player_team, opposition_team, line, over_price, under_price, agency)
-
-# Map over list and get dataframes for player rebounds
-player_rebounds <- 
-    list_of_scraped_data |>
-    map(~.x[c("Player Rebounds", "Player Rebounds Milestones")]) |>
-    map_df(bind_rows) |> 
-    mutate(agency = "Bet365") |> 
-    left_join(match_info, by = c("team_name" = "home_team")) |>
-    left_join(match_info, by = c("team_name" = "away_team")) |>
-    mutate(match = coalesce(match.x, match.y)) |>
-    separate(match, into = c("home_team", "away_team"), sep = " v ", remove = FALSE) |>
-    rename(player_team = team_name) |>
-    mutate(opposition_team = if_else(player_team == home_team, away_team, home_team)) |>
-    select(match, home_team, away_team, market_name, player_name, player_team, opposition_team, line, over_price, under_price, agency)
-
-# Map over list and get dataframes for player Threes
-player_threes <- 
-    list_of_scraped_data |>
-    map(~.x[c("Player Threes Made", "Player Threes Made Milestones")]) |>
-    map_df(bind_rows) |> 
-    mutate(agency = "Bet365") |> 
-    left_join(match_info, by = c("team_name" = "home_team")) |>
-    left_join(match_info, by = c("team_name" = "away_team")) |>
-    mutate(match = coalesce(match.x, match.y)) |>
-    separate(match, into = c("home_team", "away_team"), sep = " v ", remove = FALSE) |>
-    rename(player_team = team_name) |>
-    mutate(opposition_team = if_else(player_team == home_team, away_team, home_team)) |>
-    select(match, home_team, away_team, market_name, player_name, player_team, opposition_team, line, over_price, under_price, agency)
-
-# Map over list and get dataframes for player PRAs
-player_PRAs <- 
-    list_of_scraped_data |>
-    map(~.x["Player PRAs"]) |>
-    map_df(bind_rows) |> 
-    mutate(agency = "Bet365") |> 
-    left_join(match_info, by = c("team_name" = "home_team")) |>
-    left_join(match_info, by = c("team_name" = "away_team")) |>
-    mutate(match = coalesce(match.x, match.y)) |>
-    separate(match, into = c("home_team", "away_team"), sep = " v ", remove = FALSE) |>
-    rename(player_team = team_name) |>
-    mutate(opposition_team = if_else(player_team == home_team, away_team, home_team)) |>
-    select(match, home_team, away_team, market_name, player_name, player_team, opposition_team, line, over_price, under_price, agency)
-
-# Map over list and get dataframes for player steals
-player_steals <- 
-    list_of_scraped_data |>
-    map(~.x["Player Steals"]) |>
-    map_df(bind_rows) |> 
-    mutate(agency = "Bet365") |> 
-    left_join(match_info, by = c("team_name" = "home_team")) |>
-    left_join(match_info, by = c("team_name" = "away_team")) |>
-    mutate(match = coalesce(match.x, match.y)) |>
-    separate(match, into = c("home_team", "away_team"), sep = " v ", remove = FALSE) |>
-    rename(player_team = team_name) |>
-    mutate(opposition_team = if_else(player_team == home_team, away_team, home_team)) |>
-    select(match, home_team, away_team, market_name, player_name, player_team, opposition_team, line, over_price, under_price, agency)
-
-# Map over list and get dataframes for player blocks
-player_blocks <- 
-    list_of_scraped_data |>
-    map(~.x["Player Blocks"]) |>
-    map_df(bind_rows) |> 
-    mutate(agency = "Bet365") |> 
-    left_join(match_info, by = c("team_name" = "home_team")) |>
-    left_join(match_info, by = c("team_name" = "away_team")) |>
-    mutate(match = coalesce(match.x, match.y)) |>
-    separate(match, into = c("home_team", "away_team"), sep = " v ", remove = FALSE) |>
-    rename(player_team = team_name) |>
-    mutate(opposition_team = if_else(player_team == home_team, away_team, home_team)) |>
-    select(match, home_team, away_team, market_name, player_name, player_team, opposition_team, line, over_price, under_price, agency)
-
-# Write to CSV------------------------------------------------------------------
-
-player_points |> write_csv("Data/scraped_odds/bet365_player_points.csv")
-player_assists |> write_csv("Data/scraped_odds/bet365_player_assists.csv")
-player_rebounds |> write_csv("Data/scraped_odds/bet365_player_rebounds.csv")
-player_threes |> write_csv("Data/scraped_odds/bet365_player_threes.csv")
-player_PRAs |> write_csv("Data/scraped_odds/bet365_player_pras.csv")
-player_steals |> write_csv("Data/scraped_odds/bet365_player_steals.csv")
-player_blocks |> write_csv("Data/scraped_odds/bet365_player_blocks.csv")
-}
-
-# Create safe version of functions-----------------------------------------------
-get_player_props_safe <- safely(get_player_props, otherwise = NULL)
-
-# Run function------------------------------------------------------------------
-tryCatch(get_player_props(), error = function(e) print("Error in get_player_props()"))
+# Write out
+write_csv(player_points, "Data/scraped_odds/bet365_player_points.csv")
+write_csv(player_rebounds, "Data/scraped_odds/bet365_player_rebounds.csv")
+write_csv(player_assists, "Data/scraped_odds/bet365_player_assists.csv")
+write_csv(player_threes, "Data/scraped_odds/bet365_player_threes.csv")

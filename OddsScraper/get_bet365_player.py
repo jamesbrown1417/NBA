@@ -16,7 +16,7 @@ url_df = pd.read_csv('Data/BET365_HTML/urls.csv', header=None)
 url_df = url_df[0]
 
 # Keep only first two URLs for now
-# url_df = url_df[0:2]
+url_df = url_df[0:10]
 
 # Get H2H HTML===============================================================
 import asyncio

@@ -4,6 +4,7 @@ from nba_api.stats.endpoints import leaguegamefinder, boxscoretraditionalv3, box
 from urllib3.exceptions import ReadTimeoutError
 from requests.exceptions import HTTPError
 import time
+import os
 
 # Get list of all NBA teams
 nba_teams = teams.get_teams()
@@ -21,20 +22,30 @@ def get_all_match_ids(season_name):
     # Create a DataFrame to hold the data
     df_match_ids = pd.DataFrame(games, columns=games_dict['resultSets'][0]['headers'])
     
-    # Create home and away team columns
+    # Identify home and away teams
     df_match_ids['IS_HOME'] = df_match_ids['MATCHUP'].str.contains('vs.')
     df_match_ids['TEAM_TYPE'] = df_match_ids.apply(lambda row: 'HOME_TEAM' if row['IS_HOME'] else 'AWAY_TEAM', axis=1)
     
-    # Filter to only team IDs in the NBA
-    df_match_ids = df_match_ids[df_match_ids['TEAM_ID'].isin([team['id'] for team in nba_teams])]
+    # Filter for NBA teams only (assuming nba_teams is a predefined list of team IDs)
+    team_ids = [team['id'] for team in nba_teams]
+    df_match_ids = df_match_ids[df_match_ids['TEAM_ID'].isin(team_ids)]
     
-    # Pivot the DataFrame so each GAME_ID has a single row
-    df_pivot = df_match_ids.pivot(index='GAME_ID', columns='TEAM_TYPE', values='TEAM_NAME')
+    # Remove duplicates for the same GAME_ID and TEAM_TYPE
+    df_match_ids = df_match_ids.drop_duplicates(subset=['GAME_ID', 'TEAM_TYPE'])
     
-    # Reset the index for the new DataFrame
+    # Pivot so each GAME_ID has a single row with HOME_TEAM and AWAY_TEAM
+    try:
+        df_pivot = df_match_ids.pivot(index='GAME_ID', columns='TEAM_TYPE', values='TEAM_NAME')
+    except ValueError as e:
+        print("Pivot Error:", e)
+        # Inspecting remaining duplicates
+        duplicates = df_match_ids[df_match_ids.duplicated(subset=['GAME_ID', 'TEAM_TYPE'], keep=False)]
+        print("Remaining duplicates:", duplicates)
+        return duplicates  # Return duplicates for further inspection
+    
     df_pivot.reset_index(inplace=True)
     
-    # Add GAME_DATE (it will be the same for both rows so we just take the first one)
+    # Add GAME_DATE for each GAME_ID
     game_dates = df_match_ids.groupby('GAME_ID')['GAME_DATE'].first().reset_index()
     df_pivot = pd.merge(df_pivot, game_dates, on='GAME_ID', how='left')
     
@@ -88,8 +99,12 @@ def fetch_season_data(match_id_list):
 # Get IDs already done
 # ==========================================
 
-# Read in current dataset
-current_data = pd.read_csv('Data/all_player_stats_2024-2025.csv', dtype={'gameId': str})
+# Attempt to read in the current dataset, or create an empty DataFrame if the file does not exist
+file_path = 'Data/all_player_stats_2024-2025.csv'
+if os.path.exists(file_path):
+    current_data = pd.read_csv(file_path, dtype={'gameId': str})
+else:
+    current_data = pd.DataFrame(columns=['gameId'])  # Initialize as empty DataFrame with gameId column
 
 # Filter to only games not in current dataset
 match_id_list_2024_25_new = list(set(matches_2024_25.GAME_ID) - set(current_data.gameId))
@@ -214,7 +229,7 @@ def fetch_player_track_stats(match_id_list):
             print(f"Done with match_id: {match_id} - Progress: {progress:.2f}%")
     
     all_player_track_stats_df = pd.concat(all_player_track_stats, ignore_index=True)
-    return all_player_track_stats
+    return all_player_track_stats_df
 
 # ====================================================
 # Fetch and Save Player Track Data for 2024-25 Season

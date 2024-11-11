@@ -36,18 +36,23 @@ all_teams <- read_csv("Data/all_teams.csv")
 all_player_stats_2021_2022 <- read_csv("Data/all_player_stats_2021-2022.csv") |> mutate(SEASON_YEAR = "2021-22")
 all_player_stats_2022_2023 <- read_csv("Data/all_player_stats_2022-2023.csv") |> mutate(SEASON_YEAR = "2022-23")
 all_player_stats_2023_2024 <- read_csv("Data/all_player_stats_2023-2024.csv") |> mutate(SEASON_YEAR = "2023-24")
+all_player_stats_2024_2025 <- read_csv("Data/all_player_stats_2024-2025.csv") |> mutate(SEASON_YEAR = "2024-25")
 
 # Team Info
 all_team_stats_2021_2022 <- read_csv("Data/advanced_box_scores_2021-2022.csv") |> mutate(SEASON_YEAR = "2021-22")
 all_team_stats_2022_2023 <- read_csv("Data/advanced_box_scores_2022-2023.csv") |> mutate(SEASON_YEAR = "2022-23")
 all_team_stats_2023_2024 <- read_csv("Data/advanced_box_scores_2023-2024.csv") |> mutate(SEASON_YEAR = "2023-24")
+all_team_stats_2024_2025 <- read_csv("Data/advanced_box_scores_2024-2025.csv") |> mutate(SEASON_YEAR = "2024-25")
 
 # Player Tracker Data
+all_player_tracking_2024_2025 <- read_csv("Data/player_track_box_scores_2024-2025.csv") |> mutate(SEASON_YEAR = "2024-25")
 all_player_tracking_2023_2024 <- read_csv("Data/player_track_box_scores_2023-2024.csv") |> mutate(SEASON_YEAR = "2023-24")
+
 
 # Combine player stats
 all_player_stats <-
-  all_player_stats_2023_2024 |>
+  all_player_stats_2024_2025 |>
+  bind_rows(all_player_stats_2023_2024) |>
   bind_rows(all_player_stats_2022_2023) |>
   bind_rows(all_player_stats_2021_2022) |>
   left_join(all_rosters[c("PLAYER", "PLAYER_ID")], by = c("personId" = "PLAYER_ID")) |> 
@@ -87,8 +92,8 @@ all_player_stats <-
 # Convert player stats table into teams
 #===============================================================================
 
-team_stats_2023_2024 <-
-all_player_stats_2023_2024 |>
+team_stats_2024_2025 <-
+all_player_stats_2024_2025 |>
   distinct(gameId, teamId, playerSlug, GAME_DATE, .keep_all = TRUE) |> 
   mutate(minutes = hms(minutes)) |> 
   mutate(mins = hour(minutes)) |> 
@@ -141,7 +146,7 @@ all_player_stats_2023_2024 |>
 #===============================================================================
 
 stats_vs_opp_for_todays_bets <-
-  team_stats_2023_2024 |> 
+  team_stats_2024_2025 |> 
   select(oppositionTeam, date, points, rebounds, assists, steals, blocks, threes, PRAs) |> 
   arrange(oppositionTeam, date) |> 
   group_by(oppositionTeam) |>
@@ -156,7 +161,7 @@ stats_vs_opp_for_todays_bets <-
   filter(!is.na(rolling_10_game_points))
 
 stats_vs_opp <-
-  team_stats_2023_2024 |> 
+  team_stats_2024_2025 |> 
   select(oppositionTeam, date, points, rebounds, assists, steals, blocks, threes, PRAs) |> 
   arrange(oppositionTeam, date) |> 
   group_by(oppositionTeam) |>
@@ -182,7 +187,7 @@ stats_vs_opp <-
 #===============================================================================
 
 stats_vs_opp_for_todays_bets_med <-
-  team_stats_2023_2024 |> 
+  team_stats_2024_2025 |> 
   select(oppositionTeam, date, points, rebounds, assists, steals, blocks, threes, PRAs) |> 
   arrange(oppositionTeam, date) |> 
   group_by(oppositionTeam) |>
@@ -197,7 +202,7 @@ stats_vs_opp_for_todays_bets_med <-
   filter(!is.na(rolling_15_game_points))
 
 stats_vs_opp_med <-
-  team_stats_2023_2024 |> 
+  team_stats_2024_2025 |> 
   select(oppositionTeam, date, points, rebounds, assists, steals, blocks, threes, PRAs) |> 
   arrange(oppositionTeam, date) |> 
   group_by(oppositionTeam) |>

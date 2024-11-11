@@ -432,7 +432,7 @@ player_pras_data <-
 
 ##%######################################################%##
 #                                                          #
-####                 Player Steals Data                 ####
+####                 Player Threes Data                 ####
 #                                                          #
 ##%######################################################%##
 
@@ -454,7 +454,7 @@ threes_overs <-
   mutate(player_name = coalesce(player_name_1, player_name_2)) |>
   transmute(
     match = match_name,
-    market_name = "Player Steals",
+    market_name = "Player Threes",
     player_name,
     line = handicap,
     over_price = price,
@@ -473,7 +473,7 @@ threes_unders <-
   mutate(player_name = coalesce(player_name_1, player_name_2)) |>
   transmute(
     match = match_name,
-    market_name = "Player Steals",
+    market_name = "Player Threes",
     player_name,
     line = handicap,
     under_price = price,

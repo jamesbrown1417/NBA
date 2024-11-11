@@ -13,9 +13,9 @@ competition_name <- character()
 
 # Extract event IDs and names from JSON response
 for (value in neds_response$events) {
-  event_name <- c(event_name, value$name)
-  event_id <- c(event_id, value$id)
-  competition_name <- c(competition_name, value$competition$name)
+  event_name <- c(event_name, ifelse(is.null(value$name), NA, value$name))
+  event_id <- c(event_id, ifelse(is.null(value$id), NA, value$id))
+  competition_name <- c(competition_name, ifelse(is.null(value$competition$name), NA, value$competition$name))
 }
 
 # Create a data frame from the vectors

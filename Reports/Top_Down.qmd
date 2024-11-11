@@ -1,0 +1,139 @@
+---
+title: "Top Down Bets"
+execute:
+  echo: false
+  message: false
+  warning: false
+author: "James Brown"
+date: "`r Sys.time()`"
+format:
+  html:
+    df-print: kable
+    theme: cosmo
+    self-contained: true
+    toc: true
+    toc-depth: 3
+    fig-width: 8
+    fig-height: 6
+    page-layout: full
+editor: visual
+---
+
+```{r}
+# Load Libraries
+library(tidyverse)
+library(DT)
+
+# Function to devig odds given over and under prices (decimal odds)
+devig_odds <- function(over_odds, under_odds) {
+  # Step 1: Convert odds to implied probabilities
+  implied_prob_over <- 1 / over_odds
+  implied_prob_under <- 1 / under_odds
+  
+  # Step 2: Calculate the total implied probability (including the vig)
+  total_implied_prob <- implied_prob_over + implied_prob_under
+  
+  # Step 3: Remove the vig by normalizing probabilities
+  fair_prob_over <- implied_prob_over / total_implied_prob
+  fair_prob_under <- implied_prob_under / total_implied_prob
+  
+  # Step 4: Convert the fair probabilities back to odds
+  fair_over_odds <- 1 / fair_prob_over
+  fair_under_odds <- 1 / fair_prob_under
+  
+  # Return the fair odds
+  return(list(fair_over_odds = fair_over_odds, fair_under_odds = fair_under_odds))
+}
+
+# Read in data
+processed_odds_files <- list.files("../Data/processed_odds", full.names = TRUE) # Get all files
+processed_odds_files <- processed_odds_files[!grepl("h2h", processed_odds_files)] # Exclude files with "h2h"
+
+# Read in all data
+processed_odds_data <-
+  map(processed_odds_files, read_rds) |> 
+  set_names(basename(processed_odds_files) |> str_remove("\\.rds"))
+
+# Bind Rows
+processed_odds_data <-
+  processed_odds_data |> 
+  bind_rows() |> 
+  select(-group_by_header:-date)
+
+# Get Sportsbet Markets
+sportsbet_markets <-
+  processed_odds_data |>
+  filter(agency == "Sportsbet") |> 
+  mutate(margin = 1/over_price + 1/under_price)
+
+# Apply the function row-wise to the tibble using mutate
+sportsbet_markets_devigged <-
+  sportsbet_markets %>%
+  filter(!is.na(over_price) & !is.na(under_price)) %>%
+  rowwise() %>%
+  mutate(
+    devigged = list(devig_odds(over_price, under_price)),
+    over_price = devigged$fair_over_odds,
+    under_price = devigged$fair_under_odds
+  ) %>%
+  ungroup() %>%
+  select(-devigged) |> 
+  mutate(margin = 1/over_price + 1/under_price)
+
+```
+
+# Overs
+
+```{r}
+# Get Over Implied Probabilities
+sportsbet_over_implied_prob <-
+  sportsbet_markets_devigged |>
+  mutate(sportsbet_over_implied_prob = 1 / over_price) |> 
+  select(match:line, sportsbet_over_implied_prob)
+
+# Get All Over Odds and Add Implied Probabilities
+over_markets <-
+    processed_odds_data |>
+  filter(agency != "Sportsbet") |> 
+  select(-under_price) |> 
+  mutate(over_implied_prob = 1/over_price) |> 
+  inner_join(sportsbet_over_implied_prob) |> 
+  mutate(diff = sportsbet_over_implied_prob - over_implied_prob) |>
+  mutate(diff = round(diff, 4)) |>
+  arrange(desc(diff))
+
+over_markets |> 
+  select(match:opposition_team, agency, over_implied_prob, sportsbet_over_implied_prob, diff) |>
+  filter(diff >= 0.02) |> 
+  mutate(diff = round(diff, 3)) |> 
+  mutate(over_implied_prob = round(over_implied_prob, 3)) |>
+  mutate(sportsbet_over_implied_prob = round(sportsbet_over_implied_prob, 3))
+```
+
+# Unders
+
+```{r}
+# Get Under Implied Probabilities
+sportsbet_under_implied_prob <-
+  sportsbet_markets_devigged |>
+  mutate(sportsbet_under_implied_prob = 1 / under_price) |> 
+  select(match:line, sportsbet_under_implied_prob)
+
+# Get All Under Odds and Add Implied Probabilities
+under_markets <-
+  processed_odds_data |>
+  filter(agency != "Sportsbet") |> 
+  select(-over_price) |> 
+  mutate(under_implied_prob = 1/under_price) |> 
+  inner_join(sportsbet_under_implied_prob) |> 
+  mutate(diff = sportsbet_under_implied_prob - under_implied_prob) |>
+  mutate(diff = round(diff, 4)) |>
+  arrange(desc(diff))
+
+under_markets |>
+  select(match:opposition_team, agency, under_implied_prob, sportsbet_under_implied_prob, diff) |>
+  filter(diff >= 0.02) |> 
+  mutate(diff = round(diff, 3)) |>
+  mutate(under_implied_prob = round(under_implied_prob, 3)) |>
+  mutate(sportsbet_under_implied_prob = round(sportsbet_under_implied_prob, 3))
+```
