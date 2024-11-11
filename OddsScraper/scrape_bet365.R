@@ -29,7 +29,7 @@ get_player_props <- function(scraped_file) {
   #=============================================================================
   
   # Get index for node with text "Player Points Over/Under"
-  points_over_under_index <- which(market_names == "Player Points")
+  points_over_under_index <- which(market_names == "Points O/U")
   
   # Get Player Names from node
   points_players <-
@@ -47,7 +47,7 @@ get_player_props <- function(scraped_file) {
   points_cols <-
     bet365_player_markets[[points_over_under_index]] |>
     html_elements(".gl-Market_General")
-  
+    
   points_over_index <- which(str_detect(points_cols |> html_text(), "Over"))
   
   # Get Over Lines
@@ -86,7 +86,7 @@ get_player_props <- function(scraped_file) {
   #=============================================================================
   
   # Get index for node with text "Player Points Milestones"
-  alternate_points_index <- which(market_names == "Player Points Milestones")
+  alternate_points_index <- which(market_names == "Points")
   
   # Get Player Names from node
   alternate_points_players <-
@@ -256,7 +256,7 @@ get_player_props <- function(scraped_file) {
   #=============================================================================
   
   # Get index for node with text "Player Rebounds Over/Under"
-  rebounds_over_under_index <- which(market_names == "Player Rebounds")
+  rebounds_over_under_index <- which(market_names == "Rebounds O/U")
   
   # Get Player Names from node
   rebounds_players <-
@@ -313,7 +313,7 @@ get_player_props <- function(scraped_file) {
   #=============================================================================
   
   # Get index for node with text "Player Rebounds Milestones"
-  alternate_rebounds_index <- which(market_names == "Player Rebounds Milestones")
+  alternate_rebounds_index <- which(market_names == "Rebounds")
   
   # Get Player Names from node
   alternate_rebounds_players <-
@@ -467,7 +467,7 @@ get_player_props <- function(scraped_file) {
   #=============================================================================
   
   # Get index for node with text "Player Assists Over/Under"
-  assists_over_under_index <- which(market_names == "Player Assists")
+  assists_over_under_index <- which(market_names == "Assists O/U")
   
   # Get Player Names from node
   assists_players <-
@@ -524,7 +524,7 @@ get_player_props <- function(scraped_file) {
   #=============================================================================
   
   # Get index for node with text "Player Assists Milestones"
-  alternate_assists_index <- which(market_names == "Player Assists Milestones")
+  alternate_assists_index <- which(market_names == "Assists")
   
   # Get Player Names from node
   alternate_assists_players <-
@@ -637,7 +637,7 @@ get_player_props <- function(scraped_file) {
   #=============================================================================
   
   # Get index for node with text "Player Threes Made Over/Under"
-  threes_over_under_index <- which(market_names == "Player Threes Made")
+  threes_over_under_index <- which(market_names == "Threes Made O/U")
   
   # Get Player Names from node
   threes_players <-
@@ -694,7 +694,7 @@ get_player_props <- function(scraped_file) {
   #=============================================================================
   
   # Get index for node with text "Player Threes Made Milestones"
-  alternate_threes_index <- which(market_names == "Player Threes Made Milestones")
+  alternate_threes_index <- which(market_names == "Threes Made")
   
   # Get Player Names from node
   alternate_threes_players <-
@@ -794,13 +794,49 @@ list_of_player_props <-
   # Extract the result
   map_dfr("result")
 
+# Get teams table
+teams <-
+  read_csv("Data/all_teams.csv")
+
+# Get player names table
+player_names_all <-
+  read_csv("Data/all_rosters.csv") |>
+  select(player_full_name = PLAYER, TeamID) |> 
+  left_join(teams[, c("id", "full_name")], by = c("TeamID" = "id")) |> 
+  mutate(first_initial = str_sub(player_full_name, 1, 1)) |>
+  mutate(surname = str_extract(player_full_name, "(?<=\\s).*$")) |> 
+  mutate(join_name = paste(first_initial, surname, sep = " ")) |> 
+  rename(team_name = full_name)
+
+# unique join names
+player_names_unique <-
+  player_names_all |>
+  group_by(join_name) |> 
+  filter(n() == 1) |> 
+  ungroup()
+
+# Non unique names (take first two letters of first name)
+player_names_non_unique <-
+  player_names_all |>
+  group_by(join_name) |> 
+  filter(n() > 1) |> 
+  mutate(first_initial = str_sub(player_full_name, 1, 2)) |>
+  mutate(join_name = paste(first_initial, surname, sep = " ")) |> 
+  ungroup()
+
+player_names <-
+  bind_rows(player_names_unique, player_names_non_unique) |> 
+  mutate(join_name = ifelse(player_full_name == "Keyontae Johnson", "Key Johnson", join_name)) |> 
+  mutate(join_name = ifelse(player_full_name == "Miles Bridges", "Mil Bridges", join_name)) |> 
+  mutate(join_name = ifelse(player_full_name == "Jaylin Williams", "Jay Williams", join_name))
+
 # Combine into a df
 all_player_props <-
   list_of_player_props |> 
   mutate(player = ifelse(player == "Derrick Walton Jr.", "Derrick Walton Jr", player)) |>
-  left_join(player_names_teams[,c("player_full_name", "player_team")], by = c("player" = "player_full_name")) |>
+  left_join(player_names[,c("player_full_name", "team_name")], by = c("player" = "player_full_name")) |>
   rename(player_name = player) |> 
-  mutate(player_team = fix_team_names(player_team)) |> 
+  mutate(player_team = fix_team_names(team_name)) |> 
   separate(match, into = c("home_team", "away_team"), sep = " v ", remove = FALSE) |> 
   mutate(opposition_team = if_else(player_team == home_team, away_team, home_team)) |>
   # If line ends with .0 subtract 0.5

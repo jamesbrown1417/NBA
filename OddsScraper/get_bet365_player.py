@@ -53,7 +53,7 @@ async def main():
                 
                 # If there is a button that says Assists O/U, click it
                 try:
-                    player_assists_button = await driver.find_element(By.XPATH, "//div[contains(@class, 'cm-MarketGroupWithIconsButton_Text') and text()='Assists O/U')]")
+                    player_assists_button = await driver.find_element(By.XPATH, "//div[contains(@class, 'cm-MarketGroupWithIconsButton_Text') and text()='Assists O/U']")  # Fixed syntax
                     await driver.execute_script("arguments[0].scrollIntoView(true);", player_assists_button)
                     await driver.execute_script("window.scrollBy(0, -150)")
                     await player_assists_button.click()
@@ -63,7 +63,7 @@ async def main():
                 
                 # If there is a button that says Assists, click it
                 try:
-                    player_assists_milestones_button = await driver.find_element(By.XPATH, "//div[contains(@class, 'cm-MarketGroupWithIconsButton_Text') and text()='Assists')]")
+                    player_assists_milestones_button = await driver.find_element(By.XPATH, "//div[contains(@class, 'cm-MarketGroupWithIconsButton_Text') and text()='Assists']")
                     await driver.execute_script("arguments[0].scrollIntoView(true);", player_assists_milestones_button)
                     await driver.execute_script("window.scrollBy(0, -150)")
                     await player_assists_milestones_button.click()
