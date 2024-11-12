@@ -53,7 +53,7 @@ main_markets_function <- function() {
 # Get data from main market page
 matches <-
     sportsbet_url |> 
-    read_html() |>
+    read_html_live() |>
     html_nodes(".White_fqa53j6")
     
 # Function to get team names
@@ -101,9 +101,9 @@ get_start_time <- function(match) {
 # Map functions to each match and combine together
 all_main_market_data <-
 bind_cols(
-    map(matches, get_team_names) |> bind_rows(),
-    map(matches, get_odds) |> bind_rows(),
-    map(matches, get_start_time) |> bind_rows()
+    map(matches, get_team_names) |> bind_rows() |> filter(!is.na(home_team)),
+    map(matches, get_odds) |> bind_rows() |> filter(!is.na(home_win)),
+    map(matches, get_start_time) |> bind_rows() |> filter(!is.na(start_time))
 )
 
 #===============================================================================
@@ -163,7 +163,7 @@ get_team_names <- function(match) {
 # Get match links
 match_links <-
 sportsbet_url |> 
-    read_html() |>
+    read_html_live() |>
     html_nodes(".linkMultiMarket_fcmecz0") |> 
     html_attr("href")
 
@@ -176,12 +176,12 @@ match_links |>
 # Get data from main market page
 matches <-
     sportsbet_url |> 
-    read_html() |>
+    read_html_live() |>
     html_nodes(".White_fqa53j6")
 
 # Get team names that correspond to each match link
 team_names <-
-    map_dfr(matches, get_team_names) |> 
+    map_dfr(matches, get_team_names) |> filter(!is.na(home_team)) |> 
     bind_cols("match_id" = match_ids)
 
 # Match info links
@@ -209,10 +209,12 @@ player_stocks_links <- glue("https://www.sportsbet.com.au/apigw/sportsbook-sport
 read_prop_url_metadata <- function(url) {
     
     # Make request and get response
-    sb_response <-
-        request(url) |>
-        req_perform() |> 
-        resp_body_json()
+  sb_response <-
+    request(url) |>
+    req_user_agent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36") |> 
+    req_headers("Referer" = "https://www.sportsbet.com.au") |>
+    req_perform() |> 
+    resp_body_json()
     
     # Empty vectors to append to
     class_external_id = c()
@@ -254,6 +256,8 @@ read_prop_url <- function(url) {
     # Make request and get response
     sb_response <-
         request(url) |>
+        req_user_agent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36") |> 
+        req_headers("Referer" = "https://www.sportsbet.com.au") |>
         req_perform() |> 
         resp_body_json()
     
