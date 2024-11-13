@@ -698,6 +698,220 @@ tab_points_miss_by_one |>
   write_rds("Data/tab_points_miss_by_one.rds")
 
 #===============================================================================
+# Middles
+#===============================================================================
+
+# Points------------------------------------------------------------------------
+
+points_middles <-
+  points_unders |>
+  rename(under_line = line) |> 
+  inner_join(
+    (points_overs |> 
+       rename(over_line = line)),
+    by = c(
+      "match",
+      "market_name",
+      "player_name",
+      "player_team",
+      "opposition_team"
+    ),
+    relationship = "many-to-many"
+  ) |>
+  relocate(under_price, .after = over_price) |>
+  mutate(margin = 1 / under_price + 1 / over_price) |>
+  arrange(margin) |>
+  mutate(margin = (1 - margin)) |>
+  mutate(margin = 100 * margin) |>
+  filter(under_line > over_line) |> 
+  # filter(margin > 0) |>
+  distinct(match, player_name, over_line, under_line, over_agency, under_agency, .keep_all = TRUE) |>
+  relocate(over_price, over_agency, under_price, under_agency, .after = opposition_team)
+
+# Assists-----------------------------------------------------------------------
+
+assists_middles <-
+  assists_unders |>
+  rename(under_line = line) |> 
+  inner_join(
+    (assists_overs |> 
+       rename(over_line = line)),
+    by = c(
+      "match",
+      "market_name",
+      "player_name",
+      "player_team",
+      "opposition_team"
+    ),
+    relationship = "many-to-many"
+  ) |>
+  relocate(under_price, .after = over_price) |>
+  mutate(margin = 1 / under_price + 1 / over_price) |>
+  arrange(margin) |>
+  mutate(margin = (1 - margin)) |>
+  mutate(margin = 100 * margin) |>
+  filter(under_line > over_line) |> 
+  # filter(margin > 0) |>
+  distinct(match, player_name, over_line, under_line, over_agency, under_agency, .keep_all = TRUE) |>
+  relocate(over_price, over_agency, under_price, under_agency, .after = opposition_team)
+
+# Rebounds-----------------------------------------------------------------------
+
+rebounds_middles <-
+  rebounds_unders |>
+  rename(under_line = line) |> 
+  inner_join(
+    (rebounds_overs |> 
+       rename(over_line = line)),
+    by = c(
+      "match",
+      "market_name",
+      "player_name",
+      "player_team",
+      "opposition_team"
+    ),
+    relationship = "many-to-many"
+  ) |>
+  relocate(under_price, .after = over_price) |>
+  mutate(margin = 1 / under_price + 1 / over_price) |>
+  arrange(margin) |>
+  mutate(margin = (1 - margin)) |>
+  mutate(margin = 100 * margin) |>
+  filter(under_line > over_line) |> 
+  # filter(margin > 0) |>
+  distinct(match, player_name, over_line, under_line, over_agency, under_agency, .keep_all = TRUE) |>
+  relocate(over_price, over_agency, under_price, under_agency, .after = opposition_team)
+
+# Blocks-------------------------------------------------------------------------
+
+blocks_middles <-
+  blocks_unders |>
+  rename(under_line = line) |> 
+  inner_join(
+    (blocks_overs |> 
+       rename(over_line = line)),
+    by = c(
+      "match",
+      "market_name",
+      "player_name",
+      "player_team",
+      "opposition_team"
+    ),
+    relationship = "many-to-many"
+  ) |>
+  relocate(under_price, .after = over_price) |>
+  mutate(margin = 1 / under_price + 1 / over_price) |>
+  arrange(margin) |>
+  mutate(margin = (1 - margin)) |>
+  mutate(margin = 100 * margin) |>
+  filter(under_line > over_line) |> 
+  # filter(margin > 0) |>
+  distinct(match, player_name, over_line, under_line, over_agency, under_agency, .keep_all = TRUE) |>
+  relocate(over_price, over_agency, under_price, under_agency, .after = opposition_team)
+
+# Threes-------------------------------------------------------------------------
+
+threes_middles <-
+  threes_unders |>
+  rename(under_line = line) |> 
+  inner_join(
+    (threes_overs |> 
+       rename(over_line = line)),
+    by = c(
+      "match",
+      "market_name",
+      "player_name",
+      "player_team",
+      "opposition_team"
+    ),
+    relationship = "many-to-many"
+  ) |>
+  relocate(under_price, .after = over_price) |>
+  mutate(margin = 1 / under_price + 1 / over_price) |>
+  arrange(margin) |>
+  mutate(margin = (1 - margin)) |>
+  mutate(margin = 100 * margin) |>
+  filter(under_line > over_line) |> 
+  # filter(margin > 0) |>
+  distinct(match, player_name, over_line, under_line, over_agency, under_agency, .keep_all = TRUE) |>
+  relocate(over_price, over_agency, under_price, under_agency, .after = opposition_team)
+
+# Steals------------------------------------------------------------------------
+
+steals_middles <-
+  steals_unders |>
+  rename(under_line = line) |> 
+  inner_join(
+    (steals_overs |> 
+       rename(over_line = line)),
+    by = c(
+      "match",
+      "market_name",
+      "player_name",
+      "player_team",
+      "opposition_team"
+    ),
+    relationship = "many-to-many"
+  ) |>
+  relocate(under_price, .after = over_price) |>
+  mutate(margin = 1 / under_price + 1 / over_price) |>
+  arrange(margin) |>
+  mutate(margin = (1 - margin)) |>
+  mutate(margin = 100 * margin) |>
+  filter(under_line > over_line) |> 
+  # filter(margin > 0) |>
+  distinct(match, player_name, over_line, under_line, over_agency, under_agency, .keep_all = TRUE) |>
+  relocate(over_price, over_agency, under_price, under_agency, .after = opposition_team)
+
+# PRAs--------------------------------------------------------------------------
+
+pra_middles <-
+  pra_unders |>
+  rename(under_line = line) |> 
+  inner_join(
+    (pra_overs |> 
+       rename(over_line = line)),
+    by = c(
+      "match",
+      "market_name",
+      "player_name",
+      "player_team",
+      "opposition_team"
+    ),
+    relationship = "many-to-many"
+  ) |>
+  relocate(under_price, .after = over_price) |>
+  mutate(margin = 1 / under_price + 1 / over_price) |>
+  arrange(margin) |>
+  mutate(margin = (1 - margin)) |>
+  mutate(margin = 100 * margin) |>
+  filter(under_line > over_line) |> 
+  # filter(margin > 0) |>
+  distinct(match, player_name, over_line, under_line, over_agency, under_agency, .keep_all = TRUE) |>
+  relocate(over_price, over_agency, under_price, under_agency, .after = opposition_team)
+
+all_middles <-
+  bind_rows(
+    points_middles,
+    assists_middles,
+    rebounds_middles,
+    blocks_middles,
+    steals_middles,
+    threes_middles,
+    pra_middles
+  ) |>
+  filter(margin >= -1) |> 
+  arrange(desc(margin)) |> 
+  filter(!is.na(player_name)) |> 
+  left_join(start_times, by = "match") |>
+  # Filter out cases where current time is more than 5 mins after start time
+  filter(gmt_time_dttm < start_time) |>
+  select(-start_time) |> 
+  relocate(over_line, .after = over_price)
+
+all_middles |> write_rds("Data/all_middles.rds")
+
+#===============================================================================
 # SGM ARBs
 #===============================================================================
 

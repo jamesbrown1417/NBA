@@ -59,7 +59,8 @@ get_empirical_prob <- function(player_name, line, stat, season) {
   
   # Last 10 games
   player_stats_last_10 <-
-    combined_stats_2023_2024 |>
+    combined_stats_2024_2025 |>
+    bind_rows(combined_stats_2023_2024) |>
     group_by(personId) |> 
     arrange(desc(GAME_DATE)) |> 
     slice(1:10) |>

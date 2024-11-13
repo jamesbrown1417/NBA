@@ -26,8 +26,13 @@ library(tidyverse)
 
 # Read in files
 all_arbs <- read_rds("../Data/all_arbs.rds")
+all_middles <- read_rds("../Data/all_middles.rds")
 tab_miss_by_one <- read_rds("../Data/tab_points_miss_by_one.rds")
 ```
+
+::: panel-tabset
+
+## Arbs
 
 ::: panel-tabset
 ## Other Arbs
@@ -107,3 +112,14 @@ tab_miss_by_1_points_arbs <-
 tab_miss_by_1_points_arbs
 ```
 :::
+
+## Middles
+
+:::
+
+```{r}
+#| column: page
+
+all_middles |> 
+  mutate(margin = round(margin, 2))
+```
