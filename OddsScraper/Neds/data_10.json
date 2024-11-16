@@ -1,0 +1,191 @@
+{
+    "entrants": {
+        "36afe46f-e4a7-43ae-ae96-0169aef13052": {
+            "id": "36afe46f-e4a7-43ae-ae96-0169aef13052",
+            "name": "Phoenix Suns",
+            "home_away": "AWAY",
+            "visible": true,
+            "sort_order": 20,
+            "market_id": "5ac16afd-b83b-40e7-b0ca-48c4d967e197"
+        },
+        "a4b6c7a5-7ad1-4aa1-8f88-02028b2fe6a1": {
+            "id": "a4b6c7a5-7ad1-4aa1-8f88-02028b2fe6a1",
+            "name": "Phoenix Suns",
+            "home_away": "AWAY",
+            "visible": true,
+            "sort_order": 20,
+            "market_id": "3c491751-6803-4f67-be7b-515d11749fc8"
+        },
+        "f2a5c573-aebd-413f-885f-630a1c1b0582": {
+            "id": "f2a5c573-aebd-413f-885f-630a1c1b0582",
+            "name": "Minnesota Timberwolves",
+            "home_away": "HOME",
+            "visible": true,
+            "sort_order": 10,
+            "market_id": "3c491751-6803-4f67-be7b-515d11749fc8"
+        },
+        "f46a37fd-9ace-4deb-9629-a059173bb0c8": {
+            "id": "f46a37fd-9ace-4deb-9629-a059173bb0c8",
+            "name": "Minnesota Timberwolves",
+            "home_away": "HOME",
+            "visible": true,
+            "sort_order": 10,
+            "market_id": "5ac16afd-b83b-40e7-b0ca-48c4d967e197"
+        }
+    },
+    "event_participants": {
+        "3acf5e73-33d6-4781-8857-378a37f224b7": {
+            "id": "3acf5e73-33d6-4781-8857-378a37f224b7",
+            "event_id": "d7a36cad-4df1-4f7e-a0fb-2417c9b7f8fe",
+            "name": "Phoenix Suns",
+            "home_away": "AWAY"
+        },
+        "b33e617d-427d-47ba-a27c-b55ad6ad9a24": {
+            "id": "b33e617d-427d-47ba-a27c-b55ad6ad9a24",
+            "event_id": "d7a36cad-4df1-4f7e-a0fb-2417c9b7f8fe",
+            "name": "Minnesota Timberwolves",
+            "home_away": "HOME"
+        }
+    },
+    "events": {
+        "d7a36cad-4df1-4f7e-a0fb-2417c9b7f8fe": {
+            "id": "d7a36cad-4df1-4f7e-a0fb-2417c9b7f8fe",
+            "name": "Minnesota Timberwolves vs Phoenix Suns",
+            "event_type": {
+                "id": "6bfa0efc-05df-4ae1-9b1e-152365290cfd",
+                "name": "Match"
+            },
+            "match_status": "BettingOpen",
+            "advertised_start": "2024-11-17T20:30:00Z",
+            "actual_start": "2024-11-17T20:30:00Z",
+            "visible": true,
+            "slug": "minnesota-timberwolves-vs-phoenix-suns",
+            "competition": {
+                "id": "2d20a25b-6b96-4651-a523-442834136e2d",
+                "name": "NBA",
+                "sort_order": 1,
+                "region": "USA",
+                "region_id": "6889a18d-3a47-400c-9cd4-10f228c0dc59"
+            },
+            "competition_id": "2d20a25b-6b96-4651-a523-442834136e2d",
+            "market_type_group_ids": [
+                "43c990d1-7471-4055-9a7a-e71409494486"
+            ],
+            "market_type_group_markets": [
+                {
+                    "market_type_group_id": "43c990d1-7471-4055-9a7a-e71409494486",
+                    "market_ids": [
+                        "3c491751-6803-4f67-be7b-515d11749fc8",
+                        "5ac16afd-b83b-40e7-b0ca-48c4d967e197"
+                    ]
+                }
+            ],
+            "market_count": 2,
+            "main_markets": [
+                "3c491751-6803-4f67-be7b-515d11749fc8"
+            ],
+            "market_ids": [
+                "3c491751-6803-4f67-be7b-515d11749fc8",
+                "5ac16afd-b83b-40e7-b0ca-48c4d967e197"
+            ],
+            "category_id": "3c34d075-dc14-436d-bfc4-9272a49c2b39",
+            "participant_ids": [
+                "3acf5e73-33d6-4781-8857-378a37f224b7",
+                "b33e617d-427d-47ba-a27c-b55ad6ad9a24"
+            ]
+        }
+    },
+    "market_type_groups": {
+        "43c990d1-7471-4055-9a7a-e71409494486": {
+            "id": "43c990d1-7471-4055-9a7a-e71409494486",
+            "category_id": "3c34d075-dc14-436d-bfc4-9272a49c2b39",
+            "name": "Top Markets",
+            "priority": 270,
+            "is_primary": true
+        }
+    },
+    "markets": {
+        "3c491751-6803-4f67-be7b-515d11749fc8": {
+            "id": "3c491751-6803-4f67-be7b-515d11749fc8",
+            "event_id": "d7a36cad-4df1-4f7e-a0fb-2417c9b7f8fe",
+            "market_type_id": "3dc4ca49-3190-43b2-a328-60e0c9460187",
+            "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
+            "name": "Head To Head",
+            "advertised_start": {
+                "seconds": 1731875400
+            },
+            "actual_start": {
+                "seconds": 1731875400
+            },
+            "is_primary": true,
+            "same_game_multi_available": true,
+            "visible": true,
+            "entrant_ids": [
+                "f2a5c573-aebd-413f-885f-630a1c1b0582",
+                "a4b6c7a5-7ad1-4aa1-8f88-02028b2fe6a1"
+            ],
+            "num_winners": 1
+        },
+        "5ac16afd-b83b-40e7-b0ca-48c4d967e197": {
+            "id": "5ac16afd-b83b-40e7-b0ca-48c4d967e197",
+            "event_id": "d7a36cad-4df1-4f7e-a0fb-2417c9b7f8fe",
+            "market_type_id": "8fcc394e-b974-4328-af74-57d423de7a7b",
+            "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
+            "name": "Line",
+            "advertised_start": {
+                "seconds": 1731875400
+            },
+            "actual_start": {
+                "seconds": 1731875400
+            },
+            "handicap": 7,
+            "same_game_multi_available": true,
+            "comments": "If the Line market results in a refund, the whole SGM bet will be refunded.",
+            "visible": true,
+            "entrant_ids": [
+                "f46a37fd-9ace-4deb-9629-a059173bb0c8",
+                "36afe46f-e4a7-43ae-ae96-0169aef13052"
+            ],
+            "num_winners": 1
+        }
+    },
+    "markets_allow_cashout": {
+        "3c491751-6803-4f67-be7b-515d11749fc8": true,
+        "5ac16afd-b83b-40e7-b0ca-48c4d967e197": false
+    },
+    "prices": {
+        "36afe46f-e4a7-43ae-ae96-0169aef13052:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 9,
+                "denominator": 10
+            }
+        },
+        "a4b6c7a5-7ad1-4aa1-8f88-02028b2fe6a1:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 5,
+                "denominator": 2
+            }
+        },
+        "f2a5c573-aebd-413f-885f-630a1c1b0582:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 8,
+                "denominator": 25
+            }
+        },
+        "f46a37fd-9ace-4deb-9629-a059173bb0c8:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 9,
+                "denominator": 10
+            }
+        }
+    },
+    "regions": {
+        "6889a18d-3a47-400c-9cd4-10f228c0dc59": {
+            "region_id": "6889a18d-3a47-400c-9cd4-10f228c0dc59",
+            "name": "USA",
+            "slug": "usa",
+            "category_id": "3c34d075-dc14-436d-bfc4-9272a49c2b39",
+            "sort_order": 2
+        }
+    }
+}
