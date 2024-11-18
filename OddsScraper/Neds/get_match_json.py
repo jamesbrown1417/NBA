@@ -4,19 +4,21 @@ import pandas as pd
 import json
 import os
 
-# Read in the URL list from the file
-match_urls = pd.read_csv("OddsScraper\\Neds\\neds_nba_match_urls.csv")
+# Load the URL list from the CSV file using platform-agnostic paths
+csv_path = os.path.join("OddsScraper", "Neds", "neds_nba_match_urls.csv")
+match_urls = pd.read_csv(csv_path)
 
-# Get the urls as a list
+# Get the URLs as a list
 urls = match_urls["url"].tolist()
 
 async def main():
-    # Load URLs from the CSV file
-    match_urls = pd.read_csv("OddsScraper\\Neds\\neds_nba_match_urls.csv")
+    # Reload URLs from the CSV file
+    csv_path = os.path.join("OddsScraper", "Neds", "neds_nba_match_urls.csv")
+    match_urls = pd.read_csv(csv_path)
     urls = match_urls["url"].tolist()
 
-    # Ensure the directory exists
-    output_dir = "OddsScraper\\Neds\\"
+    # Ensure the output directory exists
+    output_dir = os.path.join("OddsScraper", "Neds")
     os.makedirs(output_dir, exist_ok=True)
 
     async with async_playwright() as p:
@@ -52,4 +54,3 @@ async def main():
         await browser.close()
 
 asyncio.run(main())
-

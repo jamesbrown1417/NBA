@@ -1,5 +1,6 @@
 from playwright.async_api import async_playwright
 import asyncio
+import os
 
 # The URL pattern we are interested in
 url_pattern = "https://api.neds.com.au/v2/sport/event-request?category_ids=%5B%223c34d075-dc14-436d-bfc4-9272a49c2b39%22%5D&include_any_team_vs_any_team_events=true"
@@ -20,12 +21,19 @@ async def main():
             if response.url == url_pattern:
                 # Fetch and decode the response body
                 body = await response.body()
+
+                # Ensure the output directory exists
+                output_dir = os.path.join("OddsScraper", "Neds")
+                os.makedirs(output_dir, exist_ok=True)
+
                 # Write out the body of the response to a file in UTF-8 encoding explicitly
-                with open("OddsScraper\\Neds\\neds_response.json", "w", encoding="utf-8") as f:
+                file_path = os.path.join(output_dir, "neds_response.json")
+                with open(file_path, "w", encoding="utf-8") as f:
                     f.write(body.decode("utf-8"))
 
                 # Print a message to the console
-                print("Response captured!")
+                print(f"Response captured and saved to {file_path}!")
+                
                 # Schedule browser to close
                 asyncio.create_task(close_browser(browser))
 
@@ -41,4 +49,3 @@ async def main():
 
 # Run the script
 asyncio.run(main())
-
