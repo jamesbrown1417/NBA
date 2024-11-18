@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Set the current directory to your project folder
-cd ~/Desktop/Projects/NBA || exit
+cd ~/Projects/NBA || exit
 
 # Remove .json and .txt files in specific directories
 rm OddsScraper/Neds/*.json
