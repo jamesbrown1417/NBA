@@ -7,4 +7,4 @@ export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 cd ~/Projects/NBA || exit
 
 # Execute the Python script for API data
-python3 Scripts/get_all_data_current_season.py
+/Users/jamesbrown/.pyenv/versions/3.12.5/bin/python3 Scripts/get_all_data_current_season.py

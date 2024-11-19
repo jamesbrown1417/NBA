@@ -10,10 +10,10 @@ cd ~/Projects/NBA || exit
 rm OddsScraper/Neds/*.json
 
 # Execute Python and R scripts
-python3 OddsScraper/TAB/get-TAB-response.py
-python3 OddsScraper/Neds/get_neds_urls.py
+/Users/jamesbrown/.pyenv/versions/3.12.5/bin/python3 OddsScraper/TAB/get-TAB-response.py
+/Users/jamesbrown/.pyenv/versions/3.12.5/bin/python3 OddsScraper/Neds/get_neds_urls.py
 Rscript OddsScraper/Neds/get_neds_match_urls.R
-python3 OddsScraper/Neds/get_match_json.py
+/Users/jamesbrown/.pyenv/versions/3.12.5/bin/python3 OddsScraper/Neds/get_match_json.py
 
 # Execute R script for getting arbs
 Rscript Scripts/get_arbs.R
