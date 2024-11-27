@@ -78,6 +78,20 @@ arbitragePercentage = {
   }
 }
 
+// Calculate total profit (if arbitrage exists)
+totalProfit = {
+  const o1 = parseFloat(odds1);
+  const s1 = parseFloat(stake1);
+  const s2 = stake2;
+  if (!isNaN(o1) && !isNaN(s1) && typeof s2 === "number") {
+    // Profit if Bet 1 wins
+    const profit1 = (s1 * o1) - (s1 + s2);
+    return profit1; // Both bets yield the same profit
+  } else {
+    return "Please enter valid numerical values.";
+  }
+}
+
 // Output the results in an aesthetic format with left-justified columns
 html`
   <div style="
@@ -105,6 +119,9 @@ html`
     <hr style="border: none; border-top: 1px solid #ddd;">
     <h3 style="color: #3498db; text-align: center;">
       Arbitrage Percentage: ${typeof arbitragePercentage === "number" ? formatNumber(-arbitragePercentage) + "%" : arbitragePercentage}
+    </h3>
+    <h3 style="color: #27ae60; text-align: center;">
+      Total Profit: ${typeof totalProfit === "number" ? formatCurrency(totalProfit) : totalProfit}
     </h3>
   </div>
 `
