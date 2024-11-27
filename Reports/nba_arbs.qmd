@@ -18,7 +18,98 @@ format:
 editor: visual
 ---
 
-Timestamp `r Sys.time()`
+```{r}
+# Get the current date and time
+current_time <- Sys.time()
+
+# Format the timestamp to be more aesthetic and human-readable
+formatted_time <- format(current_time, "%A, %d %B %Y at %I:%M %p")
+
+# Output the formatted timestamp
+cat("Generated on:", formatted_time)
+```
+
+```{ojs}
+viewof odds1 = Inputs.text({
+  label: "Odds 1:",
+  placeholder: "Enter odds...",
+  value: "2.4" // Default value for demonstration
+})
+
+viewof stake1 = Inputs.text({
+  label: "Stake 1:",
+  placeholder: "Enter stake...",
+  value: "100" // Default value for demonstration
+})
+
+viewof odds2 = Inputs.text({
+  label: "Odds 2:",
+  placeholder: "Enter odds...",
+  value: "1.8" // Default value for demonstration
+})
+
+// Format numbers to two decimal places
+formatNumber = (value) => parseFloat(value).toFixed(2)
+
+// Format stakes as dollars
+formatCurrency = (value) => `$${parseFloat(value).toFixed(2)}`
+
+// Calculate the required stake for arbitrage
+stake2 = {
+  const o1 = parseFloat(odds1);
+  const s1 = parseFloat(stake1);
+  const o2 = parseFloat(odds2);
+  if (!isNaN(o1) && !isNaN(s1) && !isNaN(o2)) {
+    return (s1 * o1) / o2;
+  } else {
+    return "Please enter valid numerical values.";
+  }
+}
+
+// Calculate arbitrage percentage (sum of reciprocals of odds minus 1)
+arbitragePercentage = {
+  const o1 = parseFloat(odds1);
+  const o2 = parseFloat(odds2);
+  if (!isNaN(o1) && !isNaN(o2)) {
+    const arb = (1 / o1) + (1 / o2);
+    return -100 * (1 - arb); // Percentage below 1
+  } else {
+    return "Please enter valid numerical values.";
+  }
+}
+
+// Output the results in an aesthetic format with left-justified columns
+html`
+  <div style="
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 20px;
+    max-width: 600px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  ">
+    <div style="display: flex; justify-content: space-between; gap: 20px;">
+      <div style="flex: 1; text-align: left;">
+        <h3 style="color: #34495e; text-align: left;">Odds</h3>
+        <p><strong>Odds 1:</strong> ${formatNumber(odds1)}</p>
+        <p><strong>Odds 2:</strong> ${formatNumber(odds2)}</p>
+      </div>
+      <div style="flex: 1; text-align: left;">
+        <h3 style="color: #34495e; text-align: left;">Stakes</h3>
+        <p><strong>Stake 1:</strong> ${formatCurrency(stake1)}</p>
+        <p><strong>Stake 2:</strong> ${typeof stake2 === "number" ? formatCurrency(stake2) : stake2}</p>
+      </div>
+    </div>
+    <hr style="border: none; border-top: 1px solid #ddd;">
+    <h3 style="color: #3498db; text-align: center;">
+      Arbitrage Percentage: ${typeof arbitragePercentage === "number" ? formatNumber(-arbitragePercentage) + "%" : arbitragePercentage}
+    </h3>
+  </div>
+`
+```
+
 
 ```{r}
 # Libraries
@@ -30,8 +121,7 @@ all_middles <- read_rds("../Data/all_middles.rds")
 tab_miss_by_one <- read_rds("../Data/tab_points_miss_by_one.rds")
 ```
 
-::: panel-tabset
-
+:::: panel-tabset
 ## Arbs
 
 ::: panel-tabset
@@ -115,11 +205,10 @@ tab_miss_by_1_points_arbs
 
 ## Middles
 
-:::
-
 ```{r}
 #| column: page
 
 all_middles |> 
   mutate(margin = round(margin, 2))
 ```
+::::
