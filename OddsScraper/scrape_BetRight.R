@@ -42,8 +42,8 @@ player_names <-
   mutate(join_name = ifelse(player_full_name == "Bojan Bogdanovic", "Boj Bogdanovic", join_name))
 
 # URL to get responses
-# betright_url = "https://next-api.betright.com.au/Sports/Category?categoryId=60982" # IN Season Tournament - may need to change for regular NBA
-betright_url = "https://next-api.betright.com.au/Sports/Category?categoryId=54" # Regular Season - change for IN Season Tournament
+betright_url = "https://next-api.betright.com.au/Sports/Category?categoryId=60982" # IN Season Tournament - may need to change for regular NBA
+# betright_url = "https://next-api.betright.com.au/Sports/Category?categoryId=54" # Regular Season - change for IN Season Tournament
 
 # Make request and get response
 betright_response <-
