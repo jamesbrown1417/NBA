@@ -1,5 +1,6 @@
 # Load necessary libraries
 library(httr)
+library(tidyverse)
 library(jsonlite)
 
 # Define URLs with meaningful names
@@ -61,6 +62,6 @@ get_json_data <- function(url) {
 }
 
 # Retrieve and save data for each URL in a named list for further processing
-results <- lapply(urls, get_json_data)
+results <- map(urls, get_json_data)
 names(results) <- names(urls) # Assigns names to each dataset in the results list
 
