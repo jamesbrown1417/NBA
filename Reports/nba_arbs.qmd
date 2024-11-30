@@ -54,20 +54,6 @@ formatNumber = (value) => parseFloat(value).toFixed(2)
 // Format stakes as dollars
 formatCurrency = (value) => `$${parseFloat(value).toFixed(2)}`
 
-// Calculate stake required to win $50
-calculateStakeToWin50 = (odds) => {
-  const o = parseFloat(odds);
-  return isNaN(o) || o <= 0 ? "Invalid Odds" : (50 / (o - 1)).toFixed(2);
-}
-
-// Event listener to set Stake 1 based on Odds 1
-document.body.addEventListener("click", (event) => {
-  if (event.target.classList.contains("set-stake1")) {
-    const requiredStake = calculateStakeToWin50(odds1);
-    if (!isNaN(requiredStake)) stake1.value = requiredStake;
-  }
-});
-
 // Calculate the required stake for arbitrage
 stake2 = {
   const o1 = parseFloat(odds1);
@@ -126,11 +112,7 @@ html`
       </div>
       <div style="flex: 1; text-align: left;">
         <h3 style="color: #34495e; text-align: left;">Stakes</h3>
-        <div style="display: flex; align-items: center; gap: 10px;">
-          <p><strong>Stake 1:</strong></p>
-          <input type="text" value="${stake1}" style="width: 80px;" />
-          <button class="set-stake1" style="padding: 5px 10px; font-size: 12px;">Set Stake to Win $50</button>
-        </div>
+        <p><strong>Stake 1:</strong> ${formatCurrency(stake1)}</p>
         <p><strong>Stake 2:</strong> ${typeof stake2 === "number" ? formatCurrency(stake2) : stake2}</p>
       </div>
     </div>
