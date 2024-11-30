@@ -27254,7 +27254,7 @@ initializeRuntime();
 
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>Generated on: Sunday, 01 December 2024 at 09:31 AM</code></pre>
+<pre><code>Generated on: Sunday, 01 December 2024 at 09:45 AM</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -27282,77 +27282,19 @@ initializeRuntime();
 <span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a><span class="co">// Format stakes as dollars</span></span>
 <span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>formatCurrency <span class="op">=</span> (value) <span class="kw">=&gt;</span> <span class="vs">`$</span><span class="sc">${</span><span class="pp">parseFloat</span>(value)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs">`</span></span>
 <span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a><span class="co">// Calculate the required stake for arbitrage</span></span>
-<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>stake2 <span class="op">=</span> {</span>
-<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> o1 <span class="op">=</span> <span class="pp">parseFloat</span>(odds1)<span class="op">;</span></span>
-<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> s1 <span class="op">=</span> <span class="pp">parseFloat</span>(stake1)<span class="op">;</span></span>
-<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> o2 <span class="op">=</span> <span class="pp">parseFloat</span>(odds2)<span class="op">;</span></span>
-<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="op">!</span><span class="pp">isNaN</span>(o1) <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="pp">isNaN</span>(s1) <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="pp">isNaN</span>(o2)) {</span>
-<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (s1 <span class="op">*</span> o1) <span class="op">/</span> o2<span class="op">;</span></span>
-<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">&quot;Please enter valid numerical values.&quot;</span><span class="op">;</span></span>
-<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a><span class="co">// Calculate arbitrage percentage (sum of reciprocals of odds minus 1)</span></span>
-<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>arbitragePercentage <span class="op">=</span> {</span>
-<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> o1 <span class="op">=</span> <span class="pp">parseFloat</span>(odds1)<span class="op">;</span></span>
-<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> o2 <span class="op">=</span> <span class="pp">parseFloat</span>(odds2)<span class="op">;</span></span>
-<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="op">!</span><span class="pp">isNaN</span>(o1) <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="pp">isNaN</span>(o2)) {</span>
-<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> arb <span class="op">=</span> (<span class="dv">1</span> <span class="op">/</span> o1) <span class="op">+</span> (<span class="dv">1</span> <span class="op">/</span> o2)<span class="op">;</span></span>
-<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span><span class="dv">100</span> <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> arb)<span class="op">;</span> <span class="co">// Percentage below 1</span></span>
-<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">&quot;Please enter valid numerical values.&quot;</span><span class="op">;</span></span>
-<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a><span class="co">// Calculate total profit (if arbitrage exists)</span></span>
-<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a>totalProfit <span class="op">=</span> {</span>
-<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> o1 <span class="op">=</span> <span class="pp">parseFloat</span>(odds1)<span class="op">;</span></span>
-<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> s1 <span class="op">=</span> <span class="pp">parseFloat</span>(stake1)<span class="op">;</span></span>
-<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> s2 <span class="op">=</span> stake2<span class="op">;</span></span>
-<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="op">!</span><span class="pp">isNaN</span>(o1) <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="pp">isNaN</span>(s1) <span class="op">&amp;&amp;</span> <span class="kw">typeof</span> s2 <span class="op">===</span> <span class="st">&quot;number&quot;</span>) {</span>
-<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Profit if Bet 1 wins</span></span>
-<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> profit1 <span class="op">=</span> (s1 <span class="op">*</span> o1) <span class="op">-</span> (s1 <span class="op">+</span> s2)<span class="op">;</span></span>
-<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> profit1<span class="op">;</span> <span class="co">// Both bets yield the same profit</span></span>
-<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">&quot;Please enter valid numerical values.&quot;</span><span class="op">;</span></span>
-<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-95"><a href="#cb2-95" aria-hidden="true" tabindex="-1"></a><span class="co">// Output the results in an aesthetic format with left-justified columns</span></span>
-<span id="cb2-96"><a href="#cb2-96" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`</span></span>
-<span id="cb2-97"><a href="#cb2-97" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;div style=&quot;</span></span>
-<span id="cb2-98"><a href="#cb2-98" aria-hidden="true" tabindex="-1"></a><span class="vs">    font-family: Arial, sans-serif;</span></span>
-<span id="cb2-99"><a href="#cb2-99" aria-hidden="true" tabindex="-1"></a><span class="vs">    background-color: #f9f9f9;</span></span>
-<span id="cb2-100"><a href="#cb2-100" aria-hidden="true" tabindex="-1"></a><span class="vs">    border: 1px solid #ddd;</span></span>
-<span id="cb2-101"><a href="#cb2-101" aria-hidden="true" tabindex="-1"></a><span class="vs">    border-radius: 8px;</span></span>
-<span id="cb2-102"><a href="#cb2-102" aria-hidden="true" tabindex="-1"></a><span class="vs">    padding: 20px;</span></span>
-<span id="cb2-103"><a href="#cb2-103" aria-hidden="true" tabindex="-1"></a><span class="vs">    margin-top: 20px;</span></span>
-<span id="cb2-104"><a href="#cb2-104" aria-hidden="true" tabindex="-1"></a><span class="vs">    max-width: 600px;</span></span>
-<span id="cb2-105"><a href="#cb2-105" aria-hidden="true" tabindex="-1"></a><span class="vs">    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);</span></span>
-<span id="cb2-106"><a href="#cb2-106" aria-hidden="true" tabindex="-1"></a><span class="vs">  &quot;&gt;</span></span>
-<span id="cb2-107"><a href="#cb2-107" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;div style=&quot;display: flex; justify-content: space-between; gap: 20px;&quot;&gt;</span></span>
-<span id="cb2-108"><a href="#cb2-108" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;div style=&quot;flex: 1; text-align: left;&quot;&gt;</span></span>
-<span id="cb2-109"><a href="#cb2-109" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;h3 style=&quot;color: #34495e; text-align: left;&quot;&gt;Odds&lt;/h3&gt;</span></span>
-<span id="cb2-110"><a href="#cb2-110" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;p&gt;&lt;strong&gt;Odds 1:&lt;/strong&gt; </span><span class="sc">${</span><span class="fu">formatNumber</span>(odds1)<span class="sc">}</span><span class="vs">&lt;/p&gt;</span></span>
-<span id="cb2-111"><a href="#cb2-111" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;p&gt;&lt;strong&gt;Odds 2:&lt;/strong&gt; </span><span class="sc">${</span><span class="fu">formatNumber</span>(odds2)<span class="sc">}</span><span class="vs">&lt;/p&gt;</span></span>
-<span id="cb2-112"><a href="#cb2-112" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;/div&gt;</span></span>
-<span id="cb2-113"><a href="#cb2-113" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;div style=&quot;flex: 1; text-align: left;&quot;&gt;</span></span>
-<span id="cb2-114"><a href="#cb2-114" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;h3 style=&quot;color: #34495e; text-align: left;&quot;&gt;Stakes&lt;/h3&gt;</span></span>
-<span id="cb2-115"><a href="#cb2-115" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;p&gt;&lt;strong&gt;Stake 1:&lt;/strong&gt; </span><span class="sc">${</span><span class="fu">formatCurrency</span>(stake1)<span class="sc">}</span><span class="vs">&lt;/p&gt;</span></span>
-<span id="cb2-116"><a href="#cb2-116" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;p&gt;&lt;strong&gt;Stake 2:&lt;/strong&gt; </span><span class="sc">${</span><span class="kw">typeof</span> stake2 <span class="op">===</span> <span class="st">&quot;number&quot;</span> <span class="op">?</span> <span class="fu">formatCurrency</span>(stake2) <span class="op">:</span> stake2<span class="sc">}</span><span class="vs">&lt;/p&gt;</span></span>
-<span id="cb2-117"><a href="#cb2-117" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;/div&gt;</span></span>
-<span id="cb2-118"><a href="#cb2-118" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;/div&gt;</span></span>
-<span id="cb2-119"><a href="#cb2-119" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;hr style=&quot;border: none; border-top: 1px solid #ddd;&quot;&gt;</span></span>
-<span id="cb2-120"><a href="#cb2-120" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;h3 style=&quot;color: #3498db; text-align: center;&quot;&gt;</span></span>
-<span id="cb2-121"><a href="#cb2-121" aria-hidden="true" tabindex="-1"></a><span class="vs">      Arbitrage Percentage: </span><span class="sc">${</span><span class="kw">typeof</span> arbitragePercentage <span class="op">===</span> <span class="st">&quot;number&quot;</span> <span class="op">?</span> <span class="fu">formatNumber</span>(<span class="op">-</span>arbitragePercentage) <span class="op">+</span> <span class="st">&quot;%&quot;</span> <span class="op">:</span> arbitragePercentage<span class="sc">}</span></span>
-<span id="cb2-122"><a href="#cb2-122" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;/h3&gt;</span></span>
-<span id="cb2-123"><a href="#cb2-123" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;h3 style=&quot;color: #27ae60; text-align: center;&quot;&gt;</span></span>
-<span id="cb2-124"><a href="#cb2-124" aria-hidden="true" tabindex="-1"></a><span class="vs">      Total Profit: </span><span class="sc">${</span><span class="kw">typeof</span> totalProfit <span class="op">===</span> <span class="st">&quot;number&quot;</span> <span class="op">?</span> <span class="fu">formatCurrency</span>(totalProfit) <span class="op">:</span> totalProfit<span class="sc">}</span></span>
-<span id="cb2-125"><a href="#cb2-125" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;/h3&gt;</span></span>
-<span id="cb2-126"><a href="#cb2-126" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;/div&gt;</span></span>
-<span id="cb2-127"><a href="#cb2-127" aria-hidden="true" tabindex="-1"></a><span class="vs">`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a><span class="co">// Calculate stake required to win $50</span></span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>calculateStakeToWin50 <span class="op">=</span> (odds) <span class="kw">=&gt;</span> {</span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> o <span class="op">=</span> <span class="pp">parseFloat</span>(odds)<span class="op">;</span></span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="pp">isNaN</span>(o) <span class="op">||</span> o <span class="op">&lt;=</span> <span class="dv">0</span> <span class="op">?</span> <span class="st">&quot;Invalid Odds&quot;</span> <span class="op">:</span> (<span class="dv">50</span> <span class="op">/</span> (o <span class="op">-</span> <span class="dv">1</span>))<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="op">;</span></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a><span class="co">// Event listener to set Stake 1 based on Odds 1</span></span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a><span class="bu">document</span><span class="op">.</span><span class="at">body</span><span class="op">.</span><span class="fu">addEventListener</span>(<span class="st">&quot;click&quot;</span><span class="op">,</span> (<span class="bu">event</span>) <span class="kw">=&gt;</span> {</span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="bu">event</span><span class="op">.</span><span class="at">target</span><span class="op">.</span><span class="at">classList</span><span class="op">.</span><span class="fu">contains</span>(<span class="st">&quot;set-stake1&quot;</span>)) {</span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> requiredStake <span class="op">=</span> <span class="fu">calculateStakeToWin50</span>(odds1)<span class="op">;</span></span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="op">!</span><span class="pp">isNaN</span>(requiredStake)) stake1<span class="op">.</span><span class="at">value</span> <span class="op">=</span> requiredStake<span class="op">;</span></span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <div id="ojs-cell-1-1" data-nodetype="declaration">
@@ -27397,11 +27339,85 @@ initializeRuntime();
 </div>
 <div class="cell-output cell-output-display">
 <div>
-<div id="ojs-cell-1-7" data-nodetype="declaration">
+<div id="ojs-cell-1-7" data-nodetype="expression">
 
 </div>
 </div>
 </div>
+<div class="sourceCode cell-code hidden" id="cb3" data-startfrom="72" data-source-offset="-1107"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 71;"><span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a>stake2 <span class="op">=</span> {</span>
+<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> o1 <span class="op">=</span> <span class="pp">parseFloat</span>(odds1)<span class="op">;</span></span>
+<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> s1 <span class="op">=</span> <span class="pp">parseFloat</span>(stake1)<span class="op">;</span></span>
+<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> o2 <span class="op">=</span> <span class="pp">parseFloat</span>(odds2)<span class="op">;</span></span>
+<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="op">!</span><span class="pp">isNaN</span>(o1) <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="pp">isNaN</span>(s1) <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="pp">isNaN</span>(o2)) {</span>
+<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (s1 <span class="op">*</span> o1) <span class="op">/</span> o2<span class="op">;</span></span>
+<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">&quot;Please enter valid numerical values.&quot;</span><span class="op">;</span></span>
+<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a><span class="co">// Calculate arbitrage percentage (sum of reciprocals of odds minus 1)</span></span>
+<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a>arbitragePercentage <span class="op">=</span> {</span>
+<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> o1 <span class="op">=</span> <span class="pp">parseFloat</span>(odds1)<span class="op">;</span></span>
+<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> o2 <span class="op">=</span> <span class="pp">parseFloat</span>(odds2)<span class="op">;</span></span>
+<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="op">!</span><span class="pp">isNaN</span>(o1) <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="pp">isNaN</span>(o2)) {</span>
+<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> arb <span class="op">=</span> (<span class="dv">1</span> <span class="op">/</span> o1) <span class="op">+</span> (<span class="dv">1</span> <span class="op">/</span> o2)<span class="op">;</span></span>
+<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span><span class="dv">100</span> <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> arb)<span class="op">;</span> <span class="co">// Percentage below 1</span></span>
+<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">&quot;Please enter valid numerical values.&quot;</span><span class="op">;</span></span>
+<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a><span class="co">// Calculate total profit (if arbitrage exists)</span></span>
+<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a>totalProfit <span class="op">=</span> {</span>
+<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> o1 <span class="op">=</span> <span class="pp">parseFloat</span>(odds1)<span class="op">;</span></span>
+<span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> s1 <span class="op">=</span> <span class="pp">parseFloat</span>(stake1)<span class="op">;</span></span>
+<span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> s2 <span class="op">=</span> stake2<span class="op">;</span></span>
+<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="op">!</span><span class="pp">isNaN</span>(o1) <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="pp">isNaN</span>(s1) <span class="op">&amp;&amp;</span> <span class="kw">typeof</span> s2 <span class="op">===</span> <span class="st">&quot;number&quot;</span>) {</span>
+<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Profit if Bet 1 wins</span></span>
+<span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> profit1 <span class="op">=</span> (s1 <span class="op">*</span> o1) <span class="op">-</span> (s1 <span class="op">+</span> s2)<span class="op">;</span></span>
+<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> profit1<span class="op">;</span> <span class="co">// Both bets yield the same profit</span></span>
+<span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb3-105"><a href="#cb3-105" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">&quot;Please enter valid numerical values.&quot;</span><span class="op">;</span></span>
+<span id="cb3-106"><a href="#cb3-106" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb3-107"><a href="#cb3-107" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a><span class="co">// Output the results in an aesthetic format with left-justified columns</span></span>
+<span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`</span></span>
+<span id="cb3-111"><a href="#cb3-111" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;div style=&quot;</span></span>
+<span id="cb3-112"><a href="#cb3-112" aria-hidden="true" tabindex="-1"></a><span class="vs">    font-family: Arial, sans-serif;</span></span>
+<span id="cb3-113"><a href="#cb3-113" aria-hidden="true" tabindex="-1"></a><span class="vs">    background-color: #f9f9f9;</span></span>
+<span id="cb3-114"><a href="#cb3-114" aria-hidden="true" tabindex="-1"></a><span class="vs">    border: 1px solid #ddd;</span></span>
+<span id="cb3-115"><a href="#cb3-115" aria-hidden="true" tabindex="-1"></a><span class="vs">    border-radius: 8px;</span></span>
+<span id="cb3-116"><a href="#cb3-116" aria-hidden="true" tabindex="-1"></a><span class="vs">    padding: 20px;</span></span>
+<span id="cb3-117"><a href="#cb3-117" aria-hidden="true" tabindex="-1"></a><span class="vs">    margin-top: 20px;</span></span>
+<span id="cb3-118"><a href="#cb3-118" aria-hidden="true" tabindex="-1"></a><span class="vs">    max-width: 600px;</span></span>
+<span id="cb3-119"><a href="#cb3-119" aria-hidden="true" tabindex="-1"></a><span class="vs">    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);</span></span>
+<span id="cb3-120"><a href="#cb3-120" aria-hidden="true" tabindex="-1"></a><span class="vs">  &quot;&gt;</span></span>
+<span id="cb3-121"><a href="#cb3-121" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;div style=&quot;display: flex; justify-content: space-between; gap: 20px;&quot;&gt;</span></span>
+<span id="cb3-122"><a href="#cb3-122" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;div style=&quot;flex: 1; text-align: left;&quot;&gt;</span></span>
+<span id="cb3-123"><a href="#cb3-123" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;h3 style=&quot;color: #34495e; text-align: left;&quot;&gt;Odds&lt;/h3&gt;</span></span>
+<span id="cb3-124"><a href="#cb3-124" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;p&gt;&lt;strong&gt;Odds 1:&lt;/strong&gt; </span><span class="sc">${</span><span class="fu">formatNumber</span>(odds1)<span class="sc">}</span><span class="vs">&lt;/p&gt;</span></span>
+<span id="cb3-125"><a href="#cb3-125" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;p&gt;&lt;strong&gt;Odds 2:&lt;/strong&gt; </span><span class="sc">${</span><span class="fu">formatNumber</span>(odds2)<span class="sc">}</span><span class="vs">&lt;/p&gt;</span></span>
+<span id="cb3-126"><a href="#cb3-126" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;/div&gt;</span></span>
+<span id="cb3-127"><a href="#cb3-127" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;div style=&quot;flex: 1; text-align: left;&quot;&gt;</span></span>
+<span id="cb3-128"><a href="#cb3-128" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;h3 style=&quot;color: #34495e; text-align: left;&quot;&gt;Stakes&lt;/h3&gt;</span></span>
+<span id="cb3-129"><a href="#cb3-129" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;div style=&quot;display: flex; align-items: center; gap: 10px;&quot;&gt;</span></span>
+<span id="cb3-130"><a href="#cb3-130" aria-hidden="true" tabindex="-1"></a><span class="vs">          &lt;p&gt;&lt;strong&gt;Stake 1:&lt;/strong&gt;&lt;/p&gt;</span></span>
+<span id="cb3-131"><a href="#cb3-131" aria-hidden="true" tabindex="-1"></a><span class="vs">          &lt;input type=&quot;text&quot; value=&quot;</span><span class="sc">${</span>stake1<span class="sc">}</span><span class="vs">&quot; style=&quot;width: 80px;&quot; /&gt;</span></span>
+<span id="cb3-132"><a href="#cb3-132" aria-hidden="true" tabindex="-1"></a><span class="vs">          &lt;button class=&quot;set-stake1&quot; style=&quot;padding: 5px 10px; font-size: 12px;&quot;&gt;Set Stake to Win $50&lt;/button&gt;</span></span>
+<span id="cb3-133"><a href="#cb3-133" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;/div&gt;</span></span>
+<span id="cb3-134"><a href="#cb3-134" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;p&gt;&lt;strong&gt;Stake 2:&lt;/strong&gt; </span><span class="sc">${</span><span class="kw">typeof</span> stake2 <span class="op">===</span> <span class="st">&quot;number&quot;</span> <span class="op">?</span> <span class="fu">formatCurrency</span>(stake2) <span class="op">:</span> stake2<span class="sc">}</span><span class="vs">&lt;/p&gt;</span></span>
+<span id="cb3-135"><a href="#cb3-135" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;/div&gt;</span></span>
+<span id="cb3-136"><a href="#cb3-136" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;/div&gt;</span></span>
+<span id="cb3-137"><a href="#cb3-137" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;hr style=&quot;border: none; border-top: 1px solid #ddd;&quot;&gt;</span></span>
+<span id="cb3-138"><a href="#cb3-138" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;h3 style=&quot;color: #3498db; text-align: center;&quot;&gt;</span></span>
+<span id="cb3-139"><a href="#cb3-139" aria-hidden="true" tabindex="-1"></a><span class="vs">      Arbitrage Percentage: </span><span class="sc">${</span><span class="kw">typeof</span> arbitragePercentage <span class="op">===</span> <span class="st">&quot;number&quot;</span> <span class="op">?</span> <span class="fu">formatNumber</span>(<span class="op">-</span>arbitragePercentage) <span class="op">+</span> <span class="st">&quot;%&quot;</span> <span class="op">:</span> arbitragePercentage<span class="sc">}</span></span>
+<span id="cb3-140"><a href="#cb3-140" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;/h3&gt;</span></span>
+<span id="cb3-141"><a href="#cb3-141" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;h3 style=&quot;color: #27ae60; text-align: center;&quot;&gt;</span></span>
+<span id="cb3-142"><a href="#cb3-142" aria-hidden="true" tabindex="-1"></a><span class="vs">      Total Profit: </span><span class="sc">${</span><span class="kw">typeof</span> totalProfit <span class="op">===</span> <span class="st">&quot;number&quot;</span> <span class="op">?</span> <span class="fu">formatCurrency</span>(totalProfit) <span class="op">:</span> totalProfit<span class="sc">}</span></span>
+<span id="cb3-143"><a href="#cb3-143" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;/h3&gt;</span></span>
+<span id="cb3-144"><a href="#cb3-144" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;/div&gt;</span></span>
+<span id="cb3-145"><a href="#cb3-145" aria-hidden="true" tabindex="-1"></a><span class="vs">`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <div id="ojs-cell-1-8" data-nodetype="declaration">
@@ -27411,7 +27427,21 @@ initializeRuntime();
 </div>
 <div class="cell-output cell-output-display">
 <div>
-<div id="ojs-cell-1-9" data-nodetype="expression">
+<div id="ojs-cell-1-9" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-10" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-11" data-nodetype="expression">
 
 </div>
 </div>
@@ -27432,10 +27462,10 @@ initializeRuntime();
 <colgroup>
 <col style="width: 21%">
 <col style="width: 9%">
+<col style="width: 12%">
 <col style="width: 10%">
-<col style="width: 12%">
 <col style="width: 2%">
-<col style="width: 12%">
+<col style="width: 10%">
 <col style="width: 6%">
 <col style="width: 6%">
 <col style="width: 6%">
@@ -27472,19 +27502,6 @@ initializeRuntime();
 <td style="text-align: right;">3.73</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Charlotte Hornets v Atlanta Hawks</td>
-<td style="text-align: left;">Player Rebounds</td>
-<td style="text-align: left;">De’Andre Hunter</td>
-<td style="text-align: left;">Atlanta Hawks</td>
-<td style="text-align: right;">3.5</td>
-<td style="text-align: left;">Charlotte Hornets</td>
-<td style="text-align: right;">2.15</td>
-<td style="text-align: left;">Sportsbet</td>
-<td style="text-align: right;">1.98</td>
-<td style="text-align: left;">Dabble</td>
-<td style="text-align: right;">2.98</td>
-</tr>
-<tr class="odd">
 <td style="text-align: left;">Milwaukee Bucks v Washington Wizards</td>
 <td style="text-align: left;">Player Steals</td>
 <td style="text-align: left;">Bilal Coulibaly</td>
@@ -27496,19 +27513,6 @@ initializeRuntime();
 <td style="text-align: right;">1.56</td>
 <td style="text-align: left;">Pointsbet</td>
 <td style="text-align: right;">2.56</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Charlotte Hornets v Atlanta Hawks</td>
-<td style="text-align: left;">Player Rebounds</td>
-<td style="text-align: left;">Jalen Johnson</td>
-<td style="text-align: left;">Atlanta Hawks</td>
-<td style="text-align: right;">7.5</td>
-<td style="text-align: left;">Charlotte Hornets</td>
-<td style="text-align: right;">1.51</td>
-<td style="text-align: left;">Sportsbet</td>
-<td style="text-align: right;">3.20</td>
-<td style="text-align: left;">BetRight</td>
-<td style="text-align: right;">2.52</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Utah Jazz v Dallas Mavericks</td>
@@ -27524,58 +27528,6 @@ initializeRuntime();
 <td style="text-align: right;">2.46</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Charlotte Hornets v Atlanta Hawks</td>
-<td style="text-align: left;">Player Points</td>
-<td style="text-align: left;">Trae Young</td>
-<td style="text-align: left;">Atlanta Hawks</td>
-<td style="text-align: right;">20.5</td>
-<td style="text-align: left;">Charlotte Hornets</td>
-<td style="text-align: right;">1.68</td>
-<td style="text-align: left;">Sportsbet</td>
-<td style="text-align: right;">2.63</td>
-<td style="text-align: left;">BetRight</td>
-<td style="text-align: right;">2.45</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Utah Jazz v Dallas Mavericks</td>
-<td style="text-align: left;">Player Points</td>
-<td style="text-align: left;">P.J. Washington</td>
-<td style="text-align: left;">Dallas Mavericks</td>
-<td style="text-align: right;">15.5</td>
-<td style="text-align: left;">Utah Jazz</td>
-<td style="text-align: right;">2.15</td>
-<td style="text-align: left;">Sportsbet</td>
-<td style="text-align: right;">1.95</td>
-<td style="text-align: left;">TAB</td>
-<td style="text-align: right;">2.21</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Charlotte Hornets v Atlanta Hawks</td>
-<td style="text-align: left;">Player Rebounds</td>
-<td style="text-align: left;">De’Andre Hunter</td>
-<td style="text-align: left;">Atlanta Hawks</td>
-<td style="text-align: right;">3.5</td>
-<td style="text-align: left;">Charlotte Hornets</td>
-<td style="text-align: right;">2.15</td>
-<td style="text-align: left;">Sportsbet</td>
-<td style="text-align: right;">1.95</td>
-<td style="text-align: left;">TAB</td>
-<td style="text-align: right;">2.21</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Charlotte Hornets v Atlanta Hawks</td>
-<td style="text-align: left;">Player Rebounds</td>
-<td style="text-align: left;">Jalen Johnson</td>
-<td style="text-align: left;">Atlanta Hawks</td>
-<td style="text-align: right;">6.5</td>
-<td style="text-align: left;">Charlotte Hornets</td>
-<td style="text-align: right;">1.30</td>
-<td style="text-align: left;">Sportsbet</td>
-<td style="text-align: right;">4.75</td>
-<td style="text-align: left;">BetRight</td>
-<td style="text-align: right;">2.02</td>
-</tr>
-<tr class="even">
 <td style="text-align: left;">Milwaukee Bucks v Washington Wizards</td>
 <td style="text-align: left;">Player Steals</td>
 <td style="text-align: left;">Bilal Coulibaly</td>
@@ -27589,19 +27541,6 @@ initializeRuntime();
 <td style="text-align: right;">2.00</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Detroit Pistons v Philadelphia 76ers</td>
-<td style="text-align: left;">Player Assists</td>
-<td style="text-align: left;">Jaden Ivey</td>
-<td style="text-align: left;">Detroit Pistons</td>
-<td style="text-align: right;">4.5</td>
-<td style="text-align: left;">Philadelphia 76ers</td>
-<td style="text-align: right;">2.50</td>
-<td style="text-align: left;">TAB</td>
-<td style="text-align: right;">1.71</td>
-<td style="text-align: left;">Pointsbet</td>
-<td style="text-align: right;">1.52</td>
-</tr>
-<tr class="even">
 <td style="text-align: left;">Milwaukee Bucks v Washington Wizards</td>
 <td style="text-align: left;">Player Rebounds</td>
 <td style="text-align: left;">Brook Lopez</td>
@@ -27614,59 +27553,7 @@ initializeRuntime();
 <td style="text-align: left;">Sportsbet</td>
 <td style="text-align: right;">1.36</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">Milwaukee Bucks v Washington Wizards</td>
-<td style="text-align: left;">Player Rebounds</td>
-<td style="text-align: left;">Brook Lopez</td>
-<td style="text-align: left;">Milwaukee Bucks</td>
-<td style="text-align: right;">5.5</td>
-<td style="text-align: left;">Washington Wizards</td>
-<td style="text-align: right;">2.10</td>
-<td style="text-align: left;">TAB</td>
-<td style="text-align: right;">1.96</td>
-<td style="text-align: left;">Sportsbet</td>
-<td style="text-align: right;">1.36</td>
-</tr>
 <tr class="even">
-<td style="text-align: left;">Milwaukee Bucks v Washington Wizards</td>
-<td style="text-align: left;">Player Points</td>
-<td style="text-align: left;">Malcolm Brogdon</td>
-<td style="text-align: left;">Washington Wizards</td>
-<td style="text-align: right;">19.5</td>
-<td style="text-align: left;">Milwaukee Bucks</td>
-<td style="text-align: right;">4.60</td>
-<td style="text-align: left;">BetRight</td>
-<td style="text-align: right;">1.30</td>
-<td style="text-align: left;">Sportsbet</td>
-<td style="text-align: right;">1.34</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Phoenix Suns v Golden State Warriors</td>
-<td style="text-align: left;">Player Points</td>
-<td style="text-align: left;">Kevin Durant</td>
-<td style="text-align: left;">Phoenix Suns</td>
-<td style="text-align: right;">24.5</td>
-<td style="text-align: left;">Golden State Warriors</td>
-<td style="text-align: right;">2.00</td>
-<td style="text-align: left;">TAB</td>
-<td style="text-align: right;">2.05</td>
-<td style="text-align: left;">BetRight</td>
-<td style="text-align: right;">1.22</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Phoenix Suns v Golden State Warriors</td>
-<td style="text-align: left;">Player Points</td>
-<td style="text-align: left;">Andrew Wiggins</td>
-<td style="text-align: left;">Golden State Warriors</td>
-<td style="text-align: right;">18.5</td>
-<td style="text-align: left;">Phoenix Suns</td>
-<td style="text-align: right;">2.20</td>
-<td style="text-align: left;">BetRight</td>
-<td style="text-align: right;">1.87</td>
-<td style="text-align: left;">TAB</td>
-<td style="text-align: right;">1.07</td>
-</tr>
-<tr class="odd">
 <td style="text-align: left;">Milwaukee Bucks v Washington Wizards</td>
 <td style="text-align: left;">Player Points</td>
 <td style="text-align: left;">Jordan Poole</td>
@@ -27679,7 +27566,7 @@ initializeRuntime();
 <td style="text-align: left;">BetRight</td>
 <td style="text-align: right;">1.00</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">Utah Jazz v Dallas Mavericks</td>
 <td style="text-align: left;">Player Points</td>
 <td style="text-align: left;">John Collins</td>
@@ -27692,46 +27579,20 @@ initializeRuntime();
 <td style="text-align: left;">BetRight</td>
 <td style="text-align: right;">0.99</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">Charlotte Hornets v Atlanta Hawks</td>
-<td style="text-align: left;">Player Rebounds</td>
-<td style="text-align: left;">Brandon Miller</td>
-<td style="text-align: left;">Charlotte Hornets</td>
-<td style="text-align: right;">5.5</td>
-<td style="text-align: left;">Atlanta Hawks</td>
-<td style="text-align: right;">2.02</td>
-<td style="text-align: left;">Sportsbet</td>
-<td style="text-align: right;">2.02</td>
-<td style="text-align: left;">Dabble</td>
-<td style="text-align: right;">0.99</td>
-</tr>
 <tr class="even">
-<td style="text-align: left;">Charlotte Hornets v Atlanta Hawks</td>
-<td style="text-align: left;">Player Points</td>
-<td style="text-align: left;">Trae Young</td>
-<td style="text-align: left;">Atlanta Hawks</td>
-<td style="text-align: right;">21.5</td>
-<td style="text-align: left;">Charlotte Hornets</td>
-<td style="text-align: right;">1.80</td>
-<td style="text-align: left;">Sportsbet</td>
+<td style="text-align: left;">Utah Jazz v Dallas Mavericks</td>
+<td style="text-align: left;">Player Rebounds</td>
+<td style="text-align: left;">Kyrie Irving</td>
+<td style="text-align: left;">Dallas Mavericks</td>
+<td style="text-align: right;">4.5</td>
+<td style="text-align: left;">Utah Jazz</td>
 <td style="text-align: right;">2.30</td>
-<td style="text-align: left;">BetRight</td>
+<td style="text-align: left;">TAB</td>
+<td style="text-align: right;">1.80</td>
+<td style="text-align: left;">Pointsbet</td>
 <td style="text-align: right;">0.97</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Charlotte Hornets v Atlanta Hawks</td>
-<td style="text-align: left;">Player Rebounds</td>
-<td style="text-align: left;">Jalen Johnson</td>
-<td style="text-align: left;">Atlanta Hawks</td>
-<td style="text-align: right;">8.5</td>
-<td style="text-align: left;">Charlotte Hornets</td>
-<td style="text-align: right;">1.80</td>
-<td style="text-align: left;">Sportsbet</td>
-<td style="text-align: right;">2.30</td>
-<td style="text-align: left;">BetRight</td>
-<td style="text-align: right;">0.97</td>
-</tr>
-<tr class="even">
 <td style="text-align: left;">Utah Jazz v Dallas Mavericks</td>
 <td style="text-align: left;">Player Rebounds</td>
 <td style="text-align: left;">Kyrie Irving</td>
@@ -27744,33 +27605,33 @@ initializeRuntime();
 <td style="text-align: left;">Sportsbet</td>
 <td style="text-align: right;">0.97</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">Charlotte Hornets v Atlanta Hawks</td>
-<td style="text-align: left;">Player Assists</td>
-<td style="text-align: left;">Trae Young</td>
-<td style="text-align: left;">Atlanta Hawks</td>
-<td style="text-align: right;">11.5</td>
-<td style="text-align: left;">Charlotte Hornets</td>
-<td style="text-align: right;">2.18</td>
-<td style="text-align: left;">Sportsbet</td>
-<td style="text-align: right;">1.88</td>
-<td style="text-align: left;">Dabble</td>
-<td style="text-align: right;">0.94</td>
-</tr>
 <tr class="even">
 <td style="text-align: left;">Milwaukee Bucks v Washington Wizards</td>
-<td style="text-align: left;">Player Threes</td>
-<td style="text-align: left;">Malcolm Brogdon</td>
+<td style="text-align: left;">Player Points</td>
+<td style="text-align: left;">Bilal Coulibaly</td>
 <td style="text-align: left;">Washington Wizards</td>
-<td style="text-align: right;">1.5</td>
+<td style="text-align: right;">14.5</td>
 <td style="text-align: left;">Milwaukee Bucks</td>
-<td style="text-align: right;">2.15</td>
-<td style="text-align: left;">Pointsbet</td>
-<td style="text-align: right;">1.90</td>
+<td style="text-align: right;">3.60</td>
 <td style="text-align: left;">Dabble</td>
-<td style="text-align: right;">0.86</td>
+<td style="text-align: right;">1.40</td>
+<td style="text-align: left;">Sportsbet</td>
+<td style="text-align: right;">0.79</td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;">Detroit Pistons v Philadelphia 76ers</td>
+<td style="text-align: left;">Player Assists</td>
+<td style="text-align: left;">Jaden Ivey</td>
+<td style="text-align: left;">Detroit Pistons</td>
+<td style="text-align: right;">4.5</td>
+<td style="text-align: left;">Philadelphia 76ers</td>
+<td style="text-align: right;">2.45</td>
+<td style="text-align: left;">TAB</td>
+<td style="text-align: right;">1.71</td>
+<td style="text-align: left;">Pointsbet</td>
+<td style="text-align: right;">0.70</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">Utah Jazz v Dallas Mavericks</td>
 <td style="text-align: left;">Player Points</td>
 <td style="text-align: left;">Spencer Dinwiddie</td>
@@ -27783,31 +27644,18 @@ initializeRuntime();
 <td style="text-align: left;">TAB</td>
 <td style="text-align: right;">0.64</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">Phoenix Suns v Golden State Warriors</td>
-<td style="text-align: left;">Player Assists</td>
-<td style="text-align: left;">Kevin Durant</td>
-<td style="text-align: left;">Phoenix Suns</td>
-<td style="text-align: right;">3.5</td>
-<td style="text-align: left;">Golden State Warriors</td>
-<td style="text-align: right;">2.80</td>
-<td style="text-align: left;">Dabble</td>
-<td style="text-align: right;">1.57</td>
-<td style="text-align: left;">BetRight</td>
-<td style="text-align: right;">0.59</td>
-</tr>
 <tr class="odd">
-<td style="text-align: left;">Charlotte Hornets v Atlanta Hawks</td>
-<td style="text-align: left;">Player Rebounds</td>
-<td style="text-align: left;">Brandon Miller</td>
-<td style="text-align: left;">Charlotte Hornets</td>
-<td style="text-align: right;">5.5</td>
-<td style="text-align: left;">Atlanta Hawks</td>
-<td style="text-align: right;">2.02</td>
-<td style="text-align: left;">Sportsbet</td>
-<td style="text-align: right;">2.00</td>
+<td style="text-align: left;">Detroit Pistons v Philadelphia 76ers</td>
+<td style="text-align: left;">Player Steals</td>
+<td style="text-align: left;">Tyrese Maxey</td>
+<td style="text-align: left;">Philadelphia 76ers</td>
+<td style="text-align: right;">1.5</td>
+<td style="text-align: left;">Detroit Pistons</td>
+<td style="text-align: right;">2.20</td>
+<td style="text-align: left;">Pointsbet</td>
+<td style="text-align: right;">1.85</td>
 <td style="text-align: left;">TAB</td>
-<td style="text-align: right;">0.50</td>
+<td style="text-align: right;">0.49</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Utah Jazz v Dallas Mavericks</td>
@@ -27823,108 +27671,30 @@ initializeRuntime();
 <td style="text-align: right;">0.48</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Detroit Pistons v Philadelphia 76ers</td>
-<td style="text-align: left;">Player Assists</td>
-<td style="text-align: left;">Jaden Ivey</td>
-<td style="text-align: left;">Detroit Pistons</td>
-<td style="text-align: right;">4.5</td>
-<td style="text-align: left;">Philadelphia 76ers</td>
-<td style="text-align: right;">2.50</td>
-<td style="text-align: left;">TAB</td>
-<td style="text-align: right;">1.68</td>
-<td style="text-align: left;">Sportsbet</td>
-<td style="text-align: right;">0.48</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Charlotte Hornets v Atlanta Hawks</td>
-<td style="text-align: left;">Player Assists</td>
-<td style="text-align: left;">Trae Young</td>
-<td style="text-align: left;">Atlanta Hawks</td>
-<td style="text-align: right;">8.5</td>
-<td style="text-align: left;">Charlotte Hornets</td>
-<td style="text-align: right;">1.32</td>
-<td style="text-align: left;">Sportsbet</td>
-<td style="text-align: right;">4.20</td>
-<td style="text-align: left;">BetRight</td>
-<td style="text-align: right;">0.43</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Charlotte Hornets v Atlanta Hawks</td>
-<td style="text-align: left;">Player Assists</td>
-<td style="text-align: left;">Trae Young</td>
-<td style="text-align: left;">Atlanta Hawks</td>
-<td style="text-align: right;">11.5</td>
-<td style="text-align: left;">Charlotte Hornets</td>
-<td style="text-align: right;">2.18</td>
-<td style="text-align: left;">Sportsbet</td>
-<td style="text-align: right;">1.86</td>
-<td style="text-align: left;">BetRight</td>
-<td style="text-align: right;">0.36</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Detroit Pistons v Philadelphia 76ers</td>
-<td style="text-align: left;">Player Points</td>
-<td style="text-align: left;">Paul George</td>
-<td style="text-align: left;">Philadelphia 76ers</td>
-<td style="text-align: right;">14.5</td>
-<td style="text-align: left;">Detroit Pistons</td>
-<td style="text-align: right;">1.58</td>
-<td style="text-align: left;">Sportsbet</td>
-<td style="text-align: right;">2.75</td>
-<td style="text-align: left;">BetRight</td>
-<td style="text-align: right;">0.35</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Detroit Pistons v Philadelphia 76ers</td>
-<td style="text-align: left;">Player Points</td>
-<td style="text-align: left;">Paul George</td>
-<td style="text-align: left;">Philadelphia 76ers</td>
-<td style="text-align: right;">17.5</td>
-<td style="text-align: left;">Detroit Pistons</td>
-<td style="text-align: right;">2.10</td>
-<td style="text-align: left;">Sportsbet</td>
-<td style="text-align: right;">1.92</td>
-<td style="text-align: left;">Dabble</td>
-<td style="text-align: right;">0.30</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Charlotte Hornets v Atlanta Hawks</td>
-<td style="text-align: left;">Player Rebounds</td>
-<td style="text-align: left;">Jalen Johnson</td>
-<td style="text-align: left;">Atlanta Hawks</td>
-<td style="text-align: right;">9.5</td>
-<td style="text-align: left;">Charlotte Hornets</td>
-<td style="text-align: right;">2.10</td>
-<td style="text-align: left;">Sportsbet</td>
-<td style="text-align: right;">1.92</td>
-<td style="text-align: left;">Dabble</td>
-<td style="text-align: right;">0.30</td>
-</tr>
-<tr class="odd">
 <td style="text-align: left;">Milwaukee Bucks v Washington Wizards</td>
-<td style="text-align: left;">Player Rebounds</td>
-<td style="text-align: left;">Bobby Portis</td>
-<td style="text-align: left;">Milwaukee Bucks</td>
-<td style="text-align: right;">5.5</td>
-<td style="text-align: left;">Washington Wizards</td>
-<td style="text-align: right;">1.39</td>
-<td style="text-align: left;">Sportsbet</td>
-<td style="text-align: right;">3.60</td>
-<td style="text-align: left;">BetRight</td>
-<td style="text-align: right;">0.28</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Charlotte Hornets v Atlanta Hawks</td>
 <td style="text-align: left;">Player Points</td>
-<td style="text-align: left;">Onyeka Okongwu</td>
-<td style="text-align: left;">Atlanta Hawks</td>
-<td style="text-align: right;">14.5</td>
-<td style="text-align: left;">Charlotte Hornets</td>
+<td style="text-align: left;">Malcolm Brogdon</td>
+<td style="text-align: left;">Washington Wizards</td>
+<td style="text-align: right;">19.5</td>
+<td style="text-align: left;">Milwaukee Bucks</td>
 <td style="text-align: right;">4.75</td>
-<td style="text-align: left;">Dabble</td>
+<td style="text-align: left;">BetRight</td>
 <td style="text-align: right;">1.27</td>
 <td style="text-align: left;">Sportsbet</td>
 <td style="text-align: right;">0.21</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Milwaukee Bucks v Washington Wizards</td>
+<td style="text-align: left;">Player Rebounds</td>
+<td style="text-align: left;">Brook Lopez</td>
+<td style="text-align: left;">Milwaukee Bucks</td>
+<td style="text-align: right;">5.5</td>
+<td style="text-align: left;">Washington Wizards</td>
+<td style="text-align: right;">2.05</td>
+<td style="text-align: left;">TAB</td>
+<td style="text-align: right;">1.96</td>
+<td style="text-align: left;">Sportsbet</td>
+<td style="text-align: right;">0.20</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Milwaukee Bucks v Washington Wizards</td>
@@ -27940,58 +27710,19 @@ initializeRuntime();
 <td style="text-align: right;">0.20</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Detroit Pistons v Philadelphia 76ers</td>
-<td style="text-align: left;">Player Points</td>
-<td style="text-align: left;">Paul George</td>
-<td style="text-align: left;">Philadelphia 76ers</td>
-<td style="text-align: right;">15.5</td>
-<td style="text-align: left;">Detroit Pistons</td>
-<td style="text-align: right;">1.72</td>
-<td style="text-align: left;">Sportsbet</td>
-<td style="text-align: right;">2.40</td>
-<td style="text-align: left;">BetRight</td>
-<td style="text-align: right;">0.19</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Charlotte Hornets v Atlanta Hawks</td>
-<td style="text-align: left;">Player Rebounds</td>
-<td style="text-align: left;">Dyson Daniels</td>
-<td style="text-align: left;">Atlanta Hawks</td>
-<td style="text-align: right;">5.5</td>
-<td style="text-align: left;">Charlotte Hornets</td>
-<td style="text-align: right;">2.40</td>
-<td style="text-align: left;">Pointsbet</td>
-<td style="text-align: right;">1.72</td>
-<td style="text-align: left;">Dabble</td>
-<td style="text-align: right;">0.19</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Charlotte Hornets v Atlanta Hawks</td>
-<td style="text-align: left;">Player Rebounds</td>
-<td style="text-align: left;">Dyson Daniels</td>
-<td style="text-align: left;">Atlanta Hawks</td>
-<td style="text-align: right;">5.5</td>
-<td style="text-align: left;">Charlotte Hornets</td>
-<td style="text-align: right;">2.40</td>
-<td style="text-align: left;">Sportsbet</td>
-<td style="text-align: right;">1.72</td>
-<td style="text-align: left;">Dabble</td>
-<td style="text-align: right;">0.19</td>
-</tr>
-<tr class="odd">
 <td style="text-align: left;">Milwaukee Bucks v Washington Wizards</td>
-<td style="text-align: left;">Player Steals</td>
-<td style="text-align: left;">Bilal Coulibaly</td>
-<td style="text-align: left;">Washington Wizards</td>
-<td style="text-align: right;">1.5</td>
+<td style="text-align: left;">Player Blocks</td>
+<td style="text-align: left;">Giannis Antetokounmpo</td>
 <td style="text-align: left;">Milwaukee Bucks</td>
-<td style="text-align: right;">2.80</td>
-<td style="text-align: left;">BetRight</td>
-<td style="text-align: right;">1.56</td>
+<td style="text-align: right;">1.5</td>
+<td style="text-align: left;">Washington Wizards</td>
+<td style="text-align: right;">2.60</td>
+<td style="text-align: left;">TAB</td>
+<td style="text-align: right;">1.63</td>
 <td style="text-align: left;">Pointsbet</td>
-<td style="text-align: right;">0.18</td>
+<td style="text-align: right;">0.19</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">Utah Jazz v Dallas Mavericks</td>
 <td style="text-align: left;">Player Steals</td>
 <td style="text-align: left;">P.J. Washington</td>
@@ -28004,31 +27735,18 @@ initializeRuntime();
 <td style="text-align: left;">Sportsbet</td>
 <td style="text-align: right;">0.18</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">Charlotte Hornets v Atlanta Hawks</td>
-<td style="text-align: left;">Player Assists</td>
-<td style="text-align: left;">Trae Young</td>
-<td style="text-align: left;">Atlanta Hawks</td>
-<td style="text-align: right;">11.5</td>
-<td style="text-align: left;">Charlotte Hornets</td>
-<td style="text-align: right;">2.18</td>
-<td style="text-align: left;">Sportsbet</td>
-<td style="text-align: right;">1.85</td>
-<td style="text-align: left;">TAB</td>
-<td style="text-align: right;">0.07</td>
-</tr>
 <tr class="even">
-<td style="text-align: left;">Utah Jazz v Dallas Mavericks</td>
-<td style="text-align: left;">Player Rebounds</td>
-<td style="text-align: left;">Kyrie Irving</td>
-<td style="text-align: left;">Dallas Mavericks</td>
-<td style="text-align: right;">4.5</td>
-<td style="text-align: left;">Utah Jazz</td>
-<td style="text-align: right;">2.30</td>
-<td style="text-align: left;">TAB</td>
-<td style="text-align: right;">1.77</td>
-<td style="text-align: left;">Pointsbet</td>
-<td style="text-align: right;">0.02</td>
+<td style="text-align: left;">Detroit Pistons v Philadelphia 76ers</td>
+<td style="text-align: left;">Player PRAs</td>
+<td style="text-align: left;">Jaden Ivey</td>
+<td style="text-align: left;">Detroit Pistons</td>
+<td style="text-align: right;">29.5</td>
+<td style="text-align: left;">Philadelphia 76ers</td>
+<td style="text-align: right;">3.10</td>
+<td style="text-align: left;">Dabble</td>
+<td style="text-align: right;">1.48</td>
+<td style="text-align: left;">Sportsbet</td>
+<td style="text-align: right;">0.17</td>
 </tr>
 </tbody>
 </table>
@@ -28043,7 +27761,7 @@ initializeRuntime();
 <table class="caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 21%">
-<col style="width: 9%">
+<col style="width: 8%">
 <col style="width: 11%">
 <col style="width: 11%">
 <col style="width: 2%">
@@ -28073,158 +27791,28 @@ initializeRuntime();
 <tr class="odd">
 <td style="text-align: left;">Detroit Pistons v Philadelphia 76ers</td>
 <td style="text-align: left;">Player Points</td>
-<td style="text-align: left;">Caleb Martin</td>
+<td style="text-align: left;">Guerschon Yabusele</td>
 <td style="text-align: left;">Philadelphia 76ers</td>
-<td style="text-align: right;">10.5</td>
+<td style="text-align: right;">11.5</td>
 <td style="text-align: left;">Detroit Pistons</td>
-<td style="text-align: right;">2.60</td>
-<td style="text-align: left;">Sportsbet</td>
-<td style="text-align: right;">1.78</td>
-<td style="text-align: left;">Neds</td>
-<td style="text-align: right;">5.36</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Charlotte Hornets v Atlanta Hawks</td>
-<td style="text-align: left;">Player Rebounds</td>
-<td style="text-align: left;">Cody Martin</td>
-<td style="text-align: left;">Charlotte Hornets</td>
-<td style="text-align: right;">5.5</td>
-<td style="text-align: left;">Atlanta Hawks</td>
-<td style="text-align: right;">3.10</td>
-<td style="text-align: left;">Sportsbet</td>
-<td style="text-align: right;">1.58</td>
-<td style="text-align: left;">Neds</td>
-<td style="text-align: right;">4.45</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Utah Jazz v Dallas Mavericks</td>
-<td style="text-align: left;">Player Assists</td>
-<td style="text-align: left;">Collin Sexton</td>
-<td style="text-align: left;">Utah Jazz</td>
-<td style="text-align: right;">3.5</td>
-<td style="text-align: left;">Dallas Mavericks</td>
-<td style="text-align: right;">1.75</td>
-<td style="text-align: left;">Neds</td>
-<td style="text-align: right;">2.60</td>
+<td style="text-align: right;">2.50</td>
 <td style="text-align: left;">BetRight</td>
-<td style="text-align: right;">4.40</td>
+<td style="text-align: right;">1.87</td>
+<td style="text-align: left;">Neds</td>
+<td style="text-align: right;">6.52</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Charlotte Hornets v Atlanta Hawks</td>
-<td style="text-align: left;">Player Rebounds</td>
-<td style="text-align: left;">De’Andre Hunter</td>
-<td style="text-align: left;">Atlanta Hawks</td>
-<td style="text-align: right;">3.5</td>
-<td style="text-align: left;">Charlotte Hornets</td>
-<td style="text-align: right;">2.15</td>
-<td style="text-align: left;">Sportsbet</td>
-<td style="text-align: right;">2.00</td>
-<td style="text-align: left;">Neds</td>
-<td style="text-align: right;">3.49</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Charlotte Hornets v Atlanta Hawks</td>
-<td style="text-align: left;">Player Rebounds</td>
-<td style="text-align: left;">Trae Young</td>
-<td style="text-align: left;">Atlanta Hawks</td>
-<td style="text-align: right;">3.5</td>
-<td style="text-align: left;">Charlotte Hornets</td>
-<td style="text-align: right;">2.35</td>
-<td style="text-align: left;">Pointsbet</td>
-<td style="text-align: right;">1.85</td>
-<td style="text-align: left;">Neds</td>
-<td style="text-align: right;">3.39</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Charlotte Hornets v Atlanta Hawks</td>
-<td style="text-align: left;">Player Rebounds</td>
-<td style="text-align: left;">Cody Martin</td>
-<td style="text-align: left;">Charlotte Hornets</td>
-<td style="text-align: right;">5.5</td>
-<td style="text-align: left;">Atlanta Hawks</td>
-<td style="text-align: right;">3.00</td>
-<td style="text-align: left;">Pointsbet</td>
-<td style="text-align: right;">1.58</td>
-<td style="text-align: left;">Neds</td>
-<td style="text-align: right;">3.38</td>
-</tr>
-<tr class="odd">
 <td style="text-align: left;">Detroit Pistons v Philadelphia 76ers</td>
 <td style="text-align: left;">Player Points</td>
-<td style="text-align: left;">Andre Drummond</td>
+<td style="text-align: left;">Guerschon Yabusele</td>
 <td style="text-align: left;">Philadelphia 76ers</td>
-<td style="text-align: right;">8.5</td>
+<td style="text-align: right;">11.5</td>
 <td style="text-align: left;">Detroit Pistons</td>
-<td style="text-align: right;">2.30</td>
+<td style="text-align: right;">2.50</td>
 <td style="text-align: left;">Sportsbet</td>
 <td style="text-align: right;">1.87</td>
 <td style="text-align: left;">Neds</td>
-<td style="text-align: right;">3.05</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Charlotte Hornets v Atlanta Hawks</td>
-<td style="text-align: left;">Player Rebounds</td>
-<td style="text-align: left;">Brandon Miller</td>
-<td style="text-align: left;">Charlotte Hornets</td>
-<td style="text-align: right;">6.5</td>
-<td style="text-align: left;">Atlanta Hawks</td>
-<td style="text-align: right;">2.90</td>
-<td style="text-align: left;">Sportsbet</td>
-<td style="text-align: right;">1.60</td>
-<td style="text-align: left;">Neds</td>
-<td style="text-align: right;">3.02</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Charlotte Hornets v Atlanta Hawks</td>
-<td style="text-align: left;">Player Rebounds</td>
-<td style="text-align: left;">Trae Young</td>
-<td style="text-align: left;">Atlanta Hawks</td>
-<td style="text-align: right;">3.5</td>
-<td style="text-align: left;">Charlotte Hornets</td>
-<td style="text-align: right;">2.30</td>
-<td style="text-align: left;">Sportsbet</td>
-<td style="text-align: right;">1.85</td>
-<td style="text-align: left;">Neds</td>
-<td style="text-align: right;">2.47</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Charlotte Hornets v Atlanta Hawks</td>
-<td style="text-align: left;">Player Rebounds</td>
-<td style="text-align: left;">Cody Martin</td>
-<td style="text-align: left;">Charlotte Hornets</td>
-<td style="text-align: right;">5.5</td>
-<td style="text-align: left;">Atlanta Hawks</td>
-<td style="text-align: right;">2.90</td>
-<td style="text-align: left;">BetRight</td>
-<td style="text-align: right;">1.58</td>
-<td style="text-align: left;">Neds</td>
-<td style="text-align: right;">2.23</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Charlotte Hornets v Atlanta Hawks</td>
-<td style="text-align: left;">Player Rebounds</td>
-<td style="text-align: left;">Cody Martin</td>
-<td style="text-align: left;">Charlotte Hornets</td>
-<td style="text-align: right;">5.5</td>
-<td style="text-align: left;">Atlanta Hawks</td>
-<td style="text-align: right;">2.90</td>
-<td style="text-align: left;">Dabble</td>
-<td style="text-align: right;">1.58</td>
-<td style="text-align: left;">Neds</td>
-<td style="text-align: right;">2.23</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Milwaukee Bucks v Washington Wizards</td>
-<td style="text-align: left;">Player Rebounds</td>
-<td style="text-align: left;">Brook Lopez</td>
-<td style="text-align: left;">Milwaukee Bucks</td>
-<td style="text-align: right;">5.5</td>
-<td style="text-align: left;">Washington Wizards</td>
-<td style="text-align: right;">2.10</td>
-<td style="text-align: left;">Neds</td>
-<td style="text-align: right;">1.96</td>
-<td style="text-align: left;">Sportsbet</td>
-<td style="text-align: right;">1.36</td>
+<td style="text-align: right;">6.52</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Detroit Pistons v Philadelphia 76ers</td>
@@ -28240,172 +27828,16 @@ initializeRuntime();
 <td style="text-align: right;">1.19</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Milwaukee Bucks v Washington Wizards</td>
-<td style="text-align: left;">Player PRAs</td>
-<td style="text-align: left;">Malcolm Brogdon</td>
-<td style="text-align: left;">Washington Wizards</td>
-<td style="text-align: right;">29.5</td>
-<td style="text-align: left;">Milwaukee Bucks</td>
-<td style="text-align: right;">5.50</td>
-<td style="text-align: left;">Neds</td>
-<td style="text-align: right;">1.24</td>
-<td style="text-align: left;">Sportsbet</td>
-<td style="text-align: right;">1.17</td>
-</tr>
-<tr class="odd">
 <td style="text-align: left;">Detroit Pistons v Philadelphia 76ers</td>
 <td style="text-align: left;">Player Points</td>
-<td style="text-align: left;">Guerschon Yabusele</td>
+<td style="text-align: left;">Andre Drummond</td>
 <td style="text-align: left;">Philadelphia 76ers</td>
-<td style="text-align: right;">10.5</td>
+<td style="text-align: right;">8.5</td>
 <td style="text-align: left;">Detroit Pistons</td>
-<td style="text-align: right;">2.20</td>
-<td style="text-align: left;">Sportsbet</td>
-<td style="text-align: right;">1.87</td>
-<td style="text-align: left;">Neds</td>
-<td style="text-align: right;">1.07</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Charlotte Hornets v Atlanta Hawks</td>
-<td style="text-align: left;">Player Points</td>
-<td style="text-align: left;">Tidjane Salaun</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: right;">12.5</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: right;">2.10</td>
-<td style="text-align: left;">Sportsbet</td>
-<td style="text-align: right;">1.94</td>
-<td style="text-align: left;">Neds</td>
-<td style="text-align: right;">0.83</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Utah Jazz v Dallas Mavericks</td>
-<td style="text-align: left;">Player Rebounds</td>
-<td style="text-align: left;">Spencer Dinwiddie</td>
-<td style="text-align: left;">Dallas Mavericks</td>
-<td style="text-align: right;">2.5</td>
-<td style="text-align: left;">Utah Jazz</td>
-<td style="text-align: right;">2.05</td>
-<td style="text-align: left;">TAB</td>
-<td style="text-align: right;">1.98</td>
-<td style="text-align: left;">Neds</td>
-<td style="text-align: right;">0.71</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Charlotte Hornets v Atlanta Hawks</td>
-<td style="text-align: left;">Player Rebounds</td>
-<td style="text-align: left;">Dyson Daniels</td>
-<td style="text-align: left;">Atlanta Hawks</td>
-<td style="text-align: right;">5.5</td>
-<td style="text-align: left;">Charlotte Hornets</td>
-<td style="text-align: right;">2.40</td>
-<td style="text-align: left;">Neds</td>
-<td style="text-align: right;">1.72</td>
-<td style="text-align: left;">Dabble</td>
-<td style="text-align: right;">0.19</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Milwaukee Bucks v Washington Wizards</td>
-<td style="text-align: left;">Player Assists</td>
-<td style="text-align: left;">Jordan Poole</td>
-<td style="text-align: left;">Washington Wizards</td>
-<td style="text-align: right;">5.5</td>
-<td style="text-align: left;">Milwaukee Bucks</td>
-<td style="text-align: right;">2.50</td>
-<td style="text-align: left;">Pointsbet</td>
-<td style="text-align: right;">1.67</td>
-<td style="text-align: left;">Neds</td>
-<td style="text-align: right;">0.12</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Milwaukee Bucks v Washington Wizards</td>
-<td style="text-align: left;">Player Assists</td>
-<td style="text-align: left;">Jordan Poole</td>
-<td style="text-align: left;">Washington Wizards</td>
-<td style="text-align: right;">5.5</td>
-<td style="text-align: left;">Milwaukee Bucks</td>
-<td style="text-align: right;">2.50</td>
-<td style="text-align: left;">Sportsbet</td>
-<td style="text-align: right;">1.67</td>
-<td style="text-align: left;">Neds</td>
-<td style="text-align: right;">0.12</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Charlotte Hornets v Atlanta Hawks</td>
-<td style="text-align: left;">Player Assists</td>
-<td style="text-align: left;">Trae Young</td>
-<td style="text-align: left;">Atlanta Hawks</td>
-<td style="text-align: right;">11.5</td>
-<td style="text-align: left;">Charlotte Hornets</td>
-<td style="text-align: right;">2.18</td>
-<td style="text-align: left;">Sportsbet</td>
-<td style="text-align: right;">1.85</td>
-<td style="text-align: left;">Neds</td>
-<td style="text-align: right;">0.07</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Utah Jazz v Dallas Mavericks</td>
-<td style="text-align: left;">Player Rebounds</td>
-<td style="text-align: left;">Kyrie Irving</td>
-<td style="text-align: left;">Dallas Mavericks</td>
-<td style="text-align: right;">4.5</td>
-<td style="text-align: left;">Utah Jazz</td>
-<td style="text-align: right;">2.30</td>
-<td style="text-align: left;">TAB</td>
-<td style="text-align: right;">1.77</td>
-<td style="text-align: left;">Neds</td>
-<td style="text-align: right;">0.02</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Charlotte Hornets v Atlanta Hawks</td>
-<td style="text-align: left;">Player Rebounds</td>
-<td style="text-align: left;">Josh Green</td>
-<td style="text-align: left;">Charlotte Hornets</td>
-<td style="text-align: right;">3.5</td>
-<td style="text-align: left;">Atlanta Hawks</td>
-<td style="text-align: right;">2.30</td>
-<td style="text-align: left;">Pointsbet</td>
-<td style="text-align: right;">1.77</td>
-<td style="text-align: left;">Neds</td>
-<td style="text-align: right;">0.02</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Charlotte Hornets v Atlanta Hawks</td>
-<td style="text-align: left;">Player Points</td>
-<td style="text-align: left;">De’Andre Hunter</td>
-<td style="text-align: left;">Atlanta Hawks</td>
-<td style="text-align: right;">16.5</td>
-<td style="text-align: left;">Charlotte Hornets</td>
 <td style="text-align: right;">2.15</td>
 <td style="text-align: left;">Sportsbet</td>
 <td style="text-align: right;">1.87</td>
 <td style="text-align: left;">Neds</td>
-<td style="text-align: right;">0.01</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Utah Jazz v Dallas Mavericks</td>
-<td style="text-align: left;">Player Points</td>
-<td style="text-align: left;">P.J. Washington</td>
-<td style="text-align: left;">Dallas Mavericks</td>
-<td style="text-align: right;">15.5</td>
-<td style="text-align: left;">Utah Jazz</td>
-<td style="text-align: right;">2.15</td>
-<td style="text-align: left;">Sportsbet</td>
-<td style="text-align: right;">1.87</td>
-<td style="text-align: left;">Neds</td>
-<td style="text-align: right;">0.01</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Charlotte Hornets v Atlanta Hawks</td>
-<td style="text-align: left;">Player Rebounds</td>
-<td style="text-align: left;">Dyson Daniels</td>
-<td style="text-align: left;">Atlanta Hawks</td>
-<td style="text-align: right;">4.5</td>
-<td style="text-align: left;">Charlotte Hornets</td>
-<td style="text-align: right;">1.87</td>
-<td style="text-align: left;">Neds</td>
-<td style="text-align: right;">2.15</td>
-<td style="text-align: left;">BetRight</td>
 <td style="text-align: right;">0.01</td>
 </tr>
 </tbody>
@@ -28460,17 +27892,17 @@ initializeRuntime();
 <div class="kable-table">
 <table class="caption-top table table-sm table-striped small">
 <colgroup>
-<col style="width: 20%">
-<col style="width: 8%">
+<col style="width: 21%">
+<col style="width: 9%">
 <col style="width: 12%">
-<col style="width: 12%">
+<col style="width: 10%">
 <col style="width: 2%">
-<col style="width: 12%">
+<col style="width: 10%">
 <col style="width: 6%">
 <col style="width: 6%">
 <col style="width: 6%">
 <col style="width: 7%">
-<col style="width: 3%">
+<col style="width: 4%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -28490,185 +27922,55 @@ initializeRuntime();
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Detroit Pistons v Philadelphia 76ers</td>
-<td style="text-align: left;">Player Rebounds</td>
-<td style="text-align: left;">Guerschon Yabusele</td>
-<td style="text-align: left;">Philadelphia 76ers</td>
-<td style="text-align: right;">7.5</td>
+<td style="text-align: left;">Player Assists</td>
+<td style="text-align: left;">Cade Cunningham</td>
 <td style="text-align: left;">Detroit Pistons</td>
-<td style="text-align: right;">3.00</td>
-<td style="text-align: left;">Pointsbet</td>
-<td style="text-align: right;">2.75</td>
+<td style="text-align: right;">8.5</td>
+<td style="text-align: left;">Philadelphia 76ers</td>
+<td style="text-align: right;">2.06</td>
 <td style="text-align: left;">Unibet</td>
-<td style="text-align: right;">30.30</td>
+<td style="text-align: right;">2.00</td>
+<td style="text-align: left;">Dabble</td>
+<td style="text-align: right;">1.46</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Detroit Pistons v Philadelphia 76ers</td>
-<td style="text-align: left;">Player Rebounds</td>
-<td style="text-align: left;">Guerschon Yabusele</td>
-<td style="text-align: left;">Philadelphia 76ers</td>
-<td style="text-align: right;">7.5</td>
+<td style="text-align: left;">Player Assists</td>
+<td style="text-align: left;">Cade Cunningham</td>
 <td style="text-align: left;">Detroit Pistons</td>
+<td style="text-align: right;">8.5</td>
+<td style="text-align: left;">Philadelphia 76ers</td>
+<td style="text-align: right;">2.06</td>
+<td style="text-align: left;">Unibet</td>
+<td style="text-align: right;">2.00</td>
+<td style="text-align: left;">TAB</td>
+<td style="text-align: right;">1.46</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Detroit Pistons v Philadelphia 76ers</td>
+<td style="text-align: left;">Player Assists</td>
+<td style="text-align: left;">Cade Cunningham</td>
+<td style="text-align: left;">Detroit Pistons</td>
+<td style="text-align: right;">8.5</td>
+<td style="text-align: left;">Philadelphia 76ers</td>
+<td style="text-align: right;">2.06</td>
+<td style="text-align: left;">Unibet</td>
+<td style="text-align: right;">1.98</td>
+<td style="text-align: left;">BetRight</td>
+<td style="text-align: right;">0.95</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Detroit Pistons v Philadelphia 76ers</td>
+<td style="text-align: left;">Player Assists</td>
+<td style="text-align: left;">Cade Cunningham</td>
+<td style="text-align: left;">Detroit Pistons</td>
+<td style="text-align: right;">9.5</td>
+<td style="text-align: left;">Philadelphia 76ers</td>
 <td style="text-align: right;">2.80</td>
-<td style="text-align: left;">Sportsbet</td>
-<td style="text-align: right;">2.75</td>
 <td style="text-align: left;">Unibet</td>
-<td style="text-align: right;">27.92</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Detroit Pistons v Philadelphia 76ers</td>
-<td style="text-align: left;">Player Rebounds</td>
-<td style="text-align: left;">Guerschon Yabusele</td>
-<td style="text-align: left;">Philadelphia 76ers</td>
-<td style="text-align: right;">7.5</td>
-<td style="text-align: left;">Detroit Pistons</td>
-<td style="text-align: right;">2.63</td>
+<td style="text-align: right;">1.57</td>
 <td style="text-align: left;">BetRight</td>
-<td style="text-align: right;">2.75</td>
-<td style="text-align: left;">Unibet</td>
-<td style="text-align: right;">25.61</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Detroit Pistons v Philadelphia 76ers</td>
-<td style="text-align: left;">Player Rebounds</td>
-<td style="text-align: left;">Guerschon Yabusele</td>
-<td style="text-align: left;">Philadelphia 76ers</td>
-<td style="text-align: right;">8.5</td>
-<td style="text-align: left;">Detroit Pistons</td>
-<td style="text-align: right;">3.80</td>
-<td style="text-align: left;">Sportsbet</td>
-<td style="text-align: right;">2.00</td>
-<td style="text-align: left;">Unibet</td>
-<td style="text-align: right;">23.68</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Detroit Pistons v Philadelphia 76ers</td>
-<td style="text-align: left;">Player Rebounds</td>
-<td style="text-align: left;">Guerschon Yabusele</td>
-<td style="text-align: left;">Philadelphia 76ers</td>
-<td style="text-align: right;">9.5</td>
-<td style="text-align: left;">Detroit Pistons</td>
-<td style="text-align: right;">6.50</td>
-<td style="text-align: left;">Pointsbet</td>
-<td style="text-align: right;">1.56</td>
-<td style="text-align: left;">Unibet</td>
-<td style="text-align: right;">20.51</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Detroit Pistons v Philadelphia 76ers</td>
-<td style="text-align: left;">Player Points</td>
-<td style="text-align: left;">Andre Drummond</td>
-<td style="text-align: left;">Philadelphia 76ers</td>
-<td style="text-align: right;">4.5</td>
-<td style="text-align: left;">Detroit Pistons</td>
-<td style="text-align: right;">2.02</td>
-<td style="text-align: left;">Unibet</td>
-<td style="text-align: right;">3.20</td>
-<td style="text-align: left;">Sportsbet</td>
-<td style="text-align: right;">19.25</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Detroit Pistons v Philadelphia 76ers</td>
-<td style="text-align: left;">Player Rebounds</td>
-<td style="text-align: left;">Guerschon Yabusele</td>
-<td style="text-align: left;">Philadelphia 76ers</td>
-<td style="text-align: right;">9.5</td>
-<td style="text-align: left;">Detroit Pistons</td>
-<td style="text-align: right;">5.75</td>
-<td style="text-align: left;">BetRight</td>
-<td style="text-align: right;">1.56</td>
-<td style="text-align: left;">Unibet</td>
-<td style="text-align: right;">18.51</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Detroit Pistons v Philadelphia 76ers</td>
-<td style="text-align: left;">Player Points</td>
-<td style="text-align: left;">Andre Drummond</td>
-<td style="text-align: left;">Philadelphia 76ers</td>
-<td style="text-align: right;">5.5</td>
-<td style="text-align: left;">Detroit Pistons</td>
-<td style="text-align: right;">2.28</td>
-<td style="text-align: left;">Unibet</td>
-<td style="text-align: right;">2.60</td>
-<td style="text-align: left;">Sportsbet</td>
-<td style="text-align: right;">17.68</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Detroit Pistons v Philadelphia 76ers</td>
-<td style="text-align: left;">Player Rebounds</td>
-<td style="text-align: left;">Guerschon Yabusele</td>
-<td style="text-align: left;">Philadelphia 76ers</td>
-<td style="text-align: right;">9.5</td>
-<td style="text-align: left;">Detroit Pistons</td>
-<td style="text-align: right;">4.90</td>
-<td style="text-align: left;">Sportsbet</td>
-<td style="text-align: right;">1.56</td>
-<td style="text-align: left;">Unibet</td>
-<td style="text-align: right;">15.49</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Detroit Pistons v Philadelphia 76ers</td>
-<td style="text-align: left;">Player PRAs</td>
-<td style="text-align: left;">Paul George</td>
-<td style="text-align: left;">Philadelphia 76ers</td>
-<td style="text-align: right;">27.5</td>
-<td style="text-align: left;">Detroit Pistons</td>
-<td style="text-align: right;">2.40</td>
-<td style="text-align: left;">Unibet</td>
-<td style="text-align: right;">1.85</td>
-<td style="text-align: left;">Dabble</td>
-<td style="text-align: right;">4.28</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Detroit Pistons v Philadelphia 76ers</td>
-<td style="text-align: left;">Player PRAs</td>
-<td style="text-align: left;">Paul George</td>
-<td style="text-align: left;">Philadelphia 76ers</td>
-<td style="text-align: right;">27.5</td>
-<td style="text-align: left;">Detroit Pistons</td>
-<td style="text-align: right;">2.40</td>
-<td style="text-align: left;">Unibet</td>
-<td style="text-align: right;">1.80</td>
-<td style="text-align: left;">TAB</td>
-<td style="text-align: right;">2.78</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Detroit Pistons v Philadelphia 76ers</td>
-<td style="text-align: left;">Player Points</td>
-<td style="text-align: left;">Paul George</td>
-<td style="text-align: left;">Philadelphia 76ers</td>
-<td style="text-align: right;">17.5</td>
-<td style="text-align: left;">Detroit Pistons</td>
-<td style="text-align: right;">2.20</td>
-<td style="text-align: left;">Unibet</td>
-<td style="text-align: right;">1.92</td>
-<td style="text-align: left;">Dabble</td>
-<td style="text-align: right;">2.46</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Detroit Pistons v Philadelphia 76ers</td>
-<td style="text-align: left;">Player Points</td>
-<td style="text-align: left;">Guerschon Yabusele</td>
-<td style="text-align: left;">Philadelphia 76ers</td>
-<td style="text-align: right;">8.5</td>
-<td style="text-align: left;">Detroit Pistons</td>
-<td style="text-align: right;">1.76</td>
-<td style="text-align: left;">Sportsbet</td>
-<td style="text-align: right;">2.45</td>
-<td style="text-align: left;">Unibet</td>
-<td style="text-align: right;">2.37</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Detroit Pistons v Philadelphia 76ers</td>
-<td style="text-align: left;">Player Points</td>
-<td style="text-align: left;">Paul George</td>
-<td style="text-align: left;">Philadelphia 76ers</td>
-<td style="text-align: right;">17.5</td>
-<td style="text-align: left;">Detroit Pistons</td>
-<td style="text-align: right;">2.20</td>
-<td style="text-align: left;">Unibet</td>
-<td style="text-align: right;">1.90</td>
-<td style="text-align: left;">TAB</td>
-<td style="text-align: right;">1.91</td>
+<td style="text-align: right;">0.59</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Detroit Pistons v Philadelphia 76ers</td>
@@ -28677,89 +27979,11 @@ initializeRuntime();
 <td style="text-align: left;">Detroit Pistons</td>
 <td style="text-align: right;">9.5</td>
 <td style="text-align: left;">Philadelphia 76ers</td>
-<td style="text-align: right;">2.75</td>
+<td style="text-align: right;">2.80</td>
 <td style="text-align: left;">Unibet</td>
-<td style="text-align: right;">1.62</td>
-<td style="text-align: left;">BetRight</td>
-<td style="text-align: right;">1.91</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Detroit Pistons v Philadelphia 76ers</td>
-<td style="text-align: left;">Player Steals</td>
-<td style="text-align: left;">Tyrese Maxey</td>
-<td style="text-align: left;">Philadelphia 76ers</td>
-<td style="text-align: right;">1.5</td>
-<td style="text-align: left;">Detroit Pistons</td>
-<td style="text-align: right;">2.25</td>
-<td style="text-align: left;">Unibet</td>
-<td style="text-align: right;">1.85</td>
-<td style="text-align: left;">TAB</td>
-<td style="text-align: right;">1.50</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Detroit Pistons v Philadelphia 76ers</td>
-<td style="text-align: left;">Player Assists</td>
-<td style="text-align: left;">Cade Cunningham</td>
-<td style="text-align: left;">Detroit Pistons</td>
-<td style="text-align: right;">8.5</td>
-<td style="text-align: left;">Philadelphia 76ers</td>
-<td style="text-align: right;">2.02</td>
-<td style="text-align: left;">Unibet</td>
-<td style="text-align: right;">2.00</td>
-<td style="text-align: left;">BetRight</td>
-<td style="text-align: right;">0.50</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Detroit Pistons v Philadelphia 76ers</td>
-<td style="text-align: left;">Player Assists</td>
-<td style="text-align: left;">Cade Cunningham</td>
-<td style="text-align: left;">Detroit Pistons</td>
-<td style="text-align: right;">8.5</td>
-<td style="text-align: left;">Philadelphia 76ers</td>
-<td style="text-align: right;">2.02</td>
-<td style="text-align: left;">Unibet</td>
-<td style="text-align: right;">2.00</td>
-<td style="text-align: left;">Dabble</td>
-<td style="text-align: right;">0.50</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Detroit Pistons v Philadelphia 76ers</td>
-<td style="text-align: left;">Player Points</td>
-<td style="text-align: left;">Paul George</td>
-<td style="text-align: left;">Philadelphia 76ers</td>
-<td style="text-align: right;">17.5</td>
-<td style="text-align: left;">Detroit Pistons</td>
-<td style="text-align: right;">2.20</td>
-<td style="text-align: left;">Unibet</td>
-<td style="text-align: right;">1.85</td>
-<td style="text-align: left;">BetRight</td>
-<td style="text-align: right;">0.49</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Detroit Pistons v Philadelphia 76ers</td>
-<td style="text-align: left;">Player Points</td>
-<td style="text-align: left;">Guerschon Yabusele</td>
-<td style="text-align: left;">Philadelphia 76ers</td>
-<td style="text-align: right;">9.5</td>
-<td style="text-align: left;">Detroit Pistons</td>
-<td style="text-align: right;">1.96</td>
+<td style="text-align: right;">1.56</td>
 <td style="text-align: left;">Sportsbet</td>
-<td style="text-align: right;">2.05</td>
-<td style="text-align: left;">Unibet</td>
-<td style="text-align: right;">0.20</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Detroit Pistons v Philadelphia 76ers</td>
-<td style="text-align: left;">Player Points</td>
-<td style="text-align: left;">Paul George</td>
-<td style="text-align: left;">Philadelphia 76ers</td>
-<td style="text-align: right;">15.5</td>
-<td style="text-align: left;">Detroit Pistons</td>
-<td style="text-align: right;">1.72</td>
-<td style="text-align: left;">Unibet</td>
-<td style="text-align: right;">2.40</td>
-<td style="text-align: left;">BetRight</td>
-<td style="text-align: right;">0.19</td>
+<td style="text-align: right;">0.18</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Milwaukee Bucks v Washington Wizards</td>
@@ -28770,9 +27994,9 @@ initializeRuntime();
 <td style="text-align: left;">Washington Wizards</td>
 <td style="text-align: right;">1.65</td>
 <td style="text-align: left;">TAB</td>
-<td style="text-align: right;">2.75</td>
+<td style="text-align: right;">2.80</td>
 <td style="text-align: left;">Unibet</td>
-<td style="text-align: right;">3.03</td>
+<td style="text-align: right;">3.68</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Milwaukee Bucks v Washington Wizards</td>
@@ -28783,9 +28007,9 @@ initializeRuntime();
 <td style="text-align: left;">Washington Wizards</td>
 <td style="text-align: right;">1.60</td>
 <td style="text-align: left;">Dabble</td>
-<td style="text-align: right;">2.75</td>
+<td style="text-align: right;">2.80</td>
 <td style="text-align: left;">Unibet</td>
-<td style="text-align: right;">1.14</td>
+<td style="text-align: right;">1.79</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Milwaukee Bucks v Washington Wizards</td>
@@ -28796,24 +28020,11 @@ initializeRuntime();
 <td style="text-align: left;">Washington Wizards</td>
 <td style="text-align: right;">2.15</td>
 <td style="text-align: left;">TAB</td>
-<td style="text-align: right;">1.91</td>
+<td style="text-align: right;">1.92</td>
 <td style="text-align: left;">Unibet</td>
-<td style="text-align: right;">1.13</td>
+<td style="text-align: right;">1.41</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Milwaukee Bucks v Washington Wizards</td>
-<td style="text-align: left;">Player Points</td>
-<td style="text-align: left;">Jordan Poole</td>
-<td style="text-align: left;">Washington Wizards</td>
-<td style="text-align: right;">16.5</td>
-<td style="text-align: left;">Milwaukee Bucks</td>
-<td style="text-align: right;">1.52</td>
-<td style="text-align: left;">Sportsbet</td>
-<td style="text-align: right;">3.00</td>
-<td style="text-align: left;">Unibet</td>
-<td style="text-align: right;">0.88</td>
-</tr>
-<tr class="even">
 <td style="text-align: left;">Milwaukee Bucks v Washington Wizards</td>
 <td style="text-align: left;">Player Points</td>
 <td style="text-align: left;">Jordan Poole</td>
@@ -28822,9 +28033,22 @@ initializeRuntime();
 <td style="text-align: left;">Milwaukee Bucks</td>
 <td style="text-align: right;">1.64</td>
 <td style="text-align: left;">Sportsbet</td>
-<td style="text-align: right;">2.60</td>
+<td style="text-align: right;">2.63</td>
 <td style="text-align: left;">Unibet</td>
-<td style="text-align: right;">0.56</td>
+<td style="text-align: right;">1.00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Milwaukee Bucks v Washington Wizards</td>
+<td style="text-align: left;">Player Points</td>
+<td style="text-align: left;">Bilal Coulibaly</td>
+<td style="text-align: left;">Washington Wizards</td>
+<td style="text-align: right;">10.5</td>
+<td style="text-align: left;">Milwaukee Bucks</td>
+<td style="text-align: right;">1.85</td>
+<td style="text-align: left;">Dabble</td>
+<td style="text-align: right;">2.20</td>
+<td style="text-align: left;">Unibet</td>
+<td style="text-align: right;">0.49</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Milwaukee Bucks v Washington Wizards</td>
@@ -28841,19 +28065,6 @@ initializeRuntime();
 </tr>
 <tr class="even">
 <td style="text-align: left;">Milwaukee Bucks v Washington Wizards</td>
-<td style="text-align: left;">Player Points</td>
-<td style="text-align: left;">Bilal Coulibaly</td>
-<td style="text-align: left;">Washington Wizards</td>
-<td style="text-align: right;">10.5</td>
-<td style="text-align: left;">Milwaukee Bucks</td>
-<td style="text-align: right;">1.85</td>
-<td style="text-align: left;">Dabble</td>
-<td style="text-align: right;">2.18</td>
-<td style="text-align: left;">Unibet</td>
-<td style="text-align: right;">0.07</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Milwaukee Bucks v Washington Wizards</td>
 <td style="text-align: left;">Player Assists</td>
 <td style="text-align: left;">Giannis Antetokounmpo</td>
 <td style="text-align: left;">Milwaukee Bucks</td>
@@ -28861,61 +28072,22 @@ initializeRuntime();
 <td style="text-align: left;">Washington Wizards</td>
 <td style="text-align: right;">2.10</td>
 <td style="text-align: left;">Dabble</td>
-<td style="text-align: right;">1.91</td>
+<td style="text-align: right;">1.92</td>
 <td style="text-align: left;">Unibet</td>
-<td style="text-align: right;">0.02</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Phoenix Suns v Golden State Warriors</td>
-<td style="text-align: left;">Player Points</td>
-<td style="text-align: left;">Andrew Wiggins</td>
-<td style="text-align: left;">Golden State Warriors</td>
-<td style="text-align: right;">18.5</td>
-<td style="text-align: left;">Phoenix Suns</td>
-<td style="text-align: right;">2.35</td>
-<td style="text-align: left;">Unibet</td>
-<td style="text-align: right;">1.87</td>
-<td style="text-align: left;">TAB</td>
-<td style="text-align: right;">3.97</td>
+<td style="text-align: right;">0.30</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Phoenix Suns v Golden State Warriors</td>
+<td style="text-align: left;">Milwaukee Bucks v Washington Wizards</td>
 <td style="text-align: left;">Player Points</td>
-<td style="text-align: left;">Andrew Wiggins</td>
-<td style="text-align: left;">Golden State Warriors</td>
-<td style="text-align: right;">18.5</td>
-<td style="text-align: left;">Phoenix Suns</td>
-<td style="text-align: right;">2.35</td>
-<td style="text-align: left;">Unibet</td>
-<td style="text-align: right;">1.78</td>
+<td style="text-align: left;">Bilal Coulibaly</td>
+<td style="text-align: left;">Washington Wizards</td>
+<td style="text-align: right;">9.5</td>
+<td style="text-align: left;">Milwaukee Bucks</td>
+<td style="text-align: right;">1.62</td>
 <td style="text-align: left;">Dabble</td>
-<td style="text-align: right;">1.27</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Phoenix Suns v Golden State Warriors</td>
-<td style="text-align: left;">Player Assists</td>
-<td style="text-align: left;">Tyus Jones</td>
-<td style="text-align: left;">Phoenix Suns</td>
-<td style="text-align: right;">6.5</td>
-<td style="text-align: left;">Golden State Warriors</td>
-<td style="text-align: right;">1.68</td>
-<td style="text-align: left;">Sportsbet</td>
-<td style="text-align: right;">2.48</td>
+<td style="text-align: right;">2.63</td>
 <td style="text-align: left;">Unibet</td>
-<td style="text-align: right;">0.15</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Utah Jazz v Dallas Mavericks</td>
-<td style="text-align: left;">Player Points</td>
-<td style="text-align: left;">P.J. Washington</td>
-<td style="text-align: left;">Dallas Mavericks</td>
-<td style="text-align: right;">15.5</td>
-<td style="text-align: left;">Utah Jazz</td>
-<td style="text-align: right;">2.20</td>
-<td style="text-align: left;">Unibet</td>
-<td style="text-align: right;">1.95</td>
-<td style="text-align: left;">TAB</td>
-<td style="text-align: right;">3.26</td>
+<td style="text-align: right;">0.25</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Utah Jazz v Dallas Mavericks</td>
@@ -28932,29 +28104,29 @@ initializeRuntime();
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Utah Jazz v Dallas Mavericks</td>
+<td style="text-align: left;">Player Steals</td>
+<td style="text-align: left;">Collin Sexton</td>
+<td style="text-align: left;">Utah Jazz</td>
+<td style="text-align: right;">0.5</td>
+<td style="text-align: left;">Dallas Mavericks</td>
+<td style="text-align: right;">1.93</td>
+<td style="text-align: left;">Unibet</td>
+<td style="text-align: right;">2.15</td>
+<td style="text-align: left;">Pointsbet</td>
+<td style="text-align: right;">1.67</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Utah Jazz v Dallas Mavericks</td>
 <td style="text-align: left;">Player Points</td>
 <td style="text-align: left;">P.J. Washington</td>
 <td style="text-align: left;">Dallas Mavericks</td>
 <td style="text-align: right;">15.5</td>
 <td style="text-align: left;">Utah Jazz</td>
-<td style="text-align: right;">2.20</td>
+<td style="text-align: right;">2.23</td>
 <td style="text-align: left;">Unibet</td>
 <td style="text-align: right;">1.85</td>
 <td style="text-align: left;">Dabble</td>
-<td style="text-align: right;">0.49</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Utah Jazz v Dallas Mavericks</td>
-<td style="text-align: left;">Player Assists</td>
-<td style="text-align: left;">Keyonte George</td>
-<td style="text-align: left;">Utah Jazz</td>
-<td style="text-align: right;">6.5</td>
-<td style="text-align: left;">Dallas Mavericks</td>
-<td style="text-align: right;">2.45</td>
-<td style="text-align: left;">Unibet</td>
-<td style="text-align: right;">1.70</td>
-<td style="text-align: left;">BetRight</td>
-<td style="text-align: right;">0.36</td>
+<td style="text-align: right;">1.10</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Utah Jazz v Dallas Mavericks</td>
@@ -28963,24 +28135,24 @@ initializeRuntime();
 <td style="text-align: left;">Utah Jazz</td>
 <td style="text-align: right;">6.5</td>
 <td style="text-align: left;">Dallas Mavericks</td>
-<td style="text-align: right;">2.45</td>
+<td style="text-align: right;">2.48</td>
 <td style="text-align: left;">Unibet</td>
 <td style="text-align: right;">1.70</td>
-<td style="text-align: left;">Dabble</td>
-<td style="text-align: right;">0.36</td>
+<td style="text-align: left;">BetRight</td>
+<td style="text-align: right;">0.85</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Utah Jazz v Dallas Mavericks</td>
-<td style="text-align: left;">Player Points</td>
-<td style="text-align: left;">John Collins</td>
+<td style="text-align: left;">Player Assists</td>
+<td style="text-align: left;">Keyonte George</td>
 <td style="text-align: left;">Utah Jazz</td>
-<td style="text-align: right;">18.5</td>
+<td style="text-align: right;">6.5</td>
 <td style="text-align: left;">Dallas Mavericks</td>
-<td style="text-align: right;">2.15</td>
+<td style="text-align: right;">2.48</td>
 <td style="text-align: left;">Unibet</td>
-<td style="text-align: right;">1.87</td>
-<td style="text-align: left;">TAB</td>
-<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">1.70</td>
+<td style="text-align: left;">Dabble</td>
+<td style="text-align: right;">0.85</td>
 </tr>
 </tbody>
 </table>
@@ -29036,43 +28208,17 @@ initializeRuntime();
 <td style="text-align: right;">5.56</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Charlotte Hornets v Atlanta Hawks</td>
+<td style="text-align: left;">Detroit Pistons v Philadelphia 76ers</td>
 <td style="text-align: left;">Player Points</td>
-<td style="text-align: left;">Clint Capela</td>
-<td style="text-align: left;">Atlanta Hawks</td>
+<td style="text-align: left;">Tobias Harris</td>
+<td style="text-align: left;">Detroit Pistons</td>
 <td style="text-align: right;">13.5</td>
-<td style="text-align: left;">Charlotte Hornets</td>
-<td style="text-align: right;">4.50</td>
+<td style="text-align: left;">Philadelphia 76ers</td>
+<td style="text-align: right;">2.15</td>
 <td style="text-align: left;">TAB</td>
-<td style="text-align: right;">1.36</td>
-<td style="text-align: left;">Sportsbet</td>
-<td style="text-align: right;">4.25</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Charlotte Hornets v Atlanta Hawks</td>
-<td style="text-align: left;">Player Points</td>
-<td style="text-align: left;">Onyeka Okongwu</td>
-<td style="text-align: left;">Atlanta Hawks</td>
-<td style="text-align: right;">8.5</td>
-<td style="text-align: left;">Charlotte Hornets</td>
-<td style="text-align: right;">1.80</td>
+<td style="text-align: right;">2.00</td>
 <td style="text-align: left;">TAB</td>
-<td style="text-align: right;">2.45</td>
-<td style="text-align: left;">Sportsbet</td>
-<td style="text-align: right;">3.63</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Milwaukee Bucks v Washington Wizards</td>
-<td style="text-align: left;">Player Points</td>
-<td style="text-align: left;">Bilal Coulibaly</td>
-<td style="text-align: left;">Washington Wizards</td>
-<td style="text-align: right;">8.5</td>
-<td style="text-align: left;">Milwaukee Bucks</td>
-<td style="text-align: right;">1.55</td>
-<td style="text-align: left;">TAB</td>
-<td style="text-align: right;">3.10</td>
-<td style="text-align: left;">Sportsbet</td>
-<td style="text-align: right;">3.23</td>
+<td style="text-align: right;">3.49</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Utah Jazz v Dallas Mavericks</td>
@@ -29088,19 +28234,6 @@ initializeRuntime();
 <td style="text-align: right;">3.08</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Charlotte Hornets v Atlanta Hawks</td>
-<td style="text-align: left;">Player Points</td>
-<td style="text-align: left;">Onyeka Okongwu</td>
-<td style="text-align: left;">Atlanta Hawks</td>
-<td style="text-align: right;">13.5</td>
-<td style="text-align: left;">Charlotte Hornets</td>
-<td style="text-align: right;">4.25</td>
-<td style="text-align: left;">TAB</td>
-<td style="text-align: right;">1.36</td>
-<td style="text-align: left;">Sportsbet</td>
-<td style="text-align: right;">2.94</td>
-</tr>
-<tr class="odd">
 <td style="text-align: left;">Milwaukee Bucks v Washington Wizards</td>
 <td style="text-align: left;">Player Points</td>
 <td style="text-align: left;">Taurean Prince</td>
@@ -29113,7 +28246,7 @@ initializeRuntime();
 <td style="text-align: left;">TAB</td>
 <td style="text-align: right;">2.78</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">Detroit Pistons v Philadelphia 76ers</td>
 <td style="text-align: left;">Player Points</td>
 <td style="text-align: left;">Tobias Harris</td>
@@ -29126,7 +28259,7 @@ initializeRuntime();
 <td style="text-align: left;">BetRight</td>
 <td style="text-align: right;">2.47</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">Detroit Pistons v Philadelphia 76ers</td>
 <td style="text-align: left;">Player Points</td>
 <td style="text-align: left;">Tobias Harris</td>
@@ -29137,6 +28270,19 @@ initializeRuntime();
 <td style="text-align: left;">TAB</td>
 <td style="text-align: right;">1.96</td>
 <td style="text-align: left;">Sportsbet</td>
+<td style="text-align: right;">2.47</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Milwaukee Bucks v Washington Wizards</td>
+<td style="text-align: left;">Player Points</td>
+<td style="text-align: left;">Damian Lillard</td>
+<td style="text-align: left;">Milwaukee Bucks</td>
+<td style="text-align: right;">23.5</td>
+<td style="text-align: left;">Washington Wizards</td>
+<td style="text-align: right;">1.85</td>
+<td style="text-align: left;">TAB</td>
+<td style="text-align: right;">2.30</td>
+<td style="text-align: left;">BetRight</td>
 <td style="text-align: right;">2.47</td>
 </tr>
 <tr class="even">
@@ -29153,19 +28299,6 @@ initializeRuntime();
 <td style="text-align: right;">2.47</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Charlotte Hornets v Atlanta Hawks</td>
-<td style="text-align: left;">Player Points</td>
-<td style="text-align: left;">Trae Young</td>
-<td style="text-align: left;">Atlanta Hawks</td>
-<td style="text-align: right;">23.5</td>
-<td style="text-align: left;">Charlotte Hornets</td>
-<td style="text-align: right;">2.30</td>
-<td style="text-align: left;">TAB</td>
-<td style="text-align: right;">1.85</td>
-<td style="text-align: left;">BetRight</td>
-<td style="text-align: right;">2.47</td>
-</tr>
-<tr class="even">
 <td style="text-align: left;">Phoenix Suns v Golden State Warriors</td>
 <td style="text-align: left;">Player Points</td>
 <td style="text-align: left;">Kevin Durant</td>
@@ -29178,33 +28311,7 @@ initializeRuntime();
 <td style="text-align: left;">Sportsbet</td>
 <td style="text-align: right;">2.38</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">Detroit Pistons v Philadelphia 76ers</td>
-<td style="text-align: left;">Player Points</td>
-<td style="text-align: left;">Tobias Harris</td>
-<td style="text-align: left;">Detroit Pistons</td>
-<td style="text-align: right;">13.5</td>
-<td style="text-align: left;">Philadelphia 76ers</td>
-<td style="text-align: right;">2.15</td>
-<td style="text-align: left;">TAB</td>
-<td style="text-align: right;">1.95</td>
-<td style="text-align: left;">Pointsbet</td>
-<td style="text-align: right;">2.21</td>
-</tr>
 <tr class="even">
-<td style="text-align: left;">Detroit Pistons v Philadelphia 76ers</td>
-<td style="text-align: left;">Player Points</td>
-<td style="text-align: left;">Tobias Harris</td>
-<td style="text-align: left;">Detroit Pistons</td>
-<td style="text-align: right;">13.5</td>
-<td style="text-align: left;">Philadelphia 76ers</td>
-<td style="text-align: right;">2.15</td>
-<td style="text-align: left;">TAB</td>
-<td style="text-align: right;">1.95</td>
-<td style="text-align: left;">TAB</td>
-<td style="text-align: right;">2.21</td>
-</tr>
-<tr class="odd">
 <td style="text-align: left;">Milwaukee Bucks v Washington Wizards</td>
 <td style="text-align: left;">Player Points</td>
 <td style="text-align: left;">Bilal Coulibaly</td>
@@ -29216,45 +28323,6 @@ initializeRuntime();
 <td style="text-align: right;">3.00</td>
 <td style="text-align: left;">BetRight</td>
 <td style="text-align: right;">2.15</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Charlotte Hornets v Atlanta Hawks</td>
-<td style="text-align: left;">Player Points</td>
-<td style="text-align: left;">Dyson Daniels</td>
-<td style="text-align: left;">Atlanta Hawks</td>
-<td style="text-align: right;">13.5</td>
-<td style="text-align: left;">Charlotte Hornets</td>
-<td style="text-align: right;">2.60</td>
-<td style="text-align: left;">TAB</td>
-<td style="text-align: right;">1.68</td>
-<td style="text-align: left;">Sportsbet</td>
-<td style="text-align: right;">2.01</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Charlotte Hornets v Atlanta Hawks</td>
-<td style="text-align: left;">Player Points</td>
-<td style="text-align: left;">Dyson Daniels</td>
-<td style="text-align: left;">Atlanta Hawks</td>
-<td style="text-align: right;">13.5</td>
-<td style="text-align: left;">Charlotte Hornets</td>
-<td style="text-align: right;">2.60</td>
-<td style="text-align: left;">TAB</td>
-<td style="text-align: right;">1.67</td>
-<td style="text-align: left;">BetRight</td>
-<td style="text-align: right;">1.66</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Milwaukee Bucks v Washington Wizards</td>
-<td style="text-align: left;">Player Points</td>
-<td style="text-align: left;">Damian Lillard</td>
-<td style="text-align: left;">Milwaukee Bucks</td>
-<td style="text-align: right;">23.5</td>
-<td style="text-align: left;">Washington Wizards</td>
-<td style="text-align: right;">1.85</td>
-<td style="text-align: left;">TAB</td>
-<td style="text-align: right;">2.25</td>
-<td style="text-align: left;">BetRight</td>
-<td style="text-align: right;">1.50</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Utah Jazz v Dallas Mavericks</td>
@@ -29296,32 +28364,19 @@ initializeRuntime();
 <td style="text-align: right;">1.08</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Detroit Pistons v Philadelphia 76ers</td>
+<td style="text-align: left;">Milwaukee Bucks v Washington Wizards</td>
 <td style="text-align: left;">Player Points</td>
-<td style="text-align: left;">Tyrese Maxey</td>
-<td style="text-align: left;">Philadelphia 76ers</td>
-<td style="text-align: right;">23.5</td>
-<td style="text-align: left;">Detroit Pistons</td>
-<td style="text-align: right;">1.80</td>
+<td style="text-align: left;">Bilal Coulibaly</td>
+<td style="text-align: left;">Washington Wizards</td>
+<td style="text-align: right;">8.5</td>
+<td style="text-align: left;">Milwaukee Bucks</td>
+<td style="text-align: right;">1.55</td>
 <td style="text-align: left;">TAB</td>
-<td style="text-align: right;">2.30</td>
-<td style="text-align: left;">BetRight</td>
-<td style="text-align: right;">0.97</td>
+<td style="text-align: right;">2.90</td>
+<td style="text-align: left;">Sportsbet</td>
+<td style="text-align: right;">1.00</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Charlotte Hornets v Atlanta Hawks</td>
-<td style="text-align: left;">Player Points</td>
-<td style="text-align: left;">Jalen Johnson</td>
-<td style="text-align: left;">Atlanta Hawks</td>
-<td style="text-align: right;">18.5</td>
-<td style="text-align: left;">Charlotte Hornets</td>
-<td style="text-align: right;">2.05</td>
-<td style="text-align: left;">TAB</td>
-<td style="text-align: right;">1.98</td>
-<td style="text-align: left;">BetRight</td>
-<td style="text-align: right;">0.71</td>
-</tr>
-<tr class="even">
 <td style="text-align: left;">Milwaukee Bucks v Washington Wizards</td>
 <td style="text-align: left;">Player Points</td>
 <td style="text-align: left;">Bobby Portis</td>
@@ -29334,31 +28389,18 @@ initializeRuntime();
 <td style="text-align: left;">TAB</td>
 <td style="text-align: right;">0.49</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">Charlotte Hornets v Atlanta Hawks</td>
-<td style="text-align: left;">Player Points</td>
-<td style="text-align: left;">Clint Capela</td>
-<td style="text-align: left;">Atlanta Hawks</td>
-<td style="text-align: right;">8.5</td>
-<td style="text-align: left;">Charlotte Hornets</td>
-<td style="text-align: right;">1.72</td>
-<td style="text-align: left;">TAB</td>
-<td style="text-align: right;">2.40</td>
-<td style="text-align: left;">Sportsbet</td>
-<td style="text-align: right;">0.19</td>
-</tr>
 <tr class="even">
-<td style="text-align: left;">Phoenix Suns v Golden State Warriors</td>
+<td style="text-align: left;">Detroit Pistons v Philadelphia 76ers</td>
 <td style="text-align: left;">Player Points</td>
-<td style="text-align: left;">Andrew Wiggins</td>
-<td style="text-align: left;">Golden State Warriors</td>
-<td style="text-align: right;">18.5</td>
-<td style="text-align: left;">Phoenix Suns</td>
+<td style="text-align: left;">Tobias Harris</td>
+<td style="text-align: left;">Detroit Pistons</td>
+<td style="text-align: right;">13.5</td>
+<td style="text-align: left;">Philadelphia 76ers</td>
 <td style="text-align: right;">2.15</td>
 <td style="text-align: left;">TAB</td>
-<td style="text-align: right;">1.87</td>
-<td style="text-align: left;">TAB</td>
-<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">1.88</td>
+<td style="text-align: left;">Dabble</td>
+<td style="text-align: right;">0.30</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Phoenix Suns v Golden State Warriors</td>
@@ -29389,7 +28431,7 @@ initializeRuntime();
 <table class="caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 20%">
-<col style="width: 8%">
+<col style="width: 7%">
 <col style="width: 10%">
 <col style="width: 10%">
 <col style="width: 6%">
@@ -29420,339 +28462,17 @@ initializeRuntime();
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Detroit Pistons v Philadelphia 76ers</td>
-<td style="text-align: left;">Player Rebounds</td>
-<td style="text-align: left;">Andre Drummond</td>
-<td style="text-align: left;">Philadelphia 76ers</td>
-<td style="text-align: right;">6.5</td>
-<td style="text-align: left;">Detroit Pistons</td>
-<td style="text-align: right;">2.38</td>
-<td style="text-align: right;">5.5</td>
-<td style="text-align: left;">Unibet</td>
-<td style="text-align: right;">3.10</td>
-<td style="text-align: left;">Sportsbet</td>
-<td style="text-align: right;">25.73</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Detroit Pistons v Philadelphia 76ers</td>
-<td style="text-align: left;">Player Rebounds</td>
-<td style="text-align: left;">Guerschon Yabusele</td>
-<td style="text-align: left;">Philadelphia 76ers</td>
-<td style="text-align: right;">8.5</td>
-<td style="text-align: left;">Detroit Pistons</td>
-<td style="text-align: right;">3.05</td>
-<td style="text-align: right;">7.5</td>
-<td style="text-align: left;">Neds</td>
-<td style="text-align: right;">2.00</td>
-<td style="text-align: left;">Unibet</td>
-<td style="text-align: right;">17.21</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Detroit Pistons v Philadelphia 76ers</td>
-<td style="text-align: left;">Player Rebounds</td>
-<td style="text-align: left;">Guerschon Yabusele</td>
-<td style="text-align: left;">Philadelphia 76ers</td>
-<td style="text-align: right;">8.5</td>
-<td style="text-align: left;">Detroit Pistons</td>
-<td style="text-align: right;">3.00</td>
-<td style="text-align: right;">7.5</td>
-<td style="text-align: left;">Pointsbet</td>
-<td style="text-align: right;">2.00</td>
-<td style="text-align: left;">Unibet</td>
-<td style="text-align: right;">16.67</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Detroit Pistons v Philadelphia 76ers</td>
-<td style="text-align: left;">Player Rebounds</td>
-<td style="text-align: left;">Andre Drummond</td>
-<td style="text-align: left;">Philadelphia 76ers</td>
-<td style="text-align: right;">7.5</td>
-<td style="text-align: left;">Detroit Pistons</td>
-<td style="text-align: right;">2.38</td>
-<td style="text-align: right;">5.5</td>
-<td style="text-align: left;">Unibet</td>
-<td style="text-align: right;">2.40</td>
-<td style="text-align: left;">Sportsbet</td>
-<td style="text-align: right;">16.32</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Detroit Pistons v Philadelphia 76ers</td>
-<td style="text-align: left;">Player Rebounds</td>
-<td style="text-align: left;">Guerschon Yabusele</td>
-<td style="text-align: left;">Philadelphia 76ers</td>
-<td style="text-align: right;">7.5</td>
-<td style="text-align: left;">Detroit Pistons</td>
-<td style="text-align: right;">2.10</td>
-<td style="text-align: right;">6.5</td>
-<td style="text-align: left;">Sportsbet</td>
-<td style="text-align: right;">2.75</td>
-<td style="text-align: left;">Unibet</td>
-<td style="text-align: right;">16.02</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Detroit Pistons v Philadelphia 76ers</td>
-<td style="text-align: left;">Player Rebounds</td>
-<td style="text-align: left;">Guerschon Yabusele</td>
-<td style="text-align: left;">Philadelphia 76ers</td>
-<td style="text-align: right;">8.5</td>
-<td style="text-align: left;">Detroit Pistons</td>
-<td style="text-align: right;">2.80</td>
-<td style="text-align: right;">7.5</td>
-<td style="text-align: left;">Sportsbet</td>
-<td style="text-align: right;">2.00</td>
-<td style="text-align: left;">Unibet</td>
-<td style="text-align: right;">14.29</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Detroit Pistons v Philadelphia 76ers</td>
 <td style="text-align: left;">Player Points</td>
-<td style="text-align: left;">Andre Drummond</td>
-<td style="text-align: left;">Philadelphia 76ers</td>
-<td style="text-align: right;">5.5</td>
-<td style="text-align: left;">Detroit Pistons</td>
-<td style="text-align: right;">2.02</td>
-<td style="text-align: right;">4.5</td>
-<td style="text-align: left;">Unibet</td>
-<td style="text-align: right;">2.60</td>
-<td style="text-align: left;">Sportsbet</td>
-<td style="text-align: right;">12.03</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Detroit Pistons v Philadelphia 76ers</td>
-<td style="text-align: left;">Player Rebounds</td>
 <td style="text-align: left;">Guerschon Yabusele</td>
 <td style="text-align: left;">Philadelphia 76ers</td>
-<td style="text-align: right;">8.5</td>
+<td style="text-align: right;">11.5</td>
 <td style="text-align: left;">Detroit Pistons</td>
-<td style="text-align: right;">2.63</td>
-<td style="text-align: right;">7.5</td>
-<td style="text-align: left;">BetRight</td>
-<td style="text-align: right;">2.00</td>
-<td style="text-align: left;">Unibet</td>
-<td style="text-align: right;">11.98</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Detroit Pistons v Philadelphia 76ers</td>
-<td style="text-align: left;">Player Rebounds</td>
-<td style="text-align: left;">Guerschon Yabusele</td>
-<td style="text-align: left;">Philadelphia 76ers</td>
-<td style="text-align: right;">7.5</td>
-<td style="text-align: left;">Detroit Pistons</td>
-<td style="text-align: right;">1.87</td>
-<td style="text-align: right;">5.5</td>
-<td style="text-align: left;">Neds</td>
-<td style="text-align: right;">2.75</td>
-<td style="text-align: left;">Unibet</td>
-<td style="text-align: right;">10.16</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Detroit Pistons v Philadelphia 76ers</td>
-<td style="text-align: left;">Player Rebounds</td>
-<td style="text-align: left;">Guerschon Yabusele</td>
-<td style="text-align: left;">Philadelphia 76ers</td>
-<td style="text-align: right;">9.5</td>
-<td style="text-align: left;">Detroit Pistons</td>
-<td style="text-align: right;">3.80</td>
-<td style="text-align: right;">8.5</td>
+<td style="text-align: right;">2.15</td>
+<td style="text-align: right;">10.5</td>
 <td style="text-align: left;">Sportsbet</td>
-<td style="text-align: right;">1.56</td>
-<td style="text-align: left;">Unibet</td>
-<td style="text-align: right;">9.58</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Detroit Pistons v Philadelphia 76ers</td>
-<td style="text-align: left;">Player Points</td>
-<td style="text-align: left;">Andre Drummond</td>
-<td style="text-align: left;">Philadelphia 76ers</td>
-<td style="text-align: right;">6.5</td>
-<td style="text-align: left;">Detroit Pistons</td>
-<td style="text-align: right;">2.28</td>
-<td style="text-align: right;">5.5</td>
-<td style="text-align: left;">Unibet</td>
-<td style="text-align: right;">2.10</td>
-<td style="text-align: left;">Sportsbet</td>
-<td style="text-align: right;">8.52</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Detroit Pistons v Philadelphia 76ers</td>
-<td style="text-align: left;">Player Rebounds</td>
-<td style="text-align: left;">Andre Drummond</td>
-<td style="text-align: left;">Philadelphia 76ers</td>
-<td style="text-align: right;">6.5</td>
-<td style="text-align: left;">Detroit Pistons</td>
-<td style="text-align: right;">1.68</td>
-<td style="text-align: right;">4.5</td>
-<td style="text-align: left;">Unibet</td>
-<td style="text-align: right;">3.10</td>
-<td style="text-align: left;">Sportsbet</td>
-<td style="text-align: right;">8.22</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Detroit Pistons v Philadelphia 76ers</td>
-<td style="text-align: left;">Player Rebounds</td>
-<td style="text-align: left;">Andre Drummond</td>
-<td style="text-align: left;">Philadelphia 76ers</td>
-<td style="text-align: right;">8.5</td>
-<td style="text-align: left;">Detroit Pistons</td>
-<td style="text-align: right;">2.38</td>
-<td style="text-align: right;">5.5</td>
-<td style="text-align: left;">Unibet</td>
-<td style="text-align: right;">1.93</td>
-<td style="text-align: left;">Sportsbet</td>
-<td style="text-align: right;">6.17</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Detroit Pistons v Philadelphia 76ers</td>
-<td style="text-align: left;">Player Rebounds</td>
-<td style="text-align: left;">Guerschon Yabusele</td>
-<td style="text-align: left;">Philadelphia 76ers</td>
-<td style="text-align: right;">7.5</td>
-<td style="text-align: left;">Detroit Pistons</td>
-<td style="text-align: right;">1.71</td>
-<td style="text-align: right;">5.5</td>
-<td style="text-align: left;">Pointsbet</td>
-<td style="text-align: right;">2.75</td>
-<td style="text-align: left;">Unibet</td>
-<td style="text-align: right;">5.16</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Detroit Pistons v Philadelphia 76ers</td>
-<td style="text-align: left;">Player Rebounds</td>
-<td style="text-align: left;">Andre Drummond</td>
-<td style="text-align: left;">Philadelphia 76ers</td>
-<td style="text-align: right;">8.5</td>
-<td style="text-align: left;">Detroit Pistons</td>
-<td style="text-align: right;">2.38</td>
-<td style="text-align: right;">5.5</td>
-<td style="text-align: left;">Unibet</td>
 <td style="text-align: right;">1.87</td>
 <td style="text-align: left;">Neds</td>
-<td style="text-align: right;">4.51</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Detroit Pistons v Philadelphia 76ers</td>
-<td style="text-align: left;">Player Rebounds</td>
-<td style="text-align: left;">Guerschon Yabusele</td>
-<td style="text-align: left;">Philadelphia 76ers</td>
-<td style="text-align: right;">7.5</td>
-<td style="text-align: left;">Detroit Pistons</td>
-<td style="text-align: right;">1.68</td>
-<td style="text-align: right;">5.5</td>
-<td style="text-align: left;">Sportsbet</td>
-<td style="text-align: right;">2.75</td>
-<td style="text-align: left;">Unibet</td>
-<td style="text-align: right;">4.11</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Detroit Pistons v Philadelphia 76ers</td>
-<td style="text-align: left;">Player Rebounds</td>
-<td style="text-align: left;">Guerschon Yabusele</td>
-<td style="text-align: left;">Philadelphia 76ers</td>
-<td style="text-align: right;">9.5</td>
-<td style="text-align: left;">Detroit Pistons</td>
-<td style="text-align: right;">3.05</td>
-<td style="text-align: right;">7.5</td>
-<td style="text-align: left;">Neds</td>
-<td style="text-align: right;">1.56</td>
-<td style="text-align: left;">Unibet</td>
-<td style="text-align: right;">3.11</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Detroit Pistons v Philadelphia 76ers</td>
-<td style="text-align: left;">Player Points</td>
-<td style="text-align: left;">Andre Drummond</td>
-<td style="text-align: left;">Philadelphia 76ers</td>
-<td style="text-align: right;">6.5</td>
-<td style="text-align: left;">Detroit Pistons</td>
-<td style="text-align: right;">2.02</td>
-<td style="text-align: right;">4.5</td>
-<td style="text-align: left;">Unibet</td>
-<td style="text-align: right;">2.10</td>
-<td style="text-align: left;">Sportsbet</td>
-<td style="text-align: right;">2.88</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Detroit Pistons v Philadelphia 76ers</td>
-<td style="text-align: left;">Player Points</td>
-<td style="text-align: left;">Andre Drummond</td>
-<td style="text-align: left;">Philadelphia 76ers</td>
-<td style="text-align: right;">8.5</td>
-<td style="text-align: left;">Detroit Pistons</td>
-<td style="text-align: right;">2.28</td>
-<td style="text-align: right;">5.5</td>
-<td style="text-align: left;">Unibet</td>
-<td style="text-align: right;">1.87</td>
-<td style="text-align: left;">Neds</td>
-<td style="text-align: right;">2.66</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Detroit Pistons v Philadelphia 76ers</td>
-<td style="text-align: left;">Player Rebounds</td>
-<td style="text-align: left;">Guerschon Yabusele</td>
-<td style="text-align: left;">Philadelphia 76ers</td>
-<td style="text-align: right;">9.5</td>
-<td style="text-align: left;">Detroit Pistons</td>
-<td style="text-align: right;">3.00</td>
-<td style="text-align: right;">7.5</td>
-<td style="text-align: left;">Pointsbet</td>
-<td style="text-align: right;">1.56</td>
-<td style="text-align: left;">Unibet</td>
-<td style="text-align: right;">2.56</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Detroit Pistons v Philadelphia 76ers</td>
-<td style="text-align: left;">Player Rebounds</td>
-<td style="text-align: left;">Guerschon Yabusele</td>
-<td style="text-align: left;">Philadelphia 76ers</td>
-<td style="text-align: right;">8.5</td>
-<td style="text-align: left;">Detroit Pistons</td>
-<td style="text-align: right;">2.10</td>
-<td style="text-align: right;">6.5</td>
-<td style="text-align: left;">Sportsbet</td>
-<td style="text-align: right;">2.00</td>
-<td style="text-align: left;">Unibet</td>
-<td style="text-align: right;">2.38</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Detroit Pistons v Philadelphia 76ers</td>
-<td style="text-align: left;">Player Points</td>
-<td style="text-align: left;">Andre Drummond</td>
-<td style="text-align: left;">Philadelphia 76ers</td>
-<td style="text-align: right;">7.5</td>
-<td style="text-align: left;">Detroit Pistons</td>
-<td style="text-align: right;">2.28</td>
-<td style="text-align: right;">5.5</td>
-<td style="text-align: left;">Unibet</td>
-<td style="text-align: right;">1.80</td>
-<td style="text-align: left;">Sportsbet</td>
-<td style="text-align: right;">0.58</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Detroit Pistons v Philadelphia 76ers</td>
-<td style="text-align: left;">Player Rebounds</td>
-<td style="text-align: left;">Guerschon Yabusele</td>
-<td style="text-align: left;">Philadelphia 76ers</td>
-<td style="text-align: right;">9.5</td>
-<td style="text-align: left;">Detroit Pistons</td>
-<td style="text-align: right;">2.80</td>
-<td style="text-align: right;">7.5</td>
-<td style="text-align: left;">Sportsbet</td>
-<td style="text-align: right;">1.56</td>
-<td style="text-align: left;">Unibet</td>
-<td style="text-align: right;">0.18</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Detroit Pistons v Philadelphia 76ers</td>
-<td style="text-align: left;">Player PRAs</td>
-<td style="text-align: left;">Paul George</td>
-<td style="text-align: left;">Philadelphia 76ers</td>
-<td style="text-align: right;">27.5</td>
-<td style="text-align: left;">Detroit Pistons</td>
-<td style="text-align: right;">2.14</td>
-<td style="text-align: right;">26.5</td>
-<td style="text-align: left;">Unibet</td>
-<td style="text-align: right;">1.85</td>
-<td style="text-align: left;">Dabble</td>
-<td style="text-align: right;">-0.78</td>
+<td style="text-align: right;">0.01</td>
 </tr>
 </tbody>
 </table>
@@ -29766,7 +28486,7 @@ initializeRuntime();
 </main>
 <!-- /main column -->
 <script type="ojs-module-contents">
-eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6InZpZXdvZiBvZGRzMSA9IElucHV0cy50ZXh0KHtcbiAgbGFiZWw6IFwiT2RkcyAxOlwiLFxuICBwbGFjZWhvbGRlcjogXCJFbnRlciBvZGRzLi4uXCIsXG4gIHZhbHVlOiBcIjIuNFwiIC8vIERlZmF1bHQgdmFsdWUgZm9yIGRlbW9uc3RyYXRpb25cbn0pXG5cbnZpZXdvZiBzdGFrZTEgPSBJbnB1dHMudGV4dCh7XG4gIGxhYmVsOiBcIlN0YWtlIDE6XCIsXG4gIHBsYWNlaG9sZGVyOiBcIkVudGVyIHN0YWtlLi4uXCIsXG4gIHZhbHVlOiBcIjEwMFwiIC8vIERlZmF1bHQgdmFsdWUgZm9yIGRlbW9uc3RyYXRpb25cbn0pXG5cbnZpZXdvZiBvZGRzMiA9IElucHV0cy50ZXh0KHtcbiAgbGFiZWw6IFwiT2RkcyAyOlwiLFxuICBwbGFjZWhvbGRlcjogXCJFbnRlciBvZGRzLi4uXCIsXG4gIHZhbHVlOiBcIjEuOFwiIC8vIERlZmF1bHQgdmFsdWUgZm9yIGRlbW9uc3RyYXRpb25cbn0pXG5cbi8vIEZvcm1hdCBudW1iZXJzIHRvIHR3byBkZWNpbWFsIHBsYWNlc1xuZm9ybWF0TnVtYmVyID0gKHZhbHVlKSA9PiBwYXJzZUZsb2F0KHZhbHVlKS50b0ZpeGVkKDIpXG5cbi8vIEZvcm1hdCBzdGFrZXMgYXMgZG9sbGFyc1xuZm9ybWF0Q3VycmVuY3kgPSAodmFsdWUpID0+IGAkJHtwYXJzZUZsb2F0KHZhbHVlKS50b0ZpeGVkKDIpfWBcblxuLy8gQ2FsY3VsYXRlIHRoZSByZXF1aXJlZCBzdGFrZSBmb3IgYXJiaXRyYWdlXG5zdGFrZTIgPSB7XG4gIGNvbnN0IG8xID0gcGFyc2VGbG9hdChvZGRzMSk7XG4gIGNvbnN0IHMxID0gcGFyc2VGbG9hdChzdGFrZTEpO1xuICBjb25zdCBvMiA9IHBhcnNlRmxvYXQob2RkczIpO1xuICBpZiAoIWlzTmFOKG8xKSAmJiAhaXNOYU4oczEpICYmICFpc05hTihvMikpIHtcbiAgICByZXR1cm4gKHMxICogbzEpIC8gbzI7XG4gIH0gZWxzZSB7XG4gICAgcmV0dXJuIFwiUGxlYXNlIGVudGVyIHZhbGlkIG51bWVyaWNhbCB2YWx1ZXMuXCI7XG4gIH1cbn1cblxuLy8gQ2FsY3VsYXRlIGFyYml0cmFnZSBwZXJjZW50YWdlIChzdW0gb2YgcmVjaXByb2NhbHMgb2Ygb2RkcyBtaW51cyAxKVxuYXJiaXRyYWdlUGVyY2VudGFnZSA9IHtcbiAgY29uc3QgbzEgPSBwYXJzZUZsb2F0KG9kZHMxKTtcbiAgY29uc3QgbzIgPSBwYXJzZUZsb2F0KG9kZHMyKTtcbiAgaWYgKCFpc05hTihvMSkgJiYgIWlzTmFOKG8yKSkge1xuICAgIGNvbnN0IGFyYiA9ICgxIC8gbzEpICsgKDEgLyBvMik7XG4gICAgcmV0dXJuIC0xMDAgKiAoMSAtIGFyYik7IC8vIFBlcmNlbnRhZ2UgYmVsb3cgMVxuICB9IGVsc2Uge1xuICAgIHJldHVybiBcIlBsZWFzZSBlbnRlciB2YWxpZCBudW1lcmljYWwgdmFsdWVzLlwiO1xuICB9XG59XG5cbi8vIENhbGN1bGF0ZSB0b3RhbCBwcm9maXQgKGlmIGFyYml0cmFnZSBleGlzdHMpXG50b3RhbFByb2ZpdCA9IHtcbiAgY29uc3QgbzEgPSBwYXJzZUZsb2F0KG9kZHMxKTtcbiAgY29uc3QgczEgPSBwYXJzZUZsb2F0KHN0YWtlMSk7XG4gIGNvbnN0IHMyID0gc3Rha2UyO1xuICBpZiAoIWlzTmFOKG8xKSAmJiAhaXNOYU4oczEpICYmIHR5cGVvZiBzMiA9PT0gXCJudW1iZXJcIikge1xuICAgIC8vIFByb2ZpdCBpZiBCZXQgMSB3aW5zXG4gICAgY29uc3QgcHJvZml0MSA9IChzMSAqIG8xKSAtIChzMSArIHMyKTtcbiAgICByZXR1cm4gcHJvZml0MTsgLy8gQm90aCBiZXRzIHlpZWxkIHRoZSBzYW1lIHByb2ZpdFxuICB9IGVsc2Uge1xuICAgIHJldHVybiBcIlBsZWFzZSBlbnRlciB2YWxpZCBudW1lcmljYWwgdmFsdWVzLlwiO1xuICB9XG59XG5cbi8vIE91dHB1dCB0aGUgcmVzdWx0cyBpbiBhbiBhZXN0aGV0aWMgZm9ybWF0IHdpdGggbGVmdC1qdXN0aWZpZWQgY29sdW1uc1xuaHRtbGBcbiAgPGRpdiBzdHlsZT1cIlxuICAgIGZvbnQtZmFtaWx5OiBBcmlhbCwgc2Fucy1zZXJpZjtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZjlmOWY5O1xuICAgIGJvcmRlcjogMXB4IHNvbGlkICNkZGQ7XG4gICAgYm9yZGVyLXJhZGl1czogOHB4O1xuICAgIHBhZGRpbmc6IDIwcHg7XG4gICAgbWFyZ2luLXRvcDogMjBweDtcbiAgICBtYXgtd2lkdGg6IDYwMHB4O1xuICAgIGJveC1zaGFkb3c6IDAgNHB4IDhweCByZ2JhKDAsIDAsIDAsIDAuMSk7XG4gIFwiPlxuICAgIDxkaXYgc3R5bGU9XCJkaXNwbGF5OiBmbGV4OyBqdXN0aWZ5LWNvbnRlbnQ6IHNwYWNlLWJldHdlZW47IGdhcDogMjBweDtcIj5cbiAgICAgIDxkaXYgc3R5bGU9XCJmbGV4OiAxOyB0ZXh0LWFsaWduOiBsZWZ0O1wiPlxuICAgICAgICA8aDMgc3R5bGU9XCJjb2xvcjogIzM0NDk1ZTsgdGV4dC1hbGlnbjogbGVmdDtcIj5PZGRzPC9oMz5cbiAgICAgICAgPHA+PHN0cm9uZz5PZGRzIDE6PC9zdHJvbmc+ICR7Zm9ybWF0TnVtYmVyKG9kZHMxKX08L3A+XG4gICAgICAgIDxwPjxzdHJvbmc+T2RkcyAyOjwvc3Ryb25nPiAke2Zvcm1hdE51bWJlcihvZGRzMil9PC9wPlxuICAgICAgPC9kaXY+XG4gICAgICA8ZGl2IHN0eWxlPVwiZmxleDogMTsgdGV4dC1hbGlnbjogbGVmdDtcIj5cbiAgICAgICAgPGgzIHN0eWxlPVwiY29sb3I6ICMzNDQ5NWU7IHRleHQtYWxpZ246IGxlZnQ7XCI+U3Rha2VzPC9oMz5cbiAgICAgICAgPHA+PHN0cm9uZz5TdGFrZSAxOjwvc3Ryb25nPiAke2Zvcm1hdEN1cnJlbmN5KHN0YWtlMSl9PC9wPlxuICAgICAgICA8cD48c3Ryb25nPlN0YWtlIDI6PC9zdHJvbmc+ICR7dHlwZW9mIHN0YWtlMiA9PT0gXCJudW1iZXJcIiA/IGZvcm1hdEN1cnJlbmN5KHN0YWtlMikgOiBzdGFrZTJ9PC9wPlxuICAgICAgPC9kaXY+XG4gICAgPC9kaXY+XG4gICAgPGhyIHN0eWxlPVwiYm9yZGVyOiBub25lOyBib3JkZXItdG9wOiAxcHggc29saWQgI2RkZDtcIj5cbiAgICA8aDMgc3R5bGU9XCJjb2xvcjogIzM0OThkYjsgdGV4dC1hbGlnbjogY2VudGVyO1wiPlxuICAgICAgQXJiaXRyYWdlIFBlcmNlbnRhZ2U6ICR7dHlwZW9mIGFyYml0cmFnZVBlcmNlbnRhZ2UgPT09IFwibnVtYmVyXCIgPyBmb3JtYXROdW1iZXIoLWFyYml0cmFnZVBlcmNlbnRhZ2UpICsgXCIlXCIgOiBhcmJpdHJhZ2VQZXJjZW50YWdlfVxuICAgIDwvaDM+XG4gICAgPGgzIHN0eWxlPVwiY29sb3I6ICMyN2FlNjA7IHRleHQtYWxpZ246IGNlbnRlcjtcIj5cbiAgICAgIFRvdGFsIFByb2ZpdDogJHt0eXBlb2YgdG90YWxQcm9maXQgPT09IFwibnVtYmVyXCIgPyBmb3JtYXRDdXJyZW5jeSh0b3RhbFByb2ZpdCkgOiB0b3RhbFByb2ZpdH1cbiAgICA8L2gzPlxuICA8L2Rpdj5cbmBcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoic2hpbnlJbnB1dCgnb2RkczEnKSJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoic2hpbnlJbnB1dCgnc3Rha2UxJykifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ29kZHMyJykifV19
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6InZpZXdvZiBvZGRzMSA9IElucHV0cy50ZXh0KHtcbiAgbGFiZWw6IFwiT2RkcyAxOlwiLFxuICBwbGFjZWhvbGRlcjogXCJFbnRlciBvZGRzLi4uXCIsXG4gIHZhbHVlOiBcIjIuNFwiIC8vIERlZmF1bHQgdmFsdWUgZm9yIGRlbW9uc3RyYXRpb25cbn0pXG5cbnZpZXdvZiBzdGFrZTEgPSBJbnB1dHMudGV4dCh7XG4gIGxhYmVsOiBcIlN0YWtlIDE6XCIsXG4gIHBsYWNlaG9sZGVyOiBcIkVudGVyIHN0YWtlLi4uXCIsXG4gIHZhbHVlOiBcIjEwMFwiIC8vIERlZmF1bHQgdmFsdWUgZm9yIGRlbW9uc3RyYXRpb25cbn0pXG5cbnZpZXdvZiBvZGRzMiA9IElucHV0cy50ZXh0KHtcbiAgbGFiZWw6IFwiT2RkcyAyOlwiLFxuICBwbGFjZWhvbGRlcjogXCJFbnRlciBvZGRzLi4uXCIsXG4gIHZhbHVlOiBcIjEuOFwiIC8vIERlZmF1bHQgdmFsdWUgZm9yIGRlbW9uc3RyYXRpb25cbn0pXG5cbi8vIEZvcm1hdCBudW1iZXJzIHRvIHR3byBkZWNpbWFsIHBsYWNlc1xuZm9ybWF0TnVtYmVyID0gKHZhbHVlKSA9PiBwYXJzZUZsb2F0KHZhbHVlKS50b0ZpeGVkKDIpXG5cbi8vIEZvcm1hdCBzdGFrZXMgYXMgZG9sbGFyc1xuZm9ybWF0Q3VycmVuY3kgPSAodmFsdWUpID0+IGAkJHtwYXJzZUZsb2F0KHZhbHVlKS50b0ZpeGVkKDIpfWBcblxuLy8gQ2FsY3VsYXRlIHN0YWtlIHJlcXVpcmVkIHRvIHdpbiAkNTBcbmNhbGN1bGF0ZVN0YWtlVG9XaW41MCA9IChvZGRzKSA9PiB7XG4gIGNvbnN0IG8gPSBwYXJzZUZsb2F0KG9kZHMpO1xuICByZXR1cm4gaXNOYU4obykgfHwgbyA8PSAwID8gXCJJbnZhbGlkIE9kZHNcIiA6ICg1MCAvIChvIC0gMSkpLnRvRml4ZWQoMik7XG59XG5cbi8vIEV2ZW50IGxpc3RlbmVyIHRvIHNldCBTdGFrZSAxIGJhc2VkIG9uIE9kZHMgMVxuZG9jdW1lbnQuYm9keS5hZGRFdmVudExpc3RlbmVyKFwiY2xpY2tcIiwgKGV2ZW50KSA9PiB7XG4gIGlmIChldmVudC50YXJnZXQuY2xhc3NMaXN0LmNvbnRhaW5zKFwic2V0LXN0YWtlMVwiKSkge1xuICAgIGNvbnN0IHJlcXVpcmVkU3Rha2UgPSBjYWxjdWxhdGVTdGFrZVRvV2luNTAob2RkczEpO1xuICAgIGlmICghaXNOYU4ocmVxdWlyZWRTdGFrZSkpIHN0YWtlMS52YWx1ZSA9IHJlcXVpcmVkU3Rha2U7XG4gIH1cbn0pO1xuXG4vLyBDYWxjdWxhdGUgdGhlIHJlcXVpcmVkIHN0YWtlIGZvciBhcmJpdHJhZ2VcbnN0YWtlMiA9IHtcbiAgY29uc3QgbzEgPSBwYXJzZUZsb2F0KG9kZHMxKTtcbiAgY29uc3QgczEgPSBwYXJzZUZsb2F0KHN0YWtlMSk7XG4gIGNvbnN0IG8yID0gcGFyc2VGbG9hdChvZGRzMik7XG4gIGlmICghaXNOYU4obzEpICYmICFpc05hTihzMSkgJiYgIWlzTmFOKG8yKSkge1xuICAgIHJldHVybiAoczEgKiBvMSkgLyBvMjtcbiAgfSBlbHNlIHtcbiAgICByZXR1cm4gXCJQbGVhc2UgZW50ZXIgdmFsaWQgbnVtZXJpY2FsIHZhbHVlcy5cIjtcbiAgfVxufVxuXG4vLyBDYWxjdWxhdGUgYXJiaXRyYWdlIHBlcmNlbnRhZ2UgKHN1bSBvZiByZWNpcHJvY2FscyBvZiBvZGRzIG1pbnVzIDEpXG5hcmJpdHJhZ2VQZXJjZW50YWdlID0ge1xuICBjb25zdCBvMSA9IHBhcnNlRmxvYXQob2RkczEpO1xuICBjb25zdCBvMiA9IHBhcnNlRmxvYXQob2RkczIpO1xuICBpZiAoIWlzTmFOKG8xKSAmJiAhaXNOYU4obzIpKSB7XG4gICAgY29uc3QgYXJiID0gKDEgLyBvMSkgKyAoMSAvIG8yKTtcbiAgICByZXR1cm4gLTEwMCAqICgxIC0gYXJiKTsgLy8gUGVyY2VudGFnZSBiZWxvdyAxXG4gIH0gZWxzZSB7XG4gICAgcmV0dXJuIFwiUGxlYXNlIGVudGVyIHZhbGlkIG51bWVyaWNhbCB2YWx1ZXMuXCI7XG4gIH1cbn1cblxuLy8gQ2FsY3VsYXRlIHRvdGFsIHByb2ZpdCAoaWYgYXJiaXRyYWdlIGV4aXN0cylcbnRvdGFsUHJvZml0ID0ge1xuICBjb25zdCBvMSA9IHBhcnNlRmxvYXQob2RkczEpO1xuICBjb25zdCBzMSA9IHBhcnNlRmxvYXQoc3Rha2UxKTtcbiAgY29uc3QgczIgPSBzdGFrZTI7XG4gIGlmICghaXNOYU4obzEpICYmICFpc05hTihzMSkgJiYgdHlwZW9mIHMyID09PSBcIm51bWJlclwiKSB7XG4gICAgLy8gUHJvZml0IGlmIEJldCAxIHdpbnNcbiAgICBjb25zdCBwcm9maXQxID0gKHMxICogbzEpIC0gKHMxICsgczIpO1xuICAgIHJldHVybiBwcm9maXQxOyAvLyBCb3RoIGJldHMgeWllbGQgdGhlIHNhbWUgcHJvZml0XG4gIH0gZWxzZSB7XG4gICAgcmV0dXJuIFwiUGxlYXNlIGVudGVyIHZhbGlkIG51bWVyaWNhbCB2YWx1ZXMuXCI7XG4gIH1cbn1cblxuLy8gT3V0cHV0IHRoZSByZXN1bHRzIGluIGFuIGFlc3RoZXRpYyBmb3JtYXQgd2l0aCBsZWZ0LWp1c3RpZmllZCBjb2x1bW5zXG5odG1sYFxuICA8ZGl2IHN0eWxlPVwiXG4gICAgZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmO1xuICAgIGJhY2tncm91bmQtY29sb3I6ICNmOWY5Zjk7XG4gICAgYm9yZGVyOiAxcHggc29saWQgI2RkZDtcbiAgICBib3JkZXItcmFkaXVzOiA4cHg7XG4gICAgcGFkZGluZzogMjBweDtcbiAgICBtYXJnaW4tdG9wOiAyMHB4O1xuICAgIG1heC13aWR0aDogNjAwcHg7XG4gICAgYm94LXNoYWRvdzogMCA0cHggOHB4IHJnYmEoMCwgMCwgMCwgMC4xKTtcbiAgXCI+XG4gICAgPGRpdiBzdHlsZT1cImRpc3BsYXk6IGZsZXg7IGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2VlbjsgZ2FwOiAyMHB4O1wiPlxuICAgICAgPGRpdiBzdHlsZT1cImZsZXg6IDE7IHRleHQtYWxpZ246IGxlZnQ7XCI+XG4gICAgICAgIDxoMyBzdHlsZT1cImNvbG9yOiAjMzQ0OTVlOyB0ZXh0LWFsaWduOiBsZWZ0O1wiPk9kZHM8L2gzPlxuICAgICAgICA8cD48c3Ryb25nPk9kZHMgMTo8L3N0cm9uZz4gJHtmb3JtYXROdW1iZXIob2RkczEpfTwvcD5cbiAgICAgICAgPHA+PHN0cm9uZz5PZGRzIDI6PC9zdHJvbmc+ICR7Zm9ybWF0TnVtYmVyKG9kZHMyKX08L3A+XG4gICAgICA8L2Rpdj5cbiAgICAgIDxkaXYgc3R5bGU9XCJmbGV4OiAxOyB0ZXh0LWFsaWduOiBsZWZ0O1wiPlxuICAgICAgICA8aDMgc3R5bGU9XCJjb2xvcjogIzM0NDk1ZTsgdGV4dC1hbGlnbjogbGVmdDtcIj5TdGFrZXM8L2gzPlxuICAgICAgICA8ZGl2IHN0eWxlPVwiZGlzcGxheTogZmxleDsgYWxpZ24taXRlbXM6IGNlbnRlcjsgZ2FwOiAxMHB4O1wiPlxuICAgICAgICAgIDxwPjxzdHJvbmc+U3Rha2UgMTo8L3N0cm9uZz48L3A+XG4gICAgICAgICAgPGlucHV0IHR5cGU9XCJ0ZXh0XCIgdmFsdWU9XCIke3N0YWtlMX1cIiBzdHlsZT1cIndpZHRoOiA4MHB4O1wiIC8+XG4gICAgICAgICAgPGJ1dHRvbiBjbGFzcz1cInNldC1zdGFrZTFcIiBzdHlsZT1cInBhZGRpbmc6IDVweCAxMHB4OyBmb250LXNpemU6IDEycHg7XCI+U2V0IFN0YWtlIHRvIFdpbiAkNTA8L2J1dHRvbj5cbiAgICAgICAgPC9kaXY+XG4gICAgICAgIDxwPjxzdHJvbmc+U3Rha2UgMjo8L3N0cm9uZz4gJHt0eXBlb2Ygc3Rha2UyID09PSBcIm51bWJlclwiID8gZm9ybWF0Q3VycmVuY3koc3Rha2UyKSA6IHN0YWtlMn08L3A+XG4gICAgICA8L2Rpdj5cbiAgICA8L2Rpdj5cbiAgICA8aHIgc3R5bGU9XCJib3JkZXI6IG5vbmU7IGJvcmRlci10b3A6IDFweCBzb2xpZCAjZGRkO1wiPlxuICAgIDxoMyBzdHlsZT1cImNvbG9yOiAjMzQ5OGRiOyB0ZXh0LWFsaWduOiBjZW50ZXI7XCI+XG4gICAgICBBcmJpdHJhZ2UgUGVyY2VudGFnZTogJHt0eXBlb2YgYXJiaXRyYWdlUGVyY2VudGFnZSA9PT0gXCJudW1iZXJcIiA/IGZvcm1hdE51bWJlcigtYXJiaXRyYWdlUGVyY2VudGFnZSkgKyBcIiVcIiA6IGFyYml0cmFnZVBlcmNlbnRhZ2V9XG4gICAgPC9oMz5cbiAgICA8aDMgc3R5bGU9XCJjb2xvcjogIzI3YWU2MDsgdGV4dC1hbGlnbjogY2VudGVyO1wiPlxuICAgICAgVG90YWwgUHJvZml0OiAke3R5cGVvZiB0b3RhbFByb2ZpdCA9PT0gXCJudW1iZXJcIiA/IGZvcm1hdEN1cnJlbmN5KHRvdGFsUHJvZml0KSA6IHRvdGFsUHJvZml0fVxuICAgIDwvaDM+XG4gIDwvZGl2PlxuYFxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCdvZGRzMScpIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCdzdGFrZTEnKSJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoic2hpbnlJbnB1dCgnb2RkczInKSJ9XX0=
 </script>
 <script type="module">
 window._ojs.runtime.setLocalResolver({});
