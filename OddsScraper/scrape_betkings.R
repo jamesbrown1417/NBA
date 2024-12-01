@@ -1,27 +1,33 @@
 # Load necessary libraries
 library(httr)
 library(tidyverse)
+library(rvest)
 library(jsonlite)
+library(glue)
+
+# Get main landing page url
+betkings_main_nba_url <- "https://www.betkings.com.au/sportsbook/Basketball/United%20States/NBA"
+
+# use read_html_live to get each href link with class 'event-participants'
+betkings_main_nba_page <- read_html_live(betkings_main_nba_url)
+
+# Extract all href links with class 'event-participants'
+betkings_main_nba_links <-
+  betkings_main_nba_page %>%
+  html_nodes(".event-participants") %>%
+  html_attr("href")
+
+# Extract the event ID from the href links
+event_ids <- str_extract(betkings_main_nba_links, "(?<=\\?e=)\\d+")
 
 # Define URLs with meaningful names
-player_points_url <- "https://site-gateway.betkings.com.au/sportsbook/event/5554386?includeMarketGroups=PLAYER_POINTS&locale=ENG"
-player_rebounds_url <- "https://site-gateway.betkings.com.au/sportsbook/event/5554386?includeMarketGroups=PLAYER_REBOUNDS&locale=ENG"
-player_assists_url <- "https://site-gateway.betkings.com.au/sportsbook/event/5554386?includeMarketGroups=PLAYER_ASSISTS&locale=ENG"
-player_blocks_url <- "https://site-gateway.betkings.com.au/sportsbook/event/5554386?includeMarketGroups=PLAYER_BLOCKS&locale=ENG"
-player_steals_url <- "https://site-gateway.betkings.com.au/sportsbook/event/5554386?includeMarketGroups=PLAYER_STEALS&locale=ENG"
-player_three_pointers_url <- "https://site-gateway.betkings.com.au/sportsbook/event/5554386?includeMarketGroups=PLAYER_THREE_POINTERS&locale=ENG"
-player_par_url <- "https://site-gateway.betkings.com.au/sportsbook/event/5554386?includeMarketGroups=PLAYER_POINTS_ASSISTS_AND_REBOUNDS&locale=ENG"
-
-# List of URLs with descriptive names
-urls <- list(
-  player_points = player_points_url,
-  player_rebounds = player_rebounds_url,
-  player_assists = player_assists_url,
-  player_blocks = player_blocks_url,
-  player_steals = player_steals_url,
-  player_three_pointers = player_three_pointers_url,
-  player_par = player_par_url
-)
+player_points_url <- glue("https://site-gateway.betkings.com.au/sportsbook/event/{event_ids}?includeMarketGroups=PLAYER_POINTS&locale=ENG")
+player_rebounds_url <- "https://site-gateway.betkings.com.au/sportsbook/event/{event_ids}?includeMarketGroups=PLAYER_REBOUNDS&locale=ENG"
+player_assists_url <- "https://site-gateway.betkings.com.au/sportsbook/event/{event_ids}?includeMarketGroups=PLAYER_ASSISTS&locale=ENG"
+player_blocks_url <- "https://site-gateway.betkings.com.au/sportsbook/event/{event_ids}?includeMarketGroups=PLAYER_BLOCKS&locale=ENG"
+player_steals_url <- "https://site-gateway.betkings.com.au/sportsbook/event/{event_ids}?includeMarketGroups=PLAYER_STEALS&locale=ENG"
+player_three_pointers_url <- "https://site-gateway.betkings.com.au/sportsbook/event/{event_ids}?includeMarketGroups=PLAYER_THREE_POINTERS&locale=ENG"
+player_par_url <- "https://site-gateway.betkings.com.au/sportsbook/event/{event_ids}?includeMarketGroups=PLAYER_POINTS_ASSISTS_AND_REBOUNDS&locale=ENG"
 
 # Function to retrieve JSON data and save it to a named list
 get_json_data <- function(url) {
@@ -61,7 +67,5 @@ get_json_data <- function(url) {
   }
 }
 
-# Retrieve and save data for each URL in a named list for further processing
-results <- map(urls, get_json_data)
-names(results) <- names(urls) # Assigns names to each dataset in the results list
-
+# Get player points data
+player_points_data <- map(player_points_url, get_json_data)
