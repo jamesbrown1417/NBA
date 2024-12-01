@@ -33,6 +33,7 @@ run_scraping("OddsScraper/scrape_bluebet.R")
 run_scraping("OddsScraper/Neds/scrape_neds.R")
 run_scraping("OddsScraper/scrape_unibet.R")
 run_scraping("OddsScraper/scrape_dabble.R")
+run_scraping("OddsScraper/scrape_betkings.R")
 
 ##%######################################################%##
 #                                                          #

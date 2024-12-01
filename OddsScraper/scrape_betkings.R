@@ -219,7 +219,7 @@ player_points_all <-
     line,
     over_price,
     under_price,
-    agency = "Sportsbet"
+    agency = "BetKings"
   )
 
 #===============================================================================
@@ -232,6 +232,7 @@ player_assists_data <- map(player_assists_url, get_json_data)
 # Extract data from JSON
 player_assists_df <-
   map(player_assists_data, process_props) %>% 
+  map("result") %>%
   bind_rows()
 
 # Get Just Overs
@@ -274,7 +275,7 @@ player_assists_all <-
     line,
     over_price,
     under_price,
-    agency = "Sportsbet"
+    agency = "BetKings"
   )
 
 #===============================================================================
@@ -287,6 +288,7 @@ player_rebounds_data <- map(player_rebounds_url, get_json_data)
 # Extract data from JSON
 player_rebounds_df <-
   map(player_rebounds_data, process_props) %>% 
+  map("result") %>%
   bind_rows()
 
 # Get Just Overs
@@ -329,5 +331,22 @@ player_rebounds_all <-
     line,
     over_price,
     under_price,
-    agency = "Sportsbet"
+    agency = "BetKings"
   )
+
+
+#===============================================================================
+# Write out
+#===============================================================================
+
+# Points
+player_points_all %>% 
+  write_csv("Data/scraped_odds/betkings_player_points.csv")
+
+# Assists
+player_assists_all %>% 
+  write_csv("Data/scraped_odds/betkings_player_assists.csv")
+
+# Rebounds
+player_rebounds_all %>% 
+  write_csv("Data/scraped_odds/betkings_player_rebounds.csv")
