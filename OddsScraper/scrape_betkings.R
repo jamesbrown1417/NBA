@@ -67,5 +67,59 @@ get_json_data <- function(url) {
   }
 }
 
+# Function to take a list of JSON data and extract the necessary information----
+process_props <- function(json_data) {
+  # Get the match name and market type
+  match_name <- json_data$name
+  market <- json_data$marketTypes[[1]]$name
+  markets <- json_data$marketTypes[[1]]$markets
+  
+  # Loop over markets and extract player data
+  prop_name_1 <- c()
+  prop_name_2 <- c()
+  price_1 <- c()
+  price_2 <- c()
+  
+  for (i in seq_along(markets)) {
+    prop_name_1 <- c(prop_name_1, markets[[i]]$outcome[[1]]$name)
+    prop_name_2 <- c(prop_name_2, markets[[i]]$outcome[[2]]$name)
+    price_1 <- c(price_1, markets[[i]]$outcome[[1]]$odds)
+    price_2 <- c(price_2, markets[[i]]$outcome[[2]]$odds)
+  }
+  
+  # Combine
+  prop_name <- c(prop_name_1, prop_name_2)
+  price <- c(price_1, price_2)
+  
+  # Create a tibble with the extracted data
+  prop_data <- tibble(
+    match_name = match_name,
+    market = market,
+    prop_name = prop_name,
+    price = price
+  )
+  
+  return(prop_data)
+}
+
+#===============================================================================
 # Get player points data
+#===============================================================================
+
+# Get JSON data for player points
 player_points_data <- map(player_points_url, get_json_data)
+
+# Extract data from JSON
+player_points_df <-
+  map(player_points_data, process_props) %>% 
+  bind_rows()
+
+# Get Just Overs
+player_points_overs <-
+  player_points_df |>
+  filter(str_detect(prop_name, "Over")) %>% 
+  separate(prop_name, into = c("player_name", "line"), sep = " Over ") %>%
+  
+
+
+
