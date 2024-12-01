@@ -126,8 +126,15 @@ process_props <- function(json_data) {
     
     for (i in seq_along(markets)) {
       prop_name_1 <- c(prop_name_1, markets[[i]]$outcome[[1]]$name)
-      prop_name_2 <- c(prop_name_2, markets[[i]]$outcome[[2]]$name)
       price_1 <- c(price_1, markets[[i]]$outcome[[1]]$odds)
+      
+      # Check if there are two outcomes
+      if (length(markets[[i]]$outcome) == 1) {
+        prop_name_2 <- c(prop_name_2, NA)
+        price_2 <- c(price_2, NA)
+        next
+      }
+      prop_name_2 <- c(prop_name_2, markets[[i]]$outcome[[2]]$name)
       price_2 <- c(price_2, markets[[i]]$outcome[[2]]$odds)
     }
     
@@ -146,7 +153,9 @@ process_props <- function(json_data) {
     prop_data_list[[j]] <- prop_data
   }
   
-  output_tibble <- bind_rows(prop_data_list)
+  output_tibble <-
+    bind_rows(prop_data_list) %>% 
+    filter(!is.na(prop_name))
   
   names(output_tibble) <- c("match_name", "market_name", "prop_name", "price")
   
@@ -166,6 +175,8 @@ process_props <- safely(process_props)
 # Extract data from JSON
 player_points_df <-
   map(player_points_data, process_props) %>%
+  # Keep result part
+  map("result") %>%
   bind_rows()
 
 # Get Just Overs
@@ -266,3 +277,57 @@ player_assists_all <-
     agency = "Sportsbet"
   )
 
+#===============================================================================
+# Get player rebounds data
+#===============================================================================
+
+# Get JSON data for player rebounds
+player_rebounds_data <- map(player_rebounds_url, get_json_data)
+
+# Extract data from JSON
+player_rebounds_df <-
+  map(player_rebounds_data, process_props) %>% 
+  bind_rows()
+
+# Get Just Overs
+player_rebounds_overs <-
+  player_rebounds_df |>
+  filter(str_detect(prop_name, "Over")) %>% 
+  separate(prop_name, into = c("player_name", "line"), sep = " Over ") %>%
+  mutate(line = str_remove(line, "\\(")) %>%
+  mutate(line = str_remove(line, "\\)")) %>%
+  mutate(line = as.numeric(line)) %>%
+  transmute(match = match_name, market_name = "Player Rebounds", player_name, line, over_price = price)
+
+# Get Just Unders
+player_rebounds_unders <-
+  player_rebounds_df |>
+  filter(str_detect(prop_name, "Under")) %>% 
+  separate(prop_name, into = c("player_name", "line"), sep = " Under ") %>%
+  mutate(line = str_remove(line, "\\(")) %>%
+  mutate(line = str_remove(line, "\\)")) %>%
+  mutate(line = as.numeric(line)) %>%
+  transmute(match = match_name, market_name = "Player Rebounds", player_name, line, under_price = price)
+
+# Combine
+player_rebounds_all <-
+  player_rebounds_overs %>%
+  left_join(player_rebounds_unders) %>%
+  left_join(player_names[,c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) %>%
+  rename(player_team = team_name) %>% 
+  separate(match, into = c("home_team", "away_team"), sep = " vs ", remove = FALSE) %>%
+  mutate(opposition_team = ifelse(home_team == player_team, away_team, home_team)) %>%
+  mutate(match = paste(home_team, "v", away_team, sep = " ")) %>% 
+  transmute(
+    match,
+    home_team,
+    away_team,
+    market_name,
+    player_name,
+    player_team,
+    opposition_team,
+    line,
+    over_price,
+    under_price,
+    agency = "Sportsbet"
+  )
