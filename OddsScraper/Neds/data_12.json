@@ -15,6 +15,22 @@
             "sort_order": 20,
             "market_id": "be3c0b41-d831-4ece-a4fa-4b05a2fac46f"
         },
+        "625b4c54-c526-483b-ab87-4a5112391f89": {
+            "id": "625b4c54-c526-483b-ab87-4a5112391f89",
+            "name": "Houston Rockets",
+            "home_away": "HOME",
+            "visible": true,
+            "sort_order": 10,
+            "market_id": "b261c279-4037-4f35-b9aa-97fa967df6b3"
+        },
+        "898c2179-d1d6-4ddf-97ea-3958252cc6d5": {
+            "id": "898c2179-d1d6-4ddf-97ea-3958252cc6d5",
+            "name": "Golden State Warriors",
+            "home_away": "AWAY",
+            "visible": true,
+            "sort_order": 20,
+            "market_id": "b261c279-4037-4f35-b9aa-97fa967df6b3"
+        },
         "c7063965-5d19-44b6-ab66-c3fee697b095": {
             "id": "c7063965-5d19-44b6-ab66-c3fee697b095",
             "name": "Over",
@@ -74,16 +90,18 @@
                     "market_type_group_id": "43c990d1-7471-4055-9a7a-e71409494486",
                     "market_ids": [
                         "133c75b8-cae6-4548-b7c9-b940cb84bbb6",
+                        "b261c279-4037-4f35-b9aa-97fa967df6b3",
                         "be3c0b41-d831-4ece-a4fa-4b05a2fac46f"
                     ]
                 }
             ],
-            "market_count": 2,
+            "market_count": 3,
             "main_markets": [
                 "133c75b8-cae6-4548-b7c9-b940cb84bbb6"
             ],
             "market_ids": [
                 "133c75b8-cae6-4548-b7c9-b940cb84bbb6",
+                "b261c279-4037-4f35-b9aa-97fa967df6b3",
                 "be3c0b41-d831-4ece-a4fa-4b05a2fac46f"
             ],
             "category_id": "3c34d075-dc14-436d-bfc4-9272a49c2b39",
@@ -124,6 +142,28 @@
             ],
             "num_winners": 1
         },
+        "b261c279-4037-4f35-b9aa-97fa967df6b3": {
+            "id": "b261c279-4037-4f35-b9aa-97fa967df6b3",
+            "event_id": "ba392b58-02ec-4bc6-b86c-27376cdb7451",
+            "market_type_id": "8fcc394e-b974-4328-af74-57d423de7a7b",
+            "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
+            "name": "Line",
+            "advertised_start": {
+                "seconds": 1733970600
+            },
+            "actual_start": {
+                "seconds": 1733970600
+            },
+            "handicap": 3,
+            "same_game_multi_available": true,
+            "comments": "If the Line market results in a refund, the whole SGM bet will be refunded.",
+            "visible": true,
+            "entrant_ids": [
+                "625b4c54-c526-483b-ab87-4a5112391f89",
+                "898c2179-d1d6-4ddf-97ea-3958252cc6d5"
+            ],
+            "num_winners": 1
+        },
         "be3c0b41-d831-4ece-a4fa-4b05a2fac46f": {
             "id": "be3c0b41-d831-4ece-a4fa-4b05a2fac46f",
             "event_id": "ba392b58-02ec-4bc6-b86c-27376cdb7451",
@@ -149,6 +189,7 @@
     },
     "markets_allow_cashout": {
         "133c75b8-cae6-4548-b7c9-b940cb84bbb6": true,
+        "b261c279-4037-4f35-b9aa-97fa967df6b3": false,
         "be3c0b41-d831-4ece-a4fa-4b05a2fac46f": false
     },
     "prices": {
@@ -162,6 +203,18 @@
             "odds": {
                 "numerator": 9,
                 "denominator": 10
+            }
+        },
+        "625b4c54-c526-483b-ab87-4a5112391f89:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 22,
+                "denominator": 25
+            }
+        },
+        "898c2179-d1d6-4ddf-97ea-3958252cc6d5:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 23,
+                "denominator": 25
             }
         },
         "c7063965-5d19-44b6-ab66-c3fee697b095:940b8704-e497-4a76-b390-00918ff7d282:": {
