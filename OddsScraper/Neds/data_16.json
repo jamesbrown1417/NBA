@@ -1,0 +1,139 @@
+{
+    "entrants": {
+        "749c4a50-fc94-44fa-bab4-6360debff5af": {
+            "id": "749c4a50-fc94-44fa-bab4-6360debff5af",
+            "name": "Washington Wizards",
+            "home_away": "HOME",
+            "visible": true,
+            "sort_order": 10,
+            "market_id": "5e0d498b-827a-4fcf-832b-51ef599d25b3"
+        },
+        "dd1c7966-d67f-4e2a-aa35-2ed5ba8b48f9": {
+            "id": "dd1c7966-d67f-4e2a-aa35-2ed5ba8b48f9",
+            "name": "Denver Nuggets",
+            "home_away": "AWAY",
+            "visible": true,
+            "sort_order": 20,
+            "market_id": "5e0d498b-827a-4fcf-832b-51ef599d25b3"
+        }
+    },
+    "event_participants": {
+        "7ebe7da6-b1cf-441b-9549-64e4afa30681": {
+            "id": "7ebe7da6-b1cf-441b-9549-64e4afa30681",
+            "event_id": "ca59045c-0bc0-4856-a876-b7726953002c",
+            "name": "Denver Nuggets",
+            "home_away": "AWAY"
+        },
+        "bdc47c08-f221-4bb3-bbb8-41e5f1562df3": {
+            "id": "bdc47c08-f221-4bb3-bbb8-41e5f1562df3",
+            "event_id": "ca59045c-0bc0-4856-a876-b7726953002c",
+            "name": "Washington Wizards",
+            "home_away": "HOME"
+        }
+    },
+    "events": {
+        "ca59045c-0bc0-4856-a876-b7726953002c": {
+            "id": "ca59045c-0bc0-4856-a876-b7726953002c",
+            "name": "Washington Wizards vs Denver Nuggets",
+            "event_type": {
+                "id": "6bfa0efc-05df-4ae1-9b1e-152365290cfd",
+                "name": "Match"
+            },
+            "match_status": "BettingOpen",
+            "advertised_start": "2024-12-08T00:10:00Z",
+            "actual_start": "2024-12-08T00:10:00Z",
+            "visible": true,
+            "slug": "washington-wizards-vs-denver-nuggets",
+            "competition": {
+                "id": "2d20a25b-6b96-4651-a523-442834136e2d",
+                "name": "NBA",
+                "sort_order": 1,
+                "region": "USA",
+                "region_id": "6889a18d-3a47-400c-9cd4-10f228c0dc59"
+            },
+            "competition_id": "2d20a25b-6b96-4651-a523-442834136e2d",
+            "market_type_group_ids": [
+                "43c990d1-7471-4055-9a7a-e71409494486"
+            ],
+            "market_type_group_markets": [
+                {
+                    "market_type_group_id": "43c990d1-7471-4055-9a7a-e71409494486",
+                    "market_ids": [
+                        "5e0d498b-827a-4fcf-832b-51ef599d25b3"
+                    ]
+                }
+            ],
+            "market_count": 1,
+            "main_markets": [
+                "5e0d498b-827a-4fcf-832b-51ef599d25b3"
+            ],
+            "market_ids": [
+                "5e0d498b-827a-4fcf-832b-51ef599d25b3"
+            ],
+            "category_id": "3c34d075-dc14-436d-bfc4-9272a49c2b39",
+            "participant_ids": [
+                "7ebe7da6-b1cf-441b-9549-64e4afa30681",
+                "bdc47c08-f221-4bb3-bbb8-41e5f1562df3"
+            ]
+        }
+    },
+    "market_type_groups": {
+        "43c990d1-7471-4055-9a7a-e71409494486": {
+            "id": "43c990d1-7471-4055-9a7a-e71409494486",
+            "category_id": "3c34d075-dc14-436d-bfc4-9272a49c2b39",
+            "name": "Top Markets",
+            "priority": 320,
+            "is_primary": true
+        }
+    },
+    "markets": {
+        "5e0d498b-827a-4fcf-832b-51ef599d25b3": {
+            "id": "5e0d498b-827a-4fcf-832b-51ef599d25b3",
+            "event_id": "ca59045c-0bc0-4856-a876-b7726953002c",
+            "market_type_id": "8fcc394e-b974-4328-af74-57d423de7a7b",
+            "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
+            "name": "Line",
+            "advertised_start": {
+                "seconds": 1733616000
+            },
+            "actual_start": {
+                "seconds": 1733616000
+            },
+            "handicap": -12.5,
+            "same_game_multi_available": true,
+            "comments": "If the Line market results in a refund, the whole SGM bet will be refunded.",
+            "visible": true,
+            "entrant_ids": [
+                "749c4a50-fc94-44fa-bab4-6360debff5af",
+                "dd1c7966-d67f-4e2a-aa35-2ed5ba8b48f9"
+            ],
+            "num_winners": 1
+        }
+    },
+    "markets_allow_cashout": {
+        "5e0d498b-827a-4fcf-832b-51ef599d25b3": false
+    },
+    "prices": {
+        "749c4a50-fc94-44fa-bab4-6360debff5af:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 9,
+                "denominator": 10
+            }
+        },
+        "dd1c7966-d67f-4e2a-aa35-2ed5ba8b48f9:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 9,
+                "denominator": 10
+            }
+        }
+    },
+    "regions": {
+        "6889a18d-3a47-400c-9cd4-10f228c0dc59": {
+            "region_id": "6889a18d-3a47-400c-9cd4-10f228c0dc59",
+            "name": "USA",
+            "slug": "usa",
+            "category_id": "3c34d075-dc14-436d-bfc4-9272a49c2b39",
+            "sort_order": 1
+        }
+    }
+}
