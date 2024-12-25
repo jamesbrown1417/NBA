@@ -68016,6 +68016,15 @@
                 "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/Indiana%20v%20Oklahoma%20City/markets?jurisdiction=SA",
                 "stats": "https://api.beta.tab.com.au/v1/stats-service/sports/Basketball/competitions/NBA/matches/2712104/h2h/stats"
             },
+            "vision": {
+                "unas": {
+                    "startTime": "2024-12-27T00:00:00Z",
+                    "requiresAuthentication": true,
+                    "_links": {
+                        "self": "https://api.beta.tab.com.au/v1/vision-service/tab-act/matches/IndvOKC/unas"
+                    }
+                }
+            },
             "contestants": [
                 {
                     "name": "Indiana",
@@ -74016,7 +74025,17 @@
             "_links": {
                 "self": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/Washington%20v%20Charlotte?jurisdiction=SA",
                 "selfTemplate": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/Washington%20v%20Charlotte?jurisdiction={jurisdiction}{&returnPromo,returnOffers,returnMultiOnly,channelType,cashSales,homeState}",
-                "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/Washington%20v%20Charlotte/markets?jurisdiction=SA"
+                "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/Washington%20v%20Charlotte/markets?jurisdiction=SA",
+                "stats": "https://api.beta.tab.com.au/v1/stats-service/sports/Basketball/competitions/NBA/matches/2712111/h2h/stats"
+            },
+            "vision": {
+                "unas": {
+                    "startTime": "2024-12-27T00:00:00Z",
+                    "requiresAuthentication": true,
+                    "_links": {
+                        "self": "https://api.beta.tab.com.au/v1/vision-service/tab-act/matches/WasvCha0/unas"
+                    }
+                }
             },
             "contestants": [
                 {
@@ -79996,7 +80015,8 @@
                 }
             ],
             "inPlay": false,
-            "goingInPlay": true
+            "goingInPlay": true,
+            "stats": true
         }
     ],
     "tournaments": [],
