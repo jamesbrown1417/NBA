@@ -127,7 +127,6 @@ html`
 `
 ```
 
-
 ```{r}
 # Libraries
 library(tidyverse)
@@ -150,26 +149,10 @@ tab_miss_by_one <- read_rds("../Data/tab_points_miss_by_one.rds")
 other_arbs <-
   all_arbs |>
   filter(margin > 0) |> 
-  filter(!over_agency %in% c("Neds", "Unibet", "Bet365") & !under_agency %in% c("Neds", "Unibet", "Bet365")) |> 
+  filter(!over_agency %in% c("Unibet", "Bet365") & !under_agency %in% c("Unibet", "Bet365")) |> 
   mutate(margin = round(margin, 2))
 
 other_arbs
-```
-
-## Neds Arbs
-
-```{r}
-#| column: page
-
-# Separate into Neds and Unibet and the rest
-neds_arbs <-
-  all_arbs |>
-  filter(margin > 0) |> 
-  filter(over_agency %in% c("Neds") | under_agency %in% c("Neds")) |> 
-  filter(!over_agency %in% c("Unibet") & !under_agency %in% c("Unibet")) |> 
-  mutate(margin = round(margin, 2))
-
-neds_arbs
 ```
 
 ## Bet365 Arbs
