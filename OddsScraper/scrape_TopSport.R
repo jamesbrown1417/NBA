@@ -173,7 +173,7 @@ read_topsport_html <- function(url) {
 
 # Get URLs
 pick_your_own_points_markets <- 
-    topsport_other_markets[str_detect(topsport_other_markets, "Player_to_Have_[0-9]{1,2}_Points")]
+    topsport_other_markets[str_detect(topsport_other_markets, "Player_to_Have_[0-9]{1,2}_Points\\/")]
 
 # Map function
 if (length(pick_your_own_points_markets) > 0) {
@@ -225,6 +225,9 @@ future_map(pick_your_own_points_markets, read_topsport_html) |>
 # Get URLs
 player_points_markets <- 
     topsport_other_markets[str_detect(topsport_other_markets, "Player_Points_.*\\(")]
+
+player_points_markets <-
+  player_points_markets[!str_detect(player_points_markets, "Rebounds|Assists")]
 
 # Only proceed if markets have been picked up above
 if (length(player_points_markets) > 0) {
