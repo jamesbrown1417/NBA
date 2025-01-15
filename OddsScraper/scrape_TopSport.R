@@ -553,6 +553,10 @@ player_rebounds_alternate <-
 player_rebounds_markets <- 
   topsport_other_markets[str_detect(topsport_other_markets, "Total_Rebounds|Player_Rebounds")]
 
+player_rebounds_markets <-
+  player_rebounds_markets[!str_detect(player_rebounds_markets, "Points|Assists")]
+
+
 # Only proceed if markets have been picked up above
 if (length(player_rebounds_markets) > 0) {
     
