@@ -19,7 +19,7 @@ Rscript OddsScraper/Neds/get_neds_match_urls.R
 Rscript Scripts/get_arbs.R
 
 # Publish report using Quarto
-echo "1" | quarto publish quarto-pub Reports/nba_arbs.qmd
+echo "1" | quarto publish quarto-pub Reports/nhl_arbs.qmd
 
 # Automatically stage all changes
 git add .
