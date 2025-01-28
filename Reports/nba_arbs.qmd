@@ -141,6 +141,22 @@ tab_miss_by_one <- read_rds("../Data/tab_points_miss_by_one.rds")
 ## Arbs
 
 ::: panel-tabset
+
+## Sportsbet Arbs
+
+```{r}
+#| column: page
+
+# Separate into sportsbet
+sportsbet_arbs <-
+  all_arbs |>
+  filter(margin > 0) |> 
+  filter(over_agency %in% c("Sportsbet") | under_agency %in% c("Sportsbet")) |> 
+  mutate(margin = round(margin, 2))
+
+sportsbet_arbs
+```
+
 ## Other Arbs
 
 ```{r}
@@ -149,27 +165,12 @@ tab_miss_by_one <- read_rds("../Data/tab_points_miss_by_one.rds")
 other_arbs <-
   all_arbs |>
   filter(margin > 0) |> 
-  filter(!over_agency %in% c("Unibet", "Bet365", "Pointsbet") & !under_agency %in% c("Unibet", "Bet365", "Pointsbet")) |> 
+  filter(!over_agency %in% c("Unibet", "Bet365", "Sportsbet") & !under_agency %in% c("Unibet", "Bet365", "Sportsbet")) |> 
   mutate(margin = round(margin, 2))
 
 other_arbs
 ```
 
-## Pointsbet Arbs
-
-```{r}
-#| column: page
-
-# Separate into bet365
-pointsbet_arbs <-
-  all_arbs |>
-  filter(margin > 0) |> 
-  filter(over_agency %in% c("Pointsbet") | under_agency %in% c("Pointsbet")) |> 
-  filter(!over_agency %in% c("Unibet") & !under_agency %in% c("Unibet")) |> 
-  mutate(margin = round(margin, 2))
-
-pointsbet_arbs
-```
 
 ## Bet365 Arbs
 
