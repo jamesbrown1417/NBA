@@ -228,4 +228,37 @@ tab_miss_by_1_points_arbs
 all_middles |> 
   mutate(margin = round(margin, 2))
 ```
-::::
+
+## Builder Bets for multis
+
+```{r}
+# Get cases where Dabble has best odds in the market
+all_procesed_odds <-
+  list.files("../Data/processed_odds", full.names = TRUE) |> 
+  map(read_rds) |> 
+  bind_rows()
+
+  all_procesed_odds |>
+  group_by(match, market_name, player_name, line) |>
+  # slice_head(n = 1) |>
+  ungroup() |>
+  filter(agency == "Dabble") |> 
+  filter(over_price <= 1.5) |> 
+  select(
+    match,
+    market_name,
+    player_name,
+    line,
+    over_price,
+    agency,
+    player_team,
+    diff_over_2024_25,
+    diff_over_last_10
+  ) |> 
+  arrange(match, desc(diff_over_last_10)) |> 
+  filter(diff_over_last_10 >= 0)
+
+```
+
+
+:::
