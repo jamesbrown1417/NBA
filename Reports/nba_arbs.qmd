@@ -130,6 +130,7 @@ html`
 ```{r}
 # Libraries
 library(tidyverse)
+library(DT)
 
 # Read in files
 all_arbs <- read_rds("../Data/all_arbs.rds")
@@ -232,12 +233,15 @@ all_middles |>
 ## Builder Bets for multis
 
 ```{r}
+#| results: asis
+
 # Get cases where Dabble has best odds in the market
 all_procesed_odds <-
   list.files("../Data/processed_odds", full.names = TRUE) |> 
   map(read_rds) |> 
   bind_rows()
 
+all_procesed_odds <-
   all_procesed_odds |>
   group_by(match, market_name, player_name, line) |>
   # slice_head(n = 1) |>
@@ -258,6 +262,27 @@ all_procesed_odds <-
   arrange(match, desc(diff_over_last_10)) |> 
   filter(diff_over_last_10 >= 0)
 
+# Distinct Matches
+all_matches <- 
+  all_procesed_odds |> 
+  distinct(match) |> 
+    pull(match)
+
+# Function to filter by match
+filter_by_match <- function(m, df) {
+  df |> 
+    filter(match == m)
+}
+
+# Get a list where each match is the name of the filtered DF
+filtered_list_alt <- map(all_matches, filter_by_match, df = all_procesed_odds) |> 
+  set_names(all_matches) |> 
+    # keep if there are more than 1 row
+    keep(~ nrow(.x) > 1) |> 
+    map(~ datatable(.x))
+
+# Use qreport to make tabset
+qreport::maketabs(filtered_list_alt, wide = TRUE)
 ```
 
 
