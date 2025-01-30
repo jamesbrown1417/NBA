@@ -320,14 +320,6 @@
             "sort_order": 850,
             "market_id": "69fff7f1-e918-445a-a440-9c0aea67f793"
         },
-        "2ca80091-f414-4e16-843a-f21541b23776": {
-            "id": "2ca80091-f414-4e16-843a-f21541b23776",
-            "name": "Detroit Pistons by 46",
-            "home_away": "HOME",
-            "visible": true,
-            "sort_order": 460,
-            "market_id": "69fff7f1-e918-445a-a440-9c0aea67f793"
-        },
         "2e644d71-c81d-4703-bd1a-fac8c3914b75": {
             "id": "2e644d71-c81d-4703-bd1a-fac8c3914b75",
             "name": "Odd",
@@ -1123,20 +1115,20 @@
             "sort_order": 10,
             "market_id": "004c50be-5ae4-457f-9bee-836aedd6a9c5"
         },
-        "7deae0f4-e02e-427d-b066-dcf024ecc8d6": {
-            "id": "7deae0f4-e02e-427d-b066-dcf024ecc8d6",
-            "name": "Detroit Pistons by 45",
-            "home_away": "HOME",
-            "visible": true,
-            "sort_order": 450,
-            "market_id": "69fff7f1-e918-445a-a440-9c0aea67f793"
-        },
         "7ead95b5-a1e2-4318-b5bc-aa350ef0e37e": {
             "id": "7ead95b5-a1e2-4318-b5bc-aa350ef0e37e",
             "name": "Dallas Mavericks by 32",
             "home_away": "AWAY",
             "visible": true,
             "sort_order": 820,
+            "market_id": "69fff7f1-e918-445a-a440-9c0aea67f793"
+        },
+        "7f023922-0377-4810-90bf-359c0579cb8a": {
+            "id": "7f023922-0377-4810-90bf-359c0579cb8a",
+            "name": "Detroit Pistons by 44",
+            "home_away": "HOME",
+            "visible": true,
+            "sort_order": 440,
             "market_id": "69fff7f1-e918-445a-a440-9c0aea67f793"
         },
         "7f3f9821-21b1-4fd0-96bd-1ab8f2cbe307": {
@@ -1193,6 +1185,14 @@
             "visible": true,
             "sort_order": 80,
             "market_id": "69fff7f1-e918-445a-a440-9c0aea67f793"
+        },
+        "85165286-8824-44e9-ac46-d46b5dd5526b": {
+            "id": "85165286-8824-44e9-ac46-d46b5dd5526b",
+            "name": "Detroit Pistons",
+            "home_away": "HOME",
+            "visible": true,
+            "sort_order": 10,
+            "market_id": "d7dfae8b-95ba-4991-97bf-551e8b35f516"
         },
         "8634164e-d9a8-48d5-be31-3f7d125c1e63": {
             "id": "8634164e-d9a8-48d5-be31-3f7d125c1e63",
@@ -1529,6 +1529,14 @@
             "visible": true,
             "sort_order": 80,
             "market_id": "1d6ff0c6-b66a-4be9-962b-fe498d01f609"
+        },
+        "b45e3222-5ea0-4a99-af3c-39aa25b321ca": {
+            "id": "b45e3222-5ea0-4a99-af3c-39aa25b321ca",
+            "name": "Dallas Mavericks",
+            "home_away": "AWAY",
+            "visible": true,
+            "sort_order": 20,
+            "market_id": "d7dfae8b-95ba-4991-97bf-551e8b35f516"
         },
         "b5053bf9-9c7c-4406-9cb4-081d24551845": {
             "id": "b5053bf9-9c7c-4406-9cb4-081d24551845",
@@ -2188,8 +2196,8 @@
                 "name": "Match"
             },
             "match_status": "BettingOpen",
-            "advertised_start": "2025-02-01T00:10:00Z",
-            "actual_start": "2025-02-01T00:10:00Z",
+            "advertised_start": "2025-02-01T00:00:00Z",
+            "actual_start": "2025-02-01T00:00:00Z",
             "visible": true,
             "slug": "detroit-pistons-vs-dallas-mavericks",
             "competition": {
@@ -2217,6 +2225,7 @@
                 {
                     "market_type_group_id": "43c990d1-7471-4055-9a7a-e71409494486",
                     "market_ids": [
+                        "d7dfae8b-95ba-4991-97bf-551e8b35f516",
                         "5a1fda6b-0be4-4163-8dc9-c9c7757f878b",
                         "0ac29c1b-d6c9-4c68-8936-f076f13569c0",
                         "1ecb2f10-9fa8-4d87-93e0-a293d462f6dd"
@@ -2323,11 +2332,12 @@
                     ]
                 }
             ],
-            "market_count": 42,
+            "market_count": 43,
             "main_markets": [
-                "5a1fda6b-0be4-4163-8dc9-c9c7757f878b"
+                "d7dfae8b-95ba-4991-97bf-551e8b35f516"
             ],
             "market_ids": [
+                "d7dfae8b-95ba-4991-97bf-551e8b35f516",
                 "5a1fda6b-0be4-4163-8dc9-c9c7757f878b",
                 "0ac29c1b-d6c9-4c68-8936-f076f13569c0",
                 "1ecb2f10-9fa8-4d87-93e0-a293d462f6dd",
@@ -2455,10 +2465,10 @@
             "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
             "name": "Odd / Even",
             "advertised_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "actual_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "same_game_multi_available": true,
             "visible": true,
@@ -2475,10 +2485,10 @@
             "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
             "name": "Total",
             "advertised_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "actual_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "handicap": 230.5,
             "same_game_multi_available": true,
@@ -2497,10 +2507,10 @@
             "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
             "name": "4th Quarter Dallas Mavericks Odd / Even",
             "advertised_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "actual_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "same_game_multi_available": true,
             "visible": true,
@@ -2517,10 +2527,10 @@
             "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
             "name": "3rd Quarter Detroit Pistons Odd / Even",
             "advertised_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "actual_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "same_game_multi_available": true,
             "visible": true,
@@ -2537,10 +2547,10 @@
             "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
             "name": "4th Quarter Winning Margin",
             "advertised_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "actual_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "visible": true,
             "entrant_ids": [
@@ -2569,10 +2579,10 @@
             "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
             "name": "3rd Quarter Dallas Mavericks Odd / Even",
             "advertised_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "actual_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "same_game_multi_available": true,
             "visible": true,
@@ -2589,10 +2599,10 @@
             "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
             "name": "Margin 1-10",
             "advertised_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "actual_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "same_game_multi_available": true,
             "visible": true,
@@ -2611,10 +2621,10 @@
             "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
             "name": "Odd / Even - Detroit Pistons",
             "advertised_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "actual_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "same_game_multi_available": true,
             "visible": true,
@@ -2631,10 +2641,10 @@
             "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
             "name": "1st Quarter Winning Margin",
             "advertised_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "actual_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "same_game_multi_available": true,
             "visible": true,
@@ -2664,10 +2674,10 @@
             "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
             "name": "Both Teams to Score 80+ Points",
             "advertised_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "actual_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "same_game_multi_available": true,
             "visible": true,
@@ -2683,10 +2693,10 @@
             "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
             "name": "2nd Quarter Detroit Pistons Odd / Even",
             "advertised_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "actual_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "same_game_multi_available": true,
             "visible": true,
@@ -2703,10 +2713,10 @@
             "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
             "name": "1st Half Dallas Mavericks Odd / Even",
             "advertised_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "actual_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "same_game_multi_available": true,
             "visible": true,
@@ -2723,10 +2733,10 @@
             "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
             "name": "3rd Quarter Odd / Even",
             "advertised_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "actual_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "same_game_multi_available": true,
             "visible": true,
@@ -2743,10 +2753,10 @@
             "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
             "name": "4th Quarter Odd / Even",
             "advertised_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "actual_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "same_game_multi_available": true,
             "visible": true,
@@ -2763,10 +2773,10 @@
             "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
             "name": "1st Quarter Odd / Even",
             "advertised_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "actual_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "same_game_multi_available": true,
             "visible": true,
@@ -2783,10 +2793,10 @@
             "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
             "name": "Both Teams to Score 110+ Points",
             "advertised_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "actual_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "same_game_multi_available": true,
             "visible": true,
@@ -2803,10 +2813,10 @@
             "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
             "name": "Odd / Even - Dallas Mavericks",
             "advertised_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "actual_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "same_game_multi_available": true,
             "visible": true,
@@ -2823,10 +2833,10 @@
             "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
             "name": "2nd Half Odd / Even",
             "advertised_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "actual_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "same_game_multi_available": true,
             "visible": true,
@@ -2843,10 +2853,10 @@
             "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
             "name": "2nd Quarter Odd / Even",
             "advertised_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "actual_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "same_game_multi_available": true,
             "visible": true,
@@ -2863,10 +2873,10 @@
             "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
             "name": "1st Quarter Detroit Pistons Odd / Even",
             "advertised_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "actual_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "same_game_multi_available": true,
             "visible": true,
@@ -2883,10 +2893,10 @@
             "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
             "name": "Line",
             "advertised_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "actual_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "handicap": -1,
             "same_game_multi_available": true,
@@ -2905,10 +2915,10 @@
             "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
             "name": "2nd Half Dallas Mavericks Odd / Even",
             "advertised_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "actual_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "same_game_multi_available": true,
             "visible": true,
@@ -2925,10 +2935,10 @@
             "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
             "name": "Exact Winning Margin",
             "advertised_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "actual_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "visible": true,
             "entrant_ids": [
@@ -2975,8 +2985,7 @@
                 "e71acd53-5bba-4872-beb3-0697efaf073c",
                 "3a918ea5-89ae-48e4-a4b3-ed9b706726bf",
                 "46b548f9-398a-44d1-83c8-910c05368aa3",
-                "7deae0f4-e02e-427d-b066-dcf024ecc8d6",
-                "2ca80091-f414-4e16-843a-f21541b23776",
+                "7f023922-0377-4810-90bf-359c0579cb8a",
                 "7f3f9821-21b1-4fd0-96bd-1ab8f2cbe307",
                 "f8670038-583d-4e02-a880-930e05e16d77",
                 "e19e6fb8-c8f6-4574-b74f-cccef87bed49",
@@ -3037,10 +3046,10 @@
             "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
             "name": "Winner / Over Under Double",
             "advertised_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "actual_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "same_game_multi_available": true,
             "is_multiple_outcome_market": true,
@@ -3060,10 +3069,10 @@
             "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
             "name": "Wire to Wire",
             "advertised_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "actual_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "same_game_multi_available": true,
             "visible": true,
@@ -3081,10 +3090,10 @@
             "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
             "name": "Line/Over Under Double",
             "advertised_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "actual_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "same_game_multi_available": true,
             "is_multiple_outcome_market": true,
@@ -3104,10 +3113,10 @@
             "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
             "name": "3rd Quarter Winning Margin",
             "advertised_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "actual_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "same_game_multi_available": true,
             "visible": true,
@@ -3137,10 +3146,10 @@
             "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
             "name": "Winning Margin (10pt)",
             "advertised_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "actual_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "visible": true,
             "entrant_ids": [
@@ -3164,10 +3173,10 @@
             "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
             "name": "Both Teams to Score 90+ Points",
             "advertised_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "actual_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "same_game_multi_available": true,
             "visible": true,
@@ -3184,10 +3193,10 @@
             "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
             "name": "2nd Half Detroit Pistons Odd / Even",
             "advertised_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "actual_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "same_game_multi_available": true,
             "visible": true,
@@ -3204,10 +3213,10 @@
             "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
             "name": "Both Teams to Score 120+ Points",
             "advertised_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "actual_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "same_game_multi_available": true,
             "visible": true,
@@ -3224,10 +3233,10 @@
             "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
             "name": "2nd Quarter Winning Margin",
             "advertised_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "actual_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "same_game_multi_available": true,
             "visible": true,
@@ -3257,10 +3266,10 @@
             "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
             "name": "Team with Highest Scoring Quarter",
             "advertised_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "actual_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "same_game_multi_available": true,
             "visible": true,
@@ -3277,10 +3286,10 @@
             "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
             "name": "1st Half Odd / Even",
             "advertised_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "actual_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "same_game_multi_available": true,
             "visible": true,
@@ -3297,10 +3306,10 @@
             "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
             "name": "1st Quarter Dallas Mavericks Odd / Even",
             "advertised_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "actual_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "same_game_multi_available": true,
             "visible": true,
@@ -3317,10 +3326,10 @@
             "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
             "name": "1st Half Winning Margin",
             "advertised_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "actual_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "same_game_multi_available": true,
             "visible": true,
@@ -3350,10 +3359,10 @@
             "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
             "name": "2nd Quarter Dallas Mavericks Odd / Even",
             "advertised_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "actual_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "same_game_multi_available": true,
             "visible": true,
@@ -3370,10 +3379,10 @@
             "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
             "name": "4th Quarter Detroit Pistons Odd / Even",
             "advertised_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "actual_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "same_game_multi_available": true,
             "visible": true,
@@ -3390,10 +3399,10 @@
             "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
             "name": "1st Half Detroit Pistons Odd / Even",
             "advertised_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "actual_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "same_game_multi_available": true,
             "visible": true,
@@ -3410,10 +3419,10 @@
             "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
             "name": "Winning Margin (5pt)",
             "advertised_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "actual_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "visible": true,
             "entrant_ids": [
@@ -3432,6 +3441,27 @@
             ],
             "num_winners": 1
         },
+        "d7dfae8b-95ba-4991-97bf-551e8b35f516": {
+            "id": "d7dfae8b-95ba-4991-97bf-551e8b35f516",
+            "event_id": "3e0cd4f7-4803-46c4-974b-4124b92a3cfd",
+            "market_type_id": "3dc4ca49-3190-43b2-a328-60e0c9460187",
+            "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
+            "name": "Head To Head",
+            "advertised_start": {
+                "seconds": 1738368000
+            },
+            "actual_start": {
+                "seconds": 1738368000
+            },
+            "is_primary": true,
+            "same_game_multi_available": true,
+            "visible": true,
+            "entrant_ids": [
+                "85165286-8824-44e9-ac46-d46b5dd5526b",
+                "b45e3222-5ea0-4a99-af3c-39aa25b321ca"
+            ],
+            "num_winners": 1
+        },
         "fcd26b0d-f70b-4de7-a849-c7214927d207": {
             "id": "fcd26b0d-f70b-4de7-a849-c7214927d207",
             "event_id": "3e0cd4f7-4803-46c4-974b-4124b92a3cfd",
@@ -3439,10 +3469,10 @@
             "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
             "name": "Both Teams to Score 100+ Points",
             "advertised_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "actual_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "same_game_multi_available": true,
             "visible": true,
@@ -3459,10 +3489,10 @@
             "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
             "name": "2nd Half Winning Margin",
             "advertised_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "actual_start": {
-                "seconds": 1738368600
+                "seconds": 1738368000
             },
             "same_game_multi_available": true,
             "visible": true,
@@ -3527,6 +3557,7 @@
         "c2130e1c-6af1-4626-9a93-16626829caf8": true,
         "c9fff12a-7925-41ec-b3a1-28a850a3dea1": true,
         "ca2594fc-c33f-4bb3-ac99-3c29e234dccb": true,
+        "d7dfae8b-95ba-4991-97bf-551e8b35f516": true,
         "fcd26b0d-f70b-4de7-a849-c7214927d207": true,
         "fda842b7-59c2-4ba8-bc51-ebf65db359f3": true
     },
@@ -3563,8 +3594,8 @@
         },
         "05e1abd3-2b83-42cd-b487-9a647097afac:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 8,
-                "denominator": 1
+                "numerator": 31,
+                "denominator": 4
             }
         },
         "07201aea-a0ab-4349-b86d-3e9287b38101:940b8704-e497-4a76-b390-00918ff7d282:": {
@@ -3617,8 +3648,8 @@
         },
         "0fdbe38a-367b-447b-a019-2f43ce107e34:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 17,
-                "denominator": 2
+                "numerator": 35,
+                "denominator": 4
             }
         },
         "10cd0e09-853f-43f0-b6c2-e5c19e037926:940b8704-e497-4a76-b390-00918ff7d282:": {
@@ -3629,8 +3660,8 @@
         },
         "110b1e31-7cf3-49cb-b6a6-df96f91f2851:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 17,
-                "denominator": 2
+                "numerator": 35,
+                "denominator": 4
             }
         },
         "111c6ff5-ca84-49d9-826b-0acc71dfbb19:940b8704-e497-4a76-b390-00918ff7d282:": {
@@ -3641,7 +3672,7 @@
         },
         "11b6bb14-a73c-4873-9c99-d1cde1cc1c94:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 80,
+                "numerator": 100,
                 "denominator": 1
             }
         },
@@ -3665,8 +3696,8 @@
         },
         "19f431c9-762a-499a-904a-189a731e6e3e:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 15,
-                "denominator": 4
+                "numerator": 19,
+                "denominator": 5
             }
         },
         "1d3f2fd5-0ab5-4cf5-b4ee-a8e34d1178a0:940b8704-e497-4a76-b390-00918ff7d282:": {
@@ -3683,13 +3714,13 @@
         },
         "1ef6d727-ddbf-4a57-81fc-81fa5f55fc2e:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 91,
-                "denominator": 100
+                "numerator": 9,
+                "denominator": 10
             }
         },
         "1f2a35e0-422b-4790-aa83-ac61c0a42a80:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 40,
+                "numerator": 50,
                 "denominator": 1
             }
         },
@@ -3707,8 +3738,8 @@
         },
         "237a33ea-6c84-48ba-91c9-52b607068e21:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 7,
-                "denominator": 1
+                "numerator": 27,
+                "denominator": 4
             }
         },
         "2397d425-d9e4-4084-a9c8-af1c446a6d90:940b8704-e497-4a76-b390-00918ff7d282:": {
@@ -3719,13 +3750,13 @@
         },
         "260fff25-c3bb-4ae9-aae1-59882e20024f:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 22,
+                "numerator": 20,
                 "denominator": 1
             }
         },
         "26a399e9-eec0-4271-a245-37c3d2d10363:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 66,
+                "numerator": 80,
                 "denominator": 1
             }
         },
@@ -3737,7 +3768,7 @@
         },
         "275ad001-f040-414e-aa1c-d50a98211757:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 200,
+                "numerator": 175,
                 "denominator": 1
             }
         },
@@ -3749,7 +3780,7 @@
         },
         "2bb8be8e-d15e-47c1-8077-191f1206418e:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 40,
+                "numerator": 33,
                 "denominator": 1
             }
         },
@@ -3777,12 +3808,6 @@
                 "denominator": 1
             }
         },
-        "2ca80091-f414-4e16-843a-f21541b23776:940b8704-e497-4a76-b390-00918ff7d282:": {
-            "odds": {
-                "numerator": 250,
-                "denominator": 1
-            }
-        },
         "2e644d71-c81d-4703-bd1a-fac8c3914b75:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
                 "numerator": 91,
@@ -3797,8 +3822,8 @@
         },
         "2ef4e09e-c2c0-4a90-ba11-5d858de9c2ef:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 24,
-                "denominator": 25
+                "numerator": 49,
+                "denominator": 50
             }
         },
         "30ad0b82-7162-4ddb-82ee-6c849fa44503:940b8704-e497-4a76-b390-00918ff7d282:": {
@@ -3809,8 +3834,8 @@
         },
         "30d41c2a-5bf7-4566-99a4-1b35a901e551:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 29,
-                "denominator": 4
+                "numerator": 7,
+                "denominator": 1
             }
         },
         "318b54ba-a0cf-422c-84f2-06de37dfb0fc:940b8704-e497-4a76-b390-00918ff7d282:": {
@@ -3821,7 +3846,7 @@
         },
         "3193997b-e17f-4734-9713-8d9c3fd5fa13:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 25,
+                "numerator": 22,
                 "denominator": 1
             }
         },
@@ -3839,7 +3864,7 @@
         },
         "334fac45-0e6b-4028-a25e-6485a4563f22:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 40,
+                "numerator": 33,
                 "denominator": 1
             }
         },
@@ -3851,14 +3876,14 @@
         },
         "33f25f02-6371-4ab0-abca-e65af17ce539:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 18,
+                "numerator": 20,
                 "denominator": 1
             }
         },
         "3621622e-ab16-47e2-9947-ac54b036ee2b:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 17,
-                "denominator": 20
+                "numerator": 83,
+                "denominator": 100
             }
         },
         "365dbef9-ba1e-48f3-a2a7-4bc3dc677d41:940b8704-e497-4a76-b390-00918ff7d282:": {
@@ -3923,7 +3948,7 @@
         },
         "39bf1030-f38d-4e49-b272-1d4d65c356c2:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 16,
+                "numerator": 15,
                 "denominator": 1
             }
         },
@@ -3941,8 +3966,8 @@
         },
         "3e425305-c05c-41bd-ae0a-84a5b911ce86:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 7,
-                "denominator": 1
+                "numerator": 29,
+                "denominator": 4
             }
         },
         "3eec11dd-cc64-4522-887b-3bcb1010715a:940b8704-e497-4a76-b390-00918ff7d282:": {
@@ -4073,8 +4098,8 @@
         },
         "58727105-f63a-4286-bc6e-6bb033d6ecac:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 26,
-                "denominator": 5
+                "numerator": 21,
+                "denominator": 4
             }
         },
         "58dd6bac-b1a5-4745-a5b9-2db68d7a46af:940b8704-e497-4a76-b390-00918ff7d282:": {
@@ -4097,13 +4122,13 @@
         },
         "5a5acb15-2993-481d-b609-fc8231f290f9:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 91,
-                "denominator": 100
+                "numerator": 9,
+                "denominator": 10
             }
         },
         "5c150b7d-1ace-46c1-b282-bfde10599995:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 100,
+                "numerator": 125,
                 "denominator": 1
             }
         },
@@ -4121,7 +4146,7 @@
         },
         "5f0193f0-8a6c-4fd9-90bc-aca9a8363fa4:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 80,
+                "numerator": 66,
                 "denominator": 1
             }
         },
@@ -4139,7 +4164,7 @@
         },
         "61e80cc4-b206-4155-bf29-38d1d387ef0b:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 175,
+                "numerator": 200,
                 "denominator": 1
             }
         },
@@ -4157,8 +4182,8 @@
         },
         "621af1e6-73fc-451e-86c7-cff73610d843:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 91,
-                "denominator": 100
+                "numerator": 9,
+                "denominator": 10
             }
         },
         "62b32f12-efb1-40ec-8bf1-3b9b2a425b07:940b8704-e497-4a76-b390-00918ff7d282:": {
@@ -4169,8 +4194,8 @@
         },
         "62c3edc9-0a9e-491a-8e17-6d9e3cbc04b7:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 23,
-                "denominator": 2
+                "numerator": 12,
+                "denominator": 1
             }
         },
         "65360dca-3d30-4ed2-906e-98b7406fcdd3:940b8704-e497-4a76-b390-00918ff7d282:": {
@@ -4193,7 +4218,7 @@
         },
         "6a00711a-d6d3-4ad0-90db-7d1a705c878d:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 20,
+                "numerator": 18,
                 "denominator": 1
             }
         },
@@ -4211,8 +4236,8 @@
         },
         "6d714348-dd3d-4bd6-b2e9-a3b0f8732512:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 23,
-                "denominator": 25
+                "numerator": 47,
+                "denominator": 50
             }
         },
         "6e0c0f8e-f42d-408b-9fb1-cbaaf15b2ee6:940b8704-e497-4a76-b390-00918ff7d282:": {
@@ -4235,8 +4260,8 @@
         },
         "6fce0c01-455d-4127-b00e-7d8a93a51ac3:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 15,
-                "denominator": 2
+                "numerator": 31,
+                "denominator": 4
             }
         },
         "7020f100-aad7-44cf-866b-1aa35ba15320:940b8704-e497-4a76-b390-00918ff7d282:": {
@@ -4247,8 +4272,8 @@
         },
         "70822a9f-2234-4387-8628-09635392df79:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 17,
-                "denominator": 20
+                "numerator": 83,
+                "denominator": 100
             }
         },
         "70ede18a-31b0-481a-aba0-2b73b75dc8d1:940b8704-e497-4a76-b390-00918ff7d282:": {
@@ -4259,7 +4284,7 @@
         },
         "70fff1e6-d4b2-4444-a00f-7c4e14b2b2ab:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 15,
+                "numerator": 14,
                 "denominator": 1
             }
         },
@@ -4271,8 +4296,8 @@
         },
         "72b376f9-b5ac-4a08-bb8c-d6b0c1ef7706:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 8,
-                "denominator": 1
+                "numerator": 33,
+                "denominator": 4
             }
         },
         "733902a9-127f-46d7-abb8-0032df5e657a:940b8704-e497-4a76-b390-00918ff7d282:": {
@@ -4313,7 +4338,7 @@
         },
         "773a40a0-5d10-4f3a-9543-6cc665c3ba2b:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 40,
+                "numerator": 50,
                 "denominator": 1
             }
         },
@@ -4367,8 +4392,8 @@
         },
         "7b8ae967-6125-4c3a-b434-2ca9133f32e9:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 91,
-                "denominator": 100
+                "numerator": 9,
+                "denominator": 10
             }
         },
         "7c1e7f1a-ab30-49b2-a227-e0a90a67b7ad:940b8704-e497-4a76-b390-00918ff7d282:": {
@@ -4401,13 +4426,13 @@
                 "denominator": 20
             }
         },
-        "7deae0f4-e02e-427d-b066-dcf024ecc8d6:940b8704-e497-4a76-b390-00918ff7d282:": {
+        "7ead95b5-a1e2-4318-b5bc-aa350ef0e37e:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
                 "numerator": 250,
                 "denominator": 1
             }
         },
-        "7ead95b5-a1e2-4318-b5bc-aa350ef0e37e:940b8704-e497-4a76-b390-00918ff7d282:": {
+        "7f023922-0377-4810-90bf-359c0579cb8a:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
                 "numerator": 250,
                 "denominator": 1
@@ -4451,8 +4476,14 @@
         },
         "850d1255-c5b8-4259-9301-bd50ff443c02:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 20,
+                "numerator": 22,
                 "denominator": 1
+            }
+        },
+        "85165286-8824-44e9-ac46-d46b5dd5526b:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 49,
+                "denominator": 50
             }
         },
         "8634164e-d9a8-48d5-be31-3f7d125c1e63:940b8704-e497-4a76-b390-00918ff7d282:": {
@@ -4493,8 +4524,8 @@
         },
         "8c9791f7-c18f-4aba-bc87-c913ab98127d:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 24,
-                "denominator": 25
+                "numerator": 49,
+                "denominator": 50
             }
         },
         "8ebc9636-faf1-4443-9624-e455d012f8c4:940b8704-e497-4a76-b390-00918ff7d282:": {
@@ -4529,8 +4560,8 @@
         },
         "952ab876-d9f4-4292-b008-0010588ebbb2:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 27,
-                "denominator": 4
+                "numerator": 13,
+                "denominator": 2
             }
         },
         "95378cc7-827f-4987-b833-4e06c48657ba:940b8704-e497-4a76-b390-00918ff7d282:": {
@@ -4553,20 +4584,20 @@
         },
         "97d03f36-950f-48c9-8cc1-97fc86b8f81e:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 91,
-                "denominator": 100
+                "numerator": 9,
+                "denominator": 10
             }
         },
         "98e9b0bf-53ce-462a-941d-99b090b3c11b:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 15,
-                "denominator": 4
+                "numerator": 18,
+                "denominator": 5
             }
         },
         "99707a28-9e43-41bf-8700-70a7b31f959c:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 31,
-                "denominator": 4
+                "numerator": 8,
+                "denominator": 1
             }
         },
         "9b21e961-9123-47e2-a499-8d86bfbe5cff:940b8704-e497-4a76-b390-00918ff7d282:": {
@@ -4601,13 +4632,13 @@
         },
         "a03be18a-f959-407e-9deb-fd7575b0852a:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 100,
+                "numerator": 80,
                 "denominator": 1
             }
         },
         "a1532c9b-58fe-4cc3-a8c5-486aff26e09d:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 22,
+                "numerator": 25,
                 "denominator": 1
             }
         },
@@ -4649,7 +4680,7 @@
         },
         "ae13e6ea-3cde-44b1-9ca5-ab72ad47333c:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 16,
+                "numerator": 15,
                 "denominator": 1
             }
         },
@@ -4691,13 +4722,13 @@
         },
         "b1927ac3-79b1-459c-a3c3-6d5b7d282215:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 20,
+                "numerator": 18,
                 "denominator": 1
             }
         },
         "b289dc6c-81ee-4fdd-b547-4ade1b16d52d:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 20,
+                "numerator": 18,
                 "denominator": 1
             }
         },
@@ -4709,7 +4740,7 @@
         },
         "b3cd846a-68e0-4613-9908-7cf6287c7f90:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 16,
+                "numerator": 15,
                 "denominator": 1
             }
         },
@@ -4719,16 +4750,22 @@
                 "denominator": 1
             }
         },
+        "b45e3222-5ea0-4a99-af3c-39aa25b321ca:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 83,
+                "denominator": 100
+            }
+        },
         "b5053bf9-9c7c-4406-9cb4-081d24551845:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 25,
+                "numerator": 22,
                 "denominator": 1
             }
         },
         "b7be6f67-c0c6-4c15-8f10-56aa75df1006:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 35,
-                "denominator": 4
+                "numerator": 9,
+                "denominator": 1
             }
         },
         "b845aa8a-649a-4460-920c-4ee66e64fffa:940b8704-e497-4a76-b390-00918ff7d282:": {
@@ -4751,8 +4788,8 @@
         },
         "bceb9cc2-5475-4586-beb3-3cebdf1175f0:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 13,
-                "denominator": 5
+                "numerator": 27,
+                "denominator": 10
             }
         },
         "be6f5198-093e-4bb8-b38f-91feac55aca4:940b8704-e497-4a76-b390-00918ff7d282:": {
@@ -4763,20 +4800,20 @@
         },
         "bed49fb7-3d01-41b6-8dbc-12dea46c464e:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 28,
+                "numerator": 30,
                 "denominator": 1
             }
         },
         "bf0bb457-4f43-4cbf-87d9-c44d4170a3ae:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 17,
-                "denominator": 2
+                "numerator": 35,
+                "denominator": 4
             }
         },
         "c0097963-c740-46b7-97d1-dbf987ebe221:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 5,
-                "denominator": 2
+                "numerator": 13,
+                "denominator": 5
             }
         },
         "c060a012-f542-41c0-a8d4-76ac85ee846a:940b8704-e497-4a76-b390-00918ff7d282:": {
@@ -4823,8 +4860,8 @@
         },
         "c73bbf33-069f-4cff-b3d7-8fa0df919e8c:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 24,
-                "denominator": 25
+                "numerator": 49,
+                "denominator": 50
             }
         },
         "c97c66cf-1e97-41bd-8466-cb8a8705af46:940b8704-e497-4a76-b390-00918ff7d282:": {
@@ -4847,14 +4884,14 @@
         },
         "cc373ef0-50c9-4df4-af2f-7e9f4cd35309:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 15,
-                "denominator": 2
+                "numerator": 31,
+                "denominator": 4
             }
         },
         "ceb5b4f4-71f7-4f4d-96f6-b3a07d2111ba:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 91,
-                "denominator": 100
+                "numerator": 9,
+                "denominator": 10
             }
         },
         "d11d8de4-c72f-4a07-8f35-11f6d12005da:940b8704-e497-4a76-b390-00918ff7d282:": {
@@ -4871,7 +4908,7 @@
         },
         "d44bc43d-9305-45cc-a0fc-dc16f62b7667:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 125,
+                "numerator": 150,
                 "denominator": 1
             }
         },
@@ -4925,13 +4962,13 @@
         },
         "dad75b89-302d-447a-9866-4da84d7ec8af:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 22,
-                "denominator": 5
+                "numerator": 9,
+                "denominator": 2
             }
         },
         "db298644-6210-474a-b18f-215b45c1ce96:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 33,
+                "numerator": 30,
                 "denominator": 1
             }
         },
@@ -4943,7 +4980,7 @@
         },
         "de78b85c-8716-4a9a-b299-4e952aea96d1:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 250,
+                "numerator": 225,
                 "denominator": 1
             }
         },
@@ -4979,13 +5016,13 @@
         },
         "e2ff9c2e-2f4c-4e15-90b4-55b8c580c0f3:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 15,
-                "denominator": 2
+                "numerator": 31,
+                "denominator": 4
             }
         },
         "e43680b7-59e0-4723-87a2-91f488b92ad7:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 150,
+                "numerator": 175,
                 "denominator": 1
             }
         },
@@ -5063,7 +5100,7 @@
         },
         "ee385aaa-75a7-4ee0-9a3f-a4477227b998:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 150,
+                "numerator": 175,
                 "denominator": 1
             }
         },
@@ -5075,8 +5112,8 @@
         },
         "efea7bf6-b9ba-43f6-8cc3-d5ab3ce1981f:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 19,
-                "denominator": 4
+                "numerator": 23,
+                "denominator": 5
             }
         },
         "f09cf307-d15c-4334-9179-055af5268e12:940b8704-e497-4a76-b390-00918ff7d282:": {
@@ -5087,8 +5124,8 @@
         },
         "f1e34bfe-ad5d-4d6b-a842-2d2213e4cd17:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 17,
-                "denominator": 20
+                "numerator": 83,
+                "denominator": 100
             }
         },
         "f499ef2d-b91a-455d-9851-58be0b4b8e9c:940b8704-e497-4a76-b390-00918ff7d282:": {
@@ -5117,7 +5154,7 @@
         },
         "f662eec0-589e-47e3-b3cb-841ed672a08a:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 20,
+                "numerator": 18,
                 "denominator": 1
             }
         },
@@ -5147,8 +5184,8 @@
         },
         "f7fe168f-7bd3-42d7-a61c-d1d0c3df61f1:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 27,
-                "denominator": 4
+                "numerator": 13,
+                "denominator": 2
             }
         },
         "f8670038-583d-4e02-a880-930e05e16d77:940b8704-e497-4a76-b390-00918ff7d282:": {
@@ -5165,7 +5202,7 @@
         },
         "fbe5001b-9f71-4258-affa-e67e6af6cd01:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 14,
+                "numerator": 13,
                 "denominator": 1
             }
         },
