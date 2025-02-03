@@ -504,17 +504,6 @@ ui <- page_navbar(
                             label = "Max Odds",
                             value = NA
                           ),
-                          markdown(mds = c("__Select Difference Range 2023:__")),
-                          numericInput(
-                            inputId = "diff_minimum_23",
-                            label = "Min Diff",
-                            value = NA
-                          ),
-                          numericInput(
-                            inputId = "diff_maximum_23",
-                            label = "Max Diff",
-                            value = NA
-                          ),
                           markdown(mds = c("__Select Difference Range 2024:__")),
                           numericInput(
                             inputId = "diff_minimum_24",
@@ -523,17 +512,6 @@ ui <- page_navbar(
                           ),
                           numericInput(
                             inputId = "diff_maximum_24",
-                            label = "Max Diff",
-                            value = NA
-                          ),
-                          markdown(mds = c("__Select Difference Range 2023 - Unders:__")),
-                          numericInput(
-                            inputId = "diff_minimum_23_unders",
-                            label = "Min Diff",
-                            value = NA
-                          ),
-                          numericInput(
-                            inputId = "diff_maximum_23_unders",
                             label = "Max Diff",
                             value = NA
                           ),
@@ -993,49 +971,25 @@ server <- function(input, output) {
     if (!is.na(input$diff_minimum_24)) {
       odds <-
         odds |>
-        filter(diff_over_2022_23 >= input$diff_minimum_24)
+        filter(diff_over_2024_25 >= input$diff_minimum_24)
     }
     
     if (!is.na(input$diff_maximum_24)) {
       odds <-
         odds |>
-        filter(diff_over_2022_23 <= input$diff_maximum_24)
-    }
-    
-    if (!is.na(input$diff_minimum_23)) {
-      odds <-
-        odds |>
-        filter(diff_over_2023_24 >= input$diff_minimum_23)
-    }
-    
-    if (!is.na(input$diff_maximum_23)) {
-      odds <-
-        odds |>
-        filter(diff_over_2023_24 <= input$diff_maximum_23)
-    }
-    
-    if (!is.na(input$diff_minimum_23_unders)) {
-      odds <-
-        odds |>
-        filter(diff_under_2023_24 >= input$diff_minimum_23_unders)
-    }
-    
-    if (!is.na(input$diff_maximum_23_unders)) {
-      odds <-
-        odds |>
-        filter(diff_under_2023_24 <= input$diff_maximum_23_unders)
+        filter(diff_over_2024_25 <= input$diff_maximum_24)
     }
     
     if (!is.na(input$diff_minimum_24_unders)) {
       odds <-
         odds |>
-        filter(diff_under_2022_23 >= input$diff_minimum_24_unders)
+        filter(diff_under_2024_25 >= input$diff_minimum_24_unders)
     }
     
     if (!is.na(input$diff_maximum_24_unders)) {
       odds <-
         odds |>
-        filter(diff_under_2022_23 <= input$diff_maximum_24_unders)
+        filter(diff_under_2024_25 <= input$diff_maximum_24_unders)
     }
     
     # Odds Range

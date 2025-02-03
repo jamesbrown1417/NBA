@@ -257,10 +257,11 @@ all_procesed_odds <-
     agency,
     player_team,
     diff_over_2024_25,
-    diff_over_last_10
+    diff_over_last_10,
+    diff_over_last_20
   ) |> 
-  arrange(match, desc(diff_over_last_10)) |> 
-  filter(diff_over_last_10 >= 0)
+  arrange(match, desc(diff_over_last_20)) |> 
+  filter(diff_over_last_20 >= 0)
 
 # Distinct Matches
 all_matches <- 
