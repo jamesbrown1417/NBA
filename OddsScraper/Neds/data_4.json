@@ -272,6 +272,14 @@
             "sort_order": 910,
             "market_id": "102470ba-e0eb-453f-9800-6a16fa1b84af"
         },
+        "1bb85f5f-0fdc-45d4-a898-b0345567ab36": {
+            "id": "1bb85f5f-0fdc-45d4-a898-b0345567ab36",
+            "name": "Washington Wizards",
+            "home_away": "HOME",
+            "visible": true,
+            "sort_order": 10,
+            "market_id": "1fac8a40-86de-4cbe-bd32-8e135a097aad"
+        },
         "1c003940-e2a2-46c7-b09a-2033a5937f36": {
             "id": "1c003940-e2a2-46c7-b09a-2033a5937f36",
             "name": "Even",
@@ -1779,6 +1787,14 @@
             "sort_order": 110,
             "market_id": "5969fe71-f797-468c-99a4-2ef73412703c"
         },
+        "dbd44a54-7a4a-4c1b-94a0-5fc8dace77d0": {
+            "id": "dbd44a54-7a4a-4c1b-94a0-5fc8dace77d0",
+            "name": "Cleveland Cavaliers",
+            "home_away": "AWAY",
+            "visible": true,
+            "sort_order": 20,
+            "market_id": "1fac8a40-86de-4cbe-bd32-8e135a097aad"
+        },
         "dcc1287f-c917-4c4b-b651-dec6bfe683d2": {
             "id": "dcc1287f-c917-4c4b-b651-dec6bfe683d2",
             "name": "Washington Wizards by 20",
@@ -2073,6 +2089,7 @@
                 {
                     "market_type_group_id": "43c990d1-7471-4055-9a7a-e71409494486",
                     "market_ids": [
+                        "1fac8a40-86de-4cbe-bd32-8e135a097aad",
                         "fc0cfa53-d850-4e86-8c61-71e68a6516b3",
                         "255ab09a-77a0-40a4-8bb3-ca1b7e92b515",
                         "6d093efa-6854-4c3c-8aaa-5dedb5148d87"
@@ -2179,11 +2196,12 @@
                     ]
                 }
             ],
-            "market_count": 42,
+            "market_count": 43,
             "main_markets": [
-                "fc0cfa53-d850-4e86-8c61-71e68a6516b3"
+                "1fac8a40-86de-4cbe-bd32-8e135a097aad"
             ],
             "market_ids": [
+                "1fac8a40-86de-4cbe-bd32-8e135a097aad",
                 "fc0cfa53-d850-4e86-8c61-71e68a6516b3",
                 "255ab09a-77a0-40a4-8bb3-ca1b7e92b515",
                 "6d093efa-6854-4c3c-8aaa-5dedb5148d87",
@@ -2516,6 +2534,27 @@
             "entrant_ids": [
                 "e0eec67f-21af-4086-8860-4c0216fdda08",
                 "29df9cdb-5691-4c54-9b33-86344eff141b"
+            ],
+            "num_winners": 1
+        },
+        "1fac8a40-86de-4cbe-bd32-8e135a097aad": {
+            "id": "1fac8a40-86de-4cbe-bd32-8e135a097aad",
+            "event_id": "35618f70-c1ec-4bd1-8388-64c8ae962e11",
+            "market_type_id": "3dc4ca49-3190-43b2-a328-60e0c9460187",
+            "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
+            "name": "Head To Head",
+            "advertised_start": {
+                "seconds": 1738972800
+            },
+            "actual_start": {
+                "seconds": 1738972800
+            },
+            "is_primary": true,
+            "same_game_multi_available": true,
+            "visible": true,
+            "entrant_ids": [
+                "1bb85f5f-0fdc-45d4-a898-b0345567ab36",
+                "dbd44a54-7a4a-4c1b-94a0-5fc8dace77d0"
             ],
             "num_winners": 1
         },
@@ -3332,6 +3371,7 @@
         "102470ba-e0eb-453f-9800-6a16fa1b84af": true,
         "135fef6f-1042-451e-b9f1-95c537043190": true,
         "165d2c65-69b0-40e3-8e6d-6b6b2a6521af": true,
+        "1fac8a40-86de-4cbe-bd32-8e135a097aad": true,
         "255ab09a-77a0-40a4-8bb3-ca1b7e92b515": false,
         "2948e49d-a62c-42b4-8e47-d822cb459da6": true,
         "370d1fde-8b85-4b0e-9363-d4f725333a1d": true,
@@ -3577,6 +3617,12 @@
             "odds": {
                 "numerator": 100,
                 "denominator": 1
+            }
+        },
+        "1bb85f5f-0fdc-45d4-a898-b0345567ab36:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 17,
+                "denominator": 2
             }
         },
         "1c003940-e2a2-46c7-b09a-2033a5937f36:940b8704-e497-4a76-b390-00918ff7d282:": {
@@ -4747,6 +4793,12 @@
             "odds": {
                 "numerator": 15,
                 "denominator": 2
+            }
+        },
+        "dbd44a54-7a4a-4c1b-94a0-5fc8dace77d0:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 3,
+                "denominator": 50
             }
         },
         "dcc1287f-c917-4c4b-b651-dec6bfe683d2:940b8704-e497-4a76-b390-00918ff7d282:": {
