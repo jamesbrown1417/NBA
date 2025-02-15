@@ -1265,7 +1265,8 @@
             "_links": {
                 "self": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/LA%20Lakers%20v%20Dallas?jurisdiction=SA",
                 "selfTemplate": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/LA%20Lakers%20v%20Dallas?jurisdiction={jurisdiction}{&returnPromo,returnOffers,returnMultiOnly,channelType,cashSales,homeState}",
-                "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/LA%20Lakers%20v%20Dallas/markets?jurisdiction=SA"
+                "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/LA%20Lakers%20v%20Dallas/markets?jurisdiction=SA",
+                "stats": "https://api.beta.tab.com.au/v1/stats-service/sports/Basketball/competitions/NBA/matches/2754560/h2h/stats"
             },
             "contestants": [
                 {
@@ -1429,7 +1430,8 @@
                 }
             ],
             "inPlay": false,
-            "goingInPlay": false
+            "goingInPlay": false,
+            "stats": true
         }
     ],
     "tournaments": [],
