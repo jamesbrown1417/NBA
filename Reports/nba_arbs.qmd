@@ -142,51 +142,16 @@ tab_miss_by_one <- read_rds("../Data/tab_points_miss_by_one.rds")
 ## Arbs
 
 ::: panel-tabset
-
-## Sportsbet Arbs
+## All Arbs
 
 ```{r}
 #| column: page
 
 # Separate into sportsbet
-sportsbet_arbs <-
   all_arbs |>
   filter(margin > 0) |> 
-  filter(over_agency %in% c("Sportsbet") | under_agency %in% c("Sportsbet")) |> 
+  filter(!over_agency %in% c("Unibet") & !under_agency %in% c("Unibet")) |> 
   mutate(margin = round(margin, 2))
-
-sportsbet_arbs
-```
-
-## Other Arbs
-
-```{r}
-#| column: page
-
-other_arbs <-
-  all_arbs |>
-  filter(margin > 0) |> 
-  filter(!over_agency %in% c("Unibet", "Bet365", "Sportsbet") & !under_agency %in% c("Unibet", "Bet365", "Sportsbet")) |> 
-  mutate(margin = round(margin, 2))
-
-other_arbs
-```
-
-
-## Bet365 Arbs
-
-```{r}
-#| column: page
-
-# Separate into bet365
-bet365_arbs <-
-  all_arbs |>
-  filter(margin > 0) |> 
-  filter(over_agency %in% c("Bet365") | under_agency %in% c("Bet365")) |> 
-  filter(!over_agency %in% c("Neds", "Unibet") & !under_agency %in% c("Neds", "Unibet")) |> 
-  mutate(margin = round(margin, 2))
-
-bet365_arbs
 ```
 
 ## Unibet Arbs
@@ -198,7 +163,6 @@ unibet_arbs <-
   all_arbs |>
   filter(margin > 0) |> 
   filter(over_agency %in% c("Unibet") | under_agency %in% c("Unibet")) |> 
-  filter(!over_agency %in% c("Neds") & !under_agency %in% c("Neds")) |> 
   mutate(margin = round(margin, 2)) |> 
   arrange(match, desc(margin))
 
@@ -285,6 +249,4 @@ filtered_list_alt <- map(all_matches, filter_by_match, df = all_procesed_odds) |
 # Use qreport to make tabset
 qreport::maketabs(filtered_list_alt, wide = TRUE)
 ```
-
-
-:::
+::::
