@@ -1,5 +1,5 @@
 ---
-title: "NBA Arbs"
+title: "NBA Bets"
 execute:
   echo: false
   message: false
@@ -180,6 +180,16 @@ tab_miss_by_one <- read_rds("../Data/tab_points_miss_by_one.rds")
   filter(margin > 0) |> 
   filter(over_agency %in% c("Sportsbet") | under_agency %in% c("Sportsbet")) |> 
   filter(over_agency %in% c("BetRight") | under_agency %in% c("BetRight")) |> 
+  mutate(margin = round(margin, 2))
+```
+
+## Neds
+
+```{r}
+  all_arbs |>
+  filter(margin > 0) |> 
+  filter(over_agency %in% c("Sportsbet") | under_agency %in% c("Sportsbet")) |> 
+  filter(over_agency %in% c("Neds") | under_agency %in% c("Neds")) |> 
   mutate(margin = round(margin, 2))
 ```
 
