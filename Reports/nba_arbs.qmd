@@ -302,6 +302,10 @@ all_middles |>
 
 ## Builder Bets for multis
 
+::: panel-tabset
+
+## Dabble
+
 ```{r}
 #| results: asis
 
@@ -363,4 +367,71 @@ filtered_list_alt <- map(all_matches, filter_by_match, df = all_procesed_odds) |
 # Use qreport to make tabset
 qreport::maketabs(filtered_list_alt, wide = TRUE)
 ```
+
+## TAB
+
+```{r}
+#| results: asis
+
+# Get cases where Dabble has best odds in the market
+all_procesed_odds <-
+list.files("../Data/processed_odds", full.names = TRUE) |> 
+  map(~ {
+    df <- read_rds(.x)
+    if (!"outcome_name_under" %in% names(df)) {
+      df$outcome_name_under <- NA_character_  # Add column if missing
+    } else {
+      df <- df |> mutate(outcome_name_under = as.character(outcome_name_under))
+    }
+    df
+  }) |> 
+  bind_rows()
+
+all_procesed_odds <-
+  all_procesed_odds |>
+  group_by(match, market_name, player_name, line) |>
+  # slice_head(n = 1) |>
+  ungroup() |>
+  filter(agency == "TAB") |> 
+  filter(over_price <= 1.5) |> 
+  select(
+    match,
+    market_name,
+    player_name,
+    line,
+    over_price,
+    agency,
+    player_team,
+    diff_over_2024_25,
+    diff_over_last_10,
+    diff_over_last_20
+  ) |> 
+  arrange(match, desc(diff_over_last_20)) |> 
+  filter(diff_over_last_20 >= 0)
+
+# Distinct Matches
+all_matches <- 
+  all_procesed_odds |> 
+  distinct(match) |> 
+    pull(match)
+
+# Function to filter by match
+filter_by_match <- function(m, df) {
+  df |> 
+    filter(match == m)
+}
+
+# Get a list where each match is the name of the filtered DF
+filtered_list_alt <- map(all_matches, filter_by_match, df = all_procesed_odds) |> 
+  set_names(all_matches) |> 
+    # keep if there are more than 1 row
+    keep(~ nrow(.x) > 1) |> 
+    map(~ datatable(.x))
+
+# Use qreport to make tabset
+qreport::maketabs(filtered_list_alt, wide = TRUE)
+```
+
+:::
+
 ::::
