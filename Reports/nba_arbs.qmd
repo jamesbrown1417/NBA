@@ -138,12 +138,10 @@ all_middles <- read_rds("../Data/all_middles.rds")
 tab_miss_by_one <- read_rds("../Data/tab_points_miss_by_one.rds")
 ```
 
-:::: panel-tabset
-
+:::::: panel-tabset
 ## Top-Down
 
 ::: panel-tabset
-
 ## All
 
 ```{r}
@@ -188,6 +186,18 @@ tab_miss_by_one <- read_rds("../Data/tab_points_miss_by_one.rds")
   filter(margin > 0) |> 
   filter(over_agency %in% c("Sportsbet") | under_agency %in% c("Sportsbet")) |> 
   filter(over_agency %in% c("BetRight") | under_agency %in% c("BetRight")) |> 
+  mutate(margin = round(margin, 2))
+```
+
+## Betr
+
+```{r}
+#| column: page
+
+  all_arbs |>
+  filter(margin > 0) |> 
+  filter(over_agency %in% c("Sportsbet") | under_agency %in% c("Sportsbet")) |> 
+  filter(over_agency %in% c("Betr") | under_agency %in% c("Betr")) |> 
   mutate(margin = round(margin, 2))
 ```
 
@@ -242,7 +252,6 @@ tab_miss_by_1_points_arbs <-
 
 tab_miss_by_1_points_arbs
 ```
-
 :::
 
 ## Arbs
@@ -303,7 +312,6 @@ all_middles |>
 ## Builder Bets for multis
 
 ::: panel-tabset
-
 ## Dabble
 
 ```{r}
@@ -431,7 +439,5 @@ filtered_list_alt <- map(all_matches, filter_by_match, df = all_procesed_odds) |
 # Use qreport to make tabset
 qreport::maketabs(filtered_list_alt, wide = TRUE)
 ```
-
 :::
-
-::::
+::::::

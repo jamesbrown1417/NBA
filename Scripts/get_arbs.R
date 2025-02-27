@@ -21,7 +21,7 @@ run_scraping <- function(script_name) {
 source("Scripts/fix_team_names.R")
 
 # Run all odds scraping scripts
-# run_scraping("OddsScraper/scrape_betr.R")
+run_scraping("OddsScraper/scrape_betr.R")
 run_scraping("OddsScraper/scrape_BetRight.R")
 # run_scraping("OddsScraper/scrape_Palmerbet.R")
 run_scraping("OddsScraper/scrape_pointsbet.R")
