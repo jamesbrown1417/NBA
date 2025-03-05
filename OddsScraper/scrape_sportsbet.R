@@ -44,6 +44,10 @@ player_names <-
     mutate(join_name = ifelse(player_full_name == "Miles Bridges", "Mil Bridges", join_name)) |> 
     mutate(join_name = ifelse(player_full_name == "Jaylin Williams", "Jay Williams", join_name))
 
+sportsbet_html <-
+  sportsbet_url |> 
+  read_html_live()
+
 #===============================================================================
 # Use rvest to get main market information-------------------------------------#
 #===============================================================================
@@ -52,8 +56,7 @@ main_markets_function <- function() {
 
 # Get data from main market page
 matches <-
-    sportsbet_url |> 
-    read_html_live() |>
+    sportsbet_html |>
     html_nodes(".White_fqa53j6")
     
 # Function to get team names
@@ -158,11 +161,6 @@ get_team_names <- function(match) {
     # Output
     tibble(home_team, away_team)
 }
-    
-# read live html
-sportsbet_html <-
-sportsbet_url |> 
-  read_html_live() 
     
 # Get match links
 match_links <-
