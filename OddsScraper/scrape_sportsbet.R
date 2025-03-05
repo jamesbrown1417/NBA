@@ -159,11 +159,14 @@ get_team_names <- function(match) {
     tibble(home_team, away_team)
 }
     
+# read live html
+sportsbet_html <-
+sportsbet_url |> 
+  read_html_live() 
     
 # Get match links
 match_links <-
-sportsbet_url |> 
-    read_html_live() |>
+  sportsbet_html |> 
     html_nodes(".linkMultiMarket_fcmecz0") |> 
     html_attr("href")
 
@@ -175,8 +178,7 @@ match_links |>
 
 # Get data from main market page
 matches <-
-    sportsbet_url |> 
-    read_html_live() |>
+    sportsbet_html |> 
     html_nodes(".White_fqa53j6")
 
 # Get team names that correspond to each match link
