@@ -45,7 +45,10 @@ player_names <-
 betkings_main_nba_url <- "https://www.betkings.com.au/sportsbook/Basketball/United%20States/NBA"
 
 # use read_html_live to get each href link with class 'event-participants'
-betkings_main_nba_page <- read_html_live(betkings_main_nba_url)
+betkings_main_nba_page <-
+  read_html_live(betkings_main_nba_url) 
+
+Sys.sleep(3)
 
 # Extract all href links with class 'event-participants'
 betkings_main_nba_links <-
