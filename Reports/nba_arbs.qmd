@@ -225,18 +225,6 @@ tab_miss_by_one <- read_rds("../Data/tab_points_miss_by_one.rds")
   mutate(margin = round(margin, 2))
 ```
 
-## TopSport
-
-```{r}
-#| column: page
-
-  all_arbs |>
-  filter(margin > 0) |> 
-  filter(over_agency %in% c("Sportsbet") | under_agency %in% c("Sportsbet")) |> 
-  filter(over_agency %in% c("TopSport") | under_agency %in% c("TopSport")) |> 
-  mutate(margin = round(margin, 2))
-```
-
 ## TAB Miss-by-1 Points
 
 ```{r}
