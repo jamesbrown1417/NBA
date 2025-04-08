@@ -12,250 +12,6 @@
     },
     "matches": [
         {
-            "id": "MiavPhi",
-            "name": "Miami v Philadelphia",
-            "spectrumId": "MiavPhi",
-            "spectrumUniqueId": 2827793,
-            "competitionSpectrumId": "1001",
-            "round": null,
-            "broadcastChannel": "Tab.com.au",
-            "broadcastChannels": [
-                "Tab.com.au"
-            ],
-            "startTime": "2025-04-07T23:40:00.000Z",
-            "_links": {
-                "self": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/Miami%20v%20Philadelphia?jurisdiction=SA",
-                "selfTemplate": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/Miami%20v%20Philadelphia?jurisdiction={jurisdiction}{&returnPromo,returnOffers,returnMultiOnly,channelType,cashSales,homeState}",
-                "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/Miami%20v%20Philadelphia/markets?jurisdiction=SA"
-            },
-            "vision": {
-                "unas": {
-                    "startTime": "2025-04-07T23:30:00Z",
-                    "requiresAuthentication": true,
-                    "_links": {
-                        "self": "https://api.beta.tab.com.au/v1/vision-service/tab-act/matches/MiavPhi/unas"
-                    }
-                }
-            },
-            "contestants": [
-                {
-                    "name": "Miami",
-                    "position": "HOME",
-                    "isHome": true,
-                    "image": [
-                        {
-                            "size": "svg",
-                            "url": "https://metadata.beta.tab.com.au/icons/NBA%20logos/Miami%20Heat.svg"
-                        },
-                        {
-                            "size": "xxhdpi",
-                            "url": "https://metadata.beta.tab.com.au/icons/NBA%20logos/Miami%20Heat_xxhdpi.png"
-                        },
-                        {
-                            "size": "2x",
-                            "url": "https://metadata.beta.tab.com.au/icons/NBA%20logos/Miami%20Heat%402x.png"
-                        }
-                    ]
-                },
-                {
-                    "name": "Philadelphia",
-                    "position": "AWAY",
-                    "isHome": false,
-                    "image": [
-                        {
-                            "size": "svg",
-                            "url": "https://metadata.beta.tab.com.au/icons/NBA%20logos/Philadelphia%2076ers.svg"
-                        },
-                        {
-                            "size": "xxhdpi",
-                            "url": "https://metadata.beta.tab.com.au/icons/NBA%20logos/Philadelphia%2076ers_xxhdpi.png"
-                        },
-                        {
-                            "size": "2x",
-                            "url": "https://metadata.beta.tab.com.au/icons/NBA%20logos/Philadelphia%2076ers%402x.png"
-                        }
-                    ]
-                }
-            ],
-            "competitors": [
-                "Miami",
-                "Philadelphia"
-            ],
-            "openMarketCount": 3,
-            "futureMarketCount": 0,
-            "nonFutureMarketCount": 3,
-            "markets": [
-                {
-                    "id": "113392062",
-                    "name": "NBA Miami-Philly Hd to Hd",
-                    "shortName": "NBA Mia-Phi Hd to Hd",
-                    "betOption": "Head To Head",
-                    "betOptionSpectrumId": "72",
-                    "betOptionPriority": 430,
-                    "marketUniqueId": 113392062,
-                    "closeTime": "2025-04-07T23:40:00.000Z",
-                    "bettingStatus": "Suspended",
-                    "message": null,
-                    "informationMessage": null,
-                    "isFuture": false,
-                    "onlineBetting": false,
-                    "phoneBettingOnly": true,
-                    "inPlay": true,
-                    "goingInPlay": false,
-                    "allowWin": true,
-                    "allowPlace": false,
-                    "allowEachWay": false,
-                    "allowMulti": true,
-                    "allowMultiWin": true,
-                    "allowMultiPlace": false,
-                    "allowMultiEachWay": false,
-                    "numberOfPlaces": 0,
-                    "cashOutEligibility": "Enabled",
-                    "allowBundle": false,
-                    "propositions": [
-                        {
-                            "id": "861680",
-                            "name": "Miami",
-                            "returnWin": 1.01,
-                            "returnPlace": 0,
-                            "differential": null,
-                            "bettingStatus": "Suspended",
-                            "allowPlace": false,
-                            "number": 861680,
-                            "isOpen": false,
-                            "sortOrder": 1,
-                            "position": "HOME"
-                        },
-                        {
-                            "id": "861681",
-                            "name": "Philadelphia",
-                            "returnWin": 26,
-                            "returnPlace": 0,
-                            "differential": null,
-                            "bettingStatus": "Suspended",
-                            "allowPlace": false,
-                            "number": 861681,
-                            "isOpen": false,
-                            "sortOrder": 2,
-                            "position": "AWAY"
-                        }
-                    ]
-                },
-                {
-                    "id": "113513214",
-                    "name": "NBA Mia-Phi ExtrLine -12.5",
-                    "shortName": "NBA Mia-Phi ExtrLine -12.5",
-                    "betOption": "Extra Line",
-                    "betOptionSpectrumId": "464",
-                    "betOptionPriority": 1305,
-                    "marketUniqueId": 113513214,
-                    "closeTime": "2025-04-07T23:40:00.000Z",
-                    "bettingStatus": "Suspended",
-                    "message": null,
-                    "informationMessage": null,
-                    "isFuture": false,
-                    "onlineBetting": false,
-                    "phoneBettingOnly": true,
-                    "inPlay": true,
-                    "goingInPlay": false,
-                    "allowWin": true,
-                    "allowPlace": false,
-                    "allowEachWay": false,
-                    "allowMulti": true,
-                    "allowMultiWin": true,
-                    "allowMultiPlace": false,
-                    "allowMultiEachWay": false,
-                    "numberOfPlaces": 0,
-                    "cashOutEligibility": "Disabled",
-                    "allowBundle": false,
-                    "propositions": [
-                        {
-                            "id": "559721",
-                            "name": "Miami -12.5",
-                            "returnWin": 1.57,
-                            "returnPlace": 0,
-                            "differential": null,
-                            "bettingStatus": "Suspended",
-                            "allowPlace": false,
-                            "number": 559721,
-                            "isOpen": false,
-                            "sortOrder": 1,
-                            "line": "-12.5"
-                        },
-                        {
-                            "id": "559722",
-                            "name": "Philadelphia +12.5",
-                            "returnWin": 2.2,
-                            "returnPlace": 0,
-                            "differential": null,
-                            "bettingStatus": "Suspended",
-                            "allowPlace": false,
-                            "number": 559722,
-                            "isOpen": false,
-                            "sortOrder": 2,
-                            "line": "+12.5"
-                        }
-                    ]
-                },
-                {
-                    "id": "113521093",
-                    "name": "NBA Mia-Phi Tyler Herro PlrPts",
-                    "shortName": "NBA Mia-Phi Tyler Herro Pts",
-                    "betOption": "Player Points Live",
-                    "betOptionSpectrumId": "1933",
-                    "betOptionPriority": 2650,
-                    "marketUniqueId": 113521093,
-                    "closeTime": "2025-04-07T23:40:00.000Z",
-                    "bettingStatus": "Suspended",
-                    "message": null,
-                    "informationMessage": null,
-                    "isFuture": false,
-                    "onlineBetting": false,
-                    "phoneBettingOnly": true,
-                    "inPlay": true,
-                    "goingInPlay": false,
-                    "allowWin": true,
-                    "allowPlace": false,
-                    "allowEachWay": false,
-                    "allowMulti": true,
-                    "allowMultiWin": true,
-                    "allowMultiPlace": false,
-                    "allowMultiEachWay": false,
-                    "numberOfPlaces": 0,
-                    "cashOutEligibility": "Disabled",
-                    "allowBundle": false,
-                    "propositions": [
-                        {
-                            "id": "565657",
-                            "name": "Tyler Herro Over 19.5",
-                            "returnWin": 1.6,
-                            "returnPlace": 0,
-                            "differential": null,
-                            "bettingStatus": "Suspended",
-                            "allowPlace": false,
-                            "number": 565657,
-                            "isOpen": false,
-                            "sortOrder": 35
-                        },
-                        {
-                            "id": "565658",
-                            "name": "Tyler Herro Under 19.5",
-                            "returnWin": 2.25,
-                            "returnPlace": 0,
-                            "differential": null,
-                            "bettingStatus": "Suspended",
-                            "allowPlace": false,
-                            "number": 565658,
-                            "isOpen": false,
-                            "sortOrder": 36
-                        }
-                    ]
-                }
-            ],
-            "inPlay": true,
-            "goingInPlay": false
-        },
-        {
             "id": "ChavMem",
             "name": "Charlotte v Memphis",
             "spectrumId": "ChavMem",
@@ -33443,7 +33199,8 @@
                             "allowPlace": false,
                             "number": 668651,
                             "isOpen": true,
-                            "sortOrder": 9
+                            "sortOrder": 9,
+                            "sameGame": true
                         },
                         {
                             "id": "668652",
@@ -33455,7 +33212,8 @@
                             "allowPlace": false,
                             "number": 668652,
                             "isOpen": true,
-                            "sortOrder": 10
+                            "sortOrder": 10,
+                            "sameGame": true
                         },
                         {
                             "id": "668653",
@@ -42939,7 +42697,7 @@
                         {
                             "id": "638820",
                             "name": "LA Clippers",
-                            "returnWin": 1.13,
+                            "returnWin": 1.14,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -42947,12 +42705,13 @@
                             "number": 638820,
                             "isOpen": true,
                             "sortOrder": 1,
-                            "position": "HOME"
+                            "position": "HOME",
+                            "sameGame": true
                         },
                         {
                             "id": "638825",
                             "name": "San Antonio",
-                            "returnWin": 6.5,
+                            "returnWin": 6,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -42960,9 +42719,12 @@
                             "number": 638825,
                             "isOpen": true,
                             "sortOrder": 2,
-                            "position": "AWAY"
+                            "position": "AWAY",
+                            "sameGame": true
                         }
-                    ]
+                    ],
+                    "sameGame": true,
+                    "sameGameMultipleSelections": false
                 },
                 {
                     "id": "113534047",
@@ -43003,7 +42765,8 @@
                             "number": 572636,
                             "isOpen": true,
                             "sortOrder": 1,
-                            "line": "-12.5"
+                            "line": "-12.5",
+                            "sameGame": true
                         },
                         {
                             "id": "572637",
@@ -43016,9 +42779,12 @@
                             "number": 572637,
                             "isOpen": true,
                             "sortOrder": 2,
-                            "line": "+12.5"
+                            "line": "+12.5",
+                            "sameGame": true
                         }
-                    ]
+                    ],
+                    "sameGame": true,
+                    "sameGameMultipleSelections": false
                 },
                 {
                     "id": "113530615",
@@ -43058,19 +42824,21 @@
                             "allowPlace": false,
                             "number": 571451,
                             "isOpen": true,
-                            "sortOrder": 1
+                            "sortOrder": 1,
+                            "sameGame": true
                         },
                         {
                             "id": "571452",
                             "name": "LA Clippers by 1-10",
-                            "returnWin": 2.8,
+                            "returnWin": 2.9,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
                             "number": 571452,
                             "isOpen": true,
-                            "sortOrder": 2
+                            "sortOrder": 2,
+                            "sameGame": true
                         },
                         {
                             "id": "571453",
@@ -43082,7 +42850,8 @@
                             "allowPlace": false,
                             "number": 571453,
                             "isOpen": true,
-                            "sortOrder": 3
+                            "sortOrder": 3,
+                            "sameGame": true
                         },
                         {
                             "id": "571454",
@@ -43094,9 +42863,12 @@
                             "allowPlace": false,
                             "number": 571454,
                             "isOpen": true,
-                            "sortOrder": 4
+                            "sortOrder": 4,
+                            "sameGame": true
                         }
-                    ]
+                    ],
+                    "sameGame": true,
+                    "sameGameMultipleSelections": false
                 },
                 {
                     "id": "113530626",
@@ -43136,19 +42908,21 @@
                             "allowPlace": false,
                             "number": 571330,
                             "isOpen": true,
-                            "sortOrder": 1
+                            "sortOrder": 1,
+                            "sameGame": true
                         },
                         {
                             "id": "571331",
                             "name": "Either Team By 6 or Less",
-                            "returnWin": 3.5,
+                            "returnWin": 3.6,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
                             "number": 571331,
                             "isOpen": true,
-                            "sortOrder": 2
+                            "sortOrder": 2,
+                            "sameGame": true
                         },
                         {
                             "id": "571332",
@@ -43160,9 +42934,12 @@
                             "allowPlace": false,
                             "number": 571332,
                             "isOpen": true,
-                            "sortOrder": 3
+                            "sortOrder": 3,
+                            "sameGame": true
                         }
-                    ]
+                    ],
+                    "sameGame": true,
+                    "sameGameMultipleSelections": false
                 },
                 {
                     "id": "113530617",
@@ -43202,7 +42979,8 @@
                             "allowPlace": false,
                             "number": 571371,
                             "isOpen": true,
-                            "sortOrder": 25
+                            "sortOrder": 25,
+                            "sameGame": true
                         },
                         {
                             "id": "571372",
@@ -43214,7 +42992,8 @@
                             "allowPlace": false,
                             "number": 571372,
                             "isOpen": true,
-                            "sortOrder": 26
+                            "sortOrder": 26,
+                            "sameGame": true
                         },
                         {
                             "id": "571373",
@@ -43226,7 +43005,8 @@
                             "allowPlace": false,
                             "number": 571373,
                             "isOpen": true,
-                            "sortOrder": 27
+                            "sortOrder": 27,
+                            "sameGame": true
                         },
                         {
                             "id": "571374",
@@ -43238,7 +43018,8 @@
                             "allowPlace": false,
                             "number": 571374,
                             "isOpen": true,
-                            "sortOrder": 28
+                            "sortOrder": 28,
+                            "sameGame": true
                         },
                         {
                             "id": "571375",
@@ -43250,7 +43031,8 @@
                             "allowPlace": false,
                             "number": 571375,
                             "isOpen": true,
-                            "sortOrder": 29
+                            "sortOrder": 29,
+                            "sameGame": true
                         },
                         {
                             "id": "571376",
@@ -43262,7 +43044,8 @@
                             "allowPlace": false,
                             "number": 571376,
                             "isOpen": true,
-                            "sortOrder": 30
+                            "sortOrder": 30,
+                            "sameGame": true
                         },
                         {
                             "id": "571377",
@@ -43274,7 +43057,8 @@
                             "allowPlace": false,
                             "number": 571377,
                             "isOpen": true,
-                            "sortOrder": 31
+                            "sortOrder": 31,
+                            "sameGame": true
                         },
                         {
                             "id": "571378",
@@ -43286,7 +43070,8 @@
                             "allowPlace": false,
                             "number": 571378,
                             "isOpen": true,
-                            "sortOrder": 32
+                            "sortOrder": 32,
+                            "sameGame": true
                         },
                         {
                             "id": "571379",
@@ -43298,7 +43083,8 @@
                             "allowPlace": false,
                             "number": 571379,
                             "isOpen": true,
-                            "sortOrder": 33
+                            "sortOrder": 33,
+                            "sameGame": true
                         },
                         {
                             "id": "571380",
@@ -43310,7 +43096,8 @@
                             "allowPlace": false,
                             "number": 571380,
                             "isOpen": true,
-                            "sortOrder": 34
+                            "sortOrder": 34,
+                            "sameGame": true
                         },
                         {
                             "id": "571381",
@@ -43322,7 +43109,8 @@
                             "allowPlace": false,
                             "number": 571381,
                             "isOpen": true,
-                            "sortOrder": 35
+                            "sortOrder": 35,
+                            "sameGame": true
                         },
                         {
                             "id": "571382",
@@ -43334,7 +43122,8 @@
                             "allowPlace": false,
                             "number": 571382,
                             "isOpen": true,
-                            "sortOrder": 36
+                            "sortOrder": 36,
+                            "sameGame": true
                         },
                         {
                             "id": "571383",
@@ -43346,7 +43135,8 @@
                             "allowPlace": false,
                             "number": 571383,
                             "isOpen": true,
-                            "sortOrder": 37
+                            "sortOrder": 37,
+                            "sameGame": true
                         },
                         {
                             "id": "571384",
@@ -43358,7 +43148,8 @@
                             "allowPlace": false,
                             "number": 571384,
                             "isOpen": true,
-                            "sortOrder": 38
+                            "sortOrder": 38,
+                            "sameGame": true
                         },
                         {
                             "id": "571385",
@@ -43370,7 +43161,8 @@
                             "allowPlace": false,
                             "number": 571385,
                             "isOpen": true,
-                            "sortOrder": 39
+                            "sortOrder": 39,
+                            "sameGame": true
                         },
                         {
                             "id": "571386",
@@ -43382,7 +43174,8 @@
                             "allowPlace": false,
                             "number": 571386,
                             "isOpen": true,
-                            "sortOrder": 40
+                            "sortOrder": 40,
+                            "sameGame": true
                         },
                         {
                             "id": "571387",
@@ -43394,7 +43187,8 @@
                             "allowPlace": false,
                             "number": 571387,
                             "isOpen": true,
-                            "sortOrder": 41
+                            "sortOrder": 41,
+                            "sameGame": true
                         },
                         {
                             "id": "571388",
@@ -43406,7 +43200,8 @@
                             "allowPlace": false,
                             "number": 571388,
                             "isOpen": true,
-                            "sortOrder": 42
+                            "sortOrder": 42,
+                            "sameGame": true
                         },
                         {
                             "id": "571389",
@@ -43418,7 +43213,8 @@
                             "allowPlace": false,
                             "number": 571389,
                             "isOpen": true,
-                            "sortOrder": 43
+                            "sortOrder": 43,
+                            "sameGame": true
                         },
                         {
                             "id": "571390",
@@ -43430,7 +43226,8 @@
                             "allowPlace": false,
                             "number": 571390,
                             "isOpen": true,
-                            "sortOrder": 44
+                            "sortOrder": 44,
+                            "sameGame": true
                         },
                         {
                             "id": "571391",
@@ -43442,7 +43239,8 @@
                             "allowPlace": false,
                             "number": 571391,
                             "isOpen": true,
-                            "sortOrder": 45
+                            "sortOrder": 45,
+                            "sameGame": true
                         },
                         {
                             "id": "571392",
@@ -43454,7 +43252,8 @@
                             "allowPlace": false,
                             "number": 571392,
                             "isOpen": true,
-                            "sortOrder": 46
+                            "sortOrder": 46,
+                            "sameGame": true
                         },
                         {
                             "id": "571393",
@@ -43466,7 +43265,8 @@
                             "allowPlace": false,
                             "number": 571393,
                             "isOpen": true,
-                            "sortOrder": 47
+                            "sortOrder": 47,
+                            "sameGame": true
                         },
                         {
                             "id": "571394",
@@ -43478,7 +43278,8 @@
                             "allowPlace": false,
                             "number": 571394,
                             "isOpen": true,
-                            "sortOrder": 48
+                            "sortOrder": 48,
+                            "sameGame": true
                         },
                         {
                             "id": "571395",
@@ -43490,7 +43291,8 @@
                             "allowPlace": false,
                             "number": 571395,
                             "isOpen": true,
-                            "sortOrder": 49
+                            "sortOrder": 49,
+                            "sameGame": true
                         },
                         {
                             "id": "571396",
@@ -43502,7 +43304,8 @@
                             "allowPlace": false,
                             "number": 571396,
                             "isOpen": true,
-                            "sortOrder": 50
+                            "sortOrder": 50,
+                            "sameGame": true
                         },
                         {
                             "id": "571397",
@@ -43514,7 +43317,8 @@
                             "allowPlace": false,
                             "number": 571397,
                             "isOpen": true,
-                            "sortOrder": 51
+                            "sortOrder": 51,
+                            "sameGame": true
                         },
                         {
                             "id": "571398",
@@ -43526,7 +43330,8 @@
                             "allowPlace": false,
                             "number": 571398,
                             "isOpen": true,
-                            "sortOrder": 52
+                            "sortOrder": 52,
+                            "sameGame": true
                         },
                         {
                             "id": "571399",
@@ -43538,7 +43343,8 @@
                             "allowPlace": false,
                             "number": 571399,
                             "isOpen": true,
-                            "sortOrder": 53
+                            "sortOrder": 53,
+                            "sameGame": true
                         },
                         {
                             "id": "571400",
@@ -43550,7 +43356,8 @@
                             "allowPlace": false,
                             "number": 571400,
                             "isOpen": true,
-                            "sortOrder": 54
+                            "sortOrder": 54,
+                            "sameGame": true
                         },
                         {
                             "id": "571401",
@@ -43562,7 +43369,8 @@
                             "allowPlace": false,
                             "number": 571401,
                             "isOpen": true,
-                            "sortOrder": 55
+                            "sortOrder": 55,
+                            "sameGame": true
                         },
                         {
                             "id": "571402",
@@ -43574,7 +43382,8 @@
                             "allowPlace": false,
                             "number": 571402,
                             "isOpen": true,
-                            "sortOrder": 56
+                            "sortOrder": 56,
+                            "sameGame": true
                         },
                         {
                             "id": "571403",
@@ -43586,7 +43395,8 @@
                             "allowPlace": false,
                             "number": 571403,
                             "isOpen": true,
-                            "sortOrder": 57
+                            "sortOrder": 57,
+                            "sameGame": true
                         },
                         {
                             "id": "571404",
@@ -43598,7 +43408,8 @@
                             "allowPlace": false,
                             "number": 571404,
                             "isOpen": true,
-                            "sortOrder": 58
+                            "sortOrder": 58,
+                            "sameGame": true
                         },
                         {
                             "id": "571405",
@@ -43610,7 +43421,8 @@
                             "allowPlace": false,
                             "number": 571405,
                             "isOpen": true,
-                            "sortOrder": 59
+                            "sortOrder": 59,
+                            "sameGame": true
                         },
                         {
                             "id": "571406",
@@ -43622,7 +43434,8 @@
                             "allowPlace": false,
                             "number": 571406,
                             "isOpen": true,
-                            "sortOrder": 60
+                            "sortOrder": 60,
+                            "sameGame": true
                         },
                         {
                             "id": "571407",
@@ -43634,7 +43447,8 @@
                             "allowPlace": false,
                             "number": 571407,
                             "isOpen": true,
-                            "sortOrder": 61
+                            "sortOrder": 61,
+                            "sameGame": true
                         },
                         {
                             "id": "571408",
@@ -43646,7 +43460,8 @@
                             "allowPlace": false,
                             "number": 571408,
                             "isOpen": true,
-                            "sortOrder": 62
+                            "sortOrder": 62,
+                            "sameGame": true
                         },
                         {
                             "id": "571409",
@@ -43658,7 +43473,8 @@
                             "allowPlace": false,
                             "number": 571409,
                             "isOpen": true,
-                            "sortOrder": 63
+                            "sortOrder": 63,
+                            "sameGame": true
                         },
                         {
                             "id": "571410",
@@ -43670,7 +43486,8 @@
                             "allowPlace": false,
                             "number": 571410,
                             "isOpen": true,
-                            "sortOrder": 64
+                            "sortOrder": 64,
+                            "sameGame": true
                         },
                         {
                             "id": "571411",
@@ -43682,7 +43499,8 @@
                             "allowPlace": false,
                             "number": 571411,
                             "isOpen": true,
-                            "sortOrder": 65
+                            "sortOrder": 65,
+                            "sameGame": true
                         },
                         {
                             "id": "571412",
@@ -43694,7 +43512,8 @@
                             "allowPlace": false,
                             "number": 571412,
                             "isOpen": true,
-                            "sortOrder": 66
+                            "sortOrder": 66,
+                            "sameGame": true
                         },
                         {
                             "id": "571413",
@@ -43706,7 +43525,8 @@
                             "allowPlace": false,
                             "number": 571413,
                             "isOpen": true,
-                            "sortOrder": 67
+                            "sortOrder": 67,
+                            "sameGame": true
                         },
                         {
                             "id": "571414",
@@ -43718,7 +43538,8 @@
                             "allowPlace": false,
                             "number": 571414,
                             "isOpen": true,
-                            "sortOrder": 68
+                            "sortOrder": 68,
+                            "sameGame": true
                         },
                         {
                             "id": "571415",
@@ -43730,7 +43551,8 @@
                             "allowPlace": false,
                             "number": 571415,
                             "isOpen": true,
-                            "sortOrder": 69
+                            "sortOrder": 69,
+                            "sameGame": true
                         },
                         {
                             "id": "571416",
@@ -43742,7 +43564,8 @@
                             "allowPlace": false,
                             "number": 571416,
                             "isOpen": true,
-                            "sortOrder": 70
+                            "sortOrder": 70,
+                            "sameGame": true
                         },
                         {
                             "id": "571417",
@@ -43754,7 +43577,8 @@
                             "allowPlace": false,
                             "number": 571417,
                             "isOpen": true,
-                            "sortOrder": 71
+                            "sortOrder": 71,
+                            "sameGame": true
                         },
                         {
                             "id": "571418",
@@ -43766,7 +43590,8 @@
                             "allowPlace": false,
                             "number": 571418,
                             "isOpen": true,
-                            "sortOrder": 72
+                            "sortOrder": 72,
+                            "sameGame": true
                         },
                         {
                             "id": "571419",
@@ -43778,7 +43603,8 @@
                             "allowPlace": false,
                             "number": 571419,
                             "isOpen": true,
-                            "sortOrder": 73
+                            "sortOrder": 73,
+                            "sameGame": true
                         },
                         {
                             "id": "571420",
@@ -43790,7 +43616,8 @@
                             "allowPlace": false,
                             "number": 571420,
                             "isOpen": true,
-                            "sortOrder": 74
+                            "sortOrder": 74,
+                            "sameGame": true
                         },
                         {
                             "id": "571421",
@@ -43802,7 +43629,8 @@
                             "allowPlace": false,
                             "number": 571421,
                             "isOpen": true,
-                            "sortOrder": 75
+                            "sortOrder": 75,
+                            "sameGame": true
                         },
                         {
                             "id": "571422",
@@ -43814,9 +43642,12 @@
                             "allowPlace": false,
                             "number": 571422,
                             "isOpen": true,
-                            "sortOrder": 76
+                            "sortOrder": 76,
+                            "sameGame": true
                         }
-                    ]
+                    ],
+                    "sameGame": true,
+                    "sameGameMultipleSelections": false
                 },
                 {
                     "id": "113530608",
@@ -43849,14 +43680,15 @@
                         {
                             "id": "571307",
                             "name": "LAClippers / LAClippers",
-                            "returnWin": 1.28,
+                            "returnWin": 1.3,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
                             "number": 571307,
                             "isOpen": true,
-                            "sortOrder": 1
+                            "sortOrder": 1,
+                            "sameGame": true
                         },
                         {
                             "id": "571308",
@@ -43868,7 +43700,8 @@
                             "allowPlace": false,
                             "number": 571308,
                             "isOpen": true,
-                            "sortOrder": 2
+                            "sortOrder": 2,
+                            "sameGame": true
                         },
                         {
                             "id": "571309",
@@ -43880,7 +43713,8 @@
                             "allowPlace": false,
                             "number": 571309,
                             "isOpen": true,
-                            "sortOrder": 3
+                            "sortOrder": 3,
+                            "sameGame": true
                         },
                         {
                             "id": "571310",
@@ -43892,7 +43726,8 @@
                             "allowPlace": false,
                             "number": 571310,
                             "isOpen": true,
-                            "sortOrder": 4
+                            "sortOrder": 4,
+                            "sameGame": true
                         },
                         {
                             "id": "571311",
@@ -43904,7 +43739,8 @@
                             "allowPlace": false,
                             "number": 571311,
                             "isOpen": true,
-                            "sortOrder": 5
+                            "sortOrder": 5,
+                            "sameGame": true
                         },
                         {
                             "id": "571312",
@@ -43916,9 +43752,12 @@
                             "allowPlace": false,
                             "number": 571312,
                             "isOpen": true,
-                            "sortOrder": 6
+                            "sortOrder": 6,
+                            "sameGame": true
                         }
-                    ]
+                    ],
+                    "sameGame": true,
+                    "sameGameMultipleSelections": false
                 },
                 {
                     "id": "113530628",
@@ -43958,7 +43797,8 @@
                             "allowPlace": false,
                             "number": 571316,
                             "isOpen": true,
-                            "sortOrder": 1
+                            "sortOrder": 1,
+                            "sameGame": true
                         },
                         {
                             "id": "571317",
@@ -43970,31 +43810,34 @@
                             "allowPlace": false,
                             "number": 571317,
                             "isOpen": true,
-                            "sortOrder": 2
+                            "sortOrder": 2,
+                            "sameGame": true
                         },
                         {
                             "id": "571318",
                             "name": "LACliprs by 17-20",
-                            "returnWin": 6,
+                            "returnWin": 6.5,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
                             "number": 571318,
                             "isOpen": true,
-                            "sortOrder": 3
+                            "sortOrder": 3,
+                            "sameGame": true
                         },
                         {
                             "id": "571319",
                             "name": "LACliprs by 13-16",
-                            "returnWin": 5.5,
+                            "returnWin": 6,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
                             "number": 571319,
                             "isOpen": true,
-                            "sortOrder": 4
+                            "sortOrder": 4,
+                            "sameGame": true
                         },
                         {
                             "id": "571320",
@@ -44006,31 +43849,34 @@
                             "allowPlace": false,
                             "number": 571320,
                             "isOpen": true,
-                            "sortOrder": 5
+                            "sortOrder": 5,
+                            "sameGame": true
                         },
                         {
                             "id": "571321",
                             "name": "LACliprs by 5-8",
-                            "returnWin": 4.8,
+                            "returnWin": 5,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
                             "number": 571321,
                             "isOpen": true,
-                            "sortOrder": 6
+                            "sortOrder": 6,
+                            "sameGame": true
                         },
                         {
                             "id": "571322",
                             "name": "LACliprs by 1-4",
-                            "returnWin": 6.5,
+                            "returnWin": 7,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
                             "number": 571322,
                             "isOpen": true,
-                            "sortOrder": 7
+                            "sortOrder": 7,
+                            "sameGame": true
                         },
                         {
                             "id": "571323",
@@ -44042,31 +43888,34 @@
                             "allowPlace": false,
                             "number": 571323,
                             "isOpen": true,
-                            "sortOrder": 8
+                            "sortOrder": 8,
+                            "sameGame": true
                         },
                         {
                             "id": "571324",
                             "name": "SnAntnio by 5-8",
-                            "returnWin": 16,
+                            "returnWin": 17,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
                             "number": 571324,
                             "isOpen": true,
-                            "sortOrder": 9
+                            "sortOrder": 9,
+                            "sameGame": true
                         },
                         {
                             "id": "571325",
                             "name": "SnAntnio by 9-12",
-                            "returnWin": 31,
+                            "returnWin": 34,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
                             "number": 571325,
                             "isOpen": true,
-                            "sortOrder": 10
+                            "sortOrder": 10,
+                            "sameGame": true
                         },
                         {
                             "id": "571326",
@@ -44078,19 +43927,21 @@
                             "allowPlace": false,
                             "number": 571326,
                             "isOpen": true,
-                            "sortOrder": 11
+                            "sortOrder": 11,
+                            "sameGame": true
                         },
                         {
                             "id": "571327",
                             "name": "SnAntnio by 17-20",
-                            "returnWin": 101,
+                            "returnWin": 151,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
                             "number": 571327,
                             "isOpen": true,
-                            "sortOrder": 12
+                            "sortOrder": 12,
+                            "sameGame": true
                         },
                         {
                             "id": "571328",
@@ -44102,7 +43953,8 @@
                             "allowPlace": false,
                             "number": 571328,
                             "isOpen": true,
-                            "sortOrder": 13
+                            "sortOrder": 13,
+                            "sameGame": true
                         },
                         {
                             "id": "571329",
@@ -44114,9 +43966,12 @@
                             "allowPlace": false,
                             "number": 571329,
                             "isOpen": true,
-                            "sortOrder": 14
+                            "sortOrder": 14,
+                            "sameGame": true
                         }
-                    ]
+                    ],
+                    "sameGame": true,
+                    "sameGameMultipleSelections": false
                 },
                 {
                     "id": "113530620",
@@ -44156,7 +44011,8 @@
                             "allowPlace": false,
                             "number": 571313,
                             "isOpen": true,
-                            "sortOrder": 1
+                            "sortOrder": 1,
+                            "sameGame": true
                         },
                         {
                             "id": "571314",
@@ -44168,7 +44024,8 @@
                             "allowPlace": false,
                             "number": 571314,
                             "isOpen": true,
-                            "sortOrder": 2
+                            "sortOrder": 2,
+                            "sameGame": true
                         },
                         {
                             "id": "571315",
@@ -44180,9 +44037,12 @@
                             "allowPlace": false,
                             "number": 571315,
                             "isOpen": true,
-                            "sortOrder": 3
+                            "sortOrder": 3,
+                            "sameGame": true
                         }
-                    ]
+                    ],
+                    "sameGame": true,
+                    "sameGameMultipleSelections": false
                 },
                 {
                     "id": "113530619",
@@ -44222,7 +44082,8 @@
                             "allowPlace": false,
                             "number": 571279,
                             "isOpen": true,
-                            "sortOrder": 1
+                            "sortOrder": 1,
+                            "sameGame": true
                         },
                         {
                             "id": "571280",
@@ -44234,19 +44095,21 @@
                             "allowPlace": false,
                             "number": 571280,
                             "isOpen": true,
-                            "sortOrder": 2
+                            "sortOrder": 2,
+                            "sameGame": true
                         },
                         {
                             "id": "571281",
                             "name": "LAClippers by 33-36",
-                            "returnWin": 15,
+                            "returnWin": 16,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
                             "number": 571281,
                             "isOpen": true,
-                            "sortOrder": 3
+                            "sortOrder": 3,
+                            "sameGame": true
                         },
                         {
                             "id": "571282",
@@ -44258,19 +44121,21 @@
                             "allowPlace": false,
                             "number": 571282,
                             "isOpen": true,
-                            "sortOrder": 4
+                            "sortOrder": 4,
+                            "sameGame": true
                         },
                         {
                             "id": "571283",
                             "name": "LAClippers by 25-28",
-                            "returnWin": 8,
+                            "returnWin": 8.5,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
                             "number": 571283,
                             "isOpen": true,
-                            "sortOrder": 5
+                            "sortOrder": 5,
+                            "sameGame": true
                         },
                         {
                             "id": "571284",
@@ -44282,67 +44147,73 @@
                             "allowPlace": false,
                             "number": 571284,
                             "isOpen": true,
-                            "sortOrder": 6
+                            "sortOrder": 6,
+                            "sameGame": true
                         },
                         {
                             "id": "571285",
                             "name": "LAClippers by 17-20",
-                            "returnWin": 6,
+                            "returnWin": 6.5,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
                             "number": 571285,
                             "isOpen": true,
-                            "sortOrder": 7
+                            "sortOrder": 7,
+                            "sameGame": true
                         },
                         {
                             "id": "571286",
                             "name": "LAClippers by 13-16",
-                            "returnWin": 5.5,
+                            "returnWin": 6,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
                             "number": 571286,
                             "isOpen": true,
-                            "sortOrder": 8
+                            "sortOrder": 8,
+                            "sameGame": true
                         },
                         {
                             "id": "571287",
                             "name": "LAClippers by 9-12",
-                            "returnWin": 5,
+                            "returnWin": 5.5,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
                             "number": 571287,
                             "isOpen": true,
-                            "sortOrder": 9
+                            "sortOrder": 9,
+                            "sameGame": true
                         },
                         {
                             "id": "571288",
                             "name": "LAClippers by 5-8",
-                            "returnWin": 5,
+                            "returnWin": 5.5,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
                             "number": 571288,
                             "isOpen": true,
-                            "sortOrder": 10
+                            "sortOrder": 10,
+                            "sameGame": true
                         },
                         {
                             "id": "571289",
                             "name": "LAClippers by 1-4",
-                            "returnWin": 7,
+                            "returnWin": 7.5,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
                             "number": 571289,
                             "isOpen": true,
-                            "sortOrder": 11
+                            "sortOrder": 11,
+                            "sameGame": true
                         },
                         {
                             "id": "571290",
@@ -44354,43 +44225,47 @@
                             "allowPlace": false,
                             "number": 571290,
                             "isOpen": true,
-                            "sortOrder": 12
+                            "sortOrder": 12,
+                            "sameGame": true
                         },
                         {
                             "id": "571291",
                             "name": "San Antonio by 1-4",
-                            "returnWin": 11,
+                            "returnWin": 12,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
                             "number": 571291,
                             "isOpen": true,
-                            "sortOrder": 13
+                            "sortOrder": 13,
+                            "sameGame": true
                         },
                         {
                             "id": "571292",
                             "name": "San Antonio by 5-8",
-                            "returnWin": 13,
+                            "returnWin": 14,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
                             "number": 571292,
                             "isOpen": true,
-                            "sortOrder": 14
+                            "sortOrder": 14,
+                            "sameGame": true
                         },
                         {
                             "id": "571293",
                             "name": "San Antonio by 9-12",
-                            "returnWin": 21,
+                            "returnWin": 23,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
                             "number": 571293,
                             "isOpen": true,
-                            "sortOrder": 15
+                            "sortOrder": 15,
+                            "sameGame": true
                         },
                         {
                             "id": "571294",
@@ -44402,7 +44277,8 @@
                             "allowPlace": false,
                             "number": 571294,
                             "isOpen": true,
-                            "sortOrder": 16
+                            "sortOrder": 16,
+                            "sameGame": true
                         },
                         {
                             "id": "571295",
@@ -44414,7 +44290,8 @@
                             "allowPlace": false,
                             "number": 571295,
                             "isOpen": true,
-                            "sortOrder": 17
+                            "sortOrder": 17,
+                            "sameGame": true
                         },
                         {
                             "id": "571296",
@@ -44426,7 +44303,8 @@
                             "allowPlace": false,
                             "number": 571296,
                             "isOpen": true,
-                            "sortOrder": 18
+                            "sortOrder": 18,
+                            "sameGame": true
                         },
                         {
                             "id": "571297",
@@ -44438,7 +44316,8 @@
                             "allowPlace": false,
                             "number": 571297,
                             "isOpen": true,
-                            "sortOrder": 19
+                            "sortOrder": 19,
+                            "sameGame": true
                         },
                         {
                             "id": "571298",
@@ -44450,7 +44329,8 @@
                             "allowPlace": false,
                             "number": 571298,
                             "isOpen": true,
-                            "sortOrder": 20
+                            "sortOrder": 20,
+                            "sameGame": true
                         },
                         {
                             "id": "571299",
@@ -44462,7 +44342,8 @@
                             "allowPlace": false,
                             "number": 571299,
                             "isOpen": true,
-                            "sortOrder": 21
+                            "sortOrder": 21,
+                            "sameGame": true
                         },
                         {
                             "id": "571300",
@@ -44474,7 +44355,8 @@
                             "allowPlace": false,
                             "number": 571300,
                             "isOpen": true,
-                            "sortOrder": 22
+                            "sortOrder": 22,
+                            "sameGame": true
                         },
                         {
                             "id": "571301",
@@ -44486,9 +44368,12 @@
                             "allowPlace": false,
                             "number": 571301,
                             "isOpen": true,
-                            "sortOrder": 23
+                            "sortOrder": 23,
+                            "sameGame": true
                         }
-                    ]
+                    ],
+                    "sameGame": true,
+                    "sameGameMultipleSelections": false
                 },
                 {
                     "id": "113530607",
@@ -44528,151 +44413,164 @@
                             "allowPlace": false,
                             "number": 571468,
                             "isOpen": true,
-                            "sortOrder": 1
+                            "sortOrder": 1,
+                            "sameGame": true
                         },
                         {
                             "id": "571469",
                             "name": "LA Clippers by 20",
-                            "returnWin": 19,
+                            "returnWin": 21,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
                             "number": 571469,
                             "isOpen": true,
-                            "sortOrder": 2
+                            "sortOrder": 2,
+                            "sameGame": true
                         },
                         {
                             "id": "571470",
                             "name": "LA Clippers by 19",
-                            "returnWin": 18,
+                            "returnWin": 19,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
                             "number": 571470,
                             "isOpen": true,
-                            "sortOrder": 3
+                            "sortOrder": 3,
+                            "sameGame": true
                         },
                         {
                             "id": "571471",
                             "name": "LA Clippers by 18",
-                            "returnWin": 18,
+                            "returnWin": 19,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
                             "number": 571471,
                             "isOpen": true,
-                            "sortOrder": 4
+                            "sortOrder": 4,
+                            "sameGame": true
                         },
                         {
                             "id": "571472",
                             "name": "LA Clippers by 17",
-                            "returnWin": 17,
+                            "returnWin": 19,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
                             "number": 571472,
                             "isOpen": true,
-                            "sortOrder": 5
+                            "sortOrder": 5,
+                            "sameGame": true
                         },
                         {
                             "id": "571473",
                             "name": "LA Clippers by 16",
-                            "returnWin": 17,
+                            "returnWin": 18,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
                             "number": 571473,
                             "isOpen": true,
-                            "sortOrder": 6
+                            "sortOrder": 6,
+                            "sameGame": true
                         },
                         {
                             "id": "571474",
                             "name": "LA Clippers by 15",
-                            "returnWin": 17,
+                            "returnWin": 18,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
                             "number": 571474,
                             "isOpen": true,
-                            "sortOrder": 7
+                            "sortOrder": 7,
+                            "sameGame": true
                         },
                         {
                             "id": "571475",
                             "name": "LA Clippers by 14",
-                            "returnWin": 17,
+                            "returnWin": 18,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
                             "number": 571475,
                             "isOpen": true,
-                            "sortOrder": 8
+                            "sortOrder": 8,
+                            "sameGame": true
                         },
                         {
                             "id": "571476",
                             "name": "LA Clippers by 13",
-                            "returnWin": 17,
+                            "returnWin": 18,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
                             "number": 571476,
                             "isOpen": true,
-                            "sortOrder": 9
+                            "sortOrder": 9,
+                            "sameGame": true
                         },
                         {
                             "id": "571477",
                             "name": "LA Clippers by 12",
-                            "returnWin": 17,
+                            "returnWin": 18,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
                             "number": 571477,
                             "isOpen": true,
-                            "sortOrder": 10
+                            "sortOrder": 10,
+                            "sameGame": true
                         },
                         {
                             "id": "571478",
                             "name": "LA Clippers by 11",
-                            "returnWin": 14,
+                            "returnWin": 15,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
                             "number": 571478,
                             "isOpen": true,
-                            "sortOrder": 11
+                            "sortOrder": 11,
+                            "sameGame": true
                         },
                         {
                             "id": "571479",
                             "name": "LA Clippers by 10",
-                            "returnWin": 14,
+                            "returnWin": 15,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
                             "number": 571479,
                             "isOpen": true,
-                            "sortOrder": 12
+                            "sortOrder": 12,
+                            "sameGame": true
                         },
                         {
                             "id": "571480",
                             "name": "LA Clippers by 9",
-                            "returnWin": 14,
+                            "returnWin": 15,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
                             "number": 571480,
                             "isOpen": true,
-                            "sortOrder": 13
+                            "sortOrder": 13,
+                            "sameGame": true
                         },
                         {
                             "id": "571481",
@@ -44684,115 +44582,125 @@
                             "allowPlace": false,
                             "number": 571481,
                             "isOpen": true,
-                            "sortOrder": 14
+                            "sortOrder": 14,
+                            "sameGame": true
                         },
                         {
                             "id": "571482",
                             "name": "LA Clippers by 7",
-                            "returnWin": 13,
+                            "returnWin": 14,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
                             "number": 571482,
                             "isOpen": true,
-                            "sortOrder": 15
+                            "sortOrder": 15,
+                            "sameGame": true
                         },
                         {
                             "id": "571483",
                             "name": "LA Clippers by 6",
-                            "returnWin": 15,
+                            "returnWin": 16,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
                             "number": 571483,
                             "isOpen": true,
-                            "sortOrder": 16
+                            "sortOrder": 16,
+                            "sameGame": true
                         },
                         {
                             "id": "571484",
                             "name": "LA Clippers by 5",
-                            "returnWin": 15,
+                            "returnWin": 16,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
                             "number": 571484,
                             "isOpen": true,
-                            "sortOrder": 17
+                            "sortOrder": 17,
+                            "sameGame": true
                         },
                         {
                             "id": "571485",
                             "name": "LA Clippers by 4",
-                            "returnWin": 17,
+                            "returnWin": 18,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
                             "number": 571485,
                             "isOpen": true,
-                            "sortOrder": 18
+                            "sortOrder": 18,
+                            "sameGame": true
                         },
                         {
                             "id": "571486",
                             "name": "LA Clippers by 3",
-                            "returnWin": 18,
+                            "returnWin": 19,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
                             "number": 571486,
                             "isOpen": true,
-                            "sortOrder": 19
+                            "sortOrder": 19,
+                            "sameGame": true
                         },
                         {
                             "id": "571487",
                             "name": "LA Clippers by 2",
-                            "returnWin": 19,
+                            "returnWin": 21,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
                             "number": 571487,
                             "isOpen": true,
-                            "sortOrder": 20
+                            "sortOrder": 20,
+                            "sameGame": true
                         },
                         {
                             "id": "571488",
                             "name": "LA Clippers by 1",
-                            "returnWin": 26,
+                            "returnWin": 31,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
                             "number": 571488,
                             "isOpen": true,
-                            "sortOrder": 21
+                            "sortOrder": 21,
+                            "sameGame": true
                         },
                         {
                             "id": "571489",
                             "name": "San Antonio by 1",
-                            "returnWin": 34,
+                            "returnWin": 41,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
                             "number": 571489,
                             "isOpen": true,
-                            "sortOrder": 22
+                            "sortOrder": 22,
+                            "sameGame": true
                         },
                         {
                             "id": "571490",
                             "name": "San Antonio by 2",
-                            "returnWin": 31,
+                            "returnWin": 34,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
                             "number": 571490,
                             "isOpen": true,
-                            "sortOrder": 23
+                            "sortOrder": 23,
+                            "sameGame": true
                         },
                         {
                             "id": "571491",
@@ -44804,7 +44712,8 @@
                             "allowPlace": false,
                             "number": 571491,
                             "isOpen": true,
-                            "sortOrder": 24
+                            "sortOrder": 24,
+                            "sameGame": true
                         },
                         {
                             "id": "571492",
@@ -44816,7 +44725,8 @@
                             "allowPlace": false,
                             "number": 571492,
                             "isOpen": true,
-                            "sortOrder": 25
+                            "sortOrder": 25,
+                            "sameGame": true
                         },
                         {
                             "id": "571493",
@@ -44828,7 +44738,8 @@
                             "allowPlace": false,
                             "number": 571493,
                             "isOpen": true,
-                            "sortOrder": 26
+                            "sortOrder": 26,
+                            "sameGame": true
                         },
                         {
                             "id": "571494",
@@ -44840,7 +44751,8 @@
                             "allowPlace": false,
                             "number": 571494,
                             "isOpen": true,
-                            "sortOrder": 27
+                            "sortOrder": 27,
+                            "sameGame": true
                         },
                         {
                             "id": "571495",
@@ -44852,31 +44764,34 @@
                             "allowPlace": false,
                             "number": 571495,
                             "isOpen": true,
-                            "sortOrder": 28
+                            "sortOrder": 28,
+                            "sameGame": true
                         },
                         {
                             "id": "571496",
                             "name": "San Antonio by 8",
-                            "returnWin": 51,
+                            "returnWin": 67,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
                             "number": 571496,
                             "isOpen": true,
-                            "sortOrder": 29
+                            "sortOrder": 29,
+                            "sameGame": true
                         },
                         {
                             "id": "571497",
                             "name": "San Antonio by 9",
-                            "returnWin": 67,
+                            "returnWin": 81,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
                             "number": 571497,
                             "isOpen": true,
-                            "sortOrder": 30
+                            "sortOrder": 30,
+                            "sameGame": true
                         },
                         {
                             "id": "571498",
@@ -44888,7 +44803,8 @@
                             "allowPlace": false,
                             "number": 571498,
                             "isOpen": true,
-                            "sortOrder": 31
+                            "sortOrder": 31,
+                            "sameGame": true
                         },
                         {
                             "id": "571499",
@@ -44900,7 +44816,8 @@
                             "allowPlace": false,
                             "number": 571499,
                             "isOpen": true,
-                            "sortOrder": 32
+                            "sortOrder": 32,
+                            "sameGame": true
                         },
                         {
                             "id": "571500",
@@ -44912,7 +44829,8 @@
                             "allowPlace": false,
                             "number": 571500,
                             "isOpen": true,
-                            "sortOrder": 33
+                            "sortOrder": 33,
+                            "sameGame": true
                         },
                         {
                             "id": "571501",
@@ -44924,7 +44842,8 @@
                             "allowPlace": false,
                             "number": 571501,
                             "isOpen": true,
-                            "sortOrder": 34
+                            "sortOrder": 34,
+                            "sameGame": true
                         },
                         {
                             "id": "571502",
@@ -44936,7 +44855,8 @@
                             "allowPlace": false,
                             "number": 571502,
                             "isOpen": true,
-                            "sortOrder": 35
+                            "sortOrder": 35,
+                            "sameGame": true
                         },
                         {
                             "id": "571503",
@@ -44948,7 +44868,8 @@
                             "allowPlace": false,
                             "number": 571503,
                             "isOpen": true,
-                            "sortOrder": 36
+                            "sortOrder": 36,
+                            "sameGame": true
                         },
                         {
                             "id": "571504",
@@ -44960,7 +44881,8 @@
                             "allowPlace": false,
                             "number": 571504,
                             "isOpen": true,
-                            "sortOrder": 37
+                            "sortOrder": 37,
+                            "sameGame": true
                         },
                         {
                             "id": "571505",
@@ -44972,7 +44894,8 @@
                             "allowPlace": false,
                             "number": 571505,
                             "isOpen": true,
-                            "sortOrder": 38
+                            "sortOrder": 38,
+                            "sameGame": true
                         },
                         {
                             "id": "571506",
@@ -44984,7 +44907,8 @@
                             "allowPlace": false,
                             "number": 571506,
                             "isOpen": true,
-                            "sortOrder": 39
+                            "sortOrder": 39,
+                            "sameGame": true
                         },
                         {
                             "id": "571507",
@@ -44996,7 +44920,8 @@
                             "allowPlace": false,
                             "number": 571507,
                             "isOpen": true,
-                            "sortOrder": 40
+                            "sortOrder": 40,
+                            "sameGame": true
                         },
                         {
                             "id": "571508",
@@ -45008,7 +44933,8 @@
                             "allowPlace": false,
                             "number": 571508,
                             "isOpen": true,
-                            "sortOrder": 41
+                            "sortOrder": 41,
+                            "sameGame": true
                         },
                         {
                             "id": "571509",
@@ -45020,9 +44946,12 @@
                             "allowPlace": false,
                             "number": 571509,
                             "isOpen": true,
-                            "sortOrder": 42
+                            "sortOrder": 42,
+                            "sameGame": true
                         }
-                    ]
+                    ],
+                    "sameGame": true,
+                    "sameGameMultipleSelections": false
                 },
                 {
                     "id": "113530609",
@@ -45055,14 +44984,15 @@
                         {
                             "id": "571259",
                             "name": "LAC 7+ / LAC 11+",
-                            "returnWin": 2.05,
+                            "returnWin": 2.15,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
                             "number": 571259,
                             "isOpen": true,
-                            "sortOrder": 1
+                            "sortOrder": 1,
+                            "sameGame": true
                         },
                         {
                             "id": "571260",
@@ -45074,31 +45004,34 @@
                             "allowPlace": false,
                             "number": 571260,
                             "isOpen": true,
-                            "sortOrder": 2
+                            "sortOrder": 2,
+                            "sameGame": true
                         },
                         {
                             "id": "571261",
                             "name": "LAC 7+ / SAS 1-10",
-                            "returnWin": 41,
+                            "returnWin": 51,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
                             "number": 571261,
                             "isOpen": true,
-                            "sortOrder": 3
+                            "sortOrder": 3,
+                            "sameGame": true
                         },
                         {
                             "id": "571262",
                             "name": "LAC 7+ / SAS 11+",
-                            "returnWin": 251,
+                            "returnWin": 301,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
                             "number": 571262,
                             "isOpen": true,
-                            "sortOrder": 4
+                            "sortOrder": 4,
+                            "sameGame": true
                         },
                         {
                             "id": "571263",
@@ -45110,7 +45043,8 @@
                             "allowPlace": false,
                             "number": 571263,
                             "isOpen": true,
-                            "sortOrder": 5
+                            "sortOrder": 5,
+                            "sameGame": true
                         },
                         {
                             "id": "571264",
@@ -45122,7 +45056,8 @@
                             "allowPlace": false,
                             "number": 571264,
                             "isOpen": true,
-                            "sortOrder": 6
+                            "sortOrder": 6,
+                            "sameGame": true
                         },
                         {
                             "id": "571265",
@@ -45134,7 +45069,8 @@
                             "allowPlace": false,
                             "number": 571265,
                             "isOpen": true,
-                            "sortOrder": 7
+                            "sortOrder": 7,
+                            "sameGame": true
                         },
                         {
                             "id": "571266",
@@ -45146,7 +45082,8 @@
                             "allowPlace": false,
                             "number": 571266,
                             "isOpen": true,
-                            "sortOrder": 8
+                            "sortOrder": 8,
+                            "sameGame": true
                         },
                         {
                             "id": "571267",
@@ -45158,7 +45095,8 @@
                             "allowPlace": false,
                             "number": 571267,
                             "isOpen": true,
-                            "sortOrder": 9
+                            "sortOrder": 9,
+                            "sameGame": true
                         },
                         {
                             "id": "571268",
@@ -45170,7 +45108,8 @@
                             "allowPlace": false,
                             "number": 571268,
                             "isOpen": true,
-                            "sortOrder": 10
+                            "sortOrder": 10,
+                            "sameGame": true
                         },
                         {
                             "id": "571269",
@@ -45182,7 +45121,8 @@
                             "allowPlace": false,
                             "number": 571269,
                             "isOpen": true,
-                            "sortOrder": 11
+                            "sortOrder": 11,
+                            "sameGame": true
                         },
                         {
                             "id": "571270",
@@ -45194,7 +45134,8 @@
                             "allowPlace": false,
                             "number": 571270,
                             "isOpen": true,
-                            "sortOrder": 12
+                            "sortOrder": 12,
+                            "sameGame": true
                         },
                         {
                             "id": "571271",
@@ -45206,19 +45147,21 @@
                             "allowPlace": false,
                             "number": 571271,
                             "isOpen": true,
-                            "sortOrder": 13
+                            "sortOrder": 13,
+                            "sameGame": true
                         },
                         {
                             "id": "571272",
                             "name": "SAS 1-6 / LAC 1-10",
-                            "returnWin": 9,
+                            "returnWin": 10,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
                             "number": 571272,
                             "isOpen": true,
-                            "sortOrder": 14
+                            "sortOrder": 14,
+                            "sameGame": true
                         },
                         {
                             "id": "571273",
@@ -45230,7 +45173,8 @@
                             "allowPlace": false,
                             "number": 571273,
                             "isOpen": true,
-                            "sortOrder": 15
+                            "sortOrder": 15,
+                            "sameGame": true
                         },
                         {
                             "id": "571274",
@@ -45242,7 +45186,8 @@
                             "allowPlace": false,
                             "number": 571274,
                             "isOpen": true,
-                            "sortOrder": 16
+                            "sortOrder": 16,
+                            "sameGame": true
                         },
                         {
                             "id": "571275",
@@ -45254,19 +45199,21 @@
                             "allowPlace": false,
                             "number": 571275,
                             "isOpen": true,
-                            "sortOrder": 17
+                            "sortOrder": 17,
+                            "sameGame": true
                         },
                         {
                             "id": "571276",
                             "name": "SAS 7+ / LAC 1-10",
-                            "returnWin": 15,
+                            "returnWin": 16,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
                             "number": 571276,
                             "isOpen": true,
-                            "sortOrder": 18
+                            "sortOrder": 18,
+                            "sameGame": true
                         },
                         {
                             "id": "571277",
@@ -45278,7 +45225,8 @@
                             "allowPlace": false,
                             "number": 571277,
                             "isOpen": true,
-                            "sortOrder": 19
+                            "sortOrder": 19,
+                            "sameGame": true
                         },
                         {
                             "id": "571278",
@@ -45290,9 +45238,12 @@
                             "allowPlace": false,
                             "number": 571278,
                             "isOpen": true,
-                            "sortOrder": 20
+                            "sortOrder": 20,
+                            "sameGame": true
                         }
-                    ]
+                    ],
+                    "sameGame": true,
+                    "sameGameMultipleSelections": false
                 },
                 {
                     "id": "113530636",
@@ -45373,7 +45324,7 @@
                         {
                             "id": "571555",
                             "name": "LAC by 1-10 /241 or more",
-                            "returnWin": 9,
+                            "returnWin": 10,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -45554,7 +45505,8 @@
                             "allowPlace": false,
                             "number": 571516,
                             "isOpen": true,
-                            "sortOrder": 1
+                            "sortOrder": 1,
+                            "sameGame": true
                         },
                         {
                             "id": "571517",
@@ -45566,7 +45518,8 @@
                             "allowPlace": false,
                             "number": 571517,
                             "isOpen": true,
-                            "sortOrder": 2
+                            "sortOrder": 2,
+                            "sameGame": true
                         },
                         {
                             "id": "571518",
@@ -45578,7 +45531,8 @@
                             "allowPlace": false,
                             "number": 571518,
                             "isOpen": true,
-                            "sortOrder": 3
+                            "sortOrder": 3,
+                            "sameGame": true
                         },
                         {
                             "id": "571519",
@@ -45590,19 +45544,21 @@
                             "allowPlace": false,
                             "number": 571519,
                             "isOpen": true,
-                            "sortOrder": 4
+                            "sortOrder": 4,
+                            "sameGame": true
                         },
                         {
                             "id": "571520",
                             "name": "231 to 240",
-                            "returnWin": 4,
+                            "returnWin": 4.2,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
                             "number": 571520,
                             "isOpen": true,
-                            "sortOrder": 5
+                            "sortOrder": 5,
+                            "sameGame": true
                         },
                         {
                             "id": "571521",
@@ -45614,9 +45570,12 @@
                             "allowPlace": false,
                             "number": 571521,
                             "isOpen": true,
-                            "sortOrder": 6
+                            "sortOrder": 6,
+                            "sameGame": true
                         }
-                    ]
+                    ],
+                    "sameGame": true,
+                    "sameGameMultipleSelections": false
                 },
                 {
                     "id": "113530637",
@@ -45661,7 +45620,7 @@
                         {
                             "id": "571511",
                             "name": "201 to 220",
-                            "returnWin": 2.5,
+                            "returnWin": 2.6,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -45673,7 +45632,7 @@
                         {
                             "id": "571512",
                             "name": "221 to 240",
-                            "returnWin": 1.8,
+                            "returnWin": 1.9,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -45775,7 +45734,7 @@
                         {
                             "id": "571583",
                             "name": "207 to 208",
-                            "returnWin": 23,
+                            "returnWin": 26,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -45787,7 +45746,7 @@
                         {
                             "id": "571584",
                             "name": "209 to 210",
-                            "returnWin": 21,
+                            "returnWin": 23,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -45799,7 +45758,7 @@
                         {
                             "id": "571585",
                             "name": "211 to 212",
-                            "returnWin": 19,
+                            "returnWin": 21,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -45811,7 +45770,7 @@
                         {
                             "id": "571586",
                             "name": "213 to 214",
-                            "returnWin": 18,
+                            "returnWin": 19,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -45823,7 +45782,7 @@
                         {
                             "id": "571587",
                             "name": "215 to 216",
-                            "returnWin": 17,
+                            "returnWin": 18,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -45835,7 +45794,7 @@
                         {
                             "id": "571588",
                             "name": "217 to 218",
-                            "returnWin": 16,
+                            "returnWin": 17,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -45847,7 +45806,7 @@
                         {
                             "id": "571589",
                             "name": "219 to 220",
-                            "returnWin": 15,
+                            "returnWin": 16,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -45859,7 +45818,7 @@
                         {
                             "id": "571590",
                             "name": "221 to 222",
-                            "returnWin": 14,
+                            "returnWin": 15,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -45871,7 +45830,7 @@
                         {
                             "id": "571591",
                             "name": "223 to 224",
-                            "returnWin": 14,
+                            "returnWin": 15,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -45883,7 +45842,7 @@
                         {
                             "id": "571592",
                             "name": "225 to 226",
-                            "returnWin": 14,
+                            "returnWin": 15,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -45895,7 +45854,7 @@
                         {
                             "id": "571593",
                             "name": "227 to 228",
-                            "returnWin": 14,
+                            "returnWin": 15,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -45907,7 +45866,7 @@
                         {
                             "id": "571594",
                             "name": "229 to 230",
-                            "returnWin": 14,
+                            "returnWin": 15,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -45919,7 +45878,7 @@
                         {
                             "id": "571595",
                             "name": "231 to 232",
-                            "returnWin": 14,
+                            "returnWin": 15,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -45943,7 +45902,7 @@
                         {
                             "id": "571597",
                             "name": "235 to 236",
-                            "returnWin": 15,
+                            "returnWin": 16,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -45955,7 +45914,7 @@
                         {
                             "id": "571598",
                             "name": "237 to 238",
-                            "returnWin": 16,
+                            "returnWin": 17,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -45967,7 +45926,7 @@
                         {
                             "id": "571599",
                             "name": "239 to 240",
-                            "returnWin": 17,
+                            "returnWin": 18,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -46028,7 +45987,8 @@
                             "allowPlace": false,
                             "number": 571574,
                             "isOpen": true,
-                            "sortOrder": 1
+                            "sortOrder": 1,
+                            "sameGame": true
                         },
                         {
                             "id": "571575",
@@ -46040,31 +46000,34 @@
                             "allowPlace": false,
                             "number": 571575,
                             "isOpen": true,
-                            "sortOrder": 2
+                            "sortOrder": 2,
+                            "sameGame": true
                         },
                         {
                             "id": "571576",
                             "name": "LAC 111 to 120",
-                            "returnWin": 2.6,
+                            "returnWin": 2.7,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
                             "number": 571576,
                             "isOpen": true,
-                            "sortOrder": 3
+                            "sortOrder": 3,
+                            "sameGame": true
                         },
                         {
                             "id": "571577",
                             "name": "LAC 121 to 130",
-                            "returnWin": 2.6,
+                            "returnWin": 2.7,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
                             "number": 571577,
                             "isOpen": true,
-                            "sortOrder": 4
+                            "sortOrder": 4,
+                            "sameGame": true
                         },
                         {
                             "id": "571578",
@@ -46076,9 +46039,12 @@
                             "allowPlace": false,
                             "number": 571578,
                             "isOpen": true,
-                            "sortOrder": 5
+                            "sortOrder": 5,
+                            "sameGame": true
                         }
-                    ]
+                    ],
+                    "sameGame": true,
+                    "sameGameMultipleSelections": false
                 },
                 {
                     "id": "113530634",
@@ -46123,7 +46089,7 @@
                         {
                             "id": "571535",
                             "name": "LAClippers 101 to 105",
-                            "returnWin": 12,
+                            "returnWin": 13,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -46159,7 +46125,7 @@
                         {
                             "id": "571538",
                             "name": "LAClippers 116 to 120",
-                            "returnWin": 4.5,
+                            "returnWin": 4.8,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -46171,7 +46137,7 @@
                         {
                             "id": "571539",
                             "name": "LAClippers 121 to 125",
-                            "returnWin": 4.5,
+                            "returnWin": 4.8,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -46244,31 +46210,34 @@
                             "allowPlace": false,
                             "number": 571542,
                             "isOpen": true,
-                            "sortOrder": 1
+                            "sortOrder": 1,
+                            "sameGame": true
                         },
                         {
                             "id": "571543",
                             "name": "SAS 91 to 100",
-                            "returnWin": 3.6,
+                            "returnWin": 3.8,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
                             "number": 571543,
                             "isOpen": true,
-                            "sortOrder": 2
+                            "sortOrder": 2,
+                            "sameGame": true
                         },
                         {
                             "id": "571544",
                             "name": "SAS 101 to 110",
-                            "returnWin": 2.3,
+                            "returnWin": 2.4,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
                             "number": 571544,
                             "isOpen": true,
-                            "sortOrder": 3
+                            "sortOrder": 3,
+                            "sameGame": true
                         },
                         {
                             "id": "571545",
@@ -46280,7 +46249,8 @@
                             "allowPlace": false,
                             "number": 571545,
                             "isOpen": true,
-                            "sortOrder": 4
+                            "sortOrder": 4,
+                            "sameGame": true
                         },
                         {
                             "id": "571546",
@@ -46292,9 +46262,12 @@
                             "allowPlace": false,
                             "number": 571546,
                             "isOpen": true,
-                            "sortOrder": 5
+                            "sortOrder": 5,
+                            "sameGame": true
                         }
-                    ]
+                    ],
+                    "sameGame": true,
+                    "sameGameMultipleSelections": false
                 },
                 {
                     "id": "113530631",
@@ -46351,7 +46324,7 @@
                         {
                             "id": "571524",
                             "name": "San Antonio 96 to 100",
-                            "returnWin": 5.5,
+                            "returnWin": 6,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -46375,7 +46348,7 @@
                         {
                             "id": "571526",
                             "name": "San Antonio 106 to 110",
-                            "returnWin": 4.2,
+                            "returnWin": 4.5,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -46387,7 +46360,7 @@
                         {
                             "id": "571527",
                             "name": "San Antonio 111 to 115",
-                            "returnWin": 4.8,
+                            "returnWin": 5,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -46399,7 +46372,7 @@
                         {
                             "id": "571528",
                             "name": "San Antonio 116 to 120",
-                            "returnWin": 6.5,
+                            "returnWin": 7,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -46453,7 +46426,7 @@
                         {
                             "id": "571530",
                             "name": "Both teams score 100+",
-                            "returnWin": 1.24,
+                            "returnWin": 1.25,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -46465,7 +46438,7 @@
                         {
                             "id": "571531",
                             "name": "LACliprs score 100+ only",
-                            "returnWin": 3.6,
+                            "returnWin": 3.8,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -46531,7 +46504,7 @@
                         {
                             "id": "571337",
                             "name": "LAC leads at end of each Qtr",
-                            "returnWin": 1.58,
+                            "returnWin": 1.6,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -46543,7 +46516,7 @@
                         {
                             "id": "571338",
                             "name": "Any Other Result",
-                            "returnWin": 2.25,
+                            "returnWin": 2.3,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -46675,7 +46648,7 @@
                         {
                             "id": "571567",
                             "name": "6+ Total Points",
-                            "returnWin": 4.8,
+                            "returnWin": 5,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -46711,7 +46684,7 @@
                         {
                             "id": "571570",
                             "name": "1+ Free Throws Made",
-                            "returnWin": 4.2,
+                            "returnWin": 4.5,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -46772,19 +46745,21 @@
                             "allowPlace": false,
                             "number": 571464,
                             "isOpen": true,
-                            "sortOrder": 1
+                            "sortOrder": 1,
+                            "sameGame": true
                         },
                         {
                             "id": "571465",
                             "name": "LA Clippers by 1-5",
-                            "returnWin": 6,
+                            "returnWin": 6.5,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
                             "number": 571465,
                             "isOpen": true,
-                            "sortOrder": 2
+                            "sortOrder": 2,
+                            "sameGame": true
                         },
                         {
                             "id": "571466",
@@ -46796,7 +46771,8 @@
                             "allowPlace": false,
                             "number": 571466,
                             "isOpen": true,
-                            "sortOrder": 3
+                            "sortOrder": 3,
+                            "sameGame": true
                         },
                         {
                             "id": "571467",
@@ -46808,9 +46784,12 @@
                             "allowPlace": false,
                             "number": 571467,
                             "isOpen": true,
-                            "sortOrder": 4
+                            "sortOrder": 4,
+                            "sameGame": true
                         }
-                    ]
+                    ],
+                    "sameGame": true,
+                    "sameGameMultipleSelections": false
                 },
                 {
                     "id": "113530614",
@@ -46850,19 +46829,21 @@
                             "allowPlace": false,
                             "number": 571343,
                             "isOpen": true,
-                            "sortOrder": 1
+                            "sortOrder": 1,
+                            "sameGame": true
                         },
                         {
                             "id": "571344",
                             "name": "LA Clippers by 1-15",
-                            "returnWin": 1.85,
+                            "returnWin": 1.9,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
                             "number": 571344,
                             "isOpen": true,
-                            "sortOrder": 2
+                            "sortOrder": 2,
+                            "sameGame": true
                         },
                         {
                             "id": "571345",
@@ -46874,7 +46855,8 @@
                             "allowPlace": false,
                             "number": 571345,
                             "isOpen": true,
-                            "sortOrder": 3
+                            "sortOrder": 3,
+                            "sameGame": true
                         },
                         {
                             "id": "571346",
@@ -46886,9 +46868,12 @@
                             "allowPlace": false,
                             "number": 571346,
                             "isOpen": true,
-                            "sortOrder": 4
+                            "sortOrder": 4,
+                            "sameGame": true
                         }
-                    ]
+                    ],
+                    "sameGame": true,
+                    "sameGameMultipleSelections": false
                 },
                 {
                     "id": "113530622",
@@ -46928,7 +46913,8 @@
                             "allowPlace": false,
                             "number": 571256,
                             "isOpen": true,
-                            "sortOrder": 1
+                            "sortOrder": 1,
+                            "sameGame": true
                         },
                         {
                             "id": "571257",
@@ -46940,7 +46926,8 @@
                             "allowPlace": false,
                             "number": 571257,
                             "isOpen": true,
-                            "sortOrder": 2
+                            "sortOrder": 2,
+                            "sameGame": true
                         },
                         {
                             "id": "571258",
@@ -46952,9 +46939,12 @@
                             "allowPlace": false,
                             "number": 571258,
                             "isOpen": true,
-                            "sortOrder": 3
+                            "sortOrder": 3,
+                            "sameGame": true
                         }
-                    ]
+                    ],
+                    "sameGame": true,
+                    "sameGameMultipleSelections": false
                 },
                 {
                     "id": "113530625",
@@ -46994,19 +46984,21 @@
                             "allowPlace": false,
                             "number": 571340,
                             "isOpen": true,
-                            "sortOrder": 1
+                            "sortOrder": 1,
+                            "sameGame": true
                         },
                         {
                             "id": "571341",
                             "name": "Either Team By 8 or Less",
-                            "returnWin": 2.6,
+                            "returnWin": 2.7,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
                             "number": 571341,
                             "isOpen": true,
-                            "sortOrder": 2
+                            "sortOrder": 2,
+                            "sameGame": true
                         },
                         {
                             "id": "571342",
@@ -47018,9 +47010,12 @@
                             "allowPlace": false,
                             "number": 571342,
                             "isOpen": true,
-                            "sortOrder": 3
+                            "sortOrder": 3,
+                            "sameGame": true
                         }
-                    ]
+                    ],
+                    "sameGame": true,
+                    "sameGameMultipleSelections": false
                 },
                 {
                     "id": "113530623",
@@ -47060,19 +47055,21 @@
                             "allowPlace": false,
                             "number": 571458,
                             "isOpen": true,
-                            "sortOrder": 1
+                            "sortOrder": 1,
+                            "sameGame": true
                         },
                         {
                             "id": "571459",
                             "name": "Either Team By 10 or Less",
-                            "returnWin": 2.15,
+                            "returnWin": 2.2,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
                             "number": 571459,
                             "isOpen": true,
-                            "sortOrder": 2
+                            "sortOrder": 2,
+                            "sameGame": true
                         },
                         {
                             "id": "571460",
@@ -47084,9 +47081,12 @@
                             "allowPlace": false,
                             "number": 571460,
                             "isOpen": true,
-                            "sortOrder": 3
+                            "sortOrder": 3,
+                            "sameGame": true
                         }
-                    ]
+                    ],
+                    "sameGame": true,
+                    "sameGameMultipleSelections": false
                 },
                 {
                     "id": "113530621",
@@ -47126,19 +47126,21 @@
                             "allowPlace": false,
                             "number": 571455,
                             "isOpen": true,
-                            "sortOrder": 1
+                            "sortOrder": 1,
+                            "sameGame": true
                         },
                         {
                             "id": "571456",
                             "name": "Either Team By 12 or Less",
-                            "returnWin": 1.85,
+                            "returnWin": 1.9,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
                             "number": 571456,
                             "isOpen": true,
-                            "sortOrder": 2
+                            "sortOrder": 2,
+                            "sameGame": true
                         },
                         {
                             "id": "571457",
@@ -47150,9 +47152,12 @@
                             "allowPlace": false,
                             "number": 571457,
                             "isOpen": true,
-                            "sortOrder": 3
+                            "sortOrder": 3,
+                            "sameGame": true
                         }
-                    ]
+                    ],
+                    "sameGame": true,
+                    "sameGameMultipleSelections": false
                 },
                 {
                     "id": "113530624",
@@ -47192,19 +47197,21 @@
                             "allowPlace": false,
                             "number": 571302,
                             "isOpen": true,
-                            "sortOrder": 1
+                            "sortOrder": 1,
+                            "sameGame": true
                         },
                         {
                             "id": "571303",
                             "name": "Either Team By 15 or Less",
-                            "returnWin": 1.58,
+                            "returnWin": 1.6,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
                             "number": 571303,
                             "isOpen": true,
-                            "sortOrder": 2
+                            "sortOrder": 2,
+                            "sameGame": true
                         },
                         {
                             "id": "571304",
@@ -47216,9 +47223,12 @@
                             "allowPlace": false,
                             "number": 571304,
                             "isOpen": true,
-                            "sortOrder": 3
+                            "sortOrder": 3,
+                            "sameGame": true
                         }
-                    ]
+                    ],
+                    "sameGame": true,
+                    "sameGameMultipleSelections": false
                 },
                 {
                     "id": "113530627",
@@ -47258,7 +47268,8 @@
                             "allowPlace": false,
                             "number": 571461,
                             "isOpen": true,
-                            "sortOrder": 1
+                            "sortOrder": 1,
+                            "sameGame": true
                         },
                         {
                             "id": "571462",
@@ -47270,9 +47281,12 @@
                             "allowPlace": false,
                             "number": 571462,
                             "isOpen": true,
-                            "sortOrder": 2
+                            "sortOrder": 2,
+                            "sameGame": true
                         }
-                    ]
+                    ],
+                    "sameGame": true,
+                    "sameGameMultipleSelections": false
                 },
                 {
                     "id": "113530616",
@@ -47312,7 +47326,8 @@
                             "allowPlace": false,
                             "number": 571449,
                             "isOpen": true,
-                            "sortOrder": 1
+                            "sortOrder": 1,
+                            "sameGame": true
                         },
                         {
                             "id": "571450",
@@ -47324,9 +47339,12 @@
                             "allowPlace": false,
                             "number": 571450,
                             "isOpen": true,
-                            "sortOrder": 2
+                            "sortOrder": 2,
+                            "sameGame": true
                         }
-                    ]
+                    ],
+                    "sameGame": true,
+                    "sameGameMultipleSelections": false
                 },
                 {
                     "id": "113530633",
@@ -47366,7 +47384,8 @@
                             "allowPlace": false,
                             "number": 571572,
                             "isOpen": true,
-                            "sortOrder": 1
+                            "sortOrder": 1,
+                            "sameGame": true
                         },
                         {
                             "id": "571573",
@@ -47378,9 +47397,12 @@
                             "allowPlace": false,
                             "number": 571573,
                             "isOpen": true,
-                            "sortOrder": 2
+                            "sortOrder": 2,
+                            "sameGame": true
                         }
-                    ]
+                    ],
+                    "sameGame": true,
+                    "sameGameMultipleSelections": false
                 },
                 {
                     "id": "113530630",
@@ -47420,7 +47442,8 @@
                             "allowPlace": false,
                             "number": 571514,
                             "isOpen": true,
-                            "sortOrder": 1
+                            "sortOrder": 1,
+                            "sameGame": true
                         },
                         {
                             "id": "571515",
@@ -47432,13 +47455,17 @@
                             "allowPlace": false,
                             "number": 571515,
                             "isOpen": true,
-                            "sortOrder": 2
+                            "sortOrder": 2,
+                            "sameGame": true
                         }
-                    ]
+                    ],
+                    "sameGame": true,
+                    "sameGameMultipleSelections": false
                 }
             ],
             "inPlay": false,
             "goingInPlay": true,
+            "sameGame": true,
             "stats": true
         },
         {
@@ -52055,10 +52082,8 @@
     "betOptionPriority": [
         "Head To Head",
         "Line",
-        "Extra Line",
         "Margin",
         "Tri Bet",
-        "Player Points Live",
         "Pick Your Own Line",
         "Half/Full Double",
         "Winning Margin",
@@ -52094,7 +52119,7 @@
         {
             "name": "Head To Head",
             "hasFutureMarket": false,
-            "openMarketCount": 12,
+            "openMarketCount": 11,
             "_links": {
                 "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/markets?jurisdiction=SA&betOptionName=Head%20To%20Head"
             }
@@ -52105,14 +52130,6 @@
             "openMarketCount": 11,
             "_links": {
                 "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/markets?jurisdiction=SA&betOptionName=Line"
-            }
-        },
-        {
-            "name": "Extra Line",
-            "hasFutureMarket": false,
-            "openMarketCount": 1,
-            "_links": {
-                "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/markets?jurisdiction=SA&betOptionName=Extra%20Line"
             }
         },
         {
@@ -52129,14 +52146,6 @@
             "openMarketCount": 11,
             "_links": {
                 "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/markets?jurisdiction=SA&betOptionName=Tri%20Bet"
-            }
-        },
-        {
-            "name": "Player Points Live",
-            "hasFutureMarket": false,
-            "openMarketCount": 1,
-            "_links": {
-                "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/markets?jurisdiction=SA&betOptionName=Player%20Points%20Live"
             }
         },
         {
