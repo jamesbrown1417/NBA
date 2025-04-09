@@ -1,0 +1,138 @@
+{
+    "entrants": {
+        "839bde3a-372f-40d6-843e-4da204726433": {
+            "id": "839bde3a-372f-40d6-843e-4da204726433",
+            "name": "Golden State Warriors",
+            "home_away": "HOME",
+            "visible": true,
+            "sort_order": 10,
+            "market_id": "8b33334b-773d-4c7f-9267-159a28a3f3fd"
+        },
+        "d210db7d-69c8-46c9-9152-cfccb67f4fc2": {
+            "id": "d210db7d-69c8-46c9-9152-cfccb67f4fc2",
+            "name": "San Antonio Spurs",
+            "home_away": "AWAY",
+            "visible": true,
+            "sort_order": 20,
+            "market_id": "8b33334b-773d-4c7f-9267-159a28a3f3fd"
+        }
+    },
+    "event_participants": {
+        "075d6d54-8b67-4f20-aa9a-7c5b2057236d": {
+            "id": "075d6d54-8b67-4f20-aa9a-7c5b2057236d",
+            "event_id": "e0195aad-0deb-41dd-8649-78cef4d36004",
+            "name": "San Antonio Spurs",
+            "home_away": "AWAY"
+        },
+        "2cd8715a-6f12-479e-b8ca-28922e86a855": {
+            "id": "2cd8715a-6f12-479e-b8ca-28922e86a855",
+            "event_id": "e0195aad-0deb-41dd-8649-78cef4d36004",
+            "name": "Golden State Warriors",
+            "home_away": "HOME"
+        }
+    },
+    "events": {
+        "e0195aad-0deb-41dd-8649-78cef4d36004": {
+            "id": "e0195aad-0deb-41dd-8649-78cef4d36004",
+            "name": "Golden State Warriors vs San Antonio Spurs",
+            "event_type": {
+                "id": "6bfa0efc-05df-4ae1-9b1e-152365290cfd",
+                "name": "Match"
+            },
+            "match_status": "BettingOpen",
+            "advertised_start": "2025-04-10T02:10:00Z",
+            "actual_start": "2025-04-10T02:10:00Z",
+            "visible": true,
+            "slug": "golden-state-warriors-vs-san-antonio-spurs",
+            "competition": {
+                "id": "2d20a25b-6b96-4651-a523-442834136e2d",
+                "name": "NBA",
+                "sort_order": 1,
+                "region": "USA",
+                "region_id": "6889a18d-3a47-400c-9cd4-10f228c0dc59"
+            },
+            "competition_id": "2d20a25b-6b96-4651-a523-442834136e2d",
+            "market_type_group_ids": [
+                "43c990d1-7471-4055-9a7a-e71409494486"
+            ],
+            "market_type_group_markets": [
+                {
+                    "market_type_group_id": "43c990d1-7471-4055-9a7a-e71409494486",
+                    "market_ids": [
+                        "8b33334b-773d-4c7f-9267-159a28a3f3fd"
+                    ]
+                }
+            ],
+            "market_count": 1,
+            "main_markets": [
+                "8b33334b-773d-4c7f-9267-159a28a3f3fd"
+            ],
+            "market_ids": [
+                "8b33334b-773d-4c7f-9267-159a28a3f3fd"
+            ],
+            "category_id": "3c34d075-dc14-436d-bfc4-9272a49c2b39",
+            "participant_ids": [
+                "075d6d54-8b67-4f20-aa9a-7c5b2057236d",
+                "2cd8715a-6f12-479e-b8ca-28922e86a855"
+            ]
+        }
+    },
+    "market_type_groups": {
+        "43c990d1-7471-4055-9a7a-e71409494486": {
+            "id": "43c990d1-7471-4055-9a7a-e71409494486",
+            "category_id": "3c34d075-dc14-436d-bfc4-9272a49c2b39",
+            "name": "Top Markets",
+            "priority": 320,
+            "type": "MARKET_TYPE_GROUP_TYPE_EVENT"
+        }
+    },
+    "markets": {
+        "8b33334b-773d-4c7f-9267-159a28a3f3fd": {
+            "id": "8b33334b-773d-4c7f-9267-159a28a3f3fd",
+            "event_id": "e0195aad-0deb-41dd-8649-78cef4d36004",
+            "market_type_id": "3dc4ca49-3190-43b2-a328-60e0c9460187",
+            "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
+            "name": "Head To Head",
+            "advertised_start": {
+                "seconds": 1744251000
+            },
+            "actual_start": {
+                "seconds": 1744251000
+            },
+            "is_primary": true,
+            "same_game_multi_available": true,
+            "visible": true,
+            "entrant_ids": [
+                "839bde3a-372f-40d6-843e-4da204726433",
+                "d210db7d-69c8-46c9-9152-cfccb67f4fc2"
+            ],
+            "num_winners": 1
+        }
+    },
+    "markets_allow_cashout": {
+        "8b33334b-773d-4c7f-9267-159a28a3f3fd": true
+    },
+    "prices": {
+        "839bde3a-372f-40d6-843e-4da204726433:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 3,
+                "denominator": 50
+            }
+        },
+        "d210db7d-69c8-46c9-9152-cfccb67f4fc2:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 8,
+                "denominator": 1
+            }
+        }
+    },
+    "regions": {
+        "6889a18d-3a47-400c-9cd4-10f228c0dc59": {
+            "region_id": "6889a18d-3a47-400c-9cd4-10f228c0dc59",
+            "name": "USA",
+            "slug": "usa",
+            "category_id": "3c34d075-dc14-436d-bfc4-9272a49c2b39",
+            "sort_order": 1
+        }
+    }
+}
