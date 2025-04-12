@@ -68,7 +68,7 @@ fixture_details <- map_dfr(data_list, get_fixture_details)
 
 all_h2h <-
   fixture_details |> 
-  filter(market_name == "Match Result (Inc OT)") |> 
+  filter(market_name == "Match Winner (incl. OT)") |> 
   separate(match, into = c("away_team", "home_team"), sep = " @ ") |>
   mutate(home_team = fix_team_names(home_team),
          away_team = fix_team_names(away_team)) |> 
