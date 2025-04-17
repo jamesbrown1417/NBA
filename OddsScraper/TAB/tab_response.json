@@ -29,6 +29,24 @@
                 "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/Atlanta%20v%20Miami/markets?jurisdiction=SA",
                 "stats": "https://api.beta.tab.com.au/v1/stats-service/sports/Basketball/competitions/NBA/matches/2841697/h2h/stats"
             },
+            "vision": {
+                "performVisualisation": {
+                    "startTime": "2025-04-18T23:00:00Z",
+                    "requiresAuthentication": false,
+                    "eventId": "aov30yysj7zlqnkl0wznhjw2c",
+                    "embeddedPages": [
+                        {
+                            "url": "https://api.beta.tab.com.au/v1/vision-service/tab/providers/performVisualisation/embed/aov30yysj7zlqnkl0wznhjw2c",
+                            "mobile": {
+                                "url": "https://api.beta.tab.com.au/v1/vision-service/tab/providers/performVisualisation/embed/aov30yysj7zlqnkl0wznhjw2c"
+                            }
+                        }
+                    ],
+                    "_links": {
+                        "self": "https://api.beta.tab.com.au/v1/vision-service/tab-act/matches/AtlvMia/performVisualisation"
+                    }
+                }
+            },
             "contestants": [
                 {
                     "name": "Atlanta",
@@ -138,13 +156,13 @@
                     "sameGameMultipleSelections": false
                 },
                 {
-                    "id": "114036313",
-                    "name": "NBA Atl-Mia Line -1.5",
-                    "shortName": "NBA Atl-Mia Line -1.5",
+                    "id": "114057261",
+                    "name": "NBA Atl-Mia Line +1.5",
+                    "shortName": "NBA Atl-Mia Line +1.5",
                     "betOption": "Line",
                     "betOptionSpectrumId": "43",
                     "betOptionPriority": 1310,
-                    "marketUniqueId": 114036313,
+                    "marketUniqueId": 114057261,
                     "closeTime": "2025-04-18T23:00:00.000Z",
                     "bettingStatus": "Open",
                     "message": null,
@@ -166,31 +184,31 @@
                     "allowBundle": false,
                     "propositions": [
                         {
-                            "id": "594286",
-                            "name": "Atlanta -1.5",
-                            "returnWin": 2,
-                            "returnPlace": 0,
-                            "differential": null,
-                            "bettingStatus": "Open",
-                            "allowPlace": false,
-                            "number": 594286,
-                            "isOpen": true,
-                            "sortOrder": 1,
-                            "line": "-1.5",
-                            "sameGame": true
-                        },
-                        {
-                            "id": "594311",
-                            "name": "Miami +1.5",
+                            "id": "617024",
+                            "name": "Atlanta +1.5",
                             "returnWin": 1.8,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
-                            "number": 594311,
+                            "number": 617024,
+                            "isOpen": true,
+                            "sortOrder": 1,
+                            "line": "+1.5",
+                            "sameGame": true
+                        },
+                        {
+                            "id": "617026",
+                            "name": "Miami -1.5",
+                            "returnWin": 2,
+                            "returnPlace": 0,
+                            "differential": null,
+                            "bettingStatus": "Open",
+                            "allowPlace": false,
+                            "number": 617026,
                             "isOpen": true,
                             "sortOrder": 2,
-                            "line": "+1.5",
+                            "line": "-1.5",
                             "sameGame": true
                         }
                     ],
@@ -312,7 +330,7 @@
                         {
                             "id": "569988",
                             "name": "Atlanta by 7+",
-                            "returnWin": 2.8,
+                            "returnWin": 2.9,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -338,7 +356,7 @@
                         {
                             "id": "569990",
                             "name": "Miami by 7+",
-                            "returnWin": 2.9,
+                            "returnWin": 2.8,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -380,32 +398,6 @@
                     "cashOutEligibility": "PreMatch",
                     "allowBundle": false,
                     "propositions": [
-                        {
-                            "id": "585908",
-                            "name": "Atlanta -14.5",
-                            "returnWin": 6.2,
-                            "returnPlace": 0,
-                            "differential": null,
-                            "bettingStatus": "Open",
-                            "allowPlace": false,
-                            "number": 585908,
-                            "isOpen": true,
-                            "sortOrder": 25,
-                            "sameGame": true
-                        },
-                        {
-                            "id": "586033",
-                            "name": "Miami +14.5",
-                            "returnWin": 1.1,
-                            "returnPlace": 0,
-                            "differential": null,
-                            "bettingStatus": "Open",
-                            "allowPlace": false,
-                            "number": 586033,
-                            "isOpen": true,
-                            "sortOrder": 26,
-                            "sameGame": true
-                        },
                         {
                             "id": "586127",
                             "name": "Atlanta -13.5",
@@ -591,7 +583,7 @@
                         {
                             "id": "588701",
                             "name": "Atlanta -6.5",
-                            "returnWin": 2.8,
+                            "returnWin": 2.9,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -604,7 +596,7 @@
                         {
                             "id": "588940",
                             "name": "Miami +6.5",
-                            "returnWin": 1.4,
+                            "returnWin": 1.38,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -617,7 +609,7 @@
                         {
                             "id": "589084",
                             "name": "Atlanta -5.5",
-                            "returnWin": 2.6,
+                            "returnWin": 2.65,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -630,7 +622,7 @@
                         {
                             "id": "589250",
                             "name": "Miami +5.5",
-                            "returnWin": 1.46,
+                            "returnWin": 1.45,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -643,7 +635,7 @@
                         {
                             "id": "589518",
                             "name": "Atlanta -4.5",
-                            "returnWin": 2.4,
+                            "returnWin": 2.45,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -656,7 +648,7 @@
                         {
                             "id": "589588",
                             "name": "Miami +4.5",
-                            "returnWin": 1.53,
+                            "returnWin": 1.52,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -721,7 +713,7 @@
                         {
                             "id": "590371",
                             "name": "Atlanta -1.5",
-                            "returnWin": 2,
+                            "returnWin": 1.95,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -799,7 +791,7 @@
                         {
                             "id": "590825",
                             "name": "Atlanta +4.5",
-                            "returnWin": 1.52,
+                            "returnWin": 1.53,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -812,7 +804,7 @@
                         {
                             "id": "590898",
                             "name": "Miami -4.5",
-                            "returnWin": 2.45,
+                            "returnWin": 2.4,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -851,7 +843,7 @@
                         {
                             "id": "591126",
                             "name": "Atlanta +6.5",
-                            "returnWin": 1.38,
+                            "returnWin": 1.4,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -864,7 +856,7 @@
                         {
                             "id": "591198",
                             "name": "Miami -6.5",
-                            "returnWin": 2.9,
+                            "returnWin": 2.8,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -981,7 +973,7 @@
                         {
                             "id": "591861",
                             "name": "Atlanta +11.5",
-                            "returnWin": 1.16,
+                            "returnWin": 1.17,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -994,7 +986,7 @@
                         {
                             "id": "591928",
                             "name": "Miami -11.5",
-                            "returnWin": 4.8,
+                            "returnWin": 4.6,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -1117,7 +1109,7 @@
                         {
                             "id": "569954",
                             "name": "Atlanta / Atlanta",
-                            "returnWin": 2.5,
+                            "returnWin": 2.6,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -3963,7 +3955,7 @@
                         {
                             "id": "579503",
                             "name": "Miami by 21-24",
-                            "returnWin": 18,
+                            "returnWin": 17,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -4125,7 +4117,7 @@
                         {
                             "id": "574110",
                             "name": "Atl 1-6 / Atl 11+",
-                            "returnWin": 13,
+                            "returnWin": 14,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -10813,7 +10805,7 @@
                         {
                             "id": "646478",
                             "name": "Atlanta by 1-10",
-                            "returnWin": 2.6,
+                            "returnWin": 2.7,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -10951,7 +10943,7 @@
                         {
                             "id": "646444",
                             "name": "Atlanta by 1-3",
-                            "returnWin": 6,
+                            "returnWin": 6.5,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -10999,7 +10991,7 @@
                         {
                             "id": "646448",
                             "name": "Miami by 7-9",
-                            "returnWin": 8.5,
+                            "returnWin": 8,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -11023,7 +11015,7 @@
                         {
                             "id": "646450",
                             "name": "Miami by 13-15",
-                            "returnWin": 16,
+                            "returnWin": 15,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -11491,7 +11483,7 @@
                         {
                             "id": "646482",
                             "name": "Atlanta",
-                            "returnWin": 1.85,
+                            "returnWin": 1.87,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -11503,7 +11495,7 @@
                         {
                             "id": "646483",
                             "name": "Miami",
-                            "returnWin": 1.9,
+                            "returnWin": 1.87,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -11545,7 +11537,7 @@
                         {
                             "id": "646459",
                             "name": "Atlanta",
-                            "returnWin": 1.8,
+                            "returnWin": 1.85,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -12301,7 +12293,7 @@
                         {
                             "id": "557205",
                             "name": "Miami 41 to 45",
-                            "returnWin": 7.5,
+                            "returnWin": 8,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -13933,7 +13925,7 @@
                         {
                             "id": "557506",
                             "name": "Draw",
-                            "returnWin": 8.5,
+                            "returnWin": 9,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -13945,7 +13937,7 @@
                         {
                             "id": "557507",
                             "name": "Miami",
-                            "returnWin": 1.9,
+                            "returnWin": 1.87,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -14065,7 +14057,7 @@
                         {
                             "id": "557500",
                             "name": "Draw",
-                            "returnWin": 8.5,
+                            "returnWin": 9,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -14089,7 +14081,7 @@
                         {
                             "id": "557502",
                             "name": "Miami by 4+",
-                            "returnWin": 2.7,
+                            "returnWin": 2.65,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -14155,7 +14147,7 @@
                         {
                             "id": "557224",
                             "name": "Draw",
-                            "returnWin": 8.5,
+                            "returnWin": 9,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -14167,7 +14159,7 @@
                         {
                             "id": "557225",
                             "name": "Miami by 1-5",
-                            "returnWin": 4,
+                            "returnWin": 3.8,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -14233,7 +14225,7 @@
                         {
                             "id": "557574",
                             "name": "Atlanta by 9-10",
-                            "returnWin": 16,
+                            "returnWin": 15,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -14293,7 +14285,7 @@
                         {
                             "id": "557580",
                             "name": "Draw",
-                            "returnWin": 8.5,
+                            "returnWin": 9,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -14809,7 +14801,7 @@
                         {
                             "id": "557187",
                             "name": "Atlanta",
-                            "returnWin": 1.85,
+                            "returnWin": 1.87,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -14821,7 +14813,7 @@
                         {
                             "id": "557188",
                             "name": "Miami",
-                            "returnWin": 1.9,
+                            "returnWin": 1.87,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -14911,7 +14903,7 @@
                         {
                             "id": "557672",
                             "name": "Miami by 4+",
-                            "returnWin": 2.9,
+                            "returnWin": 2.8,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -15001,7 +14993,7 @@
                         {
                             "id": "557270",
                             "name": "Miami by 6+",
-                            "returnWin": 3.8,
+                            "returnWin": 3.7,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -15667,7 +15659,7 @@
                         {
                             "id": "557649",
                             "name": "Miami by 4+",
-                            "returnWin": 2.9,
+                            "returnWin": 2.8,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -15757,7 +15749,7 @@
                         {
                             "id": "557243",
                             "name": "Miami by 6+",
-                            "returnWin": 3.8,
+                            "returnWin": 3.7,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -16587,6 +16579,24 @@
                 "selfTemplate": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/Memphis%20v%20Dallas?jurisdiction={jurisdiction}{&returnPromo,returnOffers,returnMultiOnly,channelType,cashSales,homeState}",
                 "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/Memphis%20v%20Dallas/markets?jurisdiction=SA",
                 "stats": "https://api.beta.tab.com.au/v1/stats-service/sports/Basketball/competitions/NBA/matches/2841991/h2h/stats"
+            },
+            "vision": {
+                "performVisualisation": {
+                    "startTime": "2025-04-19T01:30:00Z",
+                    "requiresAuthentication": false,
+                    "eventId": "dj62wzue1x3v2zct451on9atw",
+                    "embeddedPages": [
+                        {
+                            "url": "https://api.beta.tab.com.au/v1/vision-service/tab/providers/performVisualisation/embed/dj62wzue1x3v2zct451on9atw",
+                            "mobile": {
+                                "url": "https://api.beta.tab.com.au/v1/vision-service/tab/providers/performVisualisation/embed/dj62wzue1x3v2zct451on9atw"
+                            }
+                        }
+                    ],
+                    "_links": {
+                        "self": "https://api.beta.tab.com.au/v1/vision-service/tab-act/matches/MemvDal0/performVisualisation"
+                    }
+                }
             },
             "contestants": [
                 {
