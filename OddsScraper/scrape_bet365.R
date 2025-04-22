@@ -9,7 +9,7 @@ library(glue)
 source("Scripts/fix_team_names.R")
 
 # Read scraped HTML from the BET365_HTML Folder
-scraped_files_player <- list.files("Data/BET365_HTML/", full.names = TRUE, pattern = "player")
+scraped_files_player <- list.files("OddsScraper/Bet365/Data/", full.names = TRUE, pattern = "player")
 
 # Main Function
 get_player_props <- function(scraped_file) {
