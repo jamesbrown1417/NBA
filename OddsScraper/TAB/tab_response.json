@@ -12,6 +12,626 @@
     },
     "matches": [
         {
+            "id": "DetvNYK1",
+            "name": "Detroit v New York",
+            "spectrumId": "DetvNYK1",
+            "spectrumUniqueId": 2855656,
+            "competitionSpectrumId": "1001",
+            "round": null,
+            "broadcastChannel": "Tab.com.au",
+            "broadcastChannels": [
+                "Tab.com.au"
+            ],
+            "startTime": "2025-05-01T23:37:00.000Z",
+            "_links": {
+                "self": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/Detroit%20v%20New%20York?jurisdiction=SA",
+                "selfTemplate": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/Detroit%20v%20New%20York?jurisdiction={jurisdiction}{&returnPromo,returnOffers,returnMultiOnly,channelType,cashSales,homeState}",
+                "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/Detroit%20v%20New%20York/markets?jurisdiction=SA"
+            },
+            "vision": {
+                "unas": {
+                    "startTime": "2025-05-01T23:30:00Z",
+                    "requiresAuthentication": true,
+                    "_links": {
+                        "self": "https://api.beta.tab.com.au/v1/vision-service/tab-act/matches/DetvNYK1/unas"
+                    }
+                }
+            },
+            "contestants": [
+                {
+                    "name": "Detroit",
+                    "position": "HOME",
+                    "isHome": true,
+                    "image": [
+                        {
+                            "size": "svg",
+                            "url": "https://metadata.beta.tab.com.au/icons/NBA%20logos/Detroit%20Pistons.svg"
+                        },
+                        {
+                            "size": "xxhdpi",
+                            "url": "https://metadata.beta.tab.com.au/icons/NBA%20logos/Detroit%20Pistons_xxhdpi.png"
+                        },
+                        {
+                            "size": "2x",
+                            "url": "https://metadata.beta.tab.com.au/icons/NBA%20logos/Detroit%20Pistons%402x.png"
+                        }
+                    ]
+                },
+                {
+                    "name": "New York",
+                    "position": "AWAY",
+                    "isHome": false,
+                    "image": [
+                        {
+                            "size": "svg",
+                            "url": "https://metadata.beta.tab.com.au/icons/NBA%20logos/New%20York%20Knicks.svg"
+                        },
+                        {
+                            "size": "xxhdpi",
+                            "url": "https://metadata.beta.tab.com.au/icons/NBA%20logos/New%20York%20Knicks_xxhdpi.png"
+                        },
+                        {
+                            "size": "2x",
+                            "url": "https://metadata.beta.tab.com.au/icons/NBA%20logos/New%20York%20Knicks%402x.png"
+                        }
+                    ]
+                }
+            ],
+            "competitors": [
+                "Detroit",
+                "New York"
+            ],
+            "openMarketCount": 10,
+            "futureMarketCount": 0,
+            "nonFutureMarketCount": 10,
+            "markets": [
+                {
+                    "id": "114662020",
+                    "name": "NBA Detroit-New York Hd to Hd",
+                    "shortName": "NBA Det-NYK Hd to Hd",
+                    "betOption": "Head To Head",
+                    "betOptionSpectrumId": "72",
+                    "betOptionPriority": 430,
+                    "marketUniqueId": 114662020,
+                    "closeTime": "2025-05-01T23:37:00.000Z",
+                    "bettingStatus": "Open",
+                    "message": null,
+                    "informationMessage": null,
+                    "isFuture": false,
+                    "onlineBetting": false,
+                    "phoneBettingOnly": true,
+                    "inPlay": true,
+                    "goingInPlay": false,
+                    "allowWin": true,
+                    "allowPlace": false,
+                    "allowEachWay": false,
+                    "allowMulti": true,
+                    "allowMultiWin": true,
+                    "allowMultiPlace": false,
+                    "allowMultiEachWay": false,
+                    "numberOfPlaces": 0,
+                    "cashOutEligibility": "Enabled",
+                    "allowBundle": false,
+                    "propositions": [
+                        {
+                            "id": "595343",
+                            "name": "Detroit",
+                            "returnWin": 2.35,
+                            "returnPlace": 0,
+                            "differential": null,
+                            "bettingStatus": "Open",
+                            "allowPlace": false,
+                            "number": 595343,
+                            "isOpen": true,
+                            "sortOrder": 1,
+                            "position": "HOME"
+                        },
+                        {
+                            "id": "595348",
+                            "name": "New York",
+                            "returnWin": 1.55,
+                            "returnPlace": 0,
+                            "differential": null,
+                            "bettingStatus": "Open",
+                            "allowPlace": false,
+                            "number": 595348,
+                            "isOpen": true,
+                            "sortOrder": 2,
+                            "position": "AWAY"
+                        }
+                    ]
+                },
+                {
+                    "id": "114827702",
+                    "name": "NBA Det-NYK C Cuningham PlrPts",
+                    "shortName": "NBA Det-NYK C Cuningham Pts",
+                    "betOption": "Player Points Live",
+                    "betOptionSpectrumId": "1933",
+                    "betOptionPriority": 2665,
+                    "marketUniqueId": 114827702,
+                    "closeTime": "2025-05-01T23:37:00.000Z",
+                    "bettingStatus": "Suspended",
+                    "message": null,
+                    "informationMessage": null,
+                    "isFuture": false,
+                    "onlineBetting": false,
+                    "phoneBettingOnly": true,
+                    "inPlay": true,
+                    "goingInPlay": false,
+                    "allowWin": true,
+                    "allowPlace": false,
+                    "allowEachWay": false,
+                    "allowMulti": true,
+                    "allowMultiWin": true,
+                    "allowMultiPlace": false,
+                    "allowMultiEachWay": false,
+                    "numberOfPlaces": 0,
+                    "cashOutEligibility": "Disabled",
+                    "allowBundle": false,
+                    "propositions": [
+                        {
+                            "id": "562019",
+                            "name": "C Cuningham Over 30.5",
+                            "returnWin": 1.87,
+                            "returnPlace": 0,
+                            "differential": null,
+                            "bettingStatus": "Suspended",
+                            "allowPlace": false,
+                            "number": 562019,
+                            "isOpen": false,
+                            "sortOrder": 57
+                        },
+                        {
+                            "id": "562020",
+                            "name": "C Cuningham Under 30.5",
+                            "returnWin": 1.87,
+                            "returnPlace": 0,
+                            "differential": null,
+                            "bettingStatus": "Suspended",
+                            "allowPlace": false,
+                            "number": 562020,
+                            "isOpen": false,
+                            "sortOrder": 58
+                        }
+                    ]
+                },
+                {
+                    "id": "114827700",
+                    "name": "NBA Det-NYK D Schroder PlrPts",
+                    "shortName": "NBA Det-NYK D Schroder Pts",
+                    "betOption": "Player Points Live",
+                    "betOptionSpectrumId": "1933",
+                    "betOptionPriority": 2665,
+                    "marketUniqueId": 114827700,
+                    "closeTime": "2025-05-01T23:37:00.000Z",
+                    "bettingStatus": "Open",
+                    "message": null,
+                    "informationMessage": null,
+                    "isFuture": false,
+                    "onlineBetting": false,
+                    "phoneBettingOnly": true,
+                    "inPlay": true,
+                    "goingInPlay": false,
+                    "allowWin": true,
+                    "allowPlace": false,
+                    "allowEachWay": false,
+                    "allowMulti": true,
+                    "allowMultiWin": true,
+                    "allowMultiPlace": false,
+                    "allowMultiEachWay": false,
+                    "numberOfPlaces": 0,
+                    "cashOutEligibility": "Disabled",
+                    "allowBundle": false,
+                    "propositions": [
+                        {
+                            "id": "561874",
+                            "name": "D Schroder Over 11.5",
+                            "returnWin": 2,
+                            "returnPlace": 0,
+                            "differential": null,
+                            "bettingStatus": "Open",
+                            "allowPlace": false,
+                            "number": 561874,
+                            "isOpen": true,
+                            "sortOrder": 19
+                        },
+                        {
+                            "id": "561875",
+                            "name": "D Schroder Under 11.5",
+                            "returnWin": 1.75,
+                            "returnPlace": 0,
+                            "differential": null,
+                            "bettingStatus": "Open",
+                            "allowPlace": false,
+                            "number": 561875,
+                            "isOpen": true,
+                            "sortOrder": 20
+                        }
+                    ]
+                },
+                {
+                    "id": "114827725",
+                    "name": "NBA Det-NYK J Brunson PlrPts",
+                    "shortName": "NBA Det-NYK J Brunson Pts",
+                    "betOption": "Player Points Live",
+                    "betOptionSpectrumId": "1933",
+                    "betOptionPriority": 2665,
+                    "marketUniqueId": 114827725,
+                    "closeTime": "2025-05-01T23:37:00.000Z",
+                    "bettingStatus": "Open",
+                    "message": null,
+                    "informationMessage": null,
+                    "isFuture": false,
+                    "onlineBetting": false,
+                    "phoneBettingOnly": true,
+                    "inPlay": true,
+                    "goingInPlay": false,
+                    "allowWin": true,
+                    "allowPlace": false,
+                    "allowEachWay": false,
+                    "allowMulti": true,
+                    "allowMultiWin": true,
+                    "allowMultiPlace": false,
+                    "allowMultiEachWay": false,
+                    "numberOfPlaces": 0,
+                    "cashOutEligibility": "Disabled",
+                    "allowBundle": false,
+                    "propositions": [
+                        {
+                            "id": "562407",
+                            "name": "J Brunson Over 32.5",
+                            "returnWin": 1.8,
+                            "returnPlace": 0,
+                            "differential": null,
+                            "bettingStatus": "Open",
+                            "allowPlace": false,
+                            "number": 562407,
+                            "isOpen": true,
+                            "sortOrder": 61
+                        },
+                        {
+                            "id": "562408",
+                            "name": "J Brunson Under 32.5",
+                            "returnWin": 1.95,
+                            "returnPlace": 0,
+                            "differential": null,
+                            "bettingStatus": "Open",
+                            "allowPlace": false,
+                            "number": 562408,
+                            "isOpen": true,
+                            "sortOrder": 62
+                        }
+                    ]
+                },
+                {
+                    "id": "114827697",
+                    "name": "NBA Det-NYK J Duren PlrPts",
+                    "shortName": "NBA Det-NYK J Duren Pts",
+                    "betOption": "Player Points Live",
+                    "betOptionSpectrumId": "1933",
+                    "betOptionPriority": 2665,
+                    "marketUniqueId": 114827697,
+                    "closeTime": "2025-05-01T23:37:00.000Z",
+                    "bettingStatus": "Suspended",
+                    "message": null,
+                    "informationMessage": null,
+                    "isFuture": false,
+                    "onlineBetting": false,
+                    "phoneBettingOnly": true,
+                    "inPlay": true,
+                    "goingInPlay": false,
+                    "allowWin": true,
+                    "allowPlace": false,
+                    "allowEachWay": false,
+                    "allowMulti": true,
+                    "allowMultiWin": true,
+                    "allowMultiPlace": false,
+                    "allowMultiEachWay": false,
+                    "numberOfPlaces": 0,
+                    "cashOutEligibility": "Disabled",
+                    "allowBundle": false,
+                    "propositions": [
+                        {
+                            "id": "561580",
+                            "name": "J Duren Over 11.5",
+                            "returnWin": 1.75,
+                            "returnPlace": 0,
+                            "differential": null,
+                            "bettingStatus": "Suspended",
+                            "allowPlace": false,
+                            "number": 561580,
+                            "isOpen": false,
+                            "sortOrder": 19
+                        },
+                        {
+                            "id": "561581",
+                            "name": "J Duren Under 11.5",
+                            "returnWin": 2,
+                            "returnPlace": 0,
+                            "differential": null,
+                            "bettingStatus": "Suspended",
+                            "allowPlace": false,
+                            "number": 561581,
+                            "isOpen": false,
+                            "sortOrder": 20
+                        }
+                    ]
+                },
+                {
+                    "id": "114827698",
+                    "name": "NBA Det-NYK Josh Hart PlrPts",
+                    "shortName": "NBA Det-NYK Josh Hart Pts",
+                    "betOption": "Player Points Live",
+                    "betOptionSpectrumId": "1933",
+                    "betOptionPriority": 2665,
+                    "marketUniqueId": 114827698,
+                    "closeTime": "2025-05-01T23:37:00.000Z",
+                    "bettingStatus": "Suspended",
+                    "message": null,
+                    "informationMessage": null,
+                    "isFuture": false,
+                    "onlineBetting": false,
+                    "phoneBettingOnly": true,
+                    "inPlay": true,
+                    "goingInPlay": false,
+                    "allowWin": true,
+                    "allowPlace": false,
+                    "allowEachWay": false,
+                    "allowMulti": true,
+                    "allowMultiWin": true,
+                    "allowMultiPlace": false,
+                    "allowMultiEachWay": false,
+                    "numberOfPlaces": 0,
+                    "cashOutEligibility": "Disabled",
+                    "allowBundle": false,
+                    "propositions": [
+                        {
+                            "id": "561672",
+                            "name": "Josh Hart Over 8.5",
+                            "returnWin": 1.85,
+                            "returnPlace": 0,
+                            "differential": null,
+                            "bettingStatus": "Suspended",
+                            "allowPlace": false,
+                            "number": 561672,
+                            "isOpen": false,
+                            "sortOrder": 13
+                        },
+                        {
+                            "id": "561673",
+                            "name": "Josh Hart Under 8.5",
+                            "returnWin": 1.9,
+                            "returnPlace": 0,
+                            "differential": null,
+                            "bettingStatus": "Suspended",
+                            "allowPlace": false,
+                            "number": 561673,
+                            "isOpen": false,
+                            "sortOrder": 14
+                        }
+                    ]
+                },
+                {
+                    "id": "114827684",
+                    "name": "NBA Det-NYK K Towns PlrPts",
+                    "shortName": "NBA Det-NYK K Towns Pts",
+                    "betOption": "Player Points Live",
+                    "betOptionSpectrumId": "1933",
+                    "betOptionPriority": 2665,
+                    "marketUniqueId": 114827684,
+                    "closeTime": "2025-05-01T23:37:00.000Z",
+                    "bettingStatus": "Open",
+                    "message": null,
+                    "informationMessage": null,
+                    "isFuture": false,
+                    "onlineBetting": false,
+                    "phoneBettingOnly": true,
+                    "inPlay": true,
+                    "goingInPlay": false,
+                    "allowWin": true,
+                    "allowPlace": false,
+                    "allowEachWay": false,
+                    "allowMulti": true,
+                    "allowMultiWin": true,
+                    "allowMultiPlace": false,
+                    "allowMultiEachWay": false,
+                    "numberOfPlaces": 0,
+                    "cashOutEligibility": "Disabled",
+                    "allowBundle": false,
+                    "propositions": [
+                        {
+                            "id": "561392",
+                            "name": "K Towns Over 22.5",
+                            "returnWin": 1.9,
+                            "returnPlace": 0,
+                            "differential": null,
+                            "bettingStatus": "Open",
+                            "allowPlace": false,
+                            "number": 561392,
+                            "isOpen": true,
+                            "sortOrder": 41
+                        },
+                        {
+                            "id": "561393",
+                            "name": "K Towns Under 22.5",
+                            "returnWin": 1.85,
+                            "returnPlace": 0,
+                            "differential": null,
+                            "bettingStatus": "Open",
+                            "allowPlace": false,
+                            "number": 561393,
+                            "isOpen": true,
+                            "sortOrder": 42
+                        }
+                    ]
+                },
+                {
+                    "id": "114827681",
+                    "name": "NBA Det-NYK Mik Bridges PlrPts",
+                    "shortName": "NBA Det-NYK Mik Bridges Pts",
+                    "betOption": "Player Points Live",
+                    "betOptionSpectrumId": "1933",
+                    "betOptionPriority": 2665,
+                    "marketUniqueId": 114827681,
+                    "closeTime": "2025-05-01T23:37:00.000Z",
+                    "bettingStatus": "Suspended",
+                    "message": null,
+                    "informationMessage": null,
+                    "isFuture": false,
+                    "onlineBetting": false,
+                    "phoneBettingOnly": true,
+                    "inPlay": true,
+                    "goingInPlay": false,
+                    "allowWin": true,
+                    "allowPlace": false,
+                    "allowEachWay": false,
+                    "allowMulti": true,
+                    "allowMultiWin": true,
+                    "allowMultiPlace": false,
+                    "allowMultiEachWay": false,
+                    "numberOfPlaces": 0,
+                    "cashOutEligibility": "Disabled",
+                    "allowBundle": false,
+                    "propositions": [
+                        {
+                            "id": "561267",
+                            "name": "Mik Bridges Over 18.5",
+                            "returnWin": 1.85,
+                            "returnPlace": 0,
+                            "differential": null,
+                            "bettingStatus": "Suspended",
+                            "allowPlace": false,
+                            "number": 561267,
+                            "isOpen": false,
+                            "sortOrder": 33
+                        },
+                        {
+                            "id": "561268",
+                            "name": "Mik Bridges Under 18.5",
+                            "returnWin": 1.9,
+                            "returnPlace": 0,
+                            "differential": null,
+                            "bettingStatus": "Suspended",
+                            "allowPlace": false,
+                            "number": 561268,
+                            "isOpen": false,
+                            "sortOrder": 34
+                        }
+                    ]
+                },
+                {
+                    "id": "114827712",
+                    "name": "NBA Det-NYK OG Anunoby PlrPts",
+                    "shortName": "NBA Det-NYK OG Anunoby Pts",
+                    "betOption": "Player Points Live",
+                    "betOptionSpectrumId": "1933",
+                    "betOptionPriority": 2665,
+                    "marketUniqueId": 114827712,
+                    "closeTime": "2025-05-01T23:37:00.000Z",
+                    "bettingStatus": "Open",
+                    "message": null,
+                    "informationMessage": null,
+                    "isFuture": false,
+                    "onlineBetting": false,
+                    "phoneBettingOnly": true,
+                    "inPlay": true,
+                    "goingInPlay": false,
+                    "allowWin": true,
+                    "allowPlace": false,
+                    "allowEachWay": false,
+                    "allowMulti": true,
+                    "allowMultiWin": true,
+                    "allowMultiPlace": false,
+                    "allowMultiEachWay": false,
+                    "numberOfPlaces": 0,
+                    "cashOutEligibility": "Disabled",
+                    "allowBundle": false,
+                    "propositions": [
+                        {
+                            "id": "562174",
+                            "name": "OG Anunoby Over 20.5",
+                            "returnWin": 1.8,
+                            "returnPlace": 0,
+                            "differential": null,
+                            "bettingStatus": "Open",
+                            "allowPlace": false,
+                            "number": 562174,
+                            "isOpen": true,
+                            "sortOrder": 37
+                        },
+                        {
+                            "id": "562175",
+                            "name": "OG Anunoby Under 20.5",
+                            "returnWin": 1.95,
+                            "returnPlace": 0,
+                            "differential": null,
+                            "bettingStatus": "Open",
+                            "allowPlace": false,
+                            "number": 562175,
+                            "isOpen": true,
+                            "sortOrder": 38
+                        }
+                    ]
+                },
+                {
+                    "id": "114827699",
+                    "name": "NBA Det-NYK T Harris PlrPts",
+                    "shortName": "NBA Det-NYK T Harris Pts",
+                    "betOption": "Player Points Live",
+                    "betOptionSpectrumId": "1933",
+                    "betOptionPriority": 2665,
+                    "marketUniqueId": 114827699,
+                    "closeTime": "2025-05-01T23:37:00.000Z",
+                    "bettingStatus": "Open",
+                    "message": null,
+                    "informationMessage": null,
+                    "isFuture": false,
+                    "onlineBetting": false,
+                    "phoneBettingOnly": true,
+                    "inPlay": true,
+                    "goingInPlay": false,
+                    "allowWin": true,
+                    "allowPlace": false,
+                    "allowEachWay": false,
+                    "allowMulti": true,
+                    "allowMultiWin": true,
+                    "allowMultiPlace": false,
+                    "allowMultiEachWay": false,
+                    "numberOfPlaces": 0,
+                    "cashOutEligibility": "Disabled",
+                    "allowBundle": false,
+                    "propositions": [
+                        {
+                            "id": "561788",
+                            "name": "T Harris Over 17.5",
+                            "returnWin": 1.9,
+                            "returnPlace": 0,
+                            "differential": null,
+                            "bettingStatus": "Open",
+                            "allowPlace": false,
+                            "number": 561788,
+                            "isOpen": true,
+                            "sortOrder": 31
+                        },
+                        {
+                            "id": "561789",
+                            "name": "T Harris Under 17.5",
+                            "returnWin": 1.85,
+                            "returnPlace": 0,
+                            "differential": null,
+                            "bettingStatus": "Open",
+                            "allowPlace": false,
+                            "number": 561789,
+                            "isOpen": true,
+                            "sortOrder": 32
+                        }
+                    ]
+                }
+            ],
+            "inPlay": true,
+            "goingInPlay": false
+        },
+        {
             "id": "LACvDen1",
             "name": "LA Clippers v Denver",
             "spectrumId": "LACvDen1",
@@ -1606,7 +2226,7 @@
                         {
                             "id": "577772",
                             "name": "Over 224.5",
-                            "returnWin": 3.4,
+                            "returnWin": 3.5,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -1619,7 +2239,7 @@
                         {
                             "id": "577773",
                             "name": "Under 224.5",
-                            "returnWin": 1.28,
+                            "returnWin": 1.27,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -1710,7 +2330,7 @@
                         {
                             "id": "577780",
                             "name": "Over 220.5",
-                            "returnWin": 2.75,
+                            "returnWin": 2.8,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -1723,7 +2343,7 @@
                         {
                             "id": "577781",
                             "name": "Under 220.5",
-                            "returnWin": 1.42,
+                            "returnWin": 1.4,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -1736,7 +2356,7 @@
                         {
                             "id": "577782",
                             "name": "Over 219.5",
-                            "returnWin": 2.6,
+                            "returnWin": 2.65,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -1749,7 +2369,7 @@
                         {
                             "id": "577783",
                             "name": "Under 219.5",
-                            "returnWin": 1.46,
+                            "returnWin": 1.45,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -2048,7 +2668,7 @@
                         {
                             "id": "577806",
                             "name": "Over 207.5",
-                            "returnWin": 1.53,
+                            "returnWin": 1.55,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -2061,7 +2681,7 @@
                         {
                             "id": "577807",
                             "name": "Under 207.5",
-                            "returnWin": 2.4,
+                            "returnWin": 2.35,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -2100,7 +2720,7 @@
                         {
                             "id": "577810",
                             "name": "Over 205.5",
-                            "returnWin": 1.45,
+                            "returnWin": 1.46,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -2113,7 +2733,7 @@
                         {
                             "id": "577811",
                             "name": "Under 205.5",
-                            "returnWin": 2.65,
+                            "returnWin": 2.6,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -2126,7 +2746,7 @@
                         {
                             "id": "577812",
                             "name": "Over 204.5",
-                            "returnWin": 1.4,
+                            "returnWin": 1.42,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -2139,7 +2759,7 @@
                         {
                             "id": "577813",
                             "name": "Under 204.5",
-                            "returnWin": 2.8,
+                            "returnWin": 2.75,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -3543,7 +4163,7 @@
                         {
                             "id": "562956",
                             "name": "A Gordon Over 14.5 Pts",
-                            "returnWin": 1.85,
+                            "returnWin": 1.8,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -3556,7 +4176,7 @@
                         {
                             "id": "562957",
                             "name": "A Gordon Under 14.5 Pts",
-                            "returnWin": 1.9,
+                            "returnWin": 1.95,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -3717,7 +4337,7 @@
                         {
                             "id": "562937",
                             "name": "D Jones Jr Over 6.5 Pts",
-                            "returnWin": 1.85,
+                            "returnWin": 1.87,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -3730,7 +4350,7 @@
                         {
                             "id": "562938",
                             "name": "D Jones Jr Under 6.5 Pts",
-                            "returnWin": 1.9,
+                            "returnWin": 1.87,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -3775,7 +4395,7 @@
                         {
                             "id": "562982",
                             "name": "Ivica Zubac Over 19.5 Pts",
-                            "returnWin": 2,
+                            "returnWin": 1.95,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -3788,7 +4408,7 @@
                         {
                             "id": "562983",
                             "name": "Ivica Zubac Under 19.5 Pts",
-                            "returnWin": 1.75,
+                            "returnWin": 1.8,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -3891,7 +4511,7 @@
                         {
                             "id": "562871",
                             "name": "J Murray Over 21.5 Pts",
-                            "returnWin": 1.9,
+                            "returnWin": 1.95,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -3904,7 +4524,7 @@
                         {
                             "id": "562872",
                             "name": "J Murray Under 21.5 Pts",
-                            "returnWin": 1.85,
+                            "returnWin": 1.8,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -4181,7 +4801,7 @@
                         {
                             "id": "562814",
                             "name": "N Jokic Over 27.5 Pts",
-                            "returnWin": 1.9,
+                            "returnWin": 1.95,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -4194,7 +4814,7 @@
                         {
                             "id": "562815",
                             "name": "N Jokic Under 27.5 Pts",
-                            "returnWin": 1.85,
+                            "returnWin": 1.8,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -4409,7 +5029,7 @@
                         {
                             "id": "579567",
                             "name": "A Gordon 10+ Pts",
-                            "returnWin": 1.22,
+                            "returnWin": 1.2,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -4433,7 +5053,7 @@
                         {
                             "id": "579569",
                             "name": "A Gordon 20+ Pts",
-                            "returnWin": 3.6,
+                            "returnWin": 3.5,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -4751,7 +5371,7 @@
                         {
                             "id": "579976",
                             "name": "J Harden 20+ Pts",
-                            "returnWin": 1.68,
+                            "returnWin": 1.7,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -4763,7 +5383,7 @@
                         {
                             "id": "579977",
                             "name": "J Harden 25+ Pts",
-                            "returnWin": 2.9,
+                            "returnWin": 3,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -4829,7 +5449,7 @@
                         {
                             "id": "579525",
                             "name": "J Murray 25+ Pts",
-                            "returnWin": 2.6,
+                            "returnWin": 2.7,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -5111,7 +5731,7 @@
                         {
                             "id": "579940",
                             "name": "N Jokic 20+ Pts",
-                            "returnWin": 1.15,
+                            "returnWin": 1.16,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -5123,7 +5743,7 @@
                         {
                             "id": "579941",
                             "name": "N Jokic 25+ Pts",
-                            "returnWin": 1.5,
+                            "returnWin": 1.52,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -6865,7 +7485,7 @@
                         {
                             "id": "579897",
                             "name": "A Gordon 25+ PRA",
-                            "returnWin": 2.2,
+                            "returnWin": 2.15,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -7105,7 +7725,7 @@
                         {
                             "id": "579806",
                             "name": "J Harden 30+ PRA",
-                            "returnWin": 1.26,
+                            "returnWin": 1.28,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -7117,7 +7737,7 @@
                         {
                             "id": "579807",
                             "name": "J Harden 35+ PRA",
-                            "returnWin": 1.68,
+                            "returnWin": 1.7,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -7183,7 +7803,7 @@
                         {
                             "id": "579769",
                             "name": "J Murray 25+ PRA",
-                            "returnWin": 1.22,
+                            "returnWin": 1.24,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -7195,7 +7815,7 @@
                         {
                             "id": "579770",
                             "name": "J Murray 30+ PRA",
-                            "returnWin": 1.62,
+                            "returnWin": 1.65,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -7249,7 +7869,7 @@
                         {
                             "id": "579991",
                             "name": "K Dunn 10+ PRA",
-                            "returnWin": 1.5,
+                            "returnWin": 1.52,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -7489,7 +8109,7 @@
                         {
                             "id": "579415",
                             "name": "N Jokic 40+ PRA",
-                            "returnWin": 1.13,
+                            "returnWin": 1.14,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -7579,7 +8199,7 @@
                         {
                             "id": "579622",
                             "name": "N Powell 20+ PRA",
-                            "returnWin": 1.48,
+                            "returnWin": 1.45,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -7699,7 +8319,7 @@
                         {
                             "id": "553093",
                             "name": "A Gordon 10+ Pts/Den Win",
-                            "returnWin": 3.4,
+                            "returnWin": 3.3,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -11336,7 +11956,7 @@
                         {
                             "id": "579699",
                             "name": "A Gordon 6+ Reb",
-                            "returnWin": 1.9,
+                            "returnWin": 1.95,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -11420,7 +12040,7 @@
                         {
                             "id": "579585",
                             "name": "Chris Braun 4+ Reb",
-                            "returnWin": 1.3,
+                            "returnWin": 1.28,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -11474,7 +12094,7 @@
                         {
                             "id": "579965",
                             "name": "D Jones Jr 2+ Reb",
-                            "returnWin": 1.65,
+                            "returnWin": 1.62,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -11540,7 +12160,7 @@
                         {
                             "id": "579662",
                             "name": "Ivica Zubac 12+ Reb",
-                            "returnWin": 1.7,
+                            "returnWin": 1.72,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -11552,7 +12172,7 @@
                         {
                             "id": "579663",
                             "name": "Ivica Zubac 14+ Reb",
-                            "returnWin": 2.6,
+                            "returnWin": 2.7,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -11660,7 +12280,7 @@
                         {
                             "id": "579957",
                             "name": "J Murray 4+ Reb",
-                            "returnWin": 1.55,
+                            "returnWin": 1.58,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -11668,18 +12288,6 @@
                             "number": 579957,
                             "isOpen": true,
                             "sortOrder": 2
-                        },
-                        {
-                            "id": "579958",
-                            "name": "J Murray 6+ Reb",
-                            "returnWin": 3,
-                            "returnPlace": 0,
-                            "differential": null,
-                            "bettingStatus": "Open",
-                            "allowPlace": false,
-                            "number": 579958,
-                            "isOpen": true,
-                            "sortOrder": 3
                         }
                     ]
                 },
@@ -11726,7 +12334,7 @@
                         {
                             "id": "579707",
                             "name": "K Dunn 4+ Reb",
-                            "returnWin": 2.5,
+                            "returnWin": 2.6,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -12128,7 +12736,7 @@
                         {
                             "id": "579852",
                             "name": "R Westbrook 4+ Reb",
-                            "returnWin": 1.85,
+                            "returnWin": 1.9,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -12846,7 +13454,7 @@
                         {
                             "id": "579457",
                             "name": "Bg Bgdnovic 2+ Ast",
-                            "returnWin": 1.38,
+                            "returnWin": 1.36,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -13308,7 +13916,7 @@
                         {
                             "id": "579910",
                             "name": "N Jokic 10+ Ast",
-                            "returnWin": 1.75,
+                            "returnWin": 1.72,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -13320,7 +13928,7 @@
                         {
                             "id": "579911",
                             "name": "N Jokic 12+ Ast",
-                            "returnWin": 2.9,
+                            "returnWin": 2.8,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -14229,7 +14837,7 @@
                         {
                             "id": "579750",
                             "name": "A Gordon 2+ Threes",
-                            "returnWin": 2.7,
+                            "returnWin": 2.8,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -14409,7 +15017,7 @@
                         {
                             "id": "579869",
                             "name": "J Harden 1+ Threes",
-                            "returnWin": 1.02,
+                            "returnWin": 1.03,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -14553,7 +15161,7 @@
                         {
                             "id": "579729",
                             "name": "K Dunn 2+ Threes",
-                            "returnWin": 2.15,
+                            "returnWin": 2.2,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -14793,7 +15401,7 @@
                         {
                             "id": "579668",
                             "name": "N Jokic 2+ Threes",
-                            "returnWin": 1.75,
+                            "returnWin": 1.8,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -15158,7 +15766,7 @@
                         {
                             "id": "562674",
                             "name": "D Jones Jr 1+ Blk",
-                            "returnWin": 2.9,
+                            "returnWin": 2.8,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -15810,7 +16418,7 @@
                         {
                             "id": "563024",
                             "name": "A Gordon 1+ Stl",
-                            "returnWin": 1.7,
+                            "returnWin": 1.72,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -15852,7 +16460,7 @@
                         {
                             "id": "563032",
                             "name": "Bg Bgdnovic 1+ Stl",
-                            "returnWin": 2.05,
+                            "returnWin": 2.1,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -16398,7 +17006,7 @@
                         {
                             "id": "562666",
                             "name": "N Powell 1+ Stl",
-                            "returnWin": 1.38,
+                            "returnWin": 1.4,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -17007,7 +17615,7 @@
                         {
                             "id": "553248",
                             "name": "Ivica Zubac Double-Double",
-                            "returnWin": 1.33,
+                            "returnWin": 1.35,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -19216,7 +19824,7 @@
                         {
                             "id": "599913",
                             "name": "191 to 210",
-                            "returnWin": 2.2,
+                            "returnWin": 2.15,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -19522,7 +20130,7 @@
                         {
                             "id": "599946",
                             "name": "229 to 230",
-                            "returnWin": 21,
+                            "returnWin": 23,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -19805,7 +20413,7 @@
                         {
                             "id": "599959",
                             "name": "LAClippers 106 to 110",
-                            "returnWin": 4.5,
+                            "returnWin": 4.2,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -23634,7 +24242,7 @@
                         {
                             "id": "550537",
                             "name": "LAClippers Over 52.5",
-                            "returnWin": 1.85,
+                            "returnWin": 1.87,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -23646,7 +24254,7 @@
                         {
                             "id": "550538",
                             "name": "LAClippers Under 52.5",
-                            "returnWin": 1.9,
+                            "returnWin": 1.87,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -29046,7 +29654,7 @@
                         {
                             "id": "550551",
                             "name": "Over 49.5",
-                            "returnWin": 1.87,
+                            "returnWin": 1.9,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -29058,7 +29666,7 @@
                         {
                             "id": "550552",
                             "name": "Under 49.5",
-                            "returnWin": 1.87,
+                            "returnWin": 1.85,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -50662,570 +51270,6 @@
             ],
             "inPlay": false,
             "goingInPlay": true
-        },
-        {
-            "id": "DetvNYK1",
-            "name": "Detroit v New York",
-            "spectrumId": "DetvNYK1",
-            "spectrumUniqueId": 2855656,
-            "competitionSpectrumId": "1001",
-            "round": null,
-            "broadcastChannel": "Tab.com.au",
-            "broadcastChannels": [
-                "Tab.com.au"
-            ],
-            "startTime": "2025-05-01T23:37:00.000Z",
-            "_links": {
-                "self": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/Detroit%20v%20New%20York?jurisdiction=SA",
-                "selfTemplate": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/Detroit%20v%20New%20York?jurisdiction={jurisdiction}{&returnPromo,returnOffers,returnMultiOnly,channelType,cashSales,homeState}",
-                "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/Detroit%20v%20New%20York/markets?jurisdiction=SA"
-            },
-            "vision": {
-                "unas": {
-                    "startTime": "2025-05-01T23:30:00Z",
-                    "requiresAuthentication": true,
-                    "_links": {
-                        "self": "https://api.beta.tab.com.au/v1/vision-service/tab-act/matches/DetvNYK1/unas"
-                    }
-                }
-            },
-            "contestants": [
-                {
-                    "name": "Detroit",
-                    "position": "HOME",
-                    "isHome": true,
-                    "image": [
-                        {
-                            "size": "svg",
-                            "url": "https://metadata.beta.tab.com.au/icons/NBA%20logos/Detroit%20Pistons.svg"
-                        },
-                        {
-                            "size": "xxhdpi",
-                            "url": "https://metadata.beta.tab.com.au/icons/NBA%20logos/Detroit%20Pistons_xxhdpi.png"
-                        },
-                        {
-                            "size": "2x",
-                            "url": "https://metadata.beta.tab.com.au/icons/NBA%20logos/Detroit%20Pistons%402x.png"
-                        }
-                    ]
-                },
-                {
-                    "name": "New York",
-                    "position": "AWAY",
-                    "isHome": false,
-                    "image": [
-                        {
-                            "size": "svg",
-                            "url": "https://metadata.beta.tab.com.au/icons/NBA%20logos/New%20York%20Knicks.svg"
-                        },
-                        {
-                            "size": "xxhdpi",
-                            "url": "https://metadata.beta.tab.com.au/icons/NBA%20logos/New%20York%20Knicks_xxhdpi.png"
-                        },
-                        {
-                            "size": "2x",
-                            "url": "https://metadata.beta.tab.com.au/icons/NBA%20logos/New%20York%20Knicks%402x.png"
-                        }
-                    ]
-                }
-            ],
-            "competitors": [
-                "Detroit",
-                "New York"
-            ],
-            "openMarketCount": 9,
-            "futureMarketCount": 0,
-            "nonFutureMarketCount": 9,
-            "markets": [
-                {
-                    "id": "114827702",
-                    "name": "NBA Det-NYK C Cuningham PlrPts",
-                    "shortName": "NBA Det-NYK C Cuningham Pts",
-                    "betOption": "Player Points Live",
-                    "betOptionSpectrumId": "1933",
-                    "betOptionPriority": 2665,
-                    "marketUniqueId": 114827702,
-                    "closeTime": "2025-05-01T23:37:00.000Z",
-                    "bettingStatus": "Suspended",
-                    "message": null,
-                    "informationMessage": null,
-                    "isFuture": false,
-                    "onlineBetting": false,
-                    "phoneBettingOnly": true,
-                    "inPlay": true,
-                    "goingInPlay": false,
-                    "allowWin": true,
-                    "allowPlace": false,
-                    "allowEachWay": false,
-                    "allowMulti": true,
-                    "allowMultiWin": true,
-                    "allowMultiPlace": false,
-                    "allowMultiEachWay": false,
-                    "numberOfPlaces": 0,
-                    "cashOutEligibility": "Disabled",
-                    "allowBundle": false,
-                    "propositions": [
-                        {
-                            "id": "562015",
-                            "name": "C Cuningham Over 28.5",
-                            "returnWin": 1.9,
-                            "returnPlace": 0,
-                            "differential": null,
-                            "bettingStatus": "Suspended",
-                            "allowPlace": false,
-                            "number": 562015,
-                            "isOpen": false,
-                            "sortOrder": 53
-                        },
-                        {
-                            "id": "562016",
-                            "name": "C Cuningham Under 28.5",
-                            "returnWin": 1.85,
-                            "returnPlace": 0,
-                            "differential": null,
-                            "bettingStatus": "Suspended",
-                            "allowPlace": false,
-                            "number": 562016,
-                            "isOpen": false,
-                            "sortOrder": 54
-                        }
-                    ]
-                },
-                {
-                    "id": "114827700",
-                    "name": "NBA Det-NYK D Schroder PlrPts",
-                    "shortName": "NBA Det-NYK D Schroder Pts",
-                    "betOption": "Player Points Live",
-                    "betOptionSpectrumId": "1933",
-                    "betOptionPriority": 2665,
-                    "marketUniqueId": 114827700,
-                    "closeTime": "2025-05-01T23:37:00.000Z",
-                    "bettingStatus": "Open",
-                    "message": null,
-                    "informationMessage": null,
-                    "isFuture": false,
-                    "onlineBetting": false,
-                    "phoneBettingOnly": true,
-                    "inPlay": true,
-                    "goingInPlay": false,
-                    "allowWin": true,
-                    "allowPlace": false,
-                    "allowEachWay": false,
-                    "allowMulti": true,
-                    "allowMultiWin": true,
-                    "allowMultiPlace": false,
-                    "allowMultiEachWay": false,
-                    "numberOfPlaces": 0,
-                    "cashOutEligibility": "Disabled",
-                    "allowBundle": false,
-                    "propositions": [
-                        {
-                            "id": "561870",
-                            "name": "D Schroder Over 9.5",
-                            "returnWin": 1.75,
-                            "returnPlace": 0,
-                            "differential": null,
-                            "bettingStatus": "Open",
-                            "allowPlace": false,
-                            "number": 561870,
-                            "isOpen": true,
-                            "sortOrder": 15
-                        },
-                        {
-                            "id": "561871",
-                            "name": "D Schroder Under 9.5",
-                            "returnWin": 2,
-                            "returnPlace": 0,
-                            "differential": null,
-                            "bettingStatus": "Open",
-                            "allowPlace": false,
-                            "number": 561871,
-                            "isOpen": true,
-                            "sortOrder": 16
-                        }
-                    ]
-                },
-                {
-                    "id": "114827725",
-                    "name": "NBA Det-NYK J Brunson PlrPts",
-                    "shortName": "NBA Det-NYK J Brunson Pts",
-                    "betOption": "Player Points Live",
-                    "betOptionSpectrumId": "1933",
-                    "betOptionPriority": 2665,
-                    "marketUniqueId": 114827725,
-                    "closeTime": "2025-05-01T23:37:00.000Z",
-                    "bettingStatus": "Open",
-                    "message": null,
-                    "informationMessage": null,
-                    "isFuture": false,
-                    "onlineBetting": false,
-                    "phoneBettingOnly": true,
-                    "inPlay": true,
-                    "goingInPlay": false,
-                    "allowWin": true,
-                    "allowPlace": false,
-                    "allowEachWay": false,
-                    "allowMulti": true,
-                    "allowMultiWin": true,
-                    "allowMultiPlace": false,
-                    "allowMultiEachWay": false,
-                    "numberOfPlaces": 0,
-                    "cashOutEligibility": "Disabled",
-                    "allowBundle": false,
-                    "propositions": [
-                        {
-                            "id": "562401",
-                            "name": "J Brunson Over 29.5",
-                            "returnWin": 1.87,
-                            "returnPlace": 0,
-                            "differential": null,
-                            "bettingStatus": "Open",
-                            "allowPlace": false,
-                            "number": 562401,
-                            "isOpen": true,
-                            "sortOrder": 55
-                        },
-                        {
-                            "id": "562402",
-                            "name": "J Brunson Under 29.5",
-                            "returnWin": 1.87,
-                            "returnPlace": 0,
-                            "differential": null,
-                            "bettingStatus": "Open",
-                            "allowPlace": false,
-                            "number": 562402,
-                            "isOpen": true,
-                            "sortOrder": 56
-                        }
-                    ]
-                },
-                {
-                    "id": "114827697",
-                    "name": "NBA Det-NYK J Duren PlrPts",
-                    "shortName": "NBA Det-NYK J Duren Pts",
-                    "betOption": "Player Points Live",
-                    "betOptionSpectrumId": "1933",
-                    "betOptionPriority": 2665,
-                    "marketUniqueId": 114827697,
-                    "closeTime": "2025-05-01T23:37:00.000Z",
-                    "bettingStatus": "Open",
-                    "message": null,
-                    "informationMessage": null,
-                    "isFuture": false,
-                    "onlineBetting": false,
-                    "phoneBettingOnly": true,
-                    "inPlay": true,
-                    "goingInPlay": false,
-                    "allowWin": true,
-                    "allowPlace": false,
-                    "allowEachWay": false,
-                    "allowMulti": true,
-                    "allowMultiWin": true,
-                    "allowMultiPlace": false,
-                    "allowMultiEachWay": false,
-                    "numberOfPlaces": 0,
-                    "cashOutEligibility": "Disabled",
-                    "allowBundle": false,
-                    "propositions": [
-                        {
-                            "id": "561582",
-                            "name": "J Duren Over 12.5",
-                            "returnWin": 1.8,
-                            "returnPlace": 0,
-                            "differential": null,
-                            "bettingStatus": "Open",
-                            "allowPlace": false,
-                            "number": 561582,
-                            "isOpen": true,
-                            "sortOrder": 21
-                        },
-                        {
-                            "id": "561583",
-                            "name": "J Duren Under 12.5",
-                            "returnWin": 1.95,
-                            "returnPlace": 0,
-                            "differential": null,
-                            "bettingStatus": "Open",
-                            "allowPlace": false,
-                            "number": 561583,
-                            "isOpen": true,
-                            "sortOrder": 22
-                        }
-                    ]
-                },
-                {
-                    "id": "114827698",
-                    "name": "NBA Det-NYK Josh Hart PlrPts",
-                    "shortName": "NBA Det-NYK Josh Hart Pts",
-                    "betOption": "Player Points Live",
-                    "betOptionSpectrumId": "1933",
-                    "betOptionPriority": 2665,
-                    "marketUniqueId": 114827698,
-                    "closeTime": "2025-05-01T23:37:00.000Z",
-                    "bettingStatus": "Open",
-                    "message": null,
-                    "informationMessage": null,
-                    "isFuture": false,
-                    "onlineBetting": false,
-                    "phoneBettingOnly": true,
-                    "inPlay": true,
-                    "goingInPlay": false,
-                    "allowWin": true,
-                    "allowPlace": false,
-                    "allowEachWay": false,
-                    "allowMulti": true,
-                    "allowMultiWin": true,
-                    "allowMultiPlace": false,
-                    "allowMultiEachWay": false,
-                    "numberOfPlaces": 0,
-                    "cashOutEligibility": "Disabled",
-                    "allowBundle": false,
-                    "propositions": [
-                        {
-                            "id": "561674",
-                            "name": "Josh Hart Over 9.5",
-                            "returnWin": 1.8,
-                            "returnPlace": 0,
-                            "differential": null,
-                            "bettingStatus": "Open",
-                            "allowPlace": false,
-                            "number": 561674,
-                            "isOpen": true,
-                            "sortOrder": 15
-                        },
-                        {
-                            "id": "561675",
-                            "name": "Josh Hart Under 9.5",
-                            "returnWin": 1.95,
-                            "returnPlace": 0,
-                            "differential": null,
-                            "bettingStatus": "Open",
-                            "allowPlace": false,
-                            "number": 561675,
-                            "isOpen": true,
-                            "sortOrder": 16
-                        }
-                    ]
-                },
-                {
-                    "id": "114827684",
-                    "name": "NBA Det-NYK K Towns PlrPts",
-                    "shortName": "NBA Det-NYK K Towns Pts",
-                    "betOption": "Player Points Live",
-                    "betOptionSpectrumId": "1933",
-                    "betOptionPriority": 2665,
-                    "marketUniqueId": 114827684,
-                    "closeTime": "2025-05-01T23:37:00.000Z",
-                    "bettingStatus": "Open",
-                    "message": null,
-                    "informationMessage": null,
-                    "isFuture": false,
-                    "onlineBetting": false,
-                    "phoneBettingOnly": true,
-                    "inPlay": true,
-                    "goingInPlay": false,
-                    "allowWin": true,
-                    "allowPlace": false,
-                    "allowEachWay": false,
-                    "allowMulti": true,
-                    "allowMultiWin": true,
-                    "allowMultiPlace": false,
-                    "allowMultiEachWay": false,
-                    "numberOfPlaces": 0,
-                    "cashOutEligibility": "Disabled",
-                    "allowBundle": false,
-                    "propositions": [
-                        {
-                            "id": "561390",
-                            "name": "K Towns Over 21.5",
-                            "returnWin": 1.8,
-                            "returnPlace": 0,
-                            "differential": null,
-                            "bettingStatus": "Open",
-                            "allowPlace": false,
-                            "number": 561390,
-                            "isOpen": true,
-                            "sortOrder": 39
-                        },
-                        {
-                            "id": "561391",
-                            "name": "K Towns Under 21.5",
-                            "returnWin": 1.95,
-                            "returnPlace": 0,
-                            "differential": null,
-                            "bettingStatus": "Open",
-                            "allowPlace": false,
-                            "number": 561391,
-                            "isOpen": true,
-                            "sortOrder": 40
-                        }
-                    ]
-                },
-                {
-                    "id": "114827681",
-                    "name": "NBA Det-NYK Mik Bridges PlrPts",
-                    "shortName": "NBA Det-NYK Mik Bridges Pts",
-                    "betOption": "Player Points Live",
-                    "betOptionSpectrumId": "1933",
-                    "betOptionPriority": 2665,
-                    "marketUniqueId": 114827681,
-                    "closeTime": "2025-05-01T23:37:00.000Z",
-                    "bettingStatus": "Open",
-                    "message": null,
-                    "informationMessage": null,
-                    "isFuture": false,
-                    "onlineBetting": false,
-                    "phoneBettingOnly": true,
-                    "inPlay": true,
-                    "goingInPlay": false,
-                    "allowWin": true,
-                    "allowPlace": false,
-                    "allowEachWay": false,
-                    "allowMulti": true,
-                    "allowMultiWin": true,
-                    "allowMultiPlace": false,
-                    "allowMultiEachWay": false,
-                    "numberOfPlaces": 0,
-                    "cashOutEligibility": "Disabled",
-                    "allowBundle": false,
-                    "propositions": [
-                        {
-                            "id": "561261",
-                            "name": "Mik Bridges Over 15.5",
-                            "returnWin": 1.9,
-                            "returnPlace": 0,
-                            "differential": null,
-                            "bettingStatus": "Open",
-                            "allowPlace": false,
-                            "number": 561261,
-                            "isOpen": true,
-                            "sortOrder": 27
-                        },
-                        {
-                            "id": "561262",
-                            "name": "Mik Bridges Under 15.5",
-                            "returnWin": 1.85,
-                            "returnPlace": 0,
-                            "differential": null,
-                            "bettingStatus": "Open",
-                            "allowPlace": false,
-                            "number": 561262,
-                            "isOpen": true,
-                            "sortOrder": 28
-                        }
-                    ]
-                },
-                {
-                    "id": "114827712",
-                    "name": "NBA Det-NYK OG Anunoby PlrPts",
-                    "shortName": "NBA Det-NYK OG Anunoby Pts",
-                    "betOption": "Player Points Live",
-                    "betOptionSpectrumId": "1933",
-                    "betOptionPriority": 2665,
-                    "marketUniqueId": 114827712,
-                    "closeTime": "2025-05-01T23:37:00.000Z",
-                    "bettingStatus": "Open",
-                    "message": null,
-                    "informationMessage": null,
-                    "isFuture": false,
-                    "onlineBetting": false,
-                    "phoneBettingOnly": true,
-                    "inPlay": true,
-                    "goingInPlay": false,
-                    "allowWin": true,
-                    "allowPlace": false,
-                    "allowEachWay": false,
-                    "allowMulti": true,
-                    "allowMultiWin": true,
-                    "allowMultiPlace": false,
-                    "allowMultiEachWay": false,
-                    "numberOfPlaces": 0,
-                    "cashOutEligibility": "Disabled",
-                    "allowBundle": false,
-                    "propositions": [
-                        {
-                            "id": "562172",
-                            "name": "OG Anunoby Over 19.5",
-                            "returnWin": 1.87,
-                            "returnPlace": 0,
-                            "differential": null,
-                            "bettingStatus": "Open",
-                            "allowPlace": false,
-                            "number": 562172,
-                            "isOpen": true,
-                            "sortOrder": 35
-                        },
-                        {
-                            "id": "562173",
-                            "name": "OG Anunoby Under 19.5",
-                            "returnWin": 1.87,
-                            "returnPlace": 0,
-                            "differential": null,
-                            "bettingStatus": "Open",
-                            "allowPlace": false,
-                            "number": 562173,
-                            "isOpen": true,
-                            "sortOrder": 36
-                        }
-                    ]
-                },
-                {
-                    "id": "114827699",
-                    "name": "NBA Det-NYK T Harris PlrPts",
-                    "shortName": "NBA Det-NYK T Harris Pts",
-                    "betOption": "Player Points Live",
-                    "betOptionSpectrumId": "1933",
-                    "betOptionPriority": 2665,
-                    "marketUniqueId": 114827699,
-                    "closeTime": "2025-05-01T23:37:00.000Z",
-                    "bettingStatus": "Open",
-                    "message": null,
-                    "informationMessage": null,
-                    "isFuture": false,
-                    "onlineBetting": false,
-                    "phoneBettingOnly": true,
-                    "inPlay": true,
-                    "goingInPlay": false,
-                    "allowWin": true,
-                    "allowPlace": false,
-                    "allowEachWay": false,
-                    "allowMulti": true,
-                    "allowMultiWin": true,
-                    "allowMultiPlace": false,
-                    "allowMultiEachWay": false,
-                    "numberOfPlaces": 0,
-                    "cashOutEligibility": "Disabled",
-                    "allowBundle": false,
-                    "propositions": [
-                        {
-                            "id": "561786",
-                            "name": "T Harris Over 16.5",
-                            "returnWin": 1.9,
-                            "returnPlace": 0,
-                            "differential": null,
-                            "bettingStatus": "Open",
-                            "allowPlace": false,
-                            "number": 561786,
-                            "isOpen": true,
-                            "sortOrder": 29
-                        },
-                        {
-                            "id": "561787",
-                            "name": "T Harris Under 16.5",
-                            "returnWin": 1.85,
-                            "returnPlace": 0,
-                            "differential": null,
-                            "bettingStatus": "Open",
-                            "allowPlace": false,
-                            "number": 561787,
-                            "isOpen": true,
-                            "sortOrder": 30
-                        }
-                    ]
-                }
-            ],
-            "inPlay": true,
-            "goingInPlay": false
         }
     ],
     "tournaments": [],
@@ -51450,7 +51494,7 @@
         {
             "name": "Head To Head",
             "hasFutureMarket": false,
-            "openMarketCount": 3,
+            "openMarketCount": 4,
             "_links": {
                 "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/markets?jurisdiction=SA&betOptionName=Head%20To%20Head"
             }
