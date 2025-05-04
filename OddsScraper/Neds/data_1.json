@@ -7,6 +7,14 @@
             "sort_order": 10,
             "market_id": "5a14bb1c-15f4-4435-b53b-f421da73f8bf"
         },
+        "2c4b4a49-310a-40d7-b25c-78f584ae4d2d": {
+            "id": "2c4b4a49-310a-40d7-b25c-78f584ae4d2d",
+            "name": "Brazil (Women) (+34.5)",
+            "home_away": "AWAY",
+            "visible": true,
+            "sort_order": 20,
+            "market_id": "aff69e16-282d-465e-984c-a71076cdbde9"
+        },
         "500972cf-977c-4fa7-baca-b5e5ae867fd4": {
             "id": "500972cf-977c-4fa7-baca-b5e5ae867fd4",
             "name": "Under (152.5)",
@@ -21,6 +29,14 @@
             "sort_order": 90,
             "market_id": "5a14bb1c-15f4-4435-b53b-f421da73f8bf"
         },
+        "79391182-a651-49ee-bd95-c1bf95c87c56": {
+            "id": "79391182-a651-49ee-bd95-c1bf95c87c56",
+            "name": "Indiana Fever (-34.5)",
+            "home_away": "HOME",
+            "visible": true,
+            "sort_order": 10,
+            "market_id": "aff69e16-282d-465e-984c-a71076cdbde9"
+        },
         "8225f0aa-5ece-4d39-b981-134c01c615b0": {
             "id": "8225f0aa-5ece-4d39-b981-134c01c615b0",
             "name": "181 or more",
@@ -28,28 +44,12 @@
             "sort_order": 70,
             "market_id": "5a14bb1c-15f4-4435-b53b-f421da73f8bf"
         },
-        "9b4b10be-2416-401b-a98c-c72c9cd77b6e": {
-            "id": "9b4b10be-2416-401b-a98c-c72c9cd77b6e",
-            "name": "Brazil (Women) (+33.5)",
-            "home_away": "AWAY",
-            "visible": true,
-            "sort_order": 20,
-            "market_id": "017f72c2-d531-4820-a133-76322a4a0167"
-        },
         "add33730-9265-4150-a7b8-1d96f107397f": {
             "id": "add33730-9265-4150-a7b8-1d96f107397f",
             "name": "141 to 150",
             "visible": true,
             "sort_order": 20,
             "market_id": "5a14bb1c-15f4-4435-b53b-f421da73f8bf"
-        },
-        "b0306375-8e08-4cb7-bfd4-cac7ee5560d5": {
-            "id": "b0306375-8e08-4cb7-bfd4-cac7ee5560d5",
-            "name": "Indiana Fever (-33.5)",
-            "home_away": "HOME",
-            "visible": true,
-            "sort_order": 10,
-            "market_id": "017f72c2-d531-4820-a133-76322a4a0167"
         },
         "b4244cb5-9545-44cb-8688-c6a831a58344": {
             "id": "b4244cb5-9545-44cb-8688-c6a831a58344",
@@ -143,7 +143,7 @@
                 {
                     "market_type_group_id": "43c990d1-7471-4055-9a7a-e71409494486",
                     "market_ids": [
-                        "017f72c2-d531-4820-a133-76322a4a0167",
+                        "aff69e16-282d-465e-984c-a71076cdbde9",
                         "78dc9dd6-3ef9-44d1-a1cc-57b87f9bc7df",
                         "5a14bb1c-15f4-4435-b53b-f421da73f8bf"
                     ]
@@ -151,10 +151,10 @@
             ],
             "market_count": 3,
             "main_markets": [
-                "017f72c2-d531-4820-a133-76322a4a0167"
+                "aff69e16-282d-465e-984c-a71076cdbde9"
             ],
             "market_ids": [
-                "017f72c2-d531-4820-a133-76322a4a0167",
+                "aff69e16-282d-465e-984c-a71076cdbde9",
                 "78dc9dd6-3ef9-44d1-a1cc-57b87f9bc7df",
                 "5a14bb1c-15f4-4435-b53b-f421da73f8bf"
             ],
@@ -175,26 +175,6 @@
         }
     },
     "markets": {
-        "017f72c2-d531-4820-a133-76322a4a0167": {
-            "id": "017f72c2-d531-4820-a133-76322a4a0167",
-            "event_id": "1a2eb35e-d17f-4f7d-8b50-74fddf9c7421",
-            "market_type_id": "8fcc394e-b974-4328-af74-57d423de7a7b",
-            "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
-            "name": "Line (-33.5)",
-            "advertised_start": {
-                "seconds": 1746388800
-            },
-            "actual_start": {
-                "seconds": 1746388800
-            },
-            "same_game_multi_available": true,
-            "visible": true,
-            "entrant_ids": [
-                "b0306375-8e08-4cb7-bfd4-cac7ee5560d5",
-                "9b4b10be-2416-401b-a98c-c72c9cd77b6e"
-            ],
-            "num_winners": 1
-        },
         "5a14bb1c-15f4-4435-b53b-f421da73f8bf": {
             "id": "5a14bb1c-15f4-4435-b53b-f421da73f8bf",
             "event_id": "1a2eb35e-d17f-4f7d-8b50-74fddf9c7421",
@@ -243,18 +223,44 @@
                 "500972cf-977c-4fa7-baca-b5e5ae867fd4"
             ],
             "num_winners": 1
+        },
+        "aff69e16-282d-465e-984c-a71076cdbde9": {
+            "id": "aff69e16-282d-465e-984c-a71076cdbde9",
+            "event_id": "1a2eb35e-d17f-4f7d-8b50-74fddf9c7421",
+            "market_type_id": "8fcc394e-b974-4328-af74-57d423de7a7b",
+            "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
+            "name": "Line (-34.5)",
+            "advertised_start": {
+                "seconds": 1746388800
+            },
+            "actual_start": {
+                "seconds": 1746388800
+            },
+            "same_game_multi_available": true,
+            "visible": true,
+            "entrant_ids": [
+                "79391182-a651-49ee-bd95-c1bf95c87c56",
+                "2c4b4a49-310a-40d7-b25c-78f584ae4d2d"
+            ],
+            "num_winners": 1
         }
     },
     "markets_allow_cashout": {
-        "017f72c2-d531-4820-a133-76322a4a0167": false,
         "5a14bb1c-15f4-4435-b53b-f421da73f8bf": true,
-        "78dc9dd6-3ef9-44d1-a1cc-57b87f9bc7df": false
+        "78dc9dd6-3ef9-44d1-a1cc-57b87f9bc7df": false,
+        "aff69e16-282d-465e-984c-a71076cdbde9": false
     },
     "prices": {
         "1bd30a40-c756-439d-8f07-00b51b1f1b61:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
                 "numerator": 47,
                 "denominator": 20
+            }
+        },
+        "2c4b4a49-310a-40d7-b25c-78f584ae4d2d:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 9,
+                "denominator": 10
             }
         },
         "500972cf-977c-4fa7-baca-b5e5ae867fd4:940b8704-e497-4a76-b390-00918ff7d282:": {
@@ -269,28 +275,22 @@
                 "denominator": 1
             }
         },
+        "79391182-a651-49ee-bd95-c1bf95c87c56:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 9,
+                "denominator": 10
+            }
+        },
         "8225f0aa-5ece-4d39-b981-134c01c615b0:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
                 "numerator": 16,
                 "denominator": 1
             }
         },
-        "9b4b10be-2416-401b-a98c-c72c9cd77b6e:940b8704-e497-4a76-b390-00918ff7d282:": {
-            "odds": {
-                "numerator": 9,
-                "denominator": 10
-            }
-        },
         "add33730-9265-4150-a7b8-1d96f107397f:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 12,
-                "denominator": 5
-            }
-        },
-        "b0306375-8e08-4cb7-bfd4-cac7ee5560d5:940b8704-e497-4a76-b390-00918ff7d282:": {
-            "odds": {
-                "numerator": 9,
-                "denominator": 10
+                "numerator": 49,
+                "denominator": 20
             }
         },
         "b4244cb5-9545-44cb-8688-c6a831a58344:940b8704-e497-4a76-b390-00918ff7d282:": {
@@ -313,7 +313,7 @@
         },
         "e3f3c1a3-9284-4a11-9f65-c81cba3542a3:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 50,
+                "numerator": 40,
                 "denominator": 1
             }
         },
