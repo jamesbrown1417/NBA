@@ -1,19 +1,19 @@
 {
     "entrants": {
-        "1d47bee7-1235-46a0-b650-c6976bdceb9a": {
-            "id": "1d47bee7-1235-46a0-b650-c6976bdceb9a",
-            "name": "Seattle Storm (-6.5)",
-            "home_away": "HOME",
-            "visible": true,
-            "sort_order": 10,
-            "market_id": "fd2f2574-af6e-4250-8815-2eac141b3d6a"
-        },
         "4453b798-c622-4907-807c-ed9819fd14bd": {
             "id": "4453b798-c622-4907-807c-ed9819fd14bd",
             "name": "Under (150.5)",
             "visible": true,
             "sort_order": 20,
             "market_id": "dc8673d4-31c8-4b63-a247-39b856c116fe"
+        },
+        "74d6314d-d618-46b7-ac78-42319af317ae": {
+            "id": "74d6314d-d618-46b7-ac78-42319af317ae",
+            "name": "Seattle Storm (-7.5)",
+            "home_away": "HOME",
+            "visible": true,
+            "sort_order": 10,
+            "market_id": "54d2600b-72ae-4dad-991d-64f0036ffbe3"
         },
         "7961978f-78b8-415c-b548-080f40125680": {
             "id": "7961978f-78b8-415c-b548-080f40125680",
@@ -30,13 +30,13 @@
             "sort_order": 10,
             "market_id": "dc8673d4-31c8-4b63-a247-39b856c116fe"
         },
-        "96f7c7b0-292d-4444-b4a4-b065db256d40": {
-            "id": "96f7c7b0-292d-4444-b4a4-b065db256d40",
-            "name": "Connecticut Sun (+6.5)",
+        "91903c4c-6b37-4ee4-a360-d93684d22c4c": {
+            "id": "91903c4c-6b37-4ee4-a360-d93684d22c4c",
+            "name": "Connecticut Sun (+7.5)",
             "home_away": "AWAY",
             "visible": true,
             "sort_order": 20,
-            "market_id": "fd2f2574-af6e-4250-8815-2eac141b3d6a"
+            "market_id": "54d2600b-72ae-4dad-991d-64f0036ffbe3"
         },
         "a0534e69-e7cf-4fc6-b747-5ff0c6297ec7": {
             "id": "a0534e69-e7cf-4fc6-b747-5ff0c6297ec7",
@@ -90,7 +90,7 @@
                     "market_type_group_id": "43c990d1-7471-4055-9a7a-e71409494486",
                     "market_ids": [
                         "8204ea1d-68f5-4884-be42-9ce19c4ecfb5",
-                        "fd2f2574-af6e-4250-8815-2eac141b3d6a",
+                        "54d2600b-72ae-4dad-991d-64f0036ffbe3",
                         "dc8673d4-31c8-4b63-a247-39b856c116fe"
                     ]
                 }
@@ -101,7 +101,7 @@
             ],
             "market_ids": [
                 "8204ea1d-68f5-4884-be42-9ce19c4ecfb5",
-                "fd2f2574-af6e-4250-8815-2eac141b3d6a",
+                "54d2600b-72ae-4dad-991d-64f0036ffbe3",
                 "dc8673d4-31c8-4b63-a247-39b856c116fe"
             ],
             "category_id": "3c34d075-dc14-436d-bfc4-9272a49c2b39",
@@ -121,6 +121,26 @@
         }
     },
     "markets": {
+        "54d2600b-72ae-4dad-991d-64f0036ffbe3": {
+            "id": "54d2600b-72ae-4dad-991d-64f0036ffbe3",
+            "event_id": "b562019c-5593-44a1-b585-b97217d11b4c",
+            "market_type_id": "8fcc394e-b974-4328-af74-57d423de7a7b",
+            "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
+            "name": "Line (-7.5)",
+            "advertised_start": {
+                "seconds": 1746396000
+            },
+            "actual_start": {
+                "seconds": 1746396000
+            },
+            "same_game_multi_available": true,
+            "visible": true,
+            "entrant_ids": [
+                "74d6314d-d618-46b7-ac78-42319af317ae",
+                "91903c4c-6b37-4ee4-a360-d93684d22c4c"
+            ],
+            "num_winners": 1
+        },
         "8204ea1d-68f5-4884-be42-9ce19c4ecfb5": {
             "id": "8204ea1d-68f5-4884-be42-9ce19c4ecfb5",
             "event_id": "b562019c-5593-44a1-b585-b97217d11b4c",
@@ -162,44 +182,24 @@
                 "4453b798-c622-4907-807c-ed9819fd14bd"
             ],
             "num_winners": 1
-        },
-        "fd2f2574-af6e-4250-8815-2eac141b3d6a": {
-            "id": "fd2f2574-af6e-4250-8815-2eac141b3d6a",
-            "event_id": "b562019c-5593-44a1-b585-b97217d11b4c",
-            "market_type_id": "8fcc394e-b974-4328-af74-57d423de7a7b",
-            "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
-            "name": "Line (-6.5)",
-            "advertised_start": {
-                "seconds": 1746396000
-            },
-            "actual_start": {
-                "seconds": 1746396000
-            },
-            "same_game_multi_available": true,
-            "visible": true,
-            "entrant_ids": [
-                "1d47bee7-1235-46a0-b650-c6976bdceb9a",
-                "96f7c7b0-292d-4444-b4a4-b065db256d40"
-            ],
-            "num_winners": 1
         }
     },
     "markets_allow_cashout": {
+        "54d2600b-72ae-4dad-991d-64f0036ffbe3": false,
         "8204ea1d-68f5-4884-be42-9ce19c4ecfb5": true,
-        "dc8673d4-31c8-4b63-a247-39b856c116fe": false,
-        "fd2f2574-af6e-4250-8815-2eac141b3d6a": false
+        "dc8673d4-31c8-4b63-a247-39b856c116fe": false
     },
     "prices": {
-        "1d47bee7-1235-46a0-b650-c6976bdceb9a:940b8704-e497-4a76-b390-00918ff7d282:": {
-            "odds": {
-                "numerator": 39,
-                "denominator": 50
-            }
-        },
         "4453b798-c622-4907-807c-ed9819fd14bd:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
                 "numerator": 17,
                 "denominator": 20
+            }
+        },
+        "74d6314d-d618-46b7-ac78-42319af317ae:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 9,
+                "denominator": 10
             }
         },
         "7961978f-78b8-415c-b548-080f40125680:940b8704-e497-4a76-b390-00918ff7d282:": {
@@ -214,10 +214,10 @@
                 "denominator": 50
             }
         },
-        "96f7c7b0-292d-4444-b4a4-b065db256d40:940b8704-e497-4a76-b390-00918ff7d282:": {
+        "91903c4c-6b37-4ee4-a360-d93684d22c4c:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 51,
-                "denominator": 50
+                "numerator": 9,
+                "denominator": 10
             }
         },
         "a0534e69-e7cf-4fc6-b747-5ff0c6297ec7:940b8704-e497-4a76-b390-00918ff7d282:": {
