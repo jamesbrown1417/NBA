@@ -1,13 +1,5 @@
 {
     "entrants": {
-        "314b3286-307c-429f-b855-0c87a88f6642": {
-            "id": "314b3286-307c-429f-b855-0c87a88f6642",
-            "name": "Phoenix Mercury (+6.5)",
-            "home_away": "AWAY",
-            "visible": true,
-            "sort_order": 20,
-            "market_id": "2e451d44-d606-487f-8d15-bb9af2d98ff6"
-        },
         "32a26549-f0d6-4cab-a475-2d83dd6124ee": {
             "id": "32a26549-f0d6-4cab-a475-2d83dd6124ee",
             "name": "Las Vegas Aces",
@@ -22,6 +14,14 @@
             "visible": true,
             "sort_order": 20,
             "market_id": "e14d82a7-5ea0-4f9d-a68b-d9ba3d9da80b"
+        },
+        "3fee9fc2-4ddb-47ca-9cf3-e2539db29f3b": {
+            "id": "3fee9fc2-4ddb-47ca-9cf3-e2539db29f3b",
+            "name": "Las Vegas Aces (-8.5)",
+            "home_away": "HOME",
+            "visible": true,
+            "sort_order": 10,
+            "market_id": "4e5699c0-a6fb-4402-b25b-d7c60b477750"
         },
         "4bef3bab-b895-4e0a-ab8d-fc8906074918": {
             "id": "4bef3bab-b895-4e0a-ab8d-fc8906074918",
@@ -38,13 +38,13 @@
             "sort_order": 10,
             "market_id": "e14d82a7-5ea0-4f9d-a68b-d9ba3d9da80b"
         },
-        "8b5b601f-ff79-4f60-85a9-5c881f9e0884": {
-            "id": "8b5b601f-ff79-4f60-85a9-5c881f9e0884",
-            "name": "Las Vegas Aces (-6.5)",
-            "home_away": "HOME",
+        "f414c1fe-fd8a-4df9-a0a5-2e485d19a487": {
+            "id": "f414c1fe-fd8a-4df9-a0a5-2e485d19a487",
+            "name": "Phoenix Mercury (+8.5)",
+            "home_away": "AWAY",
             "visible": true,
-            "sort_order": 10,
-            "market_id": "2e451d44-d606-487f-8d15-bb9af2d98ff6"
+            "sort_order": 20,
+            "market_id": "4e5699c0-a6fb-4402-b25b-d7c60b477750"
         }
     },
     "event_participants": {
@@ -90,7 +90,7 @@
                     "market_type_group_id": "43c990d1-7471-4055-9a7a-e71409494486",
                     "market_ids": [
                         "a1608ae2-daa5-41f0-b26e-6d61be035d5c",
-                        "2e451d44-d606-487f-8d15-bb9af2d98ff6",
+                        "4e5699c0-a6fb-4402-b25b-d7c60b477750",
                         "e14d82a7-5ea0-4f9d-a68b-d9ba3d9da80b"
                     ]
                 }
@@ -101,7 +101,7 @@
             ],
             "market_ids": [
                 "a1608ae2-daa5-41f0-b26e-6d61be035d5c",
-                "2e451d44-d606-487f-8d15-bb9af2d98ff6",
+                "4e5699c0-a6fb-4402-b25b-d7c60b477750",
                 "e14d82a7-5ea0-4f9d-a68b-d9ba3d9da80b"
             ],
             "category_id": "3c34d075-dc14-436d-bfc4-9272a49c2b39",
@@ -121,12 +121,12 @@
         }
     },
     "markets": {
-        "2e451d44-d606-487f-8d15-bb9af2d98ff6": {
-            "id": "2e451d44-d606-487f-8d15-bb9af2d98ff6",
+        "4e5699c0-a6fb-4402-b25b-d7c60b477750": {
+            "id": "4e5699c0-a6fb-4402-b25b-d7c60b477750",
             "event_id": "047e9199-3fc8-4493-946f-0dd47b94581a",
             "market_type_id": "8fcc394e-b974-4328-af74-57d423de7a7b",
             "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
-            "name": "Line (-6.5)",
+            "name": "Line (-8.5)",
             "advertised_start": {
                 "seconds": 1746583200
             },
@@ -136,8 +136,8 @@
             "same_game_multi_available": true,
             "visible": true,
             "entrant_ids": [
-                "8b5b601f-ff79-4f60-85a9-5c881f9e0884",
-                "314b3286-307c-429f-b855-0c87a88f6642"
+                "3fee9fc2-4ddb-47ca-9cf3-e2539db29f3b",
+                "f414c1fe-fd8a-4df9-a0a5-2e485d19a487"
             ],
             "num_winners": 1
         },
@@ -185,42 +185,42 @@
         }
     },
     "markets_allow_cashout": {
-        "2e451d44-d606-487f-8d15-bb9af2d98ff6": false,
+        "4e5699c0-a6fb-4402-b25b-d7c60b477750": false,
         "a1608ae2-daa5-41f0-b26e-6d61be035d5c": true,
         "e14d82a7-5ea0-4f9d-a68b-d9ba3d9da80b": false
     },
     "prices": {
-        "314b3286-307c-429f-b855-0c87a88f6642:940b8704-e497-4a76-b390-00918ff7d282:": {
+        "32a26549-f0d6-4cab-a475-2d83dd6124ee:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 1,
+                "denominator": 4
+            }
+        },
+        "352e5354-7cdc-4d37-b27a-ca0ce14ce203:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
                 "numerator": 9,
                 "denominator": 10
             }
         },
-        "32a26549-f0d6-4cab-a475-2d83dd6124ee:940b8704-e497-4a76-b390-00918ff7d282:": {
+        "3fee9fc2-4ddb-47ca-9cf3-e2539db29f3b:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 33,
-                "denominator": 100
-            }
-        },
-        "352e5354-7cdc-4d37-b27a-ca0ce14ce203:940b8704-e497-4a76-b390-00918ff7d282:": {
-            "odds": {
-                "numerator": 47,
-                "denominator": 50
+                "numerator": 9,
+                "denominator": 10
             }
         },
         "4bef3bab-b895-4e0a-ab8d-fc8906074918:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 23,
-                "denominator": 10
+                "numerator": 3,
+                "denominator": 1
             }
         },
         "5c81b1f7-5997-4bc5-bdd0-99f9a06537de:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 17,
-                "denominator": 20
+                "numerator": 9,
+                "denominator": 10
             }
         },
-        "8b5b601f-ff79-4f60-85a9-5c881f9e0884:940b8704-e497-4a76-b390-00918ff7d282:": {
+        "f414c1fe-fd8a-4df9-a0a5-2e485d19a487:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
                 "numerator": 9,
                 "denominator": 10
