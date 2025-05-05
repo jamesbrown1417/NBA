@@ -1,5 +1,12 @@
 {
     "entrants": {
+        "1342017d-d9e5-472b-a9de-48f8e01d838f": {
+            "id": "1342017d-d9e5-472b-a9de-48f8e01d838f",
+            "name": "Shai Gilgeous-Alexander",
+            "visible": true,
+            "sort_order": 10,
+            "market_id": "20e093de-f906-499f-8290-6f926b19bc3c"
+        },
         "29590fb4-e06e-4f08-a239-241558e21926": {
             "id": "29590fb4-e06e-4f08-a239-241558e21926",
             "name": "Oklahoma City Thunder 4-2",
@@ -57,12 +64,33 @@
             "sort_order": 20,
             "market_id": "a85516b9-1310-4ac8-be28-13cc39d5fa1c"
         },
+        "7c81b2db-2012-4b0f-82b8-b8837427074f": {
+            "id": "7c81b2db-2012-4b0f-82b8-b8837427074f",
+            "name": "Nikola Jokic",
+            "visible": true,
+            "sort_order": 20,
+            "market_id": "20e093de-f906-499f-8290-6f926b19bc3c"
+        },
+        "8b508c44-d86a-4a07-a0cc-3c72d39e7290": {
+            "id": "8b508c44-d86a-4a07-a0cc-3c72d39e7290",
+            "name": "Jamal Murray",
+            "visible": true,
+            "sort_order": 40,
+            "market_id": "20e093de-f906-499f-8290-6f926b19bc3c"
+        },
         "912b5a17-28ac-4779-98bc-54c0e02a1008": {
             "id": "912b5a17-28ac-4779-98bc-54c0e02a1008",
             "name": "Denver Nuggets 4-2",
             "visible": true,
             "sort_order": 30,
             "market_id": "a85516b9-1310-4ac8-be28-13cc39d5fa1c"
+        },
+        "a5848a27-8efe-46ff-8708-8914cd7a6116": {
+            "id": "a5848a27-8efe-46ff-8708-8914cd7a6116",
+            "name": "Jalen Williams",
+            "visible": true,
+            "sort_order": 30,
+            "market_id": "20e093de-f906-499f-8290-6f926b19bc3c"
         },
         "b0962634-4bb9-4ec3-a104-71ca9cf3dc38": {
             "id": "b0962634-4bb9-4ec3-a104-71ca9cf3dc38",
@@ -139,7 +167,8 @@
             },
             "competition_id": "e6a303dd-433b-4825-9710-7c4b05db4fe3",
             "market_type_group_ids": [
-                "43c990d1-7471-4055-9a7a-e71409494486"
+                "43c990d1-7471-4055-9a7a-e71409494486",
+                "c6ca714a-64c2-49bc-a099-fb772bd45fe0"
             ],
             "market_type_group_markets": [
                 {
@@ -150,9 +179,15 @@
                         "706a32c6-1548-4296-b4a6-0ee17ae86974",
                         "23fc1083-4b5b-4e1e-9390-17b212927944"
                     ]
+                },
+                {
+                    "market_type_group_id": "c6ca714a-64c2-49bc-a099-fb772bd45fe0",
+                    "market_ids": [
+                        "20e093de-f906-499f-8290-6f926b19bc3c"
+                    ]
                 }
             ],
-            "market_count": 4,
+            "market_count": 5,
             "main_markets": [
                 "c07ffa14-3dca-4ff6-b736-ccd815e3f199"
             ],
@@ -160,7 +195,8 @@
                 "c07ffa14-3dca-4ff6-b736-ccd815e3f199",
                 "a85516b9-1310-4ac8-be28-13cc39d5fa1c",
                 "706a32c6-1548-4296-b4a6-0ee17ae86974",
-                "23fc1083-4b5b-4e1e-9390-17b212927944"
+                "23fc1083-4b5b-4e1e-9390-17b212927944",
+                "20e093de-f906-499f-8290-6f926b19bc3c"
             ],
             "category_id": "3c34d075-dc14-436d-bfc4-9272a49c2b39",
             "comments": "Series Tied 0-0"
@@ -173,9 +209,37 @@
             "name": "Top Markets",
             "priority": 320,
             "type": "MARKET_TYPE_GROUP_TYPE_EVENT"
+        },
+        "c6ca714a-64c2-49bc-a099-fb772bd45fe0": {
+            "id": "c6ca714a-64c2-49bc-a099-fb772bd45fe0",
+            "category_id": "3c34d075-dc14-436d-bfc4-9272a49c2b39",
+            "name": "Other Markets",
+            "priority": 10,
+            "type": "MARKET_TYPE_GROUP_TYPE_EVENT"
         }
     },
     "markets": {
+        "20e093de-f906-499f-8290-6f926b19bc3c": {
+            "id": "20e093de-f906-499f-8290-6f926b19bc3c",
+            "event_id": "2cc40c8b-79d1-4ed4-98f1-717377e90660",
+            "market_type_id": "602e7b30-9c6b-4108-8aa6-5bb5af1863d7",
+            "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
+            "name": "Series Top Points Scorer",
+            "advertised_start": {
+                "seconds": 1746495000
+            },
+            "actual_start": {
+                "seconds": 1746495000
+            },
+            "visible": true,
+            "entrant_ids": [
+                "1342017d-d9e5-472b-a9de-48f8e01d838f",
+                "7c81b2db-2012-4b0f-82b8-b8837427074f",
+                "a5848a27-8efe-46ff-8708-8914cd7a6116",
+                "8b508c44-d86a-4a07-a0cc-3c72d39e7290"
+            ],
+            "num_winners": 1
+        },
         "23fc1083-4b5b-4e1e-9390-17b212927944": {
             "id": "23fc1083-4b5b-4e1e-9390-17b212927944",
             "event_id": "2cc40c8b-79d1-4ed4-98f1-717377e90660",
@@ -266,12 +330,19 @@
         }
     },
     "markets_allow_cashout": {
+        "20e093de-f906-499f-8290-6f926b19bc3c": true,
         "23fc1083-4b5b-4e1e-9390-17b212927944": true,
         "706a32c6-1548-4296-b4a6-0ee17ae86974": false,
         "a85516b9-1310-4ac8-be28-13cc39d5fa1c": true,
         "c07ffa14-3dca-4ff6-b736-ccd815e3f199": true
     },
     "prices": {
+        "1342017d-d9e5-472b-a9de-48f8e01d838f:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 1,
+                "denominator": 10
+            }
+        },
         "29590fb4-e06e-4f08-a239-241558e21926:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
                 "numerator": 9,
@@ -320,9 +391,27 @@
                 "denominator": 1
             }
         },
+        "7c81b2db-2012-4b0f-82b8-b8837427074f:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 4,
+                "denominator": 1
+            }
+        },
+        "8b508c44-d86a-4a07-a0cc-3c72d39e7290:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 80,
+                "denominator": 1
+            }
+        },
         "912b5a17-28ac-4779-98bc-54c0e02a1008:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
                 "numerator": 14,
+                "denominator": 1
+            }
+        },
+        "a5848a27-8efe-46ff-8708-8914cd7a6116:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 80,
                 "denominator": 1
             }
         },
