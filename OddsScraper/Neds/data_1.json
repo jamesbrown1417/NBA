@@ -93,12 +93,28 @@
             "sort_order": 40,
             "market_id": "86986a4e-1fb2-4ab2-9710-883cfc4a734f"
         },
+        "dee4ff71-a43f-4fcf-8a1a-1d643cc60e28": {
+            "id": "dee4ff71-a43f-4fcf-8a1a-1d643cc60e28",
+            "name": "Atlanta Dream",
+            "home_away": "HOME",
+            "visible": true,
+            "sort_order": 10,
+            "market_id": "cb0dd76a-096f-48e9-8606-0b03deac400e"
+        },
         "e740bd20-6ff9-4108-aa97-c7c061830dea": {
             "id": "e740bd20-6ff9-4108-aa97-c7c061830dea",
             "name": "Indiana Fever by 21-25",
             "visible": true,
             "sort_order": 100,
             "market_id": "86986a4e-1fb2-4ab2-9710-883cfc4a734f"
+        },
+        "faa5a473-cbee-4030-8562-32bc85bd9f69": {
+            "id": "faa5a473-cbee-4030-8562-32bc85bd9f69",
+            "name": "Indiana Fever",
+            "home_away": "AWAY",
+            "visible": true,
+            "sort_order": 20,
+            "market_id": "cb0dd76a-096f-48e9-8606-0b03deac400e"
         }
     },
     "event_participants": {
@@ -144,6 +160,7 @@
                 {
                     "market_type_group_id": "43c990d1-7471-4055-9a7a-e71409494486",
                     "market_ids": [
+                        "cb0dd76a-096f-48e9-8606-0b03deac400e",
                         "2205bfc3-ea47-466a-bae0-514039ce7840"
                     ]
                 },
@@ -154,11 +171,12 @@
                     ]
                 }
             ],
-            "market_count": 2,
+            "market_count": 3,
             "main_markets": [
-                "2205bfc3-ea47-466a-bae0-514039ce7840"
+                "cb0dd76a-096f-48e9-8606-0b03deac400e"
             ],
             "market_ids": [
+                "cb0dd76a-096f-48e9-8606-0b03deac400e",
                 "2205bfc3-ea47-466a-bae0-514039ce7840",
                 "86986a4e-1fb2-4ab2-9710-883cfc4a734f"
             ],
@@ -235,11 +253,33 @@
                 "9d4b1704-54ac-479a-9966-f2b2b08a69c2"
             ],
             "num_winners": 1
+        },
+        "cb0dd76a-096f-48e9-8606-0b03deac400e": {
+            "id": "cb0dd76a-096f-48e9-8606-0b03deac400e",
+            "event_id": "0d711116-b9a2-4ea8-8212-fbe2ca16f2b6",
+            "market_type_id": "3dc4ca49-3190-43b2-a328-60e0c9460187",
+            "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
+            "name": "Head To Head",
+            "advertised_start": {
+                "seconds": 1746903600
+            },
+            "actual_start": {
+                "seconds": 1746903600
+            },
+            "is_primary": true,
+            "same_game_multi_available": true,
+            "visible": true,
+            "entrant_ids": [
+                "dee4ff71-a43f-4fcf-8a1a-1d643cc60e28",
+                "faa5a473-cbee-4030-8562-32bc85bd9f69"
+            ],
+            "num_winners": 1
         }
     },
     "markets_allow_cashout": {
         "2205bfc3-ea47-466a-bae0-514039ce7840": false,
-        "86986a4e-1fb2-4ab2-9710-883cfc4a734f": true
+        "86986a4e-1fb2-4ab2-9710-883cfc4a734f": true,
+        "cb0dd76a-096f-48e9-8606-0b03deac400e": true
     },
     "prices": {
         "0a4637e1-6578-459d-8d3e-8ed428e1b76b:940b8704-e497-4a76-b390-00918ff7d282:": {
@@ -320,10 +360,22 @@
                 "denominator": 1
             }
         },
+        "dee4ff71-a43f-4fcf-8a1a-1d643cc60e28:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 11,
+                "denominator": 5
+            }
+        },
         "e740bd20-6ff9-4108-aa97-c7c061830dea:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
                 "numerator": 11,
                 "denominator": 1
+            }
+        },
+        "faa5a473-cbee-4030-8562-32bc85bd9f69:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 9,
+                "denominator": 25
             }
         }
     },
