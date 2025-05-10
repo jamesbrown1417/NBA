@@ -1,0 +1,137 @@
+{
+    "entrants": {
+        "165a75ce-d219-4c6f-a3fb-930acde84921": {
+            "id": "165a75ce-d219-4c6f-a3fb-930acde84921",
+            "name": "Dallas Wings (-46.5)",
+            "home_away": "HOME",
+            "visible": true,
+            "sort_order": 10,
+            "market_id": "38545131-81d9-4ffd-bdb1-c94af2f66386"
+        },
+        "9ece3c19-2e52-4851-8084-fce2ea3bf7e5": {
+            "id": "9ece3c19-2e52-4851-8084-fce2ea3bf7e5",
+            "name": "Toyota Antelopes (Women) (+46.5)",
+            "home_away": "AWAY",
+            "visible": true,
+            "sort_order": 20,
+            "market_id": "38545131-81d9-4ffd-bdb1-c94af2f66386"
+        }
+    },
+    "event_participants": {
+        "8da9e5da-f93f-4166-87bc-475751d7a445": {
+            "id": "8da9e5da-f93f-4166-87bc-475751d7a445",
+            "event_id": "867d8fa9-e418-43b2-9723-161a809df68b",
+            "name": "Toyota Antelopes (Women)",
+            "home_away": "AWAY"
+        },
+        "9d12b57e-1c8c-4ffa-8ffe-656f5ea2e150": {
+            "id": "9d12b57e-1c8c-4ffa-8ffe-656f5ea2e150",
+            "event_id": "867d8fa9-e418-43b2-9723-161a809df68b",
+            "name": "Dallas Wings",
+            "home_away": "HOME"
+        }
+    },
+    "events": {
+        "867d8fa9-e418-43b2-9723-161a809df68b": {
+            "id": "867d8fa9-e418-43b2-9723-161a809df68b",
+            "name": "Dallas Wings vs Toyota Antelopes (Women)",
+            "event_type": {
+                "id": "6bfa0efc-05df-4ae1-9b1e-152365290cfd",
+                "name": "Match"
+            },
+            "match_status": "BettingOpen",
+            "advertised_start": "2025-05-11T00:00:00Z",
+            "actual_start": "2025-05-11T00:00:00Z",
+            "visible": true,
+            "slug": "dallas-wings-vs-toyota-antelopes-women",
+            "competition": {
+                "id": "27bba9b3-9469-484b-9895-e728896397ee",
+                "name": "WNBA",
+                "sort_order": 3,
+                "region": "USA",
+                "region_id": "6889a18d-3a47-400c-9cd4-10f228c0dc59"
+            },
+            "competition_id": "27bba9b3-9469-484b-9895-e728896397ee",
+            "market_type_group_ids": [
+                "43c990d1-7471-4055-9a7a-e71409494486"
+            ],
+            "market_type_group_markets": [
+                {
+                    "market_type_group_id": "43c990d1-7471-4055-9a7a-e71409494486",
+                    "market_ids": [
+                        "38545131-81d9-4ffd-bdb1-c94af2f66386"
+                    ]
+                }
+            ],
+            "market_count": 1,
+            "main_markets": [
+                "38545131-81d9-4ffd-bdb1-c94af2f66386"
+            ],
+            "market_ids": [
+                "38545131-81d9-4ffd-bdb1-c94af2f66386"
+            ],
+            "category_id": "3c34d075-dc14-436d-bfc4-9272a49c2b39",
+            "participant_ids": [
+                "8da9e5da-f93f-4166-87bc-475751d7a445",
+                "9d12b57e-1c8c-4ffa-8ffe-656f5ea2e150"
+            ]
+        }
+    },
+    "market_type_groups": {
+        "43c990d1-7471-4055-9a7a-e71409494486": {
+            "id": "43c990d1-7471-4055-9a7a-e71409494486",
+            "category_id": "3c34d075-dc14-436d-bfc4-9272a49c2b39",
+            "name": "Top Markets",
+            "priority": 320,
+            "type": "MARKET_TYPE_GROUP_TYPE_EVENT"
+        }
+    },
+    "markets": {
+        "38545131-81d9-4ffd-bdb1-c94af2f66386": {
+            "id": "38545131-81d9-4ffd-bdb1-c94af2f66386",
+            "event_id": "867d8fa9-e418-43b2-9723-161a809df68b",
+            "market_type_id": "8fcc394e-b974-4328-af74-57d423de7a7b",
+            "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
+            "name": "Line (-46.5)",
+            "advertised_start": {
+                "seconds": 1746921600
+            },
+            "actual_start": {
+                "seconds": 1746921600
+            },
+            "same_game_multi_available": true,
+            "visible": true,
+            "entrant_ids": [
+                "165a75ce-d219-4c6f-a3fb-930acde84921",
+                "9ece3c19-2e52-4851-8084-fce2ea3bf7e5"
+            ],
+            "num_winners": 1
+        }
+    },
+    "markets_allow_cashout": {
+        "38545131-81d9-4ffd-bdb1-c94af2f66386": false
+    },
+    "prices": {
+        "165a75ce-d219-4c6f-a3fb-930acde84921:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 9,
+                "denominator": 10
+            }
+        },
+        "9ece3c19-2e52-4851-8084-fce2ea3bf7e5:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 9,
+                "denominator": 10
+            }
+        }
+    },
+    "regions": {
+        "6889a18d-3a47-400c-9cd4-10f228c0dc59": {
+            "region_id": "6889a18d-3a47-400c-9cd4-10f228c0dc59",
+            "name": "USA",
+            "slug": "usa",
+            "category_id": "3c34d075-dc14-436d-bfc4-9272a49c2b39",
+            "sort_order": 1
+        }
+    }
+}
