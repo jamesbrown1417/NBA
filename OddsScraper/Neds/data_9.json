@@ -16,6 +16,20 @@
             "sort_order": 20,
             "market_id": "9b1f008f-3829-46fd-9f5b-8f2e84896c0c"
         },
+        "5c54c7fc-794d-46c6-bf9a-987cf6adef36": {
+            "id": "5c54c7fc-794d-46c6-bf9a-987cf6adef36",
+            "name": "Under (165.5)",
+            "visible": true,
+            "sort_order": 20,
+            "market_id": "0b93ee45-e0d3-44e8-a2dc-099957735474"
+        },
+        "5fa29467-14d0-4662-8600-d5b65029f9a8": {
+            "id": "5fa29467-14d0-4662-8600-d5b65029f9a8",
+            "name": "Over (165.5)",
+            "visible": true,
+            "sort_order": 10,
+            "market_id": "0b93ee45-e0d3-44e8-a2dc-099957735474"
+        },
         "80e2db18-fe0c-471d-af3d-66f50ba13240": {
             "id": "80e2db18-fe0c-471d-af3d-66f50ba13240",
             "name": "Phoenix Mercury (-8.5)",
@@ -23,20 +37,6 @@
             "visible": true,
             "sort_order": 10,
             "market_id": "ac292406-1ef2-4360-8570-c2bf8367d0fc"
-        },
-        "92a15afd-bda8-4714-814a-f05b0024792d": {
-            "id": "92a15afd-bda8-4714-814a-f05b0024792d",
-            "name": "Over (166.5)",
-            "visible": true,
-            "sort_order": 10,
-            "market_id": "22c09d02-799e-4e73-8743-82e810910784"
-        },
-        "a811da75-a5f7-4922-b4a9-dd13c30fe933": {
-            "id": "a811da75-a5f7-4922-b4a9-dd13c30fe933",
-            "name": "Under (166.5)",
-            "visible": true,
-            "sort_order": 20,
-            "market_id": "22c09d02-799e-4e73-8743-82e810910784"
         },
         "e4f56eab-d993-4fd2-a456-762dcaaf9bd2": {
             "id": "e4f56eab-d993-4fd2-a456-762dcaaf9bd2",
@@ -91,7 +91,7 @@
                     "market_ids": [
                         "9b1f008f-3829-46fd-9f5b-8f2e84896c0c",
                         "ac292406-1ef2-4360-8570-c2bf8367d0fc",
-                        "22c09d02-799e-4e73-8743-82e810910784"
+                        "0b93ee45-e0d3-44e8-a2dc-099957735474"
                     ]
                 }
             ],
@@ -102,7 +102,7 @@
             "market_ids": [
                 "9b1f008f-3829-46fd-9f5b-8f2e84896c0c",
                 "ac292406-1ef2-4360-8570-c2bf8367d0fc",
-                "22c09d02-799e-4e73-8743-82e810910784"
+                "0b93ee45-e0d3-44e8-a2dc-099957735474"
             ],
             "category_id": "3c34d075-dc14-436d-bfc4-9272a49c2b39",
             "participant_ids": [
@@ -121,12 +121,12 @@
         }
     },
     "markets": {
-        "22c09d02-799e-4e73-8743-82e810910784": {
-            "id": "22c09d02-799e-4e73-8743-82e810910784",
+        "0b93ee45-e0d3-44e8-a2dc-099957735474": {
+            "id": "0b93ee45-e0d3-44e8-a2dc-099957735474",
             "event_id": "c6a6fd2a-461a-48dc-b257-10a2e43b48c2",
             "market_type_id": "28d679c2-8cae-4fc6-a564-a5937865b1b6",
             "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
-            "name": "Total Points (166.5)",
+            "name": "Total Points (165.5)",
             "advertised_start": {
                 "seconds": 1747000800
             },
@@ -137,8 +137,8 @@
             "comments": "Includes Overtime",
             "visible": true,
             "entrant_ids": [
-                "92a15afd-bda8-4714-814a-f05b0024792d",
-                "a811da75-a5f7-4922-b4a9-dd13c30fe933"
+                "5fa29467-14d0-4662-8600-d5b65029f9a8",
+                "5c54c7fc-794d-46c6-bf9a-987cf6adef36"
             ],
             "num_winners": 1
         },
@@ -185,7 +185,7 @@
         }
     },
     "markets_allow_cashout": {
-        "22c09d02-799e-4e73-8743-82e810910784": false,
+        "0b93ee45-e0d3-44e8-a2dc-099957735474": false,
         "9b1f008f-3829-46fd-9f5b-8f2e84896c0c": true,
         "ac292406-1ef2-4360-8570-c2bf8367d0fc": false
     },
@@ -202,19 +202,19 @@
                 "denominator": 2
             }
         },
+        "5c54c7fc-794d-46c6-bf9a-987cf6adef36:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 9,
+                "denominator": 10
+            }
+        },
+        "5fa29467-14d0-4662-8600-d5b65029f9a8:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 9,
+                "denominator": 10
+            }
+        },
         "80e2db18-fe0c-471d-af3d-66f50ba13240:940b8704-e497-4a76-b390-00918ff7d282:": {
-            "odds": {
-                "numerator": 9,
-                "denominator": 10
-            }
-        },
-        "92a15afd-bda8-4714-814a-f05b0024792d:940b8704-e497-4a76-b390-00918ff7d282:": {
-            "odds": {
-                "numerator": 9,
-                "denominator": 10
-            }
-        },
-        "a811da75-a5f7-4922-b4a9-dd13c30fe933:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
                 "numerator": 9,
                 "denominator": 10
