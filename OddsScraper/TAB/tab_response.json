@@ -32987,7 +32987,17 @@
             "_links": {
                 "self": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/Cleveland%20v%20Indiana?jurisdiction=SA",
                 "selfTemplate": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/Cleveland%20v%20Indiana?jurisdiction={jurisdiction}{&returnPromo,returnOffers,returnMultiOnly,channelType,cashSales,homeState}",
-                "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/Cleveland%20v%20Indiana/markets?jurisdiction=SA"
+                "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/Cleveland%20v%20Indiana/markets?jurisdiction=SA",
+                "stats": "https://api.beta.tab.com.au/v1/stats-service/sports/Basketball/competitions/NBA/matches/2871112/h2h/stats"
+            },
+            "vision": {
+                "unas": {
+                    "startTime": "2025-05-13T23:00:00Z",
+                    "requiresAuthentication": true,
+                    "_links": {
+                        "self": "https://api.beta.tab.com.au/v1/vision-service/tab-act/matches/ClevInd1/unas"
+                    }
+                }
             },
             "contestants": [
                 {
@@ -36967,7 +36977,8 @@
                 }
             ],
             "inPlay": false,
-            "goingInPlay": true
+            "goingInPlay": true,
+            "stats": true
         },
         {
             "id": "OKCvDen1",
