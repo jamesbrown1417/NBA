@@ -50,6 +50,20 @@
             "sort_order": 40,
             "market_id": "21ccfb74-915b-4004-a473-ca087828a580"
         },
+        "aee71248-3e28-4c10-95b4-9de6e6f6bc25": {
+            "id": "aee71248-3e28-4c10-95b4-9de6e6f6bc25",
+            "name": "Anthony Edwards",
+            "visible": true,
+            "sort_order": 10,
+            "market_id": "48332c7e-44e8-4798-9076-e621877a40f1"
+        },
+        "aff8a4a9-66af-49d5-bb35-cc3011b73c3e": {
+            "id": "aff8a4a9-66af-49d5-bb35-cc3011b73c3e",
+            "name": "Buddy Hield",
+            "visible": true,
+            "sort_order": 20,
+            "market_id": "48332c7e-44e8-4798-9076-e621877a40f1"
+        },
         "c848ba5f-4b93-44c9-8274-daa3349a347b": {
             "id": "c848ba5f-4b93-44c9-8274-daa3349a347b",
             "name": "Golden State Warriors",
@@ -88,7 +102,8 @@
             },
             "competition_id": "e6a303dd-433b-4825-9710-7c4b05db4fe3",
             "market_type_group_ids": [
-                "43c990d1-7471-4055-9a7a-e71409494486"
+                "43c990d1-7471-4055-9a7a-e71409494486",
+                "2f0f34a6-d85b-4830-977c-7d2d65e444a4"
             ],
             "market_type_group_markets": [
                 {
@@ -98,22 +113,36 @@
                         "21ccfb74-915b-4004-a473-ca087828a580",
                         "27ffcd6d-08df-4aa4-bc5e-8ff2febf8d73"
                     ]
+                },
+                {
+                    "market_type_group_id": "2f0f34a6-d85b-4830-977c-7d2d65e444a4",
+                    "market_ids": [
+                        "48332c7e-44e8-4798-9076-e621877a40f1"
+                    ]
                 }
             ],
-            "market_count": 3,
+            "market_count": 4,
             "main_markets": [
                 "145d7785-c317-4228-946a-e99c1af42926"
             ],
             "market_ids": [
                 "145d7785-c317-4228-946a-e99c1af42926",
                 "21ccfb74-915b-4004-a473-ca087828a580",
-                "27ffcd6d-08df-4aa4-bc5e-8ff2febf8d73"
+                "27ffcd6d-08df-4aa4-bc5e-8ff2febf8d73",
+                "48332c7e-44e8-4798-9076-e621877a40f1"
             ],
             "category_id": "3c34d075-dc14-436d-bfc4-9272a49c2b39",
             "comments": "Minnesota Timberwolves Lead Series 3-1"
         }
     },
     "market_type_groups": {
+        "2f0f34a6-d85b-4830-977c-7d2d65e444a4": {
+            "id": "2f0f34a6-d85b-4830-977c-7d2d65e444a4",
+            "category_id": "3c34d075-dc14-436d-bfc4-9272a49c2b39",
+            "name": "Player Performance Markets",
+            "priority": 310,
+            "type": "MARKET_TYPE_GROUP_TYPE_EVENT"
+        },
         "43c990d1-7471-4055-9a7a-e71409494486": {
             "id": "43c990d1-7471-4055-9a7a-e71409494486",
             "category_id": "3c34d075-dc14-436d-bfc4-9272a49c2b39",
@@ -185,30 +214,51 @@
                 "30c267a3-a937-4333-a1f0-def14d88a415"
             ],
             "num_winners": 99
+        },
+        "48332c7e-44e8-4798-9076-e621877a40f1": {
+            "id": "48332c7e-44e8-4798-9076-e621877a40f1",
+            "event_id": "1043bd4d-2439-448c-b782-562243bdcdf9",
+            "market_type_id": "b5447973-02a9-4f6b-84aa-c99558bfad8f",
+            "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
+            "name": "Series Most Made Threes",
+            "advertised_start": {
+                "seconds": 1747272600
+            },
+            "actual_start": {
+                "seconds": 1747272600
+            },
+            "comments": "Quote others. Dead heat rules apply.",
+            "visible": true,
+            "entrant_ids": [
+                "aee71248-3e28-4c10-95b4-9de6e6f6bc25",
+                "aff8a4a9-66af-49d5-bb35-cc3011b73c3e"
+            ],
+            "num_winners": 1
         }
     },
     "markets_allow_cashout": {
         "145d7785-c317-4228-946a-e99c1af42926": true,
         "21ccfb74-915b-4004-a473-ca087828a580": true,
-        "27ffcd6d-08df-4aa4-bc5e-8ff2febf8d73": true
+        "27ffcd6d-08df-4aa4-bc5e-8ff2febf8d73": true,
+        "48332c7e-44e8-4798-9076-e621877a40f1": false
     },
     "prices": {
         "222d50dd-47f3-4e5b-9a11-6e2d2f28c08c:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 13,
+                "numerator": 17,
                 "denominator": 100
             }
         },
         "25dd841a-b48d-47b8-a6ae-64d3ca20288c:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 11,
+                "numerator": 9,
                 "denominator": 1
             }
         },
         "2748c320-cf97-4a86-8c50-bbcd704f6b6b:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 7,
-                "denominator": 1
+                "numerator": 15,
+                "denominator": 2
             }
         },
         "30c267a3-a937-4333-a1f0-def14d88a415:940b8704-e497-4a76-b390-00918ff7d282:": {
@@ -219,7 +269,7 @@
         },
         "74bbff22-1ff7-4665-877a-a3fda6b1d1f0:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 13,
+                "numerator": 17,
                 "denominator": 100
             }
         },
@@ -235,6 +285,18 @@
                 "denominator": 1
             }
         },
+        "aee71248-3e28-4c10-95b4-9de6e6f6bc25:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 4,
+                "denominator": 5
+            }
+        },
+        "aff8a4a9-66af-49d5-bb35-cc3011b73c3e:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 19,
+                "denominator": 20
+            }
+        },
         "c848ba5f-4b93-44c9-8274-daa3349a347b:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
                 "numerator": 14,
@@ -243,8 +305,8 @@
         },
         "ede72c96-0f19-4d4b-8516-c547e1595536:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 7,
-                "denominator": 1
+                "numerator": 15,
+                "denominator": 2
             }
         }
     },
