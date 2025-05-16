@@ -1,6 +1,35 @@
 {
-    "code": 404,
-    "detail": "event not found",
-    "id": "neds.api.sport",
-    "status": "Not Found"
+    "events": {
+        "2cc40c8b-79d1-4ed4-98f1-717377e90660": {
+            "id": "2cc40c8b-79d1-4ed4-98f1-717377e90660",
+            "name": "Oklahoma City Thunder vs Denver Nuggets",
+            "event_type": {
+                "id": "6bfa0efc-05df-4ae1-9b1e-152365290cfd",
+                "name": "Match"
+            },
+            "match_status": "BettingClosed",
+            "advertised_start": "2025-05-16T00:30:00Z",
+            "actual_start": "2025-05-16T00:30:00Z",
+            "slug": "oklahoma-city-thunder-vs-denver-nuggets",
+            "competition": {
+                "id": "e6a303dd-433b-4825-9710-7c4b05db4fe3",
+                "name": "NBA Series Betting",
+                "sort_order": 3,
+                "region": "USA",
+                "region_id": "6889a18d-3a47-400c-9cd4-10f228c0dc59"
+            },
+            "competition_id": "e6a303dd-433b-4825-9710-7c4b05db4fe3",
+            "category_id": "3c34d075-dc14-436d-bfc4-9272a49c2b39",
+            "comments": "Oklahoma City Thunder lead Series 3-2"
+        }
+    },
+    "regions": {
+        "6889a18d-3a47-400c-9cd4-10f228c0dc59": {
+            "region_id": "6889a18d-3a47-400c-9cd4-10f228c0dc59",
+            "name": "USA",
+            "slug": "usa",
+            "category_id": "3c34d075-dc14-436d-bfc4-9272a49c2b39",
+            "sort_order": 1
+        }
+    }
 }

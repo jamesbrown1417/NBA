@@ -168,6 +168,13 @@
             "sort_order": 10,
             "market_id": "d08f3041-ea75-474e-adf5-7507d13985bb"
         },
+        "6c5464a9-1471-4069-a467-d07bafaa08b4": {
+            "id": "6c5464a9-1471-4069-a467-d07bafaa08b4",
+            "name": "Under (18.5)",
+            "visible": true,
+            "sort_order": 20,
+            "market_id": "18b78454-2345-4ebe-b083-d6e647dd2293"
+        },
         "71a0973e-b2dd-4fb5-864c-4f8892b7a779": {
             "id": "71a0973e-b2dd-4fb5-864c-4f8892b7a779",
             "name": "LA Sparks (-6.5)",
@@ -175,13 +182,6 @@
             "visible": true,
             "sort_order": 20,
             "market_id": "62bec5c8-d8b2-4151-9456-5ef08f648824"
-        },
-        "731e6ba6-86d3-4a90-a12b-fae686b67b27": {
-            "id": "731e6ba6-86d3-4a90-a12b-fae686b67b27",
-            "name": "Over (17.5)",
-            "visible": true,
-            "sort_order": 10,
-            "market_id": "b2ad548f-0e67-4518-bd29-94d61eb370a7"
         },
         "78111603-0809-4202-b999-0639b776d1a0": {
             "id": "78111603-0809-4202-b999-0639b776d1a0",
@@ -403,13 +403,6 @@
             "sort_order": 10,
             "market_id": "d62675c3-a8dd-4231-b87a-c7c6627ae359"
         },
-        "d805b0e9-f33e-4759-8845-6d3b3f0ccc05": {
-            "id": "d805b0e9-f33e-4759-8845-6d3b3f0ccc05",
-            "name": "Under (17.5)",
-            "visible": true,
-            "sort_order": 20,
-            "market_id": "b2ad548f-0e67-4518-bd29-94d61eb370a7"
-        },
         "da79107b-a30b-4fe9-bc95-6af9a7c01b4d": {
             "id": "da79107b-a30b-4fe9-bc95-6af9a7c01b4d",
             "name": "171 to 180",
@@ -459,6 +452,13 @@
             "visible": true,
             "sort_order": 10,
             "market_id": "6cf9f844-a0f3-496e-ab2f-d27282248c56"
+        },
+        "eaa6a683-86ac-43e7-bb49-e3b3babd073f": {
+            "id": "eaa6a683-86ac-43e7-bb49-e3b3babd073f",
+            "name": "Over (18.5)",
+            "visible": true,
+            "sort_order": 10,
+            "market_id": "18b78454-2345-4ebe-b083-d6e647dd2293"
         },
         "eb488686-e733-46ec-a494-542911846cab": {
             "id": "eb488686-e733-46ec-a494-542911846cab",
@@ -607,7 +607,7 @@
                 {
                     "market_type_group_id": "c6ca714a-64c2-49bc-a099-fb772bd45fe0",
                     "market_ids": [
-                        "b2ad548f-0e67-4518-bd29-94d61eb370a7",
+                        "18b78454-2345-4ebe-b083-d6e647dd2293",
                         "e142909a-7632-483a-b80e-8a3a7b2d194e",
                         "a1a2ad18-2033-4a32-8c8d-9e24f53f736f",
                         "e9b7f4cc-99e6-4671-a40e-6193e6c168e1",
@@ -639,7 +639,7 @@
                 "e0a2a2f3-a536-40e1-a887-adf2b8eb7975",
                 "5d7ee7d5-04c1-49dc-b7e9-e8a34ef4b611",
                 "0f1e799c-1cc2-457a-b7c0-1b93ff433551",
-                "b2ad548f-0e67-4518-bd29-94d61eb370a7",
+                "18b78454-2345-4ebe-b083-d6e647dd2293",
                 "e142909a-7632-483a-b80e-8a3a7b2d194e",
                 "a1a2ad18-2033-4a32-8c8d-9e24f53f736f",
                 "e9b7f4cc-99e6-4671-a40e-6193e6c168e1",
@@ -723,6 +723,26 @@
             "entrant_ids": [
                 "7b73bc1b-ce58-4ce5-887f-ae39d724abed",
                 "001b4584-496f-4b62-9531-f32d7cf9b50e"
+            ],
+            "num_winners": 1
+        },
+        "18b78454-2345-4ebe-b083-d6e647dd2293": {
+            "id": "18b78454-2345-4ebe-b083-d6e647dd2293",
+            "event_id": "99bd964f-5bc4-48eb-ab44-3d38bfff9b33",
+            "market_type_id": "8d13c357-0fe2-40af-92f4-54259654e37b",
+            "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
+            "name": "Azura Stevens : Total points and rebounds (18.5)",
+            "advertised_start": {
+                "seconds": 1747447200
+            },
+            "actual_start": {
+                "seconds": 1747447200
+            },
+            "same_game_multi_available": true,
+            "visible": true,
+            "entrant_ids": [
+                "eaa6a683-86ac-43e7-bb49-e3b3babd073f",
+                "6c5464a9-1471-4069-a467-d07bafaa08b4"
             ],
             "num_winners": 1
         },
@@ -1036,26 +1056,6 @@
             ],
             "num_winners": 1
         },
-        "b2ad548f-0e67-4518-bd29-94d61eb370a7": {
-            "id": "b2ad548f-0e67-4518-bd29-94d61eb370a7",
-            "event_id": "99bd964f-5bc4-48eb-ab44-3d38bfff9b33",
-            "market_type_id": "8d13c357-0fe2-40af-92f4-54259654e37b",
-            "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
-            "name": "Azura Stevens : Total points and rebounds (17.5)",
-            "advertised_start": {
-                "seconds": 1747447200
-            },
-            "actual_start": {
-                "seconds": 1747447200
-            },
-            "same_game_multi_available": true,
-            "visible": true,
-            "entrant_ids": [
-                "731e6ba6-86d3-4a90-a12b-fae686b67b27",
-                "d805b0e9-f33e-4759-8845-6d3b3f0ccc05"
-            ],
-            "num_winners": 1
-        },
         "c79defab-ca43-4440-bae5-5d2e3ecd1a1e": {
             "id": "c79defab-ca43-4440-bae5-5d2e3ecd1a1e",
             "event_id": "99bd964f-5bc4-48eb-ab44-3d38bfff9b33",
@@ -1204,6 +1204,7 @@
     },
     "markets_allow_cashout": {
         "0f1e799c-1cc2-457a-b7c0-1b93ff433551": true,
+        "18b78454-2345-4ebe-b083-d6e647dd2293": false,
         "21fb6570-50df-447d-8cc4-c95eb5422a2e": true,
         "22550c27-993d-431f-aee5-fe0afc50bbc8": true,
         "36ed83f1-623a-4fdf-b966-fa14297dcf0b": true,
@@ -1219,7 +1220,6 @@
         "9712d195-00d2-4638-93c4-a89c26fee5f7": true,
         "989145b4-7d33-4853-9f99-86252f07cdad": true,
         "a1a2ad18-2033-4a32-8c8d-9e24f53f736f": false,
-        "b2ad548f-0e67-4518-bd29-94d61eb370a7": false,
         "c79defab-ca43-4440-bae5-5d2e3ecd1a1e": true,
         "d08f3041-ea75-474e-adf5-7507d13985bb": true,
         "d62675c3-a8dd-4231-b87a-c7c6627ae359": true,
@@ -1255,7 +1255,7 @@
         },
         "1b10e198-e159-46dc-a43a-f239dcccd5ca:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 8,
+                "numerator": 7,
                 "denominator": 25
             }
         },
@@ -1367,16 +1367,16 @@
                 "denominator": 4
             }
         },
-        "71a0973e-b2dd-4fb5-864c-4f8892b7a779:940b8704-e497-4a76-b390-00918ff7d282:": {
+        "6c5464a9-1471-4069-a467-d07bafaa08b4:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 9,
-                "denominator": 10
+                "numerator": 39,
+                "denominator": 50
             }
         },
-        "731e6ba6-86d3-4a90-a12b-fae686b67b27:940b8704-e497-4a76-b390-00918ff7d282:": {
+        "71a0973e-b2dd-4fb5-864c-4f8892b7a779:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 17,
-                "denominator": 20
+                "numerator": 41,
+                "denominator": 50
             }
         },
         "78111603-0809-4202-b999-0639b776d1a0:940b8704-e497-4a76-b390-00918ff7d282:": {
@@ -1559,12 +1559,6 @@
                 "denominator": 20
             }
         },
-        "d805b0e9-f33e-4759-8845-6d3b3f0ccc05:940b8704-e497-4a76-b390-00918ff7d282:": {
-            "odds": {
-                "numerator": 17,
-                "denominator": 20
-            }
-        },
         "da79107b-a30b-4fe9-bc95-6af9a7c01b4d:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
                 "numerator": 18,
@@ -1603,8 +1597,14 @@
         },
         "e9ae7c10-01c6-46db-9e17-265d62a30c1c:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 49,
-                "denominator": 20
+                "numerator": 27,
+                "denominator": 10
+            }
+        },
+        "eaa6a683-86ac-43e7-bb49-e3b3babd073f:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 23,
+                "denominator": 25
             }
         },
         "eb488686-e733-46ec-a494-542911846cab:940b8704-e497-4a76-b390-00918ff7d282:": {
@@ -1645,8 +1645,8 @@
         },
         "ff4f59f8-2eb3-4495-b1a8-e47719f90e35:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 9,
-                "denominator": 10
+                "numerator": 49,
+                "denominator": 50
             }
         }
     },
