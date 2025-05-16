@@ -42,6 +42,13 @@
             "sort_order": 20,
             "market_id": "37bfbfbf-2d6b-42c9-8802-225bec88da14"
         },
+        "20ae6edb-374b-4830-bb89-48472e77224d": {
+            "id": "20ae6edb-374b-4830-bb89-48472e77224d",
+            "name": "Over (24.5)",
+            "visible": true,
+            "sort_order": 10,
+            "market_id": "62448170-a015-4c57-ba7f-d4654fcf8dd7"
+        },
         "219a932c-3f58-40b0-927e-83a16378fe76": {
             "id": "219a932c-3f58-40b0-927e-83a16378fe76",
             "name": "161 to 170",
@@ -187,6 +194,13 @@
             "sort_order": 10,
             "market_id": "a1e81cdb-f6e0-4559-8ea6-ed505e833a91"
         },
+        "640e42a4-4a81-4005-a96f-41b179a3291f": {
+            "id": "640e42a4-4a81-4005-a96f-41b179a3291f",
+            "name": "Under (24.5)",
+            "visible": true,
+            "sort_order": 20,
+            "market_id": "62448170-a015-4c57-ba7f-d4654fcf8dd7"
+        },
         "644b7a81-0d15-49ce-8cbd-c38440a55af4": {
             "id": "644b7a81-0d15-49ce-8cbd-c38440a55af4",
             "name": "Washington Mystics",
@@ -223,13 +237,6 @@
             "visible": true,
             "sort_order": 10,
             "market_id": "b46770f7-3f8d-403c-b919-fcaab409441c"
-        },
-        "79cf6a90-15df-4e27-95c0-b9e6467dad67": {
-            "id": "79cf6a90-15df-4e27-95c0-b9e6467dad67",
-            "name": "Over (23.5)",
-            "visible": true,
-            "sort_order": 10,
-            "market_id": "9db7a755-5dc1-4fb0-982c-1fb943088545"
         },
         "7b479de7-3ced-4470-89f9-5499f6cc702b": {
             "id": "7b479de7-3ced-4470-89f9-5499f6cc702b",
@@ -405,13 +412,6 @@
             "visible": true,
             "sort_order": 20,
             "market_id": "a1e81cdb-f6e0-4559-8ea6-ed505e833a91"
-        },
-        "c50276f5-db72-40ca-a6ed-bf8d4c7d8e59": {
-            "id": "c50276f5-db72-40ca-a6ed-bf8d4c7d8e59",
-            "name": "Under (23.5)",
-            "visible": true,
-            "sort_order": 20,
-            "market_id": "9db7a755-5dc1-4fb0-982c-1fb943088545"
         },
         "c55d70ef-b6f1-4079-b844-94b194f977be": {
             "id": "c55d70ef-b6f1-4079-b844-94b194f977be",
@@ -630,7 +630,7 @@
                     "market_ids": [
                         "6c45fdb9-ebdb-45a3-a2b4-216d602f8b8e",
                         "983f66c5-670e-4b4c-82a4-f6e33801806b",
-                        "9db7a755-5dc1-4fb0-982c-1fb943088545",
+                        "62448170-a015-4c57-ba7f-d4654fcf8dd7",
                         "7c78bc74-ec49-4652-b1b3-4ca412086e11",
                         "b9abe409-6212-4b3a-a05a-57f5dc5a5b98",
                         "c79ea487-d087-43d2-8906-0d50619d1bdd",
@@ -664,7 +664,7 @@
                 "37bfbfbf-2d6b-42c9-8802-225bec88da14",
                 "6c45fdb9-ebdb-45a3-a2b4-216d602f8b8e",
                 "983f66c5-670e-4b4c-82a4-f6e33801806b",
-                "9db7a755-5dc1-4fb0-982c-1fb943088545",
+                "62448170-a015-4c57-ba7f-d4654fcf8dd7",
                 "7c78bc74-ec49-4652-b1b3-4ca412086e11",
                 "b9abe409-6212-4b3a-a05a-57f5dc5a5b98",
                 "c79ea487-d087-43d2-8906-0d50619d1bdd",
@@ -866,6 +866,26 @@
             ],
             "num_winners": 1
         },
+        "62448170-a015-4c57-ba7f-d4654fcf8dd7": {
+            "id": "62448170-a015-4c57-ba7f-d4654fcf8dd7",
+            "event_id": "63a68020-716f-4061-953a-e2687d2d81f6",
+            "market_type_id": "8d13c357-0fe2-40af-92f4-54259654e37b",
+            "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
+            "name": "Brittney Griner : Total points and rebounds (24.5)",
+            "advertised_start": {
+                "seconds": 1747438200
+            },
+            "actual_start": {
+                "seconds": 1747438200
+            },
+            "same_game_multi_available": true,
+            "visible": true,
+            "entrant_ids": [
+                "20ae6edb-374b-4830-bb89-48472e77224d",
+                "640e42a4-4a81-4005-a96f-41b179a3291f"
+            ],
+            "num_winners": 1
+        },
         "6553b52b-4bb6-4be9-bbef-33852da2fc50": {
             "id": "6553b52b-4bb6-4be9-bbef-33852da2fc50",
             "event_id": "63a68020-716f-4061-953a-e2687d2d81f6",
@@ -968,26 +988,6 @@
             "entrant_ids": [
                 "2a045135-f3ca-44c5-9f50-ece10d913ec7",
                 "ca21d71b-24c7-42f5-8568-ca11d9aa3766"
-            ],
-            "num_winners": 1
-        },
-        "9db7a755-5dc1-4fb0-982c-1fb943088545": {
-            "id": "9db7a755-5dc1-4fb0-982c-1fb943088545",
-            "event_id": "63a68020-716f-4061-953a-e2687d2d81f6",
-            "market_type_id": "8d13c357-0fe2-40af-92f4-54259654e37b",
-            "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
-            "name": "Brittney Griner : Total points and rebounds (23.5)",
-            "advertised_start": {
-                "seconds": 1747438200
-            },
-            "actual_start": {
-                "seconds": 1747438200
-            },
-            "same_game_multi_available": true,
-            "visible": true,
-            "entrant_ids": [
-                "79cf6a90-15df-4e27-95c0-b9e6467dad67",
-                "c50276f5-db72-40ca-a6ed-bf8d4c7d8e59"
             ],
             "num_winners": 1
         },
@@ -1271,12 +1271,12 @@
         "2f7db7ec-a832-4d26-8d63-db9734c2cba1": true,
         "37bfbfbf-2d6b-42c9-8802-225bec88da14": true,
         "620af353-4328-4c55-be43-77a4a67d3ae4": true,
+        "62448170-a015-4c57-ba7f-d4654fcf8dd7": false,
         "6553b52b-4bb6-4be9-bbef-33852da2fc50": true,
         "6c45fdb9-ebdb-45a3-a2b4-216d602f8b8e": false,
         "793476b9-ff83-4eae-8172-e9c594cff5a4": true,
         "7c78bc74-ec49-4652-b1b3-4ca412086e11": false,
         "983f66c5-670e-4b4c-82a4-f6e33801806b": false,
-        "9db7a755-5dc1-4fb0-982c-1fb943088545": false,
         "a1e81cdb-f6e0-4559-8ea6-ed505e833a91": true,
         "a8e618dc-221d-4180-9b90-6c79b5aa3ba0": true,
         "aae94343-50ed-48d7-91e0-f5d524fc5cfb": false,
@@ -1329,6 +1329,12 @@
                 "denominator": 20
             }
         },
+        "20ae6edb-374b-4830-bb89-48472e77224d:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 17,
+                "denominator": 20
+            }
+        },
         "219a932c-3f58-40b0-927e-83a16378fe76:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
                 "numerator": 14,
@@ -1355,8 +1361,8 @@
         },
         "26775e06-1b9a-4c3a-af34-0e9b7e3f44af:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 3,
-                "denominator": 10
+                "numerator": 8,
+                "denominator": 25
             }
         },
         "2a045135-f3ca-44c5-9f50-ece10d913ec7:940b8704-e497-4a76-b390-00918ff7d282:": {
@@ -1449,6 +1455,12 @@
                 "denominator": 20
             }
         },
+        "640e42a4-4a81-4005-a96f-41b179a3291f:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 17,
+                "denominator": 20
+            }
+        },
         "644b7a81-0d15-49ce-8cbd-c38440a55af4:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
                 "numerator": 13,
@@ -1475,13 +1487,7 @@
         },
         "77541b3e-db3d-4fa6-8e1e-6411557a72a8:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 5,
-                "denominator": 2
-            }
-        },
-        "79cf6a90-15df-4e27-95c0-b9e6467dad67:940b8704-e497-4a76-b390-00918ff7d282:": {
-            "odds": {
-                "numerator": 17,
+                "numerator": 49,
                 "denominator": 20
             }
         },
@@ -1626,12 +1632,6 @@
         "c1057f83-f30c-462b-b0d3-43ce669e5be9:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
                 "numerator": 9,
-                "denominator": 20
-            }
-        },
-        "c50276f5-db72-40ca-a6ed-bf8d4c7d8e59:940b8704-e497-4a76-b390-00918ff7d282:": {
-            "odds": {
-                "numerator": 17,
                 "denominator": 20
             }
         },
