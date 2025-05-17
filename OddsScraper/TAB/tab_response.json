@@ -15893,140 +15893,6 @@
             "goingInPlay": true,
             "sameGame": true,
             "stats": true
-        },
-        {
-            "id": "NYKvBos1",
-            "name": "New York v Boston",
-            "spectrumId": "NYKvBos1",
-            "spectrumUniqueId": 2873466,
-            "competitionSpectrumId": "1001",
-            "round": null,
-            "broadcastChannel": "Tab.com.au",
-            "broadcastChannels": [
-                "Tab.com.au"
-            ],
-            "startTime": "2025-05-17T00:16:00.000Z",
-            "_links": {
-                "self": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/New%20York%20v%20Boston?jurisdiction=SA",
-                "selfTemplate": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/New%20York%20v%20Boston?jurisdiction={jurisdiction}{&returnPromo,returnOffers,returnMultiOnly,channelType,cashSales,homeState}",
-                "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/New%20York%20v%20Boston/markets?jurisdiction=SA"
-            },
-            "vision": {
-                "unas": {
-                    "startTime": "2025-05-17T00:00:00Z",
-                    "requiresAuthentication": true,
-                    "_links": {
-                        "self": "https://api.beta.tab.com.au/v1/vision-service/tab-act/matches/NYKvBos1/unas"
-                    }
-                }
-            },
-            "contestants": [
-                {
-                    "name": "New York",
-                    "position": "HOME",
-                    "isHome": true,
-                    "image": [
-                        {
-                            "size": "svg",
-                            "url": "https://metadata.beta.tab.com.au/icons/NBA%20logos/New%20York%20Knicks.svg"
-                        },
-                        {
-                            "size": "xxhdpi",
-                            "url": "https://metadata.beta.tab.com.au/icons/NBA%20logos/New%20York%20Knicks_xxhdpi.png"
-                        },
-                        {
-                            "size": "2x",
-                            "url": "https://metadata.beta.tab.com.au/icons/NBA%20logos/New%20York%20Knicks%402x.png"
-                        }
-                    ]
-                },
-                {
-                    "name": "Boston",
-                    "position": "AWAY",
-                    "isHome": false,
-                    "image": [
-                        {
-                            "size": "svg",
-                            "url": "https://metadata.beta.tab.com.au/icons/NBA%20logos/Boston%20Celtics.svg"
-                        },
-                        {
-                            "size": "xxhdpi",
-                            "url": "https://metadata.beta.tab.com.au/icons/NBA%20logos/Boston%20Celtics_xxhdpi.png"
-                        },
-                        {
-                            "size": "2x",
-                            "url": "https://metadata.beta.tab.com.au/icons/NBA%20logos/Boston%20Celtics%402x.png"
-                        }
-                    ]
-                }
-            ],
-            "competitors": [
-                "New York",
-                "Boston"
-            ],
-            "openMarketCount": 1,
-            "futureMarketCount": 0,
-            "nonFutureMarketCount": 1,
-            "markets": [
-                {
-                    "id": "115587400",
-                    "name": "NBA NYK-Bos ExtrLine -31.5",
-                    "shortName": "NBA NYK-Bos ExtrLine -31.5",
-                    "betOption": "Extra Line",
-                    "betOptionSpectrumId": "464",
-                    "betOptionPriority": 1325,
-                    "marketUniqueId": 115587400,
-                    "closeTime": "2025-05-17T00:16:00.000Z",
-                    "bettingStatus": "Open",
-                    "message": null,
-                    "informationMessage": null,
-                    "isFuture": false,
-                    "onlineBetting": false,
-                    "phoneBettingOnly": true,
-                    "inPlay": true,
-                    "goingInPlay": false,
-                    "allowWin": true,
-                    "allowPlace": false,
-                    "allowEachWay": false,
-                    "allowMulti": true,
-                    "allowMultiWin": true,
-                    "allowMultiPlace": false,
-                    "allowMultiEachWay": false,
-                    "numberOfPlaces": 0,
-                    "cashOutEligibility": "Disabled",
-                    "allowBundle": false,
-                    "propositions": [
-                        {
-                            "id": "556905",
-                            "name": "New York -31.5",
-                            "returnWin": 2,
-                            "returnPlace": 0,
-                            "differential": null,
-                            "bettingStatus": "Open",
-                            "allowPlace": false,
-                            "number": 556905,
-                            "isOpen": true,
-                            "sortOrder": 1,
-                            "line": "-31.5"
-                        },
-                        {
-                            "id": "556906",
-                            "name": "Boston +31.5",
-                            "returnWin": 1.75,
-                            "returnPlace": 0,
-                            "differential": null,
-                            "bettingStatus": "Open",
-                            "allowPlace": false,
-                            "number": 556906,
-                            "isOpen": true,
-                            "sortOrder": 2,
-                            "line": "+31.5"
-                        }
-                    ]
-                }
-            ],
-            "inPlay": true,
-            "goingInPlay": false
         }
     ],
     "tournaments": [],
@@ -16034,7 +15900,6 @@
     "betOptionPriority": [
         "Head To Head",
         "Line",
-        "Extra Line",
         "Margin",
         "Tri Bet",
         "Total Points Over/Under",
@@ -16202,14 +16067,6 @@
             "openMarketCount": 1,
             "_links": {
                 "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/markets?jurisdiction=SA&betOptionName=Line"
-            }
-        },
-        {
-            "name": "Extra Line",
-            "hasFutureMarket": false,
-            "openMarketCount": 1,
-            "_links": {
-                "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/markets?jurisdiction=SA&betOptionName=Extra%20Line"
             }
         },
         {
