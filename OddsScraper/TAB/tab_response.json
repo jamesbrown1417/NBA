@@ -26,7 +26,8 @@
             "_links": {
                 "self": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/New%20York%20v%20Indiana?jurisdiction=SA",
                 "selfTemplate": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/New%20York%20v%20Indiana?jurisdiction={jurisdiction}{&returnPromo,returnOffers,returnMultiOnly,channelType,cashSales,homeState}",
-                "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/New%20York%20v%20Indiana/markets?jurisdiction=SA"
+                "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/New%20York%20v%20Indiana/markets?jurisdiction=SA",
+                "stats": "https://api.beta.tab.com.au/v1/stats-service/sports/Basketball/competitions/NBA/matches/2878360/h2h/stats"
             },
             "contestants": [
                 {
@@ -167,7 +168,7 @@
                         {
                             "id": "577004",
                             "name": "New York -4.0",
-                            "returnWin": 1.9,
+                            "returnWin": 1.85,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -181,7 +182,7 @@
                         {
                             "id": "577005",
                             "name": "Indiana +4.0",
-                            "returnWin": 1.9,
+                            "returnWin": 1.95,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -908,7 +909,7 @@
                         {
                             "id": "576962",
                             "name": "New York +4.5",
-                            "returnWin": 1.34,
+                            "returnWin": 1.32,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -921,7 +922,7 @@
                         {
                             "id": "576963",
                             "name": "Indiana -4.5",
-                            "returnWin": 3.1,
+                            "returnWin": 3.2,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -3782,7 +3783,7 @@
                         {
                             "id": "564138",
                             "name": "New York by 41+",
-                            "returnWin": 151,
+                            "returnWin": 101,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -10537,7 +10538,7 @@
                         {
                             "id": "564281",
                             "name": "Both teams score 100+",
-                            "returnWin": 1.22,
+                            "returnWin": 1.24,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -11347,141 +11348,8 @@
             ],
             "inPlay": false,
             "goingInPlay": true,
-            "sameGame": true
-        },
-        {
-            "id": "OKCvDen2",
-            "name": "Oklahoma City v Denver",
-            "spectrumId": "OKCvDen2",
-            "spectrumUniqueId": 2873467,
-            "competitionSpectrumId": "1001",
-            "round": null,
-            "broadcastChannel": "Tab.com.au",
-            "broadcastChannels": [
-                "Tab.com.au"
-            ],
-            "startTime": "2025-05-18T19:40:00.000Z",
-            "_links": {
-                "self": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/Oklahoma%20City%20v%20Denver?jurisdiction=SA",
-                "selfTemplate": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/Oklahoma%20City%20v%20Denver?jurisdiction={jurisdiction}{&returnPromo,returnOffers,returnMultiOnly,channelType,cashSales,homeState}",
-                "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/Oklahoma%20City%20v%20Denver/markets?jurisdiction=SA"
-            },
-            "vision": {
-                "unas": {
-                    "startTime": "2025-05-18T19:30:00Z",
-                    "requiresAuthentication": true,
-                    "_links": {
-                        "self": "https://api.beta.tab.com.au/v1/vision-service/tab-act/matches/OKCvDen2/unas"
-                    }
-                }
-            },
-            "contestants": [
-                {
-                    "name": "Oklahoma City",
-                    "position": "HOME",
-                    "isHome": true,
-                    "image": [
-                        {
-                            "size": "svg",
-                            "url": "https://metadata.beta.tab.com.au/icons/NBA%20logos/Oklahoma%20City%20Thunder.svg"
-                        },
-                        {
-                            "size": "xxhdpi",
-                            "url": "https://metadata.beta.tab.com.au/icons/NBA%20logos/Oklahoma%20City%20Thunder_xxhdpi.png"
-                        },
-                        {
-                            "size": "2x",
-                            "url": "https://metadata.beta.tab.com.au/icons/NBA%20logos/Oklahoma%20City%20Thunder%402x.png"
-                        }
-                    ]
-                },
-                {
-                    "name": "Denver",
-                    "position": "AWAY",
-                    "isHome": false,
-                    "image": [
-                        {
-                            "size": "svg",
-                            "url": "https://metadata.beta.tab.com.au/icons/NBA%20logos/Denver%20Nuggets.svg"
-                        },
-                        {
-                            "size": "xxhdpi",
-                            "url": "https://metadata.beta.tab.com.au/icons/NBA%20logos/Denver%20Nuggets_xxhdpi.png"
-                        },
-                        {
-                            "size": "2x",
-                            "url": "https://metadata.beta.tab.com.au/icons/NBA%20logos/Denver%20Nuggets%402x.png"
-                        }
-                    ]
-                }
-            ],
-            "competitors": [
-                "Oklahoma City",
-                "Denver"
-            ],
-            "openMarketCount": 1,
-            "futureMarketCount": 0,
-            "nonFutureMarketCount": 1,
-            "markets": [
-                {
-                    "id": "115680077",
-                    "name": "NBA OKC-Den ExtrLine -34.5",
-                    "shortName": "NBA OKC-Den ExtrLine -34.5",
-                    "betOption": "Extra Line",
-                    "betOptionSpectrumId": "464",
-                    "betOptionPriority": 1325,
-                    "marketUniqueId": 115680077,
-                    "closeTime": "2025-05-18T19:40:00.000Z",
-                    "bettingStatus": "Suspended",
-                    "message": null,
-                    "informationMessage": null,
-                    "isFuture": false,
-                    "onlineBetting": false,
-                    "phoneBettingOnly": true,
-                    "inPlay": true,
-                    "goingInPlay": false,
-                    "allowWin": true,
-                    "allowPlace": false,
-                    "allowEachWay": false,
-                    "allowMulti": true,
-                    "allowMultiWin": true,
-                    "allowMultiPlace": false,
-                    "allowMultiEachWay": false,
-                    "numberOfPlaces": 0,
-                    "cashOutEligibility": "Disabled",
-                    "allowBundle": false,
-                    "propositions": [
-                        {
-                            "id": "556961",
-                            "name": "Oklahoma City -34.5",
-                            "returnWin": 2.8,
-                            "returnPlace": 0,
-                            "differential": null,
-                            "bettingStatus": "Suspended",
-                            "allowPlace": false,
-                            "number": 556961,
-                            "isOpen": false,
-                            "sortOrder": 1,
-                            "line": "-34.5"
-                        },
-                        {
-                            "id": "556975",
-                            "name": "Denver +34.5",
-                            "returnWin": 1.4,
-                            "returnPlace": 0,
-                            "differential": null,
-                            "bettingStatus": "Suspended",
-                            "allowPlace": false,
-                            "number": 556975,
-                            "isOpen": false,
-                            "sortOrder": 2,
-                            "line": "+34.5"
-                        }
-                    ]
-                }
-            ],
-            "inPlay": true,
-            "goingInPlay": false
+            "sameGame": true,
+            "stats": true
         }
     ],
     "tournaments": [],
@@ -11489,7 +11357,6 @@
     "betOptionPriority": [
         "Head To Head",
         "Line",
-        "Extra Line",
         "Margin",
         "Tri Bet",
         "Total Points Over/Under",
@@ -11595,14 +11462,6 @@
             "openMarketCount": 1,
             "_links": {
                 "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/markets?jurisdiction=SA&betOptionName=Line"
-            }
-        },
-        {
-            "name": "Extra Line",
-            "hasFutureMarket": false,
-            "openMarketCount": 1,
-            "_links": {
-                "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/markets?jurisdiction=SA&betOptionName=Extra%20Line"
             }
         },
         {
