@@ -29,6 +29,24 @@
                 "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/Oklahoma%20City%20v%20Minnesota/markets?jurisdiction=SA",
                 "stats": "https://api.beta.tab.com.au/v1/stats-service/sports/Basketball/competitions/NBA/matches/2880081/h2h/stats"
             },
+            "vision": {
+                "performVisualisation": {
+                    "startTime": "2025-05-21T00:30:00Z",
+                    "requiresAuthentication": false,
+                    "eventId": "9y4l0jb3ztiy1ogbeautpjx0",
+                    "embeddedPages": [
+                        {
+                            "url": "https://api.beta.tab.com.au/v1/vision-service/tab/providers/performVisualisation/embed/9y4l0jb3ztiy1ogbeautpjx0",
+                            "mobile": {
+                                "url": "https://api.beta.tab.com.au/v1/vision-service/tab/providers/performVisualisation/embed/9y4l0jb3ztiy1ogbeautpjx0"
+                            }
+                        }
+                    ],
+                    "_links": {
+                        "self": "https://api.beta.tab.com.au/v1/vision-service/tab-act/matches/OKCvMin0/performVisualisation"
+                    }
+                }
+            },
             "contestants": [
                 {
                     "name": "Oklahoma City",
