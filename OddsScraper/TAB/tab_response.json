@@ -26,7 +26,8 @@
             "_links": {
                 "self": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/New%20York%20v%20Indiana?jurisdiction=SA",
                 "selfTemplate": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/New%20York%20v%20Indiana?jurisdiction={jurisdiction}{&returnPromo,returnOffers,returnMultiOnly,channelType,cashSales,homeState}",
-                "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/New%20York%20v%20Indiana/markets?jurisdiction=SA"
+                "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/New%20York%20v%20Indiana/markets?jurisdiction=SA",
+                "stats": "https://api.beta.tab.com.au/v1/stats-service/sports/Basketball/competitions/NBA/matches/2878360/h2h/stats"
             },
             "vision": {
                 "unas": {
@@ -81,9 +82,9 @@
                 "New York",
                 "Indiana"
             ],
-            "openMarketCount": 263,
+            "openMarketCount": 264,
             "futureMarketCount": 0,
-            "nonFutureMarketCount": 263,
+            "nonFutureMarketCount": 264,
             "markets": [
                 {
                     "id": "115607910",
@@ -443,6 +444,84 @@
                     ],
                     "sameGame": true,
                     "sameGameMultipleSelections": false
+                },
+                {
+                    "id": "115833611",
+                    "name": "NBA New York-Indiana H2H/OvUn",
+                    "shortName": "NBA NYK-Ind H2H/OvUn",
+                    "betOption": "HDtoHD/OverUnder Double",
+                    "betOptionSpectrumId": "285",
+                    "betOptionPriority": 2675,
+                    "marketUniqueId": 115833611,
+                    "closeTime": "2025-05-22T00:00:00.000Z",
+                    "bettingStatus": "Open",
+                    "message": null,
+                    "informationMessage": null,
+                    "isFuture": false,
+                    "onlineBetting": true,
+                    "phoneBettingOnly": false,
+                    "inPlay": false,
+                    "goingInPlay": true,
+                    "allowWin": true,
+                    "allowPlace": false,
+                    "allowEachWay": false,
+                    "allowMulti": true,
+                    "allowMultiWin": true,
+                    "allowMultiPlace": false,
+                    "allowMultiEachWay": false,
+                    "numberOfPlaces": 0,
+                    "cashOutEligibility": "PreMatch",
+                    "allowBundle": false,
+                    "propositions": [
+                        {
+                            "id": "574106",
+                            "name": "New York /Over 222.5",
+                            "returnWin": 2.8,
+                            "returnPlace": 0,
+                            "differential": null,
+                            "bettingStatus": "Open",
+                            "allowPlace": false,
+                            "number": 574106,
+                            "isOpen": true,
+                            "sortOrder": 1
+                        },
+                        {
+                            "id": "574107",
+                            "name": "New York /Under 222.5",
+                            "returnWin": 3,
+                            "returnPlace": 0,
+                            "differential": null,
+                            "bettingStatus": "Open",
+                            "allowPlace": false,
+                            "number": 574107,
+                            "isOpen": true,
+                            "sortOrder": 2
+                        },
+                        {
+                            "id": "574108",
+                            "name": "Indiana /Over 222.5",
+                            "returnWin": 4.6,
+                            "returnPlace": 0,
+                            "differential": null,
+                            "bettingStatus": "Open",
+                            "allowPlace": false,
+                            "number": 574108,
+                            "isOpen": true,
+                            "sortOrder": 3
+                        },
+                        {
+                            "id": "574109",
+                            "name": "Indiana /Under 222.5",
+                            "returnWin": 5,
+                            "returnPlace": 0,
+                            "differential": null,
+                            "bettingStatus": "Open",
+                            "allowPlace": false,
+                            "number": 574109,
+                            "isOpen": true,
+                            "sortOrder": 4
+                        }
+                    ]
                 },
                 {
                     "id": "115614559",
@@ -27275,7 +27354,8 @@
             ],
             "inPlay": false,
             "goingInPlay": true,
-            "sameGame": true
+            "sameGame": true,
+            "stats": true
         },
         {
             "id": "OKCvMin",
@@ -27292,7 +27372,8 @@
             "_links": {
                 "self": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/Oklahoma%20City%20v%20Minnesota?jurisdiction=SA",
                 "selfTemplate": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/Oklahoma%20City%20v%20Minnesota?jurisdiction={jurisdiction}{&returnPromo,returnOffers,returnMultiOnly,channelType,cashSales,homeState}",
-                "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/Oklahoma%20City%20v%20Minnesota/markets?jurisdiction=SA"
+                "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/Oklahoma%20City%20v%20Minnesota/markets?jurisdiction=SA",
+                "stats": "https://api.beta.tab.com.au/v1/stats-service/sports/Basketball/competitions/NBA/matches/2880082/h2h/stats"
             },
             "vision": {
                 "unas": {
@@ -33789,7 +33870,8 @@
                 }
             ],
             "inPlay": false,
-            "goingInPlay": true
+            "goingInPlay": true,
+            "stats": true
         }
     ],
     "tournaments": [],
@@ -33800,6 +33882,7 @@
         "Margin",
         "Tri Bet",
         "Line/Over Under Double",
+        "HDtoHD/OverUnder Double",
         "Total Points Over/Under",
         "Pick Your Own Line",
         "Pick Your Own Total",
@@ -34039,6 +34122,14 @@
             "openMarketCount": 2,
             "_links": {
                 "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/markets?jurisdiction=SA&betOptionName=Line%2FOver%20Under%20Double"
+            }
+        },
+        {
+            "name": "HDtoHD/OverUnder Double",
+            "hasFutureMarket": false,
+            "openMarketCount": 1,
+            "_links": {
+                "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/markets?jurisdiction=SA&betOptionName=HDtoHD%2FOverUnder%20Double"
             }
         },
         {
