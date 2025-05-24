@@ -4447,7 +4447,8 @@
                             "allowPlace": false,
                             "number": 567308,
                             "isOpen": true,
-                            "sortOrder": 7
+                            "sortOrder": 7,
+                            "sameGame": true
                         },
                         {
                             "id": "567309",
@@ -4459,7 +4460,8 @@
                             "allowPlace": false,
                             "number": 567309,
                             "isOpen": true,
-                            "sortOrder": 8
+                            "sortOrder": 8,
+                            "sameGame": true
                         }
                     ],
                     "sameGame": true,
@@ -27245,6 +27247,15 @@
                 "selfTemplate": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/Indiana%20v%20New%20York?jurisdiction={jurisdiction}{&returnPromo,returnOffers,returnMultiOnly,channelType,cashSales,homeState}",
                 "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/Indiana%20v%20New%20York/markets?jurisdiction=SA",
                 "stats": "https://api.beta.tab.com.au/v1/stats-service/sports/Basketball/competitions/NBA/matches/2882258/h2h/stats"
+            },
+            "vision": {
+                "unas": {
+                    "startTime": "2025-05-26T00:00:00Z",
+                    "requiresAuthentication": true,
+                    "_links": {
+                        "self": "https://api.beta.tab.com.au/v1/vision-service/tab-act/matches/IndvNYK/unas"
+                    }
+                }
             },
             "contestants": [
                 {
