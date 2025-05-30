@@ -73,9 +73,9 @@
                 "Indiana",
                 "New York"
             ],
-            "openMarketCount": 236,
+            "openMarketCount": 237,
             "futureMarketCount": 0,
-            "nonFutureMarketCount": 236,
+            "nonFutureMarketCount": 237,
             "markets": [
                 {
                     "id": "116151990",
@@ -435,6 +435,84 @@
                     ],
                     "sameGame": true,
                     "sameGameMultipleSelections": false
+                },
+                {
+                    "id": "116336172",
+                    "name": "NBA Ind-NYK LnTt$2 01/06 01/06",
+                    "shortName": "NBA Ind-NYK LnTt$2 01/06",
+                    "betOption": "Line/Total Double $2",
+                    "betOptionSpectrumId": "2657",
+                    "betOptionPriority": 3075,
+                    "marketUniqueId": 116336172,
+                    "closeTime": "2025-06-01T00:00:00.000Z",
+                    "bettingStatus": "Open",
+                    "message": null,
+                    "informationMessage": null,
+                    "isFuture": false,
+                    "onlineBetting": true,
+                    "phoneBettingOnly": false,
+                    "inPlay": false,
+                    "goingInPlay": false,
+                    "allowWin": true,
+                    "allowPlace": false,
+                    "allowEachWay": false,
+                    "allowMulti": true,
+                    "allowMultiWin": true,
+                    "allowMultiPlace": false,
+                    "allowMultiEachWay": false,
+                    "numberOfPlaces": 0,
+                    "cashOutEligibility": "PreMatch",
+                    "allowBundle": false,
+                    "propositions": [
+                        {
+                            "id": "558884",
+                            "name": "Indiana -0.5/Over 215.5",
+                            "returnWin": 2,
+                            "returnPlace": 0,
+                            "differential": null,
+                            "bettingStatus": "Open",
+                            "allowPlace": false,
+                            "number": 558884,
+                            "isOpen": true,
+                            "sortOrder": 1
+                        },
+                        {
+                            "id": "558885",
+                            "name": "Indiana +2.5/Under 226.5",
+                            "returnWin": 2,
+                            "returnPlace": 0,
+                            "differential": null,
+                            "bettingStatus": "Open",
+                            "allowPlace": false,
+                            "number": 558885,
+                            "isOpen": true,
+                            "sortOrder": 2
+                        },
+                        {
+                            "id": "558886",
+                            "name": "New York +11.5/Over 212.5",
+                            "returnWin": 2,
+                            "returnPlace": 0,
+                            "differential": null,
+                            "bettingStatus": "Open",
+                            "allowPlace": false,
+                            "number": 558886,
+                            "isOpen": true,
+                            "sortOrder": 3
+                        },
+                        {
+                            "id": "558887",
+                            "name": "New York +8.5/Under 223.5",
+                            "returnWin": 2,
+                            "returnPlace": 0,
+                            "differential": null,
+                            "bettingStatus": "Open",
+                            "allowPlace": false,
+                            "number": 558887,
+                            "isOpen": true,
+                            "sortOrder": 4
+                        }
+                    ]
                 },
                 {
                     "id": "116301236",
@@ -25650,6 +25728,7 @@
         "Margin",
         "Tri Bet",
         "Line/Over Under Double",
+        "Line/Total Double $2",
         "Total Points Over/Under",
         "Pick Your Own Line",
         "Pick Your Own Total",
@@ -25888,6 +25967,14 @@
             "openMarketCount": 1,
             "_links": {
                 "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/markets?jurisdiction=SA&betOptionName=Line%2FOver%20Under%20Double"
+            }
+        },
+        {
+            "name": "Line/Total Double $2",
+            "hasFutureMarket": false,
+            "openMarketCount": 1,
+            "_links": {
+                "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/markets?jurisdiction=SA&betOptionName=Line%2FTotal%20Double%20%242"
             }
         },
         {
