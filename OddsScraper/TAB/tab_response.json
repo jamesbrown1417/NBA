@@ -28,6 +28,24 @@
                 "selfTemplate": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/Indiana%20v%20New%20York?jurisdiction={jurisdiction}{&returnPromo,returnOffers,returnMultiOnly,channelType,cashSales,homeState}",
                 "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/Indiana%20v%20New%20York/markets?jurisdiction=SA"
             },
+            "vision": {
+                "performVisualisation": {
+                    "startTime": "2025-06-01T00:00:00Z",
+                    "requiresAuthentication": false,
+                    "eventId": "1p3zaszutfivnifg27pgt2rro",
+                    "embeddedPages": [
+                        {
+                            "url": "https://api.beta.tab.com.au/v1/vision-service/tab/providers/performVisualisation/embed/1p3zaszutfivnifg27pgt2rro",
+                            "mobile": {
+                                "url": "https://api.beta.tab.com.au/v1/vision-service/tab/providers/performVisualisation/embed/1p3zaszutfivnifg27pgt2rro"
+                            }
+                        }
+                    ],
+                    "_links": {
+                        "self": "https://api.beta.tab.com.au/v1/vision-service/tab-act/matches/IndvNYK1/performVisualisation"
+                    }
+                }
+            },
             "contestants": [
                 {
                     "name": "Indiana",
@@ -72,9 +90,9 @@
                 "Indiana",
                 "New York"
             ],
-            "openMarketCount": 70,
+            "openMarketCount": 69,
             "futureMarketCount": 0,
-            "nonFutureMarketCount": 70,
+            "nonFutureMarketCount": 69,
             "markets": [
                 {
                     "id": "116151990",
@@ -107,7 +125,7 @@
                         {
                             "id": "581331",
                             "name": "Indiana",
-                            "returnWin": 1.55,
+                            "returnWin": 1.48,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -120,7 +138,7 @@
                         {
                             "id": "581332",
                             "name": "New York",
-                            "returnWin": 2.4,
+                            "returnWin": 2.6,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -163,7 +181,7 @@
                         {
                             "id": "556447",
                             "name": "Indiana +2.5",
-                            "returnWin": 1.44,
+                            "returnWin": 1.34,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -176,7 +194,7 @@
                         {
                             "id": "556448",
                             "name": "New York -2.5",
-                            "returnWin": 2.7,
+                            "returnWin": 3.1,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -219,7 +237,7 @@
                         {
                             "id": "556998",
                             "name": "Indiana +5.5",
-                            "returnWin": 1.28,
+                            "returnWin": 1.2,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -232,7 +250,7 @@
                         {
                             "id": "556999",
                             "name": "New York -5.5",
-                            "returnWin": 3.5,
+                            "returnWin": 4.2,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -275,7 +293,7 @@
                         {
                             "id": "556144",
                             "name": "Indiana -3.5",
-                            "returnWin": 1.8,
+                            "returnWin": 1.75,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -288,7 +306,7 @@
                         {
                             "id": "556145",
                             "name": "New York +3.5",
-                            "returnWin": 1.95,
+                            "returnWin": 2,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -331,7 +349,7 @@
                         {
                             "id": "556469",
                             "name": "Indiana -6.5",
-                            "returnWin": 2.15,
+                            "returnWin": 2.2,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -344,7 +362,7 @@
                         {
                             "id": "556470",
                             "name": "New York +6.5",
-                            "returnWin": 1.65,
+                            "returnWin": 1.62,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -387,7 +405,7 @@
                         {
                             "id": "556724",
                             "name": "Indiana -9.5",
-                            "returnWin": 2.7,
+                            "returnWin": 2.8,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -400,7 +418,7 @@
                         {
                             "id": "556725",
                             "name": "New York +9.5",
-                            "returnWin": 1.44,
+                            "returnWin": 1.4,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -443,7 +461,7 @@
                         {
                             "id": "568012",
                             "name": "Indiana by 11+",
-                            "returnWin": 2.9,
+                            "returnWin": 3,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -455,7 +473,7 @@
                         {
                             "id": "568013",
                             "name": "Indiana by 1-10",
-                            "returnWin": 2.75,
+                            "returnWin": 2.5,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -467,7 +485,7 @@
                         {
                             "id": "568014",
                             "name": "New York by 1-10",
-                            "returnWin": 3.4,
+                            "returnWin": 3.25,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -479,7 +497,7 @@
                         {
                             "id": "568015",
                             "name": "New York by 11+",
-                            "returnWin": 5,
+                            "returnWin": 6.5,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -521,7 +539,7 @@
                         {
                             "id": "568016",
                             "name": "Indiana by 7+",
-                            "returnWin": 2.1,
+                            "returnWin": 2.15,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -533,7 +551,7 @@
                         {
                             "id": "568017",
                             "name": "Either Team By 6 or Less",
-                            "returnWin": 2.5,
+                            "returnWin": 2.25,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -545,7 +563,7 @@
                         {
                             "id": "568018",
                             "name": "New York by 7+",
-                            "returnWin": 3.75,
+                            "returnWin": 4.25,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -619,7 +637,7 @@
                     "betOptionPriority": 2680,
                     "marketUniqueId": 116378660,
                     "closeTime": "2025-06-01T00:05:00.000Z",
-                    "bettingStatus": "Suspended",
+                    "bettingStatus": "Open",
                     "message": null,
                     "informationMessage": null,
                     "isFuture": false,
@@ -639,28 +657,28 @@
                     "allowBundle": false,
                     "propositions": [
                         {
-                            "id": "561502",
-                            "name": "J Brunson Over 29.5",
-                            "returnWin": 1.95,
-                            "returnPlace": 0,
-                            "differential": null,
-                            "bettingStatus": "Suspended",
-                            "allowPlace": false,
-                            "number": 561502,
-                            "isOpen": false,
-                            "sortOrder": 55
-                        },
-                        {
-                            "id": "561503",
-                            "name": "J Brunson Under 29.5",
+                            "id": "561498",
+                            "name": "J Brunson Over 27.5",
                             "returnWin": 1.8,
                             "returnPlace": 0,
                             "differential": null,
-                            "bettingStatus": "Suspended",
+                            "bettingStatus": "Open",
                             "allowPlace": false,
-                            "number": 561503,
-                            "isOpen": false,
-                            "sortOrder": 56
+                            "number": 561498,
+                            "isOpen": true,
+                            "sortOrder": 51
+                        },
+                        {
+                            "id": "561499",
+                            "name": "J Brunson Under 27.5",
+                            "returnWin": 1.95,
+                            "returnPlace": 0,
+                            "differential": null,
+                            "bettingStatus": "Open",
+                            "allowPlace": false,
+                            "number": 561499,
+                            "isOpen": true,
+                            "sortOrder": 52
                         }
                     ]
                 },
@@ -693,28 +711,28 @@
                     "allowBundle": false,
                     "propositions": [
                         {
-                            "id": "558847",
-                            "name": "Josh Hart Over 7.5",
-                            "returnWin": 1.95,
+                            "id": "558843",
+                            "name": "Josh Hart Over 5.5",
+                            "returnWin": 1.75,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
-                            "number": 558847,
+                            "number": 558843,
                             "isOpen": true,
-                            "sortOrder": 11
+                            "sortOrder": 7
                         },
                         {
-                            "id": "558848",
-                            "name": "Josh Hart Under 7.5",
-                            "returnWin": 1.8,
+                            "id": "558844",
+                            "name": "Josh Hart Under 5.5",
+                            "returnWin": 2,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
-                            "number": 558848,
+                            "number": 558844,
                             "isOpen": true,
-                            "sortOrder": 12
+                            "sortOrder": 8
                         }
                     ]
                 },
@@ -727,7 +745,7 @@
                     "betOptionPriority": 2680,
                     "marketUniqueId": 116367310,
                     "closeTime": "2025-06-01T00:05:00.000Z",
-                    "bettingStatus": "Suspended",
+                    "bettingStatus": "Open",
                     "message": null,
                     "informationMessage": null,
                     "isFuture": false,
@@ -749,25 +767,25 @@
                         {
                             "id": "558243",
                             "name": "K Towns Over 19.5",
-                            "returnWin": 1.9,
+                            "returnWin": 1.95,
                             "returnPlace": 0,
                             "differential": null,
-                            "bettingStatus": "Suspended",
+                            "bettingStatus": "Open",
                             "allowPlace": false,
                             "number": 558243,
-                            "isOpen": false,
+                            "isOpen": true,
                             "sortOrder": 35
                         },
                         {
                             "id": "558244",
                             "name": "K Towns Under 19.5",
-                            "returnWin": 1.85,
+                            "returnWin": 1.8,
                             "returnPlace": 0,
                             "differential": null,
-                            "bettingStatus": "Suspended",
+                            "bettingStatus": "Open",
                             "allowPlace": false,
                             "number": 558244,
-                            "isOpen": false,
+                            "isOpen": true,
                             "sortOrder": 36
                         }
                     ]
@@ -803,7 +821,7 @@
                         {
                             "id": "558139",
                             "name": "M Turner Over 16.5",
-                            "returnWin": 1.8,
+                            "returnWin": 1.95,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -815,7 +833,7 @@
                         {
                             "id": "558140",
                             "name": "M Turner Under 16.5",
-                            "returnWin": 1.95,
+                            "returnWin": 1.8,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -855,28 +873,28 @@
                     "allowBundle": false,
                     "propositions": [
                         {
-                            "id": "561770",
-                            "name": "Mik Bridges Over 15.5",
+                            "id": "561768",
+                            "name": "Mik Bridges Over 14.5",
                             "returnWin": 1.75,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
-                            "number": 561770,
+                            "number": 561768,
                             "isOpen": true,
-                            "sortOrder": 27
+                            "sortOrder": 25
                         },
                         {
-                            "id": "561771",
-                            "name": "Mik Bridges Under 15.5",
+                            "id": "561769",
+                            "name": "Mik Bridges Under 14.5",
                             "returnWin": 2,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
-                            "number": 561771,
+                            "number": 561769,
                             "isOpen": true,
-                            "sortOrder": 28
+                            "sortOrder": 26
                         }
                     ]
                 },
@@ -909,28 +927,28 @@
                     "allowBundle": false,
                     "propositions": [
                         {
-                            "id": "558465",
-                            "name": "O Toppin Over 8.5",
-                            "returnWin": 1.75,
+                            "id": "558469",
+                            "name": "O Toppin Over 10.5",
+                            "returnWin": 1.72,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
-                            "number": 558465,
+                            "number": 558469,
                             "isOpen": true,
-                            "sortOrder": 13
+                            "sortOrder": 17
                         },
                         {
-                            "id": "558466",
-                            "name": "O Toppin Under 8.5",
-                            "returnWin": 2,
+                            "id": "558470",
+                            "name": "O Toppin Under 10.5",
+                            "returnWin": 2.05,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
-                            "number": 558466,
+                            "number": 558470,
                             "isOpen": true,
-                            "sortOrder": 14
+                            "sortOrder": 18
                         }
                     ]
                 },
@@ -963,28 +981,28 @@
                     "allowBundle": false,
                     "propositions": [
                         {
-                            "id": "561276",
-                            "name": "OG Anunoby Over 14.5",
-                            "returnWin": 1.95,
+                            "id": "561284",
+                            "name": "OG Anunoby Over 18.5",
+                            "returnWin": 1.75,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
-                            "number": 561276,
+                            "number": 561284,
                             "isOpen": true,
-                            "sortOrder": 25
+                            "sortOrder": 33
                         },
                         {
-                            "id": "561277",
-                            "name": "OG Anunoby Under 14.5",
-                            "returnWin": 1.8,
+                            "id": "561285",
+                            "name": "OG Anunoby Under 18.5",
+                            "returnWin": 2,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
-                            "number": 561277,
+                            "number": 561285,
                             "isOpen": true,
-                            "sortOrder": 26
+                            "sortOrder": 34
                         }
                     ]
                 },
@@ -1017,28 +1035,28 @@
                     "allowBundle": false,
                     "propositions": [
                         {
-                            "id": "561388",
-                            "name": "P Siakam Over 21.5",
-                            "returnWin": 1.9,
+                            "id": "561390",
+                            "name": "P Siakam Over 22.5",
+                            "returnWin": 1.75,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
-                            "number": 561388,
+                            "number": 561390,
                             "isOpen": true,
-                            "sortOrder": 39
+                            "sortOrder": 41
                         },
                         {
-                            "id": "561389",
-                            "name": "P Siakam Under 21.5",
-                            "returnWin": 1.85,
+                            "id": "561391",
+                            "name": "P Siakam Under 22.5",
+                            "returnWin": 2,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
-                            "number": 561389,
+                            "number": 561391,
                             "isOpen": true,
-                            "sortOrder": 40
+                            "sortOrder": 42
                         }
                     ]
                 },
@@ -1051,7 +1069,7 @@
                     "betOptionPriority": 2680,
                     "marketUniqueId": 116378661,
                     "closeTime": "2025-06-01T00:05:00.000Z",
-                    "bettingStatus": "Suspended",
+                    "bettingStatus": "Open",
                     "message": null,
                     "informationMessage": null,
                     "isFuture": false,
@@ -1071,28 +1089,28 @@
                     "allowBundle": false,
                     "propositions": [
                         {
-                            "id": "561572",
-                            "name": "T Haliburto Over 15.5",
-                            "returnWin": 1.95,
+                            "id": "561570",
+                            "name": "T Haliburto Over 14.5",
+                            "returnWin": 1.85,
                             "returnPlace": 0,
                             "differential": null,
-                            "bettingStatus": "Suspended",
+                            "bettingStatus": "Open",
                             "allowPlace": false,
-                            "number": 561572,
-                            "isOpen": false,
-                            "sortOrder": 27
+                            "number": 561570,
+                            "isOpen": true,
+                            "sortOrder": 25
                         },
                         {
-                            "id": "561573",
-                            "name": "T Haliburto Under 15.5",
-                            "returnWin": 1.8,
+                            "id": "561571",
+                            "name": "T Haliburto Under 14.5",
+                            "returnWin": 1.9,
                             "returnPlace": 0,
                             "differential": null,
-                            "bettingStatus": "Suspended",
+                            "bettingStatus": "Open",
                             "allowPlace": false,
-                            "number": 561573,
-                            "isOpen": false,
-                            "sortOrder": 28
+                            "number": 561571,
+                            "isOpen": true,
+                            "sortOrder": 26
                         }
                     ]
                 },
@@ -1127,7 +1145,7 @@
                         {
                             "id": "556398",
                             "name": "Indiana/Over 220.5",
-                            "returnWin": 3.3,
+                            "returnWin": 3.1,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -1163,7 +1181,7 @@
                         {
                             "id": "556401",
                             "name": "New York/Under 220.5",
-                            "returnWin": 4,
+                            "returnWin": 4.25,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -1205,7 +1223,7 @@
                         {
                             "id": "556550",
                             "name": "Indiana-Indiana",
-                            "returnWin": 2.05,
+                            "returnWin": 2,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -1217,7 +1235,7 @@
                         {
                             "id": "556551",
                             "name": "New York-Indiana",
-                            "returnWin": 6.5,
+                            "returnWin": 6,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -1229,7 +1247,7 @@
                         {
                             "id": "556552",
                             "name": "Indiana-New York",
-                            "returnWin": 6.5,
+                            "returnWin": 5.5,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -1241,7 +1259,7 @@
                         {
                             "id": "556553",
                             "name": "New York-New York",
-                            "returnWin": 3.5,
+                            "returnWin": 4.5,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -1289,7 +1307,7 @@
                         {
                             "id": "556557",
                             "name": "Tie-Indiana",
-                            "returnWin": 26,
+                            "returnWin": 21,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -1313,13 +1331,13 @@
                     ]
                 },
                 {
-                    "id": "116363773",
+                    "id": "116363643",
                     "name": "NBA Indiana-New York Pts3Way",
                     "shortName": "NBA Ind-NYK Pts3Way",
                     "betOption": "Total Points 3-Way",
                     "betOptionSpectrumId": "2101",
                     "betOptionPriority": 10470,
-                    "marketUniqueId": 116363773,
+                    "marketUniqueId": 116363643,
                     "closeTime": "2025-06-01T00:05:00.000Z",
                     "bettingStatus": "Open",
                     "message": null,
@@ -1341,104 +1359,38 @@
                     "allowBundle": false,
                     "propositions": [
                         {
-                            "id": "556708",
-                            "name": "Over 214 Points",
-                            "returnWin": 1.57,
+                            "id": "556409",
+                            "name": "Over 224 Points",
+                            "returnWin": 2.5,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
-                            "number": 556708,
+                            "number": 556409,
                             "isOpen": true,
                             "sortOrder": 1
                         },
                         {
-                            "id": "556709",
-                            "name": "204 - 214 inc Points",
-                            "returnWin": 3.5,
-                            "returnPlace": 0,
-                            "differential": null,
-                            "bettingStatus": "Open",
-                            "allowPlace": false,
-                            "number": 556709,
-                            "isOpen": true,
-                            "sortOrder": 2
-                        },
-                        {
-                            "id": "556710",
-                            "name": "Under 204 Points",
-                            "returnWin": 4.25,
-                            "returnPlace": 0,
-                            "differential": null,
-                            "bettingStatus": "Open",
-                            "allowPlace": false,
-                            "number": 556710,
-                            "isOpen": true,
-                            "sortOrder": 3
-                        }
-                    ]
-                },
-                {
-                    "id": "116363648",
-                    "name": "NBA Indiana-New York Pts3Way",
-                    "shortName": "NBA Ind-NYK Pts3Way",
-                    "betOption": "Total Points 3-Way",
-                    "betOptionSpectrumId": "2101",
-                    "betOptionPriority": 10470,
-                    "marketUniqueId": 116363648,
-                    "closeTime": "2025-06-01T00:05:00.000Z",
-                    "bettingStatus": "Open",
-                    "message": null,
-                    "informationMessage": null,
-                    "isFuture": false,
-                    "onlineBetting": false,
-                    "phoneBettingOnly": true,
-                    "inPlay": true,
-                    "goingInPlay": false,
-                    "allowWin": true,
-                    "allowPlace": false,
-                    "allowEachWay": false,
-                    "allowMulti": true,
-                    "allowMultiWin": true,
-                    "allowMultiPlace": false,
-                    "allowMultiEachWay": false,
-                    "numberOfPlaces": 0,
-                    "cashOutEligibility": "Disabled",
-                    "allowBundle": false,
-                    "propositions": [
-                        {
-                            "id": "556422",
-                            "name": "Over 219 Points",
-                            "returnWin": 1.92,
-                            "returnPlace": 0,
-                            "differential": null,
-                            "bettingStatus": "Open",
-                            "allowPlace": false,
-                            "number": 556422,
-                            "isOpen": true,
-                            "sortOrder": 1
-                        },
-                        {
-                            "id": "556423",
-                            "name": "209 - 219 inc Points",
-                            "returnWin": 3.3,
-                            "returnPlace": 0,
-                            "differential": null,
-                            "bettingStatus": "Open",
-                            "allowPlace": false,
-                            "number": 556423,
-                            "isOpen": true,
-                            "sortOrder": 2
-                        },
-                        {
-                            "id": "556424",
-                            "name": "Under 209 Points",
+                            "id": "556410",
+                            "name": "214 - 224 inc Points",
                             "returnWin": 3.1,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
-                            "number": 556424,
+                            "number": 556410,
+                            "isOpen": true,
+                            "sortOrder": 2
+                        },
+                        {
+                            "id": "556411",
+                            "name": "Under 214 Points",
+                            "returnWin": 2.35,
+                            "returnPlace": 0,
+                            "differential": null,
+                            "bettingStatus": "Open",
+                            "allowPlace": false,
+                            "number": 556411,
                             "isOpen": true,
                             "sortOrder": 3
                         }
@@ -1511,6 +1463,138 @@
                     ]
                 },
                 {
+                    "id": "116363773",
+                    "name": "NBA Indiana-New York Pts3Way",
+                    "shortName": "NBA Ind-NYK Pts3Way",
+                    "betOption": "Total Points 3-Way",
+                    "betOptionSpectrumId": "2101",
+                    "betOptionPriority": 10470,
+                    "marketUniqueId": 116363773,
+                    "closeTime": "2025-06-01T00:05:00.000Z",
+                    "bettingStatus": "Open",
+                    "message": null,
+                    "informationMessage": null,
+                    "isFuture": false,
+                    "onlineBetting": false,
+                    "phoneBettingOnly": true,
+                    "inPlay": true,
+                    "goingInPlay": false,
+                    "allowWin": true,
+                    "allowPlace": false,
+                    "allowEachWay": false,
+                    "allowMulti": true,
+                    "allowMultiWin": true,
+                    "allowMultiPlace": false,
+                    "allowMultiEachWay": false,
+                    "numberOfPlaces": 0,
+                    "cashOutEligibility": "Disabled",
+                    "allowBundle": false,
+                    "propositions": [
+                        {
+                            "id": "556708",
+                            "name": "Over 214 Points",
+                            "returnWin": 1.5,
+                            "returnPlace": 0,
+                            "differential": null,
+                            "bettingStatus": "Open",
+                            "allowPlace": false,
+                            "number": 556708,
+                            "isOpen": true,
+                            "sortOrder": 1
+                        },
+                        {
+                            "id": "556709",
+                            "name": "204 - 214 inc Points",
+                            "returnWin": 3.75,
+                            "returnPlace": 0,
+                            "differential": null,
+                            "bettingStatus": "Open",
+                            "allowPlace": false,
+                            "number": 556709,
+                            "isOpen": true,
+                            "sortOrder": 2
+                        },
+                        {
+                            "id": "556710",
+                            "name": "Under 204 Points",
+                            "returnWin": 4.5,
+                            "returnPlace": 0,
+                            "differential": null,
+                            "bettingStatus": "Open",
+                            "allowPlace": false,
+                            "number": 556710,
+                            "isOpen": true,
+                            "sortOrder": 3
+                        }
+                    ]
+                },
+                {
+                    "id": "116363648",
+                    "name": "NBA Indiana-New York Pts3Way",
+                    "shortName": "NBA Ind-NYK Pts3Way",
+                    "betOption": "Total Points 3-Way",
+                    "betOptionSpectrumId": "2101",
+                    "betOptionPriority": 10470,
+                    "marketUniqueId": 116363648,
+                    "closeTime": "2025-06-01T00:05:00.000Z",
+                    "bettingStatus": "Open",
+                    "message": null,
+                    "informationMessage": null,
+                    "isFuture": false,
+                    "onlineBetting": false,
+                    "phoneBettingOnly": true,
+                    "inPlay": true,
+                    "goingInPlay": false,
+                    "allowWin": true,
+                    "allowPlace": false,
+                    "allowEachWay": false,
+                    "allowMulti": true,
+                    "allowMultiWin": true,
+                    "allowMultiPlace": false,
+                    "allowMultiEachWay": false,
+                    "numberOfPlaces": 0,
+                    "cashOutEligibility": "Disabled",
+                    "allowBundle": false,
+                    "propositions": [
+                        {
+                            "id": "556422",
+                            "name": "Over 219 Points",
+                            "returnWin": 1.9,
+                            "returnPlace": 0,
+                            "differential": null,
+                            "bettingStatus": "Open",
+                            "allowPlace": false,
+                            "number": 556422,
+                            "isOpen": true,
+                            "sortOrder": 1
+                        },
+                        {
+                            "id": "556423",
+                            "name": "209 - 219 inc Points",
+                            "returnWin": 3.1,
+                            "returnPlace": 0,
+                            "differential": null,
+                            "bettingStatus": "Open",
+                            "allowPlace": false,
+                            "number": 556423,
+                            "isOpen": true,
+                            "sortOrder": 2
+                        },
+                        {
+                            "id": "556424",
+                            "name": "Under 209 Points",
+                            "returnWin": 3.3,
+                            "returnPlace": 0,
+                            "differential": null,
+                            "bettingStatus": "Open",
+                            "allowPlace": false,
+                            "number": 556424,
+                            "isOpen": true,
+                            "sortOrder": 3
+                        }
+                    ]
+                },
+                {
                     "id": "116363497",
                     "name": "NBA Indiana-New York Pts3Way",
                     "shortName": "NBA Ind-NYK Pts3Way",
@@ -1541,7 +1625,7 @@
                         {
                             "id": "556007",
                             "name": "Over 229 Points",
-                            "returnWin": 3.25,
+                            "returnWin": 3.3,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -1553,7 +1637,7 @@
                         {
                             "id": "556008",
                             "name": "219 - 229 inc Points",
-                            "returnWin": 3.5,
+                            "returnWin": 3.3,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -1565,78 +1649,12 @@
                         {
                             "id": "556009",
                             "name": "Under 219 Points",
-                            "returnWin": 1.8,
+                            "returnWin": 1.85,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
                             "number": 556009,
-                            "isOpen": true,
-                            "sortOrder": 3
-                        }
-                    ]
-                },
-                {
-                    "id": "116363643",
-                    "name": "NBA Indiana-New York Pts3Way",
-                    "shortName": "NBA Ind-NYK Pts3Way",
-                    "betOption": "Total Points 3-Way",
-                    "betOptionSpectrumId": "2101",
-                    "betOptionPriority": 10470,
-                    "marketUniqueId": 116363643,
-                    "closeTime": "2025-06-01T00:05:00.000Z",
-                    "bettingStatus": "Open",
-                    "message": null,
-                    "informationMessage": null,
-                    "isFuture": false,
-                    "onlineBetting": false,
-                    "phoneBettingOnly": true,
-                    "inPlay": true,
-                    "goingInPlay": false,
-                    "allowWin": true,
-                    "allowPlace": false,
-                    "allowEachWay": false,
-                    "allowMulti": true,
-                    "allowMultiWin": true,
-                    "allowMultiPlace": false,
-                    "allowMultiEachWay": false,
-                    "numberOfPlaces": 0,
-                    "cashOutEligibility": "Disabled",
-                    "allowBundle": false,
-                    "propositions": [
-                        {
-                            "id": "556409",
-                            "name": "Over 224 Points",
-                            "returnWin": 2.45,
-                            "returnPlace": 0,
-                            "differential": null,
-                            "bettingStatus": "Open",
-                            "allowPlace": false,
-                            "number": 556409,
-                            "isOpen": true,
-                            "sortOrder": 1
-                        },
-                        {
-                            "id": "556410",
-                            "name": "214 - 224 inc Points",
-                            "returnWin": 3.4,
-                            "returnPlace": 0,
-                            "differential": null,
-                            "bettingStatus": "Open",
-                            "allowPlace": false,
-                            "number": 556410,
-                            "isOpen": true,
-                            "sortOrder": 2
-                        },
-                        {
-                            "id": "556411",
-                            "name": "Under 214 Points",
-                            "returnWin": 2.25,
-                            "returnPlace": 0,
-                            "differential": null,
-                            "bettingStatus": "Open",
-                            "allowPlace": false,
-                            "number": 556411,
                             "isOpen": true,
                             "sortOrder": 3
                         }
@@ -1673,7 +1691,7 @@
                         {
                             "id": "556611",
                             "name": "Over 210.5 Points",
-                            "returnWin": 1.4,
+                            "returnWin": 1.36,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -1685,7 +1703,7 @@
                         {
                             "id": "556612",
                             "name": "Under 210.5 Points",
-                            "returnWin": 2.8,
+                            "returnWin": 3,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -1727,7 +1745,7 @@
                         {
                             "id": "556016",
                             "name": "Over 215.5 Points",
-                            "returnWin": 1.65,
+                            "returnWin": 1.62,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -1739,7 +1757,7 @@
                         {
                             "id": "556017",
                             "name": "Under 215.5 Points",
-                            "returnWin": 2.15,
+                            "returnWin": 2.2,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -1781,7 +1799,7 @@
                         {
                             "id": "556148",
                             "name": "Over 220.5 Points",
-                            "returnWin": 2.1,
+                            "returnWin": 2.05,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -1793,7 +1811,7 @@
                         {
                             "id": "556149",
                             "name": "Under 220.5 Points",
-                            "returnWin": 1.68,
+                            "returnWin": 1.72,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -1889,7 +1907,7 @@
                         {
                             "id": "556867",
                             "name": "Over 230.5 Points",
-                            "returnWin": 3.6,
+                            "returnWin": 3.8,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -1901,7 +1919,7 @@
                         {
                             "id": "556868",
                             "name": "Under 230.5 Points",
-                            "returnWin": 1.26,
+                            "returnWin": 1.24,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -1943,7 +1961,7 @@
                         {
                             "id": "556565",
                             "name": "New York Over 102.5",
-                            "returnWin": 1.4,
+                            "returnWin": 1.37,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -1955,7 +1973,7 @@
                         {
                             "id": "556566",
                             "name": "New York Under 102.5",
-                            "returnWin": 2.7,
+                            "returnWin": 2.8,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -2051,7 +2069,7 @@
                         {
                             "id": "556295",
                             "name": "Indiana Over 106.5",
-                            "returnWin": 1.4,
+                            "returnWin": 1.34,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -2063,7 +2081,7 @@
                         {
                             "id": "556296",
                             "name": "Indiana Under 106.5",
-                            "returnWin": 2.7,
+                            "returnWin": 2.9,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -2105,7 +2123,7 @@
                         {
                             "id": "556663",
                             "name": "New York Over 108.5",
-                            "returnWin": 2,
+                            "returnWin": 2.05,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -2117,7 +2135,7 @@
                         {
                             "id": "556664",
                             "name": "New York Under 108.5",
-                            "returnWin": 1.7,
+                            "returnWin": 1.67,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -2159,7 +2177,7 @@
                         {
                             "id": "556439",
                             "name": "Indiana Over 109.5",
-                            "returnWin": 1.63,
+                            "returnWin": 1.6,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -2171,7 +2189,7 @@
                         {
                             "id": "556440",
                             "name": "Indiana Under 109.5",
-                            "returnWin": 2.1,
+                            "returnWin": 2.15,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -2213,7 +2231,7 @@
                         {
                             "id": "556249",
                             "name": "New York Over 111.5",
-                            "returnWin": 2.5,
+                            "returnWin": 2.6,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -2225,7 +2243,7 @@
                         {
                             "id": "556250",
                             "name": "New York Under 111.5",
-                            "returnWin": 1.45,
+                            "returnWin": 1.42,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -2321,7 +2339,7 @@
                         {
                             "id": "556631",
                             "name": "New York Over 114.5",
-                            "returnWin": 3.2,
+                            "returnWin": 3.6,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -2333,7 +2351,7 @@
                         {
                             "id": "556632",
                             "name": "New York Under 114.5",
-                            "returnWin": 1.28,
+                            "returnWin": 1.23,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -2375,7 +2393,7 @@
                         {
                             "id": "556095",
                             "name": "Indiana Over 115.5",
-                            "returnWin": 2.5,
+                            "returnWin": 2.6,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -2387,7 +2405,7 @@
                         {
                             "id": "556096",
                             "name": "Indiana Under 115.5",
-                            "returnWin": 1.45,
+                            "returnWin": 1.42,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -2429,7 +2447,7 @@
                         {
                             "id": "557073",
                             "name": "Indiana Over 118.5",
-                            "returnWin": 3.2,
+                            "returnWin": 3.4,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -2441,7 +2459,7 @@
                         {
                             "id": "557074",
                             "name": "Indiana Under 118.5",
-                            "returnWin": 1.28,
+                            "returnWin": 1.25,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -2483,7 +2501,7 @@
                         {
                             "id": "581394",
                             "name": "Indiana",
-                            "returnWin": 1.57,
+                            "returnWin": 1.5,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -2507,78 +2525,12 @@
                         {
                             "id": "581396",
                             "name": "New York",
-                            "returnWin": 2.45,
+                            "returnWin": 2.6,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
                             "number": 581396,
-                            "isOpen": true,
-                            "sortOrder": 3
-                        }
-                    ]
-                },
-                {
-                    "id": "116363834",
-                    "name": "NBA Indiana-New York 1stHf3Wy",
-                    "shortName": "NBA Ind-NYK 1stHf3Wy",
-                    "betOption": "Live 1st Half Total Pts 3-Way",
-                    "betOptionSpectrumId": "771",
-                    "betOptionPriority": 10755,
-                    "marketUniqueId": 116363834,
-                    "closeTime": "2025-06-01T00:05:00.000Z",
-                    "bettingStatus": "Open",
-                    "message": null,
-                    "informationMessage": null,
-                    "isFuture": false,
-                    "onlineBetting": false,
-                    "phoneBettingOnly": true,
-                    "inPlay": true,
-                    "goingInPlay": false,
-                    "allowWin": true,
-                    "allowPlace": false,
-                    "allowEachWay": false,
-                    "allowMulti": true,
-                    "allowMultiWin": true,
-                    "allowMultiPlace": false,
-                    "allowMultiEachWay": false,
-                    "numberOfPlaces": 0,
-                    "cashOutEligibility": "Disabled",
-                    "allowBundle": false,
-                    "propositions": [
-                        {
-                            "id": "556846",
-                            "name": "Over 110 Points",
-                            "returnWin": 2,
-                            "returnPlace": 0,
-                            "differential": null,
-                            "bettingStatus": "Open",
-                            "allowPlace": false,
-                            "number": 556846,
-                            "isOpen": true,
-                            "sortOrder": 1
-                        },
-                        {
-                            "id": "556847",
-                            "name": "Exactly 110 Points",
-                            "returnWin": 15,
-                            "returnPlace": 0,
-                            "differential": null,
-                            "bettingStatus": "Open",
-                            "allowPlace": false,
-                            "number": 556847,
-                            "isOpen": true,
-                            "sortOrder": 2
-                        },
-                        {
-                            "id": "556848",
-                            "name": "Under 110 Points",
-                            "returnWin": 1.75,
-                            "returnPlace": 0,
-                            "differential": null,
-                            "bettingStatus": "Open",
-                            "allowPlace": false,
-                            "number": 556848,
                             "isOpen": true,
                             "sortOrder": 3
                         }
@@ -2615,7 +2567,7 @@
                         {
                             "id": "556246",
                             "name": "Over 113 Points",
-                            "returnWin": 2.6,
+                            "returnWin": 2.9,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -2639,12 +2591,78 @@
                         {
                             "id": "556248",
                             "name": "Under 113 Points",
-                            "returnWin": 1.47,
+                            "returnWin": 1.37,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
                             "number": 556248,
+                            "isOpen": true,
+                            "sortOrder": 3
+                        }
+                    ]
+                },
+                {
+                    "id": "116363834",
+                    "name": "NBA Indiana-New York 1stHf3Wy",
+                    "shortName": "NBA Ind-NYK 1stHf3Wy",
+                    "betOption": "Live 1st Half Total Pts 3-Way",
+                    "betOptionSpectrumId": "771",
+                    "betOptionPriority": 10755,
+                    "marketUniqueId": 116363834,
+                    "closeTime": "2025-06-01T00:05:00.000Z",
+                    "bettingStatus": "Open",
+                    "message": null,
+                    "informationMessage": null,
+                    "isFuture": false,
+                    "onlineBetting": false,
+                    "phoneBettingOnly": true,
+                    "inPlay": true,
+                    "goingInPlay": false,
+                    "allowWin": true,
+                    "allowPlace": false,
+                    "allowEachWay": false,
+                    "allowMulti": true,
+                    "allowMultiWin": true,
+                    "allowMultiPlace": false,
+                    "allowMultiEachWay": false,
+                    "numberOfPlaces": 0,
+                    "cashOutEligibility": "Disabled",
+                    "allowBundle": false,
+                    "propositions": [
+                        {
+                            "id": "556846",
+                            "name": "Over 110 Points",
+                            "returnWin": 2.15,
+                            "returnPlace": 0,
+                            "differential": null,
+                            "bettingStatus": "Open",
+                            "allowPlace": false,
+                            "number": 556846,
+                            "isOpen": true,
+                            "sortOrder": 1
+                        },
+                        {
+                            "id": "556847",
+                            "name": "Exactly 110 Points",
+                            "returnWin": 13,
+                            "returnPlace": 0,
+                            "differential": null,
+                            "bettingStatus": "Open",
+                            "allowPlace": false,
+                            "number": 556847,
+                            "isOpen": true,
+                            "sortOrder": 2
+                        },
+                        {
+                            "id": "556848",
+                            "name": "Under 110 Points",
+                            "returnWin": 1.67,
+                            "returnPlace": 0,
+                            "differential": null,
+                            "bettingStatus": "Open",
+                            "allowPlace": false,
+                            "number": 556848,
                             "isOpen": true,
                             "sortOrder": 3
                         }
@@ -2681,7 +2699,7 @@
                         {
                             "id": "556414",
                             "name": "Over 107 Points",
-                            "returnWin": 1.6,
+                            "returnWin": 1.67,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -2693,7 +2711,7 @@
                         {
                             "id": "556415",
                             "name": "Exactly 107 Points",
-                            "returnWin": 15,
+                            "returnWin": 13,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -2705,7 +2723,7 @@
                         {
                             "id": "556416",
                             "name": "Under 107 Points",
-                            "returnWin": 2.2,
+                            "returnWin": 2.15,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -2747,7 +2765,7 @@
                         {
                             "id": "581791",
                             "name": "Indiana",
-                            "returnWin": 1.7,
+                            "returnWin": 1.6,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -2759,7 +2777,7 @@
                         {
                             "id": "581792",
                             "name": "Draw",
-                            "returnWin": 15,
+                            "returnWin": 13,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -2771,7 +2789,7 @@
                         {
                             "id": "581793",
                             "name": "New York",
-                            "returnWin": 2.1,
+                            "returnWin": 2.35,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -2779,96 +2797,6 @@
                             "number": 581793,
                             "isOpen": true,
                             "sortOrder": 3
-                        }
-                    ]
-                },
-                {
-                    "id": "116301222",
-                    "name": "NBA Indiana-New York Q2WinMin",
-                    "shortName": "NBA Ind-NYK Q2WinMin",
-                    "betOption": "2nd Quarter Win It In A Minute",
-                    "betOptionSpectrumId": "1878",
-                    "betOptionPriority": 15665,
-                    "marketUniqueId": 116301222,
-                    "closeTime": "2025-06-01T00:05:00.000Z",
-                    "bettingStatus": "Open",
-                    "message": null,
-                    "informationMessage": null,
-                    "isFuture": false,
-                    "onlineBetting": false,
-                    "phoneBettingOnly": true,
-                    "inPlay": true,
-                    "goingInPlay": false,
-                    "allowWin": true,
-                    "allowPlace": false,
-                    "allowEachWay": false,
-                    "allowMulti": true,
-                    "allowMultiWin": true,
-                    "allowMultiPlace": false,
-                    "allowMultiEachWay": false,
-                    "numberOfPlaces": 0,
-                    "cashOutEligibility": "Disabled",
-                    "allowBundle": false,
-                    "propositions": [
-                        {
-                            "id": "570493",
-                            "name": "6+ Total Points",
-                            "returnWin": 5,
-                            "returnPlace": 0,
-                            "differential": null,
-                            "bettingStatus": "Open",
-                            "allowPlace": false,
-                            "number": 570493,
-                            "isOpen": true,
-                            "sortOrder": 1
-                        },
-                        {
-                            "id": "570522",
-                            "name": "1+ Threes Made",
-                            "returnWin": 2.6,
-                            "returnPlace": 0,
-                            "differential": null,
-                            "bettingStatus": "Open",
-                            "allowPlace": false,
-                            "number": 570522,
-                            "isOpen": true,
-                            "sortOrder": 2
-                        },
-                        {
-                            "id": "570523",
-                            "name": "2+ Threes Made",
-                            "returnWin": 12,
-                            "returnPlace": 0,
-                            "differential": null,
-                            "bettingStatus": "Open",
-                            "allowPlace": false,
-                            "number": 570523,
-                            "isOpen": true,
-                            "sortOrder": 3
-                        },
-                        {
-                            "id": "570524",
-                            "name": "1+ Free Throws Made",
-                            "returnWin": 4.5,
-                            "returnPlace": 0,
-                            "differential": null,
-                            "bettingStatus": "Open",
-                            "allowPlace": false,
-                            "number": 570524,
-                            "isOpen": true,
-                            "sortOrder": 4
-                        },
-                        {
-                            "id": "570525",
-                            "name": "1+ Dunk Made",
-                            "returnWin": 4.8,
-                            "returnPlace": 0,
-                            "differential": null,
-                            "bettingStatus": "Open",
-                            "allowPlace": false,
-                            "number": 570525,
-                            "isOpen": true,
-                            "sortOrder": 5
                         }
                     ]
                 },
@@ -2903,7 +2831,7 @@
                         {
                             "id": "556629",
                             "name": "Indiana +1.5",
-                            "returnWin": 1.52,
+                            "returnWin": 1.4,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -2915,7 +2843,7 @@
                         {
                             "id": "556630",
                             "name": "New York -1.5",
-                            "returnWin": 2.3,
+                            "returnWin": 2.7,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -2957,7 +2885,7 @@
                         {
                             "id": "556041",
                             "name": "Indiana -2.5",
-                            "returnWin": 2.05,
+                            "returnWin": 1.95,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -2969,7 +2897,7 @@
                         {
                             "id": "556042",
                             "name": "New York +2.5",
-                            "returnWin": 1.67,
+                            "returnWin": 1.72,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -3011,7 +2939,7 @@
                         {
                             "id": "557069",
                             "name": "Indiana -4.5",
-                            "returnWin": 2.4,
+                            "returnWin": 2.5,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -3023,7 +2951,7 @@
                         {
                             "id": "557070",
                             "name": "New York +4.5",
-                            "returnWin": 1.48,
+                            "returnWin": 1.45,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -3031,72 +2959,6 @@
                             "number": 557070,
                             "isOpen": true,
                             "sortOrder": 2
-                        }
-                    ]
-                },
-                {
-                    "id": "116363713",
-                    "name": "NBA Ind-NYK Lv2Q3Way",
-                    "shortName": "NBA Ind-NYK Lv2Q3W",
-                    "betOption": "Live 2nd Quarter Total 3-Way",
-                    "betOptionSpectrumId": "3597",
-                    "betOptionPriority": 15675,
-                    "marketUniqueId": 116363713,
-                    "closeTime": "2025-06-01T00:05:00.000Z",
-                    "bettingStatus": "Open",
-                    "message": null,
-                    "informationMessage": null,
-                    "isFuture": false,
-                    "onlineBetting": false,
-                    "phoneBettingOnly": true,
-                    "inPlay": true,
-                    "goingInPlay": false,
-                    "allowWin": true,
-                    "allowPlace": false,
-                    "allowEachWay": false,
-                    "allowMulti": true,
-                    "allowMultiWin": true,
-                    "allowMultiPlace": false,
-                    "allowMultiEachWay": false,
-                    "numberOfPlaces": 0,
-                    "cashOutEligibility": "Enabled",
-                    "allowBundle": false,
-                    "propositions": [
-                        {
-                            "id": "556580",
-                            "name": "Q2 Under 55 Points",
-                            "returnWin": 2.35,
-                            "returnPlace": 0,
-                            "differential": null,
-                            "bettingStatus": "Open",
-                            "allowPlace": false,
-                            "number": 556580,
-                            "isOpen": true,
-                            "sortOrder": 1
-                        },
-                        {
-                            "id": "556581",
-                            "name": "Q2 Exactly 55 Points",
-                            "returnWin": 13,
-                            "returnPlace": 0,
-                            "differential": null,
-                            "bettingStatus": "Open",
-                            "allowPlace": false,
-                            "number": 556581,
-                            "isOpen": true,
-                            "sortOrder": 2
-                        },
-                        {
-                            "id": "556582",
-                            "name": "Q2 Over 55 Points",
-                            "returnWin": 1.57,
-                            "returnPlace": 0,
-                            "differential": null,
-                            "bettingStatus": "Open",
-                            "allowPlace": false,
-                            "number": 556582,
-                            "isOpen": true,
-                            "sortOrder": 3
                         }
                     ]
                 },
@@ -3131,7 +2993,7 @@
                         {
                             "id": "556045",
                             "name": "Q2 Under 59 Points",
-                            "returnWin": 1.7,
+                            "returnWin": 1.95,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -3143,7 +3005,7 @@
                         {
                             "id": "556046",
                             "name": "Q2 Exactly 59 Points",
-                            "returnWin": 15,
+                            "returnWin": 13,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -3155,7 +3017,7 @@
                         {
                             "id": "556047",
                             "name": "Q2 Over 59 Points",
-                            "returnWin": 2.05,
+                            "returnWin": 1.8,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -3197,7 +3059,7 @@
                         {
                             "id": "556181",
                             "name": "Q2 Under 57 Points",
-                            "returnWin": 1.95,
+                            "returnWin": 2.35,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -3209,7 +3071,7 @@
                         {
                             "id": "556182",
                             "name": "Q2 Exactly 57 Points",
-                            "returnWin": 15,
+                            "returnWin": 13,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -3221,7 +3083,7 @@
                         {
                             "id": "556183",
                             "name": "Q2 Over 57 Points",
-                            "returnWin": 1.8,
+                            "returnWin": 1.57,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -3233,13 +3095,13 @@
                     ]
                 },
                 {
-                    "id": "116363684",
-                    "name": "NBA Ind-NYK Lv2QPtOU",
-                    "shortName": "NBA Ind-NYK Lv2QOU",
-                    "betOption": "Live 2nd Quarter Total Points Over/Under",
-                    "betOptionSpectrumId": "3593",
-                    "betOptionPriority": 15680,
-                    "marketUniqueId": 116363684,
+                    "id": "116363604",
+                    "name": "NBA Ind-NYK Lv2Q3Way",
+                    "shortName": "NBA Ind-NYK Lv2Q3W",
+                    "betOption": "Live 2nd Quarter Total 3-Way",
+                    "betOptionSpectrumId": "3597",
+                    "betOptionPriority": 15675,
+                    "marketUniqueId": 116363604,
                     "closeTime": "2025-06-01T00:05:00.000Z",
                     "bettingStatus": "Open",
                     "message": null,
@@ -3261,28 +3123,40 @@
                     "allowBundle": false,
                     "propositions": [
                         {
-                            "id": "556506",
-                            "name": "Q2 Over 56.5 Points",
-                            "returnWin": 1.7,
+                            "id": "556280",
+                            "name": "Q2 Under 61 Points",
+                            "returnWin": 1.67,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
-                            "number": 556506,
+                            "number": 556280,
                             "isOpen": true,
                             "sortOrder": 1
                         },
                         {
-                            "id": "556507",
-                            "name": "Q2 Under 56.5 Points",
-                            "returnWin": 2,
+                            "id": "556281",
+                            "name": "Q2 Exactly 61 Points",
+                            "returnWin": 13,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
-                            "number": 556507,
+                            "number": 556281,
                             "isOpen": true,
                             "sortOrder": 2
+                        },
+                        {
+                            "id": "556282",
+                            "name": "Q2 Over 61 Points",
+                            "returnWin": 2.15,
+                            "returnPlace": 0,
+                            "differential": null,
+                            "bettingStatus": "Open",
+                            "allowPlace": false,
+                            "number": 556282,
+                            "isOpen": true,
+                            "sortOrder": 3
                         }
                     ]
                 },
@@ -3317,7 +3191,7 @@
                         {
                             "id": "556985",
                             "name": "Q2 Over 58.5 Points",
-                            "returnWin": 1.95,
+                            "returnWin": 1.7,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -3329,7 +3203,7 @@
                         {
                             "id": "556986",
                             "name": "Q2 Under 58.5 Points",
-                            "returnWin": 1.72,
+                            "returnWin": 2,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -3371,7 +3245,7 @@
                         {
                             "id": "556844",
                             "name": "Q2 Over 60.5 Points",
-                            "returnWin": 2.3,
+                            "returnWin": 2,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -3383,12 +3257,174 @@
                         {
                             "id": "556845",
                             "name": "Q2 Under 60.5 Points",
-                            "returnWin": 1.52,
+                            "returnWin": 1.7,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
                             "number": 556845,
+                            "isOpen": true,
+                            "sortOrder": 2
+                        }
+                    ]
+                },
+                {
+                    "id": "116363922",
+                    "name": "NBA Ind-NYK Lv2QPtOU",
+                    "shortName": "NBA Ind-NYK Lv2QOU",
+                    "betOption": "Live 2nd Quarter Total Points Over/Under",
+                    "betOptionSpectrumId": "3593",
+                    "betOptionPriority": 15680,
+                    "marketUniqueId": 116363922,
+                    "closeTime": "2025-06-01T00:05:00.000Z",
+                    "bettingStatus": "Open",
+                    "message": null,
+                    "informationMessage": null,
+                    "isFuture": false,
+                    "onlineBetting": false,
+                    "phoneBettingOnly": true,
+                    "inPlay": true,
+                    "goingInPlay": false,
+                    "allowWin": true,
+                    "allowPlace": false,
+                    "allowEachWay": false,
+                    "allowMulti": true,
+                    "allowMultiWin": true,
+                    "allowMultiPlace": false,
+                    "allowMultiEachWay": false,
+                    "numberOfPlaces": 0,
+                    "cashOutEligibility": "Enabled",
+                    "allowBundle": false,
+                    "propositions": [
+                        {
+                            "id": "557048",
+                            "name": "Q2 Over 62.5 Points",
+                            "returnWin": 2.4,
+                            "returnPlace": 0,
+                            "differential": null,
+                            "bettingStatus": "Open",
+                            "allowPlace": false,
+                            "number": 557048,
+                            "isOpen": true,
+                            "sortOrder": 1
+                        },
+                        {
+                            "id": "557049",
+                            "name": "Q2 Under 62.5 Points",
+                            "returnWin": 1.48,
+                            "returnPlace": 0,
+                            "differential": null,
+                            "bettingStatus": "Open",
+                            "allowPlace": false,
+                            "number": 557049,
+                            "isOpen": true,
+                            "sortOrder": 2
+                        }
+                    ]
+                },
+                {
+                    "id": "116363964",
+                    "name": "NBA Ind-NYK 2QTmPtOU",
+                    "shortName": "NBA Ind-NYK 2QTPOU 2QTPOU",
+                    "betOption": "2nd Quarter Team Points Over/Under",
+                    "betOptionSpectrumId": "4784",
+                    "betOptionPriority": 15685,
+                    "marketUniqueId": 116363964,
+                    "closeTime": "2025-06-01T00:05:00.000Z",
+                    "bettingStatus": "Open",
+                    "message": null,
+                    "informationMessage": null,
+                    "isFuture": false,
+                    "onlineBetting": false,
+                    "phoneBettingOnly": true,
+                    "inPlay": true,
+                    "goingInPlay": false,
+                    "allowWin": true,
+                    "allowPlace": false,
+                    "allowEachWay": false,
+                    "allowMulti": true,
+                    "allowMultiWin": true,
+                    "allowMultiPlace": false,
+                    "allowMultiEachWay": false,
+                    "numberOfPlaces": 0,
+                    "cashOutEligibility": "Enabled",
+                    "allowBundle": false,
+                    "propositions": [
+                        {
+                            "id": "557143",
+                            "name": "Ind Q2 Over 33.5 Points",
+                            "returnWin": 2.8,
+                            "returnPlace": 0,
+                            "differential": null,
+                            "bettingStatus": "Open",
+                            "allowPlace": false,
+                            "number": 557143,
+                            "isOpen": true,
+                            "sortOrder": 1
+                        },
+                        {
+                            "id": "557144",
+                            "name": "Ind Q2 Under 33.5 Points",
+                            "returnWin": 1.37,
+                            "returnPlace": 0,
+                            "differential": null,
+                            "bettingStatus": "Open",
+                            "allowPlace": false,
+                            "number": 557144,
+                            "isOpen": true,
+                            "sortOrder": 2
+                        }
+                    ]
+                },
+                {
+                    "id": "116363782",
+                    "name": "NBA Ind-NYK 2QTmPtOU",
+                    "shortName": "NBA Ind-NYK 2QTPOU 2QTPOU",
+                    "betOption": "2nd Quarter Team Points Over/Under",
+                    "betOptionSpectrumId": "4784",
+                    "betOptionPriority": 15685,
+                    "marketUniqueId": 116363782,
+                    "closeTime": "2025-06-01T00:05:00.000Z",
+                    "bettingStatus": "Open",
+                    "message": null,
+                    "informationMessage": null,
+                    "isFuture": false,
+                    "onlineBetting": false,
+                    "phoneBettingOnly": true,
+                    "inPlay": true,
+                    "goingInPlay": false,
+                    "allowWin": true,
+                    "allowPlace": false,
+                    "allowEachWay": false,
+                    "allowMulti": true,
+                    "allowMultiWin": true,
+                    "allowMultiPlace": false,
+                    "allowMultiEachWay": false,
+                    "numberOfPlaces": 0,
+                    "cashOutEligibility": "Enabled",
+                    "allowBundle": false,
+                    "propositions": [
+                        {
+                            "id": "556728",
+                            "name": "NYK Q2 Over 30.5 Points",
+                            "returnWin": 2.3,
+                            "returnPlace": 0,
+                            "differential": null,
+                            "bettingStatus": "Open",
+                            "allowPlace": false,
+                            "number": 556728,
+                            "isOpen": true,
+                            "sortOrder": 1
+                        },
+                        {
+                            "id": "556729",
+                            "name": "NYK Q2 Under 30.5 Points",
+                            "returnWin": 1.52,
+                            "returnPlace": 0,
+                            "differential": null,
+                            "bettingStatus": "Open",
+                            "allowPlace": false,
+                            "number": 556729,
                             "isOpen": true,
                             "sortOrder": 2
                         }
@@ -3425,7 +3461,7 @@
                         {
                             "id": "556818",
                             "name": "NYK Q2 Over 28.5 Points",
-                            "returnWin": 1.9,
+                            "returnWin": 1.77,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -3437,7 +3473,7 @@
                         {
                             "id": "556819",
                             "name": "NYK Q2 Under 28.5 Points",
-                            "returnWin": 1.77,
+                            "returnWin": 1.9,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -3479,7 +3515,7 @@
                         {
                             "id": "556831",
                             "name": "Ind Q2 Over 29.5 Points",
-                            "returnWin": 1.85,
+                            "returnWin": 1.6,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -3491,7 +3527,7 @@
                         {
                             "id": "556832",
                             "name": "Ind Q2 Under 29.5 Points",
-                            "returnWin": 1.85,
+                            "returnWin": 2.15,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -3533,7 +3569,7 @@
                         {
                             "id": "556112",
                             "name": "Ind Q2 Over 31.5 Points",
-                            "returnWin": 2.3,
+                            "returnWin": 2.05,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -3545,66 +3581,12 @@
                         {
                             "id": "556113",
                             "name": "Ind Q2 Under 31.5 Points",
-                            "returnWin": 1.52,
+                            "returnWin": 1.67,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
                             "allowPlace": false,
                             "number": 556113,
-                            "isOpen": true,
-                            "sortOrder": 2
-                        }
-                    ]
-                },
-                {
-                    "id": "116363782",
-                    "name": "NBA Ind-NYK 2QTmPtOU",
-                    "shortName": "NBA Ind-NYK 2QTPOU 2QTPOU",
-                    "betOption": "2nd Quarter Team Points Over/Under",
-                    "betOptionSpectrumId": "4784",
-                    "betOptionPriority": 15685,
-                    "marketUniqueId": 116363782,
-                    "closeTime": "2025-06-01T00:05:00.000Z",
-                    "bettingStatus": "Open",
-                    "message": null,
-                    "informationMessage": null,
-                    "isFuture": false,
-                    "onlineBetting": false,
-                    "phoneBettingOnly": true,
-                    "inPlay": true,
-                    "goingInPlay": false,
-                    "allowWin": true,
-                    "allowPlace": false,
-                    "allowEachWay": false,
-                    "allowMulti": true,
-                    "allowMultiWin": true,
-                    "allowMultiPlace": false,
-                    "allowMultiEachWay": false,
-                    "numberOfPlaces": 0,
-                    "cashOutEligibility": "Enabled",
-                    "allowBundle": false,
-                    "propositions": [
-                        {
-                            "id": "556728",
-                            "name": "NYK Q2 Over 30.5 Points",
-                            "returnWin": 2.4,
-                            "returnPlace": 0,
-                            "differential": null,
-                            "bettingStatus": "Open",
-                            "allowPlace": false,
-                            "number": 556728,
-                            "isOpen": true,
-                            "sortOrder": 1
-                        },
-                        {
-                            "id": "556729",
-                            "name": "NYK Q2 Under 30.5 Points",
-                            "returnWin": 1.48,
-                            "returnPlace": 0,
-                            "differential": null,
-                            "bettingStatus": "Open",
-                            "allowPlace": false,
-                            "number": 556729,
                             "isOpen": true,
                             "sortOrder": 2
                         }
@@ -3641,7 +3623,7 @@
                         {
                             "id": "556225",
                             "name": "NYK Q2 Over 26.5 Points",
-                            "returnWin": 1.57,
+                            "returnWin": 1.42,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -3653,7 +3635,7 @@
                         {
                             "id": "556226",
                             "name": "NYK Q2 Under 26.5 Points",
-                            "returnWin": 2.2,
+                            "returnWin": 2.6,
                             "returnPlace": 0,
                             "differential": null,
                             "bettingStatus": "Open",
@@ -3661,138 +3643,6 @@
                             "number": 556226,
                             "isOpen": true,
                             "sortOrder": 2
-                        }
-                    ]
-                },
-                {
-                    "id": "116363566",
-                    "name": "NBA Ind-NYK 2QTmPtOU",
-                    "shortName": "NBA Ind-NYK 2QTPOU 2QTPOU",
-                    "betOption": "2nd Quarter Team Points Over/Under",
-                    "betOptionSpectrumId": "4784",
-                    "betOptionPriority": 15685,
-                    "marketUniqueId": 116363566,
-                    "closeTime": "2025-06-01T00:05:00.000Z",
-                    "bettingStatus": "Open",
-                    "message": null,
-                    "informationMessage": null,
-                    "isFuture": false,
-                    "onlineBetting": false,
-                    "phoneBettingOnly": true,
-                    "inPlay": true,
-                    "goingInPlay": false,
-                    "allowWin": true,
-                    "allowPlace": false,
-                    "allowEachWay": false,
-                    "allowMulti": true,
-                    "allowMultiWin": true,
-                    "allowMultiPlace": false,
-                    "allowMultiEachWay": false,
-                    "numberOfPlaces": 0,
-                    "cashOutEligibility": "Enabled",
-                    "allowBundle": false,
-                    "propositions": [
-                        {
-                            "id": "556191",
-                            "name": "Ind Q2 Over 27.5 Points",
-                            "returnWin": 1.52,
-                            "returnPlace": 0,
-                            "differential": null,
-                            "bettingStatus": "Open",
-                            "allowPlace": false,
-                            "number": 556191,
-                            "isOpen": true,
-                            "sortOrder": 1
-                        },
-                        {
-                            "id": "556192",
-                            "name": "Ind Q2 Under 27.5 Points",
-                            "returnWin": 2.3,
-                            "returnPlace": 0,
-                            "differential": null,
-                            "bettingStatus": "Open",
-                            "allowPlace": false,
-                            "number": 556192,
-                            "isOpen": true,
-                            "sortOrder": 2
-                        }
-                    ]
-                },
-                {
-                    "id": "116167840",
-                    "name": "NBA Indiana-New York 01/06",
-                    "shortName": "NBA Ind-NYK 2QLOU 01/06",
-                    "betOption": "2nd Quarter Line/OverUnder Double",
-                    "betOptionSpectrumId": "344",
-                    "betOptionPriority": 15700,
-                    "marketUniqueId": 116167840,
-                    "closeTime": "2025-06-01T03:00:00.000Z",
-                    "bettingStatus": "Open",
-                    "message": "2nd quarter only",
-                    "informationMessage": "2nd quarter only",
-                    "isFuture": false,
-                    "onlineBetting": false,
-                    "phoneBettingOnly": true,
-                    "inPlay": true,
-                    "goingInPlay": false,
-                    "allowWin": true,
-                    "allowPlace": false,
-                    "allowEachWay": false,
-                    "allowMulti": true,
-                    "allowMultiWin": true,
-                    "allowMultiPlace": false,
-                    "allowMultiEachWay": false,
-                    "numberOfPlaces": 0,
-                    "cashOutEligibility": "Enabled",
-                    "allowBundle": false,
-                    "propositions": [
-                        {
-                            "id": "555291",
-                            "name": "Indiana -1.5/Over 57.5",
-                            "returnWin": 3.7,
-                            "returnPlace": 0,
-                            "differential": null,
-                            "bettingStatus": "Open",
-                            "allowPlace": false,
-                            "number": 555291,
-                            "isOpen": true,
-                            "sortOrder": 1
-                        },
-                        {
-                            "id": "555292",
-                            "name": "Indiana -1.5/Under 57.5",
-                            "returnWin": 3.7,
-                            "returnPlace": 0,
-                            "differential": null,
-                            "bettingStatus": "Open",
-                            "allowPlace": false,
-                            "number": 555292,
-                            "isOpen": true,
-                            "sortOrder": 2
-                        },
-                        {
-                            "id": "555293",
-                            "name": "New York +1.5/Over 57.5",
-                            "returnWin": 3.3,
-                            "returnPlace": 0,
-                            "differential": null,
-                            "bettingStatus": "Open",
-                            "allowPlace": false,
-                            "number": 555293,
-                            "isOpen": true,
-                            "sortOrder": 3
-                        },
-                        {
-                            "id": "555294",
-                            "name": "New York +1.5/Under 57.5",
-                            "returnWin": 3.3,
-                            "returnPlace": 0,
-                            "differential": null,
-                            "bettingStatus": "Open",
-                            "allowPlace": false,
-                            "number": 555294,
-                            "isOpen": true,
-                            "sortOrder": 4
                         }
                     ]
                 },
@@ -3883,6 +3733,84 @@
                             "number": 570534,
                             "isOpen": true,
                             "sortOrder": 5
+                        }
+                    ]
+                },
+                {
+                    "id": "116167837",
+                    "name": "NBA Indiana-New York 01/06",
+                    "shortName": "NBA Ind-NYK 3QLOU 01/06",
+                    "betOption": "3rd Quarter Line/OverUnder Double",
+                    "betOptionSpectrumId": "345",
+                    "betOptionPriority": 15955,
+                    "marketUniqueId": 116167837,
+                    "closeTime": "2025-06-01T03:00:00.000Z",
+                    "bettingStatus": "Open",
+                    "message": "3rd quarter only",
+                    "informationMessage": "3rd quarter only",
+                    "isFuture": false,
+                    "onlineBetting": false,
+                    "phoneBettingOnly": true,
+                    "inPlay": true,
+                    "goingInPlay": false,
+                    "allowWin": true,
+                    "allowPlace": false,
+                    "allowEachWay": false,
+                    "allowMulti": true,
+                    "allowMultiWin": true,
+                    "allowMultiPlace": false,
+                    "allowMultiEachWay": false,
+                    "numberOfPlaces": 0,
+                    "cashOutEligibility": "Enabled",
+                    "allowBundle": false,
+                    "propositions": [
+                        {
+                            "id": "555261",
+                            "name": "Indiana -1.5/Over 53.5",
+                            "returnWin": 3.7,
+                            "returnPlace": 0,
+                            "differential": null,
+                            "bettingStatus": "Open",
+                            "allowPlace": false,
+                            "number": 555261,
+                            "isOpen": true,
+                            "sortOrder": 1
+                        },
+                        {
+                            "id": "555262",
+                            "name": "Indiana -1.5/Under 53.5",
+                            "returnWin": 3.7,
+                            "returnPlace": 0,
+                            "differential": null,
+                            "bettingStatus": "Open",
+                            "allowPlace": false,
+                            "number": 555262,
+                            "isOpen": true,
+                            "sortOrder": 2
+                        },
+                        {
+                            "id": "555263",
+                            "name": "New York +1.5/Over 53.5",
+                            "returnWin": 3.3,
+                            "returnPlace": 0,
+                            "differential": null,
+                            "bettingStatus": "Open",
+                            "allowPlace": false,
+                            "number": 555263,
+                            "isOpen": true,
+                            "sortOrder": 3
+                        },
+                        {
+                            "id": "555264",
+                            "name": "New York +1.5/Under 53.5",
+                            "returnWin": 3.3,
+                            "returnPlace": 0,
+                            "differential": null,
+                            "bettingStatus": "Open",
+                            "allowPlace": false,
+                            "number": 555264,
+                            "isOpen": true,
+                            "sortOrder": 4
                         }
                     ]
                 },
@@ -4139,60 +4067,6 @@
                     ]
                 },
                 {
-                    "id": "116363893",
-                    "name": "NBA Ind-NYK TmPtsOE",
-                    "shortName": "NBA Ind-NYK TmPtOE",
-                    "betOption": "Team Points Odd/Even",
-                    "betOptionSpectrumId": "3005",
-                    "betOptionPriority": 18410,
-                    "marketUniqueId": 116363893,
-                    "closeTime": "2025-06-01T00:05:00.000Z",
-                    "bettingStatus": "Open",
-                    "message": null,
-                    "informationMessage": null,
-                    "isFuture": false,
-                    "onlineBetting": false,
-                    "phoneBettingOnly": true,
-                    "inPlay": true,
-                    "goingInPlay": false,
-                    "allowWin": true,
-                    "allowPlace": false,
-                    "allowEachWay": false,
-                    "allowMulti": true,
-                    "allowMultiWin": true,
-                    "allowMultiPlace": false,
-                    "allowMultiEachWay": false,
-                    "numberOfPlaces": 0,
-                    "cashOutEligibility": "Enabled",
-                    "allowBundle": false,
-                    "propositions": [
-                        {
-                            "id": "556979",
-                            "name": "New York Odd",
-                            "returnWin": 1.9,
-                            "returnPlace": 0,
-                            "differential": null,
-                            "bettingStatus": "Open",
-                            "allowPlace": false,
-                            "number": 556979,
-                            "isOpen": true,
-                            "sortOrder": 1
-                        },
-                        {
-                            "id": "556980",
-                            "name": "New York Even",
-                            "returnWin": 1.9,
-                            "returnPlace": 0,
-                            "differential": null,
-                            "bettingStatus": "Open",
-                            "allowPlace": false,
-                            "number": 556980,
-                            "isOpen": true,
-                            "sortOrder": 2
-                        }
-                    ]
-                },
-                {
                     "id": "116363808",
                     "name": "NBA Ind-NYK TmPtsOE",
                     "shortName": "NBA Ind-NYK TmPtOE",
@@ -4241,6 +4115,60 @@
                             "bettingStatus": "Open",
                             "allowPlace": false,
                             "number": 556789,
+                            "isOpen": true,
+                            "sortOrder": 2
+                        }
+                    ]
+                },
+                {
+                    "id": "116363893",
+                    "name": "NBA Ind-NYK TmPtsOE",
+                    "shortName": "NBA Ind-NYK TmPtOE",
+                    "betOption": "Team Points Odd/Even",
+                    "betOptionSpectrumId": "3005",
+                    "betOptionPriority": 18410,
+                    "marketUniqueId": 116363893,
+                    "closeTime": "2025-06-01T00:05:00.000Z",
+                    "bettingStatus": "Open",
+                    "message": null,
+                    "informationMessage": null,
+                    "isFuture": false,
+                    "onlineBetting": false,
+                    "phoneBettingOnly": true,
+                    "inPlay": true,
+                    "goingInPlay": false,
+                    "allowWin": true,
+                    "allowPlace": false,
+                    "allowEachWay": false,
+                    "allowMulti": true,
+                    "allowMultiWin": true,
+                    "allowMultiPlace": false,
+                    "allowMultiEachWay": false,
+                    "numberOfPlaces": 0,
+                    "cashOutEligibility": "Enabled",
+                    "allowBundle": false,
+                    "propositions": [
+                        {
+                            "id": "556979",
+                            "name": "New York Odd",
+                            "returnWin": 1.95,
+                            "returnPlace": 0,
+                            "differential": null,
+                            "bettingStatus": "Open",
+                            "allowPlace": false,
+                            "number": 556979,
+                            "isOpen": true,
+                            "sortOrder": 1
+                        },
+                        {
+                            "id": "556980",
+                            "name": "New York Even",
+                            "returnWin": 1.85,
+                            "returnPlace": 0,
+                            "differential": null,
+                            "bettingStatus": "Open",
+                            "allowPlace": false,
+                            "number": 556980,
                             "isOpen": true,
                             "sortOrder": 2
                         }
@@ -4321,13 +4249,12 @@
         "1st Half Result",
         "Live 1st Half Total Pts 3-Way",
         "2nd Quarter Result",
-        "2nd Quarter Win It In A Minute",
         "Live 2nd Quarter Line",
         "Live 2nd Quarter Total 3-Way",
         "Live 2nd Quarter Total Points Over/Under",
         "2nd Quarter Team Points Over/Under",
-        "2nd Quarter Line/OverUnder Double",
         "3rd Quarter Win It In A Minute",
+        "3rd Quarter Line/OverUnder Double",
         "4th Quarter Win It In A Minute",
         "Live 2nd Quarter Total Points Odd/Even",
         "Live 1st Half Points Odd/Even",
@@ -4441,14 +4368,6 @@
             }
         },
         {
-            "name": "2nd Quarter Win It In A Minute",
-            "hasFutureMarket": false,
-            "openMarketCount": 1,
-            "_links": {
-                "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/markets?jurisdiction=SA&betOptionName=2nd%20Quarter%20Win%20It%20In%20A%20Minute"
-            }
-        },
-        {
             "name": "Live 2nd Quarter Line",
             "hasFutureMarket": false,
             "openMarketCount": 3,
@@ -4481,19 +4400,19 @@
             }
         },
         {
-            "name": "2nd Quarter Line/OverUnder Double",
-            "hasFutureMarket": false,
-            "openMarketCount": 1,
-            "_links": {
-                "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/markets?jurisdiction=SA&betOptionName=2nd%20Quarter%20Line%2FOverUnder%20Double"
-            }
-        },
-        {
             "name": "3rd Quarter Win It In A Minute",
             "hasFutureMarket": false,
             "openMarketCount": 1,
             "_links": {
                 "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/markets?jurisdiction=SA&betOptionName=3rd%20Quarter%20Win%20It%20In%20A%20Minute"
+            }
+        },
+        {
+            "name": "3rd Quarter Line/OverUnder Double",
+            "hasFutureMarket": false,
+            "openMarketCount": 1,
+            "_links": {
+                "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/markets?jurisdiction=SA&betOptionName=3rd%20Quarter%20Line%2FOverUnder%20Double"
             }
         },
         {
