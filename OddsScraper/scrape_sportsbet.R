@@ -78,7 +78,7 @@ get_team_names <- function(match) {
 get_odds <- function(match) {
     odds <-
         match |>
-        html_nodes(".priceTextSize_frw9zm9") |>
+        html_nodes(".ButtonOddsStandardTextOnFalse_flbsmki") |>
         html_text() |>
         as.numeric()
     
@@ -90,23 +90,11 @@ get_odds <- function(match) {
     tibble(home_win, away_win)
 }
 
-# Function to get start time
-get_start_time <- function(match) {
-    start_time <-
-        match |>
-        html_nodes(".oneLine_f15ay66x") |>
-        html_text()
-    
-    # Output
-    tibble(start_time)
-}
-
 # Map functions to each match and combine together
 all_main_market_data <-
 bind_cols(
     map(matches, get_team_names) |> bind_rows() |> filter(!is.na(home_team)),
-    map(matches, get_odds) |> bind_rows() |> filter(!is.na(home_win)),
-    map(matches, get_start_time) |> bind_rows() |> filter(!is.na(start_time))
+    map(matches, get_odds) |> bind_rows() |> filter(!is.na(home_win))
 )
 
 #===============================================================================
@@ -120,19 +108,13 @@ all_main_market_data |>
     mutate(home_win = as.numeric(home_win)) |>
     mutate(away_win = as.numeric(away_win)) |>
     select(match,
-           start_time,
            market_name,
            home_team,
            home_win,
            away_team,
            away_win) |>
     mutate(margin = round((1 / home_win + 1 / away_win), digits = 3)) |>
-    mutate(agency = "Sportsbet") |>
-    mutate(start_time = str_extract(start_time, "\\,.*")) |> 
-    mutate(start_time = str_remove(start_time, "\\, ")) |>
-    mutate(start_time = str_remove(start_time, " \\d{2}\\:\\d{2}")) |> 
-    mutate(start_time = dmy(paste(start_time, "2023"))) |> 
-    mutate(start_time = if_else(month(start_time) < 9, start_time + years(1), start_time))
+    mutate(agency = "Sportsbet")
 
 # Write to csv
 write_csv(sportsbet_h2h, "Data/scraped_odds/sportsbet_h2h.csv")

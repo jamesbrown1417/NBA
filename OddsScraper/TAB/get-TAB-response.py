@@ -2,48 +2,68 @@ import requests
 import json
 
 # Define the URL for the GET request (for NBA odds)
-tab_url = "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA?jurisdiction=SA&numTopMarkets=5"
+tab_url = "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA?jurisdiction=SA"
 
-# Set the headers required for the request (simulating a browser request)
-headers = {
-    "accept": "application/json, text/plain, */*",
-    "accept-language": "en-US,en;q=0.9",
-    "origin": "https://www.tab.com.au",
-    "referer": "https://www.tab.com.au/",
-    "sec-ch-ua": '"Not/A)Brand";v="8", "Chromium";v="129", "Google Chrome";v="129"',
-    "sec-ch-ua-mobile": "?0",
-    "sec-ch-ua-platform": '"Windows"',
-    "sec-fetch-dest": "empty",
-    "sec-fetch-mode": "cors",
-    "sec-fetch-site": "same-site",
-    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
-}
 
-# Attempt the GET request with a 10-second timeout. If the request fails, set response to None.
-try:
-    response = requests.get(tab_url, headers=headers, timeout=10)
-except requests.exceptions.RequestException:
-    response = None
+from selenium_driverless import webdriver
+import asyncio
+import json
+import os
 
-# Check if the response is valid and the request was successful (status code 200).
-if response is not None and response.status_code == 200:
-    try:
-        # Parse the response body as JSON and store it in tab_response.
-        tab_response = response.json()
-    except ValueError:
-        # Handle the case where the response is not a valid JSON.
-        tab_response = None
-else:
-    # If the request failed or the response was invalid, set tab_response to None.
-    tab_response = None
+OUTPUT_PATH = "/Users/jamesbrown/Projects/NBA/OddsScraper/TAB/tab_response.json"
 
-# If the response was successfully parsed, write the JSON data to a file.
-if tab_response is not None:
-    # Specify the path and file name where the JSON data will be saved.
-    with open("OddsScraper/TAB/tab_response.json", "w") as json_file:
-        # Write the JSON data to the file with pretty formatting (indentation).
-        json.dump(tab_response, json_file, indent=4)
-        print("Succesfully Saved TAB Response!")
-else:
-    # Print a message if there's no data to write.
-    print("No data to write to file.")
+async def main():
+    options = webdriver.ChromeOptions()
+    options.add_argument("--disable-blink-features=AutomationControlled")
+
+    
+    async with webdriver.Chrome(options=options) as driver:
+        await driver.minimize_window()
+        # First establish session on main site
+        await driver.get("https://www.tab.com.au")
+        await driver.sleep(3)
+        
+        # Now fetch the API directly through the browser
+        api_url = "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA?jurisdiction=SA"
+        await driver.get(api_url)
+        await driver.sleep(2)
+        
+        # Get the JSON response
+        page_content = await driver.page_source
+        
+        # Parse JSON from the page
+        try:
+            # Browser displays JSON as text in <pre> tags
+            if "<pre" in page_content:
+                import re
+                json_match = re.search(r'<pre[^>]*>(.+?)</pre>', page_content, re.DOTALL)
+                if json_match:
+                    json_str = json_match.group(1)
+                else:
+                    json_str = page_content
+            else:
+                json_str = page_content
+            
+            data = json.loads(json_str)
+            
+            # Create directory if it doesn't exist
+            os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
+            
+            # Save to the specified path
+            with open(OUTPUT_PATH, "w", encoding='utf-8') as f:
+                json.dump(data, f, indent=2)
+            print(f"[SUCCESS] Saved API data to {OUTPUT_PATH}")
+            
+            # Quick summary of what was saved
+            if "matches" in data:
+                print(f"[INFO] Saved {len(data.get('matches', []))} matches")
+            
+        except json.JSONDecodeError:
+            print("[ERROR] Could not parse JSON from response")
+            # Save debug file in same directory
+            debug_path = OUTPUT_PATH.replace('.json', '_debug.html')
+            with open(debug_path, "w", encoding='utf-8') as f:
+                f.write(page_content)
+            print(f"[DEBUG] Saved raw response to {debug_path}")
+
+asyncio.run(main())

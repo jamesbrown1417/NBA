@@ -160,7 +160,8 @@ get_fixture_details <- function(url) {
     all_prices |>
       left_join(all_markets, by = c("marketId" = "id")) |>
       left_join(all_selections, by = c("selectionId" = "id")) |> 
-      mutate(match_id = str_remove(url, "https://api.dabble.com.au/sportfixtures/details/"))
+      mutate(match_id = str_remove(url, "https://api.dabble.com.au/sportfixtures/details/")) |> 
+      mutate(match_id = str_remove(match_id, "\\?filter\\=dfs\\-enabled"))
 }
 
 # Map over data
@@ -808,3 +809,248 @@ dabble_player_pras_markets |> write_csv("Data/scraped_odds/dabble_player_pras.cs
 dabble_player_blocks_markets |> write_csv("Data/scraped_odds/dabble_player_blocks.csv")
 dabble_player_steals_markets |> write_csv("Data/scraped_odds/dabble_player_steals.csv")
 dabble_player_threes_markets |> write_csv("Data/scraped_odds/dabble_player_threes.csv")
+
+#==============================================================================#
+# Dabble (Pick em)
+#==============================================================================#
+
+# Prop Data (Pick em)-=---------------------------------------------------------
+
+# Get List of Fixture URLs
+fixture_urls_pickem <- paste0("https://api.dabble.com.au/sportfixtures/details/", fixtures$id, "?filter=dfs-enabled")
+
+# Create safe version of function
+safe_get_fixture_details <- safely(get_fixture_details,otherwise = tibble())
+
+# Map over data
+prop_data_pickem <-
+  map(fixture_urls_pickem, safe_get_fixture_details, .progress = TRUE) |> 
+  # keep only elements with no error
+  keep(~is.null(.x$error)) |> 
+  # extract the result component
+  map_dfr("result")
+
+# Add match details
+prop_data_pickem <-
+  prop_data_pickem |>
+  left_join(fixtures, by = c("match_id" = "id"))
+
+#===============================================================================
+# Player Points
+#===============================================================================
+
+# Filter to player points markets
+player_points_pickem <-
+  prop_data_pickem |>
+  filter(str_detect(market_name, "Points O/U")) |> 
+  filter(str_detect(market_name, "rebounds|assists|Quarter|Half|\\+", negate = TRUE)) |> 
+  mutate(player_name = str_remove_all(selection_name, " Over.*$")) |> 
+  mutate(player_name = str_remove_all(player_name, " Under.*$")) |> 
+  mutate(line = as.numeric(str_extract(selection_name, "\\d+\\.?\\d?"))) |>
+  group_by(marketId) |> 
+  mutate(var = max(price) - min(price)) |>
+  ungroup() |>
+  filter(var < 0.3) |> 
+  mutate(over_price = round(sqrt(3.2), 2), under_price = round(sqrt(3.2), 2)) |> 
+  # mutate(player_name = fix_player_names(player_name)) |>
+  left_join(player_names_unique, by = c("player_name")) |> 
+  separate(match, c("home_team", "away_team"), sep = " v ") |>
+  mutate(home_team = fix_team_names(home_team)) |>
+  mutate(away_team = fix_team_names(away_team)) |>
+  mutate(match = paste(home_team, away_team, sep = " v ")) |>
+  mutate(opposition_team = case_when(
+    player_team == home_team ~ away_team,
+    player_team == away_team ~ home_team
+  )) |>
+  mutate(agency = "Dabble Pickem", market_name = "Player Points") |>
+  distinct(
+    match,
+    home_team,
+    away_team,
+    player_name,
+    player_team,
+    opposition_team,
+    market_name,
+    line,
+    over_price,
+    under_price,
+    agency
+  )
+
+#===============================================================================
+# Player Rebounds
+#===============================================================================
+
+# Filter to player rebounds markets
+player_rebounds_pickem <-
+  prop_data_pickem |>
+  filter(str_detect(market_name, "Rebounds O/U")) |> 
+  filter(str_detect(market_name, "rebounds|assists|Quarter|Half|\\+", negate = TRUE)) |> 
+  mutate(player_name = str_remove_all(selection_name, " Over.*$")) |> 
+  mutate(player_name = str_remove_all(player_name, " Under.*$")) |> 
+  mutate(line = as.numeric(str_extract(selection_name, "\\d+\\.?\\d?"))) |>
+  group_by(marketId) |> 
+  mutate(var = max(price) - min(price)) |>
+  ungroup() |>
+  filter(var < 0.3) |> 
+  mutate(over_price = round(sqrt(3.2), 2), under_price = round(sqrt(3.2), 2)) |> 
+  # mutate(player_name = fix_player_names(player_name)) |>
+  left_join(player_names_unique, by = c("player_name")) |> 
+  separate(match, c("home_team", "away_team"), sep = " v ") |>
+  mutate(home_team = fix_team_names(home_team)) |>
+  mutate(away_team = fix_team_names(away_team)) |>
+  mutate(match = paste(home_team, away_team, sep = " v ")) |>
+  mutate(opposition_team = case_when(
+    player_team == home_team ~ away_team,
+    player_team == away_team ~ home_team
+  )) |>
+  mutate(agency = "Dabble Pickem", market_name = "Player Rebounds") |>
+  distinct(
+    match,
+    home_team,
+    away_team,
+    player_name,
+    player_team,
+    opposition_team,
+    market_name,
+    line,
+    over_price,
+    under_price,
+    agency
+  )
+
+#===============================================================================
+# Player Assists
+#===============================================================================
+
+# Filter to player assists markets
+player_assists_pickem <-
+  prop_data_pickem |>
+  filter(str_detect(market_name, "Assists O/U")) |> 
+  filter(str_detect(market_name, "rebounds|assists|Quarter|Half|\\+", negate = TRUE)) |> 
+  mutate(player_name = str_remove_all(selection_name, " Over.*$")) |> 
+  mutate(player_name = str_remove_all(player_name, " Under.*$")) |> 
+  mutate(line = as.numeric(str_extract(selection_name, "\\d+\\.?\\d?"))) |>
+  group_by(marketId) |> 
+  mutate(var = max(price) - min(price)) |>
+  ungroup() |>
+  filter(var < 0.3) |> 
+  mutate(over_price = round(sqrt(3.2), 2), under_price = round(sqrt(3.2), 2)) |> 
+  # mutate(player_name = fix_player_names(player_name)) |>
+  left_join(player_names_unique, by = c("player_name")) |> 
+  separate(match, c("home_team", "away_team"), sep = " v ") |>
+  mutate(home_team = fix_team_names(home_team)) |>
+  mutate(away_team = fix_team_names(away_team)) |>
+  mutate(match = paste(home_team, away_team, sep = " v ")) |>
+  mutate(opposition_team = case_when(
+    player_team == home_team ~ away_team,
+    player_team == away_team ~ home_team
+  )) |>
+  mutate(agency = "Dabble Pickem", market_name = "Player Assists") |>
+  distinct(
+    match,
+    home_team,
+    away_team,
+    player_name,
+    player_team,
+    opposition_team,
+    market_name,
+    line,
+    over_price,
+    under_price,
+    agency
+  )
+
+#===============================================================================
+# Player Threes
+#===============================================================================
+
+# Filter to player threes markets
+player_threes_pickem <-
+  prop_data_pickem |>
+  filter(str_detect(market_name, "Threes Made O/U")) |> 
+  filter(str_detect(market_name, "rebounds|assists|Quarter|Half|\\+", negate = TRUE)) |> 
+  mutate(player_name = str_remove_all(selection_name, " Over.*$")) |> 
+  mutate(player_name = str_remove_all(player_name, " Under.*$")) |> 
+  mutate(line = as.numeric(str_extract(selection_name, "\\d+\\.?\\d?"))) |>
+  group_by(marketId) |> 
+  mutate(var = max(price) - min(price)) |>
+  ungroup() |>
+  filter(var < 0.3) |> 
+  mutate(over_price = round(sqrt(3.2), 2), under_price = round(sqrt(3.2), 2)) |> 
+  # mutate(player_name = fix_player_names(player_name)) |>
+  left_join(player_names_unique, by = c("player_name")) |> 
+  separate(match, c("home_team", "away_team"), sep = " v ") |>
+  mutate(home_team = fix_team_names(home_team)) |>
+  mutate(away_team = fix_team_names(away_team)) |>
+  mutate(match = paste(home_team, away_team, sep = " v ")) |>
+  mutate(opposition_team = case_when(
+    player_team == home_team ~ away_team,
+    player_team == away_team ~ home_team
+  )) |>
+  mutate(agency = "Dabble Pickem", market_name = "Player Threes") |>
+  distinct(
+    match,
+    home_team,
+    away_team,
+    player_name,
+    player_team,
+    opposition_team,
+    market_name,
+    line,
+    over_price,
+    under_price,
+    agency
+  )
+
+#===============================================================================
+# Player PRAs
+#===============================================================================
+
+# Filter to player pras markets
+player_pras_pickem <-
+  prop_data_pickem |>
+  filter(str_detect(market_name, "Pts \\+ Reb \\+ Ast O/U")) |> 
+  filter(str_detect(market_name, "rebounds|assists|Quarter|Half", negate = TRUE)) |> 
+  mutate(player_name = str_remove_all(selection_name, " Over.*$")) |> 
+  mutate(player_name = str_remove_all(player_name, " Under.*$")) |> 
+  mutate(line = as.numeric(str_extract(selection_name, "\\d+\\.?\\d?"))) |>
+  group_by(marketId) |> 
+  mutate(var = max(price) - min(price)) |>
+  ungroup() |>
+  filter(var < 0.3) |> 
+  mutate(over_price = round(sqrt(3.2), 2), under_price = round(sqrt(3.2), 2)) |> 
+  # mutate(player_name = fix_player_names(player_name)) |>
+  left_join(player_names_unique, by = c("player_name")) |> 
+  separate(match, c("home_team", "away_team"), sep = " v ") |>
+  mutate(home_team = fix_team_names(home_team)) |>
+  mutate(away_team = fix_team_names(away_team)) |>
+  mutate(match = paste(home_team, away_team, sep = " v ")) |>
+  mutate(opposition_team = case_when(
+    player_team == home_team ~ away_team,
+    player_team == away_team ~ home_team
+  )) |>
+  mutate(agency = "Dabble Pickem", market_name = "Player PRAs") |>
+  distinct(
+    match,
+    home_team,
+    away_team,
+    player_name,
+    player_team,
+    opposition_team,
+    market_name,
+    line,
+    over_price,
+    under_price,
+    agency
+  )
+
+#===============================================================================
+# Write to CSV
+#===============================================================================
+
+player_points_pickem |> write_csv("Data/scraped_odds/dabble_pickem_player_points.csv")
+player_rebounds_pickem |> write_csv("Data/scraped_odds/dabble_pickem_player_rebounds.csv")
+player_assists_pickem |> write_csv("Data/scraped_odds/dabble_pickem_player_assists.csv")
+player_threes_pickem |> write_csv("Data/scraped_odds/dabble_pickem_player_threes.csv")
+player_pras_pickem |> write_csv("Data/scraped_odds/dabble_pickem_player_pras.csv")
