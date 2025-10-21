@@ -327,10 +327,10 @@ betright_player_points_lines_unders <-
     "line",
     "under_price" = "price",
     "agency",
-    "event_id",s
-    "outcome_name",
-    "outcome_id",
-    "fixed_market_id",
+    "event_id",
+    "outcome_name_unders" = "outcome_name",
+    "outcome_id_unders" = "outcome_id",
+    "fixed_market_id_unders" = "fixed_market_id",
     "opposition_team"
   ) |>
   mutate(home_team = fix_team_names(home_team)) |>
@@ -343,7 +343,7 @@ betright_player_points_lines_unders <-
 betright_player_points_all <-
   bind_rows(betright_player_points,
             betright_player_points_lines_overs) |> 
-  left_join(betright_player_points_lines_unders)
+  full_join(betright_player_points_lines_unders)
 
 #===============================================================================
 # Player Assists
