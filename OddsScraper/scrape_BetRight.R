@@ -10,6 +10,7 @@ teams <-
 
 # Function to fix team names
 source("Scripts/fix_team_names.R")
+source("Scripts/fix_player_names.R")
 
 # Get player names table
 player_names_all <-
@@ -226,7 +227,7 @@ betright_player_points <-
   separate(event_name, into = c("market_name", "player_name"), sep = " - ") |>
   mutate(player_name = str_remove_all(player_name, " \\(.*\\)")) |>
   mutate(player_name = str_replace_all(player_name, "  ", " ")) |>  
-  # mutate(player_name = fix_player_names(player_name)) |>
+  mutate(player_name = fix_player_names(player_name)) |>
   left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
   rename(player_team = team_name) |>
   separate(match, into = c("away_team", "home_team"), sep = " @ ", remove = FALSE) |> 
@@ -272,6 +273,7 @@ betright_player_assists <-
   separate(event_name, into = c("market_name", "player_name"), sep = " - ") |>
   mutate(player_name = str_remove_all(player_name, " \\(.*\\)")) |>
   mutate(player_name = str_replace_all(player_name, "  ", " ")) |>  
+  mutate(player_name = fix_player_names(player_name)) |>
   left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
   rename(player_team = team_name) |>
   separate(match, into = c("away_team", "home_team"), sep = " @ ", remove = FALSE) |> 
@@ -317,6 +319,7 @@ betright_player_rebounds <-
   separate(event_name, into = c("market_name", "player_name"), sep = " - ") |>
   mutate(player_name = str_remove_all(player_name, " \\(.*\\)")) |>
   mutate(player_name = str_replace_all(player_name, "  ", " ")) |>  
+  mutate(player_name = fix_player_names(player_name)) |>
   left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
   rename(player_team = team_name) |>
   separate(match, into = c("away_team", "home_team"), sep = " @ ", remove = FALSE) |> 
@@ -362,6 +365,7 @@ betright_player_three_pointers <-
   separate(event_name, into = c("market_name", "player_name"), sep = " - ") |>
   mutate(player_name = str_remove_all(player_name, " \\(.*\\)")) |>
   mutate(player_name = str_replace_all(player_name, "  ", " ")) |>  
+  mutate(player_name = fix_player_names(player_name)) |>
   left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
   rename(player_team = team_name) |>
   separate(match, into = c("away_team", "home_team"), sep = " @ ", remove = FALSE) |> 
@@ -408,6 +412,7 @@ betright_player_blocks <-
   separate(event_name, into = c("market_name", "player_name"), sep = " - ") |>
   mutate(player_name = str_remove_all(player_name, " \\(.*\\)")) |>
   mutate(player_name = str_replace_all(player_name, "  ", " ")) |>  
+  mutate(player_name = fix_player_names(player_name)) |>
   left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
   rename(player_team = team_name) |>
   separate(match, into = c("away_team", "home_team"), sep = " @ ", remove = FALSE) |> 
@@ -453,6 +458,7 @@ betright_player_steals <-
   separate(event_name, into = c("market_name", "player_name"), sep = " - ") |>
   mutate(player_name = str_remove_all(player_name, " \\(.*\\)")) |>
   mutate(player_name = str_replace_all(player_name, "  ", " ")) |>  
+  mutate(player_name = fix_player_names(player_name)) |>
   left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
   rename(player_team = team_name) |>
   separate(match, into = c("away_team", "home_team"), sep = " @ ", remove = FALSE) |> 

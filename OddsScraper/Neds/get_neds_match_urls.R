@@ -10,16 +10,18 @@ neds_response <- jsonlite::fromJSON("OddsScraper/Neds/neds_response.json")
 event_name <- character()
 event_id <- character()
 competition_name <- character()
+start_date <- character()
 
 # Extract event IDs and names from JSON response
 for (value in neds_response$events) {
   event_name <- c(event_name, ifelse(is.null(value$name), NA, value$name))
   event_id <- c(event_id, ifelse(is.null(value$id), NA, value$id))
+  start_date <- c(start_date, ifelse(is.null(value$advertised_start), NA, value$advertised_start))
   competition_name <- c(competition_name, ifelse(is.null(value$competition$name), NA, value$competition$name))
 }
 
 # Create a data frame from the vectors
-df <- data.frame(event_name, event_id, competition_name)
+df <- data.frame(event_name, start_date, event_id, competition_name)
 
 # Filter the data frame to only include matches with ' vs ' in the event name
 df <- df |> filter(str_detect(event_name, ' vs '))
@@ -32,6 +34,11 @@ df$url <-
          tolower(gsub(" ", "-", df$event_name)),
          "/",
          df$event_id)
+
+# Get start time in adelaide time
+df <-
+  df |>
+  mutate(start_date = lubridate::ymd_hms(start_date, tz = "Australia/Adelaide"))
 
 # Write out as csv
 write_csv(df, "OddsScraper/Neds/neds_nba_match_urls.csv")

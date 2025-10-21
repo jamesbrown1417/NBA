@@ -1,38 +1,57 @@
-# library(shiny)
-library(bslib)
-library(gridlayout)
-library(DT)
 library(tidyverse)
+library(future)
+library(future.apply)
+library(progressr)
+
+handlers(global = TRUE)
+plan(multisession, workers = 9)
 
 #===============================================================================
 # Read in Data
 #===============================================================================
 
 # # Run all odds scraping scripts-----------------------------------------------
-run_scraping <- function(script_name) {
-  tryCatch({
-    source(script_name)
-  }, error = function(e) {
-    cat("Odds not released yet for:", script_name, "\n")
-  })
-}
 
 # Fix team names function
 source("Scripts/fix_team_names.R")
 
-# Run all odds scraping scripts
-run_scraping("OddsScraper/scrape_betr.R")
-run_scraping("OddsScraper/scrape_BetRight.R")
-# run_scraping("OddsScraper/scrape_Palmerbet.R")
-run_scraping("OddsScraper/scrape_pointsbet.R")
-run_scraping("OddsScraper/scrape_sportsbet.R")
-run_scraping("OddsScraper/TAB/scrape_TAB.R")
-run_scraping("OddsScraper/scrape_bet365.R")
-run_scraping("OddsScraper/scrape_bluebet.R")
-run_scraping("OddsScraper/Neds/scrape_neds.R")
-run_scraping("OddsScraper/scrape_unibet.R")
-run_scraping("OddsScraper/scrape_dabble.R")
-run_scraping("OddsScraper/scrape_betkings.R")
+# Define scraping scripts
+scripts <- c(
+  "OddsScraper/scrape_betr.R",
+  "OddsScraper/scrape_BetRight.R",
+  "OddsScraper/scrape_pointsbet.R",
+  "OddsScraper/scrape_sportsbet.R",
+  "OddsScraper/TAB/scrape_TAB.R",
+  "OddsScraper/Neds/scrape_neds.R",
+  "OddsScraper/scrape_unibet.R",
+  "OddsScraper/scrape_dabble.R",
+  "OddsScraper/Bet365/scrape_bet365.R"
+)
+
+run_scraping <- function(script_name) {
+  start_time <- Sys.time()
+  cat("▶ Starting:", script_name, "\n")
+  tryCatch({
+    source(script_name)
+    cat("✅ Finished:", script_name, "in", round(difftime(Sys.time(), start_time, units = "secs"), 1), "sec\n")
+    return(list(script = script_name, status = "success"))
+  }, error = function(e) {
+    cat("⚠️  Failed:", script_name, "-", e$message, "\n")
+    return(list(script = script_name, status = "error", message = e$message))
+  })
+}
+
+with_progress({
+  p <- progressor(along = scripts)
+  results <- future_lapply(scripts, function(s) {
+    res <- run_scraping(s)
+    p(sprintf("Completed: %s", s))
+    res
+  })
+})
+
+cat("\n--- SUMMARY ---\n")
+print(do.call(rbind, results))
 
 ##%######################################################%##
 #                                                          #

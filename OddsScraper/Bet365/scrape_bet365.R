@@ -5,11 +5,26 @@ library(httr2)
 library(jsonlite)
 library(glue)
 
-# Fix team names function
-source("Scripts/fix_team_names.R")
-
 # Read scraped HTML from the BET365_HTML Folder
-scraped_files_player <- list.files("Data/BET365_HTML/", full.names = TRUE, pattern = "player")
+scraped_files_player <- list.files("OddsScraper/Bet365/HTML", full.names = TRUE, pattern = "player")
+
+# Fix team names and players functions
+source("Scripts/fix_team_names.R")
+source("Scripts/fix_player_names.R")
+
+# Get players
+player_names_all <-
+  read_csv("Data/all_rosters.csv") |>
+  select(player_full_name = PLAYER, TeamID) |> 
+  left_join(teams[, c("id", "full_name")], by = c("TeamID" = "id")) |> 
+  mutate(first_initial = str_sub(player_full_name, 1, 1)) |>
+  mutate(surname = str_extract(player_full_name, "(?<=\\s).*$")) |> 
+  mutate(join_name = paste(first_initial, surname, sep = " ")) |> 
+  rename(team_name = full_name)
+
+# Get teams table
+teams <-
+  read_csv("Data/all_teams.csv")
 
 # Main Function
 get_player_props <- function(scraped_file) {
@@ -47,7 +62,7 @@ get_player_props <- function(scraped_file) {
   points_cols <-
     bet365_player_markets[[points_over_under_index]] |>
     html_elements(".gl-Market_General")
-    
+  
   points_over_index <- which(str_detect(points_cols |> html_text(), "Over"))
   
   # Get Over Lines
@@ -71,6 +86,18 @@ get_player_props <- function(scraped_file) {
     html_elements(".gl-ParticipantCenteredStacked_Odds") |>
     html_text()
   
+  # Get suspended elements
+  child_nodes <- html_children(points_cols[[points_over_index]])
+  
+  # Convert each child to a character string
+  suspended_elements <-
+    as.character(child_nodes) |>
+    as_tibble() |>
+    filter(str_detect(value, "ParticipantCenteredStacked")) |>
+    mutate(row_num = row_number()) |>
+    filter(str_detect(value, "Suspended")) |>
+    pull(row_num)
+
   # Create Player Points Table
   player_points <-
     tibble(player = points_players,
@@ -80,6 +107,11 @@ get_player_props <- function(scraped_file) {
            under_price = as.numeric(points_under_odds)) |>
     mutate(market_name = "Player Points Over/Under") |>
     mutate(agency = "Bet365")
+  
+  # Only apply slice if there are suspended elements to remove
+  if (length(suspended_elements) > 0) {
+    player_points <- player_points |> slice(-suspended_elements)
+  }
   
   #=============================================================================
   # Alternate Player Points
@@ -241,7 +273,7 @@ get_player_props <- function(scraped_file) {
   team_names <- fix_team_names(team_names)
   
   # Get Match Name
-  match_name <- paste(team_names, collapse = " v ")
+  match_name <- paste(team_names, collapse = " @ ")
   
   # Combine all tables
   player_points_all <-
@@ -298,6 +330,17 @@ get_player_props <- function(scraped_file) {
     html_elements(".gl-ParticipantCenteredStacked_Odds") |>
     html_text()
   
+  # Get suspended elements for rebounds
+  rebounds_child_nodes <- html_children(rebounds_cols[[rebounds_over_index]])
+  
+  rebounds_suspended_elements <-
+    as.character(rebounds_child_nodes) |>
+    as_tibble() |>
+    filter(str_detect(value, "ParticipantCenteredStacked")) |>
+    mutate(row_num = row_number()) |>
+    filter(str_detect(value, "Suspended")) |>
+    pull(row_num)
+  
   # Create Player Rebounds Table
   player_rebounds <-
     tibble(player = rebounds_players,
@@ -307,6 +350,11 @@ get_player_props <- function(scraped_file) {
            under_price = as.numeric(rebounds_under_odds)) |>
     mutate(market_name = "Player Rebounds Over/Under") |>
     mutate(agency = "Bet365")
+  
+  # Only apply slice if there are suspended elements to remove
+  if (length(suspended_elements) > 0) {
+    player_rebounds <- player_rebounds |> slice(-suspended_elements)
+  }
   
   #=============================================================================
   # Alternate Player Rebounds
@@ -332,19 +380,16 @@ get_player_props <- function(scraped_file) {
     bet365_player_markets[[alternate_rebounds_index]] |>
     html_elements(".gl-Market_General")
   
-  alternate_rebounds_3_index <- which(str_detect(alternate_rebounds_cols |> html_node(".srb-HScrollPlaceHeader ") |> html_text(), "^3$"))
+  # alternate_rebounds_3_index <- which(str_detect(alternate_rebounds_cols |> html_node(".srb-HScrollPlaceHeader ") |> html_text(), "^3$"))
   alternate_rebounds_5_index <- which(str_detect(alternate_rebounds_cols |> html_node(".srb-HScrollPlaceHeader ") |> html_text(), "^5$"))
   alternate_rebounds_7_index <- which(str_detect(alternate_rebounds_cols |> html_node(".srb-HScrollPlaceHeader ") |> html_text(), "^7$"))
   alternate_rebounds_10_index <- which(str_detect(alternate_rebounds_cols |> html_node(".srb-HScrollPlaceHeader ") |> html_text(), "10"))
-  alternate_rebounds_13_index <- which(str_detect(alternate_rebounds_cols |> html_node(".srb-HScrollPlaceHeader ") |> html_text(), "13"))
-  alternate_rebounds_15_index <- which(str_detect(alternate_rebounds_cols |> html_node(".srb-HScrollPlaceHeader ") |> html_text(), "15"))
-  alternate_rebounds_17_index <- which(str_detect(alternate_rebounds_cols |> html_node(".srb-HScrollPlaceHeader ") |> html_text(), "17"))
   
   # Get Odds for each rebounds range
-  alternate_rebounds_3_odds <-
-    alternate_rebounds_cols[[alternate_rebounds_3_index]] |>
-    html_elements(".gl-ParticipantOddsOnly_Odds") |>
-    html_text()
+  #alternate_rebounds_3_odds <-
+  #    alternate_rebounds_cols[[alternate_rebounds_3_index]] |>
+  #    html_elements(".gl-ParticipantOddsOnly_Odds") |>
+  #    html_text()
   
   alternate_rebounds_5_odds <-
     alternate_rebounds_cols[[alternate_rebounds_5_index]] |>
@@ -361,29 +406,14 @@ get_player_props <- function(scraped_file) {
     html_elements(".gl-ParticipantOddsOnly_Odds") |>
     html_text()
   
-  alternate_rebounds_13_odds <-
-    alternate_rebounds_cols[[alternate_rebounds_13_index]] |>
-    html_elements(".gl-ParticipantOddsOnly_Odds") |>
-    html_text()
-  
-  alternate_rebounds_15_odds <-
-    alternate_rebounds_cols[[alternate_rebounds_15_index]] |>
-    html_elements(".gl-ParticipantOddsOnly_Odds") |>
-    html_text()
-  
-  alternate_rebounds_17_odds <-
-    alternate_rebounds_cols[[alternate_rebounds_17_index]] |>
-    html_elements(".gl-ParticipantOddsOnly_Odds") |>
-    html_text()
-  
   # Create Alternate Player Rebounds Tables
-  alternate_rebounds_3 <-
-    tibble(player = alternate_rebounds_players,
-           # team = alternate_rebounds_teams,
-           line = 3,
-           over_price = as.numeric(alternate_rebounds_3_odds)) |>
-    mutate(market_name = "Alternate Player Rebounds") |>
-    mutate(agency = "Bet365")
+  #alternate_rebounds_3 <-
+  #   tibble(player = alternate_rebounds_players,
+  #         # team = alternate_rebounds_teams,
+  #        line = 3,
+  #       over_price = as.numeric(alternate_rebounds_3_odds)) |>
+  #mutate(market_name = "Alternate Player Rebounds") |>
+  #mutate(agency = "Bet365")
   
   alternate_rebounds_5 <-
     tibble(player = alternate_rebounds_players,
@@ -409,34 +439,10 @@ get_player_props <- function(scraped_file) {
     mutate(market_name = "Alternate Player Rebounds") |>
     mutate(agency = "Bet365")
   
-  alternate_rebounds_13 <-
-    tibble(player = alternate_rebounds_players,
-           # team = alternate_rebounds_teams,
-           line = 13,
-           over_price = as.numeric(alternate_rebounds_13_odds)) |>
-    mutate(market_name = "Alternate Player Rebounds") |>
-    mutate(agency = "Bet365")
-  
-  alternate_rebounds_15 <-
-    tibble(player = alternate_rebounds_players,
-           # team = alternate_rebounds_teams,
-           line = 15,
-           over_price = as.numeric(alternate_rebounds_15_odds)) |>
-    mutate(market_name = "Alternate Player Rebounds") |>
-    mutate(agency = "Bet365")
-  
-  alternate_rebounds_17 <-
-    tibble(player = alternate_rebounds_players,
-           # team = alternate_rebounds_teams,
-           line = 17,
-           over_price = as.numeric(alternate_rebounds_17_odds)) |>
-    mutate(market_name = "Alternate Player Rebounds") |>
-    mutate(agency = "Bet365")
-  
   # Combine
   alternate_player_rebounds <-
-    bind_rows(alternate_rebounds_3, alternate_rebounds_5, alternate_rebounds_7, alternate_rebounds_10,
-              alternate_rebounds_13, alternate_rebounds_15, alternate_rebounds_17) |> 
+    bind_rows(#alternate_rebounds_3,
+      alternate_rebounds_5, alternate_rebounds_7, alternate_rebounds_10) |> 
     filter(!is.na(over_price))
   
   #=============================================================================
@@ -453,7 +459,7 @@ get_player_props <- function(scraped_file) {
   team_names <- fix_team_names(team_names)
   
   # Get Match Name
-  match_name <- paste(team_names, collapse = " v ")
+  match_name <- paste(team_names, collapse = " @ ")
   
   # Combine all tables
   player_rebounds_all <-
@@ -509,6 +515,17 @@ get_player_props <- function(scraped_file) {
     html_elements(".gl-ParticipantCenteredStacked_Odds") |>
     html_text()
   
+  # Get suspended elements for assists
+  assists_child_nodes <- html_children(assists_cols[[assists_over_index]])
+  
+  assists_suspended_elements <-
+    as.character(assists_child_nodes) |>
+    as_tibble() |>
+    filter(str_detect(value, "ParticipantCenteredStacked")) |>
+    mutate(row_num = row_number()) |>
+    filter(str_detect(value, "Suspended")) |>
+    pull(row_num)
+  
   # Create Player Assists Table
   player_assists <-
     tibble(player = assists_players,
@@ -518,6 +535,11 @@ get_player_props <- function(scraped_file) {
            under_price = as.numeric(assists_under_odds)) |>
     mutate(market_name = "Player Assists Over/Under") |>
     mutate(agency = "Bet365")
+  
+  # Only apply slice if there are suspended elements to remove
+  if (length(suspended_elements) > 0) {
+    player_assists <- player_assists |> slice(-suspended_elements)
+  }
   
   #=============================================================================
   # Alternate Player Assists
@@ -622,7 +644,7 @@ get_player_props <- function(scraped_file) {
   team_names <- fix_team_names(team_names)
   
   # Get Match Name
-  match_name <- paste(team_names, collapse = " v ")
+  match_name <- paste(team_names, collapse = " @ ")
   
   # Combine all tables
   player_assists_all <-
@@ -679,6 +701,17 @@ get_player_props <- function(scraped_file) {
     html_elements(".gl-ParticipantCenteredStacked_Odds") |>
     html_text()
   
+  # Get suspended elements for threes
+  threes_child_nodes <- html_children(threes_cols[[threes_over_index]])
+  
+  threes_suspended_elements <-
+    as.character(threes_child_nodes) |>
+    as_tibble() |>
+    filter(str_detect(value, "ParticipantCenteredStacked")) |>
+    mutate(row_num = row_number()) |>
+    filter(str_detect(value, "Suspended")) |>
+    pull(row_num)
+  
   # Create Player Threes Made Table
   player_threes_made <-
     tibble(player = threes_players,
@@ -688,6 +721,11 @@ get_player_props <- function(scraped_file) {
            under_price = as.numeric(threes_under_odds)) |>
     mutate(market_name = "Player Threes Made Over/Under") |>
     mutate(agency = "Bet365")
+  
+  # Only apply slice if there are suspended elements to remove
+  if (length(suspended_elements) > 0) {
+    player_threes_made <- player_threes_made |> slice(-suspended_elements)
+  }
   
   #=============================================================================
   # Alternate Player Threes Made
@@ -759,13 +797,175 @@ get_player_props <- function(scraped_file) {
   team_names <- fix_team_names(team_names)
   
   # Get Match Name
-  match_name <- paste(team_names, collapse = " v ")
+  match_name <- paste(team_names, collapse = " @ ")
   
   # Combine all tables
   player_threes_made_all <-
     bind_rows(player_threes_made, alternate_player_threes_made) |> 
     arrange(player, line, over_price) |> 
     mutate(market_name = "Player Threes Made") |> 
+    mutate(match = match_name) |> 
+    relocate(match, .before = player)
+  
+  #=============================================================================
+  # Player Blocks Over / Under
+  #=============================================================================
+  
+  # Get index for node with text "Blocks Over/Under"
+  blocks_over_under_index <- which(market_names == "Blocks O/U")
+  
+  # Get Player Names from node
+  blocks_players <-
+    bet365_player_markets[[blocks_over_under_index]] |>
+    html_elements(".srb-ParticipantLabelWithTeam_Name") |>
+    html_text()
+  
+  # # Get Player Teams from node
+  # blocks_teams <-
+  #     bet365_player_markets[[blocks_over_under_index]] |>
+  #     html_elements(".srb-ParticipantLabelWithTeam_Team") |>
+  #     html_text()
+  
+  # Get Over Node Index
+  blocks_cols <-
+    bet365_player_markets[[blocks_over_under_index]] |>
+    html_elements(".gl-Market_General")
+  
+  blocks_over_index <- which(str_detect(blocks_cols |> html_text(), "Over"))
+  
+  # Get Over Lines
+  blocks_over_lines <-
+    blocks_cols[[blocks_over_index]] |>
+    html_elements(".gl-ParticipantCenteredStacked_Handicap") |>
+    html_text()
+  
+  # Get Over Odds
+  blocks_over_odds <-
+    blocks_cols[[blocks_over_index]] |>
+    html_elements(".gl-ParticipantCenteredStacked_Odds") |>
+    html_text()
+  
+  # Get Under Node Index
+  blocks_under_index <- which(str_detect(blocks_cols |> html_text(), "Under"))
+  
+  # Get Under Odds
+  blocks_under_odds <-
+    blocks_cols[[blocks_under_index]] |>
+    html_elements(".gl-ParticipantCenteredStacked_Odds") |>
+    html_text()
+  
+  # Get suspended elements for blocks
+  blocks_child_nodes <- html_children(blocks_cols[[blocks_over_index]])
+  
+  blocks_suspended_elements <-
+    as.character(blocks_child_nodes) |>
+    as_tibble() |>
+    filter(str_detect(value, "ParticipantCenteredStacked")) |>
+    mutate(row_num = row_number()) |>
+    filter(str_detect(value, "Suspended")) |>
+    pull(row_num)
+  
+  # Create Player Threes Made Table
+  player_blocks <-
+    tibble(player = blocks_players,
+           # team = blocks_teams,
+           line = as.numeric(blocks_over_lines),
+           over_price = as.numeric(blocks_over_odds),
+           under_price = as.numeric(blocks_under_odds)) |>
+    mutate(market_name = "Player Threes Made Over/Under") |>
+    mutate(agency = "Bet365")
+  
+  # Only apply slice if there are suspended elements to remove
+  if (length(suspended_elements) > 0) {
+    player_blocks <- player_blocks |> slice(-suspended_elements)
+  }
+  
+  # Combine all tables
+  player_blocks_all <-
+    player_blocks |> 
+    arrange(player, line, over_price) |> 
+    mutate(market_name = "Player Blocks") |> 
+    mutate(match = match_name) |> 
+    relocate(match, .before = player)
+  
+  #=============================================================================
+  # Player Steals Over / Under
+  #=============================================================================
+  
+  # Get index for node with text "Steals Over/Under"
+  steals_over_under_index <- which(market_names == "Steals O/U")
+  
+  # Get Player Names from node
+  steals_players <-
+    bet365_player_markets[[steals_over_under_index]] |>
+    html_elements(".srb-ParticipantLabelWithTeam_Name") |>
+    html_text()
+  
+  # # Get Player Teams from node
+  # steals_teams <-
+  #     bet365_player_markets[[steals_over_under_index]] |>
+  #     html_elements(".srb-ParticipantLabelWithTeam_Team") |>
+  #     html_text()
+  
+  # Get Over Node Index
+  steals_cols <-
+    bet365_player_markets[[steals_over_under_index]] |>
+    html_elements(".gl-Market_General")
+  
+  steals_over_index <- which(str_detect(steals_cols |> html_text(), "Over"))
+  
+  # Get Over Lines
+  steals_over_lines <-
+    steals_cols[[steals_over_index]] |>
+    html_elements(".gl-ParticipantCenteredStacked_Handicap") |>
+    html_text()
+  
+  # Get Over Odds
+  steals_over_odds <-
+    steals_cols[[steals_over_index]] |>
+    html_elements(".gl-ParticipantCenteredStacked_Odds") |>
+    html_text()
+  
+  # Get Under Node Index
+  steals_under_index <- which(str_detect(steals_cols |> html_text(), "Under"))
+  
+  # Get Under Odds
+  steals_under_odds <-
+    steals_cols[[steals_under_index]] |>
+    html_elements(".gl-ParticipantCenteredStacked_Odds") |>
+    html_text()
+  
+  # Get suspended elements for steals
+  steals_child_nodes <- html_children(steals_cols[[steals_over_index]])
+  
+  steals_suspended_elements <-
+    as.character(steals_child_nodes) |>
+    as_tibble() |>
+    filter(str_detect(value, "ParticipantCenteredStacked")) |>
+    mutate(row_num = row_number()) |>
+    filter(str_detect(value, "Suspended")) |>
+    pull(row_num)
+  
+  # Create Player Threes Made Table
+  player_steals <-
+    tibble(player = steals_players,
+           # team = steals_teams,
+           line = as.numeric(steals_over_lines),
+           over_price = as.numeric(steals_over_odds),
+           under_price = as.numeric(steals_under_odds)) |>
+    mutate(market_name = "Player Threes Made Over/Under") |>
+    mutate(agency = "Bet365")
+  
+  # Only apply slice if there are suspended elements to remove
+  if (length(suspended_elements) > 0) {
+    player_steals <- player_steals |> slice(-suspended_elements)
+  }
+  
+  # Combine all tables
+  player_steals_all <-
+    player_steals |> 
+    arrange(player, line, over_price) |> 
+    mutate(market_name = "Player Steals") |> 
     mutate(match = match_name) |> 
     relocate(match, .before = player)
   
@@ -777,7 +977,10 @@ get_player_props <- function(scraped_file) {
     player_points_all |> 
       bind_rows(player_rebounds_all) |>
       bind_rows(player_assists_all) |>
-      bind_rows(player_threes_made_all))
+      bind_rows(player_threes_made_all) |>
+      bind_rows(player_blocks_all) |>
+      bind_rows(player_steals_all)
+    )
 }
 
 # Create safe version of function
@@ -794,64 +997,34 @@ list_of_player_props <-
   # Extract the result
   map_dfr("result")
 
-# Get teams table
-teams <-
-  read_csv("Data/all_teams.csv")
-
-# Get player names table
-player_names_all <-
-  read_csv("Data/all_rosters.csv") |>
-  select(player_full_name = PLAYER, TeamID) |> 
-  left_join(teams[, c("id", "full_name")], by = c("TeamID" = "id")) |> 
-  mutate(first_initial = str_sub(player_full_name, 1, 1)) |>
-  mutate(surname = str_extract(player_full_name, "(?<=\\s).*$")) |> 
-  mutate(join_name = paste(first_initial, surname, sep = " ")) |> 
-  rename(team_name = full_name)
-
-# unique join names
-player_names_unique <-
-  player_names_all |>
-  group_by(join_name) |> 
-  filter(n() == 1) |> 
-  ungroup()
-
-# Non unique names (take first two letters of first name)
-player_names_non_unique <-
-  player_names_all |>
-  group_by(join_name) |> 
-  filter(n() > 1) |> 
-  mutate(first_initial = str_sub(player_full_name, 1, 2)) |>
-  mutate(join_name = paste(first_initial, surname, sep = " ")) |> 
-  ungroup()
-
-player_names <-
-  bind_rows(player_names_unique, player_names_non_unique) |> 
-  mutate(join_name = ifelse(player_full_name == "Keyontae Johnson", "Key Johnson", join_name)) |> 
-  mutate(join_name = ifelse(player_full_name == "Miles Bridges", "Mil Bridges", join_name)) |> 
-  mutate(join_name = ifelse(player_full_name == "Jaylin Williams", "Jay Williams", join_name))
-
 # Combine into a df
 all_player_props <-
   list_of_player_props |> 
-  mutate(player = ifelse(player == "Derrick Walton Jr.", "Derrick Walton Jr", player)) |>
-  left_join(player_names[,c("player_full_name", "team_name")], by = c("player" = "player_full_name")) |>
+  mutate(player = fix_player_names(player)) |>
+  left_join(player_names_all[,c("player_full_name", "team_name")], by = c("player" = "player_full_name")) |>
   rename(player_name = player) |> 
   mutate(player_team = fix_team_names(team_name)) |> 
-  separate(match, into = c("away_team", "home_team"), sep = " v ", remove = FALSE) |> 
-  mutate(match = paste(home_team, away_team, sep = " v ")) |>
+  separate(match, into = c("away_team", "home_team"), sep = " @ ", remove = FALSE) |> 
+  mutate(home_team = fix_team_names(home_team),
+         away_team = fix_team_names(away_team)) |>
   mutate(opposition_team = if_else(player_team == home_team, away_team, home_team)) |>
+  mutate(match = paste(home_team, away_team, sep = " v ")) |>
   # If line ends with .0 subtract 0.5
-  mutate(line = if_else(line %% 1 == 0, line - 0.5, line)) |> 
-  select(-team_name)
+  mutate(line = if_else(line %% 1 == 0, line - 0.5, line))
 
-# Separate into points, rebounds, assists, threes
+# Separate into points, rebounds, assists, threes, blocks, steals
 player_points <- all_player_props |> filter(market_name == "Player Points")
 player_rebounds <- all_player_props |> filter(market_name == "Player Rebounds")
 player_assists <- all_player_props |> filter(market_name == "Player Assists")
 player_threes <- all_player_props |> filter(market_name == "Player Threes Made") |> mutate(market_name = "Player Threes")
-
+player_blocks <- all_player_props |> filter(market_name == "Player Blocks")
+player_steals <- all_player_props |> filter(market_name == "Player Steals")
+  
 # Write out
 write_csv(player_points, "Data/scraped_odds/bet365_player_points.csv")
 write_csv(player_rebounds, "Data/scraped_odds/bet365_player_rebounds.csv")
 write_csv(player_assists, "Data/scraped_odds/bet365_player_assists.csv")
 write_csv(player_threes, "Data/scraped_odds/bet365_player_threes.csv")
+write_csv(player_blocks, "Data/scraped_odds/bet365_player_blocks.csv")
+write_csv(player_steals, "Data/scraped_odds/bet365_player_steals.csv")
+

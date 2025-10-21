@@ -9,6 +9,7 @@ competitions_api_url = "https://api.dabble.com.au/competitions/090c2877-4d13-4f6
 
 # Fix team names function
 source("Scripts/fix_team_names.R")
+source("Scripts/fix_player_names.R")
 
 # Make request and get response
 dabble_response <-
@@ -179,12 +180,14 @@ prop_data <-
 # Filter to player points markets
 player_points_markets <-
   prop_data |> 
-  filter(str_detect(market_name, "Points O/U"))
+  filter(str_detect(market_name, "Points O/U")) |> 
+  filter(str_detect(market_name, "Quarter|Half|\\+", negate = TRUE))
 
 # Alternate Player Points
 alternate_player_points_markets <-
   prop_data |> 
-  filter(str_detect(market_name, "To Score"))
+  filter(str_detect(market_name, "To Score")) |> 
+  filter(str_detect(market_name, "Quarter|Half|\\+", negate = TRUE))
 
 # Extract player names
 player_points_markets <-
@@ -234,7 +237,8 @@ dabble_player_points_markets <-
 # Filter to player assists markets
 player_assists_markets <-
   prop_data |> 
-  filter(str_detect(market_name, "Assists O/U"))
+  filter(str_detect(market_name, "Assists O/U")) |> 
+  filter(str_detect(market_name, "Quarter|Half|\\+", negate = TRUE))
 
 # Alternate Player Assists
 alternate_player_assists_markets <-
@@ -291,7 +295,8 @@ dabble_player_assists_markets <-
 # Filter to player rebounds markets
 player_rebounds_markets <-
   prop_data |> 
-  filter(str_detect(market_name, "Rebounds O/U"))
+  filter(str_detect(market_name, "Rebounds O/U")) |> 
+  filter(str_detect(market_name, "Quarter|Half|\\+", negate = TRUE))
 
 # Alternate Player Rebounds
 alternate_player_rebounds_markets <-
@@ -348,7 +353,8 @@ dabble_player_rebounds_markets <-
 # Filter to player pras markets
 player_pras_markets <-
   prop_data |> 
-  filter(str_detect(market_name, "Pts \\+ Reb \\+ Ast O/U"))
+  filter(str_detect(market_name, "Pts \\+ Reb \\+ Ast O/U")) |> 
+  filter(str_detect(market_name, "Quarter|Half|\\+", negate = TRUE))
 
 # Alternate Player PRAs
 alternate_player_pras_markets <-
@@ -405,7 +411,8 @@ dabble_player_pras_markets <-
 # Filter to player threes markets
 player_threes_markets <-
   prop_data |> 
-  filter(str_detect(market_name, "Threes Made O/U"))
+  filter(str_detect(market_name, "Threes Made O/U")) |> 
+  filter(str_detect(market_name, "Quarter|Half|\\+", negate = TRUE))
 
 # Alternate Player Threes
 alternate_player_threes_markets <-
@@ -462,7 +469,8 @@ dabble_player_threes_markets <-
 # Filter to player steals markets
 player_steals_markets <-
   prop_data |> 
-  filter(str_detect(market_name, "Steals O/U"))
+  filter(str_detect(market_name, "Steals O/U")) |> 
+  filter(str_detect(market_name, "Quarter|Half|\\+", negate = TRUE))
 
 # Alternate Player Steals
 alternate_player_steals_markets <-
@@ -519,7 +527,8 @@ dabble_player_steals_markets <-
 # Filter to player blocks markets
 player_blocks_markets <-
   prop_data |> 
-  filter(str_detect(market_name, "Blocks O/U"))
+  filter(str_detect(market_name, "Blocks O/U")) |> 
+  filter(str_detect(market_name, "Quarter|Half|\\+", negate = TRUE))
 
 # Alternate Player Blocks
 alternate_player_blocks_markets <-
@@ -596,19 +605,7 @@ player_names_unique <-
 # Helper function to correct player names and join with player_names_unique
 correct_and_join_player_names <- function(data, player_names_unique) {
   data |>
-    mutate(player_name = case_when(
-      str_detect(player_name, "PJ Washington") ~ "P.J. Washington",
-      str_detect(player_name, "Doncic") ~ "Luka Dončić",
-      str_detect(player_name, "Jokic") ~ "Nikola Jokić",
-      str_detect(player_name, "Nurkic") ~ "Jusuf Nurkić",
-      str_detect(player_name, "Poeltl") ~ "Jakob Pöltl",
-      str_detect(player_name, "Bojan Bogdanovic") ~ "Bojan Bogdanović",
-      str_detect(player_name, "Bogdan Bogdanovic") ~ "Bogdan Bogdanović",
-      str_detect(player_name, "Vucevic") ~ "Nikola Vučević",
-      str_detect(player_name, "Jovic") ~ "Nikola Jović",
-      str_detect(player_name, "Dennis Schroder") ~ "Dennis Schröder",
-      .default = player_name
-    )) |>
+    mutate(player_name = fix_player_names(player_name)) |>
     left_join(player_names_unique, by = c("player_name"))
 }
 
@@ -843,7 +840,7 @@ prop_data_pickem <-
 player_points_pickem <-
   prop_data_pickem |>
   filter(str_detect(market_name, "Points O/U")) |> 
-  filter(str_detect(market_name, "rebounds|assists|Quarter|Half|\\+", negate = TRUE)) |> 
+  filter(str_detect(market_name, "Rebounds|Assists|Quarter|Half|\\+", negate = TRUE)) |> 
   mutate(player_name = str_remove_all(selection_name, " Over.*$")) |> 
   mutate(player_name = str_remove_all(player_name, " Under.*$")) |> 
   mutate(line = as.numeric(str_extract(selection_name, "\\d+\\.?\\d?"))) |>
@@ -885,7 +882,7 @@ player_points_pickem <-
 player_rebounds_pickem <-
   prop_data_pickem |>
   filter(str_detect(market_name, "Rebounds O/U")) |> 
-  filter(str_detect(market_name, "rebounds|assists|Quarter|Half|\\+", negate = TRUE)) |> 
+  filter(str_detect(market_name, "Points|Assists|Quarter|Half|\\+", negate = TRUE)) |> 
   mutate(player_name = str_remove_all(selection_name, " Over.*$")) |> 
   mutate(player_name = str_remove_all(player_name, " Under.*$")) |> 
   mutate(line = as.numeric(str_extract(selection_name, "\\d+\\.?\\d?"))) |>
@@ -927,7 +924,7 @@ player_rebounds_pickem <-
 player_assists_pickem <-
   prop_data_pickem |>
   filter(str_detect(market_name, "Assists O/U")) |> 
-  filter(str_detect(market_name, "rebounds|assists|Quarter|Half|\\+", negate = TRUE)) |> 
+  filter(str_detect(market_name, "Rebounds|Points|Quarter|Half|\\+", negate = TRUE)) |> 
   mutate(player_name = str_remove_all(selection_name, " Over.*$")) |> 
   mutate(player_name = str_remove_all(player_name, " Under.*$")) |> 
   mutate(line = as.numeric(str_extract(selection_name, "\\d+\\.?\\d?"))) |>
@@ -969,7 +966,7 @@ player_assists_pickem <-
 player_threes_pickem <-
   prop_data_pickem |>
   filter(str_detect(market_name, "Threes Made O/U")) |> 
-  filter(str_detect(market_name, "rebounds|assists|Quarter|Half|\\+", negate = TRUE)) |> 
+  filter(str_detect(market_name, "Quarter|Half|\\+", negate = TRUE)) |> 
   mutate(player_name = str_remove_all(selection_name, " Over.*$")) |> 
   mutate(player_name = str_remove_all(player_name, " Under.*$")) |> 
   mutate(line = as.numeric(str_extract(selection_name, "\\d+\\.?\\d?"))) |>
@@ -1011,7 +1008,7 @@ player_threes_pickem <-
 player_pras_pickem <-
   prop_data_pickem |>
   filter(str_detect(market_name, "Pts \\+ Reb \\+ Ast O/U")) |> 
-  filter(str_detect(market_name, "rebounds|assists|Quarter|Half", negate = TRUE)) |> 
+  filter(str_detect(market_name, "Quarter|Half", negate = TRUE)) |> 
   mutate(player_name = str_remove_all(selection_name, " Over.*$")) |> 
   mutate(player_name = str_remove_all(player_name, " Under.*$")) |> 
   mutate(line = as.numeric(str_extract(selection_name, "\\d+\\.?\\d?"))) |>

@@ -9,13 +9,16 @@ from aiofiles import open as aio_open
 csv_path = os.path.join("OddsScraper", "Neds", "neds_nba_match_urls.csv")
 match_urls = pd.read_csv(csv_path)
 
-# Get the URLs as a list
-urls = match_urls["url"].tolist()
+# Convert start_date and make timezone-aware comparison
+match_urls["start_date"] = pd.to_datetime(match_urls["start_date"])
+now = pd.to_datetime("now", utc=True)  # Get current time in UTC
+match_urls = match_urls[
+    (match_urls["start_date"] >= now) & 
+    (match_urls["start_date"] <= now + pd.Timedelta(days=2))
+]
 
 async def main():
-    # Reload URLs from the CSV file
-    csv_path = os.path.join("OddsScraper", "Neds", "neds_nba_match_urls.csv")
-    match_urls = pd.read_csv(csv_path)
+    # Get the URLs as a list
     urls = match_urls["url"].tolist()
 
     # Ensure the output directory exists
@@ -52,7 +55,7 @@ async def main():
         for url in urls:
             await page.goto(url)
             # Wait 1 seconds
-            await asyncio.sleep(0.5)
+            await asyncio.sleep(1.5)
             # Add any necessary waits here to ensure the page loads completely
 
         await browser.close()

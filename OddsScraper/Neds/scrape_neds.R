@@ -3,6 +3,7 @@ library(tidyverse)
 library(rvest)
 library(httr2)
 library(jsonlite)
+source("Scripts/fix_player_names.R")
 
 # Get teams table
 teams <-
@@ -167,7 +168,9 @@ h2h_data <-
 # Filter to only include player points markets
 player_points_data <-
 market_df |> 
-    filter(str_detect(market_name, "(Player Points O/U)|(To Score)"))
+    filter(str_detect(market_name, "(Player Points O/U)|(To Score)")) |> 
+  filter(str_detect(market_name, "Duos|Trios", negate = TRUE))
+  
 
 # Overs
 points_overs <-
@@ -213,11 +216,7 @@ player_points_data <-
     points_overs |> 
     full_join(points_unders, by = c("match", "player_name", "line", "agency", "market_name")) |> 
     select(match, market_name, player_name, line, over_price, under_price, agency) |> 
-    mutate(player_name = case_when(player_name == "PJ Washington" ~ "P.J. Washington",
-                                   player_name == "Kelly Oubre" ~ "Kelly Oubre Jr.",
-                                   player_name == "Derrick Jones" ~ "Derrick Jones Jr.",
-                                   player_name == "Jabari Smith Jr" ~ "Jabari Smith Jr.",
-                                   .default = player_name)) |> 
+    mutate(player_name = fix_player_names(player_name)) |> 
     left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |> 
     rename(player_team = team_name) |>
     mutate(match = str_replace(match, " vs ", " v ")) |>
@@ -280,12 +279,8 @@ assists_unders <-
 player_assists_data <-
     assists_overs |> 
     full_join(assists_unders, by = c("match", "player_name", "line", "agency", "market_name")) |> 
-    select(match, market_name, player_name, line, over_price, under_price, agency) |> 
-  mutate(player_name = case_when(player_name == "PJ Washington" ~ "P.J. Washington",
-                                 player_name == "Kelly Oubre" ~ "Kelly Oubre Jr.",
-                                 player_name == "Derrick Jones" ~ "Derrick Jones Jr.",
-                                 player_name == "Jabari Smith Jr" ~ "Jabari Smith Jr.",
-                                 .default = player_name)) |> 
+  select(match, market_name, player_name, line, over_price, under_price, agency) |> 
+  mutate(player_name = fix_player_names(player_name)) |> 
   left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |> 
   rename(player_team = team_name) |>
   mutate(match = str_replace(match, " vs ", " v ")) |>
@@ -348,12 +343,8 @@ rebounds_unders <-
 player_rebounds_data <-
     rebounds_overs |> 
     full_join(rebounds_unders, by = c("match", "player_name", "line", "agency", "market_name")) |> 
-    select(match, market_name, player_name, line, over_price, under_price, agency) |> 
-  mutate(player_name = case_when(player_name == "PJ Washington" ~ "P.J. Washington",
-                                 player_name == "Kelly Oubre" ~ "Kelly Oubre Jr.",
-                                 player_name == "Derrick Jones" ~ "Derrick Jones Jr.",
-                                 player_name == "Jabari Smith Jr" ~ "Jabari Smith Jr.",
-                                 .default = player_name)) |> 
+  select(match, market_name, player_name, line, over_price, under_price, agency) |> 
+  mutate(player_name = fix_player_names(player_name)) |> 
   left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |> 
   rename(player_team = team_name) |>
   mutate(match = str_replace(match, " vs ", " v ")) |>
@@ -371,7 +362,8 @@ player_rebounds_data <-
 # Filter to only include player pras markets
 player_pras_data <-
   market_df |> 
-  filter(str_detect(market_name, "PRA"))
+  filter(str_detect(market_name, "PRA")) |> 
+  filter(str_detect(market_name, "Duos|Trios", negate = TRUE))
 
 # Overs
 pras_overs <-
@@ -417,11 +409,7 @@ player_pras_data <-
   pras_overs |> 
   full_join(pras_unders, by = c("match", "player_name", "line", "agency", "market_name")) |> 
   select(match, market_name, player_name, line, over_price, under_price, agency) |> 
-  mutate(player_name = case_when(player_name == "PJ Washington" ~ "P.J. Washington",
-                                 player_name == "Kelly Oubre" ~ "Kelly Oubre Jr.",
-                                 player_name == "Derrick Jones" ~ "Derrick Jones Jr.",
-                                 player_name == "Jabari Smith Jr" ~ "Jabari Smith Jr.",
-                                 .default = player_name)) |> 
+  mutate(player_name = fix_player_names(player_name)) |> 
   left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |> 
   rename(player_team = team_name) |>
   mutate(match = str_replace(match, " vs ", " v ")) |>
@@ -439,7 +427,8 @@ player_pras_data <-
 # Filter to only include player threes markets
 player_threes_data <-
   market_df |> 
-  filter(str_detect(market_name, "Three Point FG"))
+  filter(str_detect(market_name, "Three Point FG")) |> 
+  filter(str_detect(market_name, "Duos|Trios", negate = TRUE))
 
 # Overs
 threes_overs <-
@@ -485,11 +474,7 @@ player_threes_data <-
   threes_overs |> 
   full_join(threes_unders, by = c("match", "player_name", "line", "agency", "market_name")) |> 
   select(match, market_name, player_name, line, over_price, under_price, agency) |> 
-  mutate(player_name = case_when(player_name == "PJ Washington" ~ "P.J. Washington",
-                                 player_name == "Kelly Oubre" ~ "Kelly Oubre Jr.",
-                                 player_name == "Derrick Jones" ~ "Derrick Jones Jr.",
-                                 player_name == "Jabari Smith Jr" ~ "Jabari Smith Jr.",
-                                 .default = player_name)) |> 
+  mutate(player_name = fix_player_names(player_name)) |> 
   left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |> 
   rename(player_team = team_name) |>
   mutate(match = str_replace(match, " vs ", " v ")) |>
@@ -553,12 +538,7 @@ player_steals_data <-
   steals_overs |> 
   full_join(steals_unders, by = c("match", "player_name", "line", "agency", "market_name")) |> 
   select(match, market_name, player_name, line, over_price, under_price, agency) |> 
-  mutate(player_name = case_when(player_name == "PJ Washington" ~ "P.J. Washington",
-                                 player_name == "Kelly Oubre" ~ "Kelly Oubre Jr.",
-                                 player_name == "Derrick Jones" ~ "Derrick Jones Jr.",
-                                 player_name == "Jabari Smith Jr" ~ "Jabari Smith Jr.",
-                                 player_name == "Cam Payne" ~ "Cameron Payne",
-                                 .default = player_name)) |> 
+  mutate(player_name = fix_player_names(player_name)) |> 
   left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |> 
   rename(player_team = team_name) |>
   mutate(match = str_replace(match, " vs ", " v ")) |>
@@ -622,12 +602,7 @@ player_blocks_data <-
   blocks_overs |> 
   full_join(blocks_unders, by = c("match", "player_name", "line", "agency", "market_name")) |> 
   select(match, market_name, player_name, line, over_price, under_price, agency) |> 
-  mutate(player_name = case_when(player_name == "PJ Washington" ~ "P.J. Washington",
-                                 player_name == "Kelly Oubre" ~ "Kelly Oubre Jr.",
-                                 player_name == "Derrick Jones" ~ "Derrick Jones Jr.",
-                                 player_name == "Jabari Smith Jr" ~ "Jabari Smith Jr.",
-                                 player_name == "Cam Payne" ~ "Cameron Payne",
-                                 .default = player_name)) |> 
+  mutate(player_name = fix_player_names(player_name)) |> 
   left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |> 
   rename(player_team = team_name) |>
   mutate(match = str_replace(match, " vs ", " v ")) |>
@@ -650,4 +625,3 @@ player_pras_data |> write_csv("Data/scraped_odds/neds_player_pras.csv")
 player_threes_data |> write_csv("Data/scraped_odds/neds_player_threes.csv")
 player_blocks_data |> write_csv("Data/scraped_odds/neds_player_blocks.csv")
 player_steals_data |> write_csv("Data/scraped_odds/neds_player_steals.csv")
-

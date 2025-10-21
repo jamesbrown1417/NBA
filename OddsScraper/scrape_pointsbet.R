@@ -4,6 +4,7 @@ library(rvest)
 library(httr2)
 library(jsonlite)
 library(tidyjson)
+source("Scripts/fix_player_names.R")
 
 # Get teams table
 teams <-
@@ -241,40 +242,7 @@ pointsbet_h2h_main <- function() {
   pointsbet_data_player_props <- map_df(match_urls, get_player_props)
   
   # Helper function to correct common player names
-  correct_player_names <- function(player_name) {
-    case_when(
-      player_name == "Lebron James" ~ "LeBron James",
-      player_name == "D'angelo Russell" ~ "D'Angelo Russell",
-      player_name == "K. Caldwell-Pope" ~ "Kentavious Caldwell-Pope",
-      player_name == "De'andre Hunter" ~ "De'Andre Hunter",
-      player_name == "Lamelo Ball" ~ "LaMelo Ball",
-      player_name == "Fred Vanvleet" ~ "Fred VanVleet",
-      player_name == "Demar Derozan" ~ "DeMar DeRozan",
-      player_name == "Joshua Giddey" ~ "Josh Giddey",
-      player_name == "Rj Barrett" ~ "RJ Barrett",
-      player_name == "Michael Porter" ~ "Michael Porter Jr.",
-      player_name == "Wendell Carter" ~ "Wendell Carter Jr.",
-      player_name == "Zach Lavine" ~ "Zach LaVine",
-      player_name == "S. Gilgeous-Alexander" ~ "Shai Gilgeous-Alexander",
-      player_name == "De'aaron Fox" ~ "De'Aaron Fox",
-      player_name == "Gary Payton Ii" ~ "Gary Payton II",
-      player_name == "Nicolas Claxton" ~ "Nic Claxton",
-      player_name == "Gary Trent" ~ "Gary Trent Jr.",
-      player_name == "Cj Mccollum" ~ "CJ McCollum",
-      player_name == "Tim Hardaway" ~ "Tim Hardaway Jr.",
-      player_name == "De'anthony Melton" ~ "De'Anthony Melton",
-      player_name == "G. Antetokounmpo" ~ "Giannis Antetokounmpo",
-      player_name == "Cameron Thomas" ~ "Cam Thomas",
-      player_name == "Kelly Oubre" ~ "Kelly Oubre Jr.",
-      player_name == "Jaden Mcdaniels" ~ "Jaden McDaniels",
-      player_name == "Og Anunoby" ~ "OG Anunoby",
-      player_name == "Dereck Lively" ~ "Dereck Lively II",
-      player_name == "Miles Mcbride" ~ "Miles McBride",
-      player_name == "N. Alexander-Walker" ~ "Nickeil Alexander-Walker",
-      player_name == "Donte Divincenzo" ~ "Donte DiVincenzo",
-      .default = player_name
-    )
-  }
+  
   
   #===============================================================================
   # Player Points
@@ -291,7 +259,7 @@ pointsbet_h2h_main <- function() {
     mutate(match = str_replace(match, "@", "v")) |>
     mutate(outcome = str_remove(outcome, " To Score.*$")) |>
     separate(match, into = c("away_team", "home_team"), sep = " v ", remove = FALSE) |>
-    mutate(outcome = correct_player_names(outcome)) |>
+    mutate(outcome = fix_player_names(outcome)) |>
     left_join(player_names[, c("player_full_name", "team_name")], by = c("outcome" = "player_full_name")) |>
     mutate(opposition_team = if_else(home_team == team_name, away_team, home_team)) |>
     transmute(
@@ -326,7 +294,7 @@ pointsbet_h2h_main <- function() {
     mutate(line = as.numeric(line)) |>
     mutate(match = str_replace(match, "@", "v")) |>
     separate(match, into = c("away_team", "home_team"), sep = " v ", remove = FALSE) |>
-    mutate(player_name = correct_player_names(player_name)) |>
+    mutate(player_name = fix_player_names(player_name)) |>
     left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
     mutate(opposition_team = if_else(home_team == team_name, away_team, home_team)) |>
     transmute(
@@ -354,7 +322,7 @@ pointsbet_h2h_main <- function() {
     mutate(line = as.numeric(line)) |>
     mutate(match = str_replace(match, "@", "v")) |>
     separate(match, into = c("away_team", "home_team"), sep = " v ", remove = FALSE) |>
-    mutate(player_name = correct_player_names(player_name)) |>
+    mutate(player_name = fix_player_names(player_name)) |>
     left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
     mutate(opposition_team = if_else(home_team == team_name, away_team, home_team)) |>
     transmute(
@@ -407,7 +375,7 @@ pointsbet_h2h_main <- function() {
     mutate(match = str_replace(match, "@", "v")) |>
     mutate(outcome = str_remove(outcome, " To Get.*$")) |>
     separate(match, into = c("away_team", "home_team"), sep = " v ", remove = FALSE) |>
-    mutate(outcome = correct_player_names(outcome)) |>
+    mutate(outcome = fix_player_names(outcome)) |>
     left_join(player_names[, c("player_full_name", "team_name")], by = c("outcome" = "player_full_name")) |>
     mutate(opposition_team = if_else(home_team == team_name, away_team, home_team)) |>
     transmute(
@@ -442,7 +410,7 @@ pointsbet_h2h_main <- function() {
     mutate(line = as.numeric(line)) |>
     mutate(match = str_replace(match, "@", "v")) |>
     separate(match, into = c("away_team", "home_team"), sep = " v ", remove = FALSE) |>
-    mutate(player_name = correct_player_names(player_name)) |>
+    mutate(player_name = fix_player_names(player_name)) |>
     left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
     mutate(opposition_team = if_else(home_team == team_name, away_team, home_team)) |>
     transmute(
@@ -470,7 +438,7 @@ pointsbet_h2h_main <- function() {
     mutate(line = as.numeric(line)) |>
     mutate(match = str_replace(match, "@", "v")) |>
     separate(match, into = c("away_team", "home_team"), sep = " v ", remove = FALSE) |>
-    mutate(player_name = correct_player_names(player_name)) |>
+    mutate(player_name = fix_player_names(player_name)) |>
     left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
     mutate(opposition_team = if_else(home_team == team_name, away_team, home_team)) |>
     transmute(
@@ -523,7 +491,7 @@ pointsbet_h2h_main <- function() {
     mutate(match = str_replace(match, "@", "v")) |>
     mutate(outcome = str_remove(outcome, " To Get.*$")) |>
     separate(match, into = c("away_team", "home_team"), sep = " v ", remove = FALSE) |>
-    mutate(outcome = correct_player_names(outcome)) |>
+    mutate(outcome = fix_player_names(outcome)) |>
     left_join(player_names[, c("player_full_name", "team_name")], by = c("outcome" = "player_full_name")) |>
     mutate(opposition_team = if_else(home_team == team_name, away_team, home_team)) |>
     transmute(
@@ -558,7 +526,7 @@ pointsbet_h2h_main <- function() {
     mutate(line = as.numeric(line)) |>
     mutate(match = str_replace(match, "@", "v")) |>
     separate(match, into = c("away_team", "home_team"), sep = " v ", remove = FALSE) |>
-    mutate(player_name = correct_player_names(player_name)) |>
+    mutate(player_name = fix_player_names(player_name)) |>
     left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
     mutate(opposition_team = if_else(home_team == team_name, away_team, home_team)) |>
     transmute(
@@ -586,7 +554,7 @@ pointsbet_h2h_main <- function() {
     mutate(line = as.numeric(line)) |>
     mutate(match = str_replace(match, "@", "v")) |>
     separate(match, into = c("away_team", "home_team"), sep = " v ", remove = FALSE) |>
-    mutate(player_name = correct_player_names(player_name)) |>
+    mutate(player_name = fix_player_names(player_name)) |>
     left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
     mutate(opposition_team = if_else(home_team == team_name, away_team, home_team)) |>
     transmute(
@@ -639,7 +607,7 @@ pointsbet_h2h_main <- function() {
     mutate(match = str_replace(match, "@", "v")) |>
     mutate(outcome = str_remove(outcome, " To Get.*$")) |>
     separate(match, into = c("away_team", "home_team"), sep = " v ", remove = FALSE) |>
-    mutate(outcome = correct_player_names(outcome)) |>
+    mutate(outcome = fix_player_names(outcome)) |>
     left_join(player_names[, c("player_full_name", "team_name")], by = c("outcome" = "player_full_name")) |>
     mutate(opposition_team = if_else(home_team == team_name, away_team, home_team)) |>
     transmute(
@@ -674,7 +642,7 @@ pointsbet_h2h_main <- function() {
     mutate(line = as.numeric(line)) |>
     mutate(match = str_replace(match, "@", "v")) |>
     separate(match, into = c("away_team", "home_team"), sep = " v ", remove = FALSE) |>
-    mutate(player_name = correct_player_names(player_name)) |>
+    mutate(player_name = fix_player_names(player_name)) |>
     left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
     mutate(opposition_team = if_else(home_team == team_name, away_team, home_team)) |>
     transmute(
@@ -702,7 +670,7 @@ pointsbet_h2h_main <- function() {
     mutate(line = as.numeric(line)) |>
     mutate(match = str_replace(match, "@", "v")) |>
     separate(match, into = c("away_team", "home_team"), sep = " v ", remove = FALSE) |>
-    mutate(player_name = correct_player_names(player_name)) |>
+    mutate(player_name = fix_player_names(player_name)) |>
     left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
     mutate(opposition_team = if_else(home_team == team_name, away_team, home_team)) |>
     transmute(
@@ -755,7 +723,7 @@ pointsbet_h2h_main <- function() {
     mutate(match = str_replace(match, "@", "v")) |>
     mutate(outcome = str_remove(outcome, " To Get.*$")) |>
     separate(match, into = c("away_team", "home_team"), sep = " v ", remove = FALSE) |>
-    mutate(outcome = correct_player_names(outcome)) |>
+    mutate(outcome = fix_player_names(outcome)) |>
     left_join(player_names[, c("player_full_name", "team_name")], by = c("outcome" = "player_full_name")) |>
     mutate(opposition_team = if_else(home_team == team_name, away_team, home_team)) |>
     transmute(
@@ -790,7 +758,7 @@ pointsbet_h2h_main <- function() {
     mutate(line = as.numeric(line)) |>
     mutate(match = str_replace(match, "@", "v")) |>
     separate(match, into = c("away_team", "home_team"), sep = " v ", remove = FALSE) |>
-    mutate(player_name = correct_player_names(player_name)) |>
+    mutate(player_name = fix_player_names(player_name)) |>
     left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
     mutate(opposition_team = if_else(home_team == team_name, away_team, home_team)) |>
     transmute(
@@ -818,7 +786,7 @@ pointsbet_h2h_main <- function() {
     mutate(line = as.numeric(line)) |>
     mutate(match = str_replace(match, "@", "v")) |>
     separate(match, into = c("away_team", "home_team"), sep = " v ", remove = FALSE) |>
-    mutate(player_name = correct_player_names(player_name)) |>
+    mutate(player_name = fix_player_names(player_name)) |>
     left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
     mutate(opposition_team = if_else(home_team == team_name, away_team, home_team)) |>
     transmute(
@@ -871,7 +839,7 @@ pointsbet_h2h_main <- function() {
     mutate(match = str_replace(match, "@", "v")) |>
     mutate(outcome = str_remove(outcome, " To Get.*$")) |>
     separate(match, into = c("away_team", "home_team"), sep = " v ", remove = FALSE) |>
-    mutate(outcome = correct_player_names(outcome)) |>
+    mutate(outcome = fix_player_names(outcome)) |>
     left_join(player_names[, c("player_full_name", "team_name")], by = c("outcome" = "player_full_name")) |>
     mutate(opposition_team = if_else(home_team == team_name, away_team, home_team)) |>
     transmute(
@@ -906,7 +874,7 @@ pointsbet_h2h_main <- function() {
     mutate(line = as.numeric(line)) |>
     mutate(match = str_replace(match, "@", "v")) |>
     separate(match, into = c("away_team", "home_team"), sep = " v ", remove = FALSE) |>
-    mutate(player_name = correct_player_names(player_name)) |>
+    mutate(player_name = fix_player_names(player_name)) |>
     left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
     mutate(opposition_team = if_else(home_team == team_name, away_team, home_team)) |>
     transmute(
@@ -934,7 +902,7 @@ pointsbet_h2h_main <- function() {
     mutate(line = as.numeric(line)) |>
     mutate(match = str_replace(match, "@", "v")) |>
     separate(match, into = c("away_team", "home_team"), sep = " v ", remove = FALSE) |>
-    mutate(player_name = correct_player_names(player_name)) |>
+    mutate(player_name = fix_player_names(player_name)) |>
     left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
     mutate(opposition_team = if_else(home_team == team_name, away_team, home_team)) |>
     transmute(
@@ -987,7 +955,7 @@ pointsbet_h2h_main <- function() {
     mutate(match = str_replace(match, "@", "v")) |>
     mutate(outcome = str_remove(outcome, " To Get.*$")) |>
     separate(match, into = c("away_team", "home_team"), sep = " v ", remove = FALSE) |>
-    mutate(outcome = correct_player_names(outcome)) |>
+    mutate(outcome = fix_player_names(outcome)) |>
     left_join(player_names[, c("player_full_name", "team_name")], by = c("outcome" = "player_full_name")) |>
     mutate(opposition_team = if_else(home_team == team_name, away_team, home_team)) |>
     transmute(
@@ -1022,7 +990,7 @@ pointsbet_h2h_main <- function() {
     mutate(line = as.numeric(line)) |>
     mutate(match = str_replace(match, "@", "v")) |>
     separate(match, into = c("away_team", "home_team"), sep = " v ", remove = FALSE) |>
-    mutate(player_name = correct_player_names(player_name)) |>
+    mutate(player_name = fix_player_names(player_name)) |>
     left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
     mutate(opposition_team = if_else(home_team == team_name, away_team, home_team)) |>
     transmute(
@@ -1050,7 +1018,7 @@ pointsbet_h2h_main <- function() {
     mutate(line = as.numeric(line)) |>
     mutate(match = str_replace(match, "@", "v")) |>
     separate(match, into = c("away_team", "home_team"), sep = " v ", remove = FALSE) |>
-    mutate(player_name = correct_player_names(player_name)) |>
+    mutate(player_name = fix_player_names(player_name)) |>
     left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
     mutate(opposition_team = if_else(home_team == team_name, away_team, home_team)) |>
     transmute(

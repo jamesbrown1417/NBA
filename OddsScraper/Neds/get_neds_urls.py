@@ -3,7 +3,7 @@ import asyncio
 import os
 
 # The URL pattern we are interested in
-url_pattern = "https://api.neds.com.au/v2/sport/event-request?category_ids=%5B%223c34d075-dc14-436d-bfc4-9272a49c2b39%22%5D&include_any_team_vs_any_team_events=true"
+url_pattern = "https://api.neds.com.au/v2/sport/event-request?category_ids=%5B%223c34d075-dc14-436d-bfc4-9272a49c2b39%22%5D"
 
 async def close_browser(browser):
     """Close the browser."""
