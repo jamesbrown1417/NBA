@@ -12,6 +12,10 @@ scraped_files_player <- list.files("OddsScraper/Bet365/HTML", full.names = TRUE,
 source("Scripts/fix_team_names.R")
 source("Scripts/fix_player_names.R")
 
+# Get teams table
+teams <-
+  read_csv("Data/all_teams.csv")
+
 # Get players
 player_names_all <-
   read_csv("Data/all_rosters.csv") |>
@@ -21,10 +25,6 @@ player_names_all <-
   mutate(surname = str_extract(player_full_name, "(?<=\\s).*$")) |> 
   mutate(join_name = paste(first_initial, surname, sep = " ")) |> 
   rename(team_name = full_name)
-
-# Get teams table
-teams <-
-  read_csv("Data/all_teams.csv")
 
 # Main Function
 get_player_props <- function(scraped_file) {
