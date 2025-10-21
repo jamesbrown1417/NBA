@@ -205,6 +205,16 @@ get_prop_data <- function(link) {
 # Safe version of function
 safe_get_prop_data <- safely(get_prop_data)
 
+# All props
+all_props <-
+map(all_links, safe_get_prop_data) |> 
+  map("result") |>
+  bind_rows() |>
+  rename(match_id = link) |> 
+  mutate(match_id = as.integer(str_extract(match_id, "[0-9]{4,7}"))) |> 
+  left_join(match_names) |> 
+  filter(!is.na(outcome_name)) 
+
 #===============================================================================
 # Player Points
 #===============================================================================
@@ -216,13 +226,7 @@ match_names <-
 
 # Get all player points (alternate)
 betright_player_points <-
-  map(all_links, safe_get_prop_data) |> 
-  map("result") |>
-  bind_rows() |>
-  rename(match_id = link) |> 
-  mutate(match_id = as.integer(str_extract(match_id, "[0-9]{4,7}"))) |> 
-  left_join(match_names) |> 
-  filter(!is.na(outcome_name)) |> 
+  all_props |> 
   filter(str_detect(event_name, "^Player Points \\-")) |>
   separate(event_name, into = c("market_name", "player_name"), sep = " - ") |>
   mutate(player_name = str_remove_all(player_name, " \\(.*\\)")) |>
@@ -256,6 +260,90 @@ betright_player_points <-
   mutate(player_team = fix_team_names(player_team)) |>
   mutate(opposition_team = fix_team_names(opposition_team)) |> 
   mutate(match = paste(home_team, away_team, sep = " v "))
+
+# Get player points (lines) - Overs
+betright_player_points_lines_overs <-
+  all_props |> 
+  filter(str_detect(event_name, "^Player Points Over\\/Under.*")) |>
+  filter(str_detect(outcome_name, "Over")) |>
+  separate(event_name, into = c("market_name", "player_name"), sep = " - ") |>
+  mutate(player_name = str_remove_all(player_name, " \\(.*\\)")) |> 
+  mutate(player_name = str_replace_all(player_name, "  ", " ")) |>
+  mutate(player_name = fix_player_names(player_name)) |>
+  left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
+  rename(player_team = team_name) |>
+  separate(match, into = c("away_team", "home_team"), sep = " @ ", remove = FALSE) |>
+  mutate(opposition_team = if_else(home_team == player_team, away_team, home_team)) |>
+  mutate(agency = "BetRight") |>
+  mutate(line = str_extract(outcome_name, "\\d+\\.?\\d*")) |>
+  mutate(line = as.numeric(line)) |>
+  mutate(market_name = "Player Points") |> 
+  select(
+    "match",
+    "home_team",
+    "away_team",
+    "market_name",
+    "player_name",
+    "player_team",
+    "line",
+    "over_price" = "price",
+    "agency",
+    "event_id",
+    "outcome_name",
+    "outcome_id",
+    "fixed_market_id",
+    "opposition_team"
+  ) |>
+  mutate(home_team = fix_team_names(home_team)) |>
+  mutate(away_team = fix_team_names(away_team)) |>
+  mutate(player_team = fix_team_names(player_team)) |>
+  mutate(opposition_team = fix_team_names(opposition_team)) |>
+  mutate(match = paste(home_team, away_team, sep = " v "))
+
+# Get player points (lines) - Unders
+betright_player_points_lines_unders <-
+  all_props |> 
+  filter(str_detect(event_name, "^Player Points Over\\/Under.*")) |>
+  filter(str_detect(outcome_name, "Under")) |>
+  separate(event_name, into = c("market_name", "player_name"), sep = " - ") |>
+  mutate(player_name = str_remove_all(player_name, " \\(.*\\)")) |> 
+  mutate(player_name = str_replace_all(player_name, "  ", " ")) |>
+  mutate(player_name = fix_player_names(player_name)) |>
+  left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
+  rename(player_team = team_name) |>
+  separate(match, into = c("away_team", "home_team"), sep = " @ ", remove = FALSE) |>
+  mutate(opposition_team = if_else(home_team == player_team, away_team, home_team)) |>
+  mutate(agency = "BetRight") |>
+  mutate(line = str_extract(outcome_name, "\\d+\\.?\\d*")) |>
+  mutate(line = as.numeric(line)) |>
+  mutate(market_name = "Player Points") |> 
+  select(
+    "match",
+    "home_team",
+    "away_team",
+    "market_name",
+    "player_name",
+    "player_team",
+    "line",
+    "under_price" = "price",
+    "agency",
+    "event_id",s
+    "outcome_name",
+    "outcome_id",
+    "fixed_market_id",
+    "opposition_team"
+  ) |>
+  mutate(home_team = fix_team_names(home_team)) |>
+  mutate(away_team = fix_team_names(away_team)) |>
+  mutate(player_team = fix_team_names(player_team)) |>
+  mutate(opposition_team = fix_team_names(opposition_team)) |>
+  mutate(match = paste(home_team, away_team, sep = " v "))
+
+# Get all player points together
+betright_player_points_all <-
+  bind_rows(betright_player_points,
+            betright_player_points_lines_overs) |> 
+  left_join(betright_player_points_lines_unders)
 
 #===============================================================================
 # Player Assists
