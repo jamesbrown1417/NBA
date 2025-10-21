@@ -1004,6 +1004,7 @@ all_player_props <-
   left_join(player_names_all[,c("player_full_name", "team_name")], by = c("player" = "player_full_name")) |>
   rename(player_name = player) |> 
   mutate(player_team = fix_team_names(team_name)) |> 
+  select(-team_name) |>
   separate(match, into = c("away_team", "home_team"), sep = " @ ", remove = FALSE) |> 
   mutate(home_team = fix_team_names(home_team),
          away_team = fix_team_names(away_team)) |>

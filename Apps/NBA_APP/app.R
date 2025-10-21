@@ -1020,7 +1020,8 @@ server <- function(input, output) {
     # Remove columns we don't want
     odds <-
       odds |> 
-      select(-group_by_header, -outcome_name, -outcome_name_under, -EventKey, -MarketKey, -OutcomeKey, -OutcomeKey_unders) |> 
+      select(-any_of(c("group_by_header", "outcome_name", "outcome_name_under", 
+                       "EventKey", "MarketKey", "OutcomeKey", "OutcomeKey_unders"))) |> 
       relocate(agency, .after = player_name)
     
     # Return odds

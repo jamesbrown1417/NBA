@@ -324,6 +324,45 @@ tab_points_miss_by_one <-
   distinct(match, player_name, line, over_agency, under_agency, .keep_all = TRUE) |>
   relocate(over_price, over_agency, under_price, under_agency, .after = opposition_team)
 
+# BetRight miss-by-one points---------------------------------------------------
+betright_points_miss_by_one <-
+  points_unders |>
+  inner_join(
+    (all_player_points |>
+       filter(market_name == "Player Points") |>
+       filter(is.na(under_price)) |> 
+       select(
+         match,
+         market_name,
+         player_name,
+         player_team,
+         line,
+         over_price,
+         opposition_team,
+         agency
+       ) |>
+       rename(over_agency = agency) |>
+       mutate(line = line - 1)),
+    by = c(
+      "match",
+      "market_name",
+      "player_name",
+      "player_team",
+      "line",
+      "opposition_team"
+    ),
+    relationship = "many-to-many"
+  ) |>
+  filter(over_agency == "BetRight") |>
+  relocate(under_price, .after = over_price) |>
+  mutate(margin = 1 / under_price + 1 / over_price) |>
+  arrange(margin) |>
+  mutate(margin = (1 - margin)) |>
+  mutate(margin = 100 * margin) |>
+  # filter(margin > 0) |>
+  distinct(match, player_name, line, over_agency, under_agency, .keep_all = TRUE) |>
+  relocate(over_price, over_agency, under_price, under_agency, .after = opposition_team)
+
 # Rebounds----------------------------------------------------------------------
 rebounds_unders <-
   all_player_rebounds |>
@@ -713,6 +752,16 @@ tab_points_miss_by_one |>
   filter(gmt_time_dttm < start_time) |>
   select(-start_time) |>
   write_rds("Data/tab_points_miss_by_one.rds")
+
+betright_points_miss_by_one |> 
+  arrange(desc(margin)) |> 
+  filter(!is.na(player_name)) |>
+  left_join(start_times, by = "match") |>
+  filter(margin > 0) |> 
+  # Filter out cases where current time is more than 5 mins after start time
+  filter(gmt_time_dttm < start_time) |>
+  select(-start_time) |>
+  write_rds("Data/betright_points_miss_by_one.rds")
 
 #===============================================================================
 # Middles

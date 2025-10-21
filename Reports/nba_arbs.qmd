@@ -131,11 +131,13 @@ html`
 # Libraries
 library(tidyverse)
 library(DT)
+library(quartabs)
 
 # Read in files
 all_arbs <- read_rds("../Data/all_arbs.rds")
 all_middles <- read_rds("../Data/all_middles.rds")
 tab_miss_by_one <- read_rds("../Data/tab_points_miss_by_one.rds")
+betright_miss_by_one <- read_rds("../Data/betright_points_miss_by_one.rds")
 ```
 
 ::::: panel-tabset
@@ -264,6 +266,21 @@ tab_miss_by_1_points_arbs <-
 
 tab_miss_by_1_points_arbs
 ```
+
+## BetRight Miss-by-1 Points
+```{r}
+#| column: page
+
+betright_miss_by_1_points_arbs <-
+  betright_miss_by_one |>
+  filter(margin > 0) |> 
+  filter(over_agency %in% c("Sportsbet") | under_agency %in% c("Sportsbet")) |> 
+  filter(over_agency %in% c("BetRight") | under_agency %in% c("BetRight")) |> 
+  filter(line >= 8.5) |> 
+  mutate(margin = round(margin, 2))
+
+betright_miss_by_1_points_arbs
+```
 :::
 
 ## Arbs
@@ -320,4 +337,97 @@ tab_miss_by_1_points_arbs
 all_middles |> 
   mutate(margin = round(margin, 2))
 ```
+
+## Multi Legs
+
+::: panel-tabset
+
+## Dabble
+
+```{r}
+#| results: asis
+
+processed_odds <-
+  list.files("../Data/Processed_Odds/", full.names = TRUE) |>
+  map_dfr(read_rds) |> 
+  select(match, player_name, market_name, line, over_price, agency, empirical_prob_last_20) |> 
+  arrange(desc(empirical_prob_last_20), desc(over_price)) |> 
+  filter(empirical_prob_last_20 >= 0.9)
+
+# Get list of tibbles (one for each agency)
+match_list_dabble <- processed_odds |>
+  filter(agency == "Dabble") |>
+  select(-agency) |>
+  split(~match)
+
+qreport::maketabs(match_list_dabble, wide = TRUE)
+```
+
+## BetRight
+```{r}
+#| results: asis
+
+# Get list of tibbles (one for each agency)
+match_list_betright <- processed_odds |>
+  filter(agency == "BetRight") |> 
+  select(-agency) |>
+  split(~match)
+
+qreport::maketabs(match_list_betright, wide = TRUE)
+```
+
+## TAB
+```{r}
+#| results: asis
+
+# Get list of tibbles (one for each agency)
+match_list_tab <- processed_odds |>
+  filter(agency == "TAB") |> 
+  select(-agency) |>
+  split(~match)
+
+qreport::maketabs(match_list_tab, wide = TRUE)
+```
+
+## Neds
+```{r}
+#| results: asis
+
+# Get list of tibbles (one for each agency)
+match_list_neds <- processed_odds |>
+  filter(agency == "Neds") |> 
+  select(-agency) |>
+  split(~match)
+
+qreport::maketabs(match_list_neds, wide = TRUE)
+```
+
+## Pointsbet
+```{r}
+#| results: asis
+
+# Get list of tibbles (one for each agency)
+match_list_pb <- processed_odds |>
+  filter(agency == "Pointsbet") |> 
+  select(-agency) |>
+  split(~match)
+
+qreport::maketabs(match_list_pb, wide = TRUE)
+```
+
+## Bet365
+```{r}
+#| results: asis
+
+# Get list of tibbles (one for each agency)
+match_list_bet365 <- processed_odds |>
+  filter(agency == "Bet365") |> 
+  select(-agency) |>
+  split(~match)
+
+qreport::maketabs(match_list_bet365, wide = TRUE)
+```
+
+:::
+
 :::::
