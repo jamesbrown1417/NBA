@@ -9,9 +9,6 @@ rm OddsScraper/Neds/*.json
 # Remove Scraped Odds Files
 rm Data/scraped_odds/*.csv
 
-# Remove bet365 html
-rm OddsScraper/Bet365/HTML/*.txt
-
 # Execute Python and R scripts
 python3 OddsScraper/TAB/get-TAB-response.py
 python3 OddsScraper/Neds/get_neds_urls.py
