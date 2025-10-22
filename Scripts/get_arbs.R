@@ -17,7 +17,7 @@ source("Scripts/fix_team_names.R")
 
 # Define scraping scripts
 scripts <- c(
-  "OddsScraper/scrape_betr.R",
+  # "OddsScraper/scrape_betr.R",
   "OddsScraper/scrape_BetRight.R",
   "OddsScraper/scrape_pointsbet.R",
   "OddsScraper/scrape_sportsbet.R",

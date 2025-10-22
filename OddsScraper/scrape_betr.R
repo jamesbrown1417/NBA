@@ -58,7 +58,7 @@ user_agents <- c(
 )
 
 # Polite request helper with backoff to avoid rate limits
-perform_request_json <- function(url, max_tries = 2, base_delay = 1, jitter = 0.05, verbose = TRUE, throttle = 0.3) {
+perform_request_json <- function(url, max_tries = 2, base_delay = 1, jitter = 0.05, verbose = TRUE, throttle = 1) {
   attempt <- 1
   repeat {
     # small throttle to smooth bursts

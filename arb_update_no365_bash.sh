@@ -9,6 +9,9 @@ cd ~/Projects/NBA || exit
 # Remove .json and .txt files in specific directories
 rm OddsScraper/Neds/*.json
 
+# Remove Scraped Odds Files
+rm Data/scraped_odds/*.csv
+
 # Execute Python and R scripts
 /Users/jamesbrown/.pyenv/versions/3.12.5/bin/python3 OddsScraper/TAB/get-TAB-response.py
 /Users/jamesbrown/.pyenv/versions/3.12.5/bin/python3 OddsScraper/Neds/get_neds_urls.py
