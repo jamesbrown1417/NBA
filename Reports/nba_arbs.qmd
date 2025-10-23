@@ -425,7 +425,9 @@ match_list_bet365 <- processed_odds |>
   select(-agency) |>
   split(~match)
 
-qreport::maketabs(match_list_bet365, wide = TRUE)
+# only run if there are matches
+if(length(match_list_bet365) > 0) {
+qreport::maketabs(match_list_bet365, wide = TRUE)}
 ```
 
 :::
