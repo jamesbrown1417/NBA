@@ -19,7 +19,7 @@ from dotenv import load_dotenv
 load_dotenv()
 # Fallback to a non-dotted 'env' file present in the repo
 if os.getenv('BET365USER') is None or os.getenv('BET365PW') is None:
-    load_dotenv('env')
+    load_dotenv('/Users/jamesbrown/Projects/NBA/env')
 
 # Read credentials after loading
 username = os.getenv('BET365USER')
@@ -77,6 +77,10 @@ async def collect_h2h_and_urls(driver):
     login_button = await driver.find_element(By.XPATH, "//span[contains(@class, 'slm2-52')]", timeout=5)
     await login_button.click()
     print("Clicked login button")
+
+    # Wait 2 seconds
+    print("Waiting 10 seconds...")
+    await driver.sleep(2)
 
     # Wait for market container after login
     elem = await driver.find_element(By.XPATH, "//div[contains(@class, 'gl-MarketGroup_Wrapper')]", timeout=10)
