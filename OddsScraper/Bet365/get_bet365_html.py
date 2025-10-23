@@ -47,74 +47,40 @@ NBA_schedule = NBA_schedule[NBA_schedule["match_date_adl"] > now]
 NBA_schedule = NBA_schedule[NBA_schedule["match_date_adl"].dt.date == NBA_schedule["match_date_adl"].dt.date.min()]
 
 async def collect_h2h_and_urls(driver):
-    """Navigate to main page, save H2H HTML, and return list of player URLs."""
     await driver.get('https://www.bet365.com.au/#/AC/B18/C20604387/D48/E1453/F10/')
     await driver.sleep(2)
-    # Always perform login each run
-    print("Attempting login...")
-    login_element = await driver.find_element(By.XPATH, "//div[contains(@class, 'hm-MainHeaderRHSLoggedOutWide_Login')]", timeout=10)
-    await login_element.click()
+
+    # login
+    login = await driver.find_element(By.XPATH, "//div[contains(@class, 'hm-MainHeaderRHSLoggedOutWide_Login')]")
+    await login.click()
     await driver.sleep(1)
 
-    username_field = await driver.find_element(By.XPATH, "//input[@placeholder='Username or email address']", timeout=10)
-    await username_field.clear()
-    await driver.sleep(0.3)
-    await username_field.send_keys(username)
-    print("Entered username")
+    user = await driver.find_element(By.XPATH, "//input[@placeholder='Username or email address']")
+    await user.send_keys(username)
+    pwd = await driver.find_element(By.XPATH, "//input[@placeholder='Password']")
+    await pwd.send_keys(password)
 
-    password_field = await driver.find_element(By.XPATH, "//input[@placeholder='Password']", timeout=10)
-    await password_field.clear()
-    await driver.sleep(0.3)
-    await password_field.send_keys(password)
-    # Avoid logging passwords
-    print("Entered password")
+    btn = await driver.find_element(By.XPATH, "//span[contains(@class, 'slm2-52')]")
+    await btn.click()
+    await driver.sleep(3)
 
-    login_button = await driver.find_element(By.XPATH, "//span[contains(@class, 'slm2-52')]", timeout=5)
-    await login_button.click()
-    print("Clicked login button")
+    FIXTURE_XPATH = "//div[contains(@class,'scb-ParticipantFixtureDetailsHigherBasketball-wide') and not(contains(@class,'Hidden'))]"
+    CLOCK_XPATH = ".//div[contains(@class,'pi-CouponParticipantClockInPlay_Extra') or contains(@class,'pi-CouponParticipantClockInPlay_GameTimerWrapper')]"
+    TEAM_XPATH = ".//div[contains(@class,'scb-ParticipantFixtureDetailsHigherBasketball_TeamNames')]"
 
-    # Wait for market container after login
-    elem = await driver.find_element(By.XPATH, "//div[contains(@class, 'gl-MarketGroup_Wrapper')]", timeout=10)
-    print("Market container found after login")
-
-    # Save HTML    
-    body_html = await elem.get_attribute('outerHTML')
-
-    with open("OddsScraper/Bet365/HTML/h2h_html.txt", 'w') as f:
-        f.write(body_html)
-
-    # Find team rows to discover match URLs
-    team_elements = await driver.find_elements(By.XPATH, "//div[contains(@class, 'scb-ParticipantFixtureDetailsHigherBasketball_TeamNames')]")
-
-    for team_element in team_elements:
-        try:
-            print(await team_element.get_attribute('innerText'))
-        except Exception:
-            pass
+    all_games = await driver.find_elements(By.XPATH, FIXTURE_XPATH)
+    pre_games = [g for g in all_games if not await g.find_elements(By.XPATH, CLOCK_XPATH)]
 
     player_urls = []
-    for index in range(len(team_elements)):
-        # Re-find elements as DOM may refresh
-        team_elements = await driver.find_elements(By.XPATH, "//div[contains(@class, 'scb-ParticipantFixtureDetailsHigherBasketball_TeamNames')]")
-
-        await driver.execute_script("arguments[0].scrollIntoView(true);", team_elements[index])
-        await driver.execute_script("window.scrollBy(0, -150)")
-        await driver.sleep(0.1)
-
-        await team_elements[index].click()
-
-        cur_url = await driver.current_url
-        modified_player_url = cur_url + "I43/"
-        player_urls.append(modified_player_url)
-
+    for g in pre_games:
+        team_block = await g.find_element(By.XPATH, TEAM_XPATH)
+        await driver.execute_script("arguments[0].scrollIntoView({block:'center'});", team_block)
+        await driver.sleep(0.2)
+        await team_block.click()
+        cur = await driver.current_url
+        player_urls.append(cur.rstrip('/') + '/I43/')
         await driver.back()
-
-    # Optionally persist URL list for debugging/traceability
-    try:
-        with open("OddsScraper/Bet365/player_urls.csv", 'w') as f:
-            f.write('\n'.join(player_urls))
-    except Exception:
-        pass
+        await driver.sleep(0.5)
 
     return player_urls
 
