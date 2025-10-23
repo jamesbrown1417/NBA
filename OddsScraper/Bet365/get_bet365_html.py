@@ -15,10 +15,21 @@ import pandas as pd
 import os
 from dotenv import load_dotenv
 
-# Load environment variables
+# Load environment variables: try default .env, then fallback to 'env'
 load_dotenv()
+# Fallback to a non-dotted 'env' file present in the repo
+if os.getenv('BET365USER') is None or os.getenv('BET365PW') is None:
+    load_dotenv('env')
+
+# Read credentials after loading
 username = os.getenv('BET365USER')
 password = os.getenv('BET365PW')
+
+# Validate credentials early with a clear error
+if not username or not password:
+    raise RuntimeError(
+        "Missing Bet365 credentials. Set BET365USER and BET365PW in .env or env, or export them in the environment."
+    )
 
 # Get current timestamp=======================================================
 now = datetime.now()
@@ -49,15 +60,16 @@ async def collect_h2h_and_urls(driver):
     await username_field.clear()
     await driver.sleep(0.3)
     await username_field.send_keys(username)
-    print(f"Set username via send_keys: {username}")
+    print("Entered username")
 
     password_field = await driver.find_element(By.XPATH, "//input[@placeholder='Password']", timeout=10)
     await password_field.clear()
     await driver.sleep(0.3)
     await password_field.send_keys(password)
-    print(f"Set password via send_keys: {password}")
+    # Avoid logging passwords
+    print("Entered password")
 
-    login_button = await driver.find_element(By.XPATH, "//div[contains(@class, 'lms-LoginButton ')]", timeout=5)
+    login_button = await driver.find_element(By.XPATH, "//span[contains(@class, 'slm2-52')]", timeout=5)
     await login_button.click()
     print("Clicked login button")
 
