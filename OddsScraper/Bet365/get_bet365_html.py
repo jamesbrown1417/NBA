@@ -43,15 +43,13 @@ NBA_schedule["match_date_adl"] = pd.to_datetime(NBA_schedule["match_date_adl"], 
 now = pd.Timestamp.now(tz='Australia/Adelaide')
 
 # In play games started before the current time but within 2 hours
-IN_PLAY = len(NBA_schedule[NBA_schedule["match_date_adl"] < now])
-
+# IN_PLAY = len(NBA_schedule[NBA_schedule["match_date_adl"] < now])
 
 # Get only matches after current time
 NBA_schedule = NBA_schedule[NBA_schedule["match_date_adl"] > now]
 
 # Get only matches from the closest day
 NBA_schedule = NBA_schedule[NBA_schedule["match_date_adl"].dt.date == NBA_schedule["match_date_adl"].dt.date.min()]
-
 
 async def collect_h2h_and_urls(driver):
     """Navigate to main page, save H2H HTML, and return list of player URLs."""
@@ -90,9 +88,9 @@ async def collect_h2h_and_urls(driver):
     with open("OddsScraper/Bet365/HTML/h2h_html.txt", 'w') as f:
         f.write(body_html)
 
-    # Wait 10 seconds
+    # Wait 2 seconds
     print("Waiting 10 seconds...")
-    await driver.sleep(20)
+    await driver.sleep(2)
 
     # Find team rows to discover match URLs
     team_elements = await driver.find_elements(By.XPATH, "//div[contains(@class, 'scb-ParticipantFixtureDetailsHigherBasketball_TeamNames')]")
