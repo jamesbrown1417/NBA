@@ -140,7 +140,7 @@ tab_miss_by_one <- read_rds("../Data/tab_points_miss_by_one.rds")
 betright_miss_by_one <- read_rds("../Data/betright_points_miss_by_one.rds")
 ```
 
-::::: panel-tabset
+:::::: panel-tabset
 ## Top-Down
 
 ::: panel-tabset
@@ -268,6 +268,7 @@ tab_miss_by_1_points_arbs
 ```
 
 ## BetRight Miss-by-1 Points
+
 ```{r}
 #| column: page
 
@@ -341,7 +342,6 @@ all_middles |>
 ## Multi Legs
 
 ::: panel-tabset
-
 ## Dabble
 
 ```{r}
@@ -364,6 +364,7 @@ qreport::maketabs(match_list_dabble, wide = TRUE)
 ```
 
 ## BetRight
+
 ```{r}
 #| results: asis
 
@@ -377,6 +378,7 @@ qreport::maketabs(match_list_betright, wide = TRUE)
 ```
 
 ## TAB
+
 ```{r}
 #| results: asis
 
@@ -390,6 +392,7 @@ qreport::maketabs(match_list_tab, wide = TRUE)
 ```
 
 ## Neds
+
 ```{r}
 #| results: asis
 
@@ -403,6 +406,7 @@ qreport::maketabs(match_list_neds, wide = TRUE)
 ```
 
 ## Pointsbet
+
 ```{r}
 #| results: asis
 
@@ -416,6 +420,7 @@ qreport::maketabs(match_list_pb, wide = TRUE)
 ```
 
 ## Bet365
+
 ```{r}
 #| results: asis
 
@@ -429,7 +434,5 @@ match_list_bet365 <- processed_odds |>
 if(length(match_list_bet365) > 0) {
 qreport::maketabs(match_list_bet365, wide = TRUE)}
 ```
-
 :::
-
-:::::
+::::::
