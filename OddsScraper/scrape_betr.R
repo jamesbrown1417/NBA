@@ -463,7 +463,7 @@ betr_player_points_props <-
   bind_rows()
 
 # Alternate Points
-betr_player_points <- process_alternate_stats(player_points_links)
+# betr_player_points <- process_alternate_stats(player_points_links)
 
 # Lines for points
 betr_player_points_lines <- 
@@ -472,8 +472,7 @@ betr_player_points_lines <-
 
 # Combine
 betr_player_points <-
-  betr_player_points |> 
-  bind_rows(betr_player_points_lines) |>
+  betr_player_points_lines |> 
   mutate(home_team = fix_team_names(home_team)) |>
   mutate(away_team = fix_team_names(away_team)) |>
   mutate(match = paste(home_team, "v", away_team)) |>
@@ -487,7 +486,7 @@ betr_player_assists_props <-
   bind_rows()
 
 # Alternate Assists
-betr_player_assists_alt <- process_alternate_stats(player_assists_links)
+# betr_player_assists_alt <- process_alternate_stats(player_assists_links)
 
 # Lines for assists
 betr_player_assists_lines <- 
@@ -496,8 +495,7 @@ betr_player_assists_lines <-
 
 # Combine assists
 betr_player_assists <-
-  betr_player_assists_alt |> 
-  bind_rows(betr_player_assists_lines) |>
+  betr_player_assists_lines |> 
   mutate(home_team = fix_team_names(home_team)) |>
   mutate(away_team = fix_team_names(away_team)) |>
   mutate(match = paste(home_team, "v", away_team)) |>
@@ -511,7 +509,7 @@ betr_player_rebounds_props <-
   bind_rows()
 
 # Alternate Rebounds
-betr_player_rebounds <- process_alternate_stats(player_rebounds_links)
+# betr_player_rebounds <- process_alternate_stats(player_rebounds_links)
 
 # Lines for rebounds
 betr_player_rebounds_lines <- 
@@ -520,8 +518,7 @@ betr_player_rebounds_lines <-
 
 # Combine rebounds
 betr_player_rebounds <-
-  betr_player_rebounds |> 
-  bind_rows(betr_player_rebounds_lines) |>
+  betr_player_rebounds_lines |> 
   mutate(home_team = fix_team_names(home_team)) |>
   mutate(away_team = fix_team_names(away_team)) |>
   mutate(match = paste(home_team, "v", away_team)) |>

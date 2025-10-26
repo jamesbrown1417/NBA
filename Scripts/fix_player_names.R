@@ -99,6 +99,11 @@ fix_player_names_tab_initials <- function(name_vector) {
     name_vector == "N Vucevic" ~ "N Vučević",
     name_vector == "B Bogdanovic" ~ "B Bogdanović",
     name_vector == "D Schroder" ~ "D Schröder",
+    name_vector == "J Champ" ~ "J Champagnie",
+    name_vector == "K Johnson" ~ "K Johnson",
+    name_vector == "M Porter" ~ "M Porter Jr.",
+    name_vector == "V Wembanyam" ~ "V Wembanyama",
+    
     # Fallback
     .default = name_vector
   )
