@@ -43,7 +43,7 @@ NBA_schedule["match_date_adl"] = pd.to_datetime(NBA_schedule["match_date_adl"], 
 now = pd.Timestamp.now(tz='Australia/Adelaide')
 
 # In play games started before the current time but within 2 hours
-IN_PLAY = len(NBA_schedule[NBA_schedule["match_date_adl"] < now])
+IN_PLAY = len(NBA_schedule[NBA_schedule["match_date_adl"] < now]) 
 
 # Get only matches after current time
 NBA_schedule = NBA_schedule[NBA_schedule["match_date_adl"] > now]
