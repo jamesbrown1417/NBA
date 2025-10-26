@@ -761,6 +761,8 @@ betright_points_miss_by_one |>
   # Filter out cases where current time is more than 5 mins after start time
   filter(gmt_time_dttm < start_time) |>
   select(-start_time) |>
+  # Ensure line is 8.5, 13.5, 18.5 etc NOT 10.5 or 16.5 it has to be by 5s
+  filter(line %in% seq(8.5, 34.5, by = 5)) |>
   write_rds("Data/betright_points_miss_by_one.rds")
 
 #===============================================================================
