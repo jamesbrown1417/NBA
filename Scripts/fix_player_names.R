@@ -99,9 +99,26 @@ fix_player_names_tab_initials <- function(name_vector) {
     name_vector == "N Vucevic" ~ "N Vučević",
     name_vector == "B Bogdanovic" ~ "B Bogdanović",
     name_vector == "D Schroder" ~ "D Schröder",
-    name_vector == "J Champ" ~ "J Champagnie",
-    name_vector == "K Johnson" ~ "K Johnson",
+    name_vector == "J Champ" ~ "Ju Champagnie",
+    name_vector == "J Champagnie" ~ "Ju Champagnie",
+    name_vector == "K Johnson" ~ "Key Johnson",
     name_vector == "M Porter" ~ "M Porter Jr.",
+    name_vector == "M Porter Jr" ~ "M Porter Jr.",
+    name_vector == "G Trent Jr" ~ "G Trent Jr.",
+    name_vector == "D Jones Jr" ~ "D Jones Jr.",
+    name_vector == "N Jovic" ~ "N Jović",
+    
+    # Collapse double-initial first names to single-initial to match join_name
+    name_vector == "OG Anunoby" ~ "O Anunoby",
+    name_vector == "AJ Green" ~ "A Green",
+    name_vector == "CJ McCollum" ~ "C McCollum",
+    name_vector == "RJ Barrett" ~ "R Barrett",
+    name_vector == "PJ Washington" ~ "P Washington",
+    name_vector == "L Ball" ~ "L Ball", # disambiguated later by team
+    name_vector == "A Wiggins" ~ "A Wiggins", # disambiguated later by team
+    name_vector == "T Mann" ~ "T Mann", # disambiguated later by team
+    name_vector == "M Bridges" ~ "M Bridges", # disambiguated later by team
+
     name_vector == "V Wembanyam" ~ "V Wembanyama",
     
     # Fallback

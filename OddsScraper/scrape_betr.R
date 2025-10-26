@@ -405,7 +405,7 @@ process_alternate_stats <- function(links, safe_get_prop_data_fn = safe_get_prop
 
 process_lines_data <- function(props_data, outcome_title_pattern) {
   props_data |> 
-    filter(str_detect(outcome_title, outcome_title_pattern)) |> 
+    #filter(str_detect(outcome_title, outcome_title_pattern)) |> 
     separate(outcome_name, into = c("market_name", "player_name"), sep = " - ", remove = FALSE) |>
     mutate(line = as.numeric(str_extract(player_name, "\\d+\\.\\d+"))) |>
     mutate(match = str_extract(event_name, "\\(.*\\)")) |>
@@ -531,7 +531,7 @@ betr_player_3_pointers_props <-
   bind_rows()
 
 # Alternate 3-Pointers
-betr_player_3_pointers_alt <- process_alternate_stats(player_3_pointers_links)
+# betr_player_3_pointers_alt <- process_alternate_stats(player_3_pointers_links)
 
 # Lines for 3-pointers
 betr_player_3_pointers_lines <- 
@@ -540,8 +540,7 @@ betr_player_3_pointers_lines <-
 
 # Combine 3-pointers
 betr_player_3_pointers <-
-  betr_player_3_pointers_alt |> 
-  bind_rows(betr_player_3_pointers_lines) |>
+  betr_player_3_pointers_lines |> 
   mutate(home_team = fix_team_names(home_team)) |>
   mutate(away_team = fix_team_names(away_team)) |>
   mutate(match = paste(home_team, "v", away_team)) |>
@@ -554,7 +553,7 @@ betr_player_steals_props <-
   bind_rows()
 
 # Alternate Steals
-betr_player_steals_alt <- process_alternate_stats(player_steals_links)
+# betr_player_steals_alt <- process_alternate_stats(player_steals_links)
 
 # Lines for steals
 betr_player_steals_lines <- 
@@ -563,8 +562,7 @@ betr_player_steals_lines <-
 
 # Combine steals
 betr_player_steals <-
-  betr_player_steals_alt |> 
-  bind_rows(betr_player_steals_lines) |>
+  betr_player_steals_lines |> 
   mutate(home_team = fix_team_names(home_team)) |>
   mutate(away_team = fix_team_names(away_team)) |>
   mutate(match = paste(home_team, "v", away_team)) |>
@@ -578,7 +576,7 @@ betr_player_blocks_props <-
   bind_rows()
 
 # Alternate Blocks
-betr_player_blocks_alt <- process_alternate_stats(player_blocks_links)
+# betr_player_blocks_alt <- process_alternate_stats(player_blocks_links)
 
 # Lines for blocks
 betr_player_blocks_lines <- 
@@ -587,8 +585,7 @@ betr_player_blocks_lines <-
 
 # Combine blocks
 betr_player_blocks <-
-  betr_player_blocks_alt |> 
-  bind_rows(betr_player_blocks_lines) |>
+  betr_player_blocks_lines |> 
   mutate(home_team = fix_team_names(home_team)) |>
   mutate(away_team = fix_team_names(away_team)) |>
   mutate(match = paste(home_team, "v", away_team)) |>
@@ -602,7 +599,7 @@ betr_player_pras_props <-
   bind_rows()
 
 # Alternate PRAs
-betr_player_pras_alt <- process_alternate_stats(player_pras_links)
+# betr_player_pras_alt <- process_alternate_stats(player_pras_links)
 
 # Lines for PRAs
 betr_player_pras_lines <- 
@@ -611,8 +608,7 @@ betr_player_pras_lines <-
 
 # Combine PRAs
 betr_player_pras <-
-  betr_player_pras_alt |> 
-  bind_rows(betr_player_pras_lines) |>
+  betr_player_pras_lines |> 
   mutate(home_team = fix_team_names(home_team)) |>
   mutate(away_team = fix_team_names(away_team)) |>
   mutate(match = paste(home_team, "v", away_team)) |>
