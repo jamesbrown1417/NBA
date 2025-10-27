@@ -1,0 +1,191 @@
+{
+    "entrants": {
+        "5e17e2a2-fdbf-4ff3-ad07-639b7d6d7eb1": {
+            "id": "5e17e2a2-fdbf-4ff3-ad07-639b7d6d7eb1",
+            "name": "Orlando Magic",
+            "home_away": "AWAY",
+            "visible": true,
+            "sort_order": 20,
+            "market_id": "7b4f9ca0-40cd-4af4-a5f6-095d1868d411"
+        },
+        "7549e175-8c05-4c74-88eb-ea6404c734a1": {
+            "id": "7549e175-8c05-4c74-88eb-ea6404c734a1",
+            "name": "Under",
+            "visible": true,
+            "sort_order": 20,
+            "market_id": "6d642bf5-bdd0-4db8-9dc9-0f28e12f3eb7"
+        },
+        "87e7982a-071d-4108-94a6-ae4eb40b405f": {
+            "id": "87e7982a-071d-4108-94a6-ae4eb40b405f",
+            "name": "Philadelphia 76ers",
+            "home_away": "HOME",
+            "visible": true,
+            "sort_order": 10,
+            "market_id": "7b4f9ca0-40cd-4af4-a5f6-095d1868d411"
+        },
+        "c387046a-a20a-4971-be6b-6681dec99c5f": {
+            "id": "c387046a-a20a-4971-be6b-6681dec99c5f",
+            "name": "Over",
+            "visible": true,
+            "sort_order": 10,
+            "market_id": "6d642bf5-bdd0-4db8-9dc9-0f28e12f3eb7"
+        }
+    },
+    "event_participants": {
+        "9907363f-9f41-4b93-b25f-dd2dddbfb7f6": {
+            "id": "9907363f-9f41-4b93-b25f-dd2dddbfb7f6",
+            "event_id": "cb7ec894-ef9e-40bb-8d18-d14f7824295f",
+            "name": "Philadelphia 76ers",
+            "home_away": "HOME",
+            "colour": "#006bb6"
+        },
+        "dffadbed-e8bc-4944-88a9-5af88af06e19": {
+            "id": "dffadbed-e8bc-4944-88a9-5af88af06e19",
+            "event_id": "cb7ec894-ef9e-40bb-8d18-d14f7824295f",
+            "name": "Orlando Magic",
+            "home_away": "AWAY",
+            "colour": "#0077c0"
+        }
+    },
+    "events": {
+        "cb7ec894-ef9e-40bb-8d18-d14f7824295f": {
+            "id": "cb7ec894-ef9e-40bb-8d18-d14f7824295f",
+            "name": "Philadelphia 76ers vs Orlando Magic",
+            "event_type": {
+                "id": "6bfa0efc-05df-4ae1-9b1e-152365290cfd",
+                "name": "Match"
+            },
+            "match_status": "BettingOpen",
+            "advertised_start": "2025-10-27T23:10:00Z",
+            "actual_start": "2025-10-27T23:10:00Z",
+            "visible": true,
+            "slug": "philadelphia-76ers-vs-orlando-magic",
+            "competition": {
+                "id": "2d20a25b-6b96-4651-a523-442834136e2d",
+                "name": "NBA",
+                "sort_order": 3,
+                "region": "USA",
+                "region_id": "6889a18d-3a47-400c-9cd4-10f228c0dc59"
+            },
+            "competition_id": "2d20a25b-6b96-4651-a523-442834136e2d",
+            "market_type_group_ids": [
+                "43c990d1-7471-4055-9a7a-e71409494486"
+            ],
+            "market_type_group_markets": [
+                {
+                    "market_type_group_id": "43c990d1-7471-4055-9a7a-e71409494486",
+                    "market_ids": [
+                        "7b4f9ca0-40cd-4af4-a5f6-095d1868d411",
+                        "6d642bf5-bdd0-4db8-9dc9-0f28e12f3eb7"
+                    ]
+                }
+            ],
+            "market_count": 2,
+            "main_markets": [
+                "7b4f9ca0-40cd-4af4-a5f6-095d1868d411"
+            ],
+            "market_ids": [
+                "7b4f9ca0-40cd-4af4-a5f6-095d1868d411",
+                "6d642bf5-bdd0-4db8-9dc9-0f28e12f3eb7"
+            ],
+            "category_id": "3c34d075-dc14-436d-bfc4-9272a49c2b39",
+            "participant_ids": [
+                "9907363f-9f41-4b93-b25f-dd2dddbfb7f6",
+                "dffadbed-e8bc-4944-88a9-5af88af06e19"
+            ]
+        }
+    },
+    "market_type_groups": {
+        "43c990d1-7471-4055-9a7a-e71409494486": {
+            "id": "43c990d1-7471-4055-9a7a-e71409494486",
+            "category_id": "3c34d075-dc14-436d-bfc4-9272a49c2b39",
+            "name": "Top Markets",
+            "priority": 985,
+            "type": "MARKET_TYPE_GROUP_TYPE_EVENT"
+        }
+    },
+    "markets": {
+        "6d642bf5-bdd0-4db8-9dc9-0f28e12f3eb7": {
+            "id": "6d642bf5-bdd0-4db8-9dc9-0f28e12f3eb7",
+            "event_id": "cb7ec894-ef9e-40bb-8d18-d14f7824295f",
+            "market_type_id": "28d679c2-8cae-4fc6-a564-a5937865b1b6",
+            "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
+            "name": "Total",
+            "advertised_start": {
+                "seconds": 1761606600
+            },
+            "actual_start": {
+                "seconds": 1761606600
+            },
+            "handicap": 225.5,
+            "same_game_multi_available": true,
+            "comments": "If the Total market results in a refund, the whole SGM bet will be refunded.",
+            "visible": true,
+            "entrant_ids": [
+                "c387046a-a20a-4971-be6b-6681dec99c5f",
+                "7549e175-8c05-4c74-88eb-ea6404c734a1"
+            ],
+            "num_winners": 1
+        },
+        "7b4f9ca0-40cd-4af4-a5f6-095d1868d411": {
+            "id": "7b4f9ca0-40cd-4af4-a5f6-095d1868d411",
+            "event_id": "cb7ec894-ef9e-40bb-8d18-d14f7824295f",
+            "market_type_id": "3dc4ca49-3190-43b2-a328-60e0c9460187",
+            "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
+            "name": "Head To Head",
+            "advertised_start": {
+                "seconds": 1761606600
+            },
+            "actual_start": {
+                "seconds": 1761606600
+            },
+            "is_primary": true,
+            "same_game_multi_available": true,
+            "visible": true,
+            "entrant_ids": [
+                "87e7982a-071d-4108-94a6-ae4eb40b405f",
+                "5e17e2a2-fdbf-4ff3-ad07-639b7d6d7eb1"
+            ],
+            "num_winners": 1
+        }
+    },
+    "markets_allow_cashout": {
+        "6d642bf5-bdd0-4db8-9dc9-0f28e12f3eb7": false,
+        "7b4f9ca0-40cd-4af4-a5f6-095d1868d411": true
+    },
+    "prices": {
+        "5e17e2a2-fdbf-4ff3-ad07-639b7d6d7eb1:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 29,
+                "denominator": 50
+            }
+        },
+        "7549e175-8c05-4c74-88eb-ea6404c734a1:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 17,
+                "denominator": 20
+            }
+        },
+        "87e7982a-071d-4108-94a6-ae4eb40b405f:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 7,
+                "denominator": 5
+            }
+        },
+        "c387046a-a20a-4971-be6b-6681dec99c5f:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 24,
+                "denominator": 25
+            }
+        }
+    },
+    "regions": {
+        "6889a18d-3a47-400c-9cd4-10f228c0dc59": {
+            "region_id": "6889a18d-3a47-400c-9cd4-10f228c0dc59",
+            "name": "USA",
+            "slug": "usa",
+            "category_id": "3c34d075-dc14-436d-bfc4-9272a49c2b39",
+            "sort_order": 1
+        }
+    }
+}
