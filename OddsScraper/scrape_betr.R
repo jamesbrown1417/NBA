@@ -555,6 +555,15 @@ betr_player_steals_props <-
 # Alternate Steals
 # betr_player_steals_alt <- process_alternate_stats(player_steals_links)
 
+if (nrow(betr_player_steals_props) == 0) {
+  betr_player_steals_props <- tibble(
+    event_name = character(),
+    outcome_title = character(),
+    outcome_name = character(),
+    price = numeric()
+  )
+}
+
 # Lines for steals
 betr_player_steals_lines <- 
   process_lines_data(betr_player_steals_props, "steals over under") |>
@@ -578,6 +587,15 @@ betr_player_blocks_props <-
 # Alternate Blocks
 # betr_player_blocks_alt <- process_alternate_stats(player_blocks_links)
 
+if (nrow(betr_player_blocks_props) == 0) {
+  betr_player_blocks_props <- tibble(
+    event_name = character(),
+    outcome_title = character(),
+    outcome_name = character(),
+    price = numeric()
+  )
+}
+
 # Lines for blocks
 betr_player_blocks_lines <- 
   process_lines_data(betr_player_blocks_props, "blocks over under") |>
@@ -597,6 +615,15 @@ betr_player_pras_props <-
   map(player_pras_props_links, safe_get_prop_data) |> 
   map("result") |> 
   bind_rows()
+
+if (nrow(betr_player_pras_props) == 0) {
+  betr_player_pras_props <- tibble(
+    event_name = character(),
+    outcome_title = character(),
+    outcome_name = character(),
+    price = numeric()
+  )
+}
 
 # Alternate PRAs
 # betr_player_pras_alt <- process_alternate_stats(player_pras_links)
