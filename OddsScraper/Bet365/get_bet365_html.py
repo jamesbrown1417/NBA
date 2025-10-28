@@ -74,7 +74,7 @@ async def collect_h2h_and_urls(driver):
     # Avoid logging passwords
     print("Entered password")
 
-    login_button = await driver.find_element(By.XPATH, "//span[contains(@class, 'slm2-52')]", timeout=5)
+    login_button = await driver.find_element(By.XPATH, "//span[contains(@class, 'slm2-a')]", timeout=5)
     await login_button.click()
     print("Clicked login button")
 
