@@ -42,8 +42,15 @@ NBA_schedule = pd.read_csv("Data/NBA_schedule.csv")
 NBA_schedule["match_date_adl"] = pd.to_datetime(NBA_schedule["match_date_adl"], utc=True).dt.tz_convert('Australia/Adelaide')
 now = pd.Timestamp.now(tz='Australia/Adelaide')
 
-# Get only matches from the closest day
+# Get only matches from the closest day with games that is on
+NBA_schedule = NBA_schedule[NBA_schedule["match_date_adl"].dt.date >= now.date()]
 NBA_schedule = NBA_schedule[NBA_schedule["match_date_adl"].dt.date == NBA_schedule["match_date_adl"].dt.date.min()]
+
+# Get number of games that have started
+started = NBA_schedule[NBA_schedule["match_date_adl"] < now]
+
+# Create range from len started to len schedule
+match_range = range(len(started), len(NBA_schedule))
 
 async def collect_h2h_and_urls(driver):
     """Navigate to main page, save H2H HTML, and return list of player URLs."""
@@ -100,7 +107,7 @@ async def collect_h2h_and_urls(driver):
             pass
 
     player_urls = []
-    for index in range(len(NBA_schedule)):
+    for index in match_range:
         # Re-find elements as DOM may refresh
         team_elements = await driver.find_elements(By.XPATH, "//div[contains(@class, 'scb-ParticipantFixtureDetailsHigherBasketball_TeamNames')]")
 
