@@ -1,5 +1,13 @@
 {
     "entrants": {
+        "00494b49-313d-4455-98ac-99d8c68886f6": {
+            "id": "00494b49-313d-4455-98ac-99d8c68886f6",
+            "name": "Denver Nuggets",
+            "home_away": "HOME",
+            "visible": true,
+            "sort_order": 10,
+            "market_id": "f5febd5a-fb46-4929-b459-e4671cd543cb"
+        },
         "1572248d-90d8-4d97-b1c2-990cb225f570": {
             "id": "1572248d-90d8-4d97-b1c2-990cb225f570",
             "name": "New Orleans Pelicans",
@@ -99,6 +107,14 @@
             "sort_order": 20,
             "market_id": "714b687e-2399-4615-a4cc-4249f0773bad"
         },
+        "b95ed8bf-a935-471c-a550-586b5ed8910c": {
+            "id": "b95ed8bf-a935-471c-a550-586b5ed8910c",
+            "name": "New Orleans Pelicans",
+            "home_away": "AWAY",
+            "visible": true,
+            "sort_order": 20,
+            "market_id": "f5febd5a-fb46-4929-b459-e4671cd543cb"
+        },
         "d66648f8-0a37-4efa-be64-a90b1de128d0": {
             "id": "d66648f8-0a37-4efa-be64-a90b1de128d0",
             "name": "Under",
@@ -155,6 +171,7 @@
                 {
                     "market_type_group_id": "43c990d1-7471-4055-9a7a-e71409494486",
                     "market_ids": [
+                        "f5febd5a-fb46-4929-b459-e4671cd543cb",
                         "88f7a58a-c812-445e-b1ee-d7a7ddc0652c"
                     ]
                 },
@@ -185,11 +202,12 @@
                     ]
                 }
             ],
-            "market_count": 7,
+            "market_count": 8,
             "main_markets": [
-                "88f7a58a-c812-445e-b1ee-d7a7ddc0652c"
+                "f5febd5a-fb46-4929-b459-e4671cd543cb"
             ],
             "market_ids": [
+                "f5febd5a-fb46-4929-b459-e4671cd543cb",
                 "88f7a58a-c812-445e-b1ee-d7a7ddc0652c",
                 "218db9fa-640d-4aa7-9325-1fc1f82056b0",
                 "714b687e-2399-4615-a4cc-4249f0773bad",
@@ -390,6 +408,27 @@
                 "a25836e9-d3f2-4017-954c-636c8c499ba6"
             ],
             "num_winners": 1
+        },
+        "f5febd5a-fb46-4929-b459-e4671cd543cb": {
+            "id": "f5febd5a-fb46-4929-b459-e4671cd543cb",
+            "event_id": "c0546761-36ea-47c8-9f03-98eb7e7b0b81",
+            "market_type_id": "3dc4ca49-3190-43b2-a328-60e0c9460187",
+            "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
+            "name": "Head To Head",
+            "advertised_start": {
+                "seconds": 1761786000
+            },
+            "actual_start": {
+                "seconds": 1761786000
+            },
+            "is_primary": true,
+            "same_game_multi_available": true,
+            "visible": true,
+            "entrant_ids": [
+                "00494b49-313d-4455-98ac-99d8c68886f6",
+                "b95ed8bf-a935-471c-a550-586b5ed8910c"
+            ],
+            "num_winners": 1
         }
     },
     "markets_allow_cashout": {
@@ -399,9 +438,16 @@
         "714b687e-2399-4615-a4cc-4249f0773bad": false,
         "88f7a58a-c812-445e-b1ee-d7a7ddc0652c": false,
         "de302662-06f4-4667-83af-2ac43ffb9a66": false,
-        "e560f62b-20d7-499d-9e69-5fb59ac94711": false
+        "e560f62b-20d7-499d-9e69-5fb59ac94711": false,
+        "f5febd5a-fb46-4929-b459-e4671cd543cb": true
     },
     "prices": {
+        "00494b49-313d-4455-98ac-99d8c68886f6:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 3,
+                "denominator": 25
+            }
+        },
         "1572248d-90d8-4d97-b1c2-990cb225f570:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
                 "numerator": 24,
@@ -478,6 +524,12 @@
             "odds": {
                 "numerator": 83,
                 "denominator": 100
+            }
+        },
+        "b95ed8bf-a935-471c-a550-586b5ed8910c:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 11,
+                "denominator": 2
             }
         },
         "d66648f8-0a37-4efa-be64-a90b1de128d0:940b8704-e497-4a76-b390-00918ff7d282:": {

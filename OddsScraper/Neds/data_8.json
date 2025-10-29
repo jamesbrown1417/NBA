@@ -1,5 +1,26 @@
 {
     "entrants": {
+        "093eb252-7b0d-4175-ba80-534c9be7ebe8": {
+            "id": "093eb252-7b0d-4175-ba80-534c9be7ebe8",
+            "name": "Under",
+            "visible": true,
+            "sort_order": 20,
+            "market_id": "a5fbc5e1-a8e0-466e-8fc5-d49dabd99005"
+        },
+        "21d8eb47-cb91-4648-8bb0-46778256df66": {
+            "id": "21d8eb47-cb91-4648-8bb0-46778256df66",
+            "name": "Over",
+            "visible": true,
+            "sort_order": 10,
+            "market_id": "a5fbc5e1-a8e0-466e-8fc5-d49dabd99005"
+        },
+        "2715adc9-79e7-49d7-8e18-c1610281d208": {
+            "id": "2715adc9-79e7-49d7-8e18-c1610281d208",
+            "name": "Over",
+            "visible": true,
+            "sort_order": 10,
+            "market_id": "b5200438-a5ec-4e4a-97e9-996efd15c980"
+        },
         "5925461e-daf0-4358-8295-5cd01cd02d0d": {
             "id": "5925461e-daf0-4358-8295-5cd01cd02d0d",
             "name": "Over",
@@ -21,6 +42,13 @@
             "visible": true,
             "sort_order": 10,
             "market_id": "eff32d2f-d1b8-4d4f-b200-71265305ab01"
+        },
+        "ec725b7e-b155-43f1-8402-bc7222c76a8f": {
+            "id": "ec725b7e-b155-43f1-8402-bc7222c76a8f",
+            "name": "Under",
+            "visible": true,
+            "sort_order": 20,
+            "market_id": "b5200438-a5ec-4e4a-97e9-996efd15c980"
         },
         "ff57c4dd-6433-4073-bb82-0b9b7f299c3f": {
             "id": "ff57c4dd-6433-4073-bb82-0b9b7f299c3f",
@@ -69,7 +97,9 @@
             },
             "competition_id": "2d20a25b-6b96-4651-a523-442834136e2d",
             "market_type_group_ids": [
-                "43c990d1-7471-4055-9a7a-e71409494486"
+                "43c990d1-7471-4055-9a7a-e71409494486",
+                "dd212e21-18fd-4067-867c-2d09b50d1cca",
+                "32b903a6-4f66-4b38-9c06-c8af2bb23c5b"
             ],
             "market_type_group_markets": [
                 {
@@ -78,15 +108,29 @@
                         "eff32d2f-d1b8-4d4f-b200-71265305ab01",
                         "bb55cada-26f6-4df9-940b-39dc6c2da710"
                     ]
+                },
+                {
+                    "market_type_group_id": "dd212e21-18fd-4067-867c-2d09b50d1cca",
+                    "market_ids": [
+                        "b5200438-a5ec-4e4a-97e9-996efd15c980"
+                    ]
+                },
+                {
+                    "market_type_group_id": "32b903a6-4f66-4b38-9c06-c8af2bb23c5b",
+                    "market_ids": [
+                        "a5fbc5e1-a8e0-466e-8fc5-d49dabd99005"
+                    ]
                 }
             ],
-            "market_count": 2,
+            "market_count": 8,
             "main_markets": [
                 "eff32d2f-d1b8-4d4f-b200-71265305ab01"
             ],
             "market_ids": [
                 "eff32d2f-d1b8-4d4f-b200-71265305ab01",
-                "bb55cada-26f6-4df9-940b-39dc6c2da710"
+                "bb55cada-26f6-4df9-940b-39dc6c2da710",
+                "b5200438-a5ec-4e4a-97e9-996efd15c980",
+                "a5fbc5e1-a8e0-466e-8fc5-d49dabd99005"
             ],
             "category_id": "3c34d075-dc14-436d-bfc4-9272a49c2b39",
             "participant_ids": [
@@ -96,15 +140,71 @@
         }
     },
     "market_type_groups": {
+        "32b903a6-4f66-4b38-9c06-c8af2bb23c5b": {
+            "id": "32b903a6-4f66-4b38-9c06-c8af2bb23c5b",
+            "category_id": "3c34d075-dc14-436d-bfc4-9272a49c2b39",
+            "name": "Fourth Quarter Markets",
+            "priority": 100,
+            "type": "MARKET_TYPE_GROUP_TYPE_EVENT"
+        },
         "43c990d1-7471-4055-9a7a-e71409494486": {
             "id": "43c990d1-7471-4055-9a7a-e71409494486",
             "category_id": "3c34d075-dc14-436d-bfc4-9272a49c2b39",
             "name": "Top Markets",
             "priority": 985,
             "type": "MARKET_TYPE_GROUP_TYPE_EVENT"
+        },
+        "dd212e21-18fd-4067-867c-2d09b50d1cca": {
+            "id": "dd212e21-18fd-4067-867c-2d09b50d1cca",
+            "category_id": "3c34d075-dc14-436d-bfc4-9272a49c2b39",
+            "name": "First Quarter Markets",
+            "priority": 130,
+            "type": "MARKET_TYPE_GROUP_TYPE_EVENT"
         }
     },
     "markets": {
+        "a5fbc5e1-a8e0-466e-8fc5-d49dabd99005": {
+            "id": "a5fbc5e1-a8e0-466e-8fc5-d49dabd99005",
+            "event_id": "815d1236-10c1-49fa-9ffc-c1b96844a08e",
+            "market_type_id": "87cb1e1e-1bdd-4213-b546-f24eaaa15be0",
+            "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
+            "name": "4th Quarter Total",
+            "advertised_start": {
+                "seconds": 1761783000
+            },
+            "actual_start": {
+                "seconds": 1761783000
+            },
+            "handicap": 55.5,
+            "same_game_multi_available": true,
+            "visible": true,
+            "entrant_ids": [
+                "21d8eb47-cb91-4648-8bb0-46778256df66",
+                "093eb252-7b0d-4175-ba80-534c9be7ebe8"
+            ],
+            "num_winners": 1
+        },
+        "b5200438-a5ec-4e4a-97e9-996efd15c980": {
+            "id": "b5200438-a5ec-4e4a-97e9-996efd15c980",
+            "event_id": "815d1236-10c1-49fa-9ffc-c1b96844a08e",
+            "market_type_id": "7ff4218e-9d52-4db7-87e1-131caa5f4a11",
+            "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
+            "name": "1st Quarter Total",
+            "advertised_start": {
+                "seconds": 1761783000
+            },
+            "actual_start": {
+                "seconds": 1761783000
+            },
+            "handicap": 60.5,
+            "same_game_multi_available": true,
+            "visible": true,
+            "entrant_ids": [
+                "2715adc9-79e7-49d7-8e18-c1610281d208",
+                "ec725b7e-b155-43f1-8402-bc7222c76a8f"
+            ],
+            "num_winners": 1
+        },
         "bb55cada-26f6-4df9-940b-39dc6c2da710": {
             "id": "bb55cada-26f6-4df9-940b-39dc6c2da710",
             "event_id": "815d1236-10c1-49fa-9ffc-c1b96844a08e",
@@ -150,10 +250,30 @@
         }
     },
     "markets_allow_cashout": {
+        "a5fbc5e1-a8e0-466e-8fc5-d49dabd99005": false,
+        "b5200438-a5ec-4e4a-97e9-996efd15c980": false,
         "bb55cada-26f6-4df9-940b-39dc6c2da710": false,
         "eff32d2f-d1b8-4d4f-b200-71265305ab01": true
     },
     "prices": {
+        "093eb252-7b0d-4175-ba80-534c9be7ebe8:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 9,
+                "denominator": 10
+            }
+        },
+        "21d8eb47-cb91-4648-8bb0-46778256df66:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 87,
+                "denominator": 100
+            }
+        },
+        "2715adc9-79e7-49d7-8e18-c1610281d208:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 77,
+                "denominator": 100
+            }
+        },
         "5925461e-daf0-4358-8295-5cd01cd02d0d:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
                 "numerator": 9,
@@ -170,6 +290,12 @@
             "odds": {
                 "numerator": 13,
                 "denominator": 25
+            }
+        },
+        "ec725b7e-b155-43f1-8402-bc7222c76a8f:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 51,
+                "denominator": 50
             }
         },
         "ff57c4dd-6433-4073-bb82-0b9b7f299c3f:940b8704-e497-4a76-b390-00918ff7d282:": {
