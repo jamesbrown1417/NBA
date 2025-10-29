@@ -42,15 +42,6 @@ NBA_schedule = pd.read_csv("Data/NBA_schedule.csv")
 NBA_schedule["match_date_adl"] = pd.to_datetime(NBA_schedule["match_date_adl"], utc=True).dt.tz_convert('Australia/Adelaide')
 now = pd.Timestamp.now(tz='Australia/Adelaide')
 
-# In play games started before the current time but within 2 hours
-IN_PLAY = (NBA_schedule["match_date_adl"] > now) & (NBA_schedule["match_date_adl"] < now + pd.Timedelta(hours=2))
-
-# Get only matches currently in play
-NBA_schedule_in_play = NBA_schedule[IN_PLAY]
-
-# Get only matches after current time
-NBA_schedule = NBA_schedule[NBA_schedule["match_date_adl"] > now]
-
 # Get only matches from the closest day
 NBA_schedule = NBA_schedule[NBA_schedule["match_date_adl"].dt.date == NBA_schedule["match_date_adl"].dt.date.min()]
 
