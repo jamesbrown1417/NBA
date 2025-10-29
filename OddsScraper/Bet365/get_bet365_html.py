@@ -74,12 +74,12 @@ async def collect_h2h_and_urls(driver):
     # Avoid logging passwords
     print("Entered password")
 
-    login_button = await driver.find_element(By.XPATH, "//span[contains(@class, 'slm2-a')]", timeout=5)
+    login_button = await driver.find_element(By.XPATH, "//span[contains(@class, 'slm2-b')]", timeout=5)
     await login_button.click()
     print("Clicked login button")
 
     # Wait 2 seconds
-    print("Waiting 10 seconds...")
+    print("Waiting 2 seconds...")
     await driver.sleep(2)
 
     # Wait for market container after login
