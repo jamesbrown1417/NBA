@@ -1,0 +1,191 @@
+{
+    "entrants": {
+        "0dd9e06e-c077-4f86-9e3f-45674b643980": {
+            "id": "0dd9e06e-c077-4f86-9e3f-45674b643980",
+            "name": "Over",
+            "visible": true,
+            "sort_order": 10,
+            "market_id": "7b502a57-3595-44cd-8ff3-72914d88b2c1"
+        },
+        "46a9e175-85ce-4cdd-9dc1-7aa5f3905e03": {
+            "id": "46a9e175-85ce-4cdd-9dc1-7aa5f3905e03",
+            "name": "Miami Heat",
+            "home_away": "AWAY",
+            "visible": true,
+            "sort_order": 20,
+            "market_id": "56d0c0bc-fd81-4041-a761-a5736e531d30"
+        },
+        "c041c118-a6da-4d6f-ab4f-05086323d673": {
+            "id": "c041c118-a6da-4d6f-ab4f-05086323d673",
+            "name": "San Antonio Spurs",
+            "home_away": "HOME",
+            "visible": true,
+            "sort_order": 10,
+            "market_id": "56d0c0bc-fd81-4041-a761-a5736e531d30"
+        },
+        "dea8ab62-8dde-46e9-bdeb-4154f0b596ad": {
+            "id": "dea8ab62-8dde-46e9-bdeb-4154f0b596ad",
+            "name": "Under",
+            "visible": true,
+            "sort_order": 20,
+            "market_id": "7b502a57-3595-44cd-8ff3-72914d88b2c1"
+        }
+    },
+    "event_participants": {
+        "35128f50-572a-40c1-89dc-b93799372cd2": {
+            "id": "35128f50-572a-40c1-89dc-b93799372cd2",
+            "event_id": "b1c9319a-519b-414d-b259-266c41a6eb45",
+            "name": "Miami Heat",
+            "home_away": "AWAY",
+            "colour": "#98002e"
+        },
+        "571577c5-70d6-479b-af4e-162a19c5da2c": {
+            "id": "571577c5-70d6-479b-af4e-162a19c5da2c",
+            "event_id": "b1c9319a-519b-414d-b259-266c41a6eb45",
+            "name": "San Antonio Spurs",
+            "home_away": "HOME",
+            "colour": "#c4ced4"
+        }
+    },
+    "events": {
+        "b1c9319a-519b-414d-b259-266c41a6eb45": {
+            "id": "b1c9319a-519b-414d-b259-266c41a6eb45",
+            "name": "San Antonio Spurs vs Miami Heat",
+            "event_type": {
+                "id": "6bfa0efc-05df-4ae1-9b1e-152365290cfd",
+                "name": "Match"
+            },
+            "match_status": "BettingOpen",
+            "advertised_start": "2025-10-31T00:40:00Z",
+            "actual_start": "2025-10-31T00:40:00Z",
+            "visible": true,
+            "slug": "san-antonio-spurs-vs-miami-heat",
+            "competition": {
+                "id": "2d20a25b-6b96-4651-a523-442834136e2d",
+                "name": "NBA",
+                "sort_order": 3,
+                "region": "USA",
+                "region_id": "6889a18d-3a47-400c-9cd4-10f228c0dc59"
+            },
+            "competition_id": "2d20a25b-6b96-4651-a523-442834136e2d",
+            "market_type_group_ids": [
+                "43c990d1-7471-4055-9a7a-e71409494486"
+            ],
+            "market_type_group_markets": [
+                {
+                    "market_type_group_id": "43c990d1-7471-4055-9a7a-e71409494486",
+                    "market_ids": [
+                        "56d0c0bc-fd81-4041-a761-a5736e531d30",
+                        "7b502a57-3595-44cd-8ff3-72914d88b2c1"
+                    ]
+                }
+            ],
+            "market_count": 2,
+            "main_markets": [
+                "56d0c0bc-fd81-4041-a761-a5736e531d30"
+            ],
+            "market_ids": [
+                "56d0c0bc-fd81-4041-a761-a5736e531d30",
+                "7b502a57-3595-44cd-8ff3-72914d88b2c1"
+            ],
+            "category_id": "3c34d075-dc14-436d-bfc4-9272a49c2b39",
+            "participant_ids": [
+                "35128f50-572a-40c1-89dc-b93799372cd2",
+                "571577c5-70d6-479b-af4e-162a19c5da2c"
+            ]
+        }
+    },
+    "market_type_groups": {
+        "43c990d1-7471-4055-9a7a-e71409494486": {
+            "id": "43c990d1-7471-4055-9a7a-e71409494486",
+            "category_id": "3c34d075-dc14-436d-bfc4-9272a49c2b39",
+            "name": "Top Markets",
+            "priority": 985,
+            "type": "MARKET_TYPE_GROUP_TYPE_EVENT"
+        }
+    },
+    "markets": {
+        "56d0c0bc-fd81-4041-a761-a5736e531d30": {
+            "id": "56d0c0bc-fd81-4041-a761-a5736e531d30",
+            "event_id": "b1c9319a-519b-414d-b259-266c41a6eb45",
+            "market_type_id": "3dc4ca49-3190-43b2-a328-60e0c9460187",
+            "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
+            "name": "Head To Head",
+            "advertised_start": {
+                "seconds": 1761871200
+            },
+            "actual_start": {
+                "seconds": 1761871200
+            },
+            "is_primary": true,
+            "same_game_multi_available": true,
+            "visible": true,
+            "entrant_ids": [
+                "c041c118-a6da-4d6f-ab4f-05086323d673",
+                "46a9e175-85ce-4cdd-9dc1-7aa5f3905e03"
+            ],
+            "num_winners": 1
+        },
+        "7b502a57-3595-44cd-8ff3-72914d88b2c1": {
+            "id": "7b502a57-3595-44cd-8ff3-72914d88b2c1",
+            "event_id": "b1c9319a-519b-414d-b259-266c41a6eb45",
+            "market_type_id": "28d679c2-8cae-4fc6-a564-a5937865b1b6",
+            "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
+            "name": "Total",
+            "advertised_start": {
+                "seconds": 1761871200
+            },
+            "actual_start": {
+                "seconds": 1761871200
+            },
+            "handicap": 230.5,
+            "same_game_multi_available": true,
+            "comments": "If the Total market results in a refund, the whole SGM bet will be refunded.",
+            "visible": true,
+            "entrant_ids": [
+                "0dd9e06e-c077-4f86-9e3f-45674b643980",
+                "dea8ab62-8dde-46e9-bdeb-4154f0b596ad"
+            ],
+            "num_winners": 1
+        }
+    },
+    "markets_allow_cashout": {
+        "56d0c0bc-fd81-4041-a761-a5736e531d30": true,
+        "7b502a57-3595-44cd-8ff3-72914d88b2c1": false
+    },
+    "prices": {
+        "0dd9e06e-c077-4f86-9e3f-45674b643980:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 17,
+                "denominator": 20
+            }
+        },
+        "46a9e175-85ce-4cdd-9dc1-7aa5f3905e03:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 19,
+                "denominator": 10
+            }
+        },
+        "c041c118-a6da-4d6f-ab4f-05086323d673:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 21,
+                "denominator": 50
+            }
+        },
+        "dea8ab62-8dde-46e9-bdeb-4154f0b596ad:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 24,
+                "denominator": 25
+            }
+        }
+    },
+    "regions": {
+        "6889a18d-3a47-400c-9cd4-10f228c0dc59": {
+            "region_id": "6889a18d-3a47-400c-9cd4-10f228c0dc59",
+            "name": "USA",
+            "slug": "usa",
+            "category_id": "3c34d075-dc14-436d-bfc4-9272a49c2b39",
+            "sort_order": 1
+        }
+    }
+}
