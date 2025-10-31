@@ -374,7 +374,8 @@ match_list_betright <- processed_odds |>
   select(-agency) |>
   split(~match)
 
-qreport::maketabs(match_list_betright, wide = TRUE)
+if (length(match_list_betright) > 0) {
+qreport::maketabs(match_list_betright, wide = TRUE)}
 ```
 
 ## TAB
