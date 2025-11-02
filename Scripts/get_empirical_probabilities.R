@@ -10,7 +10,7 @@ library(tidyverse)
 #===============================================================================
 
 combined_stats_2024_2025 <- read_csv("Data/all_player_stats_2024-2025.csv")
-combined_stats_2023_2024 <- read_csv("Data/all_player_stats_2023-2024.csv")
+combined_stats_2025_2026 <- read_csv("Data/all_player_stats_2025-2026.csv")
 all_rosters <- read_csv("Data/all_rosters.csv")
 
 # Add names and rename vars
@@ -28,8 +28,8 @@ combined_stats_2024_2025 <-
   ) |> 
   mutate(PRA = PTS + REB + AST)
 
-combined_stats_2023_2024 <-
-  combined_stats_2023_2024 |>
+combined_stats_2025_2026 <-
+  combined_stats_2025_2026 |>
   left_join(all_rosters[c("PLAYER", "PLAYER_ID")], by = c("personId" = "PLAYER_ID")) |>
   rename(
     PLAYER_NAME = PLAYER,
@@ -51,8 +51,8 @@ get_empirical_prob <- function(player_name, line, stat, season) {
   # Choose the data based on the selected season
   if (season == "2024_2025") {
     player_stats <- combined_stats_2024_2025 |> filter(PLAYER_NAME == player_name) |> filter(!is.na(minutes))
-  } else if (season == "2023_2024") {
-    player_stats <- combined_stats_2023_2024 |> filter(PLAYER_NAME == player_name) |> filter(!is.na(minutes))
+  } else if (season == "2025_2026") {
+    player_stats <- combined_stats_2025_2026 |> filter(PLAYER_NAME == player_name) |> filter(!is.na(minutes))
   } else {
     stop("Invalid season selected")
   }
@@ -60,7 +60,7 @@ get_empirical_prob <- function(player_name, line, stat, season) {
   # Last 10 games
   player_stats_last_10 <-
     combined_stats_2024_2025 |>
-    bind_rows(combined_stats_2023_2024) |>
+    bind_rows(combined_stats_2025_2026) |>
     group_by(personId) |> 
     arrange(desc(GAME_DATE)) |> 
     slice(1:10) |>
@@ -69,7 +69,7 @@ get_empirical_prob <- function(player_name, line, stat, season) {
   # Last 20 games
   player_stats_last_20 <-
     combined_stats_2024_2025 |>
-    bind_rows(combined_stats_2023_2024) |>
+    bind_rows(combined_stats_2025_2026) |>
     group_by(personId) |> 
     arrange(desc(GAME_DATE)) |> 
     slice(1:20) |>
