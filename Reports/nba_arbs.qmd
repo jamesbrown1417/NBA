@@ -360,6 +360,14 @@ match_list_dabble <- processed_odds |>
   select(-agency) |>
   split(~match)
 
+# Add Overall tab for Dabble
+overall_dabble <- processed_odds |>
+  filter(agency == "Dabble") |>
+  select(-agency)
+if (nrow(overall_dabble) > 0) {
+  match_list_dabble <- c(list(Overall = overall_dabble), match_list_dabble)
+}
+
 qreport::maketabs(match_list_dabble, wide = TRUE)
 ```
 
@@ -373,6 +381,14 @@ match_list_betright <- processed_odds |>
   filter(agency == "BetRight") |> 
   select(-agency) |>
   split(~match)
+
+# Add Overall tab for BetRight
+overall_betright <- processed_odds |>
+  filter(agency == "BetRight") |>
+  select(-agency)
+if (nrow(overall_betright) > 0) {
+  match_list_betright <- c(list(Overall = overall_betright), match_list_betright)
+}
 
 if (length(match_list_betright) > 0) {
 qreport::maketabs(match_list_betright, wide = TRUE)}
@@ -389,6 +405,14 @@ match_list_tab <- processed_odds |>
   select(-agency) |>
   split(~match)
 
+# Add Overall tab for TAB
+overall_tab <- processed_odds |>
+  filter(agency == "TAB") |>
+  select(-agency)
+if (nrow(overall_tab) > 0) {
+  match_list_tab <- c(list(Overall = overall_tab), match_list_tab)
+}
+
 qreport::maketabs(match_list_tab, wide = TRUE)
 ```
 
@@ -402,6 +426,14 @@ match_list_neds <- processed_odds |>
   filter(agency == "Neds") |> 
   select(-agency) |>
   split(~match)
+
+# Add Overall tab for Neds
+overall_neds <- processed_odds |>
+  filter(agency == "Neds") |>
+  select(-agency)
+if (nrow(overall_neds) > 0) {
+  match_list_neds <- c(list(Overall = overall_neds), match_list_neds)
+}
 
 qreport::maketabs(match_list_neds, wide = TRUE)
 ```
@@ -417,6 +449,14 @@ match_list_pb <- processed_odds |>
   select(-agency) |>
   split(~match)
 
+# Add Overall tab for Pointsbet
+overall_pointsbet <- processed_odds |>
+  filter(agency == "Pointsbet") |>
+  select(-agency)
+if (nrow(overall_pointsbet) > 0) {
+  match_list_pb <- c(list(Overall = overall_pointsbet), match_list_pb)
+}
+
 qreport::maketabs(match_list_pb, wide = TRUE)
 ```
 
@@ -430,6 +470,14 @@ match_list_bet365 <- processed_odds |>
   filter(agency == "Bet365") |> 
   select(-agency) |>
   split(~match)
+
+# Add Overall tab for Bet365
+overall_bet365 <- processed_odds |>
+  filter(agency == "Bet365") |>
+  select(-agency)
+if (nrow(overall_bet365) > 0) {
+  match_list_bet365 <- c(list(Overall = overall_bet365), match_list_bet365)
+}
 
 # only run if there are matches
 if(length(match_list_bet365) > 0) {
