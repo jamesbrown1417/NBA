@@ -26,7 +26,10 @@ combined_stats_2024_2025 <-
     BLK = blocks,
     Threes = threePointersMade
   ) |> 
-  mutate(PRA = PTS + REB + AST)
+  mutate(PRA = PTS + REB + AST,
+         RA = REB + AST,
+         Stocks = STL + BLK
+         )
 
 combined_stats_2025_2026 <-
   combined_stats_2025_2026 |>
@@ -40,7 +43,10 @@ combined_stats_2025_2026 <-
     BLK = blocks,
     Threes = threePointersMade
   ) |> 
-  mutate(PRA = PTS + REB + AST)
+  mutate(PRA = PTS + REB + AST,
+         RA = REB + AST,
+         Stocks = STL + BLK
+  )
 
 #===============================================================================
 # Create a function that takes a player name + line and returns their hit rate
