@@ -1,5 +1,13 @@
 {
     "entrants": {
+        "28f3c2f0-267b-4512-a139-03467fa39d27": {
+            "id": "28f3c2f0-267b-4512-a139-03467fa39d27",
+            "name": "Detroit Pistons",
+            "home_away": "HOME",
+            "visible": true,
+            "sort_order": 10,
+            "market_id": "be1bdbf5-0c09-4d17-b35b-36ef2b348479"
+        },
         "c47fc0df-3a6a-4acf-8ae1-75ae3e0f0ff7": {
             "id": "c47fc0df-3a6a-4acf-8ae1-75ae3e0f0ff7",
             "name": "Detroit Pistons",
@@ -15,6 +23,14 @@
             "visible": true,
             "sort_order": 20,
             "market_id": "b190c0ce-ee96-4e04-9408-6351e113d4e9"
+        },
+        "e4be4dce-acd6-482f-99f8-601ab66f90fc": {
+            "id": "e4be4dce-acd6-482f-99f8-601ab66f90fc",
+            "name": "Washington Wizards",
+            "home_away": "AWAY",
+            "visible": true,
+            "sort_order": 20,
+            "market_id": "be1bdbf5-0c09-4d17-b35b-36ef2b348479"
         }
     },
     "event_participants": {
@@ -61,7 +77,8 @@
                 {
                     "market_type_group_id": "43c990d1-7471-4055-9a7a-e71409494486",
                     "market_ids": [
-                        "b190c0ce-ee96-4e04-9408-6351e113d4e9"
+                        "b190c0ce-ee96-4e04-9408-6351e113d4e9",
+                        "be1bdbf5-0c09-4d17-b35b-36ef2b348479"
                     ]
                 }
             ],
@@ -70,7 +87,8 @@
                 "b190c0ce-ee96-4e04-9408-6351e113d4e9"
             ],
             "market_ids": [
-                "b190c0ce-ee96-4e04-9408-6351e113d4e9"
+                "b190c0ce-ee96-4e04-9408-6351e113d4e9",
+                "be1bdbf5-0c09-4d17-b35b-36ef2b348479"
             ],
             "category_id": "3c34d075-dc14-436d-bfc4-9272a49c2b39",
             "participant_ids": [
@@ -109,22 +127,57 @@
                 "dffaf89e-d11d-4866-80ec-9d66d3eff8f8"
             ],
             "num_winners": 1
+        },
+        "be1bdbf5-0c09-4d17-b35b-36ef2b348479": {
+            "id": "be1bdbf5-0c09-4d17-b35b-36ef2b348479",
+            "event_id": "8ba5e681-be60-4d3a-bccd-ba2bc4cd33e8",
+            "market_type_id": "8fcc394e-b974-4328-af74-57d423de7a7b",
+            "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
+            "name": "Line",
+            "advertised_start": {
+                "seconds": 1762819800
+            },
+            "actual_start": {
+                "seconds": 1762819800
+            },
+            "handicap": 13,
+            "same_game_multi_available": true,
+            "comments": "If the Line market results in a refund, the whole SGM bet will be refunded.",
+            "visible": true,
+            "entrant_ids": [
+                "28f3c2f0-267b-4512-a139-03467fa39d27",
+                "e4be4dce-acd6-482f-99f8-601ab66f90fc"
+            ],
+            "num_winners": 1
         }
     },
     "markets_allow_cashout": {
-        "b190c0ce-ee96-4e04-9408-6351e113d4e9": true
+        "b190c0ce-ee96-4e04-9408-6351e113d4e9": true,
+        "be1bdbf5-0c09-4d17-b35b-36ef2b348479": false
     },
     "prices": {
+        "28f3c2f0-267b-4512-a139-03467fa39d27:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 22,
+                "denominator": 25
+            }
+        },
         "c47fc0df-3a6a-4acf-8ae1-75ae3e0f0ff7:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 3,
-                "denominator": 25
+                "numerator": 1,
+                "denominator": 10
             }
         },
         "dffaf89e-d11d-4866-80ec-9d66d3eff8f8:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 11,
-                "denominator": 2
+                "numerator": 6,
+                "denominator": 1
+            }
+        },
+        "e4be4dce-acd6-482f-99f8-601ab66f90fc:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 23,
+                "denominator": 25
             }
         }
     },
