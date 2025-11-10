@@ -148,6 +148,7 @@ all_player_stats <-
          AST = assists,
          STL = steals,
          BLK = blocks) |> 
+  mutate(STOCKS = STL + BLK) |>
   mutate(MIN = convert_time_to_decimal_hms(minutes)) |> 
   mutate(MIN = round(MIN, 2)) |> 
   relocate(MIN, .after = minutes)
@@ -348,13 +349,16 @@ ui <- page_navbar(
           selectInput(
             inputId = "stat_input_a",
             label = "Select Statistic:",
-            choices = c("PTS",
-                        "REB",
-                        "AST",
-                        "PRA",
-                        "BLK",
-                        "STL",
-                        "MIN"),
+            choices = c(
+              "Points (PTS)" = "PTS",
+              "Rebounds (REB)" = "REB",
+              "Assists (AST)" = "AST",
+              "PRAs" = "PRA",
+              "Blocks (BLK)" = "BLK",
+              "Steals (STL)" = "STL",
+              "Stocks (Steals + Blocks)" = "STOCKS",
+              "Minutes (MIN)" = "MIN"
+            ),
             multiple = FALSE,
             selected = "PTS"
           ),
@@ -564,7 +568,15 @@ ui <- page_navbar(
           selectInput(
             inputId = "metric_input",
             label = "Select Statistic:",
-            choices = c("PTS", "REB", "AST", "BLK", "MIN"),
+            choices = c(
+              "Points (PTS)" = "PTS",
+              "Rebounds (REB)" = "REB",
+              "Assists (AST)" = "AST",
+              "Blocks (BLK)" = "BLK",
+              "Steals (STL)" = "STL",
+              "Stocks (Steals + Blocks)" = "STOCKS",
+              "Minutes (MIN)" = "MIN"
+            ),
             multiple = FALSE,
             selected = "PTS"
           )
@@ -597,7 +609,15 @@ ui <- page_navbar(
           selectInput(
             inputId = "metric_input_corr_a",
             label = "Select Statistic:",
-            choices = c("PTS", "REB", "AST", "BLK", "STL", "MIN"),
+            choices = c(
+              "Points (PTS)" = "PTS",
+              "Rebounds (REB)" = "REB",
+              "Assists (AST)" = "AST",
+              "Blocks (BLK)" = "BLK",
+              "Steals (STL)" = "STL",
+              "Stocks (Steals + Blocks)" = "STOCKS",
+              "Minutes (MIN)" = "MIN"
+            ),
             multiple = FALSE,
             selected = "PTS"
           ),
@@ -609,7 +629,15 @@ ui <- page_navbar(
           selectInput(
             inputId = "metric_input_corr_b",
             label = "Select Statistic:",
-            choices = c("PTS", "REB", "AST", "BLK", "STL", "MIN"),
+            choices = c(
+              "Points (PTS)" = "PTS",
+              "Rebounds (REB)" = "REB",
+              "Assists (AST)" = "AST",
+              "Blocks (BLK)" = "BLK",
+              "Steals (STL)" = "STL",
+              "Stocks (Steals + Blocks)" = "STOCKS",
+              "Minutes (MIN)" = "MIN"
+            ),
             multiple = FALSE,
             selected = "PTS"
           ),
@@ -676,6 +704,7 @@ server <- function(input, output) {
              PRA,
              BLK,
              STL,
+             STOCKS,
              game_number) |> 
       arrange(desc(Date))
              
