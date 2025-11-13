@@ -86,42 +86,60 @@ fix_player_names_tab_initials <- function(name_vector) {
   
   fixed <- case_when(
     # Expanded / abbreviated forms
-    name_vector == "I Hartstein" ~ "I Hartenstein",
-    name_vector == "G-Alexander" ~ "S Gilgeous-Alexander",
-    name_vector == "Jab Smith" ~ "J Smith Jr.",
-    name_vector == "B Podziemsk" ~ "B Podziemski", 
-    name_vector == "Dray Green" ~ "D Green",
-    name_vector == "Gab Vincent" ~ "G Vincent",
-    name_vector == "J Vanderbil" ~ "J Vanderbilt",
-    name_vector == "J Butler" ~ "J Butler III",
-    name_vector == "L Doncic" ~ "L Dončić",
-    name_vector == "N Jokic" ~ "N Jokić",
-    name_vector == "N Vucevic" ~ "N Vučević",
-    name_vector == "B Bogdanovic" ~ "B Bogdanović",
-    name_vector == "D Schroder" ~ "D Schröder",
-    name_vector == "J Champ" ~ "Ju Champagnie",
-    name_vector == "J Champagnie" ~ "Ju Champagnie",
-    name_vector == "K Johnson" ~ "Key Johnson",
-    name_vector == "M Porter" ~ "M Porter Jr.",
-    name_vector == "M Porter Jr" ~ "M Porter Jr.",
-    name_vector == "G Trent Jr" ~ "G Trent Jr.",
-    name_vector == "D Jones Jr" ~ "D Jones Jr.",
-    name_vector == "N Jovic" ~ "N Jović",
+    name_vector == "B Sensabaug"      ~ "B Sensabaugh",
+    name_vector == "C M-Boyles"       ~ "C Murray-Boyles",
+    name_vector == "C M Boyles"       ~ "C Murray-Boyles",
+    name_vector == "Don Mitchel"      ~ "Do Mitchell",
+    name_vector == "D Mitchel"        ~ "Do Mitchell",
+    name_vector == "J Nurkic"         ~ "J Nurkić",
+    name_vector == "Jar Walker"       ~ "Ja Walker",
+    name_vector == "K Filipwski"      ~ "K Filipowski",
+    name_vector %in% c("Key George",
+                       "K George")    ~ "Ke George",
+    name_vector == "L Nance"          ~ "L Nance Jr.",
+    name_vector == "N AlexWalk"       ~ "N Alexander-Walker",
+    name_vector == "N Alex Walk"      ~ "N Alexander-Walker",
+    name_vector == "R O Neale"        ~ "R O'Neale",
+    name_vector == "S Mamklvili"      ~ "S Mamukelashvili",
+    name_vector == "S Mamuklvili"     ~ "S Mamukelashvili",
+    name_vector == "S Mykhailuk"      ~ "S Mykhailiuk",
+    name_vector == "W Clayton"        ~ "W Clayton Jr.",
+    
+    name_vector == "I Hartstein"      ~ "I Hartenstein",
+    name_vector == "G-Alexander"      ~ "S Gilgeous-Alexander",
+    name_vector == "Jab Smith"        ~ "J Smith Jr.",
+    name_vector == "B Podziemsk"      ~ "B Podziemski", 
+    name_vector == "Dray Green"       ~ "D Green",
+    name_vector == "Gab Vincent"      ~ "G Vincent",
+    name_vector == "J Vanderbil"      ~ "J Vanderbilt",
+    name_vector == "J Butler"         ~ "J Butler III",
+    name_vector == "L Doncic"         ~ "L Dončić",
+    name_vector == "N Jokic"          ~ "N Jokić",
+    name_vector == "N Vucevic"        ~ "N Vučević",
+    name_vector == "B Bogdanovic"     ~ "B Bogdanović",
+    name_vector == "D Schroder"       ~ "D Schröder",
+    name_vector == "J Champ"          ~ "Ju Champagnie",
+    name_vector == "J Champagnie"     ~ "Ju Champagnie",
+    name_vector == "K Johnson"        ~ "Key Johnson",
+    name_vector == "M Porter"         ~ "M Porter Jr.",
+    name_vector == "M Porter Jr"      ~ "M Porter Jr.",
+    name_vector == "G Trent Jr"       ~ "G Trent Jr.",
+    name_vector == "D Jones Jr"       ~ "D Jones Jr.",
+    name_vector == "N Jovic"          ~ "N Jović",
     
     # Collapse double-initial first names to single-initial to match join_name
-    name_vector == "OG Anunoby" ~ "O Anunoby",
-    name_vector == "AJ Green" ~ "A Green",
-    name_vector == "CJ McCollum" ~ "C McCollum",
-    name_vector == "RJ Barrett" ~ "R Barrett",
-    name_vector == "PJ Washington" ~ "P Washington",
-    name_vector == "L Ball" ~ "L Ball", # disambiguated later by team
-    name_vector == "A Wiggins" ~ "A Wiggins", # disambiguated later by team
-    name_vector == "T Mann" ~ "T Mann", # disambiguated later by team
-    name_vector == "M Bridges" ~ "M Bridges", # disambiguated later by team
-
-    name_vector == "V Wembanyam" ~ "V Wembanyama",
+    name_vector == "OG Anunoby"       ~ "O Anunoby",
+    name_vector == "AJ Green"         ~ "A Green",
+    name_vector == "CJ McCollum"      ~ "C McCollum",
+    name_vector == "RJ Barrett"       ~ "R Barrett",
+    name_vector == "PJ Washington"    ~ "P Washington",
+    name_vector == "L Ball"           ~ "L Ball",
+    name_vector == "A Wiggins"        ~ "A Wiggins",
+    name_vector == "T Mann"           ~ "T Mann",
+    name_vector == "M Bridges"        ~ "M Bridges",
     
-    # Fallback
+    name_vector == "V Wembanyam"      ~ "V Wembanyama",
+    
     .default = name_vector
   )
   
