@@ -47,11 +47,13 @@ fix_player_names <- function(name_vector) {
     # Apostrophes
     name_vector == "DAngelo Russell" ~ "D'Angelo Russell",
     name_vector == "DeAndre Hunter" ~ "De'Andre Hunter",
+    name_vector == "Royce ONeale" ~ "Royce O'Neale",
 
     # Expanded / abbreviated forms
     name_vector == "K. Caldwell-Pope" ~ "Kentavious Caldwell-Pope",
     name_vector == "S. Gilgeous-Alexander" ~ "Shai Gilgeous-Alexander",
     name_vector == "N. Alexander-Walker" ~ "Nickeil Alexander-Walker",
+    name_vector == "Nickeil A-Walker" ~ "Nickeil Alexander-Walker",
     name_vector == "G. Antetokounmpo" ~ "Giannis Antetokounmpo",
     name_vector == "Alexandre Sarr" ~ "Alex Sarr",
 
@@ -93,6 +95,7 @@ fix_player_names_tab_initials <- function(name_vector) {
     name_vector == "D Mitchel"        ~ "Do Mitchell",
     name_vector == "J Nurkic"         ~ "J Nurkić",
     name_vector == "Jar Walker"       ~ "Ja Walker",
+    name_vector == "J Walker"      ~ "Ja Walker",
     name_vector == "K Filipwski"      ~ "K Filipowski",
     name_vector %in% c("Key George",
                        "K George")    ~ "Ke George",

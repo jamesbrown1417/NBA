@@ -41,6 +41,7 @@ player_names_non_unique <-
 player_names <-
   bind_rows(player_names_unique, player_names_non_unique) |> 
   mutate(join_name = ifelse(player_full_name == "Keyontae Johnson", "Key Johnson", join_name)) |> 
+  mutate(join_name = ifelse(player_full_name == "Jabari Walker", "Jab Walker", join_name)) |> 
   mutate(join_name = ifelse(player_full_name == "Miles Bridges", "Mil Bridges", join_name)) |> 
   mutate(join_name = ifelse(player_full_name == "Jaylin Williams", "Jay Williams", join_name)) |> 
   mutate(join_name = ifelse(player_full_name == "Bogdan Bogdanović", "Bog Bogdanovic", join_name)) |>
