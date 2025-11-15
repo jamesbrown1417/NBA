@@ -38,11 +38,38 @@ get_player_props <- function(scraped_file) {
     bet365_player_markets |>
     html_elements(".cm-MarketGroupWithIconsButton_Text, .sc-MarketGroupButtonWithStats_Text") |>
     html_text()
+
+  # Precompute match name once to avoid cross-section dependency failures
+  team_names <-
+    scraped_file |>
+    read_html() |>
+    html_nodes(".sph-FixturePodHeader_TeamName ") |>
+    html_text()
+  team_names <- fix_team_names(team_names)
+  match_name <- paste(team_names, collapse = " @ ")
+
+  # Safe helpers for subsections
+  safe_tbl <- function() {
+    tibble(
+      match = character(),
+      player = character(),
+      line = numeric(),
+      over_price = numeric(),
+      under_price = numeric(),
+      market_name = character(),
+      agency = character()
+    )
+  }
+  safe_section <- function(expr) tryCatch(expr, error = function(e) safe_tbl())
+
+  # Provide a default for suspended_elements so mis-references don't error
+  suspended_elements <- integer(0)
   
   #=============================================================================
   # Player Points Over / Under
   #=============================================================================
   
+  player_points_all <- safe_section({
   # Get index for node with text "Player Points Over/Under"
   points_over_under_index <- which(market_names == "Points O/U")
   
@@ -282,11 +309,13 @@ get_player_props <- function(scraped_file) {
     mutate(market_name = "Player Points") |> 
     mutate(match = match_name) |> 
     relocate(match, .before = player)
+  })
   
   #=============================================================================
   # Player Rebounds Over / Under
   #=============================================================================
   
+  player_rebounds_all <- safe_section({
   # Get index for node with text "Player Rebounds Over/Under"
   rebounds_over_under_index <- which(market_names == "Rebounds O/U")
   
@@ -467,11 +496,13 @@ get_player_props <- function(scraped_file) {
     arrange(player, line, over_price) |> 
     mutate(market_name = "Player Rebounds") |> 
     mutate(match = match_name) 
+  })
   
   #=============================================================================
   # Player Assists Over / Under
   #=============================================================================
   
+  player_assists_all <- safe_section({
   # Get index for node with text "Player Assists Over/Under"
   assists_over_under_index <- which(market_names == "Assists O/U")
   
@@ -653,11 +684,13 @@ get_player_props <- function(scraped_file) {
     mutate(market_name = "Player Assists") |> 
     mutate(match = match_name) |> 
     relocate(match, .before = player)
+  })
   
   #=============================================================================
   # Player Threes Made Over / Under
   #=============================================================================
   
+  player_threes_made_all <- safe_section({
   # Get index for node with text "Player Threes Made Over/Under"
   threes_over_under_index <- which(market_names == "Threes Made O/U")
   
@@ -806,11 +839,13 @@ get_player_props <- function(scraped_file) {
     mutate(market_name = "Player Threes Made") |> 
     mutate(match = match_name) |> 
     relocate(match, .before = player)
+  })
   
   #=============================================================================
   # Player Blocks Over / Under
   #=============================================================================
   
+  player_blocks_all <- safe_section({
   # Get index for node with text "Blocks Over/Under"
   blocks_over_under_index <- which(market_names == "Blocks O/U")
   
@@ -887,11 +922,13 @@ get_player_props <- function(scraped_file) {
     mutate(market_name = "Player Blocks") |> 
     mutate(match = match_name) |> 
     relocate(match, .before = player)
+  })
   
   #=============================================================================
   # Player Steals Over / Under
   #=============================================================================
   
+  player_steals_all <- safe_section({
   # Get index for node with text "Steals Over/Under"
   steals_over_under_index <- which(market_names == "Steals O/U")
   
@@ -968,16 +1005,113 @@ get_player_props <- function(scraped_file) {
     mutate(market_name = "Player Steals") |> 
     mutate(match = match_name) |> 
     relocate(match, .before = player)
+  })
 
   #===============================================================================
   # Player Double Double
   #===============================================================================
 
+  player_double_double_all <- safe_section({
+  # Get index for node with text "Double Double"
+  double_double_over_under_index <- which(market_names == "Double Double")
   
+  # Get Player Names from node
+  double_double_players <-
+    bet365_player_markets[[double_double_over_under_index]] |>
+    html_elements(".srb-ParticipantLabelWithTeam_Name") |>
+    html_text()
+  
+  # Get Over Node Index
+  double_double_cols <-
+    bet365_player_markets[[double_double_over_under_index]] |>
+    html_elements(".gl-Market_General")
+  
+  double_double_over_index <- which(str_detect(double_double_cols |> html_text(), "Yes"))
+  
+  # Get Over Prices
+  double_double_over_odds <-
+    double_double_cols[[double_double_over_index]] |>
+    html_elements(".gl-ParticipantOddsOnly_Odds") |>
+    html_text()
+  
+  # Get Under Node Index
+  double_double_under_index <- which(str_detect(double_double_cols |> html_text(), "No"))
+  
+  # Get Under Odds
+  double_double_under_odds <-
+    double_double_cols[[double_double_under_index]] |>
+    html_elements(".gl-ParticipantOddsOnly_Odds") |>
+    html_text()
+
+  # Create Player Double Double Table
+  player_double_double <-
+    tibble(player = double_double_players,
+           line = 0.5,
+           over_price = as.numeric(double_double_over_odds),
+           under_price = as.numeric(double_double_under_odds)) |>
+    mutate(market_name = "Player Double Double") |>
+    mutate(agency = "Bet365")
+  
+  # Combine all tables
+  player_double_double_all <-
+    player_double_double |> 
+    arrange(player, line, over_price) |> 
+    mutate(match = match_name) |> 
+    relocate(match, .before = player)
+  })
+
   #===============================================================================
   # Player Triple Double
   #===============================================================================
-
+  
+  player_triple_double_all <- safe_section({
+  # Get index for node with text "Triple Double"
+  triple_double_over_under_index <- which(market_names == "Triple Double")
+  
+  # Get Player Names from node
+  triple_double_players <-
+    bet365_player_markets[[triple_double_over_under_index]] |>
+    html_elements(".srb-ParticipantLabelWithTeam_Name") |>
+    html_text()
+  
+  # Get Over Node Index
+  triple_double_cols <-
+    bet365_player_markets[[triple_double_over_under_index]] |>
+    html_elements(".gl-Market_General")
+  
+  triple_double_over_index <- which(str_detect(triple_double_cols |> html_text(), "Yes"))
+  
+  # Get Over Prices
+  triple_double_over_odds <-
+    triple_double_cols[[triple_double_over_index]] |>
+    html_elements(".gl-ParticipantOddsOnly_Odds") |>
+    html_text()
+  
+  # Get Under Node Index
+  triple_double_under_index <- which(str_detect(triple_double_cols |> html_text(), "No"))
+  
+  # Get Under Odds
+  triple_double_under_odds <-
+    triple_double_cols[[triple_double_under_index]] |>
+    html_elements(".gl-ParticipantOddsOnly_Odds") |>
+    html_text()
+  
+  # Create Player Triple Double Table
+  player_triple_double <-
+    tibble(player = triple_double_players,
+           line = 0.5,
+           over_price = as.numeric(triple_double_over_odds),
+           under_price = as.numeric(triple_double_under_odds)) |>
+    mutate(market_name = "Player Triple Double") |>
+    mutate(agency = "Bet365")
+  
+  # Combine all tables
+  player_triple_double_all <-
+    player_triple_double |> 
+    arrange(player, line, over_price) |> 
+    mutate(match = match_name) |> 
+    relocate(match, .before = player)
+  })
 
   #===============================================================================
   # Combine markets together
@@ -989,7 +1123,9 @@ get_player_props <- function(scraped_file) {
       bind_rows(player_assists_all) |>
       bind_rows(player_threes_made_all) |>
       bind_rows(player_blocks_all) |>
-      bind_rows(player_steals_all)
+      bind_rows(player_steals_all) |> 
+      bind_rows(player_double_double_all) |>
+      bind_rows(player_triple_double_all)
     )
 }
 
@@ -1030,6 +1166,8 @@ player_assists <- all_player_props |> filter(market_name == "Player Assists")
 player_threes <- all_player_props |> filter(market_name == "Player Threes Made") |> mutate(market_name = "Player Threes")
 player_blocks <- all_player_props |> filter(market_name == "Player Blocks")
 player_steals <- all_player_props |> filter(market_name == "Player Steals")
+player_double_double <- all_player_props |> filter(market_name == "Player Double Double")
+player_triple_double <- all_player_props |> filter(market_name == "Player Triple Double")
   
 # Write out
 write_csv(player_points, "Data/scraped_odds/bet365_player_points.csv")
@@ -1038,4 +1176,5 @@ write_csv(player_assists, "Data/scraped_odds/bet365_player_assists.csv")
 write_csv(player_threes, "Data/scraped_odds/bet365_player_threes.csv")
 write_csv(player_blocks, "Data/scraped_odds/bet365_player_blocks.csv")
 write_csv(player_steals, "Data/scraped_odds/bet365_player_steals.csv")
-
+write_csv(player_double_double, "Data/scraped_odds/bet365_player_double_double.csv")
+write_csv(player_triple_double, "Data/scraped_odds/bet365_player_triple_double.csv")
