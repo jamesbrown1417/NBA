@@ -152,11 +152,11 @@ async def scrape_player_pages(driver, player_urls):
                     await driver.execute_script("window.scrollBy(0, -150)")
                     await el.click()
                     print(f"Clicked {label}")
-                    await driver.sleep(2)
+                    await driver.sleep(1.5)
                 except Exception:
                     print(f"No {label} button was found")
             
-            await driver.sleep(2)
+            await driver.sleep(1.5)
             await maybe_click('Assists O/U', 'Player Assists')
             await maybe_click('Assists', 'Player Assists Milestones')
             await maybe_click('Rebounds O/U', 'Player Rebounds')
