@@ -164,7 +164,8 @@ async def scrape_player_pages(driver, player_urls):
             await maybe_click('Threes Made O/U', 'Player Threes Made')
             await maybe_click('Threes Made', 'Player Threes Made Milestones')
             await maybe_click('Steals O/U', 'Player Steals')
-            await maybe_click('Blocks O/U', 'Player Blocks')
+            await maybe_click('Double Double', 'Player Double Double')
+            await maybe_click('Triple Double', 'Player Triple Double')
 
             # Click all visible "Show more" buttons
             button_elements = await driver.find_elements(By.XPATH, "//div[contains(@class, 'msl-ShowMore_Link ') and contains(text(), 'Show more')]")
