@@ -457,7 +457,9 @@ if (nrow(overall_pointsbet) > 0) {
   match_list_pb <- c(list(Overall = overall_pointsbet), match_list_pb)
 }
 
-qreport::maketabs(match_list_pb, wide = TRUE)
+# only run if there are matches
+if(length(match_list_pb) > 0) {
+qreport::maketabs(match_list_pb, wide = TRUE)}
 ```
 
 ## Bet365
