@@ -611,6 +611,76 @@ player_blocks_data <-
                                      player_team == away_team ~ home_team)) |>
   relocate(player_team, opposition_team, .after = player_name)  
 
+#%######################################################%##
+#                                                          #
+####                Double Double Data                  ####
+#                                                         #
+#%######################################################%##
+
+# Filter to only include player double double markets
+player_double_double_data <-
+  market_df |> 
+  filter(str_detect(market_name, "Double Double"))
+
+# Overs
+player_double_double_data <-
+  player_double_double_data |>
+  mutate(handicap = 0.5) |> 
+  mutate(player_name_1 = str_extract(entrants, pattern <- ".*(?= \\()")) |>
+  mutate(player_name_2 = str_extract(market_name, "(?<= \\- ).*")) |>
+  mutate(player_name = coalesce(player_name_1, player_name_2)) |>
+  transmute(
+    match = match_name,
+    market_name = "Player Double Double",
+    player_name,
+    line = handicap,
+    over_price = price,
+    agency = "Neds"
+  ) |> 
+  mutate(player_name = fix_player_names(player_name)) |> 
+  left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |> 
+  rename(player_team = team_name) |>
+  mutate(match = str_replace(match, " vs ", " v ")) |>
+  separate(match, into = c("home_team", "away_team"), sep = " v ", remove = FALSE) |> 
+  mutate(opposition_team = case_when(player_team == home_team ~ away_team,
+                                     player_team == away_team ~ home_team)) |>
+  relocate(player_team, opposition_team, .after = player_name)
+
+#%######################################################%###
+#                                                          #
+####                Triple Double Data                  ####
+#                                                          #
+#%######################################################%###
+
+# Filter to only include player triple double markets
+player_triple_double_data <-
+  market_df |>
+  filter(str_detect(market_name, "Triple Double"))
+
+# Overs
+player_triple_double_data <-
+  player_triple_double_data |>
+  mutate(handicap = 0.5) |>
+  mutate(player_name_1 = str_extract(entrants, pattern <- ".*(?= \\()")) |>
+  mutate(player_name_2 = str_extract(market_name, "(?<= \\- ).*")) |>
+  mutate(player_name = coalesce(player_name_1, player_name_2)) |>
+  transmute(
+    match = match_name,
+    market_name = "Player Triple Double",
+    player_name,
+    line = handicap,
+    over_price = price,
+    agency = "Neds"
+  ) |>
+  mutate(player_name = fix_player_names(player_name)) |>
+  left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
+  rename(player_team = team_name) |>
+  mutate(match = str_replace(match, " vs ", " v ")) |>
+  separate(match, into = c("home_team", "away_team"), sep = " v ", remove = FALSE) |>
+  mutate(opposition_team = case_when(player_team == home_team ~ away_team,
+                                     player_team == away_team ~ home_team)) |>
+  relocate(player_team, opposition_team, .after = player_name)
+
 ##%######################################################%##
 #                                                          #
 ####                  Write out as CSV                  ####
@@ -625,3 +695,5 @@ player_pras_data |> write_csv("Data/scraped_odds/neds_player_pras.csv")
 player_threes_data |> write_csv("Data/scraped_odds/neds_player_threes.csv")
 player_blocks_data |> write_csv("Data/scraped_odds/neds_player_blocks.csv")
 player_steals_data |> write_csv("Data/scraped_odds/neds_player_steals.csv")
+player_double_double_data |> write_csv("Data/scraped_odds/neds_player_double_double.csv")
+player_triple_double_data |> write_csv("Data/scraped_odds/neds_player_triple_double.csv")

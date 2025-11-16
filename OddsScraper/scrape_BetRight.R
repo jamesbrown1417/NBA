@@ -1073,6 +1073,45 @@ betright_player_pras <-
   full_join(betright_player_pras_lines_unders)
 
 #===============================================================================
+# Player Double Double
+#===============================================================================
+
+betright_player_double_double <-
+  all_props |> 
+  filter(str_detect(event_name, "^Player Double Double")) |>
+  separate(event_name, into = c("market_name", "player_name"), sep = " - ") |>
+  mutate(player_name = str_remove_all(player_name, " \\(.*\\)")) |>
+  mutate(player_name = str_replace_all(player_name, "  ", " ")) |>  
+  left_join(player_names[, c("player_full_name", "team_name")], by = c("player_name" = "player_full_name")) |>
+  rename(player_team = team_name) |>
+  separate(match, into = c("away_team", "home_team"), sep = " @ ", remove = FALSE) |> 
+  mutate(opposition_team = if_else(home_team == player_team, away_team, home_team)) |>
+  mutate(agency = "BetRight") |>
+  mutate(line = 0.5) |> 
+  mutate(market_name = "Player Double Double") |> 
+  select(
+    "match",
+    "home_team",
+    "away_team",
+    "market_name",
+    "player_name",
+    "player_team",
+    "line",
+    "over_price" = "price",
+    "agency",
+    "event_id",
+    "outcome_name",
+    "outcome_id",
+    "fixed_market_id",
+    "opposition_team"
+  ) |> 
+  mutate(home_team = fix_team_names(home_team)) |>
+  mutate(away_team = fix_team_names(away_team)) |>
+  mutate(player_team = fix_team_names(player_team)) |>
+  mutate(opposition_team = fix_team_names(opposition_team)) |> 
+  mutate(match = paste(home_team, away_team, sep = " v "))
+
+#===============================================================================
 # Write to CSV
 #===============================================================================
 
