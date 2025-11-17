@@ -788,7 +788,8 @@ double_double_arbs <-
   mutate(margin = 100 * margin) |>
   # filter(margin > 0) |>
   distinct(match, player_name, line, over_agency, under_agency, .keep_all = TRUE) |>
-  relocate(over_price, over_agency, under_price, under_agency, .after = opposition_team)
+  relocate(over_price, over_agency, under_price, under_agency, .after = opposition_team) |> 
+  filter(over_agency != under_agency)
 
 #===============================================================================
 # Get all ARBs together
