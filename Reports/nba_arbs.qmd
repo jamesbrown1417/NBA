@@ -314,6 +314,20 @@ unibet_arbs <-
 unibet_arbs
 ```
 
+## Bet365, BetRight, Neds
+
+```{r}
+#| column: page
+
+bet365_betright_neds_arbs <-
+  all_arbs |>
+  filter(margin > 0) |> 
+  filter(over_agency %in% c("Bet365", "BetRight", "Neds") | under_agency %in% c("Bet365", "BetRight", "Neds")) |> 
+  filter(!over_agency %in% c("Unibet") & !under_agency %in% c("Unibet")) |> 
+  mutate(margin = round(margin, 2)) |> 
+  arrange(match, desc(margin))
+```
+
 ## Tab Miss-by-1 Points Arbs
 
 ```{r}
