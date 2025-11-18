@@ -326,6 +326,8 @@ bet365_betright_neds_arbs <-
   filter(!over_agency %in% c("Unibet") & !under_agency %in% c("Unibet")) |> 
   mutate(margin = round(margin, 2)) |> 
   arrange(match, desc(margin))
+
+bet365_betright_neds_arbs
 ```
 
 ## Tab Miss-by-1 Points Arbs
