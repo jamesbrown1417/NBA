@@ -1089,6 +1089,7 @@ betright_player_double_double <-
   mutate(agency = "BetRight") |>
   mutate(line = 0.5) |> 
   mutate(market_name = "Player Double Double") |> 
+  mutate(under_price = NA_real_) |> 
   select(
     "match",
     "home_team",
@@ -1098,6 +1099,7 @@ betright_player_double_double <-
     "player_team",
     "line",
     "over_price" = "price",
+    "under_price",
     "agency",
     "event_id",
     "outcome_name",
@@ -1128,6 +1130,7 @@ betright_player_triple_double <-
   mutate(agency = "BetRight") |>
   mutate(line = 0.5) |>
   mutate(market_name = "Player Triple Double") |>
+  mutate(under_price = NA_real_) |> 
   select(
     "match",
     "home_team",
@@ -1137,6 +1140,7 @@ betright_player_triple_double <-
     "player_team",
     "line",
     "over_price" = "price",
+    "under_price",
     "agency",
     "event_id",
     "outcome_name",
