@@ -451,7 +451,9 @@ if (nrow(overall_neds) > 0) {
   match_list_neds <- c(list(Overall = overall_neds), match_list_neds)
 }
 
-qreport::maketabs(match_list_neds, wide = TRUE)
+# only run if there are matches
+if(length(match_list_neds) > 0) {
+qreport::maketabs(match_list_neds, wide = TRUE)}
 ```
 
 ## Pointsbet
