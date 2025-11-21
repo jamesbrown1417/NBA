@@ -54,7 +54,6 @@ match_range = range(len(started), len(NBA_schedule))
 
 async def collect_h2h_and_urls(driver):
     """Navigate to main page, save H2H HTML, and return list of player URLs."""
-    await driver.minimize_window()
     await driver.get('https://www.bet365.com.au/#/AC/B18/C20604387/D48/E1453/F10/')
     await driver.sleep(2)
     # Always perform login each run
@@ -84,7 +83,9 @@ async def collect_h2h_and_urls(driver):
     # Wait 2 seconds
     print("Waiting 2 seconds...")
     await driver.sleep(2)
-
+    
+    await driver.minimize_window()
+    
     # Wait for market container after login
     elem = await driver.find_element(By.XPATH, "//div[contains(@class, 'gl-MarketGroup_Wrapper')]", timeout=10)
     print("Market container found after login")
