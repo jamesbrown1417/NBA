@@ -54,6 +54,7 @@ match_range = range(len(started), len(NBA_schedule))
 
 async def collect_h2h_and_urls(driver):
     """Navigate to main page, save H2H HTML, and return list of player URLs."""
+    await driver.minimize_window()
     await driver.get('https://www.bet365.com.au/#/AC/B18/C20604387/D48/E1453/F10/')
     await driver.sleep(2)
     # Always perform login each run
