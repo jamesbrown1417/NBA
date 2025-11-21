@@ -314,16 +314,23 @@ unibet_arbs <-
 unibet_arbs
 ```
 
-## Bet365, BetRight, Neds
+## Bet365, BetRight, Neds, Dabble 3s
 
 ```{r}
 #| column: page
+
+dabble_threes_arbs <-
+  all_arbs |>
+  filter(margin > 0) |> 
+  filter(over_agency %in% c("Bet365", "BetRight", "Neds", "Dabble") & under_agency %in% c("Bet365", "BetRight", "Neds", "Dabble")) |> 
+  filter(market_name == "Player Threes")
 
 bet365_betright_neds_arbs <-
   all_arbs |>
   filter(margin > 0) |> 
   filter(over_agency %in% c("Bet365", "BetRight", "Neds") & under_agency %in% c("Bet365", "BetRight", "Neds")) |> 
   filter(!over_agency %in% c("Unibet") & !under_agency %in% c("Unibet")) |> 
+  bind_rows(dabble_threes_arbs) |>
   mutate(margin = round(margin, 2)) |> 
   arrange(desc(margin))
 
