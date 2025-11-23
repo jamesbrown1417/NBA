@@ -111,10 +111,23 @@ async def collect_h2h_and_urls(driver):
 
     player_urls = []
     for index in match_range:
+        print(f"Scraping match {index}")
         # Re-find elements as DOM may refresh
-        team_elements = await driver.find_elements(By.XPATH, "//div[contains(@class, 'scb-ParticipantFixtureDetailsHigherBasketball_TeamNames')]")
+        team_elements = await driver.find_elements(
+            By.XPATH,
+            "//div[contains(@class, 'scb-ParticipantFixtureDetailsHigherBasketball_TeamNames')]",
+        )
 
-        await driver.execute_script("arguments[0].scrollIntoView(true);", team_elements[index])
+        if index >= len(team_elements):
+            print(
+                f"Skipping match {index}: Index out of range. (Found {len(team_elements)} matches on site, tried accessing index {index})"
+            )
+            continue
+        # ------------------------------------
+
+        await driver.execute_script(
+            "arguments[0].scrollIntoView(true);", team_elements[index]
+        )
         await driver.execute_script("window.scrollBy(0, -150)")
         await driver.sleep(0.1)
 
