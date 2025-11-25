@@ -55,10 +55,10 @@ match_range = range(len(started), len(NBA_schedule))
 async def collect_h2h_and_urls(driver):
     """Navigate to main page, save H2H HTML, and return list of player URLs."""
     await driver.get('https://www.bet365.com.au/#/AC/B18/C20604387/D48/E1453/F10/')
-    await driver.sleep(200)
+    await driver.sleep(2)
     # Always perform login each run
     print("Attempting login...")
-    login_element = await driver.find_element(By.XPATH, "//div[contains(@class, 'hm-MainHeaderRHSLoggedOutWide_Login')]", timeout=10)
+    login_element = await driver.find_element(By.XPATH, "//div[contains(@class, 'hm-MainHeaderRHSLoggedOutWide_Login')] | //button[contains(@class, 'hrm-4') and contains(text(), 'Log In')]", timeout=10)
     await driver.sleep(2)
     await login_element.click()
     await driver.sleep(1)
