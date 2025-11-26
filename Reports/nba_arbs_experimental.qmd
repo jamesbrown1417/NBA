@@ -31,95 +31,6 @@ formatted_time <- format(current_time, "%A, %d %B %Y at %I:%M %p")
 cat("Generated on:", formatted_time)
 ```
 
-```{ojs}
-viewof odds1 = Inputs.text({
-  label: "Odds 1:",
-  placeholder: "Enter odds...",
-  value: "2.4" // Default value for demonstration
-})
-
-viewof stake1 = Inputs.text({
-  label: "Stake 1:",
-  placeholder: "Enter stake...",
-  value: "100" // Default value for demonstration
-})
-
-viewof odds2 = Inputs.text({
-  label: "Odds 2:",
-  placeholder: "Enter odds...",
-  value: "1.8" // Default value for demonstration
-})
-
-// Format numbers to two decimal places
-formatNumber = (value) => parseFloat(value).toFixed(2)
-
-// Format stakes as dollars
-formatCurrency = (value) => `$${parseFloat(value).toFixed(2)}`
-
-// Calculate the required stake for arbitrage
-stake2 = {
-  const o1 = parseFloat(odds1);
-  const s1 = parseFloat(stake1);
-  const o2 = parseFloat(odds2);
-  if (!isNaN(o1) && !isNaN(s1) && !isNaN(o2)) {
-    return (s1 * o1) / o2;
-  } else {
-    return "Please enter valid numerical values.";
-  }
-}
-
-// Calculate arbitrage percentage (sum of reciprocals of odds minus 1)
-arbitragePercentage = {
-  const o1 = parseFloat(odds1);
-  const o2 = parseFloat(odds2);
-  if (!isNaN(o1) && !isNaN(o2)) {
-    const arb = (1 / o1) + (1 / o2);
-    return -100 * (1 - arb); // Percentage below 1
-  } else {
-    return "Please enter valid numerical values.";
-  }
-}
-
-// Calculate total profit (if arbitrage exists)
-totalProfit = {
-  const o1 = parseFloat(odds1);
-  const s1 = parseFloat(stake1);
-  const s2 = stake2;
-  if (!isNaN(o1) && !isNaN(s1) && typeof s2 === "number") {
-    // Profit if Bet 1 wins
-    const profit1 = (s1 * o1) - (s1 + s2);
-    return profit1; // Both bets yield the same profit
-  } else {
-    return "Please enter valid numerical values.";
-  }
-}
-
-// Output the results in an aesthetic format with left-justified columns
-html`
-  <div class="arb-calculator">
-    <div style="display: flex; justify-content: space-between; gap: 20px;">
-      <div style="flex: 1; text-align: left;">
-        <h3 style="color: var(--heading-color); text-align: left;">Odds</h3>
-        <p><strong>Odds 1:</strong> ${formatNumber(odds1)}</p>
-        <p><strong>Odds 2:</strong> ${formatNumber(odds2)}</p>
-      </div>
-      <div style="flex: 1; text-align: left;">
-        <h3 style="color: var(--heading-color); text-align: left;">Stakes</h3>
-        <p><strong>Stake 1:</strong> ${formatCurrency(stake1)}</p>
-        <p><strong>Stake 2:</strong> ${typeof stake2 === "number" ? formatCurrency(stake2) : stake2}</p>
-      </div>
-    </div>
-    <hr style="border: none; border-top: 1px solid var(--card-border);">
-    <h3 style="color: var(--link-color); text-align: center;">
-      Arbitrage Percentage: ${typeof arbitragePercentage === "number" ? formatNumber(-arbitragePercentage) + "%" : arbitragePercentage}
-    </h3>
-    <h3 style="color: #27ae60; text-align: center;">
-      Total Profit: ${typeof totalProfit === "number" ? formatCurrency(totalProfit) : totalProfit}
-    </h3>
-  </div>
-`
-```
-
 ```{r}
 # Libraries
 library(tidyverse)
@@ -386,6 +297,31 @@ processed_odds <-
   arrange(desc(empirical_prob_last_20), desc(over_price)) |> 
   filter(empirical_prob_last_20 >= 0.9)
 
+# Function to create tabs with DT::datatable
+make_dt_tabs <- function(match_list) {
+  cat("::: panel-tabset\n")
+  for (name in names(match_list)) {
+    cat("\n### ", name, "\n\n")
+    
+    print(htmltools::tagList(
+      match_list[[name]] |>
+        mutate(across(where(is.numeric), \(x) round(x, 2))) |>
+        datatable(
+          options = list(
+            pageLength = 15, 
+            autoWidth = TRUE, 
+            dom = 'Bfrtip'
+          ),
+          class = 'cell-border stripe hover',
+          rownames = FALSE,
+          width = "100%"
+        )
+    ))
+    cat("\n")
+  }
+  cat(":::\n")
+}
+
 # Get list of tibbles (one for each agency)
 match_list_dabble <- processed_odds |>
   filter(agency == "Dabble") |>
@@ -400,7 +336,7 @@ if (nrow(overall_dabble) > 0) {
   match_list_dabble <- c(list(Overall = overall_dabble), match_list_dabble)
 }
 
-qreport::maketabs(match_list_dabble, wide = TRUE)
+make_dt_tabs(match_list_dabble)
 ```
 
 ## BetRight
@@ -423,7 +359,8 @@ if (nrow(overall_betright) > 0) {
 }
 
 if (length(match_list_betright) > 0) {
-qreport::maketabs(match_list_betright, wide = TRUE)}
+  make_dt_tabs(match_list_betright)
+}
 ```
 
 ## TAB
@@ -445,7 +382,7 @@ if (nrow(overall_tab) > 0) {
   match_list_tab <- c(list(Overall = overall_tab), match_list_tab)
 }
 
-qreport::maketabs(match_list_tab, wide = TRUE)
+make_dt_tabs(match_list_tab)
 ```
 
 ## Neds
@@ -469,7 +406,8 @@ if (nrow(overall_neds) > 0) {
 
 # only run if there are matches
 if(length(match_list_neds) > 0) {
-qreport::maketabs(match_list_neds, wide = TRUE)}
+  make_dt_tabs(match_list_neds)
+}
 ```
 
 ## Pointsbet
@@ -493,7 +431,8 @@ if (nrow(overall_pointsbet) > 0) {
 
 # only run if there are matches
 if(length(match_list_pb) > 0) {
-qreport::maketabs(match_list_pb, wide = TRUE)}
+  make_dt_tabs(match_list_pb)
+}
 ```
 
 ## Bet365
@@ -517,7 +456,99 @@ if (nrow(overall_bet365) > 0) {
 
 # only run if there are matches
 if(length(match_list_bet365) > 0) {
-qreport::maketabs(match_list_bet365, wide = TRUE)}
+  make_dt_tabs(match_list_bet365)
+}
 ```
 :::
+
+## Calculator
+
+```{ojs}
+viewof odds1 = Inputs.text({
+  label: "Odds 1:",
+  placeholder: "Enter odds...",
+  value: "2.4" // Default value for demonstration
+})
+
+viewof stake1 = Inputs.text({
+  label: "Stake 1:",
+  placeholder: "Enter stake...",
+  value: "100" // Default value for demonstration
+})
+
+viewof odds2 = Inputs.text({
+  label: "Odds 2:",
+  placeholder: "Enter odds...",
+  value: "1.8" // Default value for demonstration
+})
+
+// Format numbers to two decimal places
+formatNumber = (value) => parseFloat(value).toFixed(2)
+
+// Format stakes as dollars
+formatCurrency = (value) => `$${parseFloat(value).toFixed(2)}`
+
+// Calculate the required stake for arbitrage
+stake2 = {
+  const o1 = parseFloat(odds1);
+  const s1 = parseFloat(stake1);
+  const o2 = parseFloat(odds2);
+  if (!isNaN(o1) && !isNaN(s1) && !isNaN(o2)) {
+    return (s1 * o1) / o2;
+  } else {
+    return "Please enter valid numerical values.";
+  }
+}
+
+// Calculate arbitrage percentage (sum of reciprocals of odds minus 1)
+arbitragePercentage = {
+  const o1 = parseFloat(odds1);
+  const o2 = parseFloat(odds2);
+  if (!isNaN(o1) && !isNaN(o2)) {
+    const arb = (1 / o1) + (1 / o2);
+    return -100 * (1 - arb); // Percentage below 1
+  } else {
+    return "Please enter valid numerical values.";
+  }
+}
+
+// Calculate total profit (if arbitrage exists)
+totalProfit = {
+  const o1 = parseFloat(odds1);
+  const s1 = parseFloat(stake1);
+  const s2 = stake2;
+  if (!isNaN(o1) && !isNaN(s1) && typeof s2 === "number") {
+    // Profit if Bet 1 wins
+    const profit1 = (s1 * o1) - (s1 + s2);
+    return profit1; // Both bets yield the same profit
+  } else {
+    return "Please enter valid numerical values.";
+  }
+}
+
+// Output the results in an aesthetic format with left-justified columns
+html`
+  <div class="arb-calculator">
+    <div style="display: flex; justify-content: space-between; gap: 20px;">
+      <div style="flex: 1; text-align: left;">
+        <h3 style="color: var(--heading-color); text-align: left;">Odds</h3>
+        <p><strong>Odds 1:</strong> ${formatNumber(odds1)}</p>
+        <p><strong>Odds 2:</strong> ${formatNumber(odds2)}</p>
+      </div>
+      <div style="flex: 1; text-align: left;">
+        <h3 style="color: var(--heading-color); text-align: left;">Stakes</h3>
+        <p><strong>Stake 1:</strong> ${formatCurrency(stake1)}</p>
+        <p><strong>Stake 2:</strong> ${typeof stake2 === "number" ? formatCurrency(stake2) : stake2}</p>
+      </div>
+    </div>
+    <hr style="border: none; border-top: 1px solid var(--card-border);">
+    <h3 style="color: var(--link-color); text-align: center;">
+      Arbitrage Percentage: ${typeof arbitragePercentage === "number" ? formatNumber(-arbitragePercentage) + "%" : arbitragePercentage}
+    </h3>
+    <h3 style="color: #27ae60; text-align: center;">
+      Total Profit: ${typeof totalProfit === "number" ? formatCurrency(totalProfit) : totalProfit}
+    </h3>
+  </div>
+`
+```
 ::::::
