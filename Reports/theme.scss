@@ -1,8 +1,4 @@
 /*-- scss:defaults --*/
-$body-bg: #121212;
-$body-color: #e0e0e0;
-$link-color: #bb86fc;
-$headings-color: #ffffff;
 $font-family-sans-serif: 'Inter', system-ui, -apple-system, sans-serif;
 
 /*-- scss:rules --*/
@@ -10,15 +6,53 @@ $font-family-sans-serif: 'Inter', system-ui, -apple-system, sans-serif;
 /* Import Google Font */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
 
+:root {
+  --bg-color: #ffffff;
+  --text-color: #212529;
+  --heading-color: #111111;
+  --link-color: #6200ee;
+  --card-bg: #f8f9fa;
+  --card-border: #e9ecef;
+  --table-bg: #ffffff;
+  --table-stripe: #f2f2f2;
+  --table-hover: #e2e6ea;
+  --table-border: #dee2e6;
+  --input-bg: #ffffff;
+  --input-border: #ced4da;
+  --input-text: #495057;
+}
+
+body.quarto-dark {
+  --bg-color: #121212;
+  --text-color: #e0e0e0;
+  --heading-color: #ffffff;
+  --link-color: #bb86fc;
+  --card-bg: #1e1e1e;
+  --card-border: #333333;
+  --table-bg: #1e1e1e;
+  --table-stripe: #252525;
+  --table-hover: #333333;
+  --table-border: #333333;
+  --input-bg: #2c2c2c;
+  --input-border: #444444;
+  --input-text: #ffffff;
+}
+
 body {
   font-family: 'Inter', sans-serif;
-  background-color: $body-bg;
-  color: $body-color;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Headings */
-h1, h2, h3, h4, h5, h6 {
-  color: $headings-color;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--heading-color);
   font-weight: 700;
   letter-spacing: -0.02em;
   margin-top: 1.5em;
@@ -27,7 +61,7 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
   font-size: 2.5rem;
-  border-bottom: 2px solid $link-color;
+  border-bottom: 2px solid var(--link-color);
   padding-bottom: 0.5rem;
   margin-bottom: 1.5rem;
   text-transform: uppercase;
@@ -35,104 +69,122 @@ h1 {
 }
 
 /* Cards / Containers */
-.cell-output-display {
-  background-color: #1e1e1e;
+.cell-output-display,
+.arb-calculator {
+  background-color: var(--card-bg);
   border-radius: 12px;
   padding: 20px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   margin-bottom: 2rem;
-  border: 1px solid #333;
+  border: 1px solid var(--card-border);
+}
+
+body.quarto-dark .cell-output-display,
+body.quarto-dark .arb-calculator {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
 /* Tables (DT) */
 .dataTables_wrapper {
-  color: $body-color;
+  color: var(--text-color);
   font-family: 'Inter', sans-serif;
+  width: 100% !important;
 }
 
 table.dataTable {
-  background-color: #1e1e1e !important;
-  color: $body-color !important;
+  background-color: var(--table-bg) !important;
+  color: var(--text-color) !important;
   border-collapse: collapse !important;
 }
 
 table.dataTable thead th {
-  background-color: #2c2c2c;
-  color: #ffffff;
-  border-bottom: 2px solid $link-color !important;
-  padding: 12px 15px !important;
+  background-color: var(--card-bg);
+  /* Slightly different from bg */
+  color: var(--heading-color);
+  border-bottom: 2px solid var(--link-color) !important;
+  padding: 8px 10px !important;
+  /* Reduced padding */
   font-weight: 600;
   text-transform: uppercase;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
+  /* Smaller font */
   letter-spacing: 0.05em;
 }
 
 table.dataTable tbody td {
-  padding: 12px 15px !important;
-  border-bottom: 1px solid #333 !important;
-  font-size: 0.95rem;
+  padding: 6px 8px !important;
+  /* Reduced padding */
+  border-bottom: 1px solid var(--table-border) !important;
+  font-size: 0.85rem;
+  /* Smaller font */
+  white-space: normal !important;
+  word-wrap: break-word;
+  max-width: 300px;
+  /* Optional: limit cell width to force wrapping */
+  line-height: 1.2;
+  /* Tighter line height */
 }
 
-table.dataTable.stripe tbody tr.odd, 
+table.dataTable.stripe tbody tr.odd,
 table.dataTable.display tbody tr.odd {
-  background-color: #252525 !important;
+  background-color: var(--table-stripe) !important;
 }
 
-table.dataTable.stripe tbody tr.even, 
+table.dataTable.stripe tbody tr.even,
 table.dataTable.display tbody tr.even {
-  background-color: #1e1e1e !important;
+  background-color: var(--table-bg) !important;
 }
 
 table.dataTable tbody tr:hover {
-  background-color: #333333 !important;
+  background-color: var(--table-hover) !important;
   transition: background-color 0.2s ease;
 }
 
 /* Pagination & Search */
-.dataTables_wrapper .dataTables_length, 
-.dataTables_wrapper .dataTables_filter, 
-.dataTables_wrapper .dataTables_info, 
-.dataTables_wrapper .dataTables_processing, 
+.dataTables_wrapper .dataTables_length,
+.dataTables_wrapper .dataTables_filter,
+.dataTables_wrapper .dataTables_info,
+.dataTables_wrapper .dataTables_processing,
 .dataTables_wrapper .dataTables_paginate {
-  color: $body-color !important;
+  color: var(--text-color) !important;
   margin-bottom: 1rem;
   margin-top: 1rem;
 }
 
 .dataTables_wrapper .dataTables_paginate .paginate_button {
-  color: $body-color !important;
-  border: 1px solid #333 !important;
-  background: #2c2c2c !important;
+  color: var(--text-color) !important;
+  border: 1px solid var(--card-border) !important;
+  background: var(--card-bg) !important;
   border-radius: 4px;
   margin: 0 2px;
 }
 
 .dataTables_wrapper .dataTables_paginate .paginate_button.current,
 .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
-  background: $link-color !important;
-  color: #000 !important;
-  border: 1px solid $link-color !important;
+  background: var(--link-color) !important;
+  color: #fff !important;
+  border: 1px solid var(--link-color) !important;
   font-weight: bold;
 }
 
 .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
-  background: #444 !important;
-  color: #fff !important;
-  border: 1px solid #555 !important;
+  background: var(--table-hover) !important;
+  color: var(--text-color) !important;
+  border: 1px solid var(--table-border) !important;
 }
 
 .dataTables_wrapper .dataTables_filter input {
-  background-color: #2c2c2c;
-  border: 1px solid #444;
-  color: #fff;
+  background-color: var(--input-bg);
+  border: 1px solid var(--input-border);
+  color: var(--input-text);
   border-radius: 4px;
   padding: 5px 10px;
 }
 
 .dataTables_wrapper .dataTables_length select {
-  background-color: #2c2c2c;
-  border: 1px solid #444;
-  color: #fff;
+  background-color: var(--input-bg);
+  border: 1px solid var(--input-border);
+  color: var(--input-text);
   border-radius: 4px;
   padding: 5px;
 }
@@ -144,14 +196,24 @@ table.dataTable tbody tr:hover {
 }
 
 ::-webkit-scrollbar-track {
-  background: #121212; 
+  background: var(--bg-color);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #444; 
+  background: var(--card-border);
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #555; 
+  background: var(--input-border);
+}
+
+/* OJS Inputs */
+input[type="text"],
+input[type="number"] {
+  background-color: var(--input-bg);
+  border: 1px solid var(--input-border);
+  color: var(--input-text);
+  border-radius: 4px;
+  padding: 8px;
 }

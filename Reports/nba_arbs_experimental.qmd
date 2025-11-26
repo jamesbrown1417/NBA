@@ -8,13 +8,15 @@ author: "James Brown"
 date: "`r Sys.Date()`"
 format:
   html:
-    df-print: kable
-    theme: cosmo
+    theme: 
+      light: [cosmo, theme.scss]
+      dark: [cosmo, theme.scss]
     self-contained: true
     toc: true
     toc-depth: 3
     fig-width: 8
     fig-height: 6
+    page-layout: full
 editor: visual
 ---
 
@@ -94,30 +96,21 @@ totalProfit = {
 
 // Output the results in an aesthetic format with left-justified columns
 html`
-  <div style="
-    font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 20px;
-    margin-top: 20px;
-    max-width: 600px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  ">
+  <div class="arb-calculator">
     <div style="display: flex; justify-content: space-between; gap: 20px;">
       <div style="flex: 1; text-align: left;">
-        <h3 style="color: #34495e; text-align: left;">Odds</h3>
+        <h3 style="color: var(--heading-color); text-align: left;">Odds</h3>
         <p><strong>Odds 1:</strong> ${formatNumber(odds1)}</p>
         <p><strong>Odds 2:</strong> ${formatNumber(odds2)}</p>
       </div>
       <div style="flex: 1; text-align: left;">
-        <h3 style="color: #34495e; text-align: left;">Stakes</h3>
+        <h3 style="color: var(--heading-color); text-align: left;">Stakes</h3>
         <p><strong>Stake 1:</strong> ${formatCurrency(stake1)}</p>
         <p><strong>Stake 2:</strong> ${typeof stake2 === "number" ? formatCurrency(stake2) : stake2}</p>
       </div>
     </div>
-    <hr style="border: none; border-top: 1px solid #ddd;">
-    <h3 style="color: #3498db; text-align: center;">
+    <hr style="border: none; border-top: 1px solid var(--card-border);">
+    <h3 style="color: var(--link-color); text-align: center;">
       Arbitrage Percentage: ${typeof arbitragePercentage === "number" ? formatNumber(-arbitragePercentage) + "%" : arbitragePercentage}
     </h3>
     <h3 style="color: #27ae60; text-align: center;">
@@ -152,7 +145,8 @@ betright_miss_by_one <- read_rds("../Data/betright_points_miss_by_one.rds")
   all_arbs |>
   filter(margin > 0) |> 
   filter(over_agency %in% c("Sportsbet") | under_agency %in% c("Sportsbet")) |> 
-  mutate(margin = round(margin, 2))
+  mutate(margin = round(margin, 2)) |>
+  datatable(options = list(pageLength = 15, autoWidth = TRUE, dom = 'Bfrtip'), class = 'cell-border stripe hover', rownames = FALSE)
 ```
 
 ## TAB
@@ -164,7 +158,8 @@ betright_miss_by_one <- read_rds("../Data/betright_points_miss_by_one.rds")
   filter(margin > 0) |> 
   filter(over_agency %in% c("Sportsbet") | under_agency %in% c("Sportsbet")) |> 
   filter(over_agency %in% c("TAB") | under_agency %in% c("TAB")) |> 
-  mutate(margin = round(margin, 2))
+  mutate(margin = round(margin, 2)) |>
+  datatable(options = list(pageLength = 15, autoWidth = TRUE, dom = 'Bfrtip'), class = 'cell-border stripe hover', rownames = FALSE)
 ```
 
 ## Dabble
@@ -176,7 +171,8 @@ betright_miss_by_one <- read_rds("../Data/betright_points_miss_by_one.rds")
   filter(margin > 0) |> 
   filter(over_agency %in% c("Sportsbet") | under_agency %in% c("Sportsbet")) |> 
   filter(over_agency %in% c("Dabble") | under_agency %in% c("Dabble")) |> 
-  mutate(margin = round(margin, 2))
+  mutate(margin = round(margin, 2)) |>
+  datatable(options = list(pageLength = 15, autoWidth = TRUE, dom = 'Bfrtip'), class = 'cell-border stripe hover', rownames = FALSE)
 ```
 
 ## Dabble Pick Em
@@ -188,7 +184,8 @@ betright_miss_by_one <- read_rds("../Data/betright_points_miss_by_one.rds")
   filter(margin > 0) |> 
   filter(over_agency %in% c("Sportsbet") | under_agency %in% c("Sportsbet")) |> 
   filter(over_agency %in% c("Dabble Pickem") | under_agency %in% c("Dabble Pickem")) |> 
-  mutate(margin = round(margin, 2))
+  mutate(margin = round(margin, 2)) |>
+  datatable(options = list(pageLength = 15, autoWidth = TRUE, dom = 'Bfrtip'), class = 'cell-border stripe hover', rownames = FALSE)
 ```
 
 ## Bet365
@@ -200,7 +197,8 @@ betright_miss_by_one <- read_rds("../Data/betright_points_miss_by_one.rds")
   filter(margin > 0) |> 
   filter(over_agency %in% c("Sportsbet") | under_agency %in% c("Sportsbet")) |> 
   filter(over_agency %in% c("Bet365") | under_agency %in% c("Bet365")) |> 
-  mutate(margin = round(margin, 2))
+  mutate(margin = round(margin, 2)) |>
+  datatable(options = list(pageLength = 15, autoWidth = TRUE, dom = 'Bfrtip'), class = 'cell-border stripe hover', rownames = FALSE)
 ```
 
 ## BetRight
@@ -212,7 +210,8 @@ betright_miss_by_one <- read_rds("../Data/betright_points_miss_by_one.rds")
   filter(margin > 0) |> 
   filter(over_agency %in% c("Sportsbet") | under_agency %in% c("Sportsbet")) |> 
   filter(over_agency %in% c("BetRight") | under_agency %in% c("BetRight")) |> 
-  mutate(margin = round(margin, 2))
+  mutate(margin = round(margin, 2)) |>
+  datatable(options = list(pageLength = 15, autoWidth = TRUE, dom = 'Bfrtip'), class = 'cell-border stripe hover', rownames = FALSE)
 ```
 
 ## Betr
@@ -224,7 +223,8 @@ betright_miss_by_one <- read_rds("../Data/betright_points_miss_by_one.rds")
   filter(margin > 0) |> 
   filter(over_agency %in% c("Sportsbet") | under_agency %in% c("Sportsbet")) |> 
   filter(over_agency %in% c("Betr") | under_agency %in% c("Betr")) |> 
-  mutate(margin = round(margin, 2))
+  mutate(margin = round(margin, 2)) |>
+  datatable(options = list(pageLength = 15, autoWidth = TRUE, dom = 'Bfrtip'), class = 'cell-border stripe hover', rownames = FALSE)
 ```
 
 ## Neds
@@ -236,7 +236,8 @@ betright_miss_by_one <- read_rds("../Data/betright_points_miss_by_one.rds")
   filter(margin > 0) |> 
   filter(over_agency %in% c("Sportsbet") | under_agency %in% c("Sportsbet")) |> 
   filter(over_agency %in% c("Neds") | under_agency %in% c("Neds")) |> 
-  mutate(margin = round(margin, 2))
+  mutate(margin = round(margin, 2)) |>
+  datatable(options = list(pageLength = 15, autoWidth = TRUE, dom = 'Bfrtip'), class = 'cell-border stripe hover', rownames = FALSE)
 ```
 
 ## Pointsbet
@@ -248,7 +249,8 @@ betright_miss_by_one <- read_rds("../Data/betright_points_miss_by_one.rds")
   filter(margin > 0) |> 
   filter(over_agency %in% c("Sportsbet") | under_agency %in% c("Sportsbet")) |> 
   filter(over_agency %in% c("Pointsbet") | under_agency %in% c("Pointsbet")) |> 
-  mutate(margin = round(margin, 2))
+  mutate(margin = round(margin, 2)) |>
+  datatable(options = list(pageLength = 15, autoWidth = TRUE, dom = 'Bfrtip'), class = 'cell-border stripe hover', rownames = FALSE)
 ```
 
 ## TAB Miss-by-1 Points
@@ -264,7 +266,8 @@ tab_miss_by_1_points_arbs <-
   filter(line >= 8.5) |> 
   mutate(margin = round(margin, 2))
 
-tab_miss_by_1_points_arbs
+tab_miss_by_1_points_arbs |>
+  datatable(options = list(pageLength = 15, autoWidth = TRUE, dom = 'Bfrtip'), class = 'cell-border stripe hover', rownames = FALSE)
 ```
 
 ## BetRight Miss-by-1 Points
@@ -280,7 +283,8 @@ betright_miss_by_1_points_arbs <-
   filter(line >= 8.5) |> 
   mutate(margin = round(margin, 2))
 
-betright_miss_by_1_points_arbs
+betright_miss_by_1_points_arbs |>
+  datatable(options = list(pageLength = 15, autoWidth = TRUE, dom = 'Bfrtip'), class = 'cell-border stripe hover', rownames = FALSE)
 ```
 :::
 
@@ -296,7 +300,8 @@ betright_miss_by_1_points_arbs
   all_arbs |>
   filter(margin > 0) |> 
   filter(!over_agency %in% c("Unibet") & !under_agency %in% c("Unibet")) |> 
-  mutate(margin = round(margin, 2))
+  mutate(margin = round(margin, 2)) |>
+  datatable(options = list(pageLength = 15, autoWidth = TRUE, dom = 'Bfrtip'), class = 'cell-border stripe hover', rownames = FALSE)
 ```
 
 ## Unibet Arbs
@@ -311,7 +316,8 @@ unibet_arbs <-
   mutate(margin = round(margin, 2)) |> 
   arrange(match, desc(margin))
 
-unibet_arbs
+unibet_arbs |>
+  datatable(options = list(pageLength = 15, autoWidth = TRUE, dom = 'Bfrtip'), class = 'cell-border stripe hover', rownames = FALSE)
 ```
 
 ## Bet365, BetRight, Neds, Dabble 3s
@@ -334,7 +340,8 @@ bet365_betright_neds_arbs <-
   mutate(margin = round(margin, 2)) |> 
   arrange(desc(margin))
 
-bet365_betright_neds_arbs
+bet365_betright_neds_arbs |>
+  datatable(options = list(pageLength = 15, autoWidth = TRUE, dom = 'Bfrtip'), class = 'cell-border stripe hover', rownames = FALSE)
 ```
 
 ## Tab Miss-by-1 Points Arbs
@@ -349,7 +356,8 @@ tab_miss_by_1_points_arbs <-
   filter(!over_agency %in% c("Neds", "Unibet") & !under_agency %in% c("Neds", "Unibet")) |> 
   mutate(margin = round(margin, 2))
 
-tab_miss_by_1_points_arbs
+tab_miss_by_1_points_arbs |>
+  datatable(options = list(pageLength = 15, autoWidth = TRUE, dom = 'Bfrtip'), class = 'cell-border stripe hover', rownames = FALSE)
 ```
 :::
 
@@ -359,7 +367,8 @@ tab_miss_by_1_points_arbs
 #| column: page
 
 all_middles |> 
-  mutate(margin = round(margin, 2))
+  mutate(margin = round(margin, 2)) |>
+  datatable(options = list(pageLength = 15, autoWidth = TRUE, dom = 'Bfrtip'), class = 'cell-border stripe hover', rownames = FALSE)
 ```
 
 ## Multi Legs
