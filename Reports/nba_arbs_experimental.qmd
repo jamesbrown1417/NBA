@@ -1,0 +1,514 @@
+---
+title: "NBA Bets"
+execute:
+  echo: false
+  message: false
+  warning: false
+author: "James Brown"
+date: "`r Sys.Date()`"
+format:
+  html:
+    df-print: kable
+    theme: cosmo
+    self-contained: true
+    toc: true
+    toc-depth: 3
+    fig-width: 8
+    fig-height: 6
+editor: visual
+---
+
+```{r}
+# Get the current date and time
+current_time <- Sys.time()
+
+# Format the timestamp to be more aesthetic and human-readable
+formatted_time <- format(current_time, "%A, %d %B %Y at %I:%M %p")
+
+# Output the formatted timestamp
+cat("Generated on:", formatted_time)
+```
+
+```{ojs}
+viewof odds1 = Inputs.text({
+  label: "Odds 1:",
+  placeholder: "Enter odds...",
+  value: "2.4" // Default value for demonstration
+})
+
+viewof stake1 = Inputs.text({
+  label: "Stake 1:",
+  placeholder: "Enter stake...",
+  value: "100" // Default value for demonstration
+})
+
+viewof odds2 = Inputs.text({
+  label: "Odds 2:",
+  placeholder: "Enter odds...",
+  value: "1.8" // Default value for demonstration
+})
+
+// Format numbers to two decimal places
+formatNumber = (value) => parseFloat(value).toFixed(2)
+
+// Format stakes as dollars
+formatCurrency = (value) => `$${parseFloat(value).toFixed(2)}`
+
+// Calculate the required stake for arbitrage
+stake2 = {
+  const o1 = parseFloat(odds1);
+  const s1 = parseFloat(stake1);
+  const o2 = parseFloat(odds2);
+  if (!isNaN(o1) && !isNaN(s1) && !isNaN(o2)) {
+    return (s1 * o1) / o2;
+  } else {
+    return "Please enter valid numerical values.";
+  }
+}
+
+// Calculate arbitrage percentage (sum of reciprocals of odds minus 1)
+arbitragePercentage = {
+  const o1 = parseFloat(odds1);
+  const o2 = parseFloat(odds2);
+  if (!isNaN(o1) && !isNaN(o2)) {
+    const arb = (1 / o1) + (1 / o2);
+    return -100 * (1 - arb); // Percentage below 1
+  } else {
+    return "Please enter valid numerical values.";
+  }
+}
+
+// Calculate total profit (if arbitrage exists)
+totalProfit = {
+  const o1 = parseFloat(odds1);
+  const s1 = parseFloat(stake1);
+  const s2 = stake2;
+  if (!isNaN(o1) && !isNaN(s1) && typeof s2 === "number") {
+    // Profit if Bet 1 wins
+    const profit1 = (s1 * o1) - (s1 + s2);
+    return profit1; // Both bets yield the same profit
+  } else {
+    return "Please enter valid numerical values.";
+  }
+}
+
+// Output the results in an aesthetic format with left-justified columns
+html`
+  <div style="
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 20px;
+    max-width: 600px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  ">
+    <div style="display: flex; justify-content: space-between; gap: 20px;">
+      <div style="flex: 1; text-align: left;">
+        <h3 style="color: #34495e; text-align: left;">Odds</h3>
+        <p><strong>Odds 1:</strong> ${formatNumber(odds1)}</p>
+        <p><strong>Odds 2:</strong> ${formatNumber(odds2)}</p>
+      </div>
+      <div style="flex: 1; text-align: left;">
+        <h3 style="color: #34495e; text-align: left;">Stakes</h3>
+        <p><strong>Stake 1:</strong> ${formatCurrency(stake1)}</p>
+        <p><strong>Stake 2:</strong> ${typeof stake2 === "number" ? formatCurrency(stake2) : stake2}</p>
+      </div>
+    </div>
+    <hr style="border: none; border-top: 1px solid #ddd;">
+    <h3 style="color: #3498db; text-align: center;">
+      Arbitrage Percentage: ${typeof arbitragePercentage === "number" ? formatNumber(-arbitragePercentage) + "%" : arbitragePercentage}
+    </h3>
+    <h3 style="color: #27ae60; text-align: center;">
+      Total Profit: ${typeof totalProfit === "number" ? formatCurrency(totalProfit) : totalProfit}
+    </h3>
+  </div>
+`
+```
+
+```{r}
+# Libraries
+library(tidyverse)
+library(DT)
+library(quartabs)
+
+# Read in files
+all_arbs <- read_rds("../Data/all_arbs.rds")
+all_middles <- read_rds("../Data/all_middles.rds")
+tab_miss_by_one <- read_rds("../Data/tab_points_miss_by_one.rds")
+betright_miss_by_one <- read_rds("../Data/betright_points_miss_by_one.rds")
+```
+
+:::::: panel-tabset
+## Top-Down
+
+::: panel-tabset
+## All
+
+```{r}
+#| column: page
+
+  all_arbs |>
+  filter(margin > 0) |> 
+  filter(over_agency %in% c("Sportsbet") | under_agency %in% c("Sportsbet")) |> 
+  mutate(margin = round(margin, 2))
+```
+
+## TAB
+
+```{r}
+#| column: page
+
+  all_arbs |>
+  filter(margin > 0) |> 
+  filter(over_agency %in% c("Sportsbet") | under_agency %in% c("Sportsbet")) |> 
+  filter(over_agency %in% c("TAB") | under_agency %in% c("TAB")) |> 
+  mutate(margin = round(margin, 2))
+```
+
+## Dabble
+
+```{r}
+#| column: page
+
+  all_arbs |>
+  filter(margin > 0) |> 
+  filter(over_agency %in% c("Sportsbet") | under_agency %in% c("Sportsbet")) |> 
+  filter(over_agency %in% c("Dabble") | under_agency %in% c("Dabble")) |> 
+  mutate(margin = round(margin, 2))
+```
+
+## Dabble Pick Em
+
+```{r}
+#| column: page
+
+  all_arbs |>
+  filter(margin > 0) |> 
+  filter(over_agency %in% c("Sportsbet") | under_agency %in% c("Sportsbet")) |> 
+  filter(over_agency %in% c("Dabble Pickem") | under_agency %in% c("Dabble Pickem")) |> 
+  mutate(margin = round(margin, 2))
+```
+
+## Bet365
+
+```{r}
+#| column: page
+
+  all_arbs |>
+  filter(margin > 0) |> 
+  filter(over_agency %in% c("Sportsbet") | under_agency %in% c("Sportsbet")) |> 
+  filter(over_agency %in% c("Bet365") | under_agency %in% c("Bet365")) |> 
+  mutate(margin = round(margin, 2))
+```
+
+## BetRight
+
+```{r}
+#| column: page
+
+  all_arbs |>
+  filter(margin > 0) |> 
+  filter(over_agency %in% c("Sportsbet") | under_agency %in% c("Sportsbet")) |> 
+  filter(over_agency %in% c("BetRight") | under_agency %in% c("BetRight")) |> 
+  mutate(margin = round(margin, 2))
+```
+
+## Betr
+
+```{r}
+#| column: page
+
+  all_arbs |>
+  filter(margin > 0) |> 
+  filter(over_agency %in% c("Sportsbet") | under_agency %in% c("Sportsbet")) |> 
+  filter(over_agency %in% c("Betr") | under_agency %in% c("Betr")) |> 
+  mutate(margin = round(margin, 2))
+```
+
+## Neds
+
+```{r}
+#| column: page
+
+  all_arbs |>
+  filter(margin > 0) |> 
+  filter(over_agency %in% c("Sportsbet") | under_agency %in% c("Sportsbet")) |> 
+  filter(over_agency %in% c("Neds") | under_agency %in% c("Neds")) |> 
+  mutate(margin = round(margin, 2))
+```
+
+## Pointsbet
+
+```{r}
+#| column: page
+
+  all_arbs |>
+  filter(margin > 0) |> 
+  filter(over_agency %in% c("Sportsbet") | under_agency %in% c("Sportsbet")) |> 
+  filter(over_agency %in% c("Pointsbet") | under_agency %in% c("Pointsbet")) |> 
+  mutate(margin = round(margin, 2))
+```
+
+## TAB Miss-by-1 Points
+
+```{r}
+#| column: page
+
+tab_miss_by_1_points_arbs <-
+  tab_miss_by_one |>
+  filter(margin > 0) |> 
+  filter(over_agency %in% c("Sportsbet") | under_agency %in% c("Sportsbet")) |> 
+  filter(over_agency %in% c("TAB") | under_agency %in% c("TAB")) |> 
+  filter(line >= 8.5) |> 
+  mutate(margin = round(margin, 2))
+
+tab_miss_by_1_points_arbs
+```
+
+## BetRight Miss-by-1 Points
+
+```{r}
+#| column: page
+
+betright_miss_by_1_points_arbs <-
+  betright_miss_by_one |>
+  filter(margin > 0) |> 
+  filter(over_agency %in% c("Sportsbet") | under_agency %in% c("Sportsbet")) |> 
+  filter(over_agency %in% c("BetRight") | under_agency %in% c("BetRight")) |> 
+  filter(line >= 8.5) |> 
+  mutate(margin = round(margin, 2))
+
+betright_miss_by_1_points_arbs
+```
+:::
+
+## Arbs
+
+::: panel-tabset
+## All Arbs
+
+```{r}
+#| column: page
+
+# Separate into sportsbet
+  all_arbs |>
+  filter(margin > 0) |> 
+  filter(!over_agency %in% c("Unibet") & !under_agency %in% c("Unibet")) |> 
+  mutate(margin = round(margin, 2))
+```
+
+## Unibet Arbs
+
+```{r}
+#| column: page
+
+unibet_arbs <-
+  all_arbs |>
+  filter(margin > 0) |> 
+  filter(over_agency %in% c("Unibet") | under_agency %in% c("Unibet")) |> 
+  mutate(margin = round(margin, 2)) |> 
+  arrange(match, desc(margin))
+
+unibet_arbs
+```
+
+## Bet365, BetRight, Neds, Dabble 3s
+
+```{r}
+#| column: page
+
+dabble_threes_arbs <-
+  all_arbs |>
+  filter(margin > 0) |> 
+  filter(over_agency %in% c("Bet365", "BetRight", "Neds", "Dabble") & under_agency %in% c("Bet365", "BetRight", "Neds", "Dabble")) |> 
+  filter(market_name == "Player Threes")
+
+bet365_betright_neds_arbs <-
+  all_arbs |>
+  filter(margin > 0) |> 
+  filter(over_agency %in% c("Bet365", "BetRight", "Neds") & under_agency %in% c("Bet365", "BetRight", "Neds")) |> 
+  filter(!over_agency %in% c("Unibet") & !under_agency %in% c("Unibet")) |> 
+  bind_rows(dabble_threes_arbs) |>
+  mutate(margin = round(margin, 2)) |> 
+  arrange(desc(margin))
+
+bet365_betright_neds_arbs
+```
+
+## Tab Miss-by-1 Points Arbs
+
+```{r}
+#| column: page
+
+tab_miss_by_1_points_arbs <-
+  tab_miss_by_one |>
+  filter(margin > 0) |> 
+  filter(over_agency %in% c("TAB") | under_agency %in% c("TAB")) |> 
+  filter(!over_agency %in% c("Neds", "Unibet") & !under_agency %in% c("Neds", "Unibet")) |> 
+  mutate(margin = round(margin, 2))
+
+tab_miss_by_1_points_arbs
+```
+:::
+
+## Middles
+
+```{r}
+#| column: page
+
+all_middles |> 
+  mutate(margin = round(margin, 2))
+```
+
+## Multi Legs
+
+::: panel-tabset
+## Dabble
+
+```{r}
+#| results: asis
+
+processed_odds <-
+  list.files("../Data/Processed_Odds/", full.names = TRUE) |>
+  map_dfr(read_rds) |> 
+  select(match, player_name, market_name, line, over_price, agency, empirical_prob_last_20) |> 
+  arrange(desc(empirical_prob_last_20), desc(over_price)) |> 
+  filter(empirical_prob_last_20 >= 0.9)
+
+# Get list of tibbles (one for each agency)
+match_list_dabble <- processed_odds |>
+  filter(agency == "Dabble") |>
+  select(-agency) |>
+  split(~match)
+
+# Add Overall tab for Dabble
+overall_dabble <- processed_odds |>
+  filter(agency == "Dabble") |>
+  select(-agency)
+if (nrow(overall_dabble) > 0) {
+  match_list_dabble <- c(list(Overall = overall_dabble), match_list_dabble)
+}
+
+qreport::maketabs(match_list_dabble, wide = TRUE)
+```
+
+## BetRight
+
+```{r}
+#| results: asis
+
+# Get list of tibbles (one for each agency)
+match_list_betright <- processed_odds |>
+  filter(agency == "BetRight") |> 
+  select(-agency) |>
+  split(~match)
+
+# Add Overall tab for BetRight
+overall_betright <- processed_odds |>
+  filter(agency == "BetRight") |>
+  select(-agency)
+if (nrow(overall_betright) > 0) {
+  match_list_betright <- c(list(Overall = overall_betright), match_list_betright)
+}
+
+if (length(match_list_betright) > 0) {
+qreport::maketabs(match_list_betright, wide = TRUE)}
+```
+
+## TAB
+
+```{r}
+#| results: asis
+
+# Get list of tibbles (one for each agency)
+match_list_tab <- processed_odds |>
+  filter(agency == "TAB") |> 
+  select(-agency) |>
+  split(~match)
+
+# Add Overall tab for TAB
+overall_tab <- processed_odds |>
+  filter(agency == "TAB") |>
+  select(-agency)
+if (nrow(overall_tab) > 0) {
+  match_list_tab <- c(list(Overall = overall_tab), match_list_tab)
+}
+
+qreport::maketabs(match_list_tab, wide = TRUE)
+```
+
+## Neds
+
+```{r}
+#| results: asis
+
+# Get list of tibbles (one for each agency)
+match_list_neds <- processed_odds |>
+  filter(agency == "Neds") |> 
+  select(-agency) |>
+  split(~match)
+
+# Add Overall tab for Neds
+overall_neds <- processed_odds |>
+  filter(agency == "Neds") |>
+  select(-agency)
+if (nrow(overall_neds) > 0) {
+  match_list_neds <- c(list(Overall = overall_neds), match_list_neds)
+}
+
+# only run if there are matches
+if(length(match_list_neds) > 0) {
+qreport::maketabs(match_list_neds, wide = TRUE)}
+```
+
+## Pointsbet
+
+```{r}
+#| results: asis
+
+# Get list of tibbles (one for each agency)
+match_list_pb <- processed_odds |>
+  filter(agency == "Pointsbet") |> 
+  select(-agency) |>
+  split(~match)
+
+# Add Overall tab for Pointsbet
+overall_pointsbet <- processed_odds |>
+  filter(agency == "Pointsbet") |>
+  select(-agency)
+if (nrow(overall_pointsbet) > 0) {
+  match_list_pb <- c(list(Overall = overall_pointsbet), match_list_pb)
+}
+
+# only run if there are matches
+if(length(match_list_pb) > 0) {
+qreport::maketabs(match_list_pb, wide = TRUE)}
+```
+
+## Bet365
+
+```{r}
+#| results: asis
+
+# Get list of tibbles (one for each agency)
+match_list_bet365 <- processed_odds |>
+  filter(agency == "Bet365") |> 
+  select(-agency) |>
+  split(~match)
+
+# Add Overall tab for Bet365
+overall_bet365 <- processed_odds |>
+  filter(agency == "Bet365") |>
+  select(-agency)
+if (nrow(overall_bet365) > 0) {
+  match_list_bet365 <- c(list(Overall = overall_bet365), match_list_bet365)
+}
+
+# only run if there are matches
+if(length(match_list_bet365) > 0) {
+qreport::maketabs(match_list_bet365, wide = TRUE)}
+```
+:::
+::::::
