@@ -391,7 +391,8 @@ if (nrow(overall_dabble) > 0) {
   match_list_dabble <- c(list(Overall = overall_dabble), match_list_dabble)
 }
 
-qreport::maketabs(match_list_dabble, wide = TRUE)
+if (length(match_list_dabble) > 0) {
+qreport::maketabs(match_list_dabble, wide = TRUE)}
 ```
 
 ## BetRight
