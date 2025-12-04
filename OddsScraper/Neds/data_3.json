@@ -1,51 +1,67 @@
 {
     "entrants": {
-        "68168ab4-9586-4145-aee0-204e95cd3a09": {
-            "id": "68168ab4-9586-4145-aee0-204e95cd3a09",
-            "name": "Toronto Raptors",
-            "home_away": "HOME",
-            "visible": true,
-            "sort_order": 10,
-            "market_id": "efb8eccc-c2de-4bd4-96d1-b18d43a6c8c3"
-        },
-        "eafe92de-3997-480b-afac-079c42365107": {
-            "id": "eafe92de-3997-480b-afac-079c42365107",
-            "name": "Los Angeles Lakers",
+        "2389ce38-f9fb-4574-98f4-0b6106826dc2": {
+            "id": "2389ce38-f9fb-4574-98f4-0b6106826dc2",
+            "name": "Minnesota Timberwolves",
             "home_away": "AWAY",
             "visible": true,
             "sort_order": 20,
-            "market_id": "efb8eccc-c2de-4bd4-96d1-b18d43a6c8c3"
+            "market_id": "ec316667-fadf-4e01-84e8-6a458699056d"
+        },
+        "4af09faa-ce2d-42d1-864a-9f80d6d34359": {
+            "id": "4af09faa-ce2d-42d1-864a-9f80d6d34359",
+            "name": "New Orleans Pelicans",
+            "home_away": "HOME",
+            "visible": true,
+            "sort_order": 10,
+            "market_id": "2109ec13-e818-47b8-9f6c-0d9b9c47724c"
+        },
+        "cfda7dbe-c154-4848-91a2-a23ab7174a96": {
+            "id": "cfda7dbe-c154-4848-91a2-a23ab7174a96",
+            "name": "New Orleans Pelicans",
+            "home_away": "HOME",
+            "visible": true,
+            "sort_order": 10,
+            "market_id": "ec316667-fadf-4e01-84e8-6a458699056d"
+        },
+        "dd05ba72-525e-4e96-8b22-2324c137415f": {
+            "id": "dd05ba72-525e-4e96-8b22-2324c137415f",
+            "name": "Minnesota Timberwolves",
+            "home_away": "AWAY",
+            "visible": true,
+            "sort_order": 20,
+            "market_id": "2109ec13-e818-47b8-9f6c-0d9b9c47724c"
         }
     },
     "event_participants": {
-        "245c8a37-8e1e-44fe-afad-279598cbf73a": {
-            "id": "245c8a37-8e1e-44fe-afad-279598cbf73a",
-            "event_id": "56ee0944-77ff-49ae-bd04-1825d193480d",
-            "name": "Toronto Raptors",
-            "home_away": "HOME",
-            "colour": "#ce1141"
-        },
-        "af350d77-7aac-443c-93f0-e022c75ea78d": {
-            "id": "af350d77-7aac-443c-93f0-e022c75ea78d",
-            "event_id": "56ee0944-77ff-49ae-bd04-1825d193480d",
-            "name": "Los Angeles Lakers",
+        "225ae185-0b22-454c-a794-00929324b664": {
+            "id": "225ae185-0b22-454c-a794-00929324b664",
+            "event_id": "788ee1a9-60d8-4af2-9653-e10e6a58f1c7",
+            "name": "Minnesota Timberwolves",
             "home_away": "AWAY",
-            "colour": "#552583"
+            "colour": "#0c2340"
+        },
+        "52f63f61-62a9-4fdb-819d-dc194a32fdcf": {
+            "id": "52f63f61-62a9-4fdb-819d-dc194a32fdcf",
+            "event_id": "788ee1a9-60d8-4af2-9653-e10e6a58f1c7",
+            "name": "New Orleans Pelicans",
+            "home_away": "HOME",
+            "colour": "#0c2340"
         }
     },
     "events": {
-        "56ee0944-77ff-49ae-bd04-1825d193480d": {
-            "id": "56ee0944-77ff-49ae-bd04-1825d193480d",
-            "name": "Toronto Raptors vs Los Angeles Lakers",
+        "788ee1a9-60d8-4af2-9653-e10e6a58f1c7": {
+            "id": "788ee1a9-60d8-4af2-9653-e10e6a58f1c7",
+            "name": "New Orleans Pelicans vs Minnesota Timberwolves",
             "event_type": {
                 "id": "6bfa0efc-05df-4ae1-9b1e-152365290cfd",
                 "name": "Match"
             },
             "match_status": "BettingOpen",
-            "advertised_start": "2025-12-05T00:30:00Z",
-            "actual_start": "2025-12-05T00:30:00Z",
+            "advertised_start": "2025-12-05T01:00:00Z",
+            "actual_start": "2025-12-05T01:00:00Z",
             "visible": true,
-            "slug": "toronto-raptors-vs-los-angeles-lakers",
+            "slug": "new-orleans-pelicans-vs-minnesota-timberwolves",
             "competition": {
                 "id": "2d20a25b-6b96-4651-a523-442834136e2d",
                 "name": "NBA",
@@ -55,27 +71,35 @@
             },
             "competition_id": "2d20a25b-6b96-4651-a523-442834136e2d",
             "market_type_group_ids": [
-                "43c990d1-7471-4055-9a7a-e71409494486"
+                "43c990d1-7471-4055-9a7a-e71409494486",
+                "d04f2072-794e-45ba-bc2e-b6be0363418d"
             ],
             "market_type_group_markets": [
                 {
                     "market_type_group_id": "43c990d1-7471-4055-9a7a-e71409494486",
                     "market_ids": [
-                        "efb8eccc-c2de-4bd4-96d1-b18d43a6c8c3"
+                        "2109ec13-e818-47b8-9f6c-0d9b9c47724c"
+                    ]
+                },
+                {
+                    "market_type_group_id": "d04f2072-794e-45ba-bc2e-b6be0363418d",
+                    "market_ids": [
+                        "ec316667-fadf-4e01-84e8-6a458699056d"
                     ]
                 }
             ],
-            "market_count": 1,
+            "market_count": 2,
             "main_markets": [
-                "efb8eccc-c2de-4bd4-96d1-b18d43a6c8c3"
+                "2109ec13-e818-47b8-9f6c-0d9b9c47724c"
             ],
             "market_ids": [
-                "efb8eccc-c2de-4bd4-96d1-b18d43a6c8c3"
+                "2109ec13-e818-47b8-9f6c-0d9b9c47724c",
+                "ec316667-fadf-4e01-84e8-6a458699056d"
             ],
             "category_id": "3c34d075-dc14-436d-bfc4-9272a49c2b39",
             "participant_ids": [
-                "245c8a37-8e1e-44fe-afad-279598cbf73a",
-                "af350d77-7aac-443c-93f0-e022c75ea78d"
+                "225ae185-0b22-454c-a794-00929324b664",
+                "52f63f61-62a9-4fdb-819d-dc194a32fdcf"
             ]
         }
     },
@@ -86,44 +110,84 @@
             "name": "Top Markets",
             "priority": 985,
             "type": "MARKET_TYPE_GROUP_TYPE_EVENT"
+        },
+        "d04f2072-794e-45ba-bc2e-b6be0363418d": {
+            "id": "d04f2072-794e-45ba-bc2e-b6be0363418d",
+            "category_id": "3c34d075-dc14-436d-bfc4-9272a49c2b39",
+            "name": "First Half Markets",
+            "priority": 90,
+            "type": "MARKET_TYPE_GROUP_TYPE_EVENT"
         }
     },
     "markets": {
-        "efb8eccc-c2de-4bd4-96d1-b18d43a6c8c3": {
-            "id": "efb8eccc-c2de-4bd4-96d1-b18d43a6c8c3",
-            "event_id": "56ee0944-77ff-49ae-bd04-1825d193480d",
+        "2109ec13-e818-47b8-9f6c-0d9b9c47724c": {
+            "id": "2109ec13-e818-47b8-9f6c-0d9b9c47724c",
+            "event_id": "788ee1a9-60d8-4af2-9653-e10e6a58f1c7",
             "market_type_id": "3dc4ca49-3190-43b2-a328-60e0c9460187",
             "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
             "name": "Head To Head",
             "advertised_start": {
-                "seconds": 1764894600
+                "seconds": 1764896400
             },
             "actual_start": {
-                "seconds": 1764894600
+                "seconds": 1764896400
             },
             "is_primary": true,
             "same_game_multi_available": true,
             "visible": true,
             "entrant_ids": [
-                "68168ab4-9586-4145-aee0-204e95cd3a09",
-                "eafe92de-3997-480b-afac-079c42365107"
+                "4af09faa-ce2d-42d1-864a-9f80d6d34359",
+                "dd05ba72-525e-4e96-8b22-2324c137415f"
+            ],
+            "num_winners": 1
+        },
+        "ec316667-fadf-4e01-84e8-6a458699056d": {
+            "id": "ec316667-fadf-4e01-84e8-6a458699056d",
+            "event_id": "788ee1a9-60d8-4af2-9653-e10e6a58f1c7",
+            "market_type_id": "bf65d9b5-5526-45cd-a488-22e92cf76b28",
+            "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
+            "name": "1st Half Head To Head",
+            "advertised_start": {
+                "seconds": 1764896400
+            },
+            "actual_start": {
+                "seconds": 1764896400
+            },
+            "same_game_multi_available": true,
+            "visible": true,
+            "entrant_ids": [
+                "cfda7dbe-c154-4848-91a2-a23ab7174a96",
+                "2389ce38-f9fb-4574-98f4-0b6106826dc2"
             ],
             "num_winners": 1
         }
     },
     "markets_allow_cashout": {
-        "efb8eccc-c2de-4bd4-96d1-b18d43a6c8c3": true
+        "2109ec13-e818-47b8-9f6c-0d9b9c47724c": true,
+        "ec316667-fadf-4e01-84e8-6a458699056d": true
     },
     "prices": {
-        "68168ab4-9586-4145-aee0-204e95cd3a09:940b8704-e497-4a76-b390-00918ff7d282:": {
+        "2389ce38-f9fb-4574-98f4-0b6106826dc2:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 1,
-                "denominator": 1
+                "numerator": 9,
+                "denominator": 25
             }
         },
-        "eafe92de-3997-480b-afac-079c42365107:940b8704-e497-4a76-b390-00918ff7d282:": {
+        "4af09faa-ce2d-42d1-864a-9f80d6d34359:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 41,
+                "numerator": 19,
+                "denominator": 4
+            }
+        },
+        "cfda7dbe-c154-4848-91a2-a23ab7174a96:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 43,
+                "denominator": 20
+            }
+        },
+        "dd05ba72-525e-4e96-8b22-2324c137415f:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 7,
                 "denominator": 50
             }
         }
