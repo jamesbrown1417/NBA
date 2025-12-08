@@ -307,7 +307,7 @@ player_points_data <-
 # Add market name
 player_points_data <-
     player_points_data |>
-    filter(str_detect(prop_market_name, "Qtr", negate = TRUE)) |>
+    filter(str_detect(prop_market_name, "Qtr|Quarter", negate = TRUE)) |>
     mutate(market_name = "Player Points") |> 
     mutate(url = str_extract(as.character(url), "[0-9]{6,8}")) |> 
     rename(match_id = url) |> 
