@@ -82,9 +82,9 @@
         "Indiana",
         "Sacramento"
       ],
-      "openMarketCount": 225,
+      "openMarketCount": 226,
       "futureMarketCount": 0,
-      "nonFutureMarketCount": 225,
+      "nonFutureMarketCount": 226,
       "markets": [
         {
           "id": "125379058",
@@ -732,6 +732,84 @@
               "bettingStatus": "Open",
               "allowPlace": false,
               "number": 610227,
+              "isOpen": true,
+              "sortOrder": 4
+            }
+          ]
+        },
+        {
+          "id": "125488132",
+          "name": "NBA Ind-Sac LnTt$2 09/12 09/12",
+          "shortName": "NBA Ind-Sac LnTt$2 09/12",
+          "betOption": "Line/Total Double $2",
+          "betOptionSpectrumId": "2657",
+          "betOptionPriority": 3140,
+          "marketUniqueId": 125488132,
+          "closeTime": "2025-12-09T00:10:00.000Z",
+          "bettingStatus": "Open",
+          "message": null,
+          "informationMessage": null,
+          "isFuture": false,
+          "onlineBetting": true,
+          "phoneBettingOnly": false,
+          "inPlay": false,
+          "goingInPlay": false,
+          "allowWin": true,
+          "allowPlace": false,
+          "allowEachWay": false,
+          "allowMulti": true,
+          "allowMultiWin": true,
+          "allowMultiPlace": false,
+          "allowMultiEachWay": false,
+          "numberOfPlaces": 0,
+          "cashOutEligibility": "PreMatch",
+          "allowBundle": false,
+          "propositions": [
+            {
+              "id": "565228",
+              "name": "Indiana +0.5/Over 229.5",
+              "returnWin": 2,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 565228,
+              "isOpen": true,
+              "sortOrder": 1
+            },
+            {
+              "id": "565229",
+              "name": "Indiana +2.5/Under 241.5",
+              "returnWin": 2,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 565229,
+              "isOpen": true,
+              "sortOrder": 2
+            },
+            {
+              "id": "565230",
+              "name": "Sacramento +11.5/Over 227.5",
+              "returnWin": 2,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 565230,
+              "isOpen": true,
+              "sortOrder": 3
+            },
+            {
+              "id": "565231",
+              "name": "Sacramento +9.5/Under 239.5",
+              "returnWin": 2,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 565231,
               "isOpen": true,
               "sortOrder": 4
             }
@@ -3767,7 +3845,8 @@
               "allowPlace": false,
               "number": 551290,
               "isOpen": true,
-              "sortOrder": 5
+              "sortOrder": 5,
+              "sameGame": true
             },
             {
               "id": "551291",
@@ -3779,9 +3858,12 @@
               "allowPlace": false,
               "number": 551291,
               "isOpen": true,
-              "sortOrder": 6
+              "sortOrder": 6,
+              "sameGame": true
             }
-          ]
+          ],
+          "sameGame": true,
+          "sameGameMultipleSelections": false
         },
         {
           "id": "125485370",
@@ -3821,7 +3903,8 @@
               "allowPlace": false,
               "number": 551532,
               "isOpen": true,
-              "sortOrder": 5
+              "sortOrder": 5,
+              "sameGame": true
             },
             {
               "id": "551533",
@@ -3833,9 +3916,12 @@
               "allowPlace": false,
               "number": 551533,
               "isOpen": true,
-              "sortOrder": 6
+              "sortOrder": 6,
+              "sameGame": true
             }
-          ]
+          ],
+          "sameGame": true,
+          "sameGameMultipleSelections": false
         },
         {
           "id": "125485371",
@@ -3922,7 +4008,7 @@
             {
               "id": "551585",
               "name": "Jar Walker Over 8.5 Pts",
-              "returnWin": 1.8,
+              "returnWin": 1.87,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -3934,7 +4020,7 @@
             {
               "id": "551586",
               "name": "Jar Walker Under 8.5 Pts",
-              "returnWin": 1.95,
+              "returnWin": 1.87,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -3983,7 +4069,8 @@
               "allowPlace": false,
               "number": 551244,
               "isOpen": true,
-              "sortOrder": 3
+              "sortOrder": 3,
+              "sameGame": true
             },
             {
               "id": "551245",
@@ -3995,9 +4082,12 @@
               "allowPlace": false,
               "number": 551245,
               "isOpen": true,
-              "sortOrder": 4
+              "sortOrder": 4,
+              "sameGame": true
             }
-          ]
+          ],
+          "sameGame": true,
+          "sameGameMultipleSelections": false
         },
         {
           "id": "125485328",
@@ -4037,7 +4127,8 @@
               "allowPlace": false,
               "number": 551752,
               "isOpen": true,
-              "sortOrder": 5
+              "sortOrder": 5,
+              "sameGame": true
             },
             {
               "id": "551753",
@@ -4049,9 +4140,12 @@
               "allowPlace": false,
               "number": 551753,
               "isOpen": true,
-              "sortOrder": 6
+              "sortOrder": 6,
+              "sameGame": true
             }
-          ]
+          ],
+          "sameGame": true,
+          "sameGameMultipleSelections": false
         },
         {
           "id": "125485335",
@@ -4244,30 +4338,34 @@
           "allowBundle": false,
           "propositions": [
             {
-              "id": "551796",
-              "name": "R Westbrook Over 14.5 Pts",
-              "returnWin": 1.95,
-              "returnPlace": 0,
-              "differential": null,
-              "bettingStatus": "Open",
-              "allowPlace": false,
-              "number": 551796,
-              "isOpen": true,
-              "sortOrder": 3
-            },
-            {
-              "id": "551797",
-              "name": "R Westbrook Under 14.5 Pts",
+              "id": "551798",
+              "name": "R Westbrook Over 13.5 Pts",
               "returnWin": 1.8,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
               "allowPlace": false,
-              "number": 551797,
+              "number": 551798,
               "isOpen": true,
-              "sortOrder": 4
+              "sortOrder": 5,
+              "sameGame": true
+            },
+            {
+              "id": "551799",
+              "name": "R Westbrook Under 13.5 Pts",
+              "returnWin": 1.95,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 551799,
+              "isOpen": true,
+              "sortOrder": 6,
+              "sameGame": true
             }
-          ]
+          ],
+          "sameGame": true,
+          "sameGameMultipleSelections": false
         },
         {
           "id": "125485365",
@@ -4361,7 +4459,8 @@
               "allowPlace": false,
               "number": 551263,
               "isOpen": true,
-              "sortOrder": 5
+              "sortOrder": 5,
+              "sameGame": true
             },
             {
               "id": "551264",
@@ -4373,9 +4472,12 @@
               "allowPlace": false,
               "number": 551264,
               "isOpen": true,
-              "sortOrder": 6
+              "sortOrder": 6,
+              "sameGame": true
             }
-          ]
+          ],
+          "sameGame": true,
+          "sameGameMultipleSelections": false
         },
         {
           "id": "125479511",
@@ -5341,7 +5443,7 @@
             {
               "id": "551682",
               "name": "Isa Jackson 5+ Pts/Ind Win",
-              "returnWin": 1.95,
+              "returnWin": 2,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -5395,7 +5497,7 @@
             {
               "id": "607640",
               "name": "Jar Walker 5+ Pts/Ind Win",
-              "returnWin": 1.9,
+              "returnWin": 1.95,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -5407,7 +5509,7 @@
             {
               "id": "607641",
               "name": "Jar Walker 10+ Pts/Ind Win",
-              "returnWin": 3,
+              "returnWin": 3.2,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -17004,7 +17106,7 @@
             {
               "id": "551138",
               "name": "Draw",
-              "returnWin": 8,
+              "returnWin": 7.5,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -17016,7 +17118,7 @@
             {
               "id": "551139",
               "name": "Sacramento",
-              "returnWin": 2.2,
+              "returnWin": 2.25,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -17316,7 +17418,7 @@
             {
               "id": "551607",
               "name": "Indiana -6.5",
-              "returnWin": 3.7,
+              "returnWin": 3.6,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -17328,7 +17430,7 @@
             {
               "id": "551608",
               "name": "Sacramento +6.5",
-              "returnWin": 1.25,
+              "returnWin": 1.26,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -17388,7 +17490,7 @@
             {
               "id": "551613",
               "name": "Indiana -3.5",
-              "returnWin": 2.5,
+              "returnWin": 2.45,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -17400,7 +17502,7 @@
             {
               "id": "551614",
               "name": "Sacramento +3.5",
-              "returnWin": 1.5,
+              "returnWin": 1.52,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -17412,7 +17514,7 @@
             {
               "id": "551615",
               "name": "Indiana -2.5",
-              "returnWin": 2.2,
+              "returnWin": 2.15,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -17424,7 +17526,7 @@
             {
               "id": "551616",
               "name": "Sacramento +2.5",
-              "returnWin": 1.62,
+              "returnWin": 1.65,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -17484,7 +17586,7 @@
             {
               "id": "551621",
               "name": "Indiana +0.5",
-              "returnWin": 1.62,
+              "returnWin": 1.6,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -17496,7 +17598,7 @@
             {
               "id": "551622",
               "name": "Sacramento -0.5",
-              "returnWin": 2.2,
+              "returnWin": 2.25,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -17508,7 +17610,7 @@
             {
               "id": "551623",
               "name": "Indiana +1.5",
-              "returnWin": 1.5,
+              "returnWin": 1.48,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -17520,7 +17622,7 @@
             {
               "id": "551624",
               "name": "Sacramento -1.5",
-              "returnWin": 2.5,
+              "returnWin": 2.55,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -17556,7 +17658,7 @@
             {
               "id": "551627",
               "name": "Indiana +3.5",
-              "returnWin": 1.32,
+              "returnWin": 1.3,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -17568,7 +17670,7 @@
             {
               "id": "551628",
               "name": "Sacramento -3.5",
-              "returnWin": 3.2,
+              "returnWin": 3.3,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -17652,7 +17754,7 @@
             {
               "id": "551635",
               "name": "Indiana +7.5",
-              "returnWin": 1.11,
+              "returnWin": 1.1,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -17664,7 +17766,7 @@
             {
               "id": "551636",
               "name": "Sacramento -7.5",
-              "returnWin": 6,
+              "returnWin": 6.2,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -18048,7 +18150,7 @@
             {
               "id": "551934",
               "name": "Indiana by 4+",
-              "returnWin": 2.5,
+              "returnWin": 2.45,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -18072,7 +18174,7 @@
             {
               "id": "551936",
               "name": "Draw",
-              "returnWin": 8,
+              "returnWin": 7.5,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -18096,7 +18198,7 @@
             {
               "id": "551938",
               "name": "Sacramento by 4+",
-              "returnWin": 3.2,
+              "returnWin": 3.3,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -18162,7 +18264,7 @@
             {
               "id": "551172",
               "name": "Draw",
-              "returnWin": 8,
+              "returnWin": 7.5,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -18294,7 +18396,7 @@
             {
               "id": "551758",
               "name": "Indiana",
-              "returnWin": 1.75,
+              "returnWin": 1.72,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -18426,7 +18528,7 @@
             {
               "id": "551396",
               "name": "Indiana",
-              "returnWin": 1.72,
+              "returnWin": 1.7,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -18726,7 +18828,7 @@
             {
               "id": "551443",
               "name": "Sacramento score 25+ only",
-              "returnWin": 8.5,
+              "returnWin": 9,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -19116,7 +19218,7 @@
             {
               "id": "551727",
               "name": "Indiana by 3-4",
-              "returnWin": 7.5,
+              "returnWin": 8,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -19140,7 +19242,7 @@
             {
               "id": "551729",
               "name": "Draw",
-              "returnWin": 8,
+              "returnWin": 7.5,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -19164,7 +19266,7 @@
             {
               "id": "551731",
               "name": "Sacramento by 3-4",
-              "returnWin": 8.5,
+              "returnWin": 9,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -19200,7 +19302,7 @@
             {
               "id": "551734",
               "name": "Sacramento by 9-10",
-              "returnWin": 17,
+              "returnWin": 18,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -19488,7 +19590,7 @@
             {
               "id": "551284",
               "name": "Draw",
-              "returnWin": 8.5,
+              "returnWin": 9,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -19500,7 +19602,7 @@
             {
               "id": "551285",
               "name": "Sacramento",
-              "returnWin": 2.2,
+              "returnWin": 2.15,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -19650,7 +19752,7 @@
             {
               "id": "551549",
               "name": "Indiana by 4+",
-              "returnWin": 2.5,
+              "returnWin": 2.55,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -19674,7 +19776,7 @@
             {
               "id": "551551",
               "name": "Draw",
-              "returnWin": 8.5,
+              "returnWin": 9,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -19686,7 +19788,7 @@
             {
               "id": "551552",
               "name": "Sacramento by 1-3",
-              "returnWin": 6.5,
+              "returnWin": 6,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -19752,7 +19854,7 @@
             {
               "id": "551737",
               "name": "Indiana by 1-5",
-              "returnWin": 4,
+              "returnWin": 3.8,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -19764,7 +19866,7 @@
             {
               "id": "551738",
               "name": "Draw",
-              "returnWin": 8.5,
+              "returnWin": 9,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -19830,7 +19932,7 @@
             {
               "id": "551175",
               "name": "Indiana by 11+",
-              "returnWin": 7,
+              "returnWin": 7.5,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -19878,7 +19980,7 @@
             {
               "id": "551179",
               "name": "Indiana by 3-4",
-              "returnWin": 8,
+              "returnWin": 7.5,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -19902,7 +20004,7 @@
             {
               "id": "551182",
               "name": "Draw",
-              "returnWin": 8.5,
+              "returnWin": 9,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -19950,7 +20052,7 @@
             {
               "id": "551186",
               "name": "Sacramento by 7-8",
-              "returnWin": 13,
+              "returnWin": 12,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -19962,7 +20064,7 @@
             {
               "id": "551187",
               "name": "Sacramento by 9-10",
-              "returnWin": 17,
+              "returnWin": 16,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -22465,7 +22567,8 @@
               "allowPlace": false,
               "number": 559960,
               "isOpen": true,
-              "sortOrder": 1
+              "sortOrder": 1,
+              "sameGame": true
             },
             {
               "id": "559961",
@@ -22477,7 +22580,8 @@
               "allowPlace": false,
               "number": 559961,
               "isOpen": true,
-              "sortOrder": 2
+              "sortOrder": 2,
+              "sameGame": true
             },
             {
               "id": "559962",
@@ -22489,7 +22593,8 @@
               "allowPlace": false,
               "number": 559962,
               "isOpen": true,
-              "sortOrder": 3
+              "sortOrder": 3,
+              "sameGame": true
             },
             {
               "id": "559963",
@@ -22501,9 +22606,12 @@
               "allowPlace": false,
               "number": 559963,
               "isOpen": true,
-              "sortOrder": 4
+              "sortOrder": 4,
+              "sameGame": true
             }
-          ]
+          ],
+          "sameGame": true,
+          "sameGameMultipleSelections": false
         },
         {
           "id": "125479828",
@@ -23443,7 +23551,7 @@
             {
               "id": "559931",
               "name": "1st Quarter",
-              "returnWin": 2.9,
+              "returnWin": 3,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -23455,7 +23563,7 @@
             {
               "id": "559932",
               "name": "2nd Quarter",
-              "returnWin": 3.2,
+              "returnWin": 3.1,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -23853,9 +23961,9 @@
         "Minnesota",
         "Phoenix"
       ],
-      "openMarketCount": 223,
+      "openMarketCount": 224,
       "futureMarketCount": 0,
-      "nonFutureMarketCount": 223,
+      "nonFutureMarketCount": 224,
       "markets": [
         {
           "id": "125379059",
@@ -23956,7 +24064,8 @@
               "number": 559551,
               "isOpen": true,
               "sortOrder": 1,
-              "line": "-8.0"
+              "line": "-8.0",
+              "sameGame": true
             },
             {
               "id": "559552",
@@ -23969,9 +24078,12 @@
               "number": 559552,
               "isOpen": true,
               "sortOrder": 2,
-              "line": "+8.0"
+              "line": "+8.0",
+              "sameGame": true
             }
-          ]
+          ],
+          "sameGame": true,
+          "sameGameMultipleSelections": false
         },
         {
           "id": "125478839",
@@ -24380,7 +24492,8 @@
               "allowPlace": false,
               "number": 559475,
               "isOpen": true,
-              "sortOrder": 1
+              "sortOrder": 1,
+              "sameGame": true
             },
             {
               "id": "559476",
@@ -24392,7 +24505,8 @@
               "allowPlace": false,
               "number": 559476,
               "isOpen": true,
-              "sortOrder": 2
+              "sortOrder": 2,
+              "sameGame": true
             },
             {
               "id": "559477",
@@ -24404,7 +24518,8 @@
               "allowPlace": false,
               "number": 559477,
               "isOpen": true,
-              "sortOrder": 3
+              "sortOrder": 3,
+              "sameGame": true
             },
             {
               "id": "559478",
@@ -24416,9 +24531,12 @@
               "allowPlace": false,
               "number": 559478,
               "isOpen": true,
-              "sortOrder": 4
+              "sortOrder": 4,
+              "sameGame": true
             }
-          ]
+          ],
+          "sameGame": true,
+          "sameGameMultipleSelections": false
         },
         {
           "id": "125482956",
@@ -24493,6 +24611,84 @@
               "bettingStatus": "Open",
               "allowPlace": false,
               "number": 614978,
+              "isOpen": true,
+              "sortOrder": 4
+            }
+          ]
+        },
+        {
+          "id": "125488134",
+          "name": "NBA Min-Phx LnTt$2 09/12 09/12",
+          "shortName": "NBA Min-Phx LnTt$2 09/12",
+          "betOption": "Line/Total Double $2",
+          "betOptionSpectrumId": "2657",
+          "betOptionPriority": 3140,
+          "marketUniqueId": 125488134,
+          "closeTime": "2025-12-09T00:40:00.000Z",
+          "bettingStatus": "Open",
+          "message": null,
+          "informationMessage": null,
+          "isFuture": false,
+          "onlineBetting": true,
+          "phoneBettingOnly": false,
+          "inPlay": false,
+          "goingInPlay": false,
+          "allowWin": true,
+          "allowPlace": false,
+          "allowEachWay": false,
+          "allowMulti": true,
+          "allowMultiWin": true,
+          "allowMultiPlace": false,
+          "allowMultiEachWay": false,
+          "numberOfPlaces": 0,
+          "cashOutEligibility": "PreMatch",
+          "allowBundle": false,
+          "propositions": [
+            {
+              "id": "565236",
+              "name": "Minnesota -4.5/Over 219.5",
+              "returnWin": 2,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 565236,
+              "isOpen": true,
+              "sortOrder": 1
+            },
+            {
+              "id": "565237",
+              "name": "Minnesota -1.5/Under 230.5",
+              "returnWin": 2,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 565237,
+              "isOpen": true,
+              "sortOrder": 2
+            },
+            {
+              "id": "565238",
+              "name": "Phoenix +15.5/Over 216.5",
+              "returnWin": 2,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 565238,
+              "isOpen": true,
+              "sortOrder": 3
+            },
+            {
+              "id": "565239",
+              "name": "Phoenix +12.5/Under 227.5",
+              "returnWin": 2,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 565239,
               "isOpen": true,
               "sortOrder": 4
             }
@@ -26734,8 +26930,7 @@
               "allowPlace": false,
               "number": 605757,
               "isOpen": true,
-              "sortOrder": 4,
-              "sameGame": true
+              "sortOrder": 4
             },
             {
               "id": "605758",
@@ -26893,6 +27088,19 @@
               "sortOrder": 1
             },
             {
+              "id": "605776",
+              "name": "Collin Gillespie (PHX)",
+              "returnWin": 1.35,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 605776,
+              "isOpen": true,
+              "sortOrder": 7,
+              "sameGame": true
+            },
+            {
               "id": "605775",
               "name": "Grayson Allen (PHX)",
               "returnWin": 1.42,
@@ -26902,21 +27110,7 @@
               "allowPlace": false,
               "number": 605775,
               "isOpen": true,
-              "sortOrder": 6,
-              "sameGame": true
-            },
-            {
-              "id": "605776",
-              "name": "Collin Gillespie (PHX)",
-              "returnWin": 1.5,
-              "returnPlace": 0,
-              "differential": null,
-              "bettingStatus": "Open",
-              "allowPlace": false,
-              "number": 605776,
-              "isOpen": true,
-              "sortOrder": 7,
-              "sameGame": true
+              "sortOrder": 6
             },
             {
               "id": "605779",
@@ -27071,8 +27265,7 @@
               "allowPlace": false,
               "number": 605791,
               "isOpen": true,
-              "sortOrder": 6,
-              "sameGame": true
+              "sortOrder": 6
             },
             {
               "id": "605792",
@@ -27216,8 +27409,7 @@
               "allowPlace": false,
               "number": 605801,
               "isOpen": true,
-              "sortOrder": 4,
-              "sameGame": true
+              "sortOrder": 4
             },
             {
               "id": "605802",
@@ -27298,12 +27490,9 @@
               "allowPlace": false,
               "number": 605809,
               "isOpen": true,
-              "sortOrder": 4,
-              "sameGame": true
+              "sortOrder": 4
             }
-          ],
-          "sameGame": true,
-          "sameGameMultipleSelections": true
+          ]
         },
         {
           "id": "125485396",
@@ -27397,7 +27586,8 @@
               "allowPlace": false,
               "number": 557204,
               "isOpen": true,
-              "sortOrder": 3
+              "sortOrder": 3,
+              "sameGame": true
             },
             {
               "id": "557205",
@@ -27409,9 +27599,12 @@
               "allowPlace": false,
               "number": 557205,
               "isOpen": true,
-              "sortOrder": 4
+              "sortOrder": 4,
+              "sameGame": true
             }
-          ]
+          ],
+          "sameGame": true,
+          "sameGameMultipleSelections": false
         },
         {
           "id": "125485513",
@@ -27451,7 +27644,8 @@
               "allowPlace": false,
               "number": 556902,
               "isOpen": true,
-              "sortOrder": 7
+              "sortOrder": 7,
+              "sameGame": true
             },
             {
               "id": "556903",
@@ -27463,9 +27657,12 @@
               "allowPlace": false,
               "number": 556903,
               "isOpen": true,
-              "sortOrder": 8
+              "sortOrder": 8,
+              "sameGame": true
             }
-          ]
+          ],
+          "sameGame": true,
+          "sameGameMultipleSelections": false
         },
         {
           "id": "125485514",
@@ -27714,28 +27911,32 @@
             {
               "id": "556890",
               "name": "M Williams Over 12.5 Pts",
-              "returnWin": 1.85,
+              "returnWin": 1.9,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
               "allowPlace": false,
               "number": 556890,
               "isOpen": true,
-              "sortOrder": 5
+              "sortOrder": 5,
+              "sameGame": true
             },
             {
               "id": "556891",
               "name": "M Williams Under 12.5 Pts",
-              "returnWin": 1.9,
+              "returnWin": 1.85,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
               "allowPlace": false,
               "number": 556891,
               "isOpen": true,
-              "sortOrder": 6
+              "sortOrder": 6,
+              "sameGame": true
             }
-          ]
+          ],
+          "sameGame": true,
+          "sameGameMultipleSelections": false
         },
         {
           "id": "125485393",
@@ -27883,7 +28084,8 @@
               "allowPlace": false,
               "number": 557158,
               "isOpen": true,
-              "sortOrder": 5
+              "sortOrder": 5,
+              "sameGame": true
             },
             {
               "id": "557160",
@@ -27895,9 +28097,12 @@
               "allowPlace": false,
               "number": 557160,
               "isOpen": true,
-              "sortOrder": 6
+              "sortOrder": 6,
+              "sameGame": true
             }
-          ]
+          ],
+          "sameGame": true,
+          "sameGameMultipleSelections": false
         },
         {
           "id": "125485515",
@@ -28082,8 +28287,7 @@
               "allowPlace": false,
               "number": 605826,
               "isOpen": true,
-              "sortOrder": 5,
-              "sameGame": true
+              "sortOrder": 5
             },
             {
               "id": "605824",
@@ -28251,8 +28455,7 @@
               "allowPlace": false,
               "number": 605843,
               "isOpen": true,
-              "sortOrder": 6,
-              "sameGame": true
+              "sortOrder": 6
             },
             {
               "id": "605839",
@@ -28408,8 +28611,7 @@
               "allowPlace": false,
               "number": 605860,
               "isOpen": true,
-              "sortOrder": 7,
-              "sameGame": true
+              "sortOrder": 7
             },
             {
               "id": "605856",
@@ -28564,8 +28766,7 @@
               "allowPlace": false,
               "number": 605873,
               "isOpen": true,
-              "sortOrder": 4,
-              "sameGame": true
+              "sortOrder": 4
             },
             {
               "id": "605874",
@@ -31176,8 +31377,7 @@
               "allowPlace": false,
               "number": 605977,
               "isOpen": true,
-              "sortOrder": 5,
-              "sameGame": true
+              "sortOrder": 5
             }
           ],
           "sameGame": true,
@@ -31332,8 +31532,7 @@
               "allowPlace": false,
               "number": 605997,
               "isOpen": true,
-              "sortOrder": 9,
-              "sameGame": true
+              "sortOrder": 9
             }
           ],
           "sameGame": true,
@@ -31512,8 +31711,7 @@
               "allowPlace": false,
               "number": 606014,
               "isOpen": true,
-              "sortOrder": 10,
-              "sameGame": true
+              "sortOrder": 10
             }
           ],
           "sameGame": true,
@@ -31948,8 +32146,7 @@
               "allowPlace": false,
               "number": 605909,
               "isOpen": true,
-              "sortOrder": 5,
-              "sameGame": true
+              "sortOrder": 5
             },
             {
               "id": "605910",
@@ -32117,8 +32314,7 @@
               "allowPlace": false,
               "number": 605927,
               "isOpen": true,
-              "sortOrder": 7,
-              "sameGame": true
+              "sortOrder": 7
             },
             {
               "id": "605928",
@@ -32272,8 +32468,7 @@
               "allowPlace": false,
               "number": 605941,
               "isOpen": true,
-              "sortOrder": 5,
-              "sameGame": true
+              "sortOrder": 5
             },
             {
               "id": "605942",
@@ -32525,8 +32720,7 @@
               "allowPlace": false,
               "number": 606083,
               "isOpen": true,
-              "sortOrder": 5,
-              "sameGame": true
+              "sortOrder": 5
             },
             {
               "id": "606087",
@@ -32669,8 +32863,7 @@
               "allowPlace": false,
               "number": 606099,
               "isOpen": true,
-              "sortOrder": 5,
-              "sameGame": true
+              "sortOrder": 5
             },
             {
               "id": "606103",
@@ -32813,8 +33006,7 @@
               "allowPlace": false,
               "number": 606114,
               "isOpen": true,
-              "sortOrder": 4,
-              "sameGame": true
+              "sortOrder": 4
             },
             {
               "id": "606115",
@@ -32920,8 +33112,7 @@
               "allowPlace": false,
               "number": 606125,
               "isOpen": true,
-              "sortOrder": 3,
-              "sameGame": true
+              "sortOrder": 3
             },
             {
               "id": "606126",
@@ -33212,8 +33403,7 @@
               "allowPlace": false,
               "number": 606155,
               "isOpen": true,
-              "sortOrder": 8,
-              "sameGame": true
+              "sortOrder": 8
             },
             {
               "id": "606156",
@@ -33370,8 +33560,7 @@
               "allowPlace": false,
               "number": 606465,
               "isOpen": true,
-              "sortOrder": 5,
-              "sameGame": true
+              "sortOrder": 5
             },
             {
               "id": "606475",
@@ -33575,8 +33764,7 @@
               "allowPlace": false,
               "number": 606204,
               "isOpen": true,
-              "sortOrder": 8,
-              "sameGame": true
+              "sortOrder": 8
             },
             {
               "id": "606209",
@@ -34114,8 +34302,7 @@
               "allowPlace": false,
               "number": 606369,
               "isOpen": true,
-              "sortOrder": 5,
-              "sameGame": true
+              "sortOrder": 5
             },
             {
               "id": "606366",
@@ -34282,8 +34469,7 @@
               "allowPlace": false,
               "number": 606386,
               "isOpen": true,
-              "sortOrder": 6,
-              "sameGame": true
+              "sortOrder": 6
             },
             {
               "id": "606389",
@@ -34439,8 +34625,7 @@
               "allowPlace": false,
               "number": 606402,
               "isOpen": true,
-              "sortOrder": 6,
-              "sameGame": true
+              "sortOrder": 6
             },
             {
               "id": "606403",
@@ -34544,8 +34729,7 @@
               "allowPlace": false,
               "number": 606256,
               "isOpen": true,
-              "sortOrder": 4,
-              "sameGame": true
+              "sortOrder": 4
             },
             {
               "id": "606257",
@@ -34750,8 +34934,7 @@
               "allowPlace": false,
               "number": 606419,
               "isOpen": true,
-              "sortOrder": 7,
-              "sameGame": true
+              "sortOrder": 7
             },
             {
               "id": "606414",
@@ -34905,8 +35088,7 @@
               "allowPlace": false,
               "number": 606436,
               "isOpen": true,
-              "sortOrder": 8,
-              "sameGame": true
+              "sortOrder": 8
             },
             {
               "id": "606435",
@@ -35074,8 +35256,7 @@
               "allowPlace": false,
               "number": 606453,
               "isOpen": true,
-              "sortOrder": 9,
-              "sameGame": true
+              "sortOrder": 9
             },
             {
               "id": "606451",
@@ -35219,8 +35400,7 @@
               "allowPlace": false,
               "number": 606313,
               "isOpen": true,
-              "sortOrder": 5,
-              "sameGame": true
+              "sortOrder": 5
             },
             {
               "id": "606311",
@@ -45692,7 +45872,8 @@
               "allowPlace": false,
               "number": 560498,
               "isOpen": true,
-              "sortOrder": 1
+              "sortOrder": 1,
+              "sameGame": true
             },
             {
               "id": "560499",
@@ -45704,7 +45885,8 @@
               "allowPlace": false,
               "number": 560499,
               "isOpen": true,
-              "sortOrder": 2
+              "sortOrder": 2,
+              "sameGame": true
             },
             {
               "id": "560500",
@@ -45716,7 +45898,8 @@
               "allowPlace": false,
               "number": 560500,
               "isOpen": true,
-              "sortOrder": 3
+              "sortOrder": 3,
+              "sameGame": true
             },
             {
               "id": "560501",
@@ -45728,9 +45911,12 @@
               "allowPlace": false,
               "number": 560501,
               "isOpen": true,
-              "sortOrder": 4
+              "sortOrder": 4,
+              "sameGame": true
             }
-          ]
+          ],
+          "sameGame": true,
+          "sameGameMultipleSelections": false
         },
         {
           "id": "125478829",
@@ -47080,9 +47266,9 @@
         "New Orleans",
         "San Antonio"
       ],
-      "openMarketCount": 227,
+      "openMarketCount": 228,
       "futureMarketCount": 0,
-      "nonFutureMarketCount": 227,
+      "nonFutureMarketCount": 228,
       "markets": [
         {
           "id": "125379060",
@@ -47235,7 +47421,7 @@
             {
               "id": "604726",
               "name": "NewOrlns by 25+",
-              "returnWin": 81,
+              "returnWin": 67,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -47248,7 +47434,7 @@
             {
               "id": "604727",
               "name": "NewOrlns by 21-24",
-              "returnWin": 101,
+              "returnWin": 81,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -47404,7 +47590,7 @@
             {
               "id": "604739",
               "name": "SnAntnio by 25+",
-              "returnWin": 5.7,
+              "returnWin": 6,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -47449,7 +47635,7 @@
             {
               "id": "604421",
               "name": "New Orleans by 11+",
-              "returnWin": 11,
+              "returnWin": 10,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -47475,7 +47661,7 @@
             {
               "id": "604423",
               "name": "San Antonio by 1-10",
-              "returnWin": 2.8,
+              "returnWin": 2.9,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -47533,7 +47719,7 @@
             {
               "id": "604435",
               "name": "New Orleans by 7+",
-              "returnWin": 6.5,
+              "returnWin": 6.2,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -47559,7 +47745,7 @@
             {
               "id": "604437",
               "name": "San Antonio by 7+",
-              "returnWin": 1.58,
+              "returnWin": 1.6,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -47611,7 +47797,8 @@
               "allowPlace": false,
               "number": 565202,
               "isOpen": true,
-              "sortOrder": 1
+              "sortOrder": 1,
+              "sameGame": true
             },
             {
               "id": "565203",
@@ -47623,19 +47810,21 @@
               "allowPlace": false,
               "number": 565203,
               "isOpen": true,
-              "sortOrder": 2
+              "sortOrder": 2,
+              "sameGame": true
             },
             {
               "id": "565204",
               "name": "SnAntnio -8.5 /Over 238.5",
-              "returnWin": 3.4,
+              "returnWin": 3.5,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
               "allowPlace": false,
               "number": 565204,
               "isOpen": true,
-              "sortOrder": 3
+              "sortOrder": 3,
+              "sameGame": true
             },
             {
               "id": "565205",
@@ -47647,9 +47836,12 @@
               "allowPlace": false,
               "number": 565205,
               "isOpen": true,
-              "sortOrder": 4
+              "sortOrder": 4,
+              "sameGame": true
             }
-          ]
+          ],
+          "sameGame": true,
+          "sameGameMultipleSelections": false
         },
         {
           "id": "125485649",
@@ -47682,7 +47874,7 @@
             {
               "id": "550647",
               "name": "NewOrlns /Over 237.5",
-              "returnWin": 7.6,
+              "returnWin": 7.8,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -47706,7 +47898,7 @@
             {
               "id": "550649",
               "name": "SnAntnio /Over 237.5",
-              "returnWin": 2.2,
+              "returnWin": 2.3,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -47730,13 +47922,13 @@
           ]
         },
         {
-          "id": "125485664",
-          "name": "NBA NewOrlns-SnAntnio TotPtsOU 238.5",
-          "shortName": "NBA NOP-SAS ToPtOU 238.5",
-          "betOption": "Total Points Over/Under",
-          "betOptionSpectrumId": "456",
-          "betOptionPriority": 3155,
-          "marketUniqueId": 125485664,
+          "id": "125488136",
+          "name": "NBA NOP-SAS LnTt$2 09/12 09/12",
+          "shortName": "NBA NOP-SAS LnTt$2 09/12",
+          "betOption": "Line/Total Double $2",
+          "betOptionSpectrumId": "2657",
+          "betOptionPriority": 3140,
+          "marketUniqueId": 125488136,
           "closeTime": "2025-12-09T01:10:00.000Z",
           "bettingStatus": "Open",
           "message": null,
@@ -47758,30 +47950,112 @@
           "allowBundle": false,
           "propositions": [
             {
-              "id": "560549",
-              "name": "Over 238.5",
-              "returnWin": 1.9,
+              "id": "565244",
+              "name": "NOP +16.5/Over 231.5",
+              "returnWin": 2,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
               "allowPlace": false,
-              "number": 560549,
+              "number": 565244,
               "isOpen": true,
               "sortOrder": 1
             },
             {
-              "id": "560550",
-              "name": "Under 238.5",
-              "returnWin": 1.9,
+              "id": "565245",
+              "name": "NOP +13.5/Under 242.5",
+              "returnWin": 2,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
               "allowPlace": false,
-              "number": 560550,
+              "number": 565245,
               "isOpen": true,
               "sortOrder": 2
+            },
+            {
+              "id": "565246",
+              "name": "S Antonio -5.5/Over 234.5",
+              "returnWin": 2,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 565246,
+              "isOpen": true,
+              "sortOrder": 3
+            },
+            {
+              "id": "565247",
+              "name": "S Antonio -2.5/Under 245.5",
+              "returnWin": 2,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 565247,
+              "isOpen": true,
+              "sortOrder": 4
             }
           ]
+        },
+        {
+          "id": "125481137",
+          "name": "NBA NewOrlns-SnAntnio TotPtsOU 237.5",
+          "shortName": "NBA NOP-SAS ToPtOU 237.5",
+          "betOption": "Total Points Over/Under",
+          "betOptionSpectrumId": "456",
+          "betOptionPriority": 3155,
+          "marketUniqueId": 125481137,
+          "closeTime": "2025-12-09T01:10:00.000Z",
+          "bettingStatus": "Open",
+          "message": null,
+          "informationMessage": null,
+          "isFuture": false,
+          "onlineBetting": true,
+          "phoneBettingOnly": false,
+          "inPlay": false,
+          "goingInPlay": false,
+          "allowWin": true,
+          "allowPlace": false,
+          "allowEachWay": false,
+          "allowMulti": true,
+          "allowMultiWin": true,
+          "allowMultiPlace": false,
+          "allowMultiEachWay": false,
+          "numberOfPlaces": 0,
+          "cashOutEligibility": "PreMatch",
+          "allowBundle": false,
+          "propositions": [
+            {
+              "id": "611346",
+              "name": "Over 237.5",
+              "returnWin": 1.85,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 611346,
+              "isOpen": true,
+              "sortOrder": 1,
+              "sameGame": true
+            },
+            {
+              "id": "611347",
+              "name": "Under 237.5",
+              "returnWin": 1.95,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 611347,
+              "isOpen": true,
+              "sortOrder": 2,
+              "sameGame": true
+            }
+          ],
+          "sameGame": true,
+          "sameGameMultipleSelections": false
         },
         {
           "id": "125478810",
@@ -47812,9 +48086,35 @@
           "allowBundle": false,
           "propositions": [
             {
+              "id": "604328",
+              "name": "New Orleans -6.5",
+              "returnWin": 6.2,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 604328,
+              "isOpen": true,
+              "sortOrder": 27,
+              "sameGame": true
+            },
+            {
+              "id": "604329",
+              "name": "San Antonio +6.5",
+              "returnWin": 1.1,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 604329,
+              "isOpen": true,
+              "sortOrder": 28,
+              "sameGame": true
+            },
+            {
               "id": "604330",
               "name": "New Orleans -5.5",
-              "returnWin": 6,
+              "returnWin": 5.7,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -47827,7 +48127,7 @@
             {
               "id": "604331",
               "name": "San Antonio +5.5",
-              "returnWin": 1.11,
+              "returnWin": 1.12,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -47840,7 +48140,7 @@
             {
               "id": "604332",
               "name": "New Orleans -4.5",
-              "returnWin": 5.2,
+              "returnWin": 5,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -47853,7 +48153,7 @@
             {
               "id": "604333",
               "name": "San Antonio +4.5",
-              "returnWin": 1.14,
+              "returnWin": 1.15,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -47866,7 +48166,7 @@
             {
               "id": "604334",
               "name": "New Orleans -3.5",
-              "returnWin": 4.8,
+              "returnWin": 4.6,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -47879,7 +48179,7 @@
             {
               "id": "604335",
               "name": "San Antonio +3.5",
-              "returnWin": 1.16,
+              "returnWin": 1.17,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -47892,7 +48192,7 @@
             {
               "id": "604336",
               "name": "New Orleans -2.5",
-              "returnWin": 4.5,
+              "returnWin": 4.2,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -47905,7 +48205,7 @@
             {
               "id": "604337",
               "name": "San Antonio +2.5",
-              "returnWin": 1.18,
+              "returnWin": 1.2,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -47918,7 +48218,7 @@
             {
               "id": "604338",
               "name": "New Orleans +2.5",
-              "returnWin": 3.2,
+              "returnWin": 3.1,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -47931,7 +48231,7 @@
             {
               "id": "604339",
               "name": "San Antonio -2.5",
-              "returnWin": 1.32,
+              "returnWin": 1.34,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -47970,7 +48270,7 @@
             {
               "id": "604342",
               "name": "New Orleans +4.5",
-              "returnWin": 2.7,
+              "returnWin": 2.65,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -47983,7 +48283,7 @@
             {
               "id": "604343",
               "name": "San Antonio -4.5",
-              "returnWin": 1.44,
+              "returnWin": 1.45,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -48022,7 +48322,7 @@
             {
               "id": "604346",
               "name": "New Orleans +6.5",
-              "returnWin": 2.3,
+              "returnWin": 2.25,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -48035,7 +48335,7 @@
             {
               "id": "604347",
               "name": "San Antonio -6.5",
-              "returnWin": 1.58,
+              "returnWin": 1.6,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -48100,7 +48400,7 @@
             {
               "id": "604352",
               "name": "New Orleans +9.5",
-              "returnWin": 1.85,
+              "returnWin": 1.8,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -48113,7 +48413,7 @@
             {
               "id": "604353",
               "name": "San Antonio -9.5",
-              "returnWin": 1.9,
+              "returnWin": 1.95,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -48334,7 +48634,7 @@
             {
               "id": "604370",
               "name": "New Orleans +18.5",
-              "returnWin": 1.27,
+              "returnWin": 1.26,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -48347,7 +48647,7 @@
             {
               "id": "604371",
               "name": "San Antonio -18.5",
-              "returnWin": 3.5,
+              "returnWin": 3.6,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -48360,7 +48660,7 @@
             {
               "id": "604372",
               "name": "New Orleans +19.5",
-              "returnWin": 1.24,
+              "returnWin": 1.23,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -48373,7 +48673,7 @@
             {
               "id": "604373",
               "name": "San Antonio -19.5",
-              "returnWin": 3.8,
+              "returnWin": 3.9,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -48412,7 +48712,7 @@
             {
               "id": "604376",
               "name": "New Orleans +21.5",
-              "returnWin": 1.18,
+              "returnWin": 1.17,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -48425,7 +48725,7 @@
             {
               "id": "604377",
               "name": "San Antonio -21.5",
-              "returnWin": 4.5,
+              "returnWin": 4.6,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -48438,7 +48738,7 @@
             {
               "id": "604378",
               "name": "New Orleans +22.5",
-              "returnWin": 1.16,
+              "returnWin": 1.15,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -48451,7 +48751,7 @@
             {
               "id": "604379",
               "name": "San Antonio -22.5",
-              "returnWin": 4.8,
+              "returnWin": 5,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -48464,7 +48764,7 @@
             {
               "id": "604380",
               "name": "New Orleans +23.5",
-              "returnWin": 1.14,
+              "returnWin": 1.13,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -48477,7 +48777,7 @@
             {
               "id": "604381",
               "name": "San Antonio -23.5",
-              "returnWin": 5.2,
+              "returnWin": 5.5,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -48490,7 +48790,7 @@
             {
               "id": "604382",
               "name": "New Orleans +24.5",
-              "returnWin": 1.12,
+              "returnWin": 1.11,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -48503,7 +48803,7 @@
             {
               "id": "604383",
               "name": "San Antonio -24.5",
-              "returnWin": 5.7,
+              "returnWin": 6,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -48548,7 +48848,7 @@
             {
               "id": "611370",
               "name": "Over 259.5",
-              "returnWin": 6,
+              "returnWin": 6.2,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -48561,7 +48861,7 @@
             {
               "id": "611371",
               "name": "Under 259.5",
-              "returnWin": 1.11,
+              "returnWin": 1.1,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -48600,7 +48900,7 @@
             {
               "id": "611374",
               "name": "Over 257.5",
-              "returnWin": 5.2,
+              "returnWin": 5.5,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -48613,7 +48913,7 @@
             {
               "id": "611375",
               "name": "Under 257.5",
-              "returnWin": 1.14,
+              "returnWin": 1.13,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -48652,7 +48952,7 @@
             {
               "id": "611378",
               "name": "Over 255.5",
-              "returnWin": 4.6,
+              "returnWin": 4.8,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -48665,7 +48965,7 @@
             {
               "id": "611379",
               "name": "Under 255.5",
-              "returnWin": 1.17,
+              "returnWin": 1.16,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -48730,7 +49030,7 @@
             {
               "id": "611384",
               "name": "Over 252.5",
-              "returnWin": 3.9,
+              "returnWin": 4,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -48743,7 +49043,7 @@
             {
               "id": "611385",
               "name": "Under 252.5",
-              "returnWin": 1.23,
+              "returnWin": 1.22,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -48782,7 +49082,7 @@
             {
               "id": "611388",
               "name": "Over 250.5",
-              "returnWin": 3.4,
+              "returnWin": 3.5,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -48795,7 +49095,7 @@
             {
               "id": "611389",
               "name": "Under 250.5",
-              "returnWin": 1.28,
+              "returnWin": 1.27,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -48860,7 +49160,7 @@
             {
               "id": "611394",
               "name": "Over 247.5",
-              "returnWin": 2.9,
+              "returnWin": 3,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -48873,7 +49173,7 @@
             {
               "id": "611395",
               "name": "Under 247.5",
-              "returnWin": 1.38,
+              "returnWin": 1.36,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -48912,7 +49212,7 @@
             {
               "id": "611398",
               "name": "Over 245.5",
-              "returnWin": 2.65,
+              "returnWin": 2.7,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -48925,7 +49225,7 @@
             {
               "id": "611399",
               "name": "Under 245.5",
-              "returnWin": 1.45,
+              "returnWin": 1.44,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -48938,7 +49238,7 @@
             {
               "id": "611400",
               "name": "Over 244.5",
-              "returnWin": 2.5,
+              "returnWin": 2.55,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -48951,7 +49251,7 @@
             {
               "id": "611401",
               "name": "Under 244.5",
-              "returnWin": 1.5,
+              "returnWin": 1.48,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -48964,7 +49264,7 @@
             {
               "id": "611402",
               "name": "Over 243.5",
-              "returnWin": 2.4,
+              "returnWin": 2.45,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -48977,7 +49277,7 @@
             {
               "id": "611403",
               "name": "Under 243.5",
-              "returnWin": 1.53,
+              "returnWin": 1.52,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -49016,7 +49316,7 @@
             {
               "id": "611406",
               "name": "Over 241.5",
-              "returnWin": 2.15,
+              "returnWin": 2.2,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -49029,7 +49329,7 @@
             {
               "id": "611407",
               "name": "Under 241.5",
-              "returnWin": 1.65,
+              "returnWin": 1.62,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -49042,7 +49342,7 @@
             {
               "id": "611408",
               "name": "Over 240.5",
-              "returnWin": 2.05,
+              "returnWin": 2.1,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -49055,7 +49355,7 @@
             {
               "id": "611409",
               "name": "Under 240.5",
-              "returnWin": 1.72,
+              "returnWin": 1.68,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -49068,7 +49368,7 @@
             {
               "id": "611410",
               "name": "Over 239.5",
-              "returnWin": 1.95,
+              "returnWin": 2,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -49081,7 +49381,7 @@
             {
               "id": "611411",
               "name": "Under 239.5",
-              "returnWin": 1.8,
+              "returnWin": 1.75,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -49107,7 +49407,7 @@
             {
               "id": "611413",
               "name": "Under 238.5",
-              "returnWin": 1.9,
+              "returnWin": 1.85,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -49120,7 +49420,7 @@
             {
               "id": "611414",
               "name": "Over 237.5",
-              "returnWin": 1.8,
+              "returnWin": 1.85,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -49224,7 +49524,7 @@
             {
               "id": "611422",
               "name": "Over 233.5",
-              "returnWin": 1.55,
+              "returnWin": 1.58,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -49237,7 +49537,7 @@
             {
               "id": "611423",
               "name": "Under 233.5",
-              "returnWin": 2.35,
+              "returnWin": 2.3,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -49276,7 +49576,7 @@
             {
               "id": "611426",
               "name": "Over 231.5",
-              "returnWin": 1.46,
+              "returnWin": 1.48,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -49289,7 +49589,7 @@
             {
               "id": "611427",
               "name": "Under 231.5",
-              "returnWin": 2.6,
+              "returnWin": 2.55,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -49302,7 +49602,7 @@
             {
               "id": "611428",
               "name": "Over 230.5",
-              "returnWin": 1.42,
+              "returnWin": 1.44,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -49315,7 +49615,7 @@
             {
               "id": "611429",
               "name": "Under 230.5",
-              "returnWin": 2.75,
+              "returnWin": 2.7,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -49328,7 +49628,7 @@
             {
               "id": "611430",
               "name": "Over 229.5",
-              "returnWin": 1.38,
+              "returnWin": 1.4,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -49341,7 +49641,7 @@
             {
               "id": "611431",
               "name": "Under 229.5",
-              "returnWin": 2.9,
+              "returnWin": 2.8,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -49406,7 +49706,7 @@
             {
               "id": "611436",
               "name": "Over 226.5",
-              "returnWin": 1.28,
+              "returnWin": 1.3,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -49419,7 +49719,7 @@
             {
               "id": "611437",
               "name": "Under 226.5",
-              "returnWin": 3.4,
+              "returnWin": 3.3,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -49432,7 +49732,7 @@
             {
               "id": "611438",
               "name": "Over 225.5",
-              "returnWin": 1.26,
+              "returnWin": 1.27,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -49445,7 +49745,7 @@
             {
               "id": "611439",
               "name": "Under 225.5",
-              "returnWin": 3.6,
+              "returnWin": 3.5,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -49510,7 +49810,7 @@
             {
               "id": "611444",
               "name": "Over 222.5",
-              "returnWin": 1.18,
+              "returnWin": 1.2,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -49523,7 +49823,7 @@
             {
               "id": "611445",
               "name": "Under 222.5",
-              "returnWin": 4.5,
+              "returnWin": 4.2,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -49562,7 +49862,7 @@
             {
               "id": "611448",
               "name": "Over 220.5",
-              "returnWin": 1.15,
+              "returnWin": 1.16,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -49575,7 +49875,7 @@
             {
               "id": "611449",
               "name": "Under 220.5",
-              "returnWin": 5,
+              "returnWin": 4.8,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -49640,7 +49940,7 @@
             {
               "id": "611454",
               "name": "Over 217.5",
-              "returnWin": 1.1,
+              "returnWin": 1.11,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -49653,7 +49953,7 @@
             {
               "id": "611455",
               "name": "Under 217.5",
-              "returnWin": 6.2,
+              "returnWin": 6,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -49724,7 +50024,7 @@
             {
               "id": "604415",
               "name": "San Antonio / San Antonio",
-              "returnWin": 1.48,
+              "returnWin": 1.5,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -49737,7 +50037,7 @@
             {
               "id": "604416",
               "name": "San Antonio / New Orleans",
-              "returnWin": 9,
+              "returnWin": 8.5,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -50782,7 +51082,8 @@
               "allowPlace": false,
               "number": 558792,
               "isOpen": true,
-              "sortOrder": 5
+              "sortOrder": 5,
+              "sameGame": true
             },
             {
               "id": "558793",
@@ -50794,9 +51095,12 @@
               "allowPlace": false,
               "number": 558793,
               "isOpen": true,
-              "sortOrder": 6
+              "sortOrder": 6,
+              "sameGame": true
             }
-          ]
+          ],
+          "sameGame": true,
+          "sameGameMultipleSelections": false
         },
         {
           "id": "125485544",
@@ -50937,7 +51241,7 @@
             {
               "id": "558607",
               "name": "Dyl Harper Over 13.5 Pts",
-              "returnWin": 1.85,
+              "returnWin": 1.9,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -50949,7 +51253,7 @@
             {
               "id": "558608",
               "name": "Dyl Harper Under 13.5 Pts",
-              "returnWin": 1.9,
+              "returnWin": 1.85,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -50998,7 +51302,8 @@
               "allowPlace": false,
               "number": 558847,
               "isOpen": true,
-              "sortOrder": 5
+              "sortOrder": 5,
+              "sameGame": true
             },
             {
               "id": "558848",
@@ -51010,9 +51315,12 @@
               "allowPlace": false,
               "number": 558848,
               "isOpen": true,
-              "sortOrder": 6
+              "sortOrder": 6,
+              "sameGame": true
             }
-          ]
+          ],
+          "sameGame": true,
+          "sameGameMultipleSelections": false
         },
         {
           "id": "125485545",
@@ -51160,7 +51468,8 @@
               "allowPlace": false,
               "number": 558617,
               "isOpen": true,
-              "sortOrder": 7
+              "sortOrder": 7,
+              "sameGame": true
             },
             {
               "id": "558618",
@@ -51172,9 +51481,12 @@
               "allowPlace": false,
               "number": 558618,
               "isOpen": true,
-              "sortOrder": 8
+              "sortOrder": 8,
+              "sameGame": true
             }
-          ]
+          ],
+          "sameGame": true,
+          "sameGameMultipleSelections": false
         },
         {
           "id": "125485670",
@@ -51207,7 +51519,7 @@
             {
               "id": "558655",
               "name": "J Hawkins Over 7.5 Pts",
-              "returnWin": 1.9,
+              "returnWin": 1.95,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -51219,7 +51531,7 @@
             {
               "id": "558656",
               "name": "J Hawkins Under 7.5 Pts",
-              "returnWin": 1.85,
+              "returnWin": 1.8,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -51538,7 +51850,8 @@
               "allowPlace": false,
               "number": 558755,
               "isOpen": true,
-              "sortOrder": 5
+              "sortOrder": 5,
+              "sameGame": true
             },
             {
               "id": "558756",
@@ -51550,9 +51863,12 @@
               "allowPlace": false,
               "number": 558756,
               "isOpen": true,
-              "sortOrder": 6
+              "sortOrder": 6,
+              "sameGame": true
             }
-          ]
+          ],
+          "sameGame": true,
+          "sameGameMultipleSelections": false
         },
         {
           "id": "125485538",
@@ -52614,7 +52930,7 @@
             {
               "id": "604747",
               "name": "Dyl Harper 10+ Pts/SAS Win",
-              "returnWin": 1.58,
+              "returnWin": 1.62,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -52626,7 +52942,7 @@
             {
               "id": "604748",
               "name": "Dyl Harper 15+ Pts/SAS Win",
-              "returnWin": 2.4,
+              "returnWin": 2.5,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -52680,7 +52996,7 @@
             {
               "id": "604825",
               "name": "H Barnes 15+ Pts/SAS Win",
-              "returnWin": 2.8,
+              "returnWin": 2.9,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -52764,7 +53080,7 @@
             {
               "id": "604769",
               "name": "J Alvarado 5+ Pts/NOP Win",
-              "returnWin": 4.8,
+              "returnWin": 4.5,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -53088,7 +53404,7 @@
             {
               "id": "604615",
               "name": "New Orleans by 6+",
-              "returnWin": 6,
+              "returnWin": 5.7,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -53172,7 +53488,7 @@
             {
               "id": "604272",
               "name": "New Orleans by 37-40",
-              "returnWin": 401,
+              "returnWin": 301,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -53198,7 +53514,7 @@
             {
               "id": "604274",
               "name": "New Orleans by 29-32",
-              "returnWin": 151,
+              "returnWin": 101,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -53211,7 +53527,7 @@
             {
               "id": "604275",
               "name": "New Orleans by 25-28",
-              "returnWin": 101,
+              "returnWin": 81,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -53237,7 +53553,7 @@
             {
               "id": "604277",
               "name": "New Orleans by 17-20",
-              "returnWin": 34,
+              "returnWin": 31,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -53250,7 +53566,7 @@
             {
               "id": "604278",
               "name": "New Orleans by 13-16",
-              "returnWin": 21,
+              "returnWin": 19,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -53380,7 +53696,7 @@
             {
               "id": "604288",
               "name": "San Antonio by 21-24",
-              "returnWin": 8.5,
+              "returnWin": 9,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -53490,7 +53806,7 @@
             {
               "id": "604661",
               "name": "New Orleans by 21+",
-              "returnWin": 41,
+              "returnWin": 34,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -53503,7 +53819,7 @@
             {
               "id": "604662",
               "name": "New Orleans by 20",
-              "returnWin": 151,
+              "returnWin": 101,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -53646,7 +53962,7 @@
             {
               "id": "604673",
               "name": "New Orleans by 9",
-              "returnWin": 41,
+              "returnWin": 34,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -53776,7 +54092,7 @@
             {
               "id": "604683",
               "name": "San Antonio by 2",
-              "returnWin": 19,
+              "returnWin": 21,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -53828,7 +54144,7 @@
             {
               "id": "604687",
               "name": "San Antonio by 6",
-              "returnWin": 17,
+              "returnWin": 18,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -53854,7 +54170,7 @@
             {
               "id": "604689",
               "name": "San Antonio by 8",
-              "returnWin": 16,
+              "returnWin": 17,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -53984,7 +54300,7 @@
             {
               "id": "604699",
               "name": "San Antonio by 18",
-              "returnWin": 23,
+              "returnWin": 26,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -54068,7 +54384,7 @@
             {
               "id": "604251",
               "name": "NOP 7+ / NOP 11+",
-              "returnWin": 21,
+              "returnWin": 19,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -54120,7 +54436,7 @@
             {
               "id": "604255",
               "name": "NOP 1-6 / NOP 11+",
-              "returnWin": 41,
+              "returnWin": 34,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -54211,7 +54527,7 @@
             {
               "id": "604262",
               "name": "Tie / SAS 11+",
-              "returnWin": 51,
+              "returnWin": 67,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -54250,7 +54566,7 @@
             {
               "id": "604265",
               "name": "SAS 1-6 / SAS 1-10",
-              "returnWin": 8,
+              "returnWin": 8.5,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -54263,7 +54579,7 @@
             {
               "id": "604266",
               "name": "SAS 1-6 / SAS 11+",
-              "returnWin": 8,
+              "returnWin": 8.5,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -54384,7 +54700,7 @@
             {
               "id": "604440",
               "name": "NOP by 11+ /211-230",
-              "returnWin": 41,
+              "returnWin": 34,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -54432,7 +54748,7 @@
             {
               "id": "604444",
               "name": "NOP by 1-10 /211-230",
-              "returnWin": 16,
+              "returnWin": 15,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -54492,7 +54808,7 @@
             {
               "id": "604449",
               "name": "SAS by 1-10 /210 or less",
-              "returnWin": 34,
+              "returnWin": 31,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -54630,7 +54946,7 @@
             {
               "id": "604594",
               "name": "NOP 0-89 / SAS 120+",
-              "returnWin": 51,
+              "returnWin": 67,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -54642,7 +54958,7 @@
             {
               "id": "604595",
               "name": "NOP 90-99 / SAS 0-89",
-              "returnWin": 201,
+              "returnWin": 151,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -54714,7 +55030,7 @@
             {
               "id": "604601",
               "name": "NOP 100-109 / SAS 90-99",
-              "returnWin": 51,
+              "returnWin": 41,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -54822,7 +55138,7 @@
             {
               "id": "604610",
               "name": "NOP 120+ / SAS 0-89",
-              "returnWin": 401,
+              "returnWin": 301,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -57910,9 +58226,12 @@
               "allowPlace": false,
               "number": 550651,
               "isOpen": true,
-              "sortOrder": 1
+              "sortOrder": 1,
+              "sameGame": true
             }
-          ]
+          ],
+          "sameGame": true,
+          "sameGameMultipleSelections": false
         },
         {
           "id": "125485639",
@@ -58078,9 +58397,12 @@
               "allowPlace": false,
               "number": 550640,
               "isOpen": true,
-              "sortOrder": 1
+              "sortOrder": 1,
+              "sameGame": true
             }
-          ]
+          ],
+          "sameGame": true,
+          "sameGameMultipleSelections": false
         },
         {
           "id": "125485638",
@@ -58876,9 +59198,12 @@
               "allowPlace": false,
               "number": 550117,
               "isOpen": true,
-              "sortOrder": 1
+              "sortOrder": 1,
+              "sameGame": true
             }
-          ]
+          ],
+          "sameGame": true,
+          "sameGameMultipleSelections": false
         },
         {
           "id": "125479646",
@@ -59766,7 +60091,7 @@
             {
               "id": "604199",
               "name": "211 to 220",
-              "returnWin": 7.5,
+              "returnWin": 7,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -59779,7 +60104,7 @@
             {
               "id": "604200",
               "name": "221 to 230",
-              "returnWin": 4.8,
+              "returnWin": 4.5,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -59818,7 +60143,7 @@
             {
               "id": "604203",
               "name": "251 Points or More",
-              "returnWin": 3.4,
+              "returnWin": 3.5,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -59875,7 +60200,7 @@
             {
               "id": "604205",
               "name": "211 to 230",
-              "returnWin": 2.7,
+              "returnWin": 2.6,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -59899,7 +60224,7 @@
             {
               "id": "604207",
               "name": "251 Points or More",
-              "returnWin": 3.4,
+              "returnWin": 3.5,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -59977,7 +60302,7 @@
             {
               "id": "604215",
               "name": "215 to 216",
-              "returnWin": 31,
+              "returnWin": 26,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -60169,7 +60494,7 @@
             {
               "id": "604231",
               "name": "247 to 248",
-              "returnWin": 16,
+              "returnWin": 17,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -60193,7 +60518,7 @@
             {
               "id": "604233",
               "name": "251 Points or More",
-              "returnWin": 3.4,
+              "returnWin": 3.5,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -60289,7 +60614,7 @@
             {
               "id": "604761",
               "name": "San Antonio Over 123.5",
-              "returnWin": 1.8,
+              "returnWin": 1.85,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -60301,7 +60626,7 @@
             {
               "id": "604762",
               "name": "San Antonio Under 123.5",
-              "returnWin": 1.95,
+              "returnWin": 1.9,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -60566,7 +60891,7 @@
             {
               "id": "604404",
               "name": "SAS 0 to 110",
-              "returnWin": 7,
+              "returnWin": 6.5,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -60605,7 +60930,7 @@
             {
               "id": "604407",
               "name": "SAS 131 to 140",
-              "returnWin": 3.8,
+              "returnWin": 4,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -60663,7 +60988,7 @@
             {
               "id": "604241",
               "name": "San Antonio 0 to 110",
-              "returnWin": 7,
+              "returnWin": 6.5,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -60801,7 +61126,7 @@
             {
               "id": "604458",
               "name": "NewOrlns score 100+ only",
-              "returnWin": 67,
+              "returnWin": 51,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -60891,7 +61216,7 @@
             {
               "id": "604456",
               "name": "SAS leads at end of each Qtr",
-              "returnWin": 1.95,
+              "returnWin": 2,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -63465,7 +63790,7 @@
             {
               "id": "550329",
               "name": "New Orleans",
-              "returnWin": 2.55,
+              "returnWin": 2.5,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -63477,7 +63802,7 @@
             {
               "id": "550330",
               "name": "San Antonio",
-              "returnWin": 1.48,
+              "returnWin": 1.5,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -63519,7 +63844,7 @@
             {
               "id": "550457",
               "name": "New Orleans",
-              "returnWin": 2.5,
+              "returnWin": 2.4,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -63531,7 +63856,7 @@
             {
               "id": "550458",
               "name": "Draw",
-              "returnWin": 19,
+              "returnWin": 18,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -63585,7 +63910,7 @@
             {
               "id": "561308",
               "name": "New Orleans +3.5",
-              "returnWin": 1.9,
+              "returnWin": 1.87,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -63597,7 +63922,7 @@
             {
               "id": "561309",
               "name": "San Antonio -3.5",
-              "returnWin": 1.85,
+              "returnWin": 1.87,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -63663,7 +63988,7 @@
             {
               "id": "550280",
               "name": "Draw",
-              "returnWin": 19,
+              "returnWin": 18,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -63753,7 +64078,7 @@
             {
               "id": "550848",
               "name": "Draw",
-              "returnWin": 19,
+              "returnWin": 18,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -63777,7 +64102,7 @@
             {
               "id": "550850",
               "name": "San Antonio by 11+",
-              "returnWin": 3.5,
+              "returnWin": 3.6,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -63843,7 +64168,7 @@
             {
               "id": "550256",
               "name": "New Orleans by 10-12",
-              "returnWin": 16,
+              "returnWin": 15,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -63879,7 +64204,7 @@
             {
               "id": "550259",
               "name": "New Orleans by 1-3",
-              "returnWin": 7.5,
+              "returnWin": 7,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -63891,7 +64216,7 @@
             {
               "id": "550260",
               "name": "Draw",
-              "returnWin": 19,
+              "returnWin": 18,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -63963,7 +64288,7 @@
             {
               "id": "550266",
               "name": "San Antonio by 16+",
-              "returnWin": 6.2,
+              "returnWin": 6.5,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -64005,7 +64330,7 @@
             {
               "id": "550428",
               "name": "100 Points or Less",
-              "returnWin": 7,
+              "returnWin": 6.5,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -64149,7 +64474,7 @@
             {
               "id": "560150",
               "name": "Over 116 Pts",
-              "returnWin": 2.1,
+              "returnWin": 2.15,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -64173,7 +64498,7 @@
             {
               "id": "560152",
               "name": "Under 114 Pts",
-              "returnWin": 2.05,
+              "returnWin": 2,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -64371,7 +64696,7 @@
             {
               "id": "550827",
               "name": "San Antonio 0 to 40",
-              "returnWin": 67,
+              "returnWin": 51,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -64383,7 +64708,7 @@
             {
               "id": "550828",
               "name": "San Antonio 41 to 45",
-              "returnWin": 31,
+              "returnWin": 26,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -64431,7 +64756,7 @@
             {
               "id": "550834",
               "name": "San Antonio 61+",
-              "returnWin": 1.95,
+              "returnWin": 2,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -64443,13 +64768,13 @@
           ]
         },
         {
-          "id": "125485552",
-          "name": "NBA NOP-SAS 2HAwPtOU 60.5",
-          "shortName": "NBA NOP-SAS 2HAwPtOU 60.5",
+          "id": "125488000",
+          "name": "NBA NOP-SAS 2HAwPtOU 59.5",
+          "shortName": "NBA NOP-SAS 2HAwPtOU 59.5",
           "betOption": "2nd Half Away Points O/U",
           "betOptionSpectrumId": "1749",
           "betOptionPriority": 11610,
-          "marketUniqueId": 125485552,
+          "marketUniqueId": 125488000,
           "closeTime": "2025-12-09T01:10:00.000Z",
           "bettingStatus": "Open",
           "message": null,
@@ -64471,26 +64796,26 @@
           "allowBundle": false,
           "propositions": [
             {
-              "id": "561277",
-              "name": "San Antonio Over 60.5",
-              "returnWin": 1.95,
-              "returnPlace": 0,
-              "differential": null,
-              "bettingStatus": "Open",
-              "allowPlace": false,
-              "number": 561277,
-              "isOpen": true,
-              "sortOrder": 1
-            },
-            {
-              "id": "561278",
-              "name": "San Antonio Under 60.5",
+              "id": "565252",
+              "name": "San Antonio Over 59.5",
               "returnWin": 1.8,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
               "allowPlace": false,
-              "number": 561278,
+              "number": 565252,
+              "isOpen": true,
+              "sortOrder": 1
+            },
+            {
+              "id": "565253",
+              "name": "San Antonio Under 59.5",
+              "returnWin": 1.95,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 565253,
               "isOpen": true,
               "sortOrder": 2
             }
@@ -64527,7 +64852,7 @@
             {
               "id": "550731",
               "name": "New Orleans",
-              "returnWin": 2.8,
+              "returnWin": 2.9,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -64539,7 +64864,7 @@
             {
               "id": "550732",
               "name": "Draw",
-              "returnWin": 8,
+              "returnWin": 7,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -64593,7 +64918,7 @@
             {
               "id": "550269",
               "name": "New Orleans",
-              "returnWin": 2.65,
+              "returnWin": 2.7,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -64605,7 +64930,7 @@
             {
               "id": "550270",
               "name": "San Antonio",
-              "returnWin": 1.45,
+              "returnWin": 1.44,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -64701,7 +65026,7 @@
             {
               "id": "550271",
               "name": "NewOrlns /Over 61.5",
-              "returnWin": 5,
+              "returnWin": 5.1,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -64713,7 +65038,7 @@
             {
               "id": "550272",
               "name": "NewOrlns /Under 61.5",
-              "returnWin": 4.9,
+              "returnWin": 5,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -64725,7 +65050,7 @@
             {
               "id": "550273",
               "name": "SnAntnio /Over 61.5",
-              "returnWin": 2.8,
+              "returnWin": 2.7,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -64899,7 +65224,7 @@
             {
               "id": "550772",
               "name": "New Orleans -0.5",
-              "returnWin": 2.8,
+              "returnWin": 2.9,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -64911,7 +65236,7 @@
             {
               "id": "550773",
               "name": "San Antonio +0.5",
-              "returnWin": 1.4,
+              "returnWin": 1.38,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -64947,7 +65272,7 @@
             {
               "id": "550776",
               "name": "New Orleans +1.5",
-              "returnWin": 2.2,
+              "returnWin": 2.25,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -64959,7 +65284,7 @@
             {
               "id": "550779",
               "name": "San Antonio -1.5",
-              "returnWin": 1.62,
+              "returnWin": 1.6,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -65043,7 +65368,7 @@
             {
               "id": "550786",
               "name": "New Orleans +5.5",
-              "returnWin": 1.5,
+              "returnWin": 1.52,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -65055,7 +65380,7 @@
             {
               "id": "550789",
               "name": "San Antonio -5.5",
-              "returnWin": 2.5,
+              "returnWin": 2.45,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -65115,7 +65440,7 @@
             {
               "id": "550806",
               "name": "New Orleans +8.5",
-              "returnWin": 1.25,
+              "returnWin": 1.26,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -65127,7 +65452,7 @@
             {
               "id": "550807",
               "name": "San Antonio -8.5",
-              "returnWin": 3.7,
+              "returnWin": 3.6,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -65337,7 +65662,7 @@
             {
               "id": "550371",
               "name": "Over 63.5",
-              "returnWin": 2.35,
+              "returnWin": 2.4,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -65349,7 +65674,7 @@
             {
               "id": "550372",
               "name": "Under 63.5",
-              "returnWin": 1.55,
+              "returnWin": 1.53,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -65607,7 +65932,7 @@
             {
               "id": "550644",
               "name": "Draw",
-              "returnWin": 8,
+              "returnWin": 7,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -65619,7 +65944,7 @@
             {
               "id": "550645",
               "name": "San Antonio by 1-3",
-              "returnWin": 6.5,
+              "returnWin": 7,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -65697,7 +66022,7 @@
             {
               "id": "550317",
               "name": "Draw",
-              "returnWin": 8,
+              "returnWin": 7,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -65709,7 +66034,7 @@
             {
               "id": "550318",
               "name": "San Antonio by 1-5",
-              "returnWin": 3.8,
+              "returnWin": 4,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -65721,7 +66046,7 @@
             {
               "id": "550319",
               "name": "San Antonio by 6+",
-              "returnWin": 2.5,
+              "returnWin": 2.45,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -65919,7 +66244,7 @@
             {
               "id": "550726",
               "name": "Neither",
-              "returnWin": 301,
+              "returnWin": 401,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -66249,7 +66574,7 @@
             {
               "id": "550493",
               "name": "New Orleans score 25+ only",
-              "returnWin": 13,
+              "returnWin": 14,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -66351,7 +66676,7 @@
             {
               "id": "550239",
               "name": "New Orleans 27 to 29",
-              "returnWin": 3.5,
+              "returnWin": 3.4,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -66363,7 +66688,7 @@
             {
               "id": "550240",
               "name": "New Orleans 30+",
-              "returnWin": 1.95,
+              "returnWin": 2,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -66405,7 +66730,7 @@
             {
               "id": "550292",
               "name": "New Orleans Over 29.5",
-              "returnWin": 1.95,
+              "returnWin": 2,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -66417,7 +66742,7 @@
             {
               "id": "550293",
               "name": "New Orleans Under 29.5",
-              "returnWin": 1.8,
+              "returnWin": 1.75,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -66603,7 +66928,7 @@
             {
               "id": "550880",
               "name": "New Orleans by 11+",
-              "returnWin": 13,
+              "returnWin": 15,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -66615,7 +66940,7 @@
             {
               "id": "550881",
               "name": "New Orleans by 9-10",
-              "returnWin": 23,
+              "returnWin": 26,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -66675,7 +67000,7 @@
             {
               "id": "550886",
               "name": "Draw",
-              "returnWin": 8,
+              "returnWin": 7,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -67023,7 +67348,7 @@
             {
               "id": "550478",
               "name": "Draw",
-              "returnWin": 10,
+              "returnWin": 9,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -67035,7 +67360,7 @@
             {
               "id": "550479",
               "name": "San Antonio",
-              "returnWin": 1.55,
+              "returnWin": 1.58,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -67131,7 +67456,7 @@
             {
               "id": "561319",
               "name": "New Orleans +2.5",
-              "returnWin": 1.87,
+              "returnWin": 1.85,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -67143,7 +67468,7 @@
             {
               "id": "561320",
               "name": "San Antonio -2.5",
-              "returnWin": 1.87,
+              "returnWin": 1.9,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -67209,7 +67534,7 @@
             {
               "id": "550661",
               "name": "Draw",
-              "returnWin": 10,
+              "returnWin": 9,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -67299,7 +67624,7 @@
             {
               "id": "550134",
               "name": "Draw",
-              "returnWin": 10,
+              "returnWin": 9,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -67311,7 +67636,7 @@
             {
               "id": "550135",
               "name": "San Antonio by 1-5",
-              "returnWin": 3.6,
+              "returnWin": 3.8,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -67323,7 +67648,7 @@
             {
               "id": "550136",
               "name": "San Antonio by 6+",
-              "returnWin": 2.65,
+              "returnWin": 2.7,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -67413,7 +67738,7 @@
             {
               "id": "550678",
               "name": "New Orleans by 3-4",
-              "returnWin": 9,
+              "returnWin": 10,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -67437,7 +67762,7 @@
             {
               "id": "550680",
               "name": "Draw",
-              "returnWin": 10,
+              "returnWin": 9,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -68235,7 +68560,7 @@
             {
               "id": "550485",
               "name": "New Orleans by 1-3",
-              "returnWin": 7.5,
+              "returnWin": 7,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -68313,7 +68638,7 @@
             {
               "id": "550433",
               "name": "New Orleans by 6+",
-              "returnWin": 5,
+              "returnWin": 4.8,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -68325,7 +68650,7 @@
             {
               "id": "550434",
               "name": "New Orleans by 1-5",
-              "returnWin": 4.5,
+              "returnWin": 4.8,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -68427,7 +68752,7 @@
             {
               "id": "550243",
               "name": "New Orleans by 7-8",
-              "returnWin": 15,
+              "returnWin": 14,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -68547,7 +68872,7 @@
             {
               "id": "550253",
               "name": "San Antonio by 11+",
-              "returnWin": 6,
+              "returnWin": 6.2,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -68601,7 +68926,7 @@
             {
               "id": "550842",
               "name": "41 to 50",
-              "returnWin": 6,
+              "returnWin": 5.5,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -68877,7 +69202,7 @@
             {
               "id": "550631",
               "name": "San Antonio 0 to 30",
-              "returnWin": 2,
+              "returnWin": 1.95,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -68889,7 +69214,7 @@
             {
               "id": "550632",
               "name": "San Antonio 31 to 33",
-              "returnWin": 3.6,
+              "returnWin": 3.5,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -68925,7 +69250,7 @@
             {
               "id": "550635",
               "name": "San Antonio 40+",
-              "returnWin": 10,
+              "returnWin": 11,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -68967,7 +69292,7 @@
             {
               "id": "561310",
               "name": "San Antonio Over 30.5",
-              "returnWin": 1.75,
+              "returnWin": 1.8,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -68979,7 +69304,7 @@
             {
               "id": "561311",
               "name": "San Antonio Under 30.5",
-              "returnWin": 2,
+              "returnWin": 1.95,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -69021,7 +69346,7 @@
             {
               "id": "550506",
               "name": "New Orleans",
-              "returnWin": 2.45,
+              "returnWin": 2.4,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -69033,7 +69358,7 @@
             {
               "id": "550507",
               "name": "Draw",
-              "returnWin": 7.5,
+              "returnWin": 8,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -69087,7 +69412,7 @@
             {
               "id": "550345",
               "name": "New Orleans",
-              "returnWin": 2.3,
+              "returnWin": 2.25,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -69099,7 +69424,7 @@
             {
               "id": "550346",
               "name": "San Antonio",
-              "returnWin": 1.58,
+              "returnWin": 1.6,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -69195,7 +69520,7 @@
             {
               "id": "550734",
               "name": "New Orleans by 4+",
-              "returnWin": 3.6,
+              "returnWin": 3.5,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -69219,7 +69544,7 @@
             {
               "id": "550736",
               "name": "Draw",
-              "returnWin": 7.5,
+              "returnWin": 8,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -69243,7 +69568,7 @@
             {
               "id": "550738",
               "name": "San Antonio by 4+",
-              "returnWin": 2.25,
+              "returnWin": 2.3,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -69297,7 +69622,7 @@
             {
               "id": "550232",
               "name": "New Orleans by 1-5",
-              "returnWin": 4.8,
+              "returnWin": 4.5,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -69309,7 +69634,7 @@
             {
               "id": "550233",
               "name": "Draw",
-              "returnWin": 7.5,
+              "returnWin": 8,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -69447,7 +69772,7 @@
             {
               "id": "550421",
               "name": "Draw",
-              "returnWin": 7.5,
+              "returnWin": 8,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -69573,7 +69898,7 @@
             {
               "id": "550144",
               "name": "41 to 50",
-              "returnWin": 3.5,
+              "returnWin": 3.4,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -69597,7 +69922,7 @@
             {
               "id": "550146",
               "name": "61 to 70",
-              "returnWin": 3.3,
+              "returnWin": 3.4,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -69729,7 +70054,7 @@
             {
               "id": "550500",
               "name": "New Orleans 24 to 26",
-              "returnWin": 3.8,
+              "returnWin": 3.6,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -69849,7 +70174,7 @@
             {
               "id": "550620",
               "name": "San Antonio 0 to 20",
-              "returnWin": 11,
+              "returnWin": 10,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -69885,7 +70210,7 @@
             {
               "id": "550624",
               "name": "San Antonio 27 to 29",
-              "returnWin": 3.5,
+              "returnWin": 3.6,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -69897,7 +70222,7 @@
             {
               "id": "550626",
               "name": "San Antonio 30+",
-              "returnWin": 1.95,
+              "returnWin": 2,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -69939,7 +70264,7 @@
             {
               "id": "561275",
               "name": "San Antonio Over 29.5",
-              "returnWin": 1.95,
+              "returnWin": 2,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -69951,7 +70276,7 @@
             {
               "id": "561276",
               "name": "San Antonio Under 29.5",
-              "returnWin": 1.8,
+              "returnWin": 1.75,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -69993,14 +70318,15 @@
             {
               "id": "561271",
               "name": "1st Quarter",
-              "returnWin": 2.9,
+              "returnWin": 2.8,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
               "allowPlace": false,
               "number": 561271,
               "isOpen": true,
-              "sortOrder": 1
+              "sortOrder": 1,
+              "sameGame": true
             },
             {
               "id": "561272",
@@ -70012,33 +70338,38 @@
               "allowPlace": false,
               "number": 561272,
               "isOpen": true,
-              "sortOrder": 2
+              "sortOrder": 2,
+              "sameGame": true
             },
             {
               "id": "561273",
               "name": "3rd Quarter",
-              "returnWin": 3.6,
+              "returnWin": 3.8,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
               "allowPlace": false,
               "number": 561273,
               "isOpen": true,
-              "sortOrder": 3
+              "sortOrder": 3,
+              "sameGame": true
             },
             {
               "id": "561274",
               "name": "4th Quarter",
-              "returnWin": 4.8,
+              "returnWin": 5,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
               "allowPlace": false,
               "number": 561274,
               "isOpen": true,
-              "sortOrder": 4
+              "sortOrder": 4,
+              "sameGame": true
             }
-          ]
+          ],
+          "sameGame": true,
+          "sameGameMultipleSelections": false
         },
         {
           "id": "125479179",
@@ -70071,7 +70402,7 @@
             {
               "id": "604809",
               "name": "New Orleans by 6+",
-              "returnWin": 6,
+              "returnWin": 5.7,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -70155,7 +70486,7 @@
             {
               "id": "604763",
               "name": "New Orleans by 16+",
-              "returnWin": 21,
+              "returnWin": 19,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -70181,7 +70512,7 @@
             {
               "id": "604765",
               "name": "San Antonio by 1-15",
-              "returnWin": 2,
+              "returnWin": 2.05,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -70239,7 +70570,7 @@
             {
               "id": "604648",
               "name": "New Orleans by 4+",
-              "returnWin": 4.8,
+              "returnWin": 4.6,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -70310,7 +70641,7 @@
             {
               "id": "604703",
               "name": "New Orleans by 9+",
-              "returnWin": 8.5,
+              "returnWin": 8,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -70381,7 +70712,7 @@
             {
               "id": "604740",
               "name": "New Orleans by 11+",
-              "returnWin": 11,
+              "returnWin": 10,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -70523,7 +70854,7 @@
             {
               "id": "604756",
               "name": "New Orleans by 16+",
-              "returnWin": 21,
+              "returnWin": 19,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -70780,7 +71111,7 @@
             {
               "id": "561316",
               "name": "1st Half",
-              "returnWin": 1.48,
+              "returnWin": 1.45,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -70804,7 +71135,7 @@
             {
               "id": "561318",
               "name": "2nd Half",
-              "returnWin": 2.5,
+              "returnWin": 2.6,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -70912,7 +71243,7 @@
             {
               "id": "561301",
               "name": "2nd Quarter",
-              "returnWin": 3.1,
+              "returnWin": 3,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -70978,7 +71309,7 @@
             {
               "id": "561285",
               "name": "1st Quarter",
-              "returnWin": 2.8,
+              "returnWin": 2.7,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -71002,7 +71333,7 @@
             {
               "id": "561287",
               "name": "3rd Quarter",
-              "returnWin": 3.6,
+              "returnWin": 3.8,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -71014,7 +71345,7 @@
             {
               "id": "561288",
               "name": "4th Quarter",
-              "returnWin": 4.8,
+              "returnWin": 5,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -71422,7 +71753,7 @@
             {
               "id": "665359",
               "name": "Orlando",
-              "returnWin": 2.1,
+              "returnWin": 2.2,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -71436,7 +71767,7 @@
             {
               "id": "665360",
               "name": "Miami",
-              "returnWin": 1.77,
+              "returnWin": 1.7,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -71452,13 +71783,13 @@
           "sameGameMultipleSelections": false
         },
         {
-          "id": "125481258",
-          "name": "NBA Orl-Mia Line +2.0",
-          "shortName": "NBA Orl-Mia Line +2.0",
+          "id": "125485694",
+          "name": "NBA Orl-Mia Line +3.0",
+          "shortName": "NBA Orl-Mia Line +3.0",
           "betOption": "Line",
           "betOptionSpectrumId": "43",
           "betOptionPriority": 1375,
-          "marketUniqueId": 125481258,
+          "marketUniqueId": 125485694,
           "closeTime": "2025-12-09T23:10:00.000Z",
           "bettingStatus": "Open",
           "message": null,
@@ -71480,36 +71811,32 @@
           "allowBundle": false,
           "propositions": [
             {
-              "id": "611478",
-              "name": "Orlando +2.0",
+              "id": "562247",
+              "name": "Orlando +3.0",
               "returnWin": 1.9,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
               "allowPlace": false,
-              "number": 611478,
+              "number": 562247,
               "isOpen": true,
               "sortOrder": 1,
-              "line": "+2.0",
-              "sameGame": true
+              "line": "+3.0"
             },
             {
-              "id": "611479",
-              "name": "Miami -2.0",
+              "id": "562248",
+              "name": "Miami -3.0",
               "returnWin": 1.9,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
               "allowPlace": false,
-              "number": 611479,
+              "number": 562248,
               "isOpen": true,
               "sortOrder": 2,
-              "line": "-2.0",
-              "sameGame": true
+              "line": "-3.0"
             }
-          ],
-          "sameGame": true,
-          "sameGameMultipleSelections": false
+          ]
         },
         {
           "id": "125438158",
@@ -71542,7 +71869,7 @@
             {
               "id": "672847",
               "name": "Orlando by 11+",
-              "returnWin": 4,
+              "returnWin": 4.5,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -71568,7 +71895,7 @@
             {
               "id": "672851",
               "name": "Miami by 1-10",
-              "returnWin": 3.2,
+              "returnWin": 3,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -71581,7 +71908,7 @@
             {
               "id": "672852",
               "name": "Miami by 11+",
-              "returnWin": 3.4,
+              "returnWin": 3.2,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -71626,7 +71953,7 @@
             {
               "id": "672519",
               "name": "Orlando by 7+",
-              "returnWin": 2.9,
+              "returnWin": 3.1,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -71652,7 +71979,7 @@
             {
               "id": "672521",
               "name": "Miami by 7+",
-              "returnWin": 2.5,
+              "returnWin": 2.3,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -71695,35 +72022,9 @@
           "allowBundle": false,
           "propositions": [
             {
-              "id": "672556",
-              "name": "Orlando -14.5",
-              "returnWin": 5.7,
-              "returnPlace": 0,
-              "differential": null,
-              "bettingStatus": "Open",
-              "allowPlace": false,
-              "number": 672556,
-              "isOpen": true,
-              "sortOrder": 35,
-              "sameGame": true
-            },
-            {
-              "id": "672557",
-              "name": "Miami +14.5",
-              "returnWin": 1.12,
-              "returnPlace": 0,
-              "differential": null,
-              "bettingStatus": "Open",
-              "allowPlace": false,
-              "number": 672557,
-              "isOpen": true,
-              "sortOrder": 36,
-              "sameGame": true
-            },
-            {
               "id": "672558",
               "name": "Orlando -13.5",
-              "returnWin": 5.2,
+              "returnWin": 6,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -71736,7 +72037,7 @@
             {
               "id": "672559",
               "name": "Miami +13.5",
-              "returnWin": 1.14,
+              "returnWin": 1.11,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -71749,7 +72050,7 @@
             {
               "id": "672560",
               "name": "Orlando -12.5",
-              "returnWin": 5,
+              "returnWin": 5.5,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -71762,7 +72063,7 @@
             {
               "id": "672561",
               "name": "Miami +12.5",
-              "returnWin": 1.15,
+              "returnWin": 1.13,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -71775,7 +72076,7 @@
             {
               "id": "672562",
               "name": "Orlando -11.5",
-              "returnWin": 4.5,
+              "returnWin": 5,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -71788,7 +72089,7 @@
             {
               "id": "672563",
               "name": "Miami +11.5",
-              "returnWin": 1.18,
+              "returnWin": 1.15,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -71801,7 +72102,7 @@
             {
               "id": "672564",
               "name": "Orlando -10.5",
-              "returnWin": 4,
+              "returnWin": 4.5,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -71814,7 +72115,7 @@
             {
               "id": "672565",
               "name": "Miami +10.5",
-              "returnWin": 1.22,
+              "returnWin": 1.18,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -71827,7 +72128,7 @@
             {
               "id": "672566",
               "name": "Orlando -9.5",
-              "returnWin": 3.7,
+              "returnWin": 4,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -71840,7 +72141,7 @@
             {
               "id": "672567",
               "name": "Miami +9.5",
-              "returnWin": 1.25,
+              "returnWin": 1.22,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -71853,7 +72154,7 @@
             {
               "id": "672568",
               "name": "Orlando -8.5",
-              "returnWin": 3.4,
+              "returnWin": 3.7,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -71866,7 +72167,7 @@
             {
               "id": "672569",
               "name": "Miami +8.5",
-              "returnWin": 1.28,
+              "returnWin": 1.25,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -71879,7 +72180,7 @@
             {
               "id": "672570",
               "name": "Orlando -7.5",
-              "returnWin": 3.1,
+              "returnWin": 3.4,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -71892,7 +72193,7 @@
             {
               "id": "672571",
               "name": "Miami +7.5",
-              "returnWin": 1.34,
+              "returnWin": 1.28,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -71905,7 +72206,7 @@
             {
               "id": "672572",
               "name": "Orlando -6.5",
-              "returnWin": 2.9,
+              "returnWin": 3.1,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -71918,7 +72219,7 @@
             {
               "id": "672573",
               "name": "Miami +6.5",
-              "returnWin": 1.38,
+              "returnWin": 1.34,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -71931,7 +72232,7 @@
             {
               "id": "672574",
               "name": "Orlando -5.5",
-              "returnWin": 2.7,
+              "returnWin": 2.9,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -71944,7 +72245,7 @@
             {
               "id": "672575",
               "name": "Miami +5.5",
-              "returnWin": 1.44,
+              "returnWin": 1.38,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -71957,7 +72258,7 @@
             {
               "id": "672576",
               "name": "Orlando -4.5",
-              "returnWin": 2.5,
+              "returnWin": 2.7,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -71970,7 +72271,7 @@
             {
               "id": "672577",
               "name": "Miami +4.5",
-              "returnWin": 1.5,
+              "returnWin": 1.44,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -71983,7 +72284,7 @@
             {
               "id": "672578",
               "name": "Orlando -3.5",
-              "returnWin": 2.35,
+              "returnWin": 2.5,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -71996,7 +72297,7 @@
             {
               "id": "672579",
               "name": "Miami +3.5",
-              "returnWin": 1.55,
+              "returnWin": 1.5,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -72009,7 +72310,7 @@
             {
               "id": "672580",
               "name": "Orlando -2.5",
-              "returnWin": 2.2,
+              "returnWin": 2.4,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -72022,7 +72323,7 @@
             {
               "id": "672581",
               "name": "Miami +2.5",
-              "returnWin": 1.62,
+              "returnWin": 1.53,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -72035,7 +72336,7 @@
             {
               "id": "672582",
               "name": "Orlando +2.5",
-              "returnWin": 1.85,
+              "returnWin": 1.95,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -72048,7 +72349,7 @@
             {
               "id": "672583",
               "name": "Miami -2.5",
-              "returnWin": 1.9,
+              "returnWin": 1.8,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -72061,7 +72362,7 @@
             {
               "id": "672584",
               "name": "Orlando +3.5",
-              "returnWin": 1.72,
+              "returnWin": 1.85,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -72074,7 +72375,7 @@
             {
               "id": "672585",
               "name": "Miami -3.5",
-              "returnWin": 2.05,
+              "returnWin": 1.9,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -72087,7 +72388,7 @@
             {
               "id": "672586",
               "name": "Orlando +4.5",
-              "returnWin": 1.65,
+              "returnWin": 1.75,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -72100,7 +72401,7 @@
             {
               "id": "672587",
               "name": "Miami -4.5",
-              "returnWin": 2.15,
+              "returnWin": 2,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -72113,7 +72414,7 @@
             {
               "id": "672588",
               "name": "Orlando +5.5",
-              "returnWin": 1.58,
+              "returnWin": 1.65,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -72126,7 +72427,7 @@
             {
               "id": "672589",
               "name": "Miami -5.5",
-              "returnWin": 2.3,
+              "returnWin": 2.15,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -72139,7 +72440,7 @@
             {
               "id": "672590",
               "name": "Orlando +6.5",
-              "returnWin": 1.5,
+              "returnWin": 1.58,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -72152,7 +72453,7 @@
             {
               "id": "672591",
               "name": "Miami -6.5",
-              "returnWin": 2.5,
+              "returnWin": 2.3,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -72165,7 +72466,7 @@
             {
               "id": "672592",
               "name": "Orlando +7.5",
-              "returnWin": 1.44,
+              "returnWin": 1.5,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -72178,7 +72479,7 @@
             {
               "id": "672593",
               "name": "Miami -7.5",
-              "returnWin": 2.7,
+              "returnWin": 2.5,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -72191,7 +72492,7 @@
             {
               "id": "672594",
               "name": "Orlando +8.5",
-              "returnWin": 1.38,
+              "returnWin": 1.44,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -72204,7 +72505,7 @@
             {
               "id": "672595",
               "name": "Miami -8.5",
-              "returnWin": 2.9,
+              "returnWin": 2.7,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -72217,7 +72518,7 @@
             {
               "id": "672596",
               "name": "Orlando +9.5",
-              "returnWin": 1.34,
+              "returnWin": 1.38,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -72230,7 +72531,7 @@
             {
               "id": "672597",
               "name": "Miami -9.5",
-              "returnWin": 3.1,
+              "returnWin": 2.9,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -72243,7 +72544,7 @@
             {
               "id": "672598",
               "name": "Orlando +10.5",
-              "returnWin": 1.28,
+              "returnWin": 1.32,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -72256,7 +72557,7 @@
             {
               "id": "672599",
               "name": "Miami -10.5",
-              "returnWin": 3.4,
+              "returnWin": 3.2,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -72269,7 +72570,7 @@
             {
               "id": "672600",
               "name": "Orlando +11.5",
-              "returnWin": 1.25,
+              "returnWin": 1.28,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -72282,7 +72583,7 @@
             {
               "id": "672601",
               "name": "Miami -11.5",
-              "returnWin": 3.7,
+              "returnWin": 3.4,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -72295,7 +72596,7 @@
             {
               "id": "672602",
               "name": "Orlando +12.5",
-              "returnWin": 1.22,
+              "returnWin": 1.25,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -72308,7 +72609,7 @@
             {
               "id": "672603",
               "name": "Miami -12.5",
-              "returnWin": 4,
+              "returnWin": 3.7,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -72321,7 +72622,7 @@
             {
               "id": "672604",
               "name": "Orlando +13.5",
-              "returnWin": 1.18,
+              "returnWin": 1.22,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -72334,7 +72635,7 @@
             {
               "id": "672605",
               "name": "Miami -13.5",
-              "returnWin": 4.5,
+              "returnWin": 4,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -72347,7 +72648,7 @@
             {
               "id": "672606",
               "name": "Orlando +14.5",
-              "returnWin": 1.16,
+              "returnWin": 1.18,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -72360,7 +72661,7 @@
             {
               "id": "672607",
               "name": "Miami -14.5",
-              "returnWin": 4.8,
+              "returnWin": 4.5,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -72373,7 +72674,7 @@
             {
               "id": "672608",
               "name": "Orlando +15.5",
-              "returnWin": 1.14,
+              "returnWin": 1.16,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -72386,7 +72687,7 @@
             {
               "id": "672609",
               "name": "Miami -15.5",
-              "returnWin": 5.2,
+              "returnWin": 4.8,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -72399,7 +72700,7 @@
             {
               "id": "672610",
               "name": "Orlando +16.5",
-              "returnWin": 1.12,
+              "returnWin": 1.14,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -72412,7 +72713,7 @@
             {
               "id": "672611",
               "name": "Miami -16.5",
-              "returnWin": 5.7,
+              "returnWin": 5.2,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -72425,7 +72726,7 @@
             {
               "id": "672612",
               "name": "Orlando +17.5",
-              "returnWin": 1.1,
+              "returnWin": 1.12,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -72438,7 +72739,7 @@
             {
               "id": "672613",
               "name": "Miami -17.5",
-              "returnWin": 6.2,
+              "returnWin": 5.7,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -72447,6 +72748,30 @@
               "isOpen": true,
               "sortOrder": 92,
               "sameGame": true
+            },
+            {
+              "id": "672614",
+              "name": "Orlando +18.5",
+              "returnWin": 1.1,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 672614,
+              "isOpen": true,
+              "sortOrder": 93
+            },
+            {
+              "id": "672615",
+              "name": "Miami -18.5",
+              "returnWin": 6.2,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 672615,
+              "isOpen": true,
+              "sortOrder": 94
             }
           ],
           "sameGame": true,
@@ -72483,7 +72808,7 @@
             {
               "id": "672663",
               "name": "Orlando / Orlando",
-              "returnWin": 2.7,
+              "returnWin": 3,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -72496,7 +72821,7 @@
             {
               "id": "672664",
               "name": "Orlando / Miami",
-              "returnWin": 6,
+              "returnWin": 5.5,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -72509,7 +72834,7 @@
             {
               "id": "672665",
               "name": "Miami / Miami",
-              "returnWin": 2.25,
+              "returnWin": 2.1,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -72645,7 +72970,7 @@
             {
               "id": "672673",
               "name": "Orlando by 25-28",
-              "returnWin": 26,
+              "returnWin": 31,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -72658,7 +72983,7 @@
             {
               "id": "672674",
               "name": "Orlando by 21-24",
-              "returnWin": 18,
+              "returnWin": 19,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -72671,7 +72996,7 @@
             {
               "id": "672675",
               "name": "Orlando by 17-20",
-              "returnWin": 13,
+              "returnWin": 14,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -72684,7 +73009,7 @@
             {
               "id": "672676",
               "name": "Orlando by 13-16",
-              "returnWin": 10,
+              "returnWin": 11,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -72697,7 +73022,7 @@
             {
               "id": "672677",
               "name": "Orlando by 9-12",
-              "returnWin": 7.5,
+              "returnWin": 8,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -72723,7 +73048,7 @@
             {
               "id": "672679",
               "name": "Orlando by 1-4",
-              "returnWin": 7.5,
+              "returnWin": 8,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -72801,7 +73126,7 @@
             {
               "id": "672685",
               "name": "Miami by 17-20",
-              "returnWin": 10,
+              "returnWin": 9,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -72814,7 +73139,7 @@
             {
               "id": "672686",
               "name": "Miami by 21-24",
-              "returnWin": 13,
+              "returnWin": 12,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -72827,7 +73152,7 @@
             {
               "id": "672687",
               "name": "Miami by 25-28",
-              "returnWin": 18,
+              "returnWin": 16,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -72840,7 +73165,7 @@
             {
               "id": "672688",
               "name": "Miami by 29-32",
-              "returnWin": 26,
+              "returnWin": 23,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -72853,7 +73178,7 @@
             {
               "id": "672689",
               "name": "Miami by 33-36",
-              "returnWin": 41,
+              "returnWin": 34,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -72866,7 +73191,7 @@
             {
               "id": "672690",
               "name": "Miami by 37-40",
-              "returnWin": 67,
+              "returnWin": 51,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -72879,7 +73204,7 @@
             {
               "id": "672691",
               "name": "Miami by 41+",
-              "returnWin": 81,
+              "returnWin": 67,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -72924,7 +73249,7 @@
             {
               "id": "672725",
               "name": "Orl 7+ / Orl 11+",
-              "returnWin": 6.5,
+              "returnWin": 7,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -72976,7 +73301,7 @@
             {
               "id": "672729",
               "name": "Orl 1-6 / Orl 11+",
-              "returnWin": 13,
+              "returnWin": 14,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -73015,7 +73340,7 @@
             {
               "id": "672732",
               "name": "Orl 1-6 / Mia 11+",
-              "returnWin": 23,
+              "returnWin": 21,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -73054,7 +73379,7 @@
             {
               "id": "672735",
               "name": "Tie / Mia 1-10",
-              "returnWin": 51,
+              "returnWin": 41,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -73067,7 +73392,7 @@
             {
               "id": "672737",
               "name": "Tie / Mia 11+",
-              "returnWin": 81,
+              "returnWin": 67,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -73080,7 +73405,7 @@
             {
               "id": "672738",
               "name": "Mia 1-6 / Orl 11+",
-              "returnWin": 23,
+              "returnWin": 26,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -73093,7 +73418,7 @@
             {
               "id": "672740",
               "name": "Mia 1-6 / Orl 1-10",
-              "returnWin": 11,
+              "returnWin": 12,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -73171,7 +73496,7 @@
             {
               "id": "672746",
               "name": "Mia 7+ / Mia 11+",
-              "returnWin": 4.8,
+              "returnWin": 4.5,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -73216,7 +73541,7 @@
             {
               "id": "672854",
               "name": "Orl by 11+ /261 or more",
-              "returnWin": 41,
+              "returnWin": 51,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -73228,7 +73553,7 @@
             {
               "id": "672856",
               "name": "Orl by 11+ /241-260",
-              "returnWin": 13,
+              "returnWin": 15,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -73240,7 +73565,7 @@
             {
               "id": "672857",
               "name": "Orl by 11+ /221-240",
-              "returnWin": 9,
+              "returnWin": 10,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -73252,7 +73577,7 @@
             {
               "id": "672858",
               "name": "Orl by 11+ /220 or less",
-              "returnWin": 14,
+              "returnWin": 15,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -73264,7 +73589,7 @@
             {
               "id": "672859",
               "name": "Orl by 1-10 /261 or more",
-              "returnWin": 34,
+              "returnWin": 41,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -73276,7 +73601,7 @@
             {
               "id": "672860",
               "name": "Orl by 1-10 /241-260",
-              "returnWin": 11,
+              "returnWin": 12,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -73348,7 +73673,7 @@
             {
               "id": "672869",
               "name": "Mia by 1-10 /220 or less",
-              "returnWin": 11,
+              "returnWin": 10,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -73372,7 +73697,7 @@
             {
               "id": "672873",
               "name": "Mia by 11+ /241-260",
-              "returnWin": 11,
+              "returnWin": 10,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -73384,7 +73709,7 @@
             {
               "id": "672875",
               "name": "Mia by 11+ /221-240",
-              "returnWin": 7.5,
+              "returnWin": 6.5,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -73396,7 +73721,7 @@
             {
               "id": "672877",
               "name": "Mia by 11+ /220 or less",
-              "returnWin": 12,
+              "returnWin": 10,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -73438,7 +73763,7 @@
             {
               "id": "672807",
               "name": "220 Points or Less",
-              "returnWin": 3.5,
+              "returnWin": 3.4,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -73451,7 +73776,7 @@
             {
               "id": "672809",
               "name": "221 to 230",
-              "returnWin": 4,
+              "returnWin": 3.8,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -73464,7 +73789,7 @@
             {
               "id": "672811",
               "name": "231 to 240",
-              "returnWin": 3.8,
+              "returnWin": 3.6,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -73490,7 +73815,7 @@
             {
               "id": "672813",
               "name": "251 to 260",
-              "returnWin": 7,
+              "returnWin": 7.5,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -73503,7 +73828,7 @@
             {
               "id": "672814",
               "name": "261 Points or More",
-              "returnWin": 9,
+              "returnWin": 10,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -73548,7 +73873,7 @@
             {
               "id": "672816",
               "name": "220 Points or Less",
-              "returnWin": 3.5,
+              "returnWin": 3.4,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -73560,7 +73885,7 @@
             {
               "id": "672818",
               "name": "221 to 240",
-              "returnWin": 1.8,
+              "returnWin": 1.75,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -73572,7 +73897,7 @@
             {
               "id": "672819",
               "name": "241 to 260",
-              "returnWin": 2.6,
+              "returnWin": 2.7,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -73584,7 +73909,7 @@
             {
               "id": "672820",
               "name": "261 Points or More",
-              "returnWin": 9,
+              "returnWin": 10,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -73626,7 +73951,7 @@
             {
               "id": "672748",
               "name": "220 Points or Less",
-              "returnWin": 3.5,
+              "returnWin": 3.4,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -73662,7 +73987,7 @@
             {
               "id": "672754",
               "name": "225 to 226",
-              "returnWin": 15,
+              "returnWin": 14,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -73878,7 +74203,7 @@
             {
               "id": "672791",
               "name": "261 Points or More",
-              "returnWin": 9,
+              "returnWin": 10,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -73920,7 +74245,7 @@
             {
               "id": "672692",
               "name": "Orl 0 to 110",
-              "returnWin": 2.9,
+              "returnWin": 2.75,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -73933,7 +74258,7 @@
             {
               "id": "672693",
               "name": "Orl 111 to 120",
-              "returnWin": 2.2,
+              "returnWin": 2.15,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -73946,7 +74271,7 @@
             {
               "id": "672694",
               "name": "Orl 121 to 130",
-              "returnWin": 3.1,
+              "returnWin": 3.2,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -73959,7 +74284,7 @@
             {
               "id": "672695",
               "name": "Orl 131 to 140",
-              "returnWin": 8.5,
+              "returnWin": 9,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -73972,7 +74297,7 @@
             {
               "id": "672722",
               "name": "Orl 141+",
-              "returnWin": 26,
+              "returnWin": 34,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -74017,7 +74342,7 @@
             {
               "id": "672639",
               "name": "Orlando 0 to 110",
-              "returnWin": 2.9,
+              "returnWin": 2.75,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -74029,7 +74354,7 @@
             {
               "id": "672640",
               "name": "Orlando 111 to 115",
-              "returnWin": 4.2,
+              "returnWin": 4,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -74041,7 +74366,7 @@
             {
               "id": "672641",
               "name": "Orlando 116 to 120",
-              "returnWin": 4.2,
+              "returnWin": 4,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -74065,7 +74390,7 @@
             {
               "id": "672643",
               "name": "Orlando 126 to 130",
-              "returnWin": 7,
+              "returnWin": 7.5,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -74077,7 +74402,7 @@
             {
               "id": "672644",
               "name": "Orlando 131 to 135",
-              "returnWin": 12,
+              "returnWin": 13,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -74089,7 +74414,7 @@
             {
               "id": "672645",
               "name": "Orlando 136 to 140",
-              "returnWin": 23,
+              "returnWin": 26,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -74101,7 +74426,7 @@
             {
               "id": "672646",
               "name": "Orlando 141+",
-              "returnWin": 26,
+              "returnWin": 34,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -74143,7 +74468,7 @@
             {
               "id": "672797",
               "name": "Mia 0 to 100",
-              "returnWin": 10,
+              "returnWin": 11,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -74156,7 +74481,7 @@
             {
               "id": "672799",
               "name": "Mia 101 to 110",
-              "returnWin": 3.6,
+              "returnWin": 3.8,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -74195,7 +74520,7 @@
             {
               "id": "672805",
               "name": "Mia 131+",
-              "returnWin": 7,
+              "returnWin": 6.5,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -74240,7 +74565,7 @@
             {
               "id": "672647",
               "name": "Miami 0 to 100",
-              "returnWin": 10,
+              "returnWin": 11,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -74264,7 +74589,7 @@
             {
               "id": "672655",
               "name": "Miami 106 to 110",
-              "returnWin": 5.5,
+              "returnWin": 6,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -74300,7 +74625,7 @@
             {
               "id": "672658",
               "name": "Miami 121 to 125",
-              "returnWin": 5,
+              "returnWin": 4.8,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -74324,7 +74649,7 @@
             {
               "id": "672660",
               "name": "Miami 131+",
-              "returnWin": 7,
+              "returnWin": 6.5,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -74366,7 +74691,7 @@
             {
               "id": "562385",
               "name": "Both teams score 100+",
-              "returnWin": 1.02,
+              "returnWin": 1.03,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -74378,7 +74703,7 @@
             {
               "id": "562386",
               "name": "Orlando score 100+ only",
-              "returnWin": 16,
+              "returnWin": 17,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -74390,7 +74715,7 @@
             {
               "id": "562387",
               "name": "Miami score 100+ only",
-              "returnWin": 13,
+              "returnWin": 11,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -74444,7 +74769,7 @@
             {
               "id": "672626",
               "name": "Orl leads at end of each Qtr",
-              "returnWin": 4.8,
+              "returnWin": 5.5,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -74456,7 +74781,7 @@
             {
               "id": "672627",
               "name": "Any Other Result",
-              "returnWin": 1.55,
+              "returnWin": 1.58,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -74468,7 +74793,7 @@
             {
               "id": "672628",
               "name": "Mia leads at end of each Qtr",
-              "returnWin": 3.3,
+              "returnWin": 3,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -74678,7 +75003,7 @@
             {
               "id": "672516",
               "name": "Orlando",
-              "returnWin": 23,
+              "returnWin": 26,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -74691,7 +75016,7 @@
             {
               "id": "672517",
               "name": "Miami",
-              "returnWin": 16,
+              "returnWin": 14,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -75058,7 +75383,8 @@
               "number": 559867,
               "isOpen": true,
               "sortOrder": 1,
-              "line": "+5.0"
+              "line": "+5.0",
+              "sameGame": true
             },
             {
               "id": "559868",
@@ -75071,9 +75397,12 @@
               "number": 559868,
               "isOpen": true,
               "sortOrder": 2,
-              "line": "-5.0"
+              "line": "-5.0",
+              "sameGame": true
             }
-          ]
+          ],
+          "sameGame": true,
+          "sameGameMultipleSelections": false
         },
         {
           "id": "125438175",
@@ -85468,6 +85797,7 @@
     "Tri Bet",
     "Line/Over Under Double",
     "HDtoHD/OverUnder Double",
+    "Line/Total Double $2",
     "Total Points Over/Under",
     "Pick Your Own Line",
     "Pick Your Own Total",
@@ -85717,6 +86047,14 @@
       "openMarketCount": 3,
       "_links": {
         "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/markets?jurisdiction=SA&amp;betOptionName=HDtoHD%2FOverUnder%20Double"
+      }
+    },
+    {
+      "name": "Line/Total Double $2",
+      "hasFutureMarket": false,
+      "openMarketCount": 3,
+      "_links": {
+        "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/markets?jurisdiction=SA&amp;betOptionName=Line%2FTotal%20Double%20%242"
       }
     },
     {
