@@ -3117,7 +3117,8 @@
               "allowPlace": false,
               "number": 566502,
               "isOpen": true,
-              "sortOrder": 1
+              "sortOrder": 1,
+              "sameGame": true
             },
             {
               "id": "566539",
@@ -4909,6 +4910,19 @@
               "sameGame": true
             },
             {
+              "id": "567036",
+              "name": "Mark Williams (PHX)",
+              "returnWin": 1.6,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 567036,
+              "isOpen": true,
+              "sortOrder": 8,
+              "sameGame": true
+            },
+            {
               "id": "567042",
               "name": "Collin Gillespie (PHX)",
               "returnWin": 1.62,
@@ -4932,19 +4946,6 @@
               "number": 567035,
               "isOpen": true,
               "sortOrder": 7,
-              "sameGame": true
-            },
-            {
-              "id": "567036",
-              "name": "Mark Williams (PHX)",
-              "returnWin": 1.7,
-              "returnPlace": 0,
-              "differential": null,
-              "bettingStatus": "Open",
-              "allowPlace": false,
-              "number": 567036,
-              "isOpen": true,
-              "sortOrder": 8,
               "sameGame": true
             },
             {
@@ -24546,9 +24547,9 @@
         "LA Lakers",
         "San Antonio"
       ],
-      "openMarketCount": 220,
+      "openMarketCount": 241,
       "futureMarketCount": 0,
-      "nonFutureMarketCount": 220,
+      "nonFutureMarketCount": 241,
       "markets": [
         {
           "id": "125481801",
@@ -28460,7 +28461,8 @@
               "allowPlace": false,
               "number": 553497,
               "isOpen": true,
-              "sortOrder": 3
+              "sortOrder": 3,
+              "sameGame": true
             },
             {
               "id": "553500",
@@ -28573,7 +28575,8 @@
               "allowPlace": false,
               "number": 571978,
               "isOpen": true,
-              "sortOrder": 1
+              "sortOrder": 1,
+              "sameGame": true
             },
             {
               "id": "571979",
@@ -28587,7 +28590,9 @@
               "isOpen": true,
               "sortOrder": 2
             }
-          ]
+          ],
+          "sameGame": true,
+          "sameGameMultipleSelections": false
         },
         {
           "id": "125541277",
@@ -29299,29 +29304,29 @@
           "allowBundle": false,
           "propositions": [
             {
-              "id": "553539",
-              "name": "R Hachimura Over 12.5 Pts",
-              "returnWin": 1.95,
+              "id": "553541",
+              "name": "R Hachimura Over 11.5 Pts",
+              "returnWin": 1.85,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
               "allowPlace": false,
-              "number": 553539,
+              "number": 553541,
               "isOpen": true,
-              "sortOrder": 3,
+              "sortOrder": 5,
               "sameGame": true
             },
             {
-              "id": "553540",
-              "name": "R Hachimura Under 12.5 Pts",
-              "returnWin": 1.8,
+              "id": "553542",
+              "name": "R Hachimura Under 11.5 Pts",
+              "returnWin": 1.9,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
               "allowPlace": false,
-              "number": 553540,
+              "number": 553542,
               "isOpen": true,
-              "sortOrder": 4
+              "sortOrder": 6
             }
           ],
           "sameGame": true,
@@ -30911,7 +30916,7 @@
             {
               "id": "591235",
               "name": "R Hachimura 10+ Pts/LAL Win",
-              "returnWin": 1.9,
+              "returnWin": 2,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -30923,7 +30928,7 @@
             {
               "id": "591236",
               "name": "R Hachimura 15+ Pts/LAL Win",
-              "returnWin": 3.2,
+              "returnWin": 3.5,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -41645,6 +41650,60 @@
           ]
         },
         {
+          "id": "125556658",
+          "name": "NBA LAL-SAS 2ndHlfLn -3.5",
+          "shortName": "NBA LAL-SAS 2ndHlfLn -3.5",
+          "betOption": "2nd Half Line",
+          "betOptionSpectrumId": "270",
+          "betOptionPriority": 11510,
+          "marketUniqueId": 125556658,
+          "closeTime": "2025-12-11T03:10:00.000Z",
+          "bettingStatus": "Open",
+          "message": null,
+          "informationMessage": null,
+          "isFuture": false,
+          "onlineBetting": true,
+          "phoneBettingOnly": false,
+          "inPlay": false,
+          "goingInPlay": false,
+          "allowWin": true,
+          "allowPlace": false,
+          "allowEachWay": false,
+          "allowMulti": true,
+          "allowMultiWin": true,
+          "allowMultiPlace": false,
+          "allowMultiEachWay": false,
+          "numberOfPlaces": 0,
+          "cashOutEligibility": "PreMatch",
+          "allowBundle": false,
+          "propositions": [
+            {
+              "id": "571996",
+              "name": "LA Lakers -3.5",
+              "returnWin": 1.9,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 571996,
+              "isOpen": true,
+              "sortOrder": 1
+            },
+            {
+              "id": "571997",
+              "name": "San Antonio +3.5",
+              "returnWin": 1.85,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 571997,
+              "isOpen": true,
+              "sortOrder": 2
+            }
+          ]
+        },
+        {
           "id": "125537000",
           "name": "NBA LALakers-SnAntnio 2HMg1-5",
           "shortName": "NBA LAL-SAS 2HMg1-5",
@@ -42323,6 +42382,60 @@
           ]
         },
         {
+          "id": "125556647",
+          "name": "NBA LAL-SAS 2HHmPtOU 59.5",
+          "shortName": "NBA LAL-SAS 2HHmPtOU 59.5",
+          "betOption": "2nd Half Home Points O/U",
+          "betOptionSpectrumId": "1751",
+          "betOptionPriority": 11600,
+          "marketUniqueId": 125556647,
+          "closeTime": "2025-12-11T03:10:00.000Z",
+          "bettingStatus": "Open",
+          "message": null,
+          "informationMessage": null,
+          "isFuture": false,
+          "onlineBetting": true,
+          "phoneBettingOnly": false,
+          "inPlay": false,
+          "goingInPlay": false,
+          "allowWin": true,
+          "allowPlace": false,
+          "allowEachWay": false,
+          "allowMulti": true,
+          "allowMultiWin": true,
+          "allowMultiPlace": false,
+          "allowMultiEachWay": false,
+          "numberOfPlaces": 0,
+          "cashOutEligibility": "PreMatch",
+          "allowBundle": false,
+          "propositions": [
+            {
+              "id": "571998",
+              "name": "LA Lakers Over 59.5",
+              "returnWin": 1.8,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 571998,
+              "isOpen": true,
+              "sortOrder": 1
+            },
+            {
+              "id": "571999",
+              "name": "LA Lakers Under 59.5",
+              "returnWin": 1.95,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 571999,
+              "isOpen": true,
+              "sortOrder": 2
+            }
+          ]
+        },
+        {
           "id": "125537001",
           "name": "NBA LALakers-SnAntnio 2HAwPt",
           "shortName": "NBA LAL-SAS 2HAwPt",
@@ -42421,6 +42534,60 @@
               "number": 559508,
               "isOpen": true,
               "sortOrder": 6
+            }
+          ]
+        },
+        {
+          "id": "125556649",
+          "name": "NBA LAL-SAS 2HAwPtOU 56.5",
+          "shortName": "NBA LAL-SAS 2HAwPtOU 56.5",
+          "betOption": "2nd Half Away Points O/U",
+          "betOptionSpectrumId": "1749",
+          "betOptionPriority": 11610,
+          "marketUniqueId": 125556649,
+          "closeTime": "2025-12-11T03:10:00.000Z",
+          "bettingStatus": "Open",
+          "message": null,
+          "informationMessage": null,
+          "isFuture": false,
+          "onlineBetting": true,
+          "phoneBettingOnly": false,
+          "inPlay": false,
+          "goingInPlay": false,
+          "allowWin": true,
+          "allowPlace": false,
+          "allowEachWay": false,
+          "allowMulti": true,
+          "allowMultiWin": true,
+          "allowMultiPlace": false,
+          "allowMultiEachWay": false,
+          "numberOfPlaces": 0,
+          "cashOutEligibility": "PreMatch",
+          "allowBundle": false,
+          "propositions": [
+            {
+              "id": "572006",
+              "name": "San Antonio Over 56.5",
+              "returnWin": 1.8,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 572006,
+              "isOpen": true,
+              "sortOrder": 1
+            },
+            {
+              "id": "572007",
+              "name": "San Antonio Under 56.5",
+              "returnWin": 1.95,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 572007,
+              "isOpen": true,
+              "sortOrder": 2
             }
           ]
         },
@@ -45029,6 +45196,60 @@
           ]
         },
         {
+          "id": "125556648",
+          "name": "NBA LAL-SAS 2ndQLine -1.5",
+          "shortName": "NBA LAL-SAS 2ndQLine -1.5",
+          "betOption": "2nd Quarter Line",
+          "betOptionSpectrumId": "644",
+          "betOptionPriority": 15850,
+          "marketUniqueId": 125556648,
+          "closeTime": "2025-12-11T03:10:00.000Z",
+          "bettingStatus": "Open",
+          "message": null,
+          "informationMessage": null,
+          "isFuture": false,
+          "onlineBetting": true,
+          "phoneBettingOnly": false,
+          "inPlay": false,
+          "goingInPlay": false,
+          "allowWin": true,
+          "allowPlace": false,
+          "allowEachWay": false,
+          "allowMulti": true,
+          "allowMultiWin": true,
+          "allowMultiPlace": false,
+          "allowMultiEachWay": false,
+          "numberOfPlaces": 0,
+          "cashOutEligibility": "PreMatch",
+          "allowBundle": false,
+          "propositions": [
+            {
+              "id": "572000",
+              "name": "LA Lakers -1.5",
+              "returnWin": 1.8,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 572000,
+              "isOpen": true,
+              "sortOrder": 1
+            },
+            {
+              "id": "572001",
+              "name": "San Antonio +1.5",
+              "returnWin": 1.95,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 572001,
+              "isOpen": true,
+              "sortOrder": 2
+            }
+          ]
+        },
+        {
           "id": "125537036",
           "name": "NBA LAL-SAS 2QMgn3",
           "shortName": "NBA LAL-SAS 2QMgn3",
@@ -45395,6 +45616,60 @@
           ]
         },
         {
+          "id": "125556645",
+          "name": "NBA LAL-SAS 2QtrTtl 61.5",
+          "shortName": "NBA LAL-SAS 2QtrTtl 61.5",
+          "betOption": "2nd Quarter Total Points O/U",
+          "betOptionSpectrumId": "2581",
+          "betOptionPriority": 15980,
+          "marketUniqueId": 125556645,
+          "closeTime": "2025-12-11T03:10:00.000Z",
+          "bettingStatus": "Open",
+          "message": null,
+          "informationMessage": null,
+          "isFuture": false,
+          "onlineBetting": true,
+          "phoneBettingOnly": false,
+          "inPlay": false,
+          "goingInPlay": false,
+          "allowWin": true,
+          "allowPlace": false,
+          "allowEachWay": false,
+          "allowMulti": true,
+          "allowMultiWin": true,
+          "allowMultiPlace": false,
+          "allowMultiEachWay": false,
+          "numberOfPlaces": 0,
+          "cashOutEligibility": "PreMatch",
+          "allowBundle": false,
+          "propositions": [
+            {
+              "id": "571992",
+              "name": "Over 61.5",
+              "returnWin": 1.8,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 571992,
+              "isOpen": true,
+              "sortOrder": 1
+            },
+            {
+              "id": "571993",
+              "name": "Under 61.5",
+              "returnWin": 1.95,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 571993,
+              "isOpen": true,
+              "sortOrder": 2
+            }
+          ]
+        },
+        {
           "id": "125537004",
           "name": "NBA LALakers-SnAntnio 2ndQTP",
           "shortName": "NBA LAL-SAS 2ndQTP",
@@ -45641,6 +45916,60 @@
           ]
         },
         {
+          "id": "125556655",
+          "name": "NBA LAL-SAS 2QHmPtOU 31.5",
+          "shortName": "NBA LAL-SAS 2QHmPtOU 31.5",
+          "betOption": "2nd Quarter Home Points O/U",
+          "betOptionSpectrumId": "3145",
+          "betOptionPriority": 16005,
+          "marketUniqueId": 125556655,
+          "closeTime": "2025-12-11T03:10:00.000Z",
+          "bettingStatus": "Open",
+          "message": null,
+          "informationMessage": null,
+          "isFuture": false,
+          "onlineBetting": true,
+          "phoneBettingOnly": false,
+          "inPlay": false,
+          "goingInPlay": false,
+          "allowWin": true,
+          "allowPlace": false,
+          "allowEachWay": false,
+          "allowMulti": true,
+          "allowMultiWin": true,
+          "allowMultiPlace": false,
+          "allowMultiEachWay": false,
+          "numberOfPlaces": 0,
+          "cashOutEligibility": "PreMatch",
+          "allowBundle": false,
+          "propositions": [
+            {
+              "id": "572068",
+              "name": "LA Lakers Over 31.5",
+              "returnWin": 1.8,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 572068,
+              "isOpen": true,
+              "sortOrder": 1
+            },
+            {
+              "id": "572069",
+              "name": "LA Lakers Under 31.5",
+              "returnWin": 1.95,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 572069,
+              "isOpen": true,
+              "sortOrder": 2
+            }
+          ]
+        },
+        {
           "id": "125536990",
           "name": "NBA LALakers-SnAntnio 2QtrAwPt",
           "shortName": "NBA LAL-SAS 2QAwPt",
@@ -45727,6 +46056,60 @@
               "number": 559276,
               "isOpen": true,
               "sortOrder": 5
+            }
+          ]
+        },
+        {
+          "id": "125556656",
+          "name": "NBA LAL-SAS 2QAwPtOU 30.5",
+          "shortName": "NBA LAL-SAS 2QAwPtOU 30.5",
+          "betOption": "2nd Quarter Away Points O/U",
+          "betOptionSpectrumId": "3148",
+          "betOptionPriority": 16015,
+          "marketUniqueId": 125556656,
+          "closeTime": "2025-12-11T03:10:00.000Z",
+          "bettingStatus": "Open",
+          "message": null,
+          "informationMessage": null,
+          "isFuture": false,
+          "onlineBetting": true,
+          "phoneBettingOnly": false,
+          "inPlay": false,
+          "goingInPlay": false,
+          "allowWin": true,
+          "allowPlace": false,
+          "allowEachWay": false,
+          "allowMulti": true,
+          "allowMultiWin": true,
+          "allowMultiPlace": false,
+          "allowMultiEachWay": false,
+          "numberOfPlaces": 0,
+          "cashOutEligibility": "PreMatch",
+          "allowBundle": false,
+          "propositions": [
+            {
+              "id": "572070",
+              "name": "San Antonio Over 30.5",
+              "returnWin": 2,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 572070,
+              "isOpen": true,
+              "sortOrder": 1
+            },
+            {
+              "id": "572071",
+              "name": "San Antonio Under 30.5",
+              "returnWin": 1.75,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 572071,
+              "isOpen": true,
+              "sortOrder": 2
             }
           ]
         },
@@ -45845,6 +46228,60 @@
               "bettingStatus": "Open",
               "allowPlace": false,
               "number": 559659,
+              "isOpen": true,
+              "sortOrder": 2
+            }
+          ]
+        },
+        {
+          "id": "125556653",
+          "name": "NBA LAL-SAS 3rdQLine -1.5",
+          "shortName": "NBA LAL-SAS 3rdQLine -1.5",
+          "betOption": "3rd Quarter Line",
+          "betOptionSpectrumId": "645",
+          "betOptionPriority": 16120,
+          "marketUniqueId": 125556653,
+          "closeTime": "2025-12-11T03:10:00.000Z",
+          "bettingStatus": "Open",
+          "message": null,
+          "informationMessage": null,
+          "isFuture": false,
+          "onlineBetting": true,
+          "phoneBettingOnly": false,
+          "inPlay": false,
+          "goingInPlay": false,
+          "allowWin": true,
+          "allowPlace": false,
+          "allowEachWay": false,
+          "allowMulti": true,
+          "allowMultiWin": true,
+          "allowMultiPlace": false,
+          "allowMultiEachWay": false,
+          "numberOfPlaces": 0,
+          "cashOutEligibility": "PreMatch",
+          "allowBundle": false,
+          "propositions": [
+            {
+              "id": "572015",
+              "name": "LA Lakers -1.5",
+              "returnWin": 1.85,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 572015,
+              "isOpen": true,
+              "sortOrder": 1
+            },
+            {
+              "id": "572016",
+              "name": "San Antonio +1.5",
+              "returnWin": 1.9,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 572016,
               "isOpen": true,
               "sortOrder": 2
             }
@@ -46307,6 +46744,60 @@
           ]
         },
         {
+          "id": "125556659",
+          "name": "NBA LAL-SAS 3rdQTtl 59.5",
+          "shortName": "NBA LAL-SAS 3rdQTtl 59.5",
+          "betOption": "3rd Quarter Total Points O/U",
+          "betOptionSpectrumId": "2582",
+          "betOptionPriority": 16220,
+          "marketUniqueId": 125556659,
+          "closeTime": "2025-12-11T03:10:00.000Z",
+          "bettingStatus": "Open",
+          "message": null,
+          "informationMessage": null,
+          "isFuture": false,
+          "onlineBetting": true,
+          "phoneBettingOnly": false,
+          "inPlay": false,
+          "goingInPlay": false,
+          "allowWin": true,
+          "allowPlace": false,
+          "allowEachWay": false,
+          "allowMulti": true,
+          "allowMultiWin": true,
+          "allowMultiPlace": false,
+          "allowMultiEachWay": false,
+          "numberOfPlaces": 0,
+          "cashOutEligibility": "PreMatch",
+          "allowBundle": false,
+          "propositions": [
+            {
+              "id": "572066",
+              "name": "Over 59.5",
+              "returnWin": 1.85,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 572066,
+              "isOpen": true,
+              "sortOrder": 1
+            },
+            {
+              "id": "572067",
+              "name": "Under 59.5",
+              "returnWin": 1.9,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 572067,
+              "isOpen": true,
+              "sortOrder": 2
+            }
+          ]
+        },
+        {
           "id": "125537019",
           "name": "NBA LALakers-SnAntnio 3QHmPt",
           "shortName": "NBA LAL-SAS 3QHmPt",
@@ -46397,6 +46888,60 @@
           ]
         },
         {
+          "id": "125556646",
+          "name": "NBA LAL-SAS 3QHmPtOU 30.5",
+          "shortName": "NBA LAL-SAS 3QHmPtOU 30.5",
+          "betOption": "3rd Quarter Home Points O/U",
+          "betOptionSpectrumId": "3146",
+          "betOptionPriority": 16260,
+          "marketUniqueId": 125556646,
+          "closeTime": "2025-12-11T03:10:00.000Z",
+          "bettingStatus": "Open",
+          "message": null,
+          "informationMessage": null,
+          "isFuture": false,
+          "onlineBetting": true,
+          "phoneBettingOnly": false,
+          "inPlay": false,
+          "goingInPlay": false,
+          "allowWin": true,
+          "allowPlace": false,
+          "allowEachWay": false,
+          "allowMulti": true,
+          "allowMultiWin": true,
+          "allowMultiPlace": false,
+          "allowMultiEachWay": false,
+          "numberOfPlaces": 0,
+          "cashOutEligibility": "PreMatch",
+          "allowBundle": false,
+          "propositions": [
+            {
+              "id": "571994",
+              "name": "LA Lakers Over 30.5",
+              "returnWin": 1.75,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 571994,
+              "isOpen": true,
+              "sortOrder": 1
+            },
+            {
+              "id": "571995",
+              "name": "LA Lakers Under 30.5",
+              "returnWin": 2,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 571995,
+              "isOpen": true,
+              "sortOrder": 2
+            }
+          ]
+        },
+        {
           "id": "125537017",
           "name": "NBA LALakers-SnAntnio 3QAwPt",
           "shortName": "NBA LAL-SAS 3QAwPt",
@@ -46483,6 +47028,60 @@
               "number": 559517,
               "isOpen": true,
               "sortOrder": 5
+            }
+          ]
+        },
+        {
+          "id": "125556650",
+          "name": "NBA LAL-SAS 3QAwPtOU 29.5",
+          "shortName": "NBA LAL-SAS 3QAwPtOU 29.5",
+          "betOption": "3rd Quarter Away Points O/U",
+          "betOptionSpectrumId": "3149",
+          "betOptionPriority": 16270,
+          "marketUniqueId": 125556650,
+          "closeTime": "2025-12-11T03:10:00.000Z",
+          "bettingStatus": "Open",
+          "message": null,
+          "informationMessage": null,
+          "isFuture": false,
+          "onlineBetting": true,
+          "phoneBettingOnly": false,
+          "inPlay": false,
+          "goingInPlay": false,
+          "allowWin": true,
+          "allowPlace": false,
+          "allowEachWay": false,
+          "allowMulti": true,
+          "allowMultiWin": true,
+          "allowMultiPlace": false,
+          "allowMultiEachWay": false,
+          "numberOfPlaces": 0,
+          "cashOutEligibility": "PreMatch",
+          "allowBundle": false,
+          "propositions": [
+            {
+              "id": "572008",
+              "name": "San Antonio Over 29.5",
+              "returnWin": 1.9,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 572008,
+              "isOpen": true,
+              "sortOrder": 1
+            },
+            {
+              "id": "572009",
+              "name": "San Antonio Under 29.5",
+              "returnWin": 1.85,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 572009,
+              "isOpen": true,
+              "sortOrder": 2
             }
           ]
         },
@@ -46601,6 +47200,60 @@
               "bettingStatus": "Open",
               "allowPlace": false,
               "number": 559694,
+              "isOpen": true,
+              "sortOrder": 2
+            }
+          ]
+        },
+        {
+          "id": "125556652",
+          "name": "NBA LAL-SAS 4thQLine -1.5",
+          "shortName": "NBA LAL-SAS 4thQLine -1.5",
+          "betOption": "4th Quarter Line",
+          "betOptionSpectrumId": "646",
+          "betOptionPriority": 16365,
+          "marketUniqueId": 125556652,
+          "closeTime": "2025-12-11T03:10:00.000Z",
+          "bettingStatus": "Open",
+          "message": null,
+          "informationMessage": null,
+          "isFuture": false,
+          "onlineBetting": true,
+          "phoneBettingOnly": false,
+          "inPlay": false,
+          "goingInPlay": false,
+          "allowWin": true,
+          "allowPlace": false,
+          "allowEachWay": false,
+          "allowMulti": true,
+          "allowMultiWin": true,
+          "allowMultiPlace": false,
+          "allowMultiEachWay": false,
+          "numberOfPlaces": 0,
+          "cashOutEligibility": "PreMatch",
+          "allowBundle": false,
+          "propositions": [
+            {
+              "id": "572013",
+              "name": "LA Lakers -1.5",
+              "returnWin": 1.85,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 572013,
+              "isOpen": true,
+              "sortOrder": 1
+            },
+            {
+              "id": "572014",
+              "name": "San Antonio +1.5",
+              "returnWin": 1.9,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 572014,
               "isOpen": true,
               "sortOrder": 2
             }
@@ -47063,6 +47716,60 @@
           ]
         },
         {
+          "id": "125556660",
+          "name": "NBA LAL-SAS 4thQTtl 56.5",
+          "shortName": "NBA LAL-SAS 4thQTtl 56.5",
+          "betOption": "4th Quarter Total Points O/U",
+          "betOptionSpectrumId": "2583",
+          "betOptionPriority": 16450,
+          "marketUniqueId": 125556660,
+          "closeTime": "2025-12-11T03:10:00.000Z",
+          "bettingStatus": "Open",
+          "message": null,
+          "informationMessage": null,
+          "isFuture": false,
+          "onlineBetting": true,
+          "phoneBettingOnly": false,
+          "inPlay": false,
+          "goingInPlay": false,
+          "allowWin": true,
+          "allowPlace": false,
+          "allowEachWay": false,
+          "allowMulti": true,
+          "allowMultiWin": true,
+          "allowMultiPlace": false,
+          "allowMultiEachWay": false,
+          "numberOfPlaces": 0,
+          "cashOutEligibility": "PreMatch",
+          "allowBundle": false,
+          "propositions": [
+            {
+              "id": "572064",
+              "name": "Over 56.5",
+              "returnWin": 1.95,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 572064,
+              "isOpen": true,
+              "sortOrder": 1
+            },
+            {
+              "id": "572065",
+              "name": "Under 56.5",
+              "returnWin": 1.8,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 572065,
+              "isOpen": true,
+              "sortOrder": 2
+            }
+          ]
+        },
+        {
           "id": "125537023",
           "name": "NBA LALakers-SnAntnio 4QHmPt",
           "shortName": "NBA LAL-SAS 4QHmPt",
@@ -47149,6 +47856,60 @@
               "number": 559711,
               "isOpen": true,
               "sortOrder": 5
+            }
+          ]
+        },
+        {
+          "id": "125556657",
+          "name": "NBA LAL-SAS 4QHmPtOU 29.5",
+          "shortName": "NBA LAL-SAS 4QHmPtOU 29.5",
+          "betOption": "4th Quarter Home Points O/U",
+          "betOptionSpectrumId": "3147",
+          "betOptionPriority": 16485,
+          "marketUniqueId": 125556657,
+          "closeTime": "2025-12-11T03:10:00.000Z",
+          "bettingStatus": "Open",
+          "message": null,
+          "informationMessage": null,
+          "isFuture": false,
+          "onlineBetting": true,
+          "phoneBettingOnly": false,
+          "inPlay": false,
+          "goingInPlay": false,
+          "allowWin": true,
+          "allowPlace": false,
+          "allowEachWay": false,
+          "allowMulti": true,
+          "allowMultiWin": true,
+          "allowMultiPlace": false,
+          "allowMultiEachWay": false,
+          "numberOfPlaces": 0,
+          "cashOutEligibility": "PreMatch",
+          "allowBundle": false,
+          "propositions": [
+            {
+              "id": "572075",
+              "name": "LA Lakers Over 29.5",
+              "returnWin": 2,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 572075,
+              "isOpen": true,
+              "sortOrder": 1
+            },
+            {
+              "id": "572082",
+              "name": "LA Lakers Under 29.5",
+              "returnWin": 1.75,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 572082,
+              "isOpen": true,
+              "sortOrder": 2
             }
           ]
         },
@@ -47241,6 +48002,144 @@
               "sortOrder": 5
             }
           ]
+        },
+        {
+          "id": "125556654",
+          "name": "NBA LAL-SAS 4QAwPtOU 27.5",
+          "shortName": "NBA LAL-SAS 4QAwPtOU 27.5",
+          "betOption": "4th Quarter Away Points O/U",
+          "betOptionSpectrumId": "3150",
+          "betOptionPriority": 16495,
+          "marketUniqueId": 125556654,
+          "closeTime": "2025-12-11T03:10:00.000Z",
+          "bettingStatus": "Open",
+          "message": null,
+          "informationMessage": null,
+          "isFuture": false,
+          "onlineBetting": true,
+          "phoneBettingOnly": false,
+          "inPlay": false,
+          "goingInPlay": false,
+          "allowWin": true,
+          "allowPlace": false,
+          "allowEachWay": false,
+          "allowMulti": true,
+          "allowMultiWin": true,
+          "allowMultiPlace": false,
+          "allowMultiEachWay": false,
+          "numberOfPlaces": 0,
+          "cashOutEligibility": "PreMatch",
+          "allowBundle": false,
+          "propositions": [
+            {
+              "id": "572059",
+              "name": "San Antonio Over 27.5",
+              "returnWin": 1.85,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 572059,
+              "isOpen": true,
+              "sortOrder": 1
+            },
+            {
+              "id": "572060",
+              "name": "San Antonio Under 27.5",
+              "returnWin": 1.9,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 572060,
+              "isOpen": true,
+              "sortOrder": 2
+            }
+          ]
+        },
+        {
+          "id": "125556664",
+          "name": "NBA LALakers-SnAntnio HiScrQtr",
+          "shortName": "NBA LAL-SAS HiScrQtr",
+          "betOption": "Highest Scoring Quarter",
+          "betOptionSpectrumId": "236",
+          "betOptionPriority": 16530,
+          "marketUniqueId": 125556664,
+          "closeTime": "2025-12-11T03:10:00.000Z",
+          "bettingStatus": "Open",
+          "message": "Excludes Overtime",
+          "informationMessage": null,
+          "isFuture": false,
+          "onlineBetting": true,
+          "phoneBettingOnly": false,
+          "inPlay": false,
+          "goingInPlay": true,
+          "allowWin": true,
+          "allowPlace": false,
+          "allowEachWay": false,
+          "allowMulti": true,
+          "allowMultiWin": true,
+          "allowMultiPlace": false,
+          "allowMultiEachWay": false,
+          "numberOfPlaces": 0,
+          "cashOutEligibility": "PreMatch",
+          "allowBundle": false,
+          "propositions": [
+            {
+              "id": "571988",
+              "name": "1st Quarter",
+              "returnWin": 2.7,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 571988,
+              "isOpen": true,
+              "sortOrder": 1,
+              "sameGame": true
+            },
+            {
+              "id": "571989",
+              "name": "2nd Quarter",
+              "returnWin": 3,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 571989,
+              "isOpen": true,
+              "sortOrder": 2,
+              "sameGame": true
+            },
+            {
+              "id": "571990",
+              "name": "3rd Quarter",
+              "returnWin": 3.8,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 571990,
+              "isOpen": true,
+              "sortOrder": 3,
+              "sameGame": true
+            },
+            {
+              "id": "571991",
+              "name": "4th Quarter",
+              "returnWin": 5,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 571991,
+              "isOpen": true,
+              "sortOrder": 4,
+              "sameGame": true
+            }
+          ],
+          "sameGame": true,
+          "sameGameMultipleSelections": false
         },
         {
           "id": "125530207",
@@ -47766,6 +48665,72 @@
           "sameGameMultipleSelections": false
         },
         {
+          "id": "125556665",
+          "name": "NBA LALakers-SnAntnio HiScHalf",
+          "shortName": "NBA LAL-SAS HiScHalf",
+          "betOption": "Highest Scoring Half",
+          "betOptionSpectrumId": "1997",
+          "betOptionPriority": 18160,
+          "marketUniqueId": 125556665,
+          "closeTime": "2025-12-11T03:10:00.000Z",
+          "bettingStatus": "Open",
+          "message": null,
+          "informationMessage": null,
+          "isFuture": false,
+          "onlineBetting": true,
+          "phoneBettingOnly": false,
+          "inPlay": false,
+          "goingInPlay": false,
+          "allowWin": true,
+          "allowPlace": false,
+          "allowEachWay": false,
+          "allowMulti": true,
+          "allowMultiWin": true,
+          "allowMultiPlace": false,
+          "allowMultiEachWay": false,
+          "numberOfPlaces": 0,
+          "cashOutEligibility": "PreMatch",
+          "allowBundle": false,
+          "propositions": [
+            {
+              "id": "572072",
+              "name": "1st Half",
+              "returnWin": 1.33,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 572072,
+              "isOpen": true,
+              "sortOrder": 1
+            },
+            {
+              "id": "572073",
+              "name": "Equal Scoring Halves",
+              "returnWin": 31,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 572073,
+              "isOpen": true,
+              "sortOrder": 2
+            },
+            {
+              "id": "572074",
+              "name": "2nd Half",
+              "returnWin": 2.9,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 572074,
+              "isOpen": true,
+              "sortOrder": 3
+            }
+          ]
+        },
+        {
           "id": "125534066",
           "name": "NBA LAL-SAS TmHiScHf",
           "shortName": "NBA LAL-SAS TmHiHf",
@@ -47820,6 +48785,138 @@
           ]
         },
         {
+          "id": "125556651",
+          "name": "NBA LAL-SAS HmHiScHf",
+          "shortName": "NBA LAL-SAS HmHiScHf",
+          "betOption": "Home Team Highest Scoring Half",
+          "betOptionSpectrumId": "3079",
+          "betOptionPriority": 18170,
+          "marketUniqueId": 125556651,
+          "closeTime": "2025-12-11T03:10:00.000Z",
+          "bettingStatus": "Open",
+          "message": null,
+          "informationMessage": null,
+          "isFuture": false,
+          "onlineBetting": true,
+          "phoneBettingOnly": false,
+          "inPlay": false,
+          "goingInPlay": false,
+          "allowWin": true,
+          "allowPlace": false,
+          "allowEachWay": false,
+          "allowMulti": true,
+          "allowMultiWin": true,
+          "allowMultiPlace": false,
+          "allowMultiEachWay": false,
+          "numberOfPlaces": 0,
+          "cashOutEligibility": "PreMatch",
+          "allowBundle": false,
+          "propositions": [
+            {
+              "id": "572010",
+              "name": "1st Half",
+              "returnWin": 1.45,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 572010,
+              "isOpen": true,
+              "sortOrder": 1
+            },
+            {
+              "id": "572011",
+              "name": "Equal Scoring Halves",
+              "returnWin": 19,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 572011,
+              "isOpen": true,
+              "sortOrder": 2
+            },
+            {
+              "id": "572012",
+              "name": "2nd Half",
+              "returnWin": 2.6,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 572012,
+              "isOpen": true,
+              "sortOrder": 3
+            }
+          ]
+        },
+        {
+          "id": "125556661",
+          "name": "NBA LAL-SAS AwHiScHf",
+          "shortName": "NBA LAL-SAS AwHiScHf",
+          "betOption": "Away Team Highest Scoring Half",
+          "betOptionSpectrumId": "3077",
+          "betOptionPriority": 18175,
+          "marketUniqueId": 125556661,
+          "closeTime": "2025-12-11T03:10:00.000Z",
+          "bettingStatus": "Open",
+          "message": null,
+          "informationMessage": null,
+          "isFuture": false,
+          "onlineBetting": true,
+          "phoneBettingOnly": false,
+          "inPlay": false,
+          "goingInPlay": false,
+          "allowWin": true,
+          "allowPlace": false,
+          "allowEachWay": false,
+          "allowMulti": true,
+          "allowMultiWin": true,
+          "allowMultiPlace": false,
+          "allowMultiEachWay": false,
+          "numberOfPlaces": 0,
+          "cashOutEligibility": "PreMatch",
+          "allowBundle": false,
+          "propositions": [
+            {
+              "id": "572061",
+              "name": "1st Half",
+              "returnWin": 1.5,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 572061,
+              "isOpen": true,
+              "sortOrder": 1
+            },
+            {
+              "id": "572062",
+              "name": "Equal Scoring Halves",
+              "returnWin": 19,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 572062,
+              "isOpen": true,
+              "sortOrder": 2
+            },
+            {
+              "id": "572063",
+              "name": "2nd Half",
+              "returnWin": 2.4,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 572063,
+              "isOpen": true,
+              "sortOrder": 3
+            }
+          ]
+        },
+        {
           "id": "125534338",
           "name": "NBA LAL-SAS TmHiQtr",
           "shortName": "NBA LAL-SAS TmHiQt",
@@ -47870,6 +48967,162 @@
               "number": 604027,
               "isOpen": true,
               "sortOrder": 2
+            }
+          ]
+        },
+        {
+          "id": "125556663",
+          "name": "NBA LALakers-SnAntnio HomeHSQ",
+          "shortName": "NBA LAL-SAS HomeHSQ",
+          "betOption": "Home Team Highest Scoring Qtr",
+          "betOptionSpectrumId": "2908",
+          "betOptionPriority": 18185,
+          "marketUniqueId": 125556663,
+          "closeTime": "2025-12-11T03:10:00.000Z",
+          "bettingStatus": "Open",
+          "message": null,
+          "informationMessage": null,
+          "isFuture": false,
+          "onlineBetting": true,
+          "phoneBettingOnly": false,
+          "inPlay": false,
+          "goingInPlay": false,
+          "allowWin": true,
+          "allowPlace": false,
+          "allowEachWay": false,
+          "allowMulti": true,
+          "allowMultiWin": true,
+          "allowMultiPlace": false,
+          "allowMultiEachWay": false,
+          "numberOfPlaces": 0,
+          "cashOutEligibility": "PreMatch",
+          "allowBundle": false,
+          "propositions": [
+            {
+              "id": "572002",
+              "name": "1st Quarter",
+              "returnWin": 2.8,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 572002,
+              "isOpen": true,
+              "sortOrder": 1
+            },
+            {
+              "id": "572003",
+              "name": "2nd Quarter",
+              "returnWin": 3,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 572003,
+              "isOpen": true,
+              "sortOrder": 2
+            },
+            {
+              "id": "572004",
+              "name": "3rd Quarter",
+              "returnWin": 3.8,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 572004,
+              "isOpen": true,
+              "sortOrder": 3
+            },
+            {
+              "id": "572005",
+              "name": "4th Quarter",
+              "returnWin": 5,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 572005,
+              "isOpen": true,
+              "sortOrder": 4
+            }
+          ]
+        },
+        {
+          "id": "125556662",
+          "name": "NBA LALakers-SnAntnio AwayHSQ",
+          "shortName": "NBA LAL-SAS AwayHSQ",
+          "betOption": "Away Team Highest Scoring Qtr",
+          "betOptionSpectrumId": "2905",
+          "betOptionPriority": 18190,
+          "marketUniqueId": 125556662,
+          "closeTime": "2025-12-11T03:10:00.000Z",
+          "bettingStatus": "Open",
+          "message": null,
+          "informationMessage": null,
+          "isFuture": false,
+          "onlineBetting": true,
+          "phoneBettingOnly": false,
+          "inPlay": false,
+          "goingInPlay": false,
+          "allowWin": true,
+          "allowPlace": false,
+          "allowEachWay": false,
+          "allowMulti": true,
+          "allowMultiWin": true,
+          "allowMultiPlace": false,
+          "allowMultiEachWay": false,
+          "numberOfPlaces": 0,
+          "cashOutEligibility": "PreMatch",
+          "allowBundle": false,
+          "propositions": [
+            {
+              "id": "572017",
+              "name": "1st Quarter",
+              "returnWin": 2.9,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 572017,
+              "isOpen": true,
+              "sortOrder": 1
+            },
+            {
+              "id": "572018",
+              "name": "2nd Quarter",
+              "returnWin": 3.1,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 572018,
+              "isOpen": true,
+              "sortOrder": 2
+            },
+            {
+              "id": "572019",
+              "name": "3rd Quarter",
+              "returnWin": 3.6,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 572019,
+              "isOpen": true,
+              "sortOrder": 3
+            },
+            {
+              "id": "572058",
+              "name": "4th Quarter",
+              "returnWin": 4.8,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 572058,
+              "isOpen": true,
+              "sortOrder": 4
             }
           ]
         },
@@ -66654,7 +67907,7 @@
     {
       "name": "2nd Half Line",
       "hasFutureMarket": false,
-      "openMarketCount": 1,
+      "openMarketCount": 2,
       "_links": {
         "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/markets?jurisdiction=SA&amp;betOptionName=2nd%20Half%20Line"
       }
@@ -66718,7 +67971,7 @@
     {
       "name": "2nd Half Home Points O/U",
       "hasFutureMarket": false,
-      "openMarketCount": 1,
+      "openMarketCount": 2,
       "_links": {
         "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/markets?jurisdiction=SA&amp;betOptionName=2nd%20Half%20Home%20Points%20O%2FU"
       }
@@ -66734,7 +67987,7 @@
     {
       "name": "2nd Half Away Points O/U",
       "hasFutureMarket": false,
-      "openMarketCount": 1,
+      "openMarketCount": 2,
       "_links": {
         "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/markets?jurisdiction=SA&amp;betOptionName=2nd%20Half%20Away%20Points%20O%2FU"
       }
@@ -66958,7 +68211,7 @@
     {
       "name": "2nd Quarter Line",
       "hasFutureMarket": false,
-      "openMarketCount": 1,
+      "openMarketCount": 2,
       "_links": {
         "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/markets?jurisdiction=SA&amp;betOptionName=2nd%20Quarter%20Line"
       }
@@ -66990,7 +68243,7 @@
     {
       "name": "2nd Quarter Total Points O/U",
       "hasFutureMarket": false,
-      "openMarketCount": 1,
+      "openMarketCount": 2,
       "_links": {
         "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/markets?jurisdiction=SA&amp;betOptionName=2nd%20Quarter%20Total%20Points%20O%2FU"
       }
@@ -67022,7 +68275,7 @@
     {
       "name": "2nd Quarter Home Points O/U",
       "hasFutureMarket": false,
-      "openMarketCount": 1,
+      "openMarketCount": 2,
       "_links": {
         "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/markets?jurisdiction=SA&amp;betOptionName=2nd%20Quarter%20Home%20Points%20O%2FU"
       }
@@ -67038,7 +68291,7 @@
     {
       "name": "2nd Quarter Away Points O/U",
       "hasFutureMarket": false,
-      "openMarketCount": 1,
+      "openMarketCount": 2,
       "_links": {
         "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/markets?jurisdiction=SA&amp;betOptionName=2nd%20Quarter%20Away%20Points%20O%2FU"
       }
@@ -67062,7 +68315,7 @@
     {
       "name": "3rd Quarter Line",
       "hasFutureMarket": false,
-      "openMarketCount": 1,
+      "openMarketCount": 2,
       "_links": {
         "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/markets?jurisdiction=SA&amp;betOptionName=3rd%20Quarter%20Line"
       }
@@ -67102,7 +68355,7 @@
     {
       "name": "3rd Quarter Total Points O/U",
       "hasFutureMarket": false,
-      "openMarketCount": 1,
+      "openMarketCount": 2,
       "_links": {
         "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/markets?jurisdiction=SA&amp;betOptionName=3rd%20Quarter%20Total%20Points%20O%2FU"
       }
@@ -67118,7 +68371,7 @@
     {
       "name": "3rd Quarter Home Points O/U",
       "hasFutureMarket": false,
-      "openMarketCount": 1,
+      "openMarketCount": 2,
       "_links": {
         "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/markets?jurisdiction=SA&amp;betOptionName=3rd%20Quarter%20Home%20Points%20O%2FU"
       }
@@ -67134,7 +68387,7 @@
     {
       "name": "3rd Quarter Away Points O/U",
       "hasFutureMarket": false,
-      "openMarketCount": 1,
+      "openMarketCount": 2,
       "_links": {
         "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/markets?jurisdiction=SA&amp;betOptionName=3rd%20Quarter%20Away%20Points%20O%2FU"
       }
@@ -67158,7 +68411,7 @@
     {
       "name": "4th Quarter Line",
       "hasFutureMarket": false,
-      "openMarketCount": 1,
+      "openMarketCount": 2,
       "_links": {
         "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/markets?jurisdiction=SA&amp;betOptionName=4th%20Quarter%20Line"
       }
@@ -67198,7 +68451,7 @@
     {
       "name": "4th Quarter Total Points O/U",
       "hasFutureMarket": false,
-      "openMarketCount": 1,
+      "openMarketCount": 2,
       "_links": {
         "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/markets?jurisdiction=SA&amp;betOptionName=4th%20Quarter%20Total%20Points%20O%2FU"
       }
@@ -67214,7 +68467,7 @@
     {
       "name": "4th Quarter Home Points O/U",
       "hasFutureMarket": false,
-      "openMarketCount": 1,
+      "openMarketCount": 2,
       "_links": {
         "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/markets?jurisdiction=SA&amp;betOptionName=4th%20Quarter%20Home%20Points%20O%2FU"
       }
@@ -67230,7 +68483,7 @@
     {
       "name": "4th Quarter Away Points O/U",
       "hasFutureMarket": false,
-      "openMarketCount": 1,
+      "openMarketCount": 2,
       "_links": {
         "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/markets?jurisdiction=SA&amp;betOptionName=4th%20Quarter%20Away%20Points%20O%2FU"
       }
@@ -67238,7 +68491,7 @@
     {
       "name": "Highest Scoring Quarter",
       "hasFutureMarket": false,
-      "openMarketCount": 1,
+      "openMarketCount": 2,
       "_links": {
         "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/markets?jurisdiction=SA&amp;betOptionName=Highest%20Scoring%20Quarter"
       }
@@ -67302,7 +68555,7 @@
     {
       "name": "Highest Scoring Half",
       "hasFutureMarket": false,
-      "openMarketCount": 1,
+      "openMarketCount": 2,
       "_links": {
         "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/markets?jurisdiction=SA&amp;betOptionName=Highest%20Scoring%20Half"
       }
@@ -67318,7 +68571,7 @@
     {
       "name": "Home Team Highest Scoring Half",
       "hasFutureMarket": false,
-      "openMarketCount": 1,
+      "openMarketCount": 2,
       "_links": {
         "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/markets?jurisdiction=SA&amp;betOptionName=Home%20Team%20Highest%20Scoring%20Half"
       }
@@ -67326,7 +68579,7 @@
     {
       "name": "Away Team Highest Scoring Half",
       "hasFutureMarket": false,
-      "openMarketCount": 1,
+      "openMarketCount": 2,
       "_links": {
         "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/markets?jurisdiction=SA&amp;betOptionName=Away%20Team%20Highest%20Scoring%20Half"
       }
@@ -67342,7 +68595,7 @@
     {
       "name": "Home Team Highest Scoring Qtr",
       "hasFutureMarket": false,
-      "openMarketCount": 1,
+      "openMarketCount": 2,
       "_links": {
         "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/markets?jurisdiction=SA&amp;betOptionName=Home%20Team%20Highest%20Scoring%20Qtr"
       }
@@ -67350,7 +68603,7 @@
     {
       "name": "Away Team Highest Scoring Qtr",
       "hasFutureMarket": false,
-      "openMarketCount": 1,
+      "openMarketCount": 2,
       "_links": {
         "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/markets?jurisdiction=SA&amp;betOptionName=Away%20Team%20Highest%20Scoring%20Qtr"
       }
