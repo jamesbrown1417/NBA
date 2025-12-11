@@ -31,6 +31,34 @@ if not username or not password:
         "Missing Bet365 credentials. Set BET365USER and BET365PW in .env or env, or export them in the environment."
     )
 
+# Player prop URL suffixes and their corresponding market buttons
+PROP_CATEGORIES = {
+    'I43': {
+        'name': 'Points',
+        'buttons': ['Points O/U', 'Points']  # Adjust if there are specific button names
+    },
+    'I45': {
+        'name': 'Threes',
+        'buttons': ['Threes Made O/U']
+    },
+    'I46': {
+        'name': 'Assists',
+        'buttons': ['Assists O/U']
+    },
+    'I47': {
+        'name': 'Rebounds',
+        'buttons': ['Rebounds O/U']
+    },
+    'I48': {
+        'name': 'Combos',
+        'buttons': ['Double Double', 'Triple Double', 'Points, Assists & Rebounds', 'Points, Assists & Rebounds O/U']
+    },
+    'I49': {
+        'name': 'Defence',
+        'buttons': ['Steals & Blocks O/U']
+    },
+}
+
 # Get current timestamp=======================================================
 now = datetime.now()
 time_stamp = now.strftime("%Y-%m-%d_%H-%M-%S")
@@ -52,8 +80,9 @@ started = NBA_schedule[NBA_schedule["match_date_adl"] < now]
 # Create range from len started to len schedule
 match_range = range(len(started), len(NBA_schedule))
 
+
 async def collect_h2h_and_urls(driver):
-    """Navigate to main page, save H2H HTML, and return list of player URLs."""
+    """Navigate to main page, save H2H HTML, and return list of player URLs per match."""
     await driver.get('https://www.bet365.com.au/#/AC/B18/C20604387/D48/E1453/F10/')
     await driver.sleep(2)
     # Always perform login each run
@@ -73,14 +102,12 @@ async def collect_h2h_and_urls(driver):
     await password_field.clear()
     await driver.sleep(0.3)
     await password_field.send_keys(password)
-    # Avoid logging passwords
     print("Entered password")
 
     login_button = await driver.find_element(By.XPATH, "//span[starts-with(@class, 'slm')]", timeout=5)
     await login_button.click()
     print("Clicked login button")
 
-    # Wait 2 seconds
     print("Waiting 2 seconds...")
     await driver.sleep(2)
     
@@ -96,8 +123,7 @@ async def collect_h2h_and_urls(driver):
     with open("OddsScraper/Bet365/HTML/h2h_html.txt", 'w') as f:
         f.write(body_html)
 
-    # Wait 2 seconds
-    print("Waiting 10 seconds...")
+    print("Waiting 2 seconds...")
     await driver.sleep(2)
 
     # Find team rows to discover match URLs
@@ -109,10 +135,11 @@ async def collect_h2h_and_urls(driver):
         except Exception:
             pass
 
-    player_urls = []
+    # Collect base URLs for each match
+    match_data = []  # List of dicts: {'match_index': int, 'base_url': str}
+    
     for index in match_range:
-        print(f"Scraping match {index}")
-        # Re-find elements as DOM may refresh
+        print(f"Getting base URL for match {index}")
         team_elements = await driver.find_elements(
             By.XPATH,
             "//div[contains(@class, 'scb-ParticipantFixtureDetailsHigherBasketball_TeamNames')]",
@@ -123,7 +150,6 @@ async def collect_h2h_and_urls(driver):
                 f"Skipping match {index}: Index out of range. (Found {len(team_elements)} matches on site, tried accessing index {index})"
             )
             continue
-        # ------------------------------------
 
         await driver.execute_script(
             "arguments[0].scrollIntoView(true);", team_elements[index]
@@ -134,75 +160,111 @@ async def collect_h2h_and_urls(driver):
         await team_elements[index].click()
 
         cur_url = await driver.current_url
-        modified_player_url = cur_url + "I99/"
-        player_urls.append(modified_player_url)
+        match_data.append({
+            'match_index': index,
+            'base_url': cur_url
+        })
 
         await driver.back()
+        await driver.sleep(0.5)
 
     # Optionally persist URL list for debugging/traceability
     try:
+        all_urls = []
+        for match in match_data:
+            for suffix in PROP_CATEGORIES.keys():
+                all_urls.append(f"{match['base_url']}{suffix}/")
         with open("OddsScraper/Bet365/player_urls.csv", 'w') as f:
-            f.write('\n'.join(player_urls))
+            f.write('\n'.join(all_urls))
     except Exception:
         pass
 
-    return player_urls
+    return match_data
 
 
-async def scrape_player_pages(driver, player_urls):
-    """Iterate player URLs, expand sections, and save player HTML per match."""
-    for index, url in enumerate(player_urls, start=1):
+async def scrape_player_pages(driver, match_data):
+    """Iterate matches and their category URLs, expand relevant sections, and save HTML."""
+    
+    async def maybe_click(xpath_text, label):
+        """Attempt to click a market expansion button by its text."""
         try:
-            await driver.get(url)
-
-            # Wait for a market group button to appear
-            await driver.find_element(By.XPATH, "//div[contains(@class, 'cm-MarketGroupWithIconsButton_Text ')]", timeout=5)
-            print(f"Getting URL {url} which is match {index}")
-
-            # Expand standard markets if present
-            async def maybe_click(xpath_text, label):
-                try:
-                    el = await driver.find_element(By.XPATH, f"//div[contains(@class, 'cm-MarketGroupWithIconsButton_Text') and text()='{xpath_text}']")
-                    await driver.execute_script("arguments[0].scrollIntoView(true);", el)
-                    await driver.execute_script("window.scrollBy(0, -150)")
-                    await el.click()
-                    print(f"Clicked {label}")
-                    await driver.sleep(1.5)
-                except Exception:
-                    print(f"No {label} button was found")
-            
+            el = await driver.find_element(
+                By.XPATH, 
+                f"//div[contains(@class, 'cm-MarketGroupWithIconsButton_Text') and text()='{xpath_text}']"
+            )
+            await driver.execute_script("arguments[0].scrollIntoView(true);", el)
+            await driver.execute_script("window.scrollBy(0, -150)")
+            await el.click()
+            print(f"  Clicked '{label}'")
             await driver.sleep(1.5)
-            await maybe_click('Assists O/U', 'Player Assists')
-            await maybe_click('Assists', 'Player Assists Milestones')
-            await maybe_click('Rebounds O/U', 'Player Rebounds')
-            await maybe_click('Rebounds', 'Player Rebounds Milestones')
-            await maybe_click('Threes Made O/U', 'Player Threes Made')
-            await maybe_click('Threes Made', 'Player Threes Made Milestones')
-            await maybe_click('Steals O/U', 'Player Steals')
-            await maybe_click('Blocks O/U', 'Player Blocks')
-            await maybe_click('Double Double', 'Player Double Double')
-            await maybe_click('Triple Double', 'Player Triple Double')
+        except Exception:
+            print(f"  No '{label}' button found")
 
-            # Click all visible "Show more" buttons
-            button_elements = await driver.find_elements(By.XPATH, "//div[contains(@class, 'msl-ShowMore_Link ') and contains(text(), 'Show more')]")
-            for button_element in button_elements:
-                try:
-                    await driver.execute_script("arguments[0].scrollIntoView(true);", button_element)
-                    await driver.execute_script("window.scrollBy(0, -150)")
-                    await button_element.click()
-                    await driver.sleep(1)
-                except Exception:
-                    pass      
+    async def click_show_more_buttons():
+        """Click all visible 'Show more' buttons on the page."""
+        button_elements = await driver.find_elements(
+            By.XPATH, 
+            "//div[contains(@class, 'msl-ShowMore_Link ') and contains(text(), 'Show more')]"
+        )
+        for button_element in button_elements:
+            try:
+                await driver.execute_script("arguments[0].scrollIntoView(true);", button_element)
+                await driver.execute_script("window.scrollBy(0, -150)")
+                await button_element.click()
+                await driver.sleep(1)
+            except Exception:
+                pass
 
-            # Grab and write the player page HTML for this match
-            elem = await driver.find_element(By.XPATH, "//div[contains(@class, 'wcl-PageContainer_Colcontainer ')]")
-            body_html_players = await elem.get_attribute('outerHTML')
-            with open(f"OddsScraper/Bet365/HTML/body_html_players_match_{index}.txt", 'w') as f:
-                f.write(body_html_players)
+    for match in match_data:
+        match_index = match['match_index']
+        base_url = match['base_url']
+        
+        print(f"\n{'='*60}")
+        print(f"Processing match {match_index}")
+        print(f"{'='*60}")
+        
+        for suffix, category_info in PROP_CATEGORIES.items():
+            category_name = category_info['name']
+            buttons_to_click = category_info['buttons']
+            url = f"{base_url}{suffix}/"
+            
+            try:
+                print(f"\n--- {category_name} ({suffix}) ---")
+                print(f"URL: {url}")
+                
+                await driver.get(url)
 
-        except Exception as e:
-            print(f"An error occurred with URL {url}: {e}. Moving to the next URL.")
-            continue
+                # Wait for a market group button to appear
+                await driver.find_element(
+                    By.XPATH, 
+                    "//div[contains(@class, 'cm-MarketGroupWithIconsButton_Text ')]", 
+                    timeout=5
+                )
+                
+                await driver.sleep(1.5)
+                
+                # Click only the buttons relevant to this category
+                for button_text in buttons_to_click:
+                    await maybe_click(button_text, button_text)
+                
+                # Click all "Show more" buttons
+                await click_show_more_buttons()
+
+                # Grab and write the player page HTML for this match/category
+                elem = await driver.find_element(
+                    By.XPATH, 
+                    "//div[contains(@class, 'wcl-PageContainer_Colcontainer ')]"
+                )
+                body_html_players = await elem.get_attribute('outerHTML')
+                
+                filename = f"OddsScraper/Bet365/HTML/body_html_players_match_{match_index}_{category_name.lower()}.txt"
+                with open(filename, 'w') as f:
+                    f.write(body_html_players)
+                print(f"  Saved: {filename}")
+
+            except Exception as e:
+                print(f"  Error with {category_name}: {e}. Continuing...")
+                continue
 
 
 async def main():
@@ -210,8 +272,8 @@ async def main():
     # options.add_argument("--headless=True")
 
     async with webdriver.Chrome(options=options) as driver:
-        player_urls = await collect_h2h_and_urls(driver)
-        await scrape_player_pages(driver, player_urls)
+        match_data = await collect_h2h_and_urls(driver)
+        await scrape_player_pages(driver, match_data)
 
 
 if __name__ == "__main__":
