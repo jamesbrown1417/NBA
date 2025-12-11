@@ -134,7 +134,7 @@ async def collect_h2h_and_urls(driver):
         await team_elements[index].click()
 
         cur_url = await driver.current_url
-        modified_player_url = cur_url + "I43/"
+        modified_player_url = cur_url + "I99/"
         player_urls.append(modified_player_url)
 
         await driver.back()
