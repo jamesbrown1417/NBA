@@ -362,154 +362,154 @@ all_middles |>
   mutate(margin = round(margin, 2))
 ```
 
-<!-- ## Multi Legs -->
+## Multi Legs
 
-<!-- ::: panel-tabset -->
-<!-- ## Dabble -->
+::: panel-tabset
+## Dabble
 
-<!-- ```{r} -->
-<!-- #| results: asis -->
+```{r}
+#| results: asis
 
-<!-- processed_odds <- -->
-<!--   list.files("../Data/Processed_Odds/", full.names = TRUE) |> -->
-<!--   map_dfr(read_rds) |>  -->
-<!--   select(match, player_name, market_name, line, over_price, agency, empirical_prob_last_20) |>  -->
-<!--   arrange(desc(empirical_prob_last_20), desc(over_price)) |>  -->
-<!--   filter(empirical_prob_last_20 >= 0.9) -->
+processed_odds <-
+  list.files("../Data/Processed_Odds/", full.names = TRUE) |>
+  map_dfr(read_rds) |>
+  select(match, player_name, market_name, line, over_price, agency, empirical_prob_last_20) |>
+  arrange(desc(empirical_prob_last_20), desc(over_price)) |>
+  filter(empirical_prob_last_20 >= 0.9)
 
-<!-- # Get list of tibbles (one for each agency) -->
-<!-- match_list_dabble <- processed_odds |> -->
-<!--   filter(agency == "Dabble") |> -->
-<!--   select(-agency) |> -->
-<!--   split(~match) -->
+# Get list of tibbles (one for each agency)
+match_list_dabble <- processed_odds |>
+  filter(agency == "Dabble") |>
+  select(-agency) |>
+  split(~match)
 
-<!-- # Add Overall tab for Dabble -->
-<!-- overall_dabble <- processed_odds |> -->
-<!--   filter(agency == "Dabble") |> -->
-<!--   select(-agency) -->
-<!-- if (nrow(overall_dabble) > 0) { -->
-<!--   match_list_dabble <- c(list(Overall = overall_dabble), match_list_dabble) -->
-<!-- } -->
+# Add Overall tab for Dabble
+overall_dabble <- processed_odds |>
+  filter(agency == "Dabble") |>
+  select(-agency)
+if (nrow(overall_dabble) > 0) {
+  match_list_dabble <- c(list(Overall = overall_dabble), match_list_dabble)
+}
 
-<!-- if (length(match_list_dabble) > 0) { -->
-<!-- qreport::maketabs(match_list_dabble, wide = TRUE)} -->
-<!-- ``` -->
+if (length(match_list_dabble) > 0) {
+qreport::maketabs(match_list_dabble, wide = TRUE)}
+```
 
-<!-- ## BetRight -->
+## BetRight
 
-<!-- ```{r} -->
-<!-- #| results: asis -->
+```{r}
+#| results: asis
 
-<!-- # Get list of tibbles (one for each agency) -->
-<!-- match_list_betright <- processed_odds |> -->
-<!--   filter(agency == "BetRight") |>  -->
-<!--   select(-agency) |> -->
-<!--   split(~match) -->
+# Get list of tibbles (one for each agency)
+match_list_betright <- processed_odds |>
+  filter(agency == "BetRight") |>
+  select(-agency) |>
+  split(~match)
 
-<!-- # Add Overall tab for BetRight -->
-<!-- overall_betright <- processed_odds |> -->
-<!--   filter(agency == "BetRight") |> -->
-<!--   select(-agency) -->
-<!-- if (nrow(overall_betright) > 0) { -->
-<!--   match_list_betright <- c(list(Overall = overall_betright), match_list_betright) -->
-<!-- } -->
+# Add Overall tab for BetRight
+overall_betright <- processed_odds |>
+  filter(agency == "BetRight") |>
+  select(-agency)
+if (nrow(overall_betright) > 0) {
+  match_list_betright <- c(list(Overall = overall_betright), match_list_betright)
+}
 
-<!-- if (length(match_list_betright) > 0) { -->
-<!-- qreport::maketabs(match_list_betright, wide = TRUE)} -->
-<!-- ``` -->
+if (length(match_list_betright) > 0) {
+qreport::maketabs(match_list_betright, wide = TRUE)}
+```
 
-<!-- ## TAB -->
+## TAB
 
-<!-- ```{r} -->
-<!-- #| results: asis -->
+```{r}
+#| results: asis
 
-<!-- # Get list of tibbles (one for each agency) -->
-<!-- match_list_tab <- processed_odds |> -->
-<!--   filter(agency == "TAB") |>  -->
-<!--   select(-agency) |> -->
-<!--   split(~match) -->
+# Get list of tibbles (one for each agency)
+match_list_tab <- processed_odds |>
+  filter(agency == "TAB") |>
+  select(-agency) |>
+  split(~match)
 
-<!-- # Add Overall tab for TAB -->
-<!-- overall_tab <- processed_odds |> -->
-<!--   filter(agency == "TAB") |> -->
-<!--   select(-agency) -->
-<!-- if (nrow(overall_tab) > 0) { -->
-<!--   match_list_tab <- c(list(Overall = overall_tab), match_list_tab) -->
-<!-- } -->
+# Add Overall tab for TAB
+overall_tab <- processed_odds |>
+  filter(agency == "TAB") |>
+  select(-agency)
+if (nrow(overall_tab) > 0) {
+  match_list_tab <- c(list(Overall = overall_tab), match_list_tab)
+}
 
-<!-- qreport::maketabs(match_list_tab, wide = TRUE) -->
-<!-- ``` -->
+qreport::maketabs(match_list_tab, wide = TRUE)
+```
 
-<!-- ## Neds -->
+## Neds
 
-<!-- ```{r} -->
-<!-- #| results: asis -->
+```{r}
+#| results: asis
 
-<!-- # Get list of tibbles (one for each agency) -->
-<!-- match_list_neds <- processed_odds |> -->
-<!--   filter(agency == "Neds") |>  -->
-<!--   select(-agency) |> -->
-<!--   split(~match) -->
+# Get list of tibbles (one for each agency)
+match_list_neds <- processed_odds |>
+  filter(agency == "Neds") |>
+  select(-agency) |>
+  split(~match)
 
-<!-- # Add Overall tab for Neds -->
-<!-- overall_neds <- processed_odds |> -->
-<!--   filter(agency == "Neds") |> -->
-<!--   select(-agency) -->
-<!-- if (nrow(overall_neds) > 0) { -->
-<!--   match_list_neds <- c(list(Overall = overall_neds), match_list_neds) -->
-<!-- } -->
+# Add Overall tab for Neds
+overall_neds <- processed_odds |>
+  filter(agency == "Neds") |>
+  select(-agency)
+if (nrow(overall_neds) > 0) {
+  match_list_neds <- c(list(Overall = overall_neds), match_list_neds)
+}
 
-<!-- # only run if there are matches -->
-<!-- if(length(match_list_neds) > 0) { -->
-<!-- qreport::maketabs(match_list_neds, wide = TRUE)} -->
-<!-- ``` -->
+# only run if there are matches
+if(length(match_list_neds) > 0) {
+qreport::maketabs(match_list_neds, wide = TRUE)}
+```
 
-<!-- ## Pointsbet -->
+## Pointsbet
 
-<!-- ```{r} -->
-<!-- #| results: asis -->
+```{r}
+#| results: asis
 
-<!-- # Get list of tibbles (one for each agency) -->
-<!-- match_list_pb <- processed_odds |> -->
-<!--   filter(agency == "Pointsbet") |>  -->
-<!--   select(-agency) |> -->
-<!--   split(~match) -->
+# Get list of tibbles (one for each agency)
+match_list_pb <- processed_odds |>
+  filter(agency == "Pointsbet") |>
+  select(-agency) |>
+  split(~match)
 
-<!-- # Add Overall tab for Pointsbet -->
-<!-- overall_pointsbet <- processed_odds |> -->
-<!--   filter(agency == "Pointsbet") |> -->
-<!--   select(-agency) -->
-<!-- if (nrow(overall_pointsbet) > 0) { -->
-<!--   match_list_pb <- c(list(Overall = overall_pointsbet), match_list_pb) -->
-<!-- } -->
+# Add Overall tab for Pointsbet
+overall_pointsbet <- processed_odds |>
+  filter(agency == "Pointsbet") |>
+  select(-agency)
+if (nrow(overall_pointsbet) > 0) {
+  match_list_pb <- c(list(Overall = overall_pointsbet), match_list_pb)
+}
 
-<!-- # only run if there are matches -->
-<!-- if(length(match_list_pb) > 0) { -->
-<!-- qreport::maketabs(match_list_pb, wide = TRUE)} -->
-<!-- ``` -->
+# only run if there are matches
+if(length(match_list_pb) > 0) {
+qreport::maketabs(match_list_pb, wide = TRUE)}
+```
 
-<!-- ## Bet365 -->
+## Bet365
 
-<!-- ```{r} -->
-<!-- #| results: asis -->
+```{r}
+#| results: asis
 
-<!-- # Get list of tibbles (one for each agency) -->
-<!-- match_list_bet365 <- processed_odds |> -->
-<!--   filter(agency == "Bet365") |>  -->
-<!--   select(-agency) |> -->
-<!--   split(~match) -->
+# Get list of tibbles (one for each agency)
+match_list_bet365 <- processed_odds |>
+  filter(agency == "Bet365") |>
+  select(-agency) |>
+  split(~match)
 
-<!-- # Add Overall tab for Bet365 -->
-<!-- overall_bet365 <- processed_odds |> -->
-<!--   filter(agency == "Bet365") |> -->
-<!--   select(-agency) -->
-<!-- if (nrow(overall_bet365) > 0) { -->
-<!--   match_list_bet365 <- c(list(Overall = overall_bet365), match_list_bet365) -->
-<!-- } -->
+# Add Overall tab for Bet365
+overall_bet365 <- processed_odds |>
+  filter(agency == "Bet365") |>
+  select(-agency)
+if (nrow(overall_bet365) > 0) {
+  match_list_bet365 <- c(list(Overall = overall_bet365), match_list_bet365)
+}
 
-<!-- # only run if there are matches -->
-<!-- if(length(match_list_bet365) > 0) { -->
-<!-- qreport::maketabs(match_list_bet365, wide = TRUE)} -->
-<!-- ``` -->
-<!-- ::: -->
+# only run if there are matches
+if(length(match_list_bet365) > 0) {
+qreport::maketabs(match_list_bet365, wide = TRUE)}
+```
+:::
 ::::::
