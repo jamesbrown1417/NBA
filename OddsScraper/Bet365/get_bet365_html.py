@@ -35,7 +35,7 @@ if not username or not password:
 PROP_CATEGORIES = {
     'I43': {
         'name': 'Points',
-        'buttons': ['Points O/U', 'Points']  # Adjust if there are specific button names
+        'buttons': ['Points O/U']
     },
     'I45': {
         'name': 'Threes',
