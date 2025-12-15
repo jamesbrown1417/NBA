@@ -437,7 +437,8 @@ if (nrow(overall_tab) > 0) {
   match_list_tab <- c(list(Overall = overall_tab), match_list_tab)
 }
 
-qreport::maketabs(match_list_tab, wide = TRUE)
+if (length(match_list_tab) > 0) {
+qreport::maketabs(match_list_tab, wide = TRUE)}
 ```
 
 ## Neds
