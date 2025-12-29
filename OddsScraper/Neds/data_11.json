@@ -1,0 +1,194 @@
+{
+    "entrants": {
+        "732a6eb6-83d1-4565-a2ab-683d2819dbae": {
+            "id": "732a6eb6-83d1-4565-a2ab-683d2819dbae",
+            "name": "Over",
+            "visible": true,
+            "sort_order": 10,
+            "market_id": "e21fe974-3b54-48c4-a737-3b0025fa3d25"
+        },
+        "93142fad-512c-4276-872f-0cc7034bd641": {
+            "id": "93142fad-512c-4276-872f-0cc7034bd641",
+            "name": "Washington Wizards",
+            "home_away": "HOME",
+            "visible": true,
+            "sort_order": 10,
+            "market_id": "309c174f-15ae-4fb4-b565-0a89be593ed4"
+        },
+        "c07676b3-354e-472a-bae6-0558d03f7246": {
+            "id": "c07676b3-354e-472a-bae6-0558d03f7246",
+            "name": "Phoenix Suns",
+            "home_away": "AWAY",
+            "visible": true,
+            "sort_order": 20,
+            "market_id": "309c174f-15ae-4fb4-b565-0a89be593ed4"
+        },
+        "efd2d6ad-1d9c-44c2-b493-6180041b4fc5": {
+            "id": "efd2d6ad-1d9c-44c2-b493-6180041b4fc5",
+            "name": "Under",
+            "visible": true,
+            "sort_order": 20,
+            "market_id": "e21fe974-3b54-48c4-a737-3b0025fa3d25"
+        }
+    },
+    "event_participants": {
+        "53de922a-f1e1-41a8-9738-3b3261fe76af": {
+            "id": "53de922a-f1e1-41a8-9738-3b3261fe76af",
+            "event_id": "c7a19dc2-925a-4b59-aec6-11a399b2f0a6",
+            "name": "Phoenix Suns",
+            "home_away": "AWAY",
+            "colour": "#1d1160"
+        },
+        "81984e80-0a33-4a7e-bde1-548b9a8d194b": {
+            "id": "81984e80-0a33-4a7e-bde1-548b9a8d194b",
+            "event_id": "c7a19dc2-925a-4b59-aec6-11a399b2f0a6",
+            "name": "Washington Wizards",
+            "home_away": "HOME",
+            "colour": "#002b5c"
+        }
+    },
+    "events": {
+        "c7a19dc2-925a-4b59-aec6-11a399b2f0a6": {
+            "id": "c7a19dc2-925a-4b59-aec6-11a399b2f0a6",
+            "name": "Washington Wizards vs Phoenix Suns",
+            "event_type": {
+                "id": "6bfa0efc-05df-4ae1-9b1e-152365290cfd",
+                "name": "Match"
+            },
+            "match_status": "BettingOpen",
+            "advertised_start": "2025-12-30T00:10:00Z",
+            "actual_start": "2025-12-30T00:10:00Z",
+            "visible": true,
+            "slug": "washington-wizards-vs-phoenix-suns",
+            "competition": {
+                "id": "2d20a25b-6b96-4651-a523-442834136e2d",
+                "name": "NBA",
+                "sort_order": 1,
+                "region": "USA",
+                "region_id": "6889a18d-3a47-400c-9cd4-10f228c0dc59"
+            },
+            "competition_id": "2d20a25b-6b96-4651-a523-442834136e2d",
+            "market_type_group_ids": [
+                "43c990d1-7471-4055-9a7a-e71409494486"
+            ],
+            "market_type_group_markets": [
+                {
+                    "market_type_group_id": "43c990d1-7471-4055-9a7a-e71409494486",
+                    "market_ids": [
+                        "309c174f-15ae-4fb4-b565-0a89be593ed4",
+                        "e21fe974-3b54-48c4-a737-3b0025fa3d25"
+                    ]
+                }
+            ],
+            "market_count": 2,
+            "main_markets": [
+                "309c174f-15ae-4fb4-b565-0a89be593ed4"
+            ],
+            "market_ids": [
+                "309c174f-15ae-4fb4-b565-0a89be593ed4",
+                "e21fe974-3b54-48c4-a737-3b0025fa3d25"
+            ],
+            "live_betting_markets_available": true,
+            "category_id": "3c34d075-dc14-436d-bfc4-9272a49c2b39",
+            "participant_ids": [
+                "53de922a-f1e1-41a8-9738-3b3261fe76af",
+                "81984e80-0a33-4a7e-bde1-548b9a8d194b"
+            ]
+        }
+    },
+    "market_type_groups": {
+        "43c990d1-7471-4055-9a7a-e71409494486": {
+            "id": "43c990d1-7471-4055-9a7a-e71409494486",
+            "category_id": "3c34d075-dc14-436d-bfc4-9272a49c2b39",
+            "name": "Top Markets",
+            "priority": 988,
+            "type": "MARKET_TYPE_GROUP_TYPE_EVENT"
+        }
+    },
+    "markets": {
+        "309c174f-15ae-4fb4-b565-0a89be593ed4": {
+            "id": "309c174f-15ae-4fb4-b565-0a89be593ed4",
+            "event_id": "c7a19dc2-925a-4b59-aec6-11a399b2f0a6",
+            "market_type_id": "3dc4ca49-3190-43b2-a328-60e0c9460187",
+            "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
+            "name": "Head To Head",
+            "advertised_start": {
+                "seconds": 1767053400
+            },
+            "actual_start": {
+                "seconds": 1767053400
+            },
+            "live_betting_available": true,
+            "is_primary": true,
+            "same_game_multi_available": true,
+            "visible": true,
+            "entrant_ids": [
+                "93142fad-512c-4276-872f-0cc7034bd641",
+                "c07676b3-354e-472a-bae6-0558d03f7246"
+            ],
+            "num_winners": 1
+        },
+        "e21fe974-3b54-48c4-a737-3b0025fa3d25": {
+            "id": "e21fe974-3b54-48c4-a737-3b0025fa3d25",
+            "event_id": "c7a19dc2-925a-4b59-aec6-11a399b2f0a6",
+            "market_type_id": "28d679c2-8cae-4fc6-a564-a5937865b1b6",
+            "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
+            "name": "Total",
+            "advertised_start": {
+                "seconds": 1767053400
+            },
+            "actual_start": {
+                "seconds": 1767053400
+            },
+            "live_betting_available": true,
+            "handicap": 235.5,
+            "same_game_multi_available": true,
+            "comments": "If the Total market results in a refund, the whole SGM bet will be refunded.",
+            "visible": true,
+            "entrant_ids": [
+                "732a6eb6-83d1-4565-a2ab-683d2819dbae",
+                "efd2d6ad-1d9c-44c2-b493-6180041b4fc5"
+            ],
+            "num_winners": 1
+        }
+    },
+    "markets_allow_cashout": {
+        "309c174f-15ae-4fb4-b565-0a89be593ed4": true,
+        "e21fe974-3b54-48c4-a737-3b0025fa3d25": false
+    },
+    "prices": {
+        "732a6eb6-83d1-4565-a2ab-683d2819dbae:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 47,
+                "denominator": 50
+            }
+        },
+        "93142fad-512c-4276-872f-0cc7034bd641:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 13,
+                "denominator": 4
+            }
+        },
+        "c07676b3-354e-472a-bae6-0558d03f7246:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 11,
+                "denominator": 50
+            }
+        },
+        "efd2d6ad-1d9c-44c2-b493-6180041b4fc5:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 22,
+                "denominator": 25
+            }
+        }
+    },
+    "regions": {
+        "6889a18d-3a47-400c-9cd4-10f228c0dc59": {
+            "region_id": "6889a18d-3a47-400c-9cd4-10f228c0dc59",
+            "name": "USA",
+            "slug": "usa",
+            "category_id": "3c34d075-dc14-436d-bfc4-9272a49c2b39",
+            "sort_order": 1
+        }
+    }
+}
