@@ -345,6 +345,7 @@ bet365_betright_neds_arbs
 tab_miss_by_1_points_arbs <-
   tab_miss_by_one |>
   filter(margin > 0) |> 
+  filter(line >= 8.5) |> 
   filter(over_agency %in% c("TAB") | under_agency %in% c("TAB")) |> 
   filter(!over_agency %in% c("Neds", "Unibet") & !under_agency %in% c("Neds", "Unibet")) |> 
   mutate(margin = round(margin, 2))
