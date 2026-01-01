@@ -1,0 +1,194 @@
+{
+    "entrants": {
+        "0464657d-e1c9-4889-8e3e-815d90e591a4": {
+            "id": "0464657d-e1c9-4889-8e3e-815d90e591a4",
+            "name": "Brooklyn Nets",
+            "home_away": "HOME",
+            "visible": true,
+            "sort_order": 10,
+            "market_id": "ac630aa5-edd9-4474-9a74-cd0fb7f092a3"
+        },
+        "52ca4653-0184-4c09-a30d-c91e70f32458": {
+            "id": "52ca4653-0184-4c09-a30d-c91e70f32458",
+            "name": "Houston Rockets",
+            "home_away": "AWAY",
+            "visible": true,
+            "sort_order": 20,
+            "market_id": "ac630aa5-edd9-4474-9a74-cd0fb7f092a3"
+        },
+        "65cf0fbd-01e0-4591-8e17-8805338c94bc": {
+            "id": "65cf0fbd-01e0-4591-8e17-8805338c94bc",
+            "name": "Under",
+            "visible": true,
+            "sort_order": 20,
+            "market_id": "f19e852b-0d8b-4968-8cc9-13039a9e93eb"
+        },
+        "9b7e3e18-cdba-450d-8e63-1d8fb877a827": {
+            "id": "9b7e3e18-cdba-450d-8e63-1d8fb877a827",
+            "name": "Over",
+            "visible": true,
+            "sort_order": 10,
+            "market_id": "f19e852b-0d8b-4968-8cc9-13039a9e93eb"
+        }
+    },
+    "event_participants": {
+        "5b0d4a35-faa8-40cb-84ee-b9308ef510ca": {
+            "id": "5b0d4a35-faa8-40cb-84ee-b9308ef510ca",
+            "event_id": "fbe95a95-d9e1-40a3-8e5f-969a82aac9ec",
+            "name": "Houston Rockets",
+            "home_away": "AWAY",
+            "colour": "#ce1141"
+        },
+        "9c4ebb38-12a3-43c8-aad9-c88da4d47555": {
+            "id": "9c4ebb38-12a3-43c8-aad9-c88da4d47555",
+            "event_id": "fbe95a95-d9e1-40a3-8e5f-969a82aac9ec",
+            "name": "Brooklyn Nets",
+            "home_away": "HOME",
+            "colour": "#000000"
+        }
+    },
+    "events": {
+        "fbe95a95-d9e1-40a3-8e5f-969a82aac9ec": {
+            "id": "fbe95a95-d9e1-40a3-8e5f-969a82aac9ec",
+            "name": "Brooklyn Nets vs Houston Rockets",
+            "event_type": {
+                "id": "6bfa0efc-05df-4ae1-9b1e-152365290cfd",
+                "name": "Match"
+            },
+            "match_status": "BettingOpen",
+            "advertised_start": "2026-01-01T23:00:00Z",
+            "actual_start": "2026-01-01T23:00:00Z",
+            "visible": true,
+            "slug": "brooklyn-nets-vs-houston-rockets",
+            "competition": {
+                "id": "2d20a25b-6b96-4651-a523-442834136e2d",
+                "name": "NBA",
+                "sort_order": 1,
+                "region": "USA",
+                "region_id": "6889a18d-3a47-400c-9cd4-10f228c0dc59"
+            },
+            "competition_id": "2d20a25b-6b96-4651-a523-442834136e2d",
+            "market_type_group_ids": [
+                "43c990d1-7471-4055-9a7a-e71409494486"
+            ],
+            "market_type_group_markets": [
+                {
+                    "market_type_group_id": "43c990d1-7471-4055-9a7a-e71409494486",
+                    "market_ids": [
+                        "ac630aa5-edd9-4474-9a74-cd0fb7f092a3",
+                        "f19e852b-0d8b-4968-8cc9-13039a9e93eb"
+                    ]
+                }
+            ],
+            "market_count": 2,
+            "main_markets": [
+                "ac630aa5-edd9-4474-9a74-cd0fb7f092a3"
+            ],
+            "market_ids": [
+                "ac630aa5-edd9-4474-9a74-cd0fb7f092a3",
+                "f19e852b-0d8b-4968-8cc9-13039a9e93eb"
+            ],
+            "live_betting_markets_available": true,
+            "category_id": "3c34d075-dc14-436d-bfc4-9272a49c2b39",
+            "participant_ids": [
+                "5b0d4a35-faa8-40cb-84ee-b9308ef510ca",
+                "9c4ebb38-12a3-43c8-aad9-c88da4d47555"
+            ]
+        }
+    },
+    "market_type_groups": {
+        "43c990d1-7471-4055-9a7a-e71409494486": {
+            "id": "43c990d1-7471-4055-9a7a-e71409494486",
+            "category_id": "3c34d075-dc14-436d-bfc4-9272a49c2b39",
+            "name": "Top Markets",
+            "priority": 988,
+            "type": "MARKET_TYPE_GROUP_TYPE_EVENT"
+        }
+    },
+    "markets": {
+        "ac630aa5-edd9-4474-9a74-cd0fb7f092a3": {
+            "id": "ac630aa5-edd9-4474-9a74-cd0fb7f092a3",
+            "event_id": "fbe95a95-d9e1-40a3-8e5f-969a82aac9ec",
+            "market_type_id": "3dc4ca49-3190-43b2-a328-60e0c9460187",
+            "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
+            "name": "Head To Head",
+            "advertised_start": {
+                "seconds": 1767308400
+            },
+            "actual_start": {
+                "seconds": 1767308400
+            },
+            "live_betting_available": true,
+            "is_primary": true,
+            "same_game_multi_available": true,
+            "visible": true,
+            "entrant_ids": [
+                "0464657d-e1c9-4889-8e3e-815d90e591a4",
+                "52ca4653-0184-4c09-a30d-c91e70f32458"
+            ],
+            "num_winners": 1
+        },
+        "f19e852b-0d8b-4968-8cc9-13039a9e93eb": {
+            "id": "f19e852b-0d8b-4968-8cc9-13039a9e93eb",
+            "event_id": "fbe95a95-d9e1-40a3-8e5f-969a82aac9ec",
+            "market_type_id": "28d679c2-8cae-4fc6-a564-a5937865b1b6",
+            "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
+            "name": "Total",
+            "advertised_start": {
+                "seconds": 1767308400
+            },
+            "actual_start": {
+                "seconds": 1767308400
+            },
+            "live_betting_available": true,
+            "handicap": 221.5,
+            "same_game_multi_available": true,
+            "comments": "If the Total market results in a refund, the whole SGM bet will be refunded.",
+            "visible": true,
+            "entrant_ids": [
+                "9b7e3e18-cdba-450d-8e63-1d8fb877a827",
+                "65cf0fbd-01e0-4591-8e17-8805338c94bc"
+            ],
+            "num_winners": 1
+        }
+    },
+    "markets_allow_cashout": {
+        "ac630aa5-edd9-4474-9a74-cd0fb7f092a3": true,
+        "f19e852b-0d8b-4968-8cc9-13039a9e93eb": false
+    },
+    "prices": {
+        "0464657d-e1c9-4889-8e3e-815d90e591a4:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 18,
+                "denominator": 5
+            }
+        },
+        "52ca4653-0184-4c09-a30d-c91e70f32458:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 1,
+                "denominator": 5
+            }
+        },
+        "65cf0fbd-01e0-4591-8e17-8805338c94bc:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 9,
+                "denominator": 10
+            }
+        },
+        "9b7e3e18-cdba-450d-8e63-1d8fb877a827:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 9,
+                "denominator": 10
+            }
+        }
+    },
+    "regions": {
+        "6889a18d-3a47-400c-9cd4-10f228c0dc59": {
+            "region_id": "6889a18d-3a47-400c-9cd4-10f228c0dc59",
+            "name": "USA",
+            "slug": "usa",
+            "category_id": "3c34d075-dc14-436d-bfc4-9272a49c2b39",
+            "sort_order": 1
+        }
+    }
+}
