@@ -81,7 +81,7 @@ results <-
 combined_SB_results |> 
   filter(over_agency != "Dabble Pickem") |> 
   filter(under_agency != "Dabble Pickem") |> 
-  group_by(over_agency, under_agency) |> 
+  group_by(over_agency, under_agency, game_date) |> 
   summarise(
     bets = n(),
     total_unders_profit = sum(under_profit),
@@ -100,12 +100,12 @@ combined_SB_results |>
 results_sb_overs <-
   results |> 
   filter(over_agency != "Sportsbet") |> 
-  select(over_agency, bets, total_overs_stake, total_overs_profit, overs_roi_pct) |> 
+  select(over_agency, game_date, bets, total_overs_stake, total_overs_profit, overs_roi_pct) |> 
   arrange(desc(overs_roi_pct))
 
 # unders
 results_sb_unders <-
   results |> 
   filter(over_agency == "Sportsbet") |> 
-  select(under_agency, bets, total_unders_stake, total_unders_profit, unders_roi_pct) |> 
+  select(under_agency, game_date, bets, total_unders_stake, total_unders_profit, unders_roi_pct) |> 
   arrange(desc(unders_roi_pct))
