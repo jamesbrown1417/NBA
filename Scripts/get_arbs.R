@@ -23,6 +23,7 @@ scripts <- c(
   "OddsScraper/TAB/scrape_TAB.R",
   "OddsScraper/Neds/scrape_neds.R",
   "OddsScraper/scrape_unibet.R",
+  "OddsScraper/scrape_ripperbet.R",
   "OddsScraper/scrape_dabble.R",
   "OddsScraper/Bet365/scrape_bet365.R"
 )

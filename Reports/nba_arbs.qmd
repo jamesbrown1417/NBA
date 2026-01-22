@@ -215,7 +215,7 @@ betright_miss_by_one <- read_rds("../Data/betright_points_miss_by_one.rds")
   mutate(margin = round(margin, 2))
 ```
 
-## Betr
+## BetMakers
 
 ```{r}
 #| column: page
@@ -223,7 +223,7 @@ betright_miss_by_one <- read_rds("../Data/betright_points_miss_by_one.rds")
   all_arbs |>
   filter(margin > 0) |> 
   filter(over_agency %in% c("Sportsbet") | under_agency %in% c("Sportsbet")) |> 
-  filter(over_agency %in% c("Betr") | under_agency %in% c("Betr")) |> 
+  filter(over_agency %in% c("BetMakers") | under_agency %in% c("BetMakers")) |> 
   mutate(margin = round(margin, 2))
 ```
 
