@@ -269,7 +269,7 @@ process_alt_lines <- function(results, events, description, market_name) {
           opposition_team = case_when(team == "H" ~ away_team, team == "A" ~ home_team, TRUE ~ NA_character_)
         ) |>
         mutate(
-          match = paste(home_team, "vs", away_team),
+          match = paste(home_team, "v", away_team),
           over_price = win_price,
           agency = "BetMakers"
         ) |>
@@ -323,7 +323,7 @@ process_lines_ou <- function(results, events, description, market_name) {
           opposition_team = case_when(team == "H" ~ away_team, team == "A" ~ home_team, TRUE ~ NA_character_)
         ) |>
         mutate(
-          match = paste(home_team, "vs", away_team),
+          match = paste(home_team, "v", away_team),
           agency = "BetMakers"
         ) |>
         select(
