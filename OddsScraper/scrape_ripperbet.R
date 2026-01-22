@@ -169,4 +169,12 @@ today_events <-
 event_keys <- today_events$event_key
 results <- fetch_multiple_events(event_keys)
   
+#===============================================================================
+# Process scraped odds
+#===============================================================================
+
+# Player Points-----------------------------------------------------------------
+ripperbet_player_points <- 
+
+
 
