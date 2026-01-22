@@ -3,7 +3,7 @@
 
 library(httr2)
 library(purrr)
-library(tibble)
+library(tidyverse)
 library(cli)
 
 # Configuration ----------------------------------------------------------------
@@ -32,7 +32,7 @@ HEADERS <- c(
 #' Get NBA events as a tibble
 #'
 #' @param url API endpoint URL
-#' @return A tibble with event_key and name
+#' @return A tibble with event_key, name, and start_time
 get_nba_events <- function(url = "https://api.public.ripperbet.au/api-events/public/master-events/basketball/nba") {
   data <- request(url) |>
     req_headers(!!!HEADERS) |>
@@ -45,7 +45,8 @@ get_nba_events <- function(url = "https://api.public.ripperbet.au/api-events/pub
   
   tibble(
     event_key = map_chr(events, "EventKey"),
-    name = map_chr(events, "Name")
+    name = map_chr(events, "Name"),
+    start_time = as.POSIXct(as.numeric(map_chr(events, "StartTime")) / 1000, origin = "1970-01-01")
   )
 }
 
@@ -142,15 +143,12 @@ fetch_multiple_events <- function(
   }
   
   if (progress) {
-    cli_progress_bar("Fetching markets", total = length(event_keys))
+    results <- map(cli_progress_along(event_keys, "Fetching markets"), function(i) {
+      fetch_fn(event_keys[i])
+    })
+  } else {
+    results <- map(event_keys, fetch_fn)
   }
-  
-  results <- map(event_keys, function(ek) {
-    if (progress) cli_progress_update()
-    fetch_fn(ek)
-  })
-  
-  if (progress) cli_progress_done()
   
   set_names(results, event_keys)
 }
@@ -158,13 +156,17 @@ fetch_multiple_events <- function(
 # Example usage ----------------------------------------------------------------
 
 # Get all events
-all_events <- get_nba_events()
+all_events <-
+  get_nba_events()
+
+today_events <-
+  all_events |> 
+  filter(start_time > Sys.time()) |> 
+  # Make sure only from today
+  filter(as.Date(start_time) == Sys.Date())
 
 # Multiple events (sequential with rate limiting)
-event_keys <- all_events$event_key
+event_keys <- today_events$event_key
 results <- fetch_multiple_events(event_keys)
   
-# Multiple events (parallel - faster but be careful with rate limits)
-results_parallel <- fetch_multiple_parallel(event_keys, max_concurrent = 3)
-
 
