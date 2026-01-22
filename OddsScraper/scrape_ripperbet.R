@@ -29,6 +29,26 @@ HEADERS <- c(
 
 # Core functions ---------------------------------------------------------------
 
+#' Get NBA events as a tibble
+#'
+#' @param url API endpoint URL
+#' @return A tibble with event_key and name
+get_nba_events <- function(url = "https://api.public.ripperbet.au/api-events/public/master-events/basketball/nba") {
+  data <- request(url) |>
+    req_headers(!!!HEADERS) |>
+    req_perform() |>
+    resp_body_json()
+  
+  events <- data$MasterEvents |>
+    map("Events") |>
+    list_flatten()
+  
+  tibble(
+    event_key = map_chr(events, "EventKey"),
+    name = map_chr(events, "Name")
+  )
+}
+
 #' Create a base request with common configuration
 #'
 #' @param rate_limit Requests per second (default 2 = 0.5s between requests
@@ -137,22 +157,14 @@ fetch_multiple_events <- function(
 
 # Example usage ----------------------------------------------------------------
 
-if (FALSE) {
-  # Single event
-  data <- fetch_markets("12842335")
-  str(data, max.level = 2)
+# Get all events
+all_events <- get_nba_events()
+
+# Multiple events (sequential with rate limiting)
+event_keys <- all_events$event_key
+results <- fetch_multiple_events(event_keys)
   
-  # Multiple events (sequential with rate limiting)
-  event_keys <- c("12842335", "12842336", "12842337")
-  results <- fetch_multiple_events(event_keys)
-  
-  # Multiple events (parallel - faster but be careful with rate limits)
-  results_parallel <- fetch_multiple_parallel(event_keys, max_concurrent = 3)
-  
-  # Different market group
-  match_markets <- fetch_markets(
-    event_key = "12842335",
-    group = "Match Markets",
-    market_type = "same-game-multi"
-  )
-}
+# Multiple events (parallel - faster but be careful with rate limits)
+results_parallel <- fetch_multiple_parallel(event_keys, max_concurrent = 3)
+
+
