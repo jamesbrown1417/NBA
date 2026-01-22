@@ -156,7 +156,7 @@ fetch_multiple_events <- function(
   set_names(results, event_keys)
 }
 
-# Example usage ----------------------------------------------------------------
+# get events ----------------------------------------------------------------
 
 # Get all events
 all_events <-
@@ -164,7 +164,6 @@ all_events <-
 
 today_events <-
   all_events |> 
-  rename(match = name) |> 
   filter(start_time > Sys.time()) |> 
   # Make sure only from today
   filter(as.Date(start_time) == Sys.Date()) |> 
@@ -239,7 +238,7 @@ extract_markets_ou <- function(results, description) {
       type = if_else(str_detect(name, "Over"), "over_price", "under_price")
     ) |>
     select(-name) |>
-    pivot_wider(names_from = type, values_from = win_price)
+    pivot_wider(names_from = type, values_from = win_price, values_fn = first)
 }
 
 #' Process alt lines market
