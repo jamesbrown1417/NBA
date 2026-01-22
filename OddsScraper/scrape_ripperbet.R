@@ -161,9 +161,11 @@ all_events <-
 
 today_events <-
   all_events |> 
+  rename(match = name) |> 
   filter(start_time > Sys.time()) |> 
   # Make sure only from today
-  filter(as.Date(start_time) == Sys.Date())
+  filter(as.Date(start_time) == Sys.Date()) |> 
+  rename(match = name)
 
 # Multiple events (sequential with rate limiting)
 event_keys <- today_events$event_key
@@ -208,7 +210,13 @@ player_points_extracted <- extract_markets(results, "Player Points")
 
 player_points <-
   player_points_extracted |> 
-  filter(win_price > 0)
+  filter(win_price > 0) |> 
+  mutate(player_name = paste(first_name, last_name),
+         market_name = "Player Points") |>
+  left_join(
+    today_events,
+    by = "event_key"
+  )
   
 
 
