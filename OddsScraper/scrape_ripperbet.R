@@ -173,8 +173,42 @@ results <- fetch_multiple_events(event_keys)
 # Process scraped odds
 #===============================================================================
 
-# Player Points-----------------------------------------------------------------
-ripperbet_player_points <- 
+#' Extract markets by description
+#'
+#' @param results Results from fetch_multiple_events
+#' @param description Market description to filter (e.g., "Player Points")
+#' @return A tibble with event_key, name, win_price, and reference fields
+extract_markets <- function(results, description) {
+  results |>
+    map("Markets") |>
+    list_flatten() |>
+    keep(\(m) m$Description == description) |>
+    map(function(market) {
+      event_key <- market$EventKey
+      map(market$Outcomes, function(o) {
+        ref <- jsonlite::fromJSON(o$Reference)
+        tibble(
+          event_key = event_key,
+          name = o$Name,
+          win_price = o$Prices[[1]]$WinPrice,
+          player_id = ref$ID,
+          player_name = ref$Name,
+          first_name = ref$First,
+          last_name = ref$Last,
+          team = ref$Team
+        )
+      }) |> list_rbind()
+    }) |>
+    list_rbind()
+}
 
+# Player Points-----------------------------------------------------------------
+
+player_points_extracted <- extract_markets(results, "Player Points")
+
+player_points <-
+  player_points_extracted |> 
+  filter(win_price > 0)
+  
 
 
