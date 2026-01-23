@@ -554,15 +554,19 @@ ui <- page_navbar(
         area = "with_without_settings",
         card_header("Settings"),
         card_body(
-          textInput(
+          selectInput(
             inputId = "player_name",
             label = "Select Player:",
-            value = "LeBron James"
+            choices = all_player_stats$PLAYER_NAME |> unique() |> sort(),
+            selected = "LeBron James",
+            selectize = TRUE
           ),
-          textInput(
+          selectInput(
             inputId = "teammate_name",
             label = "Select Teammate:",
-            value = "Anthony Davis"
+            choices = all_player_stats$PLAYER_NAME |> unique() |> sort(),
+            selected = "Anthony Davis",
+            selectize = TRUE
           ),
           selectInput(
             inputId = "season_input",
@@ -591,7 +595,17 @@ ui <- page_navbar(
       
       grid_card(area = "with_without_plot",
                 card_body(
-                  plotOutput(outputId = "with_without_plot_output", height = "800px", width = "50%")
+                  tabsetPanel(
+                    id = "with_without_tabs",
+                    tabPanel(
+                      "Plot",
+                      plotOutput(outputId = "with_without_plot_output", height = "800px", width = "50%")
+                    ),
+                    tabPanel(
+                      "Table",
+                      DTOutput(outputId = "with_without_table_output", width = "100%", height = "800px")
+                    )
+                  )
                 ))
     )
   ),
@@ -1088,15 +1102,83 @@ server <- function(input, output) {
   # With / Without Teammate
   #=============================================================================
   
+  # Reactive to get filtered player data with/without teammate
+  with_without_data <- reactive({
+    req(input$player_name, input$teammate_name, input$season_input)
+
+    # Filter the data for games with the main player
+    df_player <-
+      all_player_stats %>%
+      filter(PLAYER_NAME == input$player_name) %>%
+      filter(SEASON_YEAR %in% input$season_input)
+
+    # Find the game IDs where the teammate also played
+    games_with_teammate <-
+      all_player_stats %>%
+      filter(SEASON_YEAR %in% input$season_input) %>%
+      filter(PLAYER_NAME == input$teammate_name) %>%
+      pull(gameId)
+
+    # Label each game as 'With Teammate' or 'Without Teammate'
+    df_player <- df_player %>%
+      mutate(Teammate = if_else(gameId %in% games_with_teammate, 'With Teammate', 'Without Teammate'))
+
+    return(df_player)
+  })
+
   output$with_without_plot_output <- renderPlot({
     req(input$player_name, input$teammate_name, input$season_input, input$metric_input)
-    
+
     plot <- compare_performance(season = input$season_input,
                                 name = input$player_name,
                                 teammate_name = input$teammate_name,
                                 metric = input$metric_input)
-    
+
     return(plot)
+  })
+
+  output$with_without_table_output <- renderDT({
+    req(input$player_name, input$teammate_name, input$season_input)
+
+    df_player <- with_without_data()
+
+    # Calculate summary stats for all major stats
+    summary_table <- df_player %>%
+      group_by(Teammate) %>%
+      summarise(
+        Games = n(),
+        MIN = round(mean(MIN, na.rm = TRUE), 1),
+        PTS = round(mean(PTS, na.rm = TRUE), 1),
+        REB = round(mean(REB, na.rm = TRUE), 1),
+        AST = round(mean(AST, na.rm = TRUE), 1),
+        PRA = round(mean(PRA, na.rm = TRUE), 1),
+        STL = round(mean(STL, na.rm = TRUE), 1),
+        BLK = round(mean(BLK, na.rm = TRUE), 1),
+        STOCKS = round(mean(STOCKS, na.rm = TRUE), 1),
+        FGM = round(mean(fieldGoalsMade, na.rm = TRUE), 1),
+        FGA = round(mean(fieldGoalsAttempted, na.rm = TRUE), 1),
+        `FG%` = round(mean(fieldGoalsPercentage, na.rm = TRUE) * 100, 1),
+        FG3M = round(mean(threePointersMade, na.rm = TRUE), 1),
+        FG3A = round(mean(threePointersAttempted, na.rm = TRUE), 1),
+        `3P%` = round(mean(threePointersPercentage, na.rm = TRUE) * 100, 1),
+        FTM = round(mean(freeThrowsMade, na.rm = TRUE), 1),
+        FTA = round(mean(freeThrowsAttempted, na.rm = TRUE), 1),
+        `FT%` = round(mean(freeThrowsPercentage, na.rm = TRUE) * 100, 1),
+        .groups = "drop"
+      ) %>%
+      arrange(desc(Teammate))  # With Teammate first
+
+    datatable(
+      summary_table,
+      options = list(
+        pageLength = 5,
+        autoWidth = TRUE,
+        scrollX = TRUE,
+        dom = 't'  # Only show table, no search/pagination
+      ),
+      rownames = FALSE,
+      width = "100%"
+    )
   })
   
   #=============================================================================
