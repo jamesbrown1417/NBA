@@ -74,6 +74,9 @@ now = pd.Timestamp.now(tz='Australia/Adelaide')
 NBA_schedule = NBA_schedule[NBA_schedule["match_date_adl"].dt.date >= now.date()]
 NBA_schedule = NBA_schedule[NBA_schedule["match_date_adl"].dt.date == NBA_schedule["match_date_adl"].dt.date.min()]
 
+# Remove games that have finished (started more than 3 hours ago)
+NBA_schedule = NBA_schedule[NBA_schedule["match_date_adl"] > now - pd.Timedelta(hours=3)]
+
 # Get number of games that have started
 started = NBA_schedule[NBA_schedule["match_date_adl"] < now]
 
