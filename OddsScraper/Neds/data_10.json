@@ -1,0 +1,142 @@
+{
+    "entrants": {
+        "0d519c81-00e7-4f25-97ef-abfe5bbdf6f2": {
+            "id": "0d519c81-00e7-4f25-97ef-abfe5bbdf6f2",
+            "name": "Indiana Pacers",
+            "home_away": "AWAY",
+            "visible": true,
+            "sort_order": 20,
+            "market_id": "cbcfc6c5-d80c-498c-9ba1-9144749345d0"
+        },
+        "8290bc7f-a5b7-4ae5-8b50-8f15388c88b4": {
+            "id": "8290bc7f-a5b7-4ae5-8b50-8f15388c88b4",
+            "name": "Atlanta Hawks",
+            "home_away": "HOME",
+            "visible": true,
+            "sort_order": 10,
+            "market_id": "cbcfc6c5-d80c-498c-9ba1-9144749345d0"
+        }
+    },
+    "event_participants": {
+        "15fd80e0-02a6-4535-9289-14302659e6e3": {
+            "id": "15fd80e0-02a6-4535-9289-14302659e6e3",
+            "event_id": "cae0b28c-bb1a-4c6c-b50a-52f282634405",
+            "name": "Atlanta Hawks",
+            "home_away": "HOME",
+            "colour": "#e03a3e"
+        },
+        "ed80075b-54c4-47cc-a620-148075d2c76c": {
+            "id": "ed80075b-54c4-47cc-a620-148075d2c76c",
+            "event_id": "cae0b28c-bb1a-4c6c-b50a-52f282634405",
+            "name": "Indiana Pacers",
+            "home_away": "AWAY",
+            "colour": "#002d62"
+        }
+    },
+    "events": {
+        "cae0b28c-bb1a-4c6c-b50a-52f282634405": {
+            "id": "cae0b28c-bb1a-4c6c-b50a-52f282634405",
+            "name": "Atlanta Hawks vs Indiana Pacers",
+            "event_type": {
+                "id": "6bfa0efc-05df-4ae1-9b1e-152365290cfd",
+                "name": "Match"
+            },
+            "match_status": "BettingOpen",
+            "advertised_start": "2026-01-26T18:30:00Z",
+            "actual_start": "2026-01-26T18:30:00Z",
+            "visible": true,
+            "slug": "atlanta-hawks-vs-indiana-pacers",
+            "competition": {
+                "id": "2d20a25b-6b96-4651-a523-442834136e2d",
+                "name": "NBA",
+                "sort_order": 1,
+                "region": "USA",
+                "region_id": "6889a18d-3a47-400c-9cd4-10f228c0dc59"
+            },
+            "competition_id": "2d20a25b-6b96-4651-a523-442834136e2d",
+            "market_type_group_ids": [
+                "43c990d1-7471-4055-9a7a-e71409494486"
+            ],
+            "market_type_group_markets": [
+                {
+                    "market_type_group_id": "43c990d1-7471-4055-9a7a-e71409494486",
+                    "market_ids": [
+                        "cbcfc6c5-d80c-498c-9ba1-9144749345d0"
+                    ]
+                }
+            ],
+            "market_count": 1,
+            "main_markets": [
+                "cbcfc6c5-d80c-498c-9ba1-9144749345d0"
+            ],
+            "market_ids": [
+                "cbcfc6c5-d80c-498c-9ba1-9144749345d0"
+            ],
+            "live_betting_markets_available": true,
+            "category_id": "3c34d075-dc14-436d-bfc4-9272a49c2b39",
+            "participant_ids": [
+                "15fd80e0-02a6-4535-9289-14302659e6e3",
+                "ed80075b-54c4-47cc-a620-148075d2c76c"
+            ]
+        }
+    },
+    "market_type_groups": {
+        "43c990d1-7471-4055-9a7a-e71409494486": {
+            "id": "43c990d1-7471-4055-9a7a-e71409494486",
+            "category_id": "3c34d075-dc14-436d-bfc4-9272a49c2b39",
+            "name": "Top Markets",
+            "priority": 988,
+            "type": "MARKET_TYPE_GROUP_TYPE_EVENT"
+        }
+    },
+    "markets": {
+        "cbcfc6c5-d80c-498c-9ba1-9144749345d0": {
+            "id": "cbcfc6c5-d80c-498c-9ba1-9144749345d0",
+            "event_id": "cae0b28c-bb1a-4c6c-b50a-52f282634405",
+            "market_type_id": "3dc4ca49-3190-43b2-a328-60e0c9460187",
+            "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
+            "name": "Head To Head",
+            "advertised_start": {
+                "seconds": 1769452200
+            },
+            "actual_start": {
+                "seconds": 1769452200
+            },
+            "live_betting_available": true,
+            "is_primary": true,
+            "same_game_multi_available": true,
+            "visible": true,
+            "entrant_ids": [
+                "8290bc7f-a5b7-4ae5-8b50-8f15388c88b4",
+                "0d519c81-00e7-4f25-97ef-abfe5bbdf6f2"
+            ],
+            "num_winners": 1
+        }
+    },
+    "markets_allow_cashout": {
+        "cbcfc6c5-d80c-498c-9ba1-9144749345d0": true
+    },
+    "prices": {
+        "0d519c81-00e7-4f25-97ef-abfe5bbdf6f2:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 29,
+                "denominator": 20
+            }
+        },
+        "8290bc7f-a5b7-4ae5-8b50-8f15388c88b4:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 11,
+                "denominator": 20
+            }
+        }
+    },
+    "regions": {
+        "6889a18d-3a47-400c-9cd4-10f228c0dc59": {
+            "region_id": "6889a18d-3a47-400c-9cd4-10f228c0dc59",
+            "name": "USA",
+            "slug": "usa",
+            "category_id": "3c34d075-dc14-436d-bfc4-9272a49c2b39",
+            "sort_order": 1
+        }
+    }
+}
