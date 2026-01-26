@@ -174,23 +174,7 @@ filtered_all_arbs = {
     .map(d => ({...d, margin: Math.round(d.margin * 100) / 100}));
 }
 
-html`<style>
-.compact-table table { width: 100%; table-layout: auto; font-size: 12px; }
-.compact-table th, .compact-table td {
-  padding: 4px 6px;
-  word-wrap: break-word;
-  white-space: normal;
-  max-width: 150px;
-  overflow-wrap: break-word;
-}
-.compact-table th {
-  background-color: #f0f0f0;
-  font-weight: bold;
-  position: sticky;
-  top: 0;
-}
-</style>
-<div class="compact-table">${Inputs.table(filtered_all_arbs)}</div>`
+html`<div>${Inputs.table(filtered_all_arbs)}</div>`
 ```
 
 ## TAB
