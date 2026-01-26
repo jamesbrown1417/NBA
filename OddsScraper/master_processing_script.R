@@ -5,11 +5,13 @@ library(googledrive)
 library(future)
 library(furrr)
 
-# Set up parallel processing
-plan(multisession)
-
 # Get empirical probability function
 source("Scripts/get_empirical_probabilities.R")
+
+# Set up parallel processing
+# Increase global object size limit to allow large datasets
+options(future.globals.maxSize = 1000 * 1024^2)  # 1000 MB
+plan(multisession, workers = 4)
 
 # Get schedule
 NBA_schedule <-
@@ -99,13 +101,33 @@ distinct_point_combos <-
   distinct(player_name, line)
 
 player_emp_probs_2024_25 <-
-  future_pmap(distinct_point_combos, get_empirical_prob, "PTS", "2024_2025", .progress = TRUE) |> 
-  bind_rows() |> 
-  select(player_name, line, 
-         games_played_2024_2025 = games_played, 
-         empirical_prob_2024_2025, 
+  future_pmap(
+    distinct_point_combos,
+    get_empirical_prob,
+    "PTS",
+    "2024_2025",
+    .progress = TRUE,
+    .options = furrr_options(
+      globals = c(
+        "combined_stats_2024_2025",
+        "combined_stats_2025_2026",
+        "player_stats_last_5_global",
+        "player_stats_last_10_global",
+        "player_stats_last_20_global"
+      )
+    )
+  ) |>
+  bind_rows() |>
+  select(player_name, line,
+         games_played_2024_2025 = games_played,
+         empirical_prob_2024_2025,
+         empirical_prob_under,
+         empirical_prob_last_5,
+         empirical_prob_under_last_5,
          empirical_prob_last_10,
-         empirical_prob_last_20)
+         empirical_prob_under_last_10,
+         empirical_prob_last_20,
+         empirical_prob_under_last_20)
 
 all_player_points <-
   all_player_points |>
@@ -114,15 +136,17 @@ all_player_points <-
     implied_prob_under = 1 / under_price
   ) |>
   left_join(player_emp_probs_2024_25, by = c("player_name", "line")) |>
-  rename(empirical_prob_over_2024_25 = empirical_prob_2024_2025) |>
-  mutate(empirical_prob_under_2024_25 = 1 - empirical_prob_over_2024_25) |>
+  rename(empirical_prob_over_2024_25 = empirical_prob_2024_2025,
+         empirical_prob_under_2024_25 = empirical_prob_under) |>
   mutate(
     diff_over_2024_25   = empirical_prob_over_2024_25 - implied_prob_over,
     diff_under_2024_25  = empirical_prob_under_2024_25 - implied_prob_under,
-    diff_over_last_10    = empirical_prob_last_10 - implied_prob_over,
-    diff_under_last_10   = (1 - empirical_prob_last_10) - implied_prob_under,
+    diff_over_last_5    = empirical_prob_last_5 - implied_prob_over,
+    diff_under_last_5   = empirical_prob_under_last_5 - implied_prob_under,
+    diff_over_last_10   = empirical_prob_last_10 - implied_prob_over,
+    diff_under_last_10  = empirical_prob_under_last_10 - implied_prob_under,
     diff_over_last_20   = empirical_prob_last_20 - implied_prob_over,
-    diff_under_last_20  = (1 - empirical_prob_last_20) - implied_prob_under
+    diff_under_last_20  = empirical_prob_under_last_20 - implied_prob_under
   ) |>
   relocate(agency, .after = diff_under_last_20) |>
   mutate_if(is.double, round, 2) |>
@@ -166,13 +190,18 @@ distinct_assist_combos <-
   distinct(player_name, line)
 
 player_emp_probs_assists_2024_25 <-
-  future_pmap(distinct_assist_combos, get_empirical_prob, "AST", "2024_2025", .progress = TRUE) |> 
-  bind_rows() |> 
-  select(player_name, line, 
-         games_played_2024_2025 = games_played, 
-         empirical_prob_2024_2025, 
+  future_pmap(distinct_assist_combos, get_empirical_prob, "AST", "2024_2025", .progress = TRUE) |>
+  bind_rows() |>
+  select(player_name, line,
+         games_played_2024_2025 = games_played,
+         empirical_prob_2024_2025,
+         empirical_prob_under,
+         empirical_prob_last_5,
+         empirical_prob_under_last_5,
          empirical_prob_last_10,
-         empirical_prob_last_20)
+         empirical_prob_under_last_10,
+         empirical_prob_last_20,
+         empirical_prob_under_last_20)
 
 all_player_assists <-
   all_player_assists |>
@@ -181,15 +210,17 @@ all_player_assists <-
     implied_prob_under = 1 / under_price
   ) |>
   left_join(player_emp_probs_assists_2024_25, by = c("player_name", "line")) |>
-  rename(empirical_prob_over_2024_25 = empirical_prob_2024_2025) |>
-  mutate(empirical_prob_under_2024_25 = 1 - empirical_prob_over_2024_25) |>
+  rename(empirical_prob_over_2024_25 = empirical_prob_2024_2025,
+         empirical_prob_under_2024_25 = empirical_prob_under) |>
   mutate(
     diff_over_2024_25   = empirical_prob_over_2024_25 - implied_prob_over,
     diff_under_2024_25  = empirical_prob_under_2024_25 - implied_prob_under,
-    diff_over_last_10    = empirical_prob_last_10 - implied_prob_over,
-    diff_under_last_10   = (1 - empirical_prob_last_10) - implied_prob_under,
+    diff_over_last_5    = empirical_prob_last_5 - implied_prob_over,
+    diff_under_last_5   = empirical_prob_under_last_5 - implied_prob_under,
+    diff_over_last_10   = empirical_prob_last_10 - implied_prob_over,
+    diff_under_last_10  = empirical_prob_under_last_10 - implied_prob_under,
     diff_over_last_20   = empirical_prob_last_20 - implied_prob_over,
-    diff_under_last_20  = (1 - empirical_prob_last_20) - implied_prob_under
+    diff_under_last_20  = empirical_prob_under_last_20 - implied_prob_under
   ) |>
   relocate(agency, .after = diff_under_last_20) |>
   mutate_if(is.double, round, 2) |>
@@ -236,13 +267,18 @@ distinct_rebound_combos <-
   distinct(player_name, line)
 
 player_emp_probs_rebounds_2024_25 <-
-  future_pmap(distinct_rebound_combos, get_empirical_prob, "REB", "2024_2025", .progress = TRUE) |> 
-  bind_rows() |> 
-  select(player_name, line, 
-         games_played_2024_2025 = games_played, 
-         empirical_prob_2024_2025, 
+  future_pmap(distinct_rebound_combos, get_empirical_prob, "REB", "2024_2025", .progress = TRUE) |>
+  bind_rows() |>
+  select(player_name, line,
+         games_played_2024_2025 = games_played,
+         empirical_prob_2024_2025,
+         empirical_prob_under,
+         empirical_prob_last_5,
+         empirical_prob_under_last_5,
          empirical_prob_last_10,
-         empirical_prob_last_20)
+         empirical_prob_under_last_10,
+         empirical_prob_last_20,
+         empirical_prob_under_last_20)
 
 all_player_rebounds <-
   all_player_rebounds |>
@@ -251,15 +287,17 @@ all_player_rebounds <-
     implied_prob_under = 1 / under_price
   ) |>
   left_join(player_emp_probs_rebounds_2024_25, by = c("player_name", "line")) |>
-  rename(empirical_prob_over_2024_25 = empirical_prob_2024_2025) |>
-  mutate(empirical_prob_under_2024_25 = 1 - empirical_prob_over_2024_25) |>
+  rename(empirical_prob_over_2024_25 = empirical_prob_2024_2025,
+         empirical_prob_under_2024_25 = empirical_prob_under) |>
   mutate(
     diff_over_2024_25   = empirical_prob_over_2024_25 - implied_prob_over,
     diff_under_2024_25  = empirical_prob_under_2024_25 - implied_prob_under,
-    diff_over_last_10    = empirical_prob_last_10 - implied_prob_over,
-    diff_under_last_10   = (1 - empirical_prob_last_10) - implied_prob_under,
+    diff_over_last_5    = empirical_prob_last_5 - implied_prob_over,
+    diff_under_last_5   = empirical_prob_under_last_5 - implied_prob_under,
+    diff_over_last_10   = empirical_prob_last_10 - implied_prob_over,
+    diff_under_last_10  = empirical_prob_under_last_10 - implied_prob_under,
     diff_over_last_20   = empirical_prob_last_20 - implied_prob_over,
-    diff_under_last_20  = (1 - empirical_prob_last_20) - implied_prob_under
+    diff_under_last_20  = empirical_prob_under_last_20 - implied_prob_under
   ) |>
   relocate(agency, .after = diff_under_last_20) |>
   mutate_if(is.double, round, 2) |>
@@ -306,13 +344,18 @@ distinct_steals_combos <-
   distinct(player_name, line)
 
 player_emp_probs_steals_2024_25 <-
-  future_pmap(distinct_steals_combos, get_empirical_prob, "STL", "2024_2025", .progress = TRUE) |> 
-  bind_rows() |> 
-  select(player_name, line, 
-         games_played_2024_2025 = games_played, 
-         empirical_prob_2024_2025, 
+  future_pmap(distinct_steals_combos, get_empirical_prob, "STL", "2024_2025", .progress = TRUE) |>
+  bind_rows() |>
+  select(player_name, line,
+         games_played_2024_2025 = games_played,
+         empirical_prob_2024_2025,
+         empirical_prob_under,
+         empirical_prob_last_5,
+         empirical_prob_under_last_5,
          empirical_prob_last_10,
-         empirical_prob_last_20)
+         empirical_prob_under_last_10,
+         empirical_prob_last_20,
+         empirical_prob_under_last_20)
 
 all_player_steals <-
   all_player_steals |>
@@ -321,15 +364,17 @@ all_player_steals <-
     implied_prob_under = 1 / under_price
   ) |>
   left_join(player_emp_probs_steals_2024_25, by = c("player_name", "line")) |>
-  rename(empirical_prob_over_2024_25 = empirical_prob_2024_2025) |>
-  mutate(empirical_prob_under_2024_25 = 1 - empirical_prob_over_2024_25) |>
+  rename(empirical_prob_over_2024_25 = empirical_prob_2024_2025,
+         empirical_prob_under_2024_25 = empirical_prob_under) |>
   mutate(
     diff_over_2024_25   = empirical_prob_over_2024_25 - implied_prob_over,
     diff_under_2024_25  = empirical_prob_under_2024_25 - implied_prob_under,
-    diff_over_last_10    = empirical_prob_last_10 - implied_prob_over,
-    diff_under_last_10   = (1 - empirical_prob_last_10) - implied_prob_under,
+    diff_over_last_5    = empirical_prob_last_5 - implied_prob_over,
+    diff_under_last_5   = empirical_prob_under_last_5 - implied_prob_under,
+    diff_over_last_10   = empirical_prob_last_10 - implied_prob_over,
+    diff_under_last_10  = empirical_prob_under_last_10 - implied_prob_under,
     diff_over_last_20   = empirical_prob_last_20 - implied_prob_over,
-    diff_under_last_20  = (1 - empirical_prob_last_20) - implied_prob_under
+    diff_under_last_20  = empirical_prob_under_last_20 - implied_prob_under
   ) |>
   relocate(agency, .after = diff_under_last_20) |>
   mutate_if(is.double, round, 2) |>
@@ -376,13 +421,18 @@ distinct_blocks_combos <-
   distinct(player_name, line)
 
 player_emp_probs_blocks_2024_25 <-
-  future_pmap(distinct_blocks_combos, get_empirical_prob, "BLK", "2024_2025", .progress = TRUE) |> 
-  bind_rows() |> 
-  select(player_name, line, 
-         games_played_2024_2025 = games_played, 
-         empirical_prob_2024_2025, 
+  future_pmap(distinct_blocks_combos, get_empirical_prob, "BLK", "2024_2025", .progress = TRUE) |>
+  bind_rows() |>
+  select(player_name, line,
+         games_played_2024_2025 = games_played,
+         empirical_prob_2024_2025,
+         empirical_prob_under,
+         empirical_prob_last_5,
+         empirical_prob_under_last_5,
          empirical_prob_last_10,
-         empirical_prob_last_20)
+         empirical_prob_under_last_10,
+         empirical_prob_last_20,
+         empirical_prob_under_last_20)
 
 all_player_blocks <-
   all_player_blocks |>
@@ -391,15 +441,17 @@ all_player_blocks <-
     implied_prob_under = 1 / under_price
   ) |>
   left_join(player_emp_probs_blocks_2024_25, by = c("player_name", "line")) |>
-  rename(empirical_prob_over_2024_25 = empirical_prob_2024_2025) |>
-  mutate(empirical_prob_under_2024_25 = 1 - empirical_prob_over_2024_25) |>
+  rename(empirical_prob_over_2024_25 = empirical_prob_2024_2025,
+         empirical_prob_under_2024_25 = empirical_prob_under) |>
   mutate(
     diff_over_2024_25   = empirical_prob_over_2024_25 - implied_prob_over,
     diff_under_2024_25  = empirical_prob_under_2024_25 - implied_prob_under,
-    diff_over_last_10    = empirical_prob_last_10 - implied_prob_over,
-    diff_under_last_10   = (1 - empirical_prob_last_10) - implied_prob_under,
+    diff_over_last_5    = empirical_prob_last_5 - implied_prob_over,
+    diff_under_last_5   = empirical_prob_under_last_5 - implied_prob_under,
+    diff_over_last_10   = empirical_prob_last_10 - implied_prob_over,
+    diff_under_last_10  = empirical_prob_under_last_10 - implied_prob_under,
     diff_over_last_20   = empirical_prob_last_20 - implied_prob_over,
-    diff_under_last_20  = (1 - empirical_prob_last_20) - implied_prob_under
+    diff_under_last_20  = empirical_prob_under_last_20 - implied_prob_under
   ) |>
   relocate(agency, .after = diff_under_last_20) |>
   mutate_if(is.double, round, 2) |>
@@ -446,13 +498,18 @@ distinct_threes_combos <-
   distinct(player_name, line)
 
 player_emp_probs_threes_2024_25 <-
-  future_pmap(distinct_threes_combos, get_empirical_prob, "Threes", "2024_2025", .progress = TRUE) |> 
-  bind_rows() |> 
-  select(player_name, line, 
-         games_played_2024_2025 = games_played, 
-         empirical_prob_2024_2025, 
+  future_pmap(distinct_threes_combos, get_empirical_prob, "Threes", "2024_2025", .progress = TRUE) |>
+  bind_rows() |>
+  select(player_name, line,
+         games_played_2024_2025 = games_played,
+         empirical_prob_2024_2025,
+         empirical_prob_under,
+         empirical_prob_last_5,
+         empirical_prob_under_last_5,
          empirical_prob_last_10,
-         empirical_prob_last_20)
+         empirical_prob_under_last_10,
+         empirical_prob_last_20,
+         empirical_prob_under_last_20)
 
 all_player_threes <-
   all_player_threes |>
@@ -461,15 +518,17 @@ all_player_threes <-
     implied_prob_under = 1 / under_price
   ) |>
   left_join(player_emp_probs_threes_2024_25, by = c("player_name", "line")) |>
-  rename(empirical_prob_over_2024_25 = empirical_prob_2024_2025) |>
-  mutate(empirical_prob_under_2024_25 = 1 - empirical_prob_over_2024_25) |>
+  rename(empirical_prob_over_2024_25 = empirical_prob_2024_2025,
+         empirical_prob_under_2024_25 = empirical_prob_under) |>
   mutate(
     diff_over_2024_25   = empirical_prob_over_2024_25 - implied_prob_over,
     diff_under_2024_25  = empirical_prob_under_2024_25 - implied_prob_under,
-    diff_over_last_10    = empirical_prob_last_10 - implied_prob_over,
-    diff_under_last_10   = (1 - empirical_prob_last_10) - implied_prob_under,
+    diff_over_last_5    = empirical_prob_last_5 - implied_prob_over,
+    diff_under_last_5   = empirical_prob_under_last_5 - implied_prob_under,
+    diff_over_last_10   = empirical_prob_last_10 - implied_prob_over,
+    diff_under_last_10  = empirical_prob_under_last_10 - implied_prob_under,
     diff_over_last_20   = empirical_prob_last_20 - implied_prob_over,
-    diff_under_last_20  = (1 - empirical_prob_last_20) - implied_prob_under
+    diff_under_last_20  = empirical_prob_under_last_20 - implied_prob_under
   ) |>
   relocate(agency, .after = diff_under_last_20) |>
   mutate_if(is.double, round, 2) |>
@@ -516,13 +575,18 @@ distinct_pra_combos <-
   distinct(player_name, line)
 
 player_emp_probs_pras_2024_25 <-
-  future_pmap(distinct_pra_combos, get_empirical_prob, "PRA", "2024_2025", .progress = TRUE) |> 
-  bind_rows() |> 
-  select(player_name, line, 
-         games_played_2024_2025 = games_played, 
-         empirical_prob_2024_2025, 
+  future_pmap(distinct_pra_combos, get_empirical_prob, "PRA", "2024_2025", .progress = TRUE) |>
+  bind_rows() |>
+  select(player_name, line,
+         games_played_2024_2025 = games_played,
+         empirical_prob_2024_2025,
+         empirical_prob_under,
+         empirical_prob_last_5,
+         empirical_prob_under_last_5,
          empirical_prob_last_10,
-         empirical_prob_last_20)
+         empirical_prob_under_last_10,
+         empirical_prob_last_20,
+         empirical_prob_under_last_20)
 
 all_player_pras <-
   all_player_pras |>
@@ -531,15 +595,17 @@ all_player_pras <-
     implied_prob_under = 1 / under_price
   ) |>
   left_join(player_emp_probs_pras_2024_25, by = c("player_name", "line")) |>
-  rename(empirical_prob_over_2024_25 = empirical_prob_2024_2025) |>
-  mutate(empirical_prob_under_2024_25 = 1 - empirical_prob_over_2024_25) |>
+  rename(empirical_prob_over_2024_25 = empirical_prob_2024_2025,
+         empirical_prob_under_2024_25 = empirical_prob_under) |>
   mutate(
     diff_over_2024_25   = empirical_prob_over_2024_25 - implied_prob_over,
     diff_under_2024_25  = empirical_prob_under_2024_25 - implied_prob_under,
-    diff_over_last_10    = empirical_prob_last_10 - implied_prob_over,
-    diff_under_last_10   = (1 - empirical_prob_last_10) - implied_prob_under,
+    diff_over_last_5    = empirical_prob_last_5 - implied_prob_over,
+    diff_under_last_5   = empirical_prob_under_last_5 - implied_prob_under,
+    diff_over_last_10   = empirical_prob_last_10 - implied_prob_over,
+    diff_under_last_10  = empirical_prob_under_last_10 - implied_prob_under,
     diff_over_last_20   = empirical_prob_last_20 - implied_prob_over,
-    diff_under_last_20  = (1 - empirical_prob_last_20) - implied_prob_under
+    diff_under_last_20  = empirical_prob_under_last_20 - implied_prob_under
   ) |>
   relocate(agency, .after = diff_under_last_20) |>
   mutate_if(is.double, round, 2) |>

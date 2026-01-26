@@ -140,147 +140,239 @@ tab_miss_by_one <- read_rds("../Data/tab_points_miss_by_one.rds")
 betright_miss_by_one <- read_rds("../Data/betright_points_miss_by_one.rds")
 ```
 
+```{r}
+# Pass data to OJS
+ojs_define(
+  all_arbs_data = all_arbs,
+  tab_miss_by_one_data = tab_miss_by_one,
+  betright_miss_by_one_data = betright_miss_by_one
+)
+```
+
 :::::: panel-tabset
 ## Top-Down
+
+```{ojs}
+viewof excludeSportsbetUnder = Inputs.toggle({
+  label: "Exclude Sportsbet Unders",
+  value: false
+})
+```
 
 ::: panel-tabset
 ## All
 
-```{r}
-#| column: page
+```{ojs}
+//| column: screen
 
-  all_arbs |>
-  filter(margin > 0) |> 
-  filter(over_agency %in% c("Sportsbet") | under_agency %in% c("Sportsbet")) |> 
-  mutate(margin = round(margin, 2))
+filtered_all_arbs = {
+  const data = transpose(all_arbs_data);
+  return data
+    .filter(d => d.margin > 0)
+    .filter(d => d.over_agency === "Sportsbet" || d.under_agency === "Sportsbet")
+    .filter(d => !excludeSportsbetUnder || d.under_agency !== "Sportsbet")
+    .map(d => ({...d, margin: Math.round(d.margin * 100) / 100}));
+}
+
+html`<style>
+.compact-table table { width: 100%; table-layout: auto; font-size: 12px; }
+.compact-table th, .compact-table td {
+  padding: 4px 6px;
+  word-wrap: break-word;
+  white-space: normal;
+  max-width: 150px;
+  overflow-wrap: break-word;
+}
+.compact-table th {
+  background-color: #f0f0f0;
+  font-weight: bold;
+  position: sticky;
+  top: 0;
+}
+</style>
+<div class="compact-table">${Inputs.table(filtered_all_arbs)}</div>`
 ```
 
 ## TAB
 
-```{r}
-#| column: page
+```{ojs}
+//| column: screen
 
-  all_arbs |>
-  filter(margin > 0) |> 
-  filter(over_agency %in% c("Sportsbet") | under_agency %in% c("Sportsbet")) |> 
-  filter(over_agency %in% c("TAB") | under_agency %in% c("TAB")) |> 
-  mutate(margin = round(margin, 2))
+filtered_tab_arbs = {
+  const data = transpose(all_arbs_data);
+  return data
+    .filter(d => d.margin > 0)
+    .filter(d => d.over_agency === "Sportsbet" || d.under_agency === "Sportsbet")
+    .filter(d => d.over_agency === "TAB" || d.under_agency === "TAB")
+    .filter(d => !excludeSportsbetUnder || d.under_agency !== "Sportsbet")
+    .map(d => ({...d, margin: Math.round(d.margin * 100) / 100}));
+}
+
+html`<div class="compact-table">${Inputs.table(filtered_tab_arbs)}</div>`
 ```
 
 ## Dabble
 
-```{r}
-#| column: page
+```{ojs}
+//| column: screen
 
-  all_arbs |>
-  filter(margin > 0) |> 
-  filter(over_agency %in% c("Sportsbet") | under_agency %in% c("Sportsbet")) |> 
-  filter(over_agency %in% c("Dabble") | under_agency %in% c("Dabble")) |> 
-  mutate(margin = round(margin, 2))
+filtered_dabble_arbs = {
+  const data = transpose(all_arbs_data);
+  return data
+    .filter(d => d.margin > 0)
+    .filter(d => d.over_agency === "Sportsbet" || d.under_agency === "Sportsbet")
+    .filter(d => d.over_agency === "Dabble" || d.under_agency === "Dabble")
+    .filter(d => !excludeSportsbetUnder || d.under_agency !== "Sportsbet")
+    .map(d => ({...d, margin: Math.round(d.margin * 100) / 100}));
+}
+
+html`<div class="compact-table">${Inputs.table(filtered_dabble_arbs)}</div>`
 ```
 
 ## Dabble Pick Em
 
-```{r}
-#| column: page
+```{ojs}
+//| column: screen
 
-  all_arbs |>
-  filter(margin > 0) |> 
-  filter(over_agency %in% c("Sportsbet") | under_agency %in% c("Sportsbet")) |> 
-  filter(over_agency %in% c("Dabble Pickem") | under_agency %in% c("Dabble Pickem")) |> 
-  mutate(margin = round(margin, 2))
+filtered_dabble_pickem_arbs = {
+  const data = transpose(all_arbs_data);
+  return data
+    .filter(d => d.margin > 0)
+    .filter(d => d.over_agency === "Sportsbet" || d.under_agency === "Sportsbet")
+    .filter(d => d.over_agency === "Dabble Pickem" || d.under_agency === "Dabble Pickem")
+    .filter(d => !excludeSportsbetUnder || d.under_agency !== "Sportsbet")
+    .map(d => ({...d, margin: Math.round(d.margin * 100) / 100}));
+}
+
+html`<div class="compact-table">${Inputs.table(filtered_dabble_pickem_arbs)}</div>`
 ```
 
 ## Bet365
 
-```{r}
-#| column: page
+```{ojs}
+//| column: screen
 
-  all_arbs |>
-  filter(margin > 0) |> 
-  filter(over_agency %in% c("Sportsbet") | under_agency %in% c("Sportsbet")) |> 
-  filter(over_agency %in% c("Bet365") | under_agency %in% c("Bet365")) |> 
-  mutate(margin = round(margin, 2))
+filtered_bet365_arbs = {
+  const data = transpose(all_arbs_data);
+  return data
+    .filter(d => d.margin > 0)
+    .filter(d => d.over_agency === "Sportsbet" || d.under_agency === "Sportsbet")
+    .filter(d => d.over_agency === "Bet365" || d.under_agency === "Bet365")
+    .filter(d => !excludeSportsbetUnder || d.under_agency !== "Sportsbet")
+    .map(d => ({...d, margin: Math.round(d.margin * 100) / 100}));
+}
+
+html`<div class="compact-table">${Inputs.table(filtered_bet365_arbs)}</div>`
 ```
 
 ## BetRight
 
-```{r}
-#| column: page
+```{ojs}
+//| column: screen
 
-  all_arbs |>
-  filter(margin > 0) |> 
-  filter(over_agency %in% c("Sportsbet") | under_agency %in% c("Sportsbet")) |> 
-  filter(over_agency %in% c("BetRight") | under_agency %in% c("BetRight")) |> 
-  mutate(margin = round(margin, 2))
+filtered_betright_arbs = {
+  const data = transpose(all_arbs_data);
+  return data
+    .filter(d => d.margin > 0)
+    .filter(d => d.over_agency === "Sportsbet" || d.under_agency === "Sportsbet")
+    .filter(d => d.over_agency === "BetRight" || d.under_agency === "BetRight")
+    .filter(d => !excludeSportsbetUnder || d.under_agency !== "Sportsbet")
+    .map(d => ({...d, margin: Math.round(d.margin * 100) / 100}));
+}
+
+html`<div class="compact-table">${Inputs.table(filtered_betright_arbs)}</div>`
 ```
 
 ## BetMakers
 
-```{r}
-#| column: page
+```{ojs}
+//| column: screen
 
-  all_arbs |>
-  filter(margin > 0) |> 
-  filter(over_agency %in% c("Sportsbet") | under_agency %in% c("Sportsbet")) |> 
-  filter(over_agency %in% c("BetMakers") | under_agency %in% c("BetMakers")) |> 
-  mutate(margin = round(margin, 2))
+filtered_betmakers_arbs = {
+  const data = transpose(all_arbs_data);
+  return data
+    .filter(d => d.margin > 0)
+    .filter(d => d.over_agency === "Sportsbet" || d.under_agency === "Sportsbet")
+    .filter(d => d.over_agency === "BetMakers" || d.under_agency === "BetMakers")
+    .filter(d => !excludeSportsbetUnder || d.under_agency !== "Sportsbet")
+    .map(d => ({...d, margin: Math.round(d.margin * 100) / 100}));
+}
+
+html`<div class="compact-table">${Inputs.table(filtered_betmakers_arbs)}</div>`
 ```
 
 ## Neds
 
-```{r}
-#| column: page
+```{ojs}
+//| column: screen
 
-  all_arbs |>
-  filter(margin > 0) |> 
-  filter(over_agency %in% c("Sportsbet") | under_agency %in% c("Sportsbet")) |> 
-  filter(over_agency %in% c("Neds") | under_agency %in% c("Neds")) |> 
-  mutate(margin = round(margin, 2))
+filtered_neds_arbs = {
+  const data = transpose(all_arbs_data);
+  return data
+    .filter(d => d.margin > 0)
+    .filter(d => d.over_agency === "Sportsbet" || d.under_agency === "Sportsbet")
+    .filter(d => d.over_agency === "Neds" || d.under_agency === "Neds")
+    .filter(d => !excludeSportsbetUnder || d.under_agency !== "Sportsbet")
+    .map(d => ({...d, margin: Math.round(d.margin * 100) / 100}));
+}
+
+html`<div class="compact-table">${Inputs.table(filtered_neds_arbs)}</div>`
 ```
 
 ## Pointsbet
 
-```{r}
-#| column: page
+```{ojs}
+//| column: screen
 
-  all_arbs |>
-  filter(margin > 0) |> 
-  filter(over_agency %in% c("Sportsbet") | under_agency %in% c("Sportsbet")) |> 
-  filter(over_agency %in% c("Pointsbet") | under_agency %in% c("Pointsbet")) |> 
-  mutate(margin = round(margin, 2))
+filtered_pointsbet_arbs = {
+  const data = transpose(all_arbs_data);
+  return data
+    .filter(d => d.margin > 0)
+    .filter(d => d.over_agency === "Sportsbet" || d.under_agency === "Sportsbet")
+    .filter(d => d.over_agency === "Pointsbet" || d.under_agency === "Pointsbet")
+    .filter(d => !excludeSportsbetUnder || d.under_agency !== "Sportsbet")
+    .map(d => ({...d, margin: Math.round(d.margin * 100) / 100}));
+}
+
+html`<div class="compact-table">${Inputs.table(filtered_pointsbet_arbs)}</div>`
 ```
 
 ## TAB Miss-by-1 Points
 
-```{r}
-#| column: page
+```{ojs}
+//| column: screen
 
-tab_miss_by_1_points_arbs <-
-  tab_miss_by_one |>
-  filter(margin > 0) |> 
-  filter(over_agency %in% c("Sportsbet") | under_agency %in% c("Sportsbet")) |> 
-  filter(over_agency %in% c("TAB") | under_agency %in% c("TAB")) |> 
-  filter(line >= 8.5) |> 
-  mutate(margin = round(margin, 2))
+filtered_tab_miss_by_1_arbs = {
+  const data = transpose(tab_miss_by_one_data);
+  return data
+    .filter(d => d.margin > 0)
+    .filter(d => d.over_agency === "Sportsbet" || d.under_agency === "Sportsbet")
+    .filter(d => d.over_agency === "TAB" || d.under_agency === "TAB")
+    .filter(d => d.line >= 8.5)
+    .filter(d => !excludeSportsbetUnder || d.under_agency !== "Sportsbet")
+    .map(d => ({...d, margin: Math.round(d.margin * 100) / 100}));
+}
 
-tab_miss_by_1_points_arbs
+html`<div class="compact-table">${Inputs.table(filtered_tab_miss_by_1_arbs)}</div>`
 ```
 
 ## BetRight Miss-by-1 Points
 
-```{r}
-#| column: page
+```{ojs}
+//| column: screen
 
-betright_miss_by_1_points_arbs <-
-  betright_miss_by_one |>
-  filter(margin > 0) |> 
-  filter(over_agency %in% c("Sportsbet") | under_agency %in% c("Sportsbet")) |> 
-  filter(over_agency %in% c("BetRight") | under_agency %in% c("BetRight")) |> 
-  filter(line >= 8.5) |> 
-  mutate(margin = round(margin, 2))
+filtered_betright_miss_by_1_arbs = {
+  const data = transpose(betright_miss_by_one_data);
+  return data
+    .filter(d => d.margin > 0)
+    .filter(d => d.over_agency === "Sportsbet" || d.under_agency === "Sportsbet")
+    .filter(d => d.over_agency === "BetRight" || d.under_agency === "BetRight")
+    .filter(d => d.line >= 8.5)
+    .filter(d => !excludeSportsbetUnder || d.under_agency !== "Sportsbet")
+    .map(d => ({...d, margin: Math.round(d.margin * 100) / 100}));
+}
 
-betright_miss_by_1_points_arbs
+html`<div class="compact-table">${Inputs.table(filtered_betright_miss_by_1_arbs)}</div>`
 ```
 :::
 

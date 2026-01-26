@@ -40,14 +40,32 @@ player_names_non_unique <-
     ungroup()
 
 player_names <-
-    bind_rows(player_names_unique, player_names_non_unique) |> 
-    mutate(join_name = ifelse(player_full_name == "Keyontae Johnson", "Key Johnson", join_name)) |> 
-    mutate(join_name = ifelse(player_full_name == "Miles Bridges", "Mil Bridges", join_name)) |> 
+    bind_rows(player_names_unique, player_names_non_unique) |>
+    mutate(join_name = ifelse(player_full_name == "Keyontae Johnson", "Key Johnson", join_name)) |>
+    mutate(join_name = ifelse(player_full_name == "Miles Bridges", "Mil Bridges", join_name)) |>
     mutate(join_name = ifelse(player_full_name == "Jaylin Williams", "Jay Williams", join_name))
 
-sportsbet_html <-
-  sportsbet_url |> 
-  read_html_live()
+# Function to read HTML with retry logic
+read_html_with_retry <- function(url, max_attempts = 3, wait_seconds = 2) {
+  for (attempt in 1:max_attempts) {
+    tryCatch({
+      message(paste("Attempt", attempt, "of", max_attempts, "to load", url))
+      html <- read_html_live(url)
+      message("Successfully loaded HTML")
+      return(html)
+    }, error = function(e) {
+      message(paste("Attempt", attempt, "failed:", e$message))
+      if (attempt < max_attempts) {
+        message(paste("Waiting", wait_seconds, "seconds before retry..."))
+        Sys.sleep(wait_seconds)
+      } else {
+        stop(paste("Failed to load HTML after", max_attempts, "attempts"))
+      }
+    })
+  }
+}
+
+sportsbet_html <- read_html_with_retry(sportsbet_url, max_attempts = 3, wait_seconds = 2)
 
 #===============================================================================
 # Use rvest to get main market information-------------------------------------#

@@ -220,42 +220,6 @@ all_player_pras <-
 
 ##%######################################################%##
 #                                                          #
-####                  Double Double                     ####
-#                                                          #
-##%######################################################%##
-
-# Get all scraped odds files and combine
-all_player_double_double <-
-  list.files("Data/scraped_odds",
-             full.names = TRUE,
-             pattern = "player_double_double") |>
-  map(read_csv) |>
-  # Ignore null elements
-  keep( ~ nrow(.x) > 0) |>
-  reduce(bind_rows) |>
-  select(-matches("id"))
-
-
-
-##%######################################################%##
-#                                                          #
-####                  Triple Double                     ####
-#                                                          #
-##%######################################################%##
-
-# Get all scraped odds files and combine
-all_player_triple_double <-
-  list.files("Data/scraped_odds",
-             full.names = TRUE,
-             pattern = "player_triple_double") |>
-  map(read_csv) |>
-  # Ignore null elements
-  keep( ~ nrow(.x) > 0) |>
-  reduce(bind_rows) |>
-  select(-matches("id"))
-
-##%######################################################%##
-#                                                          #
 ####   Get all over under comparisons of same market    ####
 #                                                          #
 ##%######################################################%##
@@ -737,62 +701,6 @@ blocks_arbs <-
   distinct(match, player_name, line, over_agency, under_agency, .keep_all = TRUE) |>
   relocate(over_price, over_agency, under_price, under_agency, .after = opposition_team)
 
-# Double Double------------------------------------------------------------------------
-double_double_unders <-
-  all_player_double_double |>
-  filter(market_name == "Player Double Double") |>
-  select(
-    match,
-    market_name,
-    player_name,
-    player_team,
-    line,
-    under_price,
-    opposition_team,
-    agency
-  ) |>
-  filter(!is.na(under_price)) |>
-  rename(under_agency = agency)
-
-double_double_overs <-
-  all_player_double_double |>
-  filter(market_name == "Player Double Double") |>
-  select(
-    match,
-    market_name,
-    player_name,
-    player_team,
-    line,
-    over_price,
-    opposition_team,
-    agency
-  ) |>
-  rename(over_agency = agency)
-
-double_double_arbs <-
-  double_double_unders |>
-  inner_join(
-    double_double_overs,
-    by = c(
-      "match",
-      "market_name",
-      "player_name",
-      "player_team",
-      "line",
-      "opposition_team"
-    ),
-    relationship = "many-to-many"
-  ) |>
-  relocate(under_price, .after = over_price) |>
-  mutate(margin = 1 / under_price + 1 / over_price) |>
-  arrange(margin) |>
-  mutate(margin = (1 - margin)) |>
-  mutate(margin = 100 * margin) |>
-  # filter(margin > 0) |>
-  distinct(match, player_name, line, over_agency, under_agency, .keep_all = TRUE) |>
-  relocate(over_price, over_agency, under_price, under_agency, .after = opposition_team) |> 
-  filter(over_agency != under_agency)
-
 #===============================================================================
 # Get all ARBs together
 #===============================================================================
@@ -816,6 +724,7 @@ current_time <- Sys.time()
 gmt_time <- as.POSIXct(current_time, tz = "GMT")
 gmt_time_dttm <- as_datetime(gmt_time)
 
+
 all_arbs <-
   bind_rows(
     points_arbs,
@@ -824,8 +733,7 @@ all_arbs <-
     blocks_arbs,
     steals_arbs,
     threes_arbs,
-    pra_arbs,
-    double_double_arbs
+    pra_arbs
   ) |>
   arrange(desc(margin)) |> 
   filter(!is.na(player_name)) |> 
