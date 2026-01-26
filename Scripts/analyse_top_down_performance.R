@@ -56,7 +56,7 @@ combined_SB_results <- combined_SB |>
     )
   ) |> 
   filter(!is.na(outcome)) |> 
-  distinct(match, game_date, market_name, player_name, line, over_price, over_agency, under_price, under_agency, margin, actual_stat, outcome) |> 
+  distinct(match, game_date, market_name, player_name, line, over_agency, under_agency, actual_stat, outcome, .keep_all = TRUE) |> 
   filter(margin < 10) |> 
     mutate(
     over_stake = 100 * under_price / (over_price + under_price),
@@ -80,7 +80,9 @@ combined_SB_results <- combined_SB |>
 results <-
 combined_SB_results |> 
   filter(over_agency != "Dabble Pickem") |> 
-  filter(under_agency != "Dabble Pickem") |> 
+  filter(under_agency != "Dabble Pickem") |>
+  # filter(game_date >= as_date("2025-11-01")) |>
+  # filter(game_date <= as_date("2025-11-30")) |>
   group_by(over_agency, under_agency) |> 
   summarise(
     bets = n(),
@@ -109,3 +111,42 @@ results_sb_unders <-
   filter(over_agency == "Sportsbet") |> 
   select(under_agency, bets, total_unders_stake, total_unders_profit, unders_roi_pct) |> 
   arrange(desc(unders_roi_pct))
+
+#===============================================================================
+# Results by date
+#===============================================================================
+
+results_by_date <-
+  combined_SB_results |> 
+  filter(over_agency != "Dabble Pickem") |> 
+  filter(under_agency != "Dabble Pickem") |> 
+  group_by(game_date, over_agency, under_agency) |> 
+  summarise(
+    bets = n(),
+    total_unders_profit = sum(under_profit),
+    total_unders_stake = sum(under_stake),
+    total_overs_profit = sum(over_profit),
+    total_overs_stake = sum(over_stake),
+    total_arb_profit = sum(total_profit),
+    total_stake = sum(over_stake + under_stake),
+    unders_roi_pct = 100 * total_unders_profit / total_unders_stake,
+    overs_roi_pct = 100 * total_overs_profit / total_overs_stake,
+    arb_roi_pct = 100 * total_arb_profit / total_stake
+  ) |> 
+  ungroup()
+
+# Unders with Sportsbet
+results_by_date_sb_unders <-
+  results_by_date |>
+  filter(over_agency == "Sportsbet") |> 
+  select(game_date, under_agency, bets, total_unders_stake, total_unders_profit, unders_roi_pct) |> 
+  arrange(game_date, desc(unders_roi_pct))
+
+total_performance_by_date <-
+results_by_date_sb_unders |>
+  group_by(game_date) |>
+  summarise(total_bets = sum(bets),
+            total_stake = sum(total_unders_stake),
+            total_profit = sum(total_unders_profit)) |>
+  mutate(roi_pct = 100 * total_profit / total_stake) |> 
+  arrange(desc(game_date))

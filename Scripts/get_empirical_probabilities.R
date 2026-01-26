@@ -3,8 +3,6 @@
 #===============================================================================
 
 library(tidyverse)
-library(memoise)
-library(digest)
 `%notin%` <- Negate(`%in%`)
 
 #===============================================================================
@@ -44,66 +42,43 @@ combined_stats_2025_2026 <-
     STL = steals,
     BLK = blocks,
     Threes = threePointersMade
-  ) |>
+  ) |> 
   mutate(PRA = PTS + REB + AST,
          RA = REB + AST,
          Stocks = STL + BLK
   )
 
-#===============================================================================
-# Pre-compute time window datasets (last 5, 10, 20 games)
-#===============================================================================
+# Combined stats for rolling windows
+combined_stats_all <- bind_rows(combined_stats_2024_2025, combined_stats_2025_2026)
 
-# Combine both seasons for time window analysis
-combined_stats_all_seasons <-
-  combined_stats_2024_2025 |>
-  bind_rows(combined_stats_2025_2026)
-
-# Pre-compute last 5 games for all players
+# Precompute rolling windows (used by get_empirical_prob and furrr globals)
 player_stats_last_5_global <-
-  combined_stats_all_seasons |>
+  combined_stats_all |>
   group_by(personId) |>
   arrange(desc(GAME_DATE)) |>
   slice(1:5) |>
   ungroup()
 
-# Pre-compute last 10 games for all players
 player_stats_last_10_global <-
-  combined_stats_all_seasons |>
+  combined_stats_all |>
   group_by(personId) |>
   arrange(desc(GAME_DATE)) |>
   slice(1:10) |>
   ungroup()
 
-# Pre-compute last 20 games for all players
 player_stats_last_20_global <-
-  combined_stats_all_seasons |>
+  combined_stats_all |>
   group_by(personId) |>
   arrange(desc(GAME_DATE)) |>
   slice(1:20) |>
   ungroup()
-
-# Clean up temporary combined dataset
-rm(combined_stats_all_seasons)
 
 #===============================================================================
 # Create a function that takes a player name + line and returns their hit rate
 #===============================================================================
 
 get_empirical_prob <- function(player_name, line, stat, season) {
-
-  # Check if global datasets exist (for parallel processing compatibility)
-  # If not, reload them
-  if (!exists("combined_stats_2024_2025", inherits = FALSE)) {
-    source("Scripts/get_empirical_probabilities.R", local = FALSE)
-  }
-
-  # Validate stat parameter
-  valid_stats <- c("PTS", "REB", "AST", "STL", "BLK", "Threes", "PRA")
-  if (!(stat %in% valid_stats)) {
-    stop(paste("stat must be one of:", paste(valid_stats, collapse = ", ")))
-  }
-
+  
   # Choose the data based on the selected season
   if (season == "2024_2025") {
     player_stats <- combined_stats_2024_2025 |> filter(PLAYER_NAME == player_name) |> filter(!is.na(minutes))
@@ -112,115 +87,264 @@ get_empirical_prob <- function(player_name, line, stat, season) {
   } else {
     stop("Invalid season selected")
   }
-
-  # Check if player has any games
-  if (nrow(player_stats) == 0) {
-    # Return empty result with proper structure
-    empty_result <- tibble(
-      games_played = 0,
-      empirical_prob = NA_real_,
-      empirical_prob_under = NA_real_
-    )
-
-    if (season == "2024_2025") {
-      empty_result <- empty_result |>
-        mutate(
-          empirical_prob_last_5 = NA_real_,
-          empirical_prob_under_last_5 = NA_real_,
-          empirical_prob_last_10 = NA_real_,
-          empirical_prob_under_last_10 = NA_real_,
-          empirical_prob_last_20 = NA_real_,
-          empirical_prob_under_last_20 = NA_real_
-        )
-    }
-
-    # Rename and add metadata
-    new_col_name <- paste("empirical_prob", season, sep = "_")
-    empty_result <- empty_result |>
-      rename_with(~ new_col_name, .cols = "empirical_prob") |>
-      mutate(line = line, player_name = player_name, season = season)
-
-    return(empty_result)
-  }
-
-  # Get the stat column dynamically using tidy evaluation
-  stat_column <- sym(stat)
-
-  # Compute empirical probabilities for the season
-  empirical_prob <-
-    player_stats |>
-    group_by(PLAYER_NAME) |>
-    summarise(
-      games_played = n(),
-      empirical_prob = mean(!!stat_column >= line),
-      empirical_prob_under = mean(!!stat_column < line)
-    ) |>
-    ungroup()
-
-  # If season is 2024_2025, add last 5/10/20 statistics
-  if (season == "2024_2025") {
-
-    # Filter for the specific player and compute stats
-    player_last_5 <- player_stats_last_5_global |>
-      filter(PLAYER_NAME == player_name)
-
-    if (nrow(player_last_5) > 0) {
-      last_5 <- player_last_5 |>
-        summarise(
-          PLAYER_NAME = first(PLAYER_NAME),
-          empirical_prob_last_5 = mean(!!stat_column >= line),
-          empirical_prob_under_last_5 = mean(!!stat_column < line)
-        )
-    } else {
-      last_5 <- tibble(
-        PLAYER_NAME = player_name,
-        empirical_prob_last_5 = NA_real_,
-        empirical_prob_under_last_5 = NA_real_
-      )
-    }
-
-    player_last_10 <- player_stats_last_10_global |>
-      filter(PLAYER_NAME == player_name)
-
-    if (nrow(player_last_10) > 0) {
-      last_10 <- player_last_10 |>
-        summarise(
-          PLAYER_NAME = first(PLAYER_NAME),
-          empirical_prob_last_10 = mean(!!stat_column >= line),
-          empirical_prob_under_last_10 = mean(!!stat_column < line)
-        )
-    } else {
-      last_10 <- tibble(
-        PLAYER_NAME = player_name,
-        empirical_prob_last_10 = NA_real_,
-        empirical_prob_under_last_10 = NA_real_
-      )
-    }
-
-    player_last_20 <- player_stats_last_20_global |>
-      filter(PLAYER_NAME == player_name)
-
-    if (nrow(player_last_20) > 0) {
-      last_20 <- player_last_20 |>
-        summarise(
-          PLAYER_NAME = first(PLAYER_NAME),
-          empirical_prob_last_20 = mean(!!stat_column >= line),
-          empirical_prob_under_last_20 = mean(!!stat_column < line)
-        )
-    } else {
-      last_20 <- tibble(
-        PLAYER_NAME = player_name,
-        empirical_prob_last_20 = NA_real_,
-        empirical_prob_under_last_20 = NA_real_
-      )
-    }
-
+  
+  # Last 5/10/20 games (precomputed)
+  player_stats_last_5 <- player_stats_last_5_global
+  player_stats_last_10 <- player_stats_last_10_global
+  player_stats_last_20 <- player_stats_last_20_global
+  
+  # Initialize empirical_prob
+  empirical_prob <- NULL
+  
+  # Branch based on whether stat is PTS, REB or AST, etc.
+  if (stat == "PTS") {
     empirical_prob <-
-      empirical_prob |>
-      left_join(last_5, by = "PLAYER_NAME") |>
-      left_join(last_10, by = "PLAYER_NAME") |>
-      left_join(last_20, by = "PLAYER_NAME") |>
-      select(-PLAYER_NAME)
+      player_stats |>
+      group_by(PLAYER_NAME) |>
+      summarise(games_played = n(),
+                empirical_prob = mean(PTS >= line),
+                empirical_prob_under = mean(PTS < line)) |>
+      ungroup()
+    
+    if (season == "2024_2025") {
+      last_5 <- player_stats_last_5 |>
+        group_by(PLAYER_NAME) |>
+        summarise(empirical_prob_last_5 = mean(PTS >= line),
+                  empirical_prob_under_last_5 = mean(PTS < line)) |>
+        ungroup()
+      
+      last_10 <- player_stats_last_10 |> 
+        group_by(PLAYER_NAME) |>
+        summarise(empirical_prob_last_10 = mean(PTS >= line),
+                  empirical_prob_under_last_10 = mean(PTS < line)) |>
+        ungroup()
+      
+      last_20 <- player_stats_last_20 |> 
+        group_by(PLAYER_NAME) |>
+        summarise(empirical_prob_last_20 = mean(PTS >= line),
+                  empirical_prob_under_last_20 = mean(PTS < line)) |>
+        ungroup()
+      
+      empirical_prob <-
+        empirical_prob |>
+        left_join(last_5, by = "PLAYER_NAME") |>
+        left_join(last_10, by = "PLAYER_NAME") |>
+        left_join(last_20, by = "PLAYER_NAME") |>
+        select(-PLAYER_NAME)
+    }
+    
+  } else if (stat == "REB") {
+    empirical_prob <-
+      player_stats |>
+      group_by(PLAYER_NAME) |>
+      summarise(games_played = n(),
+                empirical_prob = mean(REB >= line),
+                empirical_prob_under = mean(REB < line)) |>
+      ungroup()
+    
+    if (season == "2024_2025") {
+      last_5 <- player_stats_last_5 |>
+        group_by(PLAYER_NAME) |>
+        summarise(empirical_prob_last_5 = mean(REB >= line),
+                  empirical_prob_under_last_5 = mean(REB < line)) |>
+        ungroup()
+      
+      last_10 <- player_stats_last_10 |> 
+        group_by(PLAYER_NAME) |>
+        summarise(empirical_prob_last_10 = mean(REB >= line),
+                  empirical_prob_under_last_10 = mean(REB < line)) |>
+        ungroup()
+      
+      last_20 <- player_stats_last_20 |> 
+        group_by(PLAYER_NAME) |>
+        summarise(empirical_prob_last_20 = mean(REB >= line),
+                  empirical_prob_under_last_20 = mean(REB < line)) |>
+        ungroup()
+      
+      empirical_prob <-
+        empirical_prob |>
+        left_join(last_5, by = "PLAYER_NAME") |>
+        left_join(last_10, by = "PLAYER_NAME") |>
+        left_join(last_20, by = "PLAYER_NAME") |>
+        select(-PLAYER_NAME)
+    }
+  } else if (stat == "AST") {
+    empirical_prob <-
+      player_stats |>
+      group_by(PLAYER_NAME) |>
+      summarise(games_played = n(),
+                empirical_prob = mean(AST >= line),
+                empirical_prob_under = mean(AST < line)) |>
+      ungroup()
+    
+    if (season == "2024_2025") {
+      last_5 <- player_stats_last_5 |>
+        group_by(PLAYER_NAME) |>
+        summarise(empirical_prob_last_5 = mean(AST >= line),
+                  empirical_prob_under_last_5 = mean(AST < line)) |>
+        ungroup()
+      
+      last_10 <- player_stats_last_10 |> 
+        group_by(PLAYER_NAME) |>
+        summarise(empirical_prob_last_10 = mean(AST >= line),
+                  empirical_prob_under_last_10 = mean(AST < line)) |>
+        ungroup()
+      
+      last_20 <- player_stats_last_20 |> 
+        group_by(PLAYER_NAME) |>
+        summarise(empirical_prob_last_20 = mean(AST >= line),
+                  empirical_prob_under_last_20 = mean(AST < line)) |>
+        ungroup()
+      
+      empirical_prob <-
+        empirical_prob |>
+        left_join(last_5, by = "PLAYER_NAME") |>
+        left_join(last_10, by = "PLAYER_NAME") |>
+        left_join(last_20, by = "PLAYER_NAME") |>
+        select(-PLAYER_NAME)
+    }
+  } else if (stat == "STL") {
+    empirical_prob <-
+      player_stats |>
+      group_by(PLAYER_NAME) |>
+      summarise(games_played = n(),
+                empirical_prob = mean(STL >= line),
+                empirical_prob_under = mean(STL < line)) |>
+      ungroup()
+    
+    if (season == "2024_2025") {
+      last_5 <- player_stats_last_5 |>
+        group_by(PLAYER_NAME) |>
+        summarise(empirical_prob_last_5 = mean(STL >= line),
+                  empirical_prob_under_last_5 = mean(STL < line)) |>
+        ungroup()
+      
+      last_10 <- player_stats_last_10 |> 
+        group_by(PLAYER_NAME) |>
+        summarise(empirical_prob_last_10 = mean(STL >= line),
+                  empirical_prob_under_last_10 = mean(STL < line)) |>
+        ungroup()
+      
+      last_20 <- player_stats_last_20 |> 
+        group_by(PLAYER_NAME) |>
+        summarise(empirical_prob_last_20 = mean(STL >= line),
+                  empirical_prob_under_last_20 = mean(STL < line)) |>
+        ungroup()
+      
+      empirical_prob <-
+        empirical_prob |>
+        left_join(last_5, by = "PLAYER_NAME") |>
+        left_join(last_10, by = "PLAYER_NAME") |>
+        left_join(last_20, by = "PLAYER_NAME") |>
+        select(-PLAYER_NAME)
+    }
+  } else if (stat == "BLK") {
+    empirical_prob <-
+      player_stats |>
+      group_by(PLAYER_NAME) |>
+      summarise(games_played = n(),
+                empirical_prob = mean(BLK >= line),
+                empirical_prob_under = mean(BLK < line)) |>
+      ungroup()
+    
+    if (season == "2024_2025") {
+      last_5 <- player_stats_last_5 |>
+        group_by(PLAYER_NAME) |>
+        summarise(empirical_prob_last_5 = mean(BLK >= line),
+                  empirical_prob_under_last_5 = mean(BLK < line)) |>
+        ungroup()
+      
+      last_10 <- player_stats_last_10 |> 
+        group_by(PLAYER_NAME) |>
+        summarise(empirical_prob_last_10 = mean(BLK >= line),
+                  empirical_prob_under_last_10 = mean(BLK < line)) |>
+        ungroup()
+      
+      last_20 <- player_stats_last_20 |> 
+        group_by(PLAYER_NAME) |>
+        summarise(empirical_prob_last_20 = mean(BLK >= line),
+                  empirical_prob_under_last_20 = mean(BLK < line)) |>
+        ungroup()
+      
+      empirical_prob <-
+        empirical_prob |>
+        left_join(last_5, by = "PLAYER_NAME") |>
+        left_join(last_10, by = "PLAYER_NAME") |>
+        left_join(last_20, by = "PLAYER_NAME") |>
+        select(-PLAYER_NAME)
+    }
+  } else if (stat == "Threes") {
+    empirical_prob <-
+      player_stats |>
+      group_by(PLAYER_NAME) |>
+      summarise(games_played = n(),
+                empirical_prob = mean(Threes >= line),
+                empirical_prob_under = mean(Threes < line)) |>
+      ungroup()
+    
+    if (season == "2024_2025") {
+      last_5 <- player_stats_last_5 |>
+        group_by(PLAYER_NAME) |>
+        summarise(empirical_prob_last_5 = mean(Threes >= line),
+                  empirical_prob_under_last_5 = mean(Threes < line)) |>
+        ungroup()
+      
+      last_10 <- player_stats_last_10 |> 
+        group_by(PLAYER_NAME) |>
+        summarise(empirical_prob_last_10 = mean(Threes >= line),
+                  empirical_prob_under_last_10 = mean(Threes < line)) |>
+        ungroup()
+      
+      last_20 <- player_stats_last_20 |> 
+        group_by(PLAYER_NAME) |>
+        summarise(empirical_prob_last_20 = mean(Threes >= line),
+                  empirical_prob_under_last_20 = mean(Threes < line)) |>
+        ungroup()
+      
+      empirical_prob <-
+        empirical_prob |>
+        left_join(last_5, by = "PLAYER_NAME") |>
+        left_join(last_10, by = "PLAYER_NAME") |>
+        left_join(last_20, by = "PLAYER_NAME") |>
+        select(-PLAYER_NAME)
+    }
+  } else if (stat == "PRA") {
+    empirical_prob <-
+      player_stats |>
+      group_by(PLAYER_NAME) |>
+      summarise(games_played = n(),
+                empirical_prob = mean(PRA >= line),
+                empirical_prob_under = mean(PRA < line)) |>
+      ungroup()
+    
+    if (season == "2024_2025") {
+      last_5 <- player_stats_last_5 |>
+        group_by(PLAYER_NAME) |>
+        summarise(empirical_prob_last_5 = mean(PRA >= line),
+                  empirical_prob_under_last_5 = mean(PRA < line)) |>
+        ungroup()
+      
+      last_10 <- player_stats_last_10 |> 
+        group_by(PLAYER_NAME) |>
+        summarise(empirical_prob_last_10 = mean(PRA >= line),
+                  empirical_prob_under_last_10 = mean(PRA < line)) |>
+        ungroup()
+      
+      last_20 <- player_stats_last_20 |> 
+        group_by(PLAYER_NAME) |>
+        summarise(empirical_prob_last_20 = mean(PRA >= line),
+                  empirical_prob_under_last_20 = mean(PRA < line)) |>
+        ungroup()
+      
+      empirical_prob <-
+        empirical_prob |>
+        left_join(last_5, by = "PLAYER_NAME") |>
+        left_join(last_10, by = "PLAYER_NAME") |>
+        left_join(last_20, by = "PLAYER_NAME") |>
+        select(-PLAYER_NAME)
+    }
+  } else {
+    stop("stat must be one of PTS, REB, AST, STL, BLK, Threes, or PRA")
   }
   
   
@@ -237,17 +361,9 @@ get_empirical_prob <- function(player_name, line, stat, season) {
   
   # Rename the empirical_prob column to include season
   new_col_name <- paste("empirical_prob", season, sep = "_")
-  empirical_prob <- empirical_prob |>
+  empirical_prob <- empirical_prob |> 
     rename_with(~ new_col_name, .cols = "empirical_prob")
-
+  
   # Return empirical probability
   return(empirical_prob)
 }
-
-#===============================================================================
-# Add memoization for performance
-#===============================================================================
-
-# Note: Memoization is disabled for parallel processing compatibility
-# It can be re-enabled for single-threaded use if needed:
-# get_empirical_prob <- memoise(get_empirical_prob)

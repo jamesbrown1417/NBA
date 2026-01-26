@@ -9,9 +9,7 @@ library(furrr)
 source("Scripts/get_empirical_probabilities.R")
 
 # Set up parallel processing
-# Increase global object size limit to allow large datasets
-options(future.globals.maxSize = 1000 * 1024^2)  # 1000 MB
-plan(multisession, workers = 4)
+plan(multisession, workers = 8)
 
 # Get schedule
 NBA_schedule <-
@@ -108,6 +106,7 @@ player_emp_probs_2024_25 <-
     "2024_2025",
     .progress = TRUE,
     .options = furrr_options(
+      packages = c("dplyr"),
       globals = c(
         "combined_stats_2024_2025",
         "combined_stats_2025_2026",
@@ -197,6 +196,7 @@ player_emp_probs_assists_2024_25 <-
     "2024_2025",
     .progress = TRUE,
     .options = furrr_options(
+      packages = c("dplyr"),
       globals = c(
         "combined_stats_2024_2025",
         "combined_stats_2025_2026",
@@ -289,6 +289,7 @@ player_emp_probs_rebounds_2024_25 <-
     "2024_2025",
     .progress = TRUE,
     .options = furrr_options(
+      packages = c("dplyr"),
       globals = c(
         "combined_stats_2024_2025",
         "combined_stats_2025_2026",
@@ -381,6 +382,7 @@ player_emp_probs_steals_2024_25 <-
     "2024_2025",
     .progress = TRUE,
     .options = furrr_options(
+      packages = c("dplyr"),
       globals = c(
         "combined_stats_2024_2025",
         "combined_stats_2025_2026",
@@ -473,6 +475,7 @@ player_emp_probs_blocks_2024_25 <-
     "2024_2025",
     .progress = TRUE,
     .options = furrr_options(
+      packages = c("dplyr"),
       globals = c(
         "combined_stats_2024_2025",
         "combined_stats_2025_2026",
@@ -565,6 +568,7 @@ player_emp_probs_threes_2024_25 <-
     "2024_2025",
     .progress = TRUE,
     .options = furrr_options(
+      packages = c("dplyr"),
       globals = c(
         "combined_stats_2024_2025",
         "combined_stats_2025_2026",
@@ -657,6 +661,7 @@ player_emp_probs_pras_2024_25 <-
     "2024_2025",
     .progress = TRUE,
     .options = furrr_options(
+      packages = c("dplyr"),
       globals = c(
         "combined_stats_2024_2025",
         "combined_stats_2025_2026",
