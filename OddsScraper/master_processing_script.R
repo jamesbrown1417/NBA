@@ -190,7 +190,22 @@ distinct_assist_combos <-
   distinct(player_name, line)
 
 player_emp_probs_assists_2024_25 <-
-  future_pmap(distinct_assist_combos, get_empirical_prob, "AST", "2024_2025", .progress = TRUE) |>
+  future_pmap(
+    distinct_assist_combos,
+    get_empirical_prob,
+    "AST",
+    "2024_2025",
+    .progress = TRUE,
+    .options = furrr_options(
+      globals = c(
+        "combined_stats_2024_2025",
+        "combined_stats_2025_2026",
+        "player_stats_last_5_global",
+        "player_stats_last_10_global",
+        "player_stats_last_20_global"
+      )
+    )
+  ) |>
   bind_rows() |>
   select(player_name, line,
          games_played_2024_2025 = games_played,
@@ -267,7 +282,22 @@ distinct_rebound_combos <-
   distinct(player_name, line)
 
 player_emp_probs_rebounds_2024_25 <-
-  future_pmap(distinct_rebound_combos, get_empirical_prob, "REB", "2024_2025", .progress = TRUE) |>
+  future_pmap(
+    distinct_rebound_combos,
+    get_empirical_prob,
+    "REB",
+    "2024_2025",
+    .progress = TRUE,
+    .options = furrr_options(
+      globals = c(
+        "combined_stats_2024_2025",
+        "combined_stats_2025_2026",
+        "player_stats_last_5_global",
+        "player_stats_last_10_global",
+        "player_stats_last_20_global"
+      )
+    )
+  ) |>
   bind_rows() |>
   select(player_name, line,
          games_played_2024_2025 = games_played,
@@ -344,7 +374,22 @@ distinct_steals_combos <-
   distinct(player_name, line)
 
 player_emp_probs_steals_2024_25 <-
-  future_pmap(distinct_steals_combos, get_empirical_prob, "STL", "2024_2025", .progress = TRUE) |>
+  future_pmap(
+    distinct_steals_combos,
+    get_empirical_prob,
+    "STL",
+    "2024_2025",
+    .progress = TRUE,
+    .options = furrr_options(
+      globals = c(
+        "combined_stats_2024_2025",
+        "combined_stats_2025_2026",
+        "player_stats_last_5_global",
+        "player_stats_last_10_global",
+        "player_stats_last_20_global"
+      )
+    )
+  ) |>
   bind_rows() |>
   select(player_name, line,
          games_played_2024_2025 = games_played,
@@ -421,7 +466,22 @@ distinct_blocks_combos <-
   distinct(player_name, line)
 
 player_emp_probs_blocks_2024_25 <-
-  future_pmap(distinct_blocks_combos, get_empirical_prob, "BLK", "2024_2025", .progress = TRUE) |>
+  future_pmap(
+    distinct_blocks_combos,
+    get_empirical_prob,
+    "BLK",
+    "2024_2025",
+    .progress = TRUE,
+    .options = furrr_options(
+      globals = c(
+        "combined_stats_2024_2025",
+        "combined_stats_2025_2026",
+        "player_stats_last_5_global",
+        "player_stats_last_10_global",
+        "player_stats_last_20_global"
+      )
+    )
+  ) |>
   bind_rows() |>
   select(player_name, line,
          games_played_2024_2025 = games_played,
@@ -498,7 +558,22 @@ distinct_threes_combos <-
   distinct(player_name, line)
 
 player_emp_probs_threes_2024_25 <-
-  future_pmap(distinct_threes_combos, get_empirical_prob, "Threes", "2024_2025", .progress = TRUE) |>
+  future_pmap(
+    distinct_threes_combos,
+    get_empirical_prob,
+    "Threes",
+    "2024_2025",
+    .progress = TRUE,
+    .options = furrr_options(
+      globals = c(
+        "combined_stats_2024_2025",
+        "combined_stats_2025_2026",
+        "player_stats_last_5_global",
+        "player_stats_last_10_global",
+        "player_stats_last_20_global"
+      )
+    )
+  ) |>
   bind_rows() |>
   select(player_name, line,
          games_played_2024_2025 = games_played,
@@ -575,7 +650,22 @@ distinct_pra_combos <-
   distinct(player_name, line)
 
 player_emp_probs_pras_2024_25 <-
-  future_pmap(distinct_pra_combos, get_empirical_prob, "PRA", "2024_2025", .progress = TRUE) |>
+  future_pmap(
+    distinct_pra_combos,
+    get_empirical_prob,
+    "PRA",
+    "2024_2025",
+    .progress = TRUE,
+    .options = furrr_options(
+      globals = c(
+        "combined_stats_2024_2025",
+        "combined_stats_2025_2026",
+        "player_stats_last_5_global",
+        "player_stats_last_10_global",
+        "player_stats_last_20_global"
+      )
+    )
+  ) |>
   bind_rows() |>
   select(player_name, line,
          games_played_2024_2025 = games_played,

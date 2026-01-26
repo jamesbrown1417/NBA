@@ -91,7 +91,19 @@ rm(combined_stats_all_seasons)
 #===============================================================================
 
 get_empirical_prob <- function(player_name, line, stat, season) {
-  
+
+  # Check if global datasets exist (for parallel processing compatibility)
+  # If not, reload them
+  if (!exists("combined_stats_2024_2025", inherits = FALSE)) {
+    source("Scripts/get_empirical_probabilities.R", local = FALSE)
+  }
+
+  # Validate stat parameter
+  valid_stats <- c("PTS", "REB", "AST", "STL", "BLK", "Threes", "PRA")
+  if (!(stat %in% valid_stats)) {
+    stop(paste("stat must be one of:", paste(valid_stats, collapse = ", ")))
+  }
+
   # Choose the data based on the selected season
   if (season == "2024_2025") {
     player_stats <- combined_stats_2024_2025 |> filter(PLAYER_NAME == player_name) |> filter(!is.na(minutes))
@@ -101,14 +113,35 @@ get_empirical_prob <- function(player_name, line, stat, season) {
     stop("Invalid season selected")
   }
 
-  # Validate stat parameter
-  valid_stats <- c("PTS", "REB", "AST", "STL", "BLK", "Threes", "PRA")
-  if (!(stat %in% valid_stats)) {
-    stop(paste("stat must be one of:", paste(valid_stats, collapse = ", ")))
-  }
+  # Check if player has any games
+  if (nrow(player_stats) == 0) {
+    # Return empty result with proper structure
+    empty_result <- tibble(
+      games_played = 0,
+      empirical_prob = NA_real_,
+      empirical_prob_under = NA_real_
+    )
 
-  # Initialize empirical_prob
-  empirical_prob <- NULL
+    if (season == "2024_2025") {
+      empty_result <- empty_result |>
+        mutate(
+          empirical_prob_last_5 = NA_real_,
+          empirical_prob_under_last_5 = NA_real_,
+          empirical_prob_last_10 = NA_real_,
+          empirical_prob_under_last_10 = NA_real_,
+          empirical_prob_last_20 = NA_real_,
+          empirical_prob_under_last_20 = NA_real_
+        )
+    }
+
+    # Rename and add metadata
+    new_col_name <- paste("empirical_prob", season, sep = "_")
+    empty_result <- empty_result |>
+      rename_with(~ new_col_name, .cols = "empirical_prob") |>
+      mutate(line = line, player_name = player_name, season = season)
+
+    return(empty_result)
+  }
 
   # Get the stat column dynamically using tidy evaluation
   stat_column <- sym(stat)
@@ -127,32 +160,67 @@ get_empirical_prob <- function(player_name, line, stat, season) {
   # If season is 2024_2025, add last 5/10/20 statistics
   if (season == "2024_2025") {
 
-    last_5 <- player_stats_last_5_global |>
-      filter(PLAYER_NAME == player_name) |>
-      summarise(
-        empirical_prob_last_5 = mean(!!stat_column >= line),
-        empirical_prob_under_last_5 = mean(!!stat_column < line)
-      )
+    # Filter for the specific player and compute stats
+    player_last_5 <- player_stats_last_5_global |>
+      filter(PLAYER_NAME == player_name)
 
-    last_10 <- player_stats_last_10_global |>
-      filter(PLAYER_NAME == player_name) |>
-      summarise(
-        empirical_prob_last_10 = mean(!!stat_column >= line),
-        empirical_prob_under_last_10 = mean(!!stat_column < line)
+    if (nrow(player_last_5) > 0) {
+      last_5 <- player_last_5 |>
+        summarise(
+          PLAYER_NAME = first(PLAYER_NAME),
+          empirical_prob_last_5 = mean(!!stat_column >= line),
+          empirical_prob_under_last_5 = mean(!!stat_column < line)
+        )
+    } else {
+      last_5 <- tibble(
+        PLAYER_NAME = player_name,
+        empirical_prob_last_5 = NA_real_,
+        empirical_prob_under_last_5 = NA_real_
       )
+    }
 
-    last_20 <- player_stats_last_20_global |>
-      filter(PLAYER_NAME == player_name) |>
-      summarise(
-        empirical_prob_last_20 = mean(!!stat_column >= line),
-        empirical_prob_under_last_20 = mean(!!stat_column < line)
+    player_last_10 <- player_stats_last_10_global |>
+      filter(PLAYER_NAME == player_name)
+
+    if (nrow(player_last_10) > 0) {
+      last_10 <- player_last_10 |>
+        summarise(
+          PLAYER_NAME = first(PLAYER_NAME),
+          empirical_prob_last_10 = mean(!!stat_column >= line),
+          empirical_prob_under_last_10 = mean(!!stat_column < line)
+        )
+    } else {
+      last_10 <- tibble(
+        PLAYER_NAME = player_name,
+        empirical_prob_last_10 = NA_real_,
+        empirical_prob_under_last_10 = NA_real_
       )
+    }
+
+    player_last_20 <- player_stats_last_20_global |>
+      filter(PLAYER_NAME == player_name)
+
+    if (nrow(player_last_20) > 0) {
+      last_20 <- player_last_20 |>
+        summarise(
+          PLAYER_NAME = first(PLAYER_NAME),
+          empirical_prob_last_20 = mean(!!stat_column >= line),
+          empirical_prob_under_last_20 = mean(!!stat_column < line)
+        )
+    } else {
+      last_20 <- tibble(
+        PLAYER_NAME = player_name,
+        empirical_prob_last_20 = NA_real_,
+        empirical_prob_under_last_20 = NA_real_
+      )
+    }
 
     empirical_prob <-
       empirical_prob |>
-      bind_cols(last_5) |>
-      bind_cols(last_10) |>
-      bind_cols(last_20)
+      left_join(last_5, by = "PLAYER_NAME") |>
+      left_join(last_10, by = "PLAYER_NAME") |>
+      left_join(last_20, by = "PLAYER_NAME") |>
+      select(-PLAYER_NAME)
   }
   
   
@@ -180,6 +248,6 @@ get_empirical_prob <- function(player_name, line, stat, season) {
 # Add memoization for performance
 #===============================================================================
 
-# Create memoised version with in-memory cache
-# This provides transparent caching for repeated queries
-get_empirical_prob <- memoise(get_empirical_prob)
+# Note: Memoization is disabled for parallel processing compatibility
+# It can be re-enabled for single-threaded use if needed:
+# get_empirical_prob <- memoise(get_empirical_prob)
