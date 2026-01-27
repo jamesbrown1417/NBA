@@ -150,3 +150,26 @@ results_by_date_sb_unders |>
             total_profit = sum(total_unders_profit)) |>
   mutate(roi_pct = 100 * total_profit / total_stake) |> 
   arrange(desc(game_date))
+
+#===============================================================================
+# Results by market
+#===============================================================================
+
+results_by_market <-
+  combined_SB_results |> 
+  filter(over_agency != "Dabble Pickem") |> 
+  filter(under_agency != "Dabble Pickem") |> 
+  group_by(market_name, over_agency, under_agency) |> 
+  summarise(
+    bets = n(),
+    total_unders_profit = sum(under_profit),
+    total_unders_stake = sum(under_stake),
+    total_overs_profit = sum(over_profit),
+    total_overs_stake = sum(over_stake),
+    total_arb_profit = sum(total_profit),
+    total_stake = sum(over_stake + under_stake),
+    unders_roi_pct = 100 * total_unders_profit / total_unders_stake,
+    overs_roi_pct = 100 * total_overs_profit / total_overs_stake,
+    arb_roi_pct = 100 * total_arb_profit / total_stake
+  ) |> 
+  ungroup()
