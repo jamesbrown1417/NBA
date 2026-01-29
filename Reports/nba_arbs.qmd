@@ -138,14 +138,32 @@ all_arbs <- read_rds("../Data/all_arbs.rds")
 all_middles <- read_rds("../Data/all_middles.rds")
 tab_miss_by_one <- read_rds("../Data/tab_points_miss_by_one.rds")
 betright_miss_by_one <- read_rds("../Data/betright_points_miss_by_one.rds")
+
+# Top-Down column order + rename (for OJS tables)
+format_topdown <- function(df) {
+  df |>
+    mutate(
+      player = .data[["player_name"]],
+      market = .data[["market_name"]],
+      UP = .data[["under_price"]],
+      UA = .data[["under_agency"]],
+      OP = .data[["over_price"]],
+      OA = .data[["over_agency"]]
+    ) |>
+    relocate(any_of(c("player", "market", "line", "OP", "OA", "UP", "UA", "margin")))
+}
+
+all_arbs_topdown <- format_topdown(all_arbs)
+tab_miss_by_one_topdown <- format_topdown(tab_miss_by_one)
+betright_miss_by_one_topdown <- format_topdown(betright_miss_by_one)
 ```
 
 ```{r}
 # Pass data to OJS
 ojs_define(
-  all_arbs_data = all_arbs,
-  tab_miss_by_one_data = tab_miss_by_one,
-  betright_miss_by_one_data = betright_miss_by_one
+  all_arbs_data = all_arbs_topdown,
+  tab_miss_by_one_data = tab_miss_by_one_topdown,
+  betright_miss_by_one_data = betright_miss_by_one_topdown
 )
 ```
 
@@ -153,8 +171,6 @@ ojs_define(
 ## Top-Down
 
 ```{ojs}
-//| column: screen
-
 viewof excludeSportsbetUnder = Inputs.toggle({
   label: "Exclude Sportsbet Unders",
   value: false
