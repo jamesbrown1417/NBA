@@ -10,6 +10,7 @@ format:
   html:
     df-print: kable
     theme: cosmo
+    page-layout: full
     self-contained: true
     toc: true
     toc-depth: 3
@@ -142,13 +143,13 @@ betright_miss_by_one <- read_rds("../Data/betright_points_miss_by_one.rds")
 # Top-Down column order + rename (for OJS tables)
 format_topdown <- function(df) {
   df |>
-    mutate(
-      player = .data[["player_name"]],
-      market = .data[["market_name"]],
-      UP = .data[["under_price"]],
-      UA = .data[["under_agency"]],
-      OP = .data[["over_price"]],
-      OA = .data[["over_agency"]]
+    rename(
+      player = any_of("player_name"),
+      market = any_of("market_name"),
+      UP = any_of("under_price"),
+      UA = any_of("under_agency"),
+      OP = any_of("over_price"),
+      OA = any_of("over_agency")
     ) |>
     relocate(any_of(c("player", "market", "line", "OP", "OA", "UP", "UA", "margin")))
 }
@@ -187,8 +188,8 @@ filtered_all_arbs = {
   const data = transpose(all_arbs_data);
   return data
     .filter(d => d.margin > 0)
-    .filter(d => d.over_agency === "Sportsbet" || d.under_agency === "Sportsbet")
-    .filter(d => !excludeSportsbetUnder || d.under_agency !== "Sportsbet")
+    .filter(d => d.OA === "Sportsbet" || d.UA === "Sportsbet")
+    .filter(d => !excludeSportsbetUnder || d.UA !== "Sportsbet")
     .map(d => ({...d, margin: Math.round(d.margin * 100) / 100}));
 }
 
@@ -204,9 +205,9 @@ filtered_tab_arbs = {
   const data = transpose(all_arbs_data);
   return data
     .filter(d => d.margin > 0)
-    .filter(d => d.over_agency === "Sportsbet" || d.under_agency === "Sportsbet")
-    .filter(d => d.over_agency === "TAB" || d.under_agency === "TAB")
-    .filter(d => !excludeSportsbetUnder || d.under_agency !== "Sportsbet")
+    .filter(d => d.OA === "Sportsbet" || d.UA === "Sportsbet")
+    .filter(d => d.OA === "TAB" || d.UA === "TAB")
+    .filter(d => !excludeSportsbetUnder || d.UA !== "Sportsbet")
     .map(d => ({...d, margin: Math.round(d.margin * 100) / 100}));
 }
 
@@ -222,9 +223,9 @@ filtered_dabble_arbs = {
   const data = transpose(all_arbs_data);
   return data
     .filter(d => d.margin > 0)
-    .filter(d => d.over_agency === "Sportsbet" || d.under_agency === "Sportsbet")
-    .filter(d => d.over_agency === "Dabble" || d.under_agency === "Dabble")
-    .filter(d => !excludeSportsbetUnder || d.under_agency !== "Sportsbet")
+    .filter(d => d.OA === "Sportsbet" || d.UA === "Sportsbet")
+    .filter(d => d.OA === "Dabble" || d.UA === "Dabble")
+    .filter(d => !excludeSportsbetUnder || d.UA !== "Sportsbet")
     .map(d => ({...d, margin: Math.round(d.margin * 100) / 100}));
 }
 
@@ -240,9 +241,9 @@ filtered_dabble_pickem_arbs = {
   const data = transpose(all_arbs_data);
   return data
     .filter(d => d.margin > 0)
-    .filter(d => d.over_agency === "Sportsbet" || d.under_agency === "Sportsbet")
-    .filter(d => d.over_agency === "Dabble Pickem" || d.under_agency === "Dabble Pickem")
-    .filter(d => !excludeSportsbetUnder || d.under_agency !== "Sportsbet")
+    .filter(d => d.OA === "Sportsbet" || d.UA === "Sportsbet")
+    .filter(d => d.OA === "Dabble Pickem" || d.UA === "Dabble Pickem")
+    .filter(d => !excludeSportsbetUnder || d.UA !== "Sportsbet")
     .map(d => ({...d, margin: Math.round(d.margin * 100) / 100}));
 }
 
@@ -258,9 +259,9 @@ filtered_bet365_arbs = {
   const data = transpose(all_arbs_data);
   return data
     .filter(d => d.margin > 0)
-    .filter(d => d.over_agency === "Sportsbet" || d.under_agency === "Sportsbet")
-    .filter(d => d.over_agency === "Bet365" || d.under_agency === "Bet365")
-    .filter(d => !excludeSportsbetUnder || d.under_agency !== "Sportsbet")
+    .filter(d => d.OA === "Sportsbet" || d.UA === "Sportsbet")
+    .filter(d => d.OA === "Bet365" || d.UA === "Bet365")
+    .filter(d => !excludeSportsbetUnder || d.UA !== "Sportsbet")
     .map(d => ({...d, margin: Math.round(d.margin * 100) / 100}));
 }
 
@@ -276,9 +277,9 @@ filtered_betright_arbs = {
   const data = transpose(all_arbs_data);
   return data
     .filter(d => d.margin > 0)
-    .filter(d => d.over_agency === "Sportsbet" || d.under_agency === "Sportsbet")
-    .filter(d => d.over_agency === "BetRight" || d.under_agency === "BetRight")
-    .filter(d => !excludeSportsbetUnder || d.under_agency !== "Sportsbet")
+    .filter(d => d.OA === "Sportsbet" || d.UA === "Sportsbet")
+    .filter(d => d.OA === "BetRight" || d.UA === "BetRight")
+    .filter(d => !excludeSportsbetUnder || d.UA !== "Sportsbet")
     .map(d => ({...d, margin: Math.round(d.margin * 100) / 100}));
 }
 
@@ -294,9 +295,9 @@ filtered_betmakers_arbs = {
   const data = transpose(all_arbs_data);
   return data
     .filter(d => d.margin > 0)
-    .filter(d => d.over_agency === "Sportsbet" || d.under_agency === "Sportsbet")
-    .filter(d => d.over_agency === "BetMakers" || d.under_agency === "BetMakers")
-    .filter(d => !excludeSportsbetUnder || d.under_agency !== "Sportsbet")
+    .filter(d => d.OA === "Sportsbet" || d.UA === "Sportsbet")
+    .filter(d => d.OA === "BetMakers" || d.UA === "BetMakers")
+    .filter(d => !excludeSportsbetUnder || d.UA !== "Sportsbet")
     .map(d => ({...d, margin: Math.round(d.margin * 100) / 100}));
 }
 
@@ -312,9 +313,9 @@ filtered_neds_arbs = {
   const data = transpose(all_arbs_data);
   return data
     .filter(d => d.margin > 0)
-    .filter(d => d.over_agency === "Sportsbet" || d.under_agency === "Sportsbet")
-    .filter(d => d.over_agency === "Neds" || d.under_agency === "Neds")
-    .filter(d => !excludeSportsbetUnder || d.under_agency !== "Sportsbet")
+    .filter(d => d.OA === "Sportsbet" || d.UA === "Sportsbet")
+    .filter(d => d.OA === "Neds" || d.UA === "Neds")
+    .filter(d => !excludeSportsbetUnder || d.UA !== "Sportsbet")
     .map(d => ({...d, margin: Math.round(d.margin * 100) / 100}));
 }
 
@@ -330,9 +331,9 @@ filtered_pointsbet_arbs = {
   const data = transpose(all_arbs_data);
   return data
     .filter(d => d.margin > 0)
-    .filter(d => d.over_agency === "Sportsbet" || d.under_agency === "Sportsbet")
-    .filter(d => d.over_agency === "Pointsbet" || d.under_agency === "Pointsbet")
-    .filter(d => !excludeSportsbetUnder || d.under_agency !== "Sportsbet")
+    .filter(d => d.OA === "Sportsbet" || d.UA === "Sportsbet")
+    .filter(d => d.OA === "Pointsbet" || d.UA === "Pointsbet")
+    .filter(d => !excludeSportsbetUnder || d.UA !== "Sportsbet")
     .map(d => ({...d, margin: Math.round(d.margin * 100) / 100}));
 }
 
@@ -348,10 +349,10 @@ filtered_tab_miss_by_1_arbs = {
   const data = transpose(tab_miss_by_one_data);
   return data
     .filter(d => d.margin > 0)
-    .filter(d => d.over_agency === "Sportsbet" || d.under_agency === "Sportsbet")
-    .filter(d => d.over_agency === "TAB" || d.under_agency === "TAB")
+    .filter(d => d.OA === "Sportsbet" || d.UA === "Sportsbet")
+    .filter(d => d.OA === "TAB" || d.UA === "TAB")
     .filter(d => d.line >= 8.5)
-    .filter(d => !excludeSportsbetUnder || d.under_agency !== "Sportsbet")
+    .filter(d => !excludeSportsbetUnder || d.UA !== "Sportsbet")
     .map(d => ({...d, margin: Math.round(d.margin * 100) / 100}));
 }
 
@@ -367,10 +368,10 @@ filtered_betright_miss_by_1_arbs = {
   const data = transpose(betright_miss_by_one_data);
   return data
     .filter(d => d.margin > 0)
-    .filter(d => d.over_agency === "Sportsbet" || d.under_agency === "Sportsbet")
-    .filter(d => d.over_agency === "BetRight" || d.under_agency === "BetRight")
+    .filter(d => d.OA === "Sportsbet" || d.UA === "Sportsbet")
+    .filter(d => d.OA === "BetRight" || d.UA === "BetRight")
     .filter(d => d.line >= 8.5)
-    .filter(d => !excludeSportsbetUnder || d.under_agency !== "Sportsbet")
+    .filter(d => !excludeSportsbetUnder || d.UA !== "Sportsbet")
     .map(d => ({...d, margin: Math.round(d.margin * 100) / 100}));
 }
 
