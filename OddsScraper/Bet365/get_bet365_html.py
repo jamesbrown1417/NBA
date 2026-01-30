@@ -35,7 +35,7 @@ if not username or not password:
 PROP_CATEGORIES = {
     'I43': {
         'name': 'Points',
-        'buttons': ['Points O/U']
+        'buttons': ['Points O/U', 'Points High', 'Points Low']
     },
     'I45': {
         'name': 'Threes',
@@ -51,7 +51,7 @@ PROP_CATEGORIES = {
     },
     'I48': {
         'name': 'Combos',
-        'buttons': ['Double Double', 'Triple Double', 'Points, Assists & Rebounds', 'Points, Assists & Rebounds O/U']
+        'buttons': ['Points, Assists & Rebounds', 'Points, Assists & Rebounds O/U']
     },
     'I49': {
         'name': 'Defence',

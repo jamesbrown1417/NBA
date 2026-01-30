@@ -95,50 +95,62 @@ get_player_points <- function(scraped_file) {
   
   player_points_all <- safe_section({
     
-    # Points O/U
-    points_over_under_index <- which(market_names == "Points O/U")
-    
-    points_players <-
-      bet365_player_markets[[points_over_under_index]] |>
-      html_elements(".srb-ParticipantLabelWithTeam_Name") |>
-      html_text()
-    
-    points_cols <-
-      bet365_player_markets[[points_over_under_index]] |>
-      html_elements(".gl-Market_General")
-    
-    points_over_index <- which(str_detect(points_cols |> html_text(), "Over"))
-    points_under_index <- which(str_detect(points_cols |> html_text(), "Under"))
-    
-    points_over_lines <-
-      points_cols[[points_over_index]] |>
-      html_elements(".gl-ParticipantCenteredStacked_Handicap") |>
-      html_text()
-    
-    points_over_odds <-
-      points_cols[[points_over_index]] |>
-      html_elements(".gl-ParticipantCenteredStacked_Odds") |>
-      html_text()
-    
-    points_under_odds <-
-      points_cols[[points_under_index]] |>
-      html_elements(".gl-ParticipantCenteredStacked_Odds") |>
-      html_text()
-    
-    suspended_elements <- get_suspended_indices(points_cols[[points_over_index]])
-    
-    player_points <-
-      tibble(
-        player = points_players,
-        line = as.numeric(points_over_lines),
-        over_price = as.numeric(points_over_odds),
-        under_price = as.numeric(points_under_odds)
-      ) |>
-      mutate(market_name = "Player Points Over/Under", agency = "Bet365")
-    
-    if (length(suspended_elements) > 0) {
-      player_points <- player_points |> slice(-suspended_elements)
+    parse_points_ou_market <- function(market_label, out_market_name) {
+      market_index <- which(market_names == market_label)
+      if (length(market_index) == 0) return(NULL)
+      
+      points_players <-
+        bet365_player_markets[[market_index]] |>
+        html_elements(".srb-ParticipantLabelWithTeam_Name") |>
+        html_text()
+      
+      points_cols <-
+        bet365_player_markets[[market_index]] |>
+        html_elements(".gl-Market_General")
+      
+      points_over_index <- which(str_detect(points_cols |> html_text(), "Over"))
+      points_under_index <- which(str_detect(points_cols |> html_text(), "Under"))
+      if (length(points_over_index) == 0 || length(points_under_index) == 0) return(NULL)
+      
+      points_over_lines <-
+        points_cols[[points_over_index]] |>
+        html_elements(".gl-ParticipantCenteredStacked_Handicap") |>
+        html_text()
+      
+      points_over_odds <-
+        points_cols[[points_over_index]] |>
+        html_elements(".gl-ParticipantCenteredStacked_Odds") |>
+        html_text()
+      
+      points_under_odds <-
+        points_cols[[points_under_index]] |>
+        html_elements(".gl-ParticipantCenteredStacked_Odds") |>
+        html_text()
+      
+      suspended_elements <- get_suspended_indices(points_cols[[points_over_index]])
+      
+      player_points <-
+        tibble(
+          player = points_players,
+          line = as.numeric(points_over_lines),
+          over_price = as.numeric(points_over_odds),
+          under_price = as.numeric(points_under_odds)
+        ) |>
+        mutate(market_name = out_market_name, agency = "Bet365")
+      
+      if (length(suspended_elements) > 0) {
+        player_points <- player_points |> slice(-suspended_elements)
+      }
+      
+      return(player_points)
     }
+    
+    # Points O/U + Points High/Low (same structure as O/U)
+    player_points <- bind_rows(
+      parse_points_ou_market("Points O/U", "Player Points Over/Under"),
+      parse_points_ou_market("Points High", "Player Points High"),
+      parse_points_ou_market("Points Low", "Player Points Low")
+    )
     
     # Alternate Points (Milestones)
     alternate_points_index <- which(market_names == "Points")
