@@ -90,7 +90,7 @@ async def collect_h2h_and_urls(driver):
     await driver.sleep(2)
     # Always perform login each run
     print("Attempting login...")
-    login_element = await driver.find_element(By.XPATH, "//div[contains(@class, 'hm-MainHeaderRHSLoggedOutWide_Login')] | //button[contains(@class, 'hrm-65') and contains(text(), 'Log In')]", timeout=10)
+    login_element = await driver.find_element(By.XPATH, "//div[contains(@class, 'hm-MainHeaderRHSLoggedOutWide_Login')] | //button[contains(@class, 'hrm-e42') and contains(text(), 'Log In')]", timeout=10)
     await driver.sleep(2)
     await login_element.click()
     await driver.sleep(1)
