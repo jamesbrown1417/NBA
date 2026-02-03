@@ -286,23 +286,6 @@ filtered_betright_arbs = {
 html`<div class="compact-table">${Inputs.table(filtered_betright_arbs)}</div>`
 ```
 
-## Sportsbet Under (Bet365/BetRight Over)
-
-```{ojs}
-//| column: screen
-
-filtered_sportsbet_under_b365_betright_arbs = {
-  const data = transpose(all_arbs_data);
-  return data
-    .filter(d => d.margin > 0)
-    .filter(d => d.UA === "Sportsbet")
-    .filter(d => d.OA === "Bet365" || d.OA === "BetRight")
-    .map(d => ({...d, margin: Math.round(d.margin * 100) / 100}));
-}
-
-html`<div class="compact-table">${Inputs.table(filtered_sportsbet_under_b365_betright_arbs)}</div>`
-```
-
 ## BetMakers
 
 ```{ojs}
@@ -424,6 +407,22 @@ unibet_arbs <-
   arrange(match, desc(margin))
 
 unibet_arbs
+```
+
+## Sportsbet Under (Bet365/BetRight Over)
+
+```{r}
+#| column: page
+
+sportsbet_under_b365_betright_arbs <-
+  all_arbs |>
+  filter(margin > 0) |>
+  filter(under_agency %in% c("Sportsbet")) |>
+  filter(over_agency %in% c("Bet365", "BetRight")) |>
+  mutate(margin = round(margin, 2)) |>
+  arrange(match, desc(margin))
+
+sportsbet_under_b365_betright_arbs
 ```
 
 ## Bet365, BetRight, Neds, Dabble 3s
