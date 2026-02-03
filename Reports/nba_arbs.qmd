@@ -286,6 +286,23 @@ filtered_betright_arbs = {
 html`<div class="compact-table">${Inputs.table(filtered_betright_arbs)}</div>`
 ```
 
+## Sportsbet Under (Bet365/BetRight Over)
+
+```{ojs}
+//| column: screen
+
+filtered_sportsbet_under_b365_betright_arbs = {
+  const data = transpose(all_arbs_data);
+  return data
+    .filter(d => d.margin > 0)
+    .filter(d => d.UA === "Sportsbet")
+    .filter(d => d.OA === "Bet365" || d.OA === "BetRight")
+    .map(d => ({...d, margin: Math.round(d.margin * 100) / 100}));
+}
+
+html`<div class="compact-table">${Inputs.table(filtered_sportsbet_under_b365_betright_arbs)}</div>`
+```
+
 ## BetMakers
 
 ```{ojs}
