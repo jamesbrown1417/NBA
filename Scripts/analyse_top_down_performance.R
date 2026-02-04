@@ -81,7 +81,7 @@ results <-
 combined_SB_results |> 
   filter(over_agency != "Dabble Pickem") |> 
   filter(under_agency != "Dabble Pickem") |>
-  # filter(game_date >= as_date("2025-11-01")) |>
+  filter(game_date >= as_date("2026-01-01")) |>
   # filter(game_date <= as_date("2025-11-30")) |>
   group_by(over_agency, under_agency) |> 
   summarise(
