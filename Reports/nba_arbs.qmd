@@ -418,10 +418,8 @@ sportsbet_under_b365_betright_arbs <-
   all_arbs |>
   filter(margin > 0) |>
   filter(
-    (under_agency %in% c("Sportsbet") & over_agency %in% c("Bet365", "BetRight")) |
-    (over_agency %in% c("Sportsbet") & under_agency %in% c("Bet365", "BetRight")) |
-    (over_agency %in% c("Bet365") & under_agency %in% c("BetRight")) |
-    (over_agency %in% c("BetRight") & under_agency %in% c("Bet365"))
+    over_agency %in% c("Bet365", "BetRight") &
+      under_agency %in% c("Sportsbet", "Bet365", "BetRight")
   ) |>
   mutate(margin = round(margin, 2)) |>
   arrange(match, desc(margin))
