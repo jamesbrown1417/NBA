@@ -422,7 +422,7 @@ sportsbet_under_b365_betright_arbs <-
       under_agency %in% c("Sportsbet", "Bet365", "BetRight")
   ) |>
   mutate(margin = round(margin, 2)) |>
-  arrange(match, desc(margin))
+  arrange(desc(margin))
 
 sportsbet_under_b365_betright_arbs
 ```
