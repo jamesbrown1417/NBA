@@ -21,6 +21,12 @@ Rscript OddsScraper/Neds/get_neds_match_urls.R
 # Execute R script for getting arbs
 Rscript Scripts/get_arbs.R
 
+# Export web app JSON snapshot
+Rscript Scripts/export_nba_arbs_web_data.R
+
+# Optional: deploy the static web app to Netlify (placeholder)
+# netlify deploy --prod --dir Apps/NBA_ARBS_WEB --site YOUR_NETLIFY_SITE_ID
+
 # Publish report using Quarto
 echo "1" | quarto publish netlify Reports/nba_arbs.qmd
 
