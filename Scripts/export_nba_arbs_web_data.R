@@ -20,7 +20,7 @@ repo_root <- normalizePath(file.path(dirname(script_path), ".."), mustWork = TRU
 
 data_dir <- file.path(repo_root, "Data")
 processed_odds_dir <- file.path(data_dir, "processed_odds")
-out_file <- file.path(repo_root, "Apps", "NBA_ARBS_WEB", "data", "nba-arbs-data.json")
+out_file <- file.path(repo_root, "Apps", "NBA_ARBS_WEB", "public", "data", "nba-arbs-data.json")
 
 to_rel_path <- function(path) {
   sub(

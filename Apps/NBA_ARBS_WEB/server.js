@@ -6,6 +6,8 @@ const { spawn } = require("child_process");
 const host = "127.0.0.1";
 const port = Number(process.env.PORT || 4173);
 const appDir = __dirname;
+const distDir = path.join(appDir, "dist");
+const dataFile = path.join(appDir, "public", "data", "nba-arbs-data.json");
 const repoRoot = path.resolve(appDir, "..", "..");
 const refreshScript = path.join(repoRoot, "Scripts", "export_nba_arbs_web_data.R");
 
@@ -17,7 +19,12 @@ const MIME_TYPES = {
   ".css": "text/css; charset=utf-8",
   ".json": "application/json; charset=utf-8",
   ".ico": "image/x-icon",
-  ".txt": "text/plain; charset=utf-8"
+  ".txt": "text/plain; charset=utf-8",
+  ".svg": "image/svg+xml",
+  ".png": "image/png",
+  ".jpg": "image/jpeg",
+  ".jpeg": "image/jpeg",
+  ".webp": "image/webp"
 };
 
 function writeJson(res, status, payload) {
@@ -26,6 +33,25 @@ function writeJson(res, status, payload) {
     "Cache-Control": "no-store"
   });
   res.end(JSON.stringify(payload));
+}
+
+function sendFile(res, filePath, cacheControl = "no-cache") {
+  fs.readFile(filePath, (error, data) => {
+    if (error) {
+      res.writeHead(404, { "Content-Type": "text/plain; charset=utf-8" });
+      res.end("Not found");
+      return;
+    }
+
+    const ext = path.extname(filePath);
+    const contentType = MIME_TYPES[ext] || "application/octet-stream";
+
+    res.writeHead(200, {
+      "Content-Type": contentType,
+      "Cache-Control": cacheControl
+    });
+    res.end(data);
+  });
 }
 
 function runRefreshScript() {
@@ -60,33 +86,25 @@ function runRefreshScript() {
   });
 }
 
-function serveStatic(req, res, pathname) {
+function serveBuiltApp(res, pathname) {
   const requestedPath = pathname === "/" ? "/index.html" : pathname;
-  const normalized = path.normalize(decodeURIComponent(requestedPath)).replace(/^(\.\.[/\\])+/, "");
-  const filePath = path.join(appDir, normalized);
+  const normalized = path.normalize(decodeURIComponent(requestedPath)).replace(/^([.][.][/\\])+/, "");
+  const filePath = path.join(distDir, normalized);
 
-  if (!filePath.startsWith(appDir)) {
+  if (!filePath.startsWith(distDir)) {
     res.writeHead(403, { "Content-Type": "text/plain; charset=utf-8" });
     res.end("Forbidden");
     return;
   }
 
-  fs.readFile(filePath, (error, data) => {
-    if (error) {
-      res.writeHead(404, { "Content-Type": "text/plain; charset=utf-8" });
-      res.end("Not found");
+  fs.stat(filePath, (error, stats) => {
+    if (!error && stats.isFile()) {
+      sendFile(res, filePath, path.extname(filePath) === ".json" ? "no-store" : "no-cache");
       return;
     }
 
-    const ext = path.extname(filePath);
-    const contentType = MIME_TYPES[ext] || "application/octet-stream";
-    const cacheControl = ext === ".json" ? "no-store" : "no-cache";
-
-    res.writeHead(200, {
-      "Content-Type": contentType,
-      "Cache-Control": cacheControl
-    });
-    res.end(data);
+    // SPA fallback for client-side routes
+    sendFile(res, path.join(distDir, "index.html"), "no-cache");
   });
 }
 
@@ -124,8 +142,13 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
+  if (pathname === "/data/nba-arbs-data.json" && req.method === "GET") {
+    sendFile(res, dataFile, "no-store");
+    return;
+  }
+
   if (req.method === "GET") {
-    serveStatic(req, res, pathname);
+    serveBuiltApp(res, pathname);
     return;
   }
 

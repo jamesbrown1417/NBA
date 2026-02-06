@@ -24,11 +24,12 @@ Rscript Scripts/get_arbs.R
 # Export web app JSON snapshot
 Rscript Scripts/export_nba_arbs_web_data.R
 
-# Optional: deploy the static web app to Netlify (placeholder)
-# netlify deploy --prod --dir Apps/NBA_ARBS_WEB --site YOUR_NETLIFY_SITE_ID
+# Build + deploy the static web app to Netlify
+(cd Apps/NBA_ARBS_WEB && npm run build)
+netlify deploy --prod --dir Apps/NBA_ARBS_WEB/dist --site 805c47ab-d26f-4406-a2b0-4e0986ddb7c8
 
 # Publish report using Quarto
-echo "1" | quarto publish netlify Reports/nba_arbs.qmd
+# echo "1" | quarto publish netlify Reports/nba_arbs.qmd
 
 # Automatically stage all changes
 git add .

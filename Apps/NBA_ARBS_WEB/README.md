@@ -1,49 +1,103 @@
-# NBA Arbs Web App (Local)
+# NBA Arbs Web App (Vite + React + Tailwind)
 
-This is a local JavaScript dashboard that mirrors the main workflows from `Reports/nba_arbs.qmd`:
+Modern local dashboard that mirrors `Reports/nba_arbs.qmd` workflows:
 - Arbitrage calculator
-- Top-Down tabs (+ Sportsbet-under toggle)
+- Top-Down tabs + Sportsbet-under toggle
 - Arbs tabs
-- Middles table
-- Multi Legs agency tables
+- Middles
+- Multi Legs
+- Dataset freshness sidebar
+- Margin rarity row shading
 
-## 1) Export data from RDS to JSON
+## Stack
 
-From repo root:
+- Vite
+- React + TypeScript
+- Tailwind CSS
+
+## Data pipeline
+
+Generate JSON from your `.rds` inputs:
 
 ```bash
 Rscript Scripts/export_nba_arbs_web_data.R
 ```
 
-This writes:
+Output path:
 
 ```text
-Apps/NBA_ARBS_WEB/data/nba-arbs-data.json
+Apps/NBA_ARBS_WEB/public/data/nba-arbs-data.json
 ```
 
-## 2) Run the web app locally
+## Local development
 
 From repo root:
 
 ```bash
-node Apps/NBA_ARBS_WEB/server.js
+cd Apps/NBA_ARBS_WEB
+npm install
+npm run dev
 ```
 
-Then open:
+Open:
+
+```text
+http://localhost:5173
+```
+
+Notes:
+- In this dev mode, in-app refresh is usually disabled (no `/api/refresh` route from Vite dev server).
+
+## Local production-style run (with in-app refresh)
+
+From repo root:
+
+```bash
+cd Apps/NBA_ARBS_WEB
+npm install
+npm run build
+npm run serve
+```
+
+Open:
 
 ```text
 http://localhost:4173
 ```
 
-## Notes
+This mode serves `dist/` and enables:
+- `POST /api/refresh` (runs `Rscript Scripts/export_nba_arbs_web_data.R`)
+- live JSON reads from `public/data/nba-arbs-data.json`
 
-- The app is dependency-free (no npm install required).
-- Data file is external so you can refresh it whenever odds/arbs update.
-- The in-app `Refresh Data` button works only when running via `server.js` (it calls `Rscript Scripts/export_nba_arbs_web_data.R`).
-- If you use `python3 -m http.server`, the app is read-only and cannot run refresh from inside the browser.
-- The sidebar shows per-dataset freshness using each source `.rds` file's last-modified timestamp (`mtime`), plus row/column counts.
-- Table rows are shaded by `margin` with Cyberpunk-style rarity colors:
-  - `> 0 and < 1.0`: grey (`#A6A8AD`)
-  - `>= 1.0 and < 2.5`: green (`#5FCB5A`)
-  - `>= 2.5 and < 5.0`: blue (`#4D8FFF`)
-  - `>= 5.0`: orange (`#FF9A2E`)
+## Static Netlify deploy
+
+From repo root:
+
+```bash
+Rscript Scripts/export_nba_arbs_web_data.R
+cd Apps/NBA_ARBS_WEB
+npm install
+npm run build
+```
+
+Deploy `Apps/NBA_ARBS_WEB/dist`.
+
+Notes:
+- Static Netlify deploy works for dashboard viewing.
+- In-app refresh button will be disabled in static hosting.
+
+## Margin rarity colors
+
+- `> 0 and < 1.0`: grey (`#A6A8AD`)
+- `>= 1.0 and < 2.5`: green (`#5FCB5A`)
+- `>= 2.5 and < 5.0`: blue (`#4D8FFF`)
+- `>= 5.0`: orange (`#FF9A2E`)
+
+## Dataset freshness panel
+
+Shows source file `mtime`, shape, and source path for:
+- `all_arbs.rds`
+- `all_middles.rds`
+- `tab_points_miss_by_one.rds`
+- `betright_points_miss_by_one.rds`
+- `processed_odds/*.rds`
