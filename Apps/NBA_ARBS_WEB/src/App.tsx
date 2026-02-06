@@ -68,6 +68,7 @@ const MOBILE_BREAKPOINT = 860;
 const EXCLUDED_DEFAULT_AGENCY = "Dabble Pickem";
 const COMMON_OVER_AGENCIES = ["Bet365", "BetRight", "TAB", "Pointsbet"];
 const COMMON_UNDER_AGENCIES = ["Sportsbet", "Bet365", "BetRight"];
+const MULTI_LEG_AGENCIES = ["Dabble", "BetRight", "TAB", "Neds", "Pointsbet", "Bet365"];
 
 const mainTabConfig: Array<{ id: MainTab; label: string }> = [
   { id: "topDown", label: "Top-Down" },
@@ -260,12 +261,56 @@ function topDownTabs(excludeSportsbetUnder: boolean): TabDefinition[] {
         )
     },
     {
+      id: "Bet365",
+      label: "Bet365",
+      getRows: (data) =>
+        applyExcludeSportsbetUnder(
+          sportsbetRows(data.allArbsTopDown)
+            .filter(byAgency("Bet365"))
+            .filter((row) => toNumber(row.margin) > 0),
+          excludeSportsbetUnder
+        )
+    },
+    {
       id: "TAB",
       label: "TAB",
       getRows: (data) =>
         applyExcludeSportsbetUnder(
           sportsbetRows(data.allArbsTopDown)
             .filter(byAgency("TAB"))
+            .filter((row) => toNumber(row.margin) > 0),
+          excludeSportsbetUnder
+        )
+    },
+    {
+      id: "Pointsbet",
+      label: "Pointsbet",
+      getRows: (data) =>
+        applyExcludeSportsbetUnder(
+          sportsbetRows(data.allArbsTopDown)
+            .filter(byAgency("Pointsbet"))
+            .filter((row) => toNumber(row.margin) > 0),
+          excludeSportsbetUnder
+        )
+    },
+    {
+      id: "Neds",
+      label: "Neds",
+      getRows: (data) =>
+        applyExcludeSportsbetUnder(
+          sportsbetRows(data.allArbsTopDown)
+            .filter(byAgency("Neds"))
+            .filter((row) => toNumber(row.margin) > 0),
+          excludeSportsbetUnder
+        )
+    },
+    {
+      id: "BetRight",
+      label: "BetRight",
+      getRows: (data) =>
+        applyExcludeSportsbetUnder(
+          sportsbetRows(data.allArbsTopDown)
+            .filter(byAgency("BetRight"))
             .filter((row) => toNumber(row.margin) > 0),
           excludeSportsbetUnder
         )
@@ -293,56 +338,12 @@ function topDownTabs(excludeSportsbetUnder: boolean): TabDefinition[] {
         )
     },
     {
-      id: "Bet365",
-      label: "Bet365",
-      getRows: (data) =>
-        applyExcludeSportsbetUnder(
-          sportsbetRows(data.allArbsTopDown)
-            .filter(byAgency("Bet365"))
-            .filter((row) => toNumber(row.margin) > 0),
-          excludeSportsbetUnder
-        )
-    },
-    {
-      id: "BetRight",
-      label: "BetRight",
-      getRows: (data) =>
-        applyExcludeSportsbetUnder(
-          sportsbetRows(data.allArbsTopDown)
-            .filter(byAgency("BetRight"))
-            .filter((row) => toNumber(row.margin) > 0),
-          excludeSportsbetUnder
-        )
-    },
-    {
       id: "BetMakers",
       label: "BetMakers",
       getRows: (data) =>
         applyExcludeSportsbetUnder(
           sportsbetRows(data.allArbsTopDown)
             .filter(byAgency("BetMakers"))
-            .filter((row) => toNumber(row.margin) > 0),
-          excludeSportsbetUnder
-        )
-    },
-    {
-      id: "Neds",
-      label: "Neds",
-      getRows: (data) =>
-        applyExcludeSportsbetUnder(
-          sportsbetRows(data.allArbsTopDown)
-            .filter(byAgency("Neds"))
-            .filter((row) => toNumber(row.margin) > 0),
-          excludeSportsbetUnder
-        )
-    },
-    {
-      id: "Pointsbet",
-      label: "Pointsbet",
-      getRows: (data) =>
-        applyExcludeSportsbetUnder(
-          sportsbetRows(data.allArbsTopDown)
-            .filter(byAgency("Pointsbet"))
             .filter((row) => toNumber(row.margin) > 0),
           excludeSportsbetUnder
         )
@@ -411,7 +412,7 @@ function middleTabs(): TabDefinition[] {
 }
 
 function multiLegTabs(multiLegMatch: string): TabDefinition[] {
-  return ["Dabble", "BetRight", "TAB", "Neds", "Pointsbet", "Bet365"].map((agency) => ({
+  return MULTI_LEG_AGENCIES.map((agency) => ({
     id: agency,
     label: agency,
     getRows: (data: PreprocessedData) => {
@@ -770,6 +771,7 @@ export default function App(): JSX.Element {
     [mainTab, sortedRows]
   );
   const showCalculatorAction = mainTab === "arbs";
+  const showMultiLegAction = mainTab === "topDown";
 
   const totalPages = Math.max(1, Math.ceil(sortedRows.length / PAGE_SIZE));
   const currentPage = Math.min(page, totalPages);
@@ -811,6 +813,21 @@ export default function App(): JSX.Element {
     },
     [setMainTab]
   );
+
+  const jumpToMultiLegs = useCallback((row: TableRow) => {
+    const agency = String(row.UA ?? "");
+    const match = String(row.match ?? "");
+    if (!MULTI_LEG_AGENCIES.includes(agency) || !match) {
+      return;
+    }
+
+    setSubTabs((prev) => ({ ...prev, multiLegs: agency }));
+    setMultiLegMatch(match);
+    setMainTab("multiLegs");
+    setSearch("");
+    setSort({ key: null, dir: "asc" });
+    setPage(1);
+  }, []);
 
   const showSidebarContent = !isMobileViewport || isSidebarExpanded;
 
@@ -1118,9 +1135,8 @@ export default function App(): JSX.Element {
           ) : (
             <section className="neo-card fade-up delay-2">
               <div className="table-header-row">
-                <h2 className="panel-title">{section.title}</h2>
-
-                <div className="controls-row">
+                <div className="table-header-left">
+                  <h2 className="panel-title">{section.title}</h2>
                   {mainTab === "topDown" && (
                     <label className="switch-control">
                       <input
@@ -1134,7 +1150,9 @@ export default function App(): JSX.Element {
                       Exclude Sportsbet Unders
                     </label>
                   )}
+                </div>
 
+                <div className="controls-row">
                   {mainTab === "multiLegs" && (
                     <label className="select-control">
                       Match
@@ -1234,6 +1252,7 @@ export default function App(): JSX.Element {
                           );
                         })}
                         {showCalculatorAction && <th>Calculator</th>}
+                        {showMultiLegAction && <th>Multi Legs</th>}
                       </tr>
                     </thead>
                     <tbody>
@@ -1241,6 +1260,8 @@ export default function App(): JSX.Element {
                         const tierClass = getMarginTierClass(row.margin);
                         const rowKey = `${index}-${String(row.match ?? "")}-${String(row.player_name ?? row.player ?? "")}`;
                         const hasOdds = Number.isFinite(toNumber(row.over_price)) && Number.isFinite(toNumber(row.under_price));
+                        const underAgency = String(row.UA ?? "");
+                        const hasMultiLegTarget = MULTI_LEG_AGENCIES.includes(underAgency) && Boolean(String(row.match ?? ""));
 
                         return (
                           <tr key={rowKey} className={tierClass || undefined}>
@@ -1256,6 +1277,18 @@ export default function App(): JSX.Element {
                                   onClick={() => jumpToCalculator(row)}
                                 >
                                   Use
+                                </button>
+                              </td>
+                            )}
+                            {showMultiLegAction && (
+                              <td>
+                                <button
+                                  type="button"
+                                  className="pager-btn"
+                                  disabled={!hasMultiLegTarget}
+                                  onClick={() => jumpToMultiLegs(row)}
+                                >
+                                  View
                                 </button>
                               </td>
                             )}

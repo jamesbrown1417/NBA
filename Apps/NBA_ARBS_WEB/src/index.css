@@ -225,11 +225,13 @@ body {
   display: grid;
   gap: 14px;
   grid-template-columns: 310px minmax(0, 1fr);
+  min-width: 0;
 }
 
 .content-stack {
   display: grid;
   gap: 14px;
+  min-width: 0;
 }
 
 .neo-card {
@@ -246,6 +248,8 @@ body {
   position: sticky;
   top: 10px;
   align-self: start;
+  min-width: 0;
+  width: 100%;
 }
 
 .sidebar-toggle-btn {
@@ -350,10 +354,17 @@ body {
   gap: 7px;
   font-size: 12px;
   color: #294d72;
+  min-width: 0;
 }
 
 .filter-option input {
   accent-color: #0084ff;
+  flex: 0 0 auto;
+}
+
+.filter-option span {
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .clear-filter-btn {
@@ -402,6 +413,7 @@ body {
   display: block;
   color: var(--muted);
   font-size: 11px;
+  overflow-wrap: anywhere;
 }
 
 .legend-block {
@@ -553,6 +565,11 @@ body {
   align-items: center;
   gap: 12px;
   flex-wrap: wrap;
+}
+
+.table-header-left {
+  display: grid;
+  gap: 8px;
 }
 
 .controls-row {
@@ -802,8 +819,14 @@ body {
 }
 
 @media (max-width: 860px) {
+  html,
+  body {
+    overflow-x: hidden;
+  }
+
   .app-shell {
     padding: 14px;
+    overflow-x: clip;
   }
 
   .hero-panel {
@@ -826,6 +849,16 @@ body {
 
   .table-header-row {
     align-items: flex-start;
+  }
+
+  .neo-card,
+  .sidebar-card,
+  .filter-block,
+  .filter-section,
+  .filter-options,
+  .dataset-card {
+    max-width: 100%;
+    min-width: 0;
   }
 
   .sidebar-toggle-btn {
