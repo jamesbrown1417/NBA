@@ -86,6 +86,23 @@ function formatCurrency(value) {
   return `$${value.toFixed(2)}`;
 }
 
+function getMarginTierClass(marginValue) {
+  const margin = Number(marginValue);
+  if (!Number.isFinite(margin) || margin <= 0) {
+    return "";
+  }
+  if (margin < 1) {
+    return "margin-common";
+  }
+  if (margin < 2.5) {
+    return "margin-uncommon";
+  }
+  if (margin < 5) {
+    return "margin-rare";
+  }
+  return "margin-epic";
+}
+
 function setRefreshStatus(message, isError = false) {
   ui.refreshStatus.textContent = message;
   ui.refreshStatus.classList.toggle("error", isError);
@@ -561,7 +578,9 @@ function renderTable(rows, preferredColumns = []) {
   const bodyHtml = paged
     .map((row) => {
       const cells = columns.map((column) => `<td>${formatNumber(row[column])}</td>`).join("");
-      return `<tr>${cells}</tr>`;
+      const tierClass = getMarginTierClass(row.margin);
+      const classAttr = tierClass ? ` class="${tierClass}"` : "";
+      return `<tr${classAttr}>${cells}</tr>`;
     })
     .join("");
 

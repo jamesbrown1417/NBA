@@ -282,6 +282,54 @@ tr:hover td {
   background: #fafcff;
 }
 
+tr.margin-common td {
+  background: #f2f3f4;
+}
+
+tr.margin-uncommon td {
+  background: #edf8ed;
+}
+
+tr.margin-rare td {
+  background: #edf3ff;
+}
+
+tr.margin-epic td {
+  background: #fff4e8;
+}
+
+tr.margin-common td:first-child {
+  border-left: 3px solid #a6a8ad;
+}
+
+tr.margin-uncommon td:first-child {
+  border-left: 3px solid #5fcb5a;
+}
+
+tr.margin-rare td:first-child {
+  border-left: 3px solid #4d8fff;
+}
+
+tr.margin-epic td:first-child {
+  border-left: 3px solid #ff9a2e;
+}
+
+tr.margin-common:hover td {
+  background: #e9ebed;
+}
+
+tr.margin-uncommon:hover td {
+  background: #e2f4e2;
+}
+
+tr.margin-rare:hover td {
+  background: #e1ecff;
+}
+
+tr.margin-epic:hover td {
+  background: #ffe9d2;
+}
+
 .pager {
   margin-top: 10px;
   display: flex;

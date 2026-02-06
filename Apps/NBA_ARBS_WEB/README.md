@@ -42,3 +42,8 @@ http://localhost:4173
 - The in-app `Refresh Data` button works only when running via `server.js` (it calls `Rscript Scripts/export_nba_arbs_web_data.R`).
 - If you use `python3 -m http.server`, the app is read-only and cannot run refresh from inside the browser.
 - The sidebar shows per-dataset freshness using each source `.rds` file's last-modified timestamp (`mtime`), plus row/column counts.
+- Table rows are shaded by `margin` with Cyberpunk-style rarity colors:
+  - `> 0 and < 1.0`: grey (`#A6A8AD`)
+  - `>= 1.0 and < 2.5`: green (`#5FCB5A`)
+  - `>= 2.5 and < 5.0`: blue (`#4D8FFF`)
+  - `>= 5.0`: orange (`#FF9A2E`)
