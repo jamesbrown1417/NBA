@@ -131,11 +131,34 @@ h1 {
   padding: 7px 12px;
   font-size: 14px;
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .pill.active {
   background: var(--accent);
   border-color: var(--accent);
+  color: #fff;
+}
+
+.pill-label {
+  line-height: 1;
+}
+
+.tab-count {
+  font-size: 11px;
+  line-height: 1;
+  border-radius: 999px;
+  padding: 3px 7px;
+  background: #eaf1ff;
+  color: #1f3254;
+  border: 1px solid #ccdbf9;
+}
+
+.pill.active .tab-count {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.35);
   color: #fff;
 }
 

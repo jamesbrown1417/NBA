@@ -510,9 +510,30 @@ function renderSubTabs(section) {
 
   ui.subTabs.innerHTML = "";
   section.tabs.forEach((tab) => {
+    let rowCount = null;
+    if (state.data) {
+      try {
+        const rows = tab.getRows(state.data);
+        rowCount = Array.isArray(rows) ? rows.length : 0;
+      } catch (error) {
+        rowCount = null;
+      }
+    }
+
     const button = document.createElement("button");
     button.className = `pill ${selected === tab.id ? "active" : ""}`;
-    button.textContent = tab.label;
+    const label = document.createElement("span");
+    label.className = "pill-label";
+    label.textContent = tab.label;
+    button.appendChild(label);
+
+    if (rowCount !== null) {
+      const countBadge = document.createElement("span");
+      countBadge.className = "tab-count";
+      countBadge.textContent = rowCount.toLocaleString();
+      button.appendChild(countBadge);
+    }
+
     button.addEventListener("click", () => {
       state.subTabs[state.mainTab] = tab.id;
       state.page = 1;
