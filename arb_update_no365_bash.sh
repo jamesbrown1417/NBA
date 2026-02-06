@@ -1,7 +1,24 @@
 #!/bin/bash
 
 # Give access to normal path vars
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+
+# Load nvm (if installed) so npm/netlify from Node installs are available in non-interactive shells.
+if [ -s "$HOME/.nvm/nvm.sh" ]; then
+  # shellcheck disable=SC1090
+  . "$HOME/.nvm/nvm.sh"
+  nvm use --silent >/dev/null 2>&1 || true
+fi
+
+if ! command -v npm >/dev/null 2>&1; then
+  echo "Error: npm not found. Install Node.js and ensure npm is on PATH."
+  exit 1
+fi
+
+if ! command -v netlify >/dev/null 2>&1; then
+  echo "Error: netlify CLI not found. Run: npm install -g netlify-cli"
+  exit 1
+fi
 
 # Set the current directory to your project folder
 cd ~/Projects/NBA || exit
