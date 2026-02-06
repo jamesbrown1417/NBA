@@ -33,6 +33,13 @@ body {
   margin-bottom: 16px;
 }
 
+.hero-right {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  gap: 10px;
+}
+
 .eyebrow {
   margin: 0;
   color: var(--muted);
@@ -82,6 +89,26 @@ h1 {
   background: var(--accent);
   border-color: var(--accent);
   color: #fff;
+}
+
+.pill:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.refresh-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.refresh-status {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.refresh-status.error {
+  color: #b42318;
 }
 
 .calc-grid {
@@ -225,6 +252,10 @@ tr:hover td {
 @media (max-width: 900px) {
   .hero {
     flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-right {
     align-items: stretch;
   }
 

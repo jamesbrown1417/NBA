@@ -2,6 +2,8 @@ const PAGE_SIZE = 50;
 
 const ui = {
   generatedAt: document.getElementById("generated-at"),
+  refreshButton: document.getElementById("refresh-data"),
+  refreshStatus: document.getElementById("refresh-status"),
   mainTabs: document.getElementById("main-tabs"),
   subTabs: document.getElementById("sub-tabs"),
   viewTitle: document.getElementById("view-title"),
@@ -35,6 +37,7 @@ const state = {
   },
   excludeSportsbetUnder: false,
   multiLegMatch: "All",
+  refreshApiAvailable: false,
   search: "",
   sort: { key: null, dir: "asc" },
   page: 1
@@ -71,6 +74,20 @@ function formatCurrency(value) {
     return "-";
   }
   return `$${value.toFixed(2)}`;
+}
+
+function setRefreshStatus(message, isError = false) {
+  ui.refreshStatus.textContent = message;
+  ui.refreshStatus.classList.toggle("error", isError);
+}
+
+function updateRefreshButtonState(isBusy = false) {
+  ui.refreshButton.disabled = isBusy || !state.refreshApiAvailable;
+  if (isBusy) {
+    ui.refreshButton.textContent = "Refreshing...";
+    return;
+  }
+  ui.refreshButton.textContent = "Refresh Data";
 }
 
 function calculateArb() {
@@ -577,6 +594,27 @@ function render() {
   renderTableView();
 }
 
+async function detectRefreshApi() {
+  try {
+    const response = await fetch("/api/health", { cache: "no-store" });
+    if (!response.ok) {
+      throw new Error("health endpoint unavailable");
+    }
+    const payload = await response.json();
+    state.refreshApiAvailable = Boolean(payload.refreshSupported);
+    if (state.refreshApiAvailable) {
+      setRefreshStatus("Refresh endpoint ready");
+    } else {
+      setRefreshStatus("Refresh not supported by server");
+    }
+  } catch (error) {
+    state.refreshApiAvailable = false;
+    setRefreshStatus("Start with node server.js for in-app refresh");
+  } finally {
+    updateRefreshButtonState(false);
+  }
+}
+
 async function loadData() {
   try {
     const response = await fetch("./data/nba-arbs-data.json", { cache: "no-store" });
@@ -595,11 +633,45 @@ async function loadData() {
     ui.tableView.classList.remove("hidden");
 
     render();
+    return true;
   } catch (error) {
     ui.generatedAt.textContent = "No generated data file found";
     ui.calculatorView.classList.add("hidden");
     ui.tableView.classList.add("hidden");
     ui.statusView.classList.remove("hidden");
+    return false;
+  }
+}
+
+async function refreshDataFromApp() {
+  if (!state.refreshApiAvailable) {
+    setRefreshStatus("Refresh API unavailable", true);
+    return;
+  }
+
+  updateRefreshButtonState(true);
+  setRefreshStatus("Running export script...");
+
+  try {
+    const response = await fetch("/api/refresh", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" }
+    });
+    const payload = await response.json();
+    if (!response.ok || payload.success !== true) {
+      throw new Error(payload.error || "Refresh failed");
+    }
+
+    const loaded = await loadData();
+    if (loaded) {
+      setRefreshStatus(`Refreshed at ${new Date().toLocaleTimeString()}`);
+    } else {
+      setRefreshStatus("Script ran but data load failed", true);
+    }
+  } catch (error) {
+    setRefreshStatus(error.message, true);
+  } finally {
+    updateRefreshButtonState(false);
   }
 }
 
@@ -621,9 +693,13 @@ ui.searchInput.addEventListener("input", (event) => {
   render();
 });
 
+ui.refreshButton.addEventListener("click", refreshDataFromApp);
+
 [ui.odds1, ui.odds2, ui.stake1].forEach((input) => {
   input.addEventListener("input", calculateArb);
 });
 
 calculateArb();
+updateRefreshButtonState(false);
+detectRefreshApi();
 loadData();
