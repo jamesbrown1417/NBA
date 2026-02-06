@@ -4,6 +4,8 @@ const ui = {
   generatedAt: document.getElementById("generated-at"),
   refreshButton: document.getElementById("refresh-data"),
   refreshStatus: document.getElementById("refresh-status"),
+  updatesNote: document.getElementById("updates-note"),
+  datasetUpdates: document.getElementById("dataset-updates"),
   mainTabs: document.getElementById("main-tabs"),
   subTabs: document.getElementById("sub-tabs"),
   viewTitle: document.getElementById("view-title"),
@@ -51,6 +53,14 @@ const mainTabConfig = [
   { id: "multiLegs", label: "Multi Legs" }
 ];
 
+const datasetLabels = {
+  all_arbs: "all_arbs.rds",
+  all_middles: "all_middles.rds",
+  tab_miss_by_one: "tab_points_miss_by_one.rds",
+  betright_miss_by_one: "betright_points_miss_by_one.rds",
+  processed_odds: "processed_odds/*.rds"
+};
+
 function round2(value) {
   const num = Number(value);
   return Number.isFinite(num) ? Math.round(num * 100) / 100 : null;
@@ -88,6 +98,56 @@ function updateRefreshButtonState(isBusy = false) {
     return;
   }
   ui.refreshButton.textContent = "Refresh Data";
+}
+
+function renderDatasetUpdates(datasetMeta = {}, generatedAt = null) {
+  ui.datasetUpdates.innerHTML = "";
+
+  const keys = Object.keys(datasetLabels);
+  keys.forEach((key) => {
+    const meta = datasetMeta[key] ?? {};
+    const title = datasetLabels[key];
+    const updatedAt = meta.file_mtime ?? meta.latest_file_mtime ?? "Unknown";
+    const rows = Number.isFinite(Number(meta.rows)) ? Number(meta.rows) : null;
+    const cols = Number.isFinite(Number(meta.cols)) ? Number(meta.cols) : null;
+    const files = Number.isFinite(Number(meta.files)) ? Number(meta.files) : null;
+    const source = meta.source ?? meta.source_dir ?? null;
+
+    const item = document.createElement("li");
+    item.className = "update-item";
+
+    const heading = document.createElement("strong");
+    heading.textContent = title;
+
+    const updatedLine = document.createElement("span");
+    updatedLine.textContent = `Updated: ${updatedAt}`;
+
+    const shapeLine = document.createElement("span");
+    const parts = [];
+    if (rows !== null) {
+      parts.push(`${rows} rows`);
+    }
+    if (cols !== null) {
+      parts.push(`${cols} cols`);
+    }
+    if (files !== null) {
+      parts.push(`${files} files`);
+    }
+    shapeLine.textContent = parts.length > 0 ? parts.join(" | ") : "Shape unavailable";
+
+    const sourceLine = document.createElement("span");
+    sourceLine.textContent = source ? `Source: ${source}` : "Source unavailable";
+
+    item.appendChild(heading);
+    item.appendChild(updatedLine);
+    item.appendChild(shapeLine);
+    item.appendChild(sourceLine);
+    ui.datasetUpdates.appendChild(item);
+  });
+
+  ui.updatesNote.textContent = generatedAt
+    ? `Dashboard JSON generated: ${generatedAt}`
+    : "No generated dataset metadata found.";
 }
 
 function calculateArb() {
@@ -153,6 +213,7 @@ function preprocessData(raw) {
 
   return {
     generatedAt: raw.generated_at ?? null,
+    datasetMeta: raw.dataset_meta ?? {},
     allArbs,
     allMiddles: (raw.all_middles ?? []).map((row) => ({ ...row, margin: round2(row.margin) })),
     tabMissByOne,
@@ -627,6 +688,7 @@ async function loadData() {
     ui.generatedAt.textContent = state.data.generatedAt
       ? `Generated: ${state.data.generatedAt}`
       : "Generated timestamp unavailable";
+    renderDatasetUpdates(state.data.datasetMeta, state.data.generatedAt);
 
     ui.statusView.classList.add("hidden");
     ui.calculatorView.classList.remove("hidden");
@@ -636,6 +698,7 @@ async function loadData() {
     return true;
   } catch (error) {
     ui.generatedAt.textContent = "No generated data file found";
+    renderDatasetUpdates({}, null);
     ui.calculatorView.classList.add("hidden");
     ui.tableView.classList.add("hidden");
     ui.statusView.classList.remove("hidden");

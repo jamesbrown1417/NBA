@@ -41,3 +41,4 @@ http://localhost:4173
 - Data file is external so you can refresh it whenever odds/arbs update.
 - The in-app `Refresh Data` button works only when running via `server.js` (it calls `Rscript Scripts/export_nba_arbs_web_data.R`).
 - If you use `python3 -m http.server`, the app is read-only and cannot run refresh from inside the browser.
+- The sidebar shows per-dataset freshness using each source `.rds` file's last-modified timestamp (`mtime`), plus row/column counts.

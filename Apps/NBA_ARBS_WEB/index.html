@@ -23,70 +23,78 @@
         </div>
       </header>
 
-      <main>
-        <section class="card" id="calculator-view">
-          <h2>Arbitrage Calculator</h2>
-          <div class="calc-grid">
-            <label>
-              Odds 1
-              <input id="odds-1" type="number" step="0.01" value="2.4" />
-            </label>
-            <label>
-              Stake 1
-              <input id="stake-1" type="number" step="0.01" value="100" />
-            </label>
-            <label>
-              Odds 2
-              <input id="odds-2" type="number" step="0.01" value="1.8" />
-            </label>
-          </div>
-          <div class="stat-grid">
-            <div class="stat">
-              <p>Stake 2</p>
-              <strong id="calc-stake-2">-</strong>
-            </div>
-            <div class="stat">
-              <p>Arbitrage %</p>
-              <strong id="calc-arb">-</strong>
-            </div>
-            <div class="stat">
-              <p>Total Profit</p>
-              <strong id="calc-profit">-</strong>
-            </div>
-          </div>
-        </section>
+      <main class="dashboard">
+        <aside class="card sidebar" id="updates-panel">
+          <h2>Data Freshness</h2>
+          <p class="meta" id="updates-note">Waiting for data...</p>
+          <ul class="update-list" id="dataset-updates"></ul>
+        </aside>
 
-        <section class="card hidden" id="table-view">
-          <div class="view-header">
-            <h2 id="view-title">Table</h2>
-            <div class="controls-row">
-              <label class="inline-check hidden" id="exclude-sportsbet-wrap">
-                <input id="exclude-sportsbet" type="checkbox" />
-                Exclude Sportsbet Unders
+        <div class="content-stack">
+          <section class="card" id="calculator-view">
+            <h2>Arbitrage Calculator</h2>
+            <div class="calc-grid">
+              <label>
+                Odds 1
+                <input id="odds-1" type="number" step="0.01" value="2.4" />
               </label>
-              <label class="inline-select hidden" id="multi-leg-match-wrap">
-                Match
-                <select id="multi-leg-match"></select>
+              <label>
+                Stake 1
+                <input id="stake-1" type="number" step="0.01" value="100" />
               </label>
-              <input id="search-input" type="search" placeholder="Search table..." />
+              <label>
+                Odds 2
+                <input id="odds-2" type="number" step="0.01" value="1.8" />
+              </label>
             </div>
-          </div>
+            <div class="stat-grid">
+              <div class="stat">
+                <p>Stake 2</p>
+                <strong id="calc-stake-2">-</strong>
+              </div>
+              <div class="stat">
+                <p>Arbitrage %</p>
+                <strong id="calc-arb">-</strong>
+              </div>
+              <div class="stat">
+                <p>Total Profit</p>
+                <strong id="calc-profit">-</strong>
+              </div>
+            </div>
+          </section>
 
-          <div class="pill-group" id="sub-tabs"></div>
-          <p class="meta" id="table-meta"></p>
-          <div class="table-scroll">
-            <table id="data-table"></table>
-          </div>
-          <div class="pager" id="pager"></div>
-        </section>
+          <section class="card hidden" id="table-view">
+            <div class="view-header">
+              <h2 id="view-title">Table</h2>
+              <div class="controls-row">
+                <label class="inline-check hidden" id="exclude-sportsbet-wrap">
+                  <input id="exclude-sportsbet" type="checkbox" />
+                  Exclude Sportsbet Unders
+                </label>
+                <label class="inline-select hidden" id="multi-leg-match-wrap">
+                  Match
+                  <select id="multi-leg-match"></select>
+                </label>
+                <input id="search-input" type="search" placeholder="Search table..." />
+              </div>
+            </div>
 
-        <section class="card hidden" id="status-view">
-          <h2>Data Missing</h2>
-          <p>
-            Generate data first with:
-            <code>Rscript Scripts/export_nba_arbs_web_data.R</code>
-          </p>
-        </section>
+            <div class="pill-group" id="sub-tabs"></div>
+            <p class="meta" id="table-meta"></p>
+            <div class="table-scroll">
+              <table id="data-table"></table>
+            </div>
+            <div class="pager" id="pager"></div>
+          </section>
+
+          <section class="card hidden" id="status-view">
+            <h2>Data Missing</h2>
+            <p>
+              Generate data first with:
+              <code>Rscript Scripts/export_nba_arbs_web_data.R</code>
+            </p>
+          </section>
+        </div>
       </main>
     </div>
 

@@ -70,6 +70,54 @@ h1 {
   display: none;
 }
 
+.dashboard {
+  display: grid;
+  grid-template-columns: 300px minmax(0, 1fr);
+  gap: 14px;
+}
+
+.content-stack {
+  display: grid;
+  gap: 14px;
+}
+
+.sidebar {
+  align-self: start;
+  position: sticky;
+  top: 12px;
+}
+
+.sidebar h2 {
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+
+.update-list {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.update-item {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 8px;
+  background: #f8fbff;
+}
+
+.update-item strong {
+  display: block;
+  font-size: 13px;
+}
+
+.update-item span {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+}
+
 .pill-group {
   display: flex;
   flex-wrap: wrap;
@@ -257,6 +305,14 @@ tr:hover td {
 
   .hero-right {
     align-items: stretch;
+  }
+
+  .dashboard {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: static;
   }
 
   .calc-grid,
