@@ -5,6 +5,13 @@ library(googledrive)
 library(future)
 library(furrr)
 
+# Safe combine: bind list of data frames, returning empty tibble if none
+safe_bind <- function(x) {
+  x <- keep(x, ~nrow(.x) > 0)
+  if (length(x) == 0) return(tibble())
+  bind_rows(x)
+}
+
 # Get empirical probability function
 source("Scripts/get_empirical_probabilities.R")
 
@@ -43,36 +50,36 @@ next_week_games <-
 all_odds_files <-
   list.files("Data/scraped_odds", full.names = TRUE, pattern = "h2h") |>
   map(read_csv) |>
-  # Keep if nrow of dataframe greater than 0
-  keep(~nrow(.x) > 0) |>
-  reduce(bind_rows)
+  safe_bind()
 
+if (nrow(all_odds_files) > 0) {
 # For each match, get all home wins
 all_home <-
   all_odds_files |>
   arrange(match, start_time, desc(home_win)) |>
-  select(match, start_time, market_name, home_team, home_win, home_agency = agency) |> 
-  mutate(start_time = date(start_time)) |> 
+  select(match, start_time, market_name, home_team, home_win, home_agency = agency) |>
+  mutate(start_time = date(start_time)) |>
   select(-start_time)
 
 # For each match, get all away wins
 all_away <-
   all_odds_files |>
   arrange(match, start_time, desc(away_win)) |>
-  select(match, start_time, market_name, away_team, away_win, away_agency = agency) |> 
-  mutate(start_time = date(start_time)) |> 
+  select(match, start_time, market_name, away_team, away_win, away_agency = agency) |>
+  mutate(start_time = date(start_time)) |>
   select(-start_time)
 
 # Combine
 all_odds_h2h <-
   all_home |>
   full_join(all_away, relationship = "many-to-many", by = c("match", "market_name")) |>
-  mutate(margin = (1/home_win + 1/away_win)) |> 
-  mutate(margin = round(100*(margin - 1), digits = 3)) |> 
-  arrange(margin) |> 
-  left_join(NBA_schedule, by = "match") |> 
-  relocate(start_time, .after = match) |> 
+  mutate(margin = (1/home_win + 1/away_win)) |>
+  mutate(margin = round(100*(margin - 1), digits = 3)) |>
+  arrange(margin) |>
+  left_join(NBA_schedule, by = "match") |>
+  relocate(start_time, .after = match) |>
   filter(match %in% next_week_games$match)
+}
 
 
 ##%######################################################%##
@@ -85,17 +92,19 @@ all_odds_h2h <-
 all_player_points <-
   list.files("Data/scraped_odds", full.names = TRUE, pattern = "player_points") |>
   map(read_csv) |>
-  # Ignore null elements
-  keep(~nrow(.x) > 0) |>
-  reduce(bind_rows) |> 
-  arrange(player_name, line, desc(over_price)) |> 
+  safe_bind()
+
+if (nrow(all_player_points) > 0) {
+all_player_points <-
+  all_player_points |>
+  arrange(player_name, line, desc(over_price)) |>
   select(-matches("id"))
 
 # Add empirical probabilities---------------------------------------------------
 
 # Points
 distinct_point_combos <-
-  all_player_points |> 
+  all_player_points |>
   distinct(player_name, line)
 
 player_emp_probs_2024_25 <-
@@ -152,7 +161,7 @@ all_player_points <-
   filter(!is.na(opposition_team)) |>
   left_join(NBA_schedule, by = "match") |>
   relocate(start_time, .after = match) |>
-  filter(match %in% next_week_games$match) |> 
+  filter(match %in% next_week_games$match) |>
   group_by(player_name, line) |>
   mutate(
     min_implied_prob = min(implied_prob_over, na.rm = TRUE),
@@ -165,6 +174,7 @@ all_player_points <-
 
 # Write as RDS
 all_player_points |> write_rds("Data/processed_odds/all_player_points.rds")
+}
 
 ##%######################################################%##
 #                                                          #
@@ -176,16 +186,18 @@ all_player_points |> write_rds("Data/processed_odds/all_player_points.rds")
 all_player_assists <-
   list.files("Data/scraped_odds", full.names = TRUE, pattern = "player_assists") |>
   map(read_csv) |>
-  # Ignore null elements
-  keep(~nrow(.x) > 0) |>
-  reduce(bind_rows) |> 
+  safe_bind()
+
+if (nrow(all_player_assists) > 0) {
+all_player_assists <-
+  all_player_assists |>
   select(-matches("id"))
 
 # Add empirical probabilities---------------------------------------------------
 
 # Assists
 distinct_assist_combos <-
-  all_player_assists |> 
+  all_player_assists |>
   distinct(player_name, line)
 
 player_emp_probs_assists_2024_25 <-
@@ -242,7 +254,7 @@ all_player_assists <-
   filter(!is.na(opposition_team)) |>
   left_join(NBA_schedule, by = "match") |>
   relocate(start_time, .after = match) |>
-  filter(match %in% next_week_games$match) |> 
+  filter(match %in% next_week_games$match) |>
   group_by(player_name, line) |>
   mutate(
     min_implied_prob = min(implied_prob_over, na.rm = TRUE),
@@ -253,11 +265,9 @@ all_player_assists <-
   select(-min_implied_prob, -max_implied_prob) |>
   arrange(desc(variation), player_name, desc(over_price), line)
 
-# Add to google sheets
-# sheet_write(sheet, data = all_player_assists, sheet = "Player Assists")
-
 # Write as RDS
 all_player_assists |> write_rds("Data/processed_odds/all_player_assists.rds")
+}
 
 ##%######################################################%##
 #                                                          #
@@ -269,16 +279,18 @@ all_player_assists |> write_rds("Data/processed_odds/all_player_assists.rds")
 all_player_rebounds <-
   list.files("Data/scraped_odds", full.names = TRUE, pattern = "player_rebounds") |>
   map(read_csv) |>
-  # Ignore null elements
-  keep(~nrow(.x) > 0) |>
-  reduce(bind_rows) |> 
+  safe_bind()
+
+if (nrow(all_player_rebounds) > 0) {
+all_player_rebounds <-
+  all_player_rebounds |>
   select(-matches("id"))
 
 # Add empirical probabilities---------------------------------------------------
 
 # Rebounds
 distinct_rebound_combos <-
-  all_player_rebounds |> 
+  all_player_rebounds |>
   distinct(player_name, line)
 
 player_emp_probs_rebounds_2024_25 <-
@@ -335,7 +347,7 @@ all_player_rebounds <-
   filter(!is.na(opposition_team)) |>
   left_join(NBA_schedule, by = "match") |>
   relocate(start_time, .after = match) |>
-  filter(match %in% next_week_games$match) |> 
+  filter(match %in% next_week_games$match) |>
   group_by(player_name, line) |>
   mutate(
     min_implied_prob = min(implied_prob_over, na.rm = TRUE),
@@ -346,11 +358,9 @@ all_player_rebounds <-
   select(-min_implied_prob, -max_implied_prob) |>
   arrange(desc(variation), player_name, desc(over_price), line)
 
-# Add to google sheets
-# sheet_write(sheet, data = all_player_rebounds, sheet = "Player Rebounds")
-
 # Write as RDS
 all_player_rebounds |> write_rds("Data/processed_odds/all_player_rebounds.rds")
+}
 
 ##%######################################################%##
 #                                                          #
@@ -362,16 +372,18 @@ all_player_rebounds |> write_rds("Data/processed_odds/all_player_rebounds.rds")
 all_player_steals <-
   list.files("Data/scraped_odds", full.names = TRUE, pattern = "player_steals") |>
   map(read_csv) |>
-  # Ignore null elements
-  keep(~nrow(.x) > 0) |>
-  reduce(bind_rows) |> 
+  safe_bind()
+
+if (nrow(all_player_steals) > 0) {
+all_player_steals <-
+  all_player_steals |>
   select(-matches("id"))
 
 # Add empirical probabilities---------------------------------------------------
 
 # Steals
 distinct_steals_combos <-
-  all_player_steals |> 
+  all_player_steals |>
   distinct(player_name, line)
 
 player_emp_probs_steals_2024_25 <-
@@ -428,7 +440,7 @@ all_player_steals <-
   filter(!is.na(opposition_team)) |>
   left_join(NBA_schedule, by = "match") |>
   relocate(start_time, .after = match) |>
-  filter(match %in% next_week_games$match) |> 
+  filter(match %in% next_week_games$match) |>
   group_by(player_name, line) |>
   mutate(
     min_implied_prob = min(implied_prob_over, na.rm = TRUE),
@@ -439,11 +451,9 @@ all_player_steals <-
   select(-min_implied_prob, -max_implied_prob) |>
   arrange(desc(variation), player_name, desc(over_price), line)
 
-# Add to google sheets
-# sheet_write(sheet, data = all_player_steals, sheet = "Player Steals")
-
 # Write as RDS
 all_player_steals |> write_rds("Data/processed_odds/all_player_steals.rds")
+}
 
 ##%######################################################%##
 #                                                          #
@@ -455,16 +465,18 @@ all_player_steals |> write_rds("Data/processed_odds/all_player_steals.rds")
 all_player_blocks <-
   list.files("Data/scraped_odds", full.names = TRUE, pattern = "player_blocks") |>
   map(read_csv) |>
-  # Ignore null elements
-  keep(~nrow(.x) > 0) |>
-  reduce(bind_rows) |> 
+  safe_bind()
+
+if (nrow(all_player_blocks) > 0) {
+all_player_blocks <-
+  all_player_blocks |>
   select(-matches("id"))
 
 # Add empirical probabilities---------------------------------------------------
 
 # Blocks
 distinct_blocks_combos <-
-  all_player_blocks |> 
+  all_player_blocks |>
   distinct(player_name, line)
 
 player_emp_probs_blocks_2024_25 <-
@@ -521,7 +533,7 @@ all_player_blocks <-
   filter(!is.na(opposition_team)) |>
   left_join(NBA_schedule, by = "match") |>
   relocate(start_time, .after = match) |>
-  filter(match %in% next_week_games$match) |> 
+  filter(match %in% next_week_games$match) |>
   group_by(player_name, line) |>
   mutate(
     min_implied_prob = min(implied_prob_over, na.rm = TRUE),
@@ -532,11 +544,9 @@ all_player_blocks <-
   select(-min_implied_prob, -max_implied_prob) |>
   arrange(desc(variation), player_name, desc(over_price), line)
 
-# Add to google sheets
-# sheet_write(sheet, data = all_player_blocks, sheet = "Player Blocks")
-
 # Write as RDS
 all_player_blocks |> write_rds("Data/processed_odds/all_player_blocks.rds")
+}
 
 ##%######################################################%##
 #                                                          #
@@ -548,16 +558,18 @@ all_player_blocks |> write_rds("Data/processed_odds/all_player_blocks.rds")
 all_player_threes <-
   list.files("Data/scraped_odds", full.names = TRUE, pattern = "player_threes") |>
   map(read_csv) |>
-  # Ignore null elements
-  keep(~nrow(.x) > 0) |>
-  reduce(bind_rows) |> 
+  safe_bind()
+
+if (nrow(all_player_threes) > 0) {
+all_player_threes <-
+  all_player_threes |>
   select(-matches("id"))
 
 # Add empirical probabilities---------------------------------------------------
 
 # Threes
 distinct_threes_combos <-
-  all_player_threes |> 
+  all_player_threes |>
   distinct(player_name, line)
 
 player_emp_probs_threes_2024_25 <-
@@ -614,7 +626,7 @@ all_player_threes <-
   filter(!is.na(opposition_team)) |>
   left_join(NBA_schedule, by = "match") |>
   relocate(start_time, .after = match) |>
-  filter(match %in% next_week_games$match) |> 
+  filter(match %in% next_week_games$match) |>
   group_by(player_name, line) |>
   mutate(
     min_implied_prob = min(implied_prob_over, na.rm = TRUE),
@@ -625,11 +637,9 @@ all_player_threes <-
   select(-min_implied_prob, -max_implied_prob) |>
   arrange(desc(variation), player_name, desc(over_price), line)
 
-# Add to google sheets
-# sheet_write(sheet, data = all_player_threes, sheet = "Player Threes")
-
 # Write as RDS
 all_player_threes |> write_rds("Data/processed_odds/all_player_threes.rds")
+}
 
 ##%######################################################%##
 #                                                          #
@@ -641,16 +651,18 @@ all_player_threes |> write_rds("Data/processed_odds/all_player_threes.rds")
 all_player_pras <-
   list.files("Data/scraped_odds", full.names = TRUE, pattern = "player_pras") |>
   map(read_csv) |>
-  # Ignore null elements
-  keep(~nrow(.x) > 0) |>
-  reduce(bind_rows) |> 
+  safe_bind()
+
+if (nrow(all_player_pras) > 0) {
+all_player_pras <-
+  all_player_pras |>
   select(-matches("id"))
 
 # Add empirical probabilities---------------------------------------------------
 
 # PRAs
 distinct_pra_combos <-
-  all_player_pras |> 
+  all_player_pras |>
   distinct(player_name, line)
 
 player_emp_probs_pras_2024_25 <-
@@ -707,7 +719,7 @@ all_player_pras <-
   filter(!is.na(opposition_team)) |>
   left_join(NBA_schedule, by = "match") |>
   relocate(start_time, .after = match) |>
-  filter(match %in% next_week_games$match) |> 
+  filter(match %in% next_week_games$match) |>
   group_by(player_name, line) |>
   mutate(
     min_implied_prob = min(implied_prob_over, na.rm = TRUE),
@@ -718,8 +730,6 @@ all_player_pras <-
   select(-min_implied_prob, -max_implied_prob) |>
   arrange(desc(variation), player_name, desc(over_price), line)
 
-# Add to google sheets
-# sheet_write(sheet, data = all_player_pras, sheet = "Player PRAs")
-
 # Write as RDS
 all_player_pras |> write_rds("Data/processed_odds/all_player_pras.rds")
+}
