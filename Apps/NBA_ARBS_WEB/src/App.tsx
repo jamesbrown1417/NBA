@@ -68,7 +68,7 @@ const MOBILE_BREAKPOINT = 860;
 const EXCLUDED_DEFAULT_AGENCY = "Dabble Pickem";
 const COMMON_OVER_AGENCIES = ["Bet365", "BetRight", "TAB", "Pointsbet"];
 const COMMON_UNDER_AGENCIES = ["Sportsbet", "Bet365", "BetRight"];
-const MULTI_LEG_AGENCIES = ["Dabble", "BetRight", "TAB", "Neds", "Pointsbet", "Bet365"];
+const MULTI_LEG_AGENCIES = ["Dabble", "BetRight", "BetMakers", "TAB", "Neds", "Pointsbet", "Bet365"];
 
 const mainTabConfig: Array<{ id: MainTab; label: string }> = [
   { id: "topDown", label: "Top-Down" },
