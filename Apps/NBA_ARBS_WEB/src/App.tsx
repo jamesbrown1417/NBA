@@ -981,14 +981,8 @@ export default function App(): JSX.Element {
                       </div>
                     </div>
 
-                    <button type="button" className="clear-filter-btn" onClick={resetArbFilters}>
-                      Reset Default Filters
-                    </button>
-                    <button type="button" className="clear-filter-btn" onClick={applyCommonFilters}>
-                      Common Filters
-                    </button>
                     <p className="filter-hint">
-                      Defaults select all values except {EXCLUDED_DEFAULT_AGENCY}. {mainTab === "arbs" ? "Active on current view." : "Switch to Arbs tab to apply."}
+                      Defaults select all values except {EXCLUDED_DEFAULT_AGENCY}. Use the filter buttons under the Arbs title. {mainTab === "arbs" ? "Active on current view." : "Switch to Arbs tab to apply."}
                     </p>
                   </div>
                 </>
@@ -1149,6 +1143,16 @@ export default function App(): JSX.Element {
                       />
                       Exclude Sportsbet Unders
                     </label>
+                  )}
+                  {mainTab === "arbs" && (
+                    <div className="arbs-filter-actions">
+                      <button type="button" className="clear-filter-btn" onClick={resetArbFilters}>
+                        Reset Default Filters
+                      </button>
+                      <button type="button" className="clear-filter-btn" onClick={applyCommonFilters}>
+                        Common Filters
+                      </button>
+                    </div>
                   )}
                 </div>
 
