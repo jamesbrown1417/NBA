@@ -347,30 +347,6 @@ function topDownTabs(excludeSportsbetUnder: boolean): TabDefinition[] {
             .filter((row) => toNumber(row.margin) > 0),
           excludeSportsbetUnder
         )
-    },
-    {
-      id: "TAB Miss-by-1",
-      label: "TAB Miss-by-1 Points",
-      getRows: (data) =>
-        applyExcludeSportsbetUnder(
-          sportsbetRows(data.tabMissByOneTopDown)
-            .filter(byAgency("TAB"))
-            .filter((row) => toNumber(row.line) >= 8.5)
-            .filter((row) => toNumber(row.margin) > 0),
-          excludeSportsbetUnder
-        )
-    },
-    {
-      id: "BetRight Miss-by-1",
-      label: "BetRight Miss-by-1 Points",
-      getRows: (data) =>
-        applyExcludeSportsbetUnder(
-          sportsbetRows(data.betrightMissByOneTopDown)
-            .filter(byAgency("BetRight"))
-            .filter((row) => toNumber(row.line) >= 8.5)
-            .filter((row) => toNumber(row.margin) > 0),
-          excludeSportsbetUnder
-        )
     }
   ];
 }
@@ -394,6 +370,18 @@ function arbsTabs(): TabDefinition[] {
           .filter((row) => toNumber(row.margin) > 0)
           .filter((row) => toNumber(row.line) >= 8.5)
           .filter((row) => row.over_agency === "TAB" || row.under_agency === "TAB")
+          .filter((row) => !["Neds", "Unibet"].includes(String(row.over_agency ?? "")))
+          .filter((row) => !["Neds", "Unibet"].includes(String(row.under_agency ?? "")))
+          .map((row) => ({ ...row, margin: round2(row.margin) }))
+    },
+    {
+      id: "betrightMissBy1Arbs",
+      label: "BetRight Miss-by-1 Points Arbs",
+      getRows: (data) =>
+        data.betrightMissByOne
+          .filter((row) => toNumber(row.margin) > 0)
+          .filter((row) => toNumber(row.line) >= 8.5)
+          .filter((row) => row.over_agency === "BetRight" || row.under_agency === "BetRight")
           .filter((row) => !["Neds", "Unibet"].includes(String(row.over_agency ?? "")))
           .filter((row) => !["Neds", "Unibet"].includes(String(row.under_agency ?? "")))
           .map((row) => ({ ...row, margin: round2(row.margin) }))
@@ -659,7 +647,7 @@ export default function App(): JSX.Element {
       return empty;
     }
 
-    const sourceRows = [...data.allArbs, ...data.tabMissByOne];
+    const sourceRows = [...data.allArbs, ...data.tabMissByOne, ...data.betrightMissByOne];
     const unique = (values: string[]) => Array.from(new Set(values.filter(Boolean))).sort((a, b) => a.localeCompare(b));
 
     return {
