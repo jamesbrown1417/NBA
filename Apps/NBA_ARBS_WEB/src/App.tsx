@@ -141,10 +141,10 @@ function getMarginTierClass(marginValue: CellValue): string {
   if (margin < 1) {
     return "margin-common";
   }
-  if (margin < 2.5) {
+  if (margin < 2) {
     return "margin-uncommon";
   }
-  if (margin < 5) {
+  if (margin < 4) {
     return "margin-rare";
   }
   return "margin-epic";
@@ -781,7 +781,7 @@ export default function App(): JSX.Element {
     [data]
   );
   const epicMarginCount = useMemo(
-    () => (data ? data.allArbs.filter((row) => toNumber(row.margin) >= 5).length : 0),
+    () => (data ? data.allArbs.filter((row) => toNumber(row.margin) >= 4).length : 0),
     [data]
   );
 
@@ -835,7 +835,7 @@ export default function App(): JSX.Element {
               <strong>{positiveMarginCount.toLocaleString()}</strong>
             </span>
             <span className="metric-chip">
-              Margin 5.00+
+              Margin 4.00+
               <strong>{epicMarginCount.toLocaleString()}</strong>
             </span>
             <span className="metric-chip">
@@ -1019,15 +1019,15 @@ export default function App(): JSX.Element {
                       </li>
                       <li>
                         <span className="legend-dot uncommon" />
-                        1.00 to 2.49
+                        1.00 to 1.99
                       </li>
                       <li>
                         <span className="legend-dot rare" />
-                        2.50 to 4.99
+                        2.00 to 3.99
                       </li>
                       <li>
                         <span className="legend-dot epic" />
-                        5.00+
+                        4.00+
                       </li>
                     </ul>
                   </div>
