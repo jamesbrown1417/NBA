@@ -2329,7 +2329,9 @@
                 "dbd34ed2-d52e-469e-a105-74f7a222f55c",
                 "6c31da95-a564-44f5-969b-7d28270db231",
                 "50c49172-6a97-455d-9eda-902d7abc79b0",
-                "2ddd5706-3f6e-44f1-a7f6-9b9b9c71a402"
+                "2ddd5706-3f6e-44f1-a7f6-9b9b9c71a402",
+                "9565e802-c97f-468b-9c70-c5c1e56bf2c7",
+                "c6ca714a-64c2-49bc-a099-fb772bd45fe0"
             ],
             "market_type_group_markets": [
                 {
@@ -2355,9 +2357,7 @@
                         "4684072e-c65e-43c8-9463-08794eaa45b0",
                         "b82e3a31-0b37-4396-b083-43f9d3838aa5",
                         "0761e4a5-bb9c-423c-aa8b-dd628c6539ec",
-                        "57f1a002-d549-49da-b46c-b3e203e88a81",
-                        "9dd8a953-12d1-40ae-a1c1-149a8802fe85",
-                        "32f031dd-e80a-4b69-873a-8bcde5838b27"
+                        "9dd8a953-12d1-40ae-a1c1-149a8802fe85"
                     ]
                 },
                 {
@@ -2389,6 +2389,18 @@
                         "d48408bb-f904-4224-9c45-eec9d05730d9",
                         "17857719-4d87-48ae-b077-eb9c1c215e82"
                     ]
+                },
+                {
+                    "market_type_group_id": "9565e802-c97f-468b-9c70-c5c1e56bf2c7",
+                    "market_ids": [
+                        "32f031dd-e80a-4b69-873a-8bcde5838b27"
+                    ]
+                },
+                {
+                    "market_type_group_id": "c6ca714a-64c2-49bc-a099-fb772bd45fe0",
+                    "market_ids": [
+                        "57f1a002-d549-49da-b46c-b3e203e88a81"
+                    ]
                 }
             ],
             "market_count": 25,
@@ -2410,9 +2422,7 @@
                 "4684072e-c65e-43c8-9463-08794eaa45b0",
                 "b82e3a31-0b37-4396-b083-43f9d3838aa5",
                 "0761e4a5-bb9c-423c-aa8b-dd628c6539ec",
-                "57f1a002-d549-49da-b46c-b3e203e88a81",
                 "9dd8a953-12d1-40ae-a1c1-149a8802fe85",
-                "32f031dd-e80a-4b69-873a-8bcde5838b27",
                 "042b092a-82bf-4077-8f9a-ef3512102ea3",
                 "45ab0905-da90-4be7-953c-d321829f31aa",
                 "1df1df23-818f-4da9-92ae-9fc1f559ff35",
@@ -2420,7 +2430,9 @@
                 "4f4a669a-e050-4f2d-b71b-c9486314d928",
                 "f8449c31-7120-443d-a140-d36990749287",
                 "d48408bb-f904-4224-9c45-eec9d05730d9",
-                "17857719-4d87-48ae-b077-eb9c1c215e82"
+                "17857719-4d87-48ae-b077-eb9c1c215e82",
+                "32f031dd-e80a-4b69-873a-8bcde5838b27",
+                "57f1a002-d549-49da-b46c-b3e203e88a81"
             ],
             "category_id": "3c34d075-dc14-436d-bfc4-9272a49c2b39",
             "participant_ids": [
@@ -2456,6 +2468,20 @@
             "category_id": "3c34d075-dc14-436d-bfc4-9272a49c2b39",
             "name": "Player Rebounds Markets",
             "priority": 986,
+            "type": "MARKET_TYPE_GROUP_TYPE_EVENT"
+        },
+        "9565e802-c97f-468b-9c70-c5c1e56bf2c7": {
+            "id": "9565e802-c97f-468b-9c70-c5c1e56bf2c7",
+            "category_id": "3c34d075-dc14-436d-bfc4-9272a49c2b39",
+            "name": "Player Blocks Markets",
+            "priority": 280,
+            "type": "MARKET_TYPE_GROUP_TYPE_EVENT"
+        },
+        "c6ca714a-64c2-49bc-a099-fb772bd45fe0": {
+            "id": "c6ca714a-64c2-49bc-a099-fb772bd45fe0",
+            "category_id": "3c34d075-dc14-436d-bfc4-9272a49c2b39",
+            "name": "Other Markets",
+            "priority": 6,
             "type": "MARKET_TYPE_GROUP_TYPE_EVENT"
         },
         "dbd34ed2-d52e-469e-a105-74f7a222f55c": {
@@ -2724,7 +2750,7 @@
         "32f031dd-e80a-4b69-873a-8bcde5838b27": {
             "id": "32f031dd-e80a-4b69-873a-8bcde5838b27",
             "event_id": "90bc5a12-c94f-4060-97e7-6be1be50ce63",
-            "market_type_id": "d80b99d2-4706-4247-b7f7-0c5b2c77b5ef",
+            "market_type_id": "90740ae1-d639-45c3-9c91-1f331c4c341c",
             "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
             "name": "To Score 8+ Points",
             "advertised_start": {
@@ -2870,7 +2896,7 @@
         "57f1a002-d549-49da-b46c-b3e203e88a81": {
             "id": "57f1a002-d549-49da-b46c-b3e203e88a81",
             "event_id": "90bc5a12-c94f-4060-97e7-6be1be50ce63",
-            "market_type_id": "d80b99d2-4706-4247-b7f7-0c5b2c77b5ef",
+            "market_type_id": "602e7b30-9c6b-4108-8aa6-5bb5af1863d7",
             "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
             "name": "To Score 4+ Points",
             "advertised_start": {
