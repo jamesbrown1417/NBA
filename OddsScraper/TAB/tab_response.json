@@ -12,6 +12,131 @@
   },
   "matches": [
     {
+      "id": "ChavHou",
+      "name": "Charlotte v Houston",
+      "spectrumId": "ChavHou",
+      "spectrumUniqueId": 3184336,
+      "competitionSpectrumId": "1001",
+      "round": null,
+      "broadcastChannel": "Tab.com.au",
+      "broadcastChannels": [
+        "Tab.com.au"
+      ],
+      "startTime": "2026-02-20T00:10:00.000Z",
+      "_links": {
+        "self": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/Charlotte%20v%20Houston?jurisdiction=SA",
+        "selfTemplate": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/Charlotte%20v%20Houston?jurisdiction={jurisdiction}{&amp;returnPromo,returnOffers,returnMultiOnly,channelType,cashSales,homeState}",
+        "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/Charlotte%20v%20Houston/markets?jurisdiction=SA"
+      },
+      "contestants": [
+        {
+          "name": "Charlotte",
+          "position": "HOME",
+          "isHome": true,
+          "image": [
+            {
+              "size": "svg",
+              "url": "https://metadata.beta.tab.com.au/icons/NBA%20logos/Charlotte%20Hornets.svg"
+            },
+            {
+              "size": "xxhdpi",
+              "url": "https://metadata.beta.tab.com.au/icons/NBA%20logos/Charlotte%20Hornets_xxhdpi.png"
+            },
+            {
+              "size": "2x",
+              "url": "https://metadata.beta.tab.com.au/icons/NBA%20logos/Charlotte%20Hornets%402x.png"
+            }
+          ]
+        },
+        {
+          "name": "Houston",
+          "position": "AWAY",
+          "isHome": false,
+          "image": [
+            {
+              "size": "svg",
+              "url": "https://metadata.beta.tab.com.au/icons/NBA%20logos/Houston%20Rockets.svg"
+            },
+            {
+              "size": "xxhdpi",
+              "url": "https://metadata.beta.tab.com.au/icons/NBA%20logos/Houston%20Rockets_xxhdpi.png"
+            },
+            {
+              "size": "2x",
+              "url": "https://metadata.beta.tab.com.au/icons/NBA%20logos/Houston%20Rockets%402x.png"
+            }
+          ]
+        }
+      ],
+      "competitors": [
+        "Charlotte",
+        "Houston"
+      ],
+      "openMarketCount": 1,
+      "futureMarketCount": 0,
+      "nonFutureMarketCount": 1,
+      "markets": [
+        {
+          "id": "128662584",
+          "name": "NBA Chrlotte-Houston Hd to Hd",
+          "shortName": "NBA Cha-Hou Hd to Hd",
+          "betOption": "Head To Head",
+          "betOptionSpectrumId": "72",
+          "betOptionPriority": 465,
+          "marketUniqueId": 128662584,
+          "closeTime": "2026-02-20T00:10:00.000Z",
+          "bettingStatus": "Open",
+          "message": null,
+          "informationMessage": null,
+          "isFuture": false,
+          "onlineBetting": true,
+          "phoneBettingOnly": false,
+          "inPlay": false,
+          "goingInPlay": true,
+          "allowWin": true,
+          "allowPlace": false,
+          "allowEachWay": false,
+          "allowMulti": true,
+          "allowMultiWin": true,
+          "allowMultiPlace": false,
+          "allowMultiEachWay": false,
+          "numberOfPlaces": 0,
+          "cashOutEligibility": "Enabled",
+          "allowBundle": false,
+          "propositions": [
+            {
+              "id": "785781",
+              "name": "Charlotte",
+              "returnWin": 2.15,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 785781,
+              "isOpen": true,
+              "sortOrder": 1,
+              "position": "HOME"
+            },
+            {
+              "id": "785783",
+              "name": "Houston",
+              "returnWin": 1.73,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 785783,
+              "isOpen": true,
+              "sortOrder": 2,
+              "position": "AWAY"
+            }
+          ]
+        }
+      ],
+      "inPlay": false,
+      "goingInPlay": true
+    },
+    {
       "id": "NYKvDet",
       "name": "New York v Detroit",
       "spectrumId": "NYKvDet",
@@ -8252,7 +8377,7 @@
     {
       "name": "Head To Head",
       "hasFutureMarket": false,
-      "openMarketCount": 4,
+      "openMarketCount": 5,
       "_links": {
         "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/markets?jurisdiction=SA&amp;betOptionName=Head%20To%20Head"
       }
