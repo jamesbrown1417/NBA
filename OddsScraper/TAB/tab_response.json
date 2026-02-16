@@ -3365,7 +3365,8 @@
       "_links": {
         "self": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/San%20Antonio%20v%20Phoenix?jurisdiction=SA",
         "selfTemplate": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/San%20Antonio%20v%20Phoenix?jurisdiction={jurisdiction}{&amp;returnPromo,returnOffers,returnMultiOnly,channelType,cashSales,homeState}",
-        "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/San%20Antonio%20v%20Phoenix/markets?jurisdiction=SA"
+        "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/San%20Antonio%20v%20Phoenix/markets?jurisdiction=SA",
+        "stats": "https://api.beta.tab.com.au/v1/stats-service/sports/Basketball/competitions/NBA/matches/3184345/h2h/stats"
       },
       "contestants": [
         {
@@ -6685,7 +6686,8 @@
         }
       ],
       "inPlay": false,
-      "goingInPlay": true
+      "goingInPlay": true,
+      "stats": true
     },
     {
       "id": "GSWvBos",
@@ -6702,7 +6704,8 @@
       "_links": {
         "self": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/Golden%20State%20v%20Boston?jurisdiction=SA",
         "selfTemplate": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/Golden%20State%20v%20Boston?jurisdiction={jurisdiction}{&amp;returnPromo,returnOffers,returnMultiOnly,channelType,cashSales,homeState}",
-        "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/Golden%20State%20v%20Boston/markets?jurisdiction=SA"
+        "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/Golden%20State%20v%20Boston/markets?jurisdiction=SA",
+        "stats": "https://api.beta.tab.com.au/v1/stats-service/sports/Basketball/competitions/NBA/matches/3184341/h2h/stats"
       },
       "contestants": [
         {
@@ -7448,6 +7451,770 @@
         }
       ],
       "inPlay": false,
+      "goingInPlay": true,
+      "stats": true
+    },
+    {
+      "id": "LACvDen",
+      "name": "LA Clippers v Denver",
+      "spectrumId": "LACvDen",
+      "spectrumUniqueId": 3184337,
+      "competitionSpectrumId": "1001",
+      "round": null,
+      "broadcastChannel": "Tab.com.au",
+      "broadcastChannels": [
+        "Tab.com.au"
+      ],
+      "startTime": "2026-02-20T03:40:00.000Z",
+      "_links": {
+        "self": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/LA%20Clippers%20v%20Denver?jurisdiction=SA",
+        "selfTemplate": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/LA%20Clippers%20v%20Denver?jurisdiction={jurisdiction}{&amp;returnPromo,returnOffers,returnMultiOnly,channelType,cashSales,homeState}",
+        "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/LA%20Clippers%20v%20Denver/markets?jurisdiction=SA"
+      },
+      "contestants": [
+        {
+          "name": "LA Clippers",
+          "position": "HOME",
+          "isHome": true,
+          "image": [
+            {
+              "size": "svg",
+              "url": "https://metadata.beta.tab.com.au/icons/NBA%20logos/Los%20Angeles%20Clippers.svg"
+            },
+            {
+              "size": "xxhdpi",
+              "url": "https://metadata.beta.tab.com.au/icons/NBA%20logos/Los%20Angeles%20Clippers_xxhdpi.png"
+            },
+            {
+              "size": "2x",
+              "url": "https://metadata.beta.tab.com.au/icons/NBA%20logos/Los%20Angeles%20Clippers%402x.png"
+            }
+          ]
+        },
+        {
+          "name": "Denver",
+          "position": "AWAY",
+          "isHome": false,
+          "image": [
+            {
+              "size": "svg",
+              "url": "https://metadata.beta.tab.com.au/icons/NBA%20logos/Denver%20Nuggets.svg"
+            },
+            {
+              "size": "xxhdpi",
+              "url": "https://metadata.beta.tab.com.au/icons/NBA%20logos/Denver%20Nuggets_xxhdpi.png"
+            },
+            {
+              "size": "2x",
+              "url": "https://metadata.beta.tab.com.au/icons/NBA%20logos/Denver%20Nuggets%402x.png"
+            }
+          ]
+        }
+      ],
+      "competitors": [
+        "LA Clippers",
+        "Denver"
+      ],
+      "openMarketCount": 9,
+      "futureMarketCount": 0,
+      "nonFutureMarketCount": 9,
+      "markets": [
+        {
+          "id": "128662585",
+          "name": "NBA LACliprs-Denver Hd to Hd",
+          "shortName": "NBA LAC-Den Hd to Hd",
+          "betOption": "Head To Head",
+          "betOptionSpectrumId": "72",
+          "betOptionPriority": 465,
+          "marketUniqueId": 128662585,
+          "closeTime": "2026-02-20T03:40:00.000Z",
+          "bettingStatus": "Open",
+          "message": null,
+          "informationMessage": null,
+          "isFuture": false,
+          "onlineBetting": true,
+          "phoneBettingOnly": false,
+          "inPlay": false,
+          "goingInPlay": true,
+          "allowWin": true,
+          "allowPlace": false,
+          "allowEachWay": false,
+          "allowMulti": true,
+          "allowMultiWin": true,
+          "allowMultiPlace": false,
+          "allowMultiEachWay": false,
+          "numberOfPlaces": 0,
+          "cashOutEligibility": "Enabled",
+          "allowBundle": false,
+          "propositions": [
+            {
+              "id": "785784",
+              "name": "LA Clippers",
+              "returnWin": 2.35,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 785784,
+              "isOpen": true,
+              "sortOrder": 1,
+              "position": "HOME"
+            },
+            {
+              "id": "785786",
+              "name": "Denver",
+              "returnWin": 1.62,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 785786,
+              "isOpen": true,
+              "sortOrder": 2,
+              "position": "AWAY"
+            }
+          ]
+        },
+        {
+          "id": "128705301",
+          "name": "NBA LAC-Den Line +3.5",
+          "shortName": "NBA LAC-Den Line +3.5",
+          "betOption": "Line",
+          "betOptionSpectrumId": "43",
+          "betOptionPriority": 1400,
+          "marketUniqueId": 128705301,
+          "closeTime": "2026-02-20T03:40:00.000Z",
+          "bettingStatus": "Open",
+          "message": null,
+          "informationMessage": null,
+          "isFuture": false,
+          "onlineBetting": true,
+          "phoneBettingOnly": false,
+          "inPlay": false,
+          "goingInPlay": false,
+          "allowWin": true,
+          "allowPlace": false,
+          "allowEachWay": false,
+          "allowMulti": true,
+          "allowMultiWin": true,
+          "allowMultiPlace": false,
+          "allowMultiEachWay": false,
+          "numberOfPlaces": 0,
+          "cashOutEligibility": "PreMatch",
+          "allowBundle": false,
+          "propositions": [
+            {
+              "id": "571106",
+              "name": "LA Clippers +3.5",
+              "returnWin": 1.9,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 571106,
+              "isOpen": true,
+              "sortOrder": 1,
+              "line": "+3.5"
+            },
+            {
+              "id": "571107",
+              "name": "Denver -3.5",
+              "returnWin": 1.9,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 571107,
+              "isOpen": true,
+              "sortOrder": 2,
+              "line": "-3.5"
+            }
+          ]
+        },
+        {
+          "id": "128705303",
+          "name": "NBA LACliprs-Denver Margin",
+          "shortName": "NBA LAC-Den Margin",
+          "betOption": "Margin",
+          "betOptionSpectrumId": "32",
+          "betOptionPriority": 2755,
+          "marketUniqueId": 128705303,
+          "closeTime": "2026-02-20T03:40:00.000Z",
+          "bettingStatus": "Open",
+          "message": null,
+          "informationMessage": null,
+          "isFuture": false,
+          "onlineBetting": true,
+          "phoneBettingOnly": false,
+          "inPlay": false,
+          "goingInPlay": true,
+          "allowWin": true,
+          "allowPlace": false,
+          "allowEachWay": false,
+          "allowMulti": true,
+          "allowMultiWin": true,
+          "allowMultiPlace": false,
+          "allowMultiEachWay": false,
+          "numberOfPlaces": 0,
+          "cashOutEligibility": "Enabled",
+          "allowBundle": false,
+          "propositions": [
+            {
+              "id": "571102",
+              "name": "LA Clippers by 11+",
+              "returnWin": 4.6,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 571102,
+              "isOpen": true,
+              "sortOrder": 1
+            },
+            {
+              "id": "571103",
+              "name": "LA Clippers by 1-10",
+              "returnWin": 3.5,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 571103,
+              "isOpen": true,
+              "sortOrder": 2
+            },
+            {
+              "id": "571104",
+              "name": "Denver by 1-10",
+              "returnWin": 3,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 571104,
+              "isOpen": true,
+              "sortOrder": 3
+            },
+            {
+              "id": "571105",
+              "name": "Denver by 11+",
+              "returnWin": 3.1,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 571105,
+              "isOpen": true,
+              "sortOrder": 4
+            }
+          ]
+        },
+        {
+          "id": "128705306",
+          "name": "NBA LACliprs-Denver Tri Bet",
+          "shortName": "NBA LAC-Den Tri Bet",
+          "betOption": "Tri Bet",
+          "betOptionSpectrumId": "49",
+          "betOptionPriority": 2760,
+          "marketUniqueId": 128705306,
+          "closeTime": "2026-02-20T03:40:00.000Z",
+          "bettingStatus": "Open",
+          "message": null,
+          "informationMessage": null,
+          "isFuture": false,
+          "onlineBetting": true,
+          "phoneBettingOnly": false,
+          "inPlay": false,
+          "goingInPlay": true,
+          "allowWin": true,
+          "allowPlace": false,
+          "allowEachWay": false,
+          "allowMulti": true,
+          "allowMultiWin": true,
+          "allowMultiPlace": false,
+          "allowMultiEachWay": false,
+          "numberOfPlaces": 0,
+          "cashOutEligibility": "Disabled",
+          "allowBundle": false,
+          "propositions": [
+            {
+              "id": "571097",
+              "name": "LA Clippers by 7+",
+              "returnWin": 3.2,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 571097,
+              "isOpen": true,
+              "sortOrder": 1
+            },
+            {
+              "id": "571098",
+              "name": "Either Team By 6 or Less",
+              "returnWin": 2.8,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 571098,
+              "isOpen": true,
+              "sortOrder": 2
+            },
+            {
+              "id": "571099",
+              "name": "Denver by 7+",
+              "returnWin": 2.25,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 571099,
+              "isOpen": true,
+              "sortOrder": 3
+            }
+          ]
+        },
+        {
+          "id": "128705298",
+          "name": "NBA LAClippers-Denver HalfFull",
+          "shortName": "NBA LAC-Den HalfFull",
+          "betOption": "Half/Full Double",
+          "betOptionSpectrumId": "70",
+          "betOptionPriority": 3500,
+          "marketUniqueId": 128705298,
+          "closeTime": "2026-02-20T03:40:00.000Z",
+          "bettingStatus": "Open",
+          "message": null,
+          "informationMessage": null,
+          "isFuture": false,
+          "onlineBetting": true,
+          "phoneBettingOnly": false,
+          "inPlay": false,
+          "goingInPlay": false,
+          "allowWin": true,
+          "allowPlace": false,
+          "allowEachWay": false,
+          "allowMulti": true,
+          "allowMultiWin": true,
+          "allowMultiPlace": false,
+          "allowMultiEachWay": false,
+          "numberOfPlaces": 0,
+          "cashOutEligibility": "PreMatch",
+          "allowBundle": false,
+          "propositions": [
+            {
+              "id": "571108",
+              "name": "LAClippers / LAClippers",
+              "returnWin": 3,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 571108,
+              "isOpen": true,
+              "sortOrder": 1
+            },
+            {
+              "id": "571109",
+              "name": "LAClippers / Denver",
+              "returnWin": 5.5,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 571109,
+              "isOpen": true,
+              "sortOrder": 2
+            },
+            {
+              "id": "571110",
+              "name": "Denver / Denver",
+              "returnWin": 2.1,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 571110,
+              "isOpen": true,
+              "sortOrder": 3
+            },
+            {
+              "id": "571111",
+              "name": "Denver / LAClippers",
+              "returnWin": 6,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 571111,
+              "isOpen": true,
+              "sortOrder": 4
+            },
+            {
+              "id": "571112",
+              "name": "Tie / LAClippers",
+              "returnWin": 34,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 571112,
+              "isOpen": true,
+              "sortOrder": 5
+            },
+            {
+              "id": "571113",
+              "name": "Tie / Denver",
+              "returnWin": 31,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 571113,
+              "isOpen": true,
+              "sortOrder": 6
+            }
+          ]
+        },
+        {
+          "id": "128705305",
+          "name": "NBA LACliprs-Denver TotPoint",
+          "shortName": "NBA LAC-Den TotPoint",
+          "betOption": "Total Match Points",
+          "betOptionSpectrumId": "95",
+          "betOptionPriority": 6790,
+          "marketUniqueId": 128705305,
+          "closeTime": "2026-02-20T03:40:00.000Z",
+          "bettingStatus": "Open",
+          "message": null,
+          "informationMessage": null,
+          "isFuture": false,
+          "onlineBetting": true,
+          "phoneBettingOnly": false,
+          "inPlay": false,
+          "goingInPlay": false,
+          "allowWin": true,
+          "allowPlace": false,
+          "allowEachWay": false,
+          "allowMulti": true,
+          "allowMultiWin": true,
+          "allowMultiPlace": false,
+          "allowMultiEachWay": false,
+          "numberOfPlaces": 0,
+          "cashOutEligibility": "PreMatch",
+          "allowBundle": false,
+          "propositions": [
+            {
+              "id": "571114",
+              "name": "200 Points or Less",
+              "returnWin": 8,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 571114,
+              "isOpen": true,
+              "sortOrder": 1
+            },
+            {
+              "id": "571115",
+              "name": "201 to 210",
+              "returnWin": 6,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 571115,
+              "isOpen": true,
+              "sortOrder": 2
+            },
+            {
+              "id": "571116",
+              "name": "211 to 220",
+              "returnWin": 4,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 571116,
+              "isOpen": true,
+              "sortOrder": 3
+            },
+            {
+              "id": "571117",
+              "name": "221 to 230",
+              "returnWin": 3.6,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 571117,
+              "isOpen": true,
+              "sortOrder": 4
+            },
+            {
+              "id": "571118",
+              "name": "231 to 240",
+              "returnWin": 4.2,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 571118,
+              "isOpen": true,
+              "sortOrder": 5
+            },
+            {
+              "id": "571119",
+              "name": "241 Points or More",
+              "returnWin": 4.5,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 571119,
+              "isOpen": true,
+              "sortOrder": 6
+            }
+          ]
+        },
+        {
+          "id": "128705299",
+          "name": "NBA LACliprs-Denver HomePts",
+          "shortName": "NBA LAC-Den HomePts",
+          "betOption": "Home Total Points",
+          "betOptionSpectrumId": "2602",
+          "betOptionPriority": 6845,
+          "marketUniqueId": 128705299,
+          "closeTime": "2026-02-20T03:40:00.000Z",
+          "bettingStatus": "Open",
+          "message": null,
+          "informationMessage": null,
+          "isFuture": false,
+          "onlineBetting": true,
+          "phoneBettingOnly": false,
+          "inPlay": false,
+          "goingInPlay": false,
+          "allowWin": true,
+          "allowPlace": false,
+          "allowEachWay": false,
+          "allowMulti": true,
+          "allowMultiWin": true,
+          "allowMultiPlace": false,
+          "allowMultiEachWay": false,
+          "numberOfPlaces": 0,
+          "cashOutEligibility": "PreMatch",
+          "allowBundle": false,
+          "propositions": [
+            {
+              "id": "571090",
+              "name": "LAC 0 to 100",
+              "returnWin": 5,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 571090,
+              "isOpen": true,
+              "sortOrder": 1
+            },
+            {
+              "id": "571091",
+              "name": "LAC 101 to 110",
+              "returnWin": 2.15,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 571091,
+              "isOpen": true,
+              "sortOrder": 2
+            },
+            {
+              "id": "571092",
+              "name": "LAC 111 to 120",
+              "returnWin": 2.1,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 571092,
+              "isOpen": true,
+              "sortOrder": 3
+            },
+            {
+              "id": "571093",
+              "name": "LAC 121 to 130",
+              "returnWin": 4.2,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 571093,
+              "isOpen": true,
+              "sortOrder": 4
+            },
+            {
+              "id": "571094",
+              "name": "LAC 131+",
+              "returnWin": 15,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 571094,
+              "isOpen": true,
+              "sortOrder": 5
+            }
+          ]
+        },
+        {
+          "id": "128705297",
+          "name": "NBA LACliprs-Denver AwayPts",
+          "shortName": "NBA LAC-Den AwayPts",
+          "betOption": "Away Total Points",
+          "betOptionSpectrumId": "2603",
+          "betOptionPriority": 6860,
+          "marketUniqueId": 128705297,
+          "closeTime": "2026-02-20T03:40:00.000Z",
+          "bettingStatus": "Open",
+          "message": null,
+          "informationMessage": null,
+          "isFuture": false,
+          "onlineBetting": true,
+          "phoneBettingOnly": false,
+          "inPlay": false,
+          "goingInPlay": false,
+          "allowWin": true,
+          "allowPlace": false,
+          "allowEachWay": false,
+          "allowMulti": true,
+          "allowMultiWin": true,
+          "allowMultiPlace": false,
+          "allowMultiEachWay": false,
+          "numberOfPlaces": 0,
+          "cashOutEligibility": "PreMatch",
+          "allowBundle": false,
+          "propositions": [
+            {
+              "id": "571120",
+              "name": "Den 0 to 100",
+              "returnWin": 7,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 571120,
+              "isOpen": true,
+              "sortOrder": 1
+            },
+            {
+              "id": "571121",
+              "name": "Den 101 to 110",
+              "returnWin": 2.5,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 571121,
+              "isOpen": true,
+              "sortOrder": 2
+            },
+            {
+              "id": "571122",
+              "name": "Den 111 to 120",
+              "returnWin": 2,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 571122,
+              "isOpen": true,
+              "sortOrder": 3
+            },
+            {
+              "id": "571123",
+              "name": "Den 121 to 130",
+              "returnWin": 3.3,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 571123,
+              "isOpen": true,
+              "sortOrder": 4
+            },
+            {
+              "id": "571124",
+              "name": "Den 131+",
+              "returnWin": 10,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 571124,
+              "isOpen": true,
+              "sortOrder": 5
+            }
+          ]
+        },
+        {
+          "id": "128705304",
+          "name": "NBA LACliprs-Denver PointsOE",
+          "shortName": "NBA LAC-Den PointsOE",
+          "betOption": "Total Points Odd/Even",
+          "betOptionSpectrumId": "998",
+          "betOptionPriority": 21070,
+          "marketUniqueId": 128705304,
+          "closeTime": "2026-02-20T03:40:00.000Z",
+          "bettingStatus": "Open",
+          "message": null,
+          "informationMessage": null,
+          "isFuture": false,
+          "onlineBetting": true,
+          "phoneBettingOnly": false,
+          "inPlay": false,
+          "goingInPlay": true,
+          "allowWin": true,
+          "allowPlace": false,
+          "allowEachWay": false,
+          "allowMulti": true,
+          "allowMultiWin": true,
+          "allowMultiPlace": false,
+          "allowMultiEachWay": false,
+          "numberOfPlaces": 0,
+          "cashOutEligibility": "PreMatch",
+          "allowBundle": false,
+          "propositions": [
+            {
+              "id": "571100",
+              "name": "Odd",
+              "returnWin": 1.85,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 571100,
+              "isOpen": true,
+              "sortOrder": 1
+            },
+            {
+              "id": "571101",
+              "name": "Even",
+              "returnWin": 1.95,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 571101,
+              "isOpen": true,
+              "sortOrder": 2
+            }
+          ]
+        }
+      ],
+      "inPlay": false,
       "goingInPlay": true
     }
   ],
@@ -7483,7 +8250,7 @@
     {
       "name": "Head To Head",
       "hasFutureMarket": false,
-      "openMarketCount": 3,
+      "openMarketCount": 4,
       "_links": {
         "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/markets?jurisdiction=SA&amp;betOptionName=Head%20To%20Head"
       }
@@ -7491,7 +8258,7 @@
     {
       "name": "Line",
       "hasFutureMarket": false,
-      "openMarketCount": 3,
+      "openMarketCount": 4,
       "_links": {
         "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/markets?jurisdiction=SA&amp;betOptionName=Line"
       }
@@ -7499,7 +8266,7 @@
     {
       "name": "Margin",
       "hasFutureMarket": false,
-      "openMarketCount": 3,
+      "openMarketCount": 4,
       "_links": {
         "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/markets?jurisdiction=SA&amp;betOptionName=Margin"
       }
@@ -7507,7 +8274,7 @@
     {
       "name": "Tri Bet",
       "hasFutureMarket": false,
-      "openMarketCount": 3,
+      "openMarketCount": 4,
       "_links": {
         "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/markets?jurisdiction=SA&amp;betOptionName=Tri%20Bet"
       }
@@ -7523,7 +8290,7 @@
     {
       "name": "Half/Full Double",
       "hasFutureMarket": false,
-      "openMarketCount": 3,
+      "openMarketCount": 4,
       "_links": {
         "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/markets?jurisdiction=SA&amp;betOptionName=Half%2FFull%20Double"
       }
@@ -7555,7 +8322,7 @@
     {
       "name": "Total Match Points",
       "hasFutureMarket": false,
-      "openMarketCount": 3,
+      "openMarketCount": 4,
       "_links": {
         "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/markets?jurisdiction=SA&amp;betOptionName=Total%20Match%20Points"
       }
@@ -7579,7 +8346,7 @@
     {
       "name": "Home Total Points",
       "hasFutureMarket": false,
-      "openMarketCount": 3,
+      "openMarketCount": 4,
       "_links": {
         "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/markets?jurisdiction=SA&amp;betOptionName=Home%20Total%20Points"
       }
@@ -7595,7 +8362,7 @@
     {
       "name": "Away Total Points",
       "hasFutureMarket": false,
-      "openMarketCount": 3,
+      "openMarketCount": 4,
       "_links": {
         "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/markets?jurisdiction=SA&amp;betOptionName=Away%20Total%20Points"
       }
@@ -7651,7 +8418,7 @@
     {
       "name": "Total Points Odd/Even",
       "hasFutureMarket": false,
-      "openMarketCount": 3,
+      "openMarketCount": 4,
       "_links": {
         "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/markets?jurisdiction=SA&amp;betOptionName=Total%20Points%20Odd%2FEven"
       }
