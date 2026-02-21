@@ -247,6 +247,14 @@ function buildDefaultArbFilters(options: ArbFilterOptions): ArbFilters {
   };
 }
 
+function buildCommonArbFilters(options: ArbFilterOptions): ArbFilters {
+  return {
+    marketNames: [...options.markets],
+    overAgencies: COMMON_OVER_AGENCIES.filter((agency) => options.overAgencies.includes(agency)),
+    underAgencies: COMMON_UNDER_AGENCIES.filter((agency) => options.underAgencies.includes(agency))
+  };
+}
+
 function topDownTabs(excludeSportsbetUnder: boolean): TabDefinition[] {
   const byAgency = (agency: string) => (row: TableRow): boolean => row.OA === agency || row.UA === agency;
 
@@ -489,7 +497,7 @@ export default function App(): JSX.Element {
     multiLegs: "Dabble"
   });
 
-  const [excludeSportsbetUnder, setExcludeSportsbetUnder] = useState(false);
+  const [excludeSportsbetUnder, setExcludeSportsbetUnder] = useState(true);
   const [multiLegMatch, setMultiLegMatch] = useState("All");
   const [search, setSearch] = useState("");
   const [sort, setSort] = useState<SortState>({ key: null, dir: "asc" });
@@ -498,6 +506,7 @@ export default function App(): JSX.Element {
   const [isMobileViewport, setIsMobileViewport] = useState(false);
   const [isSidebarExpanded, setIsSidebarExpanded] = useState(true);
   const [arbFilters, setArbFilters] = useState<ArbFilters | null>(null);
+  const [hasInitializedCommonFilters, setHasInitializedCommonFilters] = useState(false);
 
   const [refreshApiAvailable, setRefreshApiAvailable] = useState(false);
   const [refreshBusy, setRefreshBusy] = useState(false);
@@ -673,6 +682,19 @@ export default function App(): JSX.Element {
     });
   }, [arbFilterOptions]);
 
+  useEffect(() => {
+    const hasOptions =
+      arbFilterOptions.markets.length > 0 ||
+      arbFilterOptions.overAgencies.length > 0 ||
+      arbFilterOptions.underAgencies.length > 0;
+    if (hasInitializedCommonFilters || !hasOptions) {
+      return;
+    }
+
+    setArbFilters(buildCommonArbFilters(arbFilterOptions));
+    setHasInitializedCommonFilters(true);
+  }, [arbFilterOptions, hasInitializedCommonFilters]);
+
   const toggleArbFilter = useCallback(
     (key: keyof ArbFilters, value: string) => {
       setArbFilters((prev) => {
@@ -692,11 +714,7 @@ export default function App(): JSX.Element {
   }, []);
 
   const applyCommonFilters = useCallback(() => {
-    setArbFilters({
-      marketNames: [...arbFilterOptions.markets],
-      overAgencies: COMMON_OVER_AGENCIES.filter((agency) => arbFilterOptions.overAgencies.includes(agency)),
-      underAgencies: COMMON_UNDER_AGENCIES.filter((agency) => arbFilterOptions.underAgencies.includes(agency))
-    });
+    setArbFilters(buildCommonArbFilters(arbFilterOptions));
     setPage(1);
   }, [arbFilterOptions]);
 
