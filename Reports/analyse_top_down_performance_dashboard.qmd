@@ -1,0 +1,386 @@
+---
+title: "Top-Down Performance Dashboard"
+author: "James Brown"
+date: "`r Sys.Date()`"
+runtime: shiny
+execute:
+  echo: false
+  message: false
+  warning: false
+format:
+  dashboard:
+    theme: cosmo
+    orientation: rows
+    scrolling: true
+---
+
+```{r}
+#| context: setup
+library(tidyverse)
+library(lubridate)
+library(DT)
+library(scales)
+library(shiny)
+
+`%notin%` <- Negate(`%in%`)
+
+parse_git_datetime <- function(path) {
+  stamp <- str_extract(basename(path), "\\d{4}-\\d{2}-\\d{2}_\\d{2}-\\d{2}-\\d{2}")
+  as.POSIXct(stamp, format = "%Y-%m-%d_%H-%M-%S", tz = "Australia/Adelaide")
+}
+
+summarise_performance <- function(df, group_vars) {
+  if (nrow(df) == 0) {
+    return(tibble())
+  }
+
+  df |>
+    group_by(across(all_of(group_vars))) |>
+    summarise(
+      bets = n(),
+      total_unders_profit = sum(under_profit, na.rm = TRUE),
+      total_unders_stake = sum(under_stake, na.rm = TRUE),
+      total_overs_profit = sum(over_profit, na.rm = TRUE),
+      total_overs_stake = sum(over_stake, na.rm = TRUE),
+      total_arb_profit = sum(total_profit, na.rm = TRUE),
+      total_stake = sum(over_stake + under_stake, na.rm = TRUE),
+      unders_roi_pct = if_else(total_unders_stake > 0, 100 * total_unders_profit / total_unders_stake, NA_real_),
+      overs_roi_pct = if_else(total_overs_stake > 0, 100 * total_overs_profit / total_overs_stake, NA_real_),
+      arb_roi_pct = if_else(total_stake > 0, 100 * total_arb_profit / total_stake, NA_real_),
+      .groups = "drop"
+    )
+}
+
+# -----------------------------------------------------------------------------
+# 1) Load top-down snapshots from history
+# -----------------------------------------------------------------------------
+history_files <- list.files("../Data/all_arbs_history", pattern = "\\.rds$", full.names = TRUE)
+if (length(history_files) == 0) {
+  stop("No .rds files found in ../Data/all_arbs_history")
+}
+
+combined <- map_dfr(history_files, function(f) {
+  df <- read_rds(f)
+  df$git_datetime <- parse_git_datetime(f)
+  df
+})
+
+combined_sb <- combined |>
+  filter(over_agency == "Sportsbet" | under_agency == "Sportsbet") |>
+  filter(hour(git_datetime) >= 8 & hour(git_datetime) < 14) |>
+  mutate(game_date = as_date(git_datetime)) |>
+  filter(margin > 0)
+
+# -----------------------------------------------------------------------------
+# 2) Load results and resolve outcomes
+# -----------------------------------------------------------------------------
+all_results <- read_csv("../Data/all_player_stats_2025-2026.csv", show_col_types = FALSE) |>
+  select(firstName, familyName, GAME_DATE, HOME_TEAM, AWAY_TEAM, points, assists, blocks, steals, threePointersMade, reboundsTotal) |>
+  mutate(
+    player_name = paste(firstName, familyName),
+    GAME_DATE = as_date(GAME_DATE) + 1,
+    PRA = points + reboundsTotal + assists
+  )
+
+analysis_data <- combined_sb |>
+  left_join(all_results, by = c("player_name", "game_date" = "GAME_DATE")) |>
+  mutate(
+    actual_stat = case_match(
+      market_name,
+      "Player Points" ~ points,
+      "Player Assists" ~ assists,
+      "Player Rebounds" ~ reboundsTotal,
+      "Player Blocks" ~ blocks,
+      "Player Steals" ~ steals,
+      "Player Threes" ~ threePointersMade,
+      "Player PRAs" ~ PRA,
+      .default = NA_real_
+    ),
+    outcome = case_when(
+      actual_stat > line ~ "over",
+      actual_stat < line ~ "under",
+      actual_stat == line ~ "push"
+    )
+  ) |>
+  filter(!is.na(outcome)) |>
+  distinct(match, game_date, market_name, player_name, line, over_agency, under_agency, actual_stat, outcome, .keep_all = TRUE) |>
+  mutate(
+    over_stake = 100 * under_price / (over_price + under_price),
+    under_stake = 100 * over_price / (over_price + under_price),
+    over_profit = case_when(
+      outcome == "over" ~ over_stake * (over_price - 1),
+      outcome == "under" ~ -over_stake,
+      outcome == "push" ~ 0
+    ),
+    under_profit = case_when(
+      outcome == "under" ~ under_stake * (under_price - 1),
+      outcome == "over" ~ -under_stake,
+      outcome == "push" ~ 0
+    ),
+    total_profit = over_profit + under_profit
+  ) |>
+  filter(over_agency != under_agency) |>
+  filter(over_agency != "Dabble Pickem", under_agency != "Dabble Pickem") |>
+  mutate(
+    agency_combo = paste(over_agency, "vs", under_agency),
+    market_name = as.character(market_name)
+  ) |>
+  arrange(desc(game_date), desc(margin))
+
+if (nrow(analysis_data) == 0) {
+  stop("No rows available for analysis after joins/filters. Check source data in ../Data/all_arbs_history and ../Data/all_player_stats_2025-2026.csv")
+}
+
+date_min <- min(analysis_data$game_date, na.rm = TRUE)
+date_max <- max(analysis_data$game_date, na.rm = TRUE)
+margin_min <- floor(min(analysis_data$margin, na.rm = TRUE))
+margin_max <- ceiling(max(analysis_data$margin, na.rm = TRUE))
+
+all_combos <- analysis_data |>
+  distinct(agency_combo) |>
+  arrange(agency_combo) |>
+  pull(agency_combo)
+
+all_markets <- analysis_data |>
+  distinct(market_name) |>
+  arrange(market_name) |>
+  pull(market_name)
+```
+
+## {.sidebar}
+
+### Filters
+
+```{r}
+dateRangeInput(
+  inputId = "date_range",
+  label = "Game Date",
+  start = date_min,
+  end = date_max,
+  min = date_min,
+  max = date_max
+)
+
+selectizeInput(
+  inputId = "agency_combo",
+  label = "Over/Under Agency Combo",
+  choices = all_combos,
+  selected = all_combos,
+  multiple = TRUE,
+  options = list(placeholder = "Select agency combinations")
+)
+
+selectizeInput(
+  inputId = "market_name",
+  label = "Market",
+  choices = all_markets,
+  selected = all_markets,
+  multiple = TRUE,
+  options = list(placeholder = "Select markets")
+)
+
+sliderInput(
+  inputId = "margin_range",
+  label = "Margin Range",
+  min = margin_min,
+  max = margin_max,
+  value = c(max(0, margin_min), margin_max),
+  step = 0.1
+)
+```
+
+```{r}
+filtered_data <- reactive({
+  req(input$date_range, input$agency_combo, input$market_name, input$margin_range)
+
+  analysis_data |>
+    filter(game_date >= input$date_range[1], game_date <= input$date_range[2]) |>
+    filter(agency_combo %in% input$agency_combo) |>
+    filter(market_name %in% input$market_name) |>
+    filter(margin >= input$margin_range[1], margin <= input$margin_range[2])
+})
+
+summary_stats <- reactive({
+  df <- filtered_data()
+  tibble(
+    Metric = c("Bets", "Total Stake", "Total Profit", "ROI %"),
+    Value = c(
+      comma(nrow(df)),
+      dollar(sum(df$over_stake + df$under_stake, na.rm = TRUE)),
+      dollar(sum(df$total_profit, na.rm = TRUE)),
+      number(
+        ifelse(sum(df$over_stake + df$under_stake, na.rm = TRUE) > 0,
+               100 * sum(df$total_profit, na.rm = TRUE) / sum(df$over_stake + df$under_stake, na.rm = TRUE),
+               NA_real_),
+        accuracy = 0.01
+      )
+    )
+  )
+})
+
+performance_by_date <- reactive({
+  summarise_performance(filtered_data(), "game_date") |>
+    arrange(desc(game_date))
+})
+
+performance_by_combo <- reactive({
+  summarise_performance(filtered_data(), c("over_agency", "under_agency")) |>
+    mutate(agency_combo = paste(over_agency, "vs", under_agency)) |>
+    select(agency_combo, everything(), -over_agency, -under_agency) |>
+    arrange(desc(arb_roi_pct))
+})
+
+performance_by_market <- reactive({
+  summarise_performance(filtered_data(), "market_name") |>
+    arrange(desc(arb_roi_pct))
+})
+
+daily_plot_data <- reactive({
+  filtered_data() |>
+    group_by(game_date) |>
+    summarise(
+      bets = n(),
+      total_profit = sum(total_profit, na.rm = TRUE),
+      .groups = "drop"
+    ) |>
+    arrange(game_date) |>
+    mutate(cumulative_profit = cumsum(total_profit))
+})
+```
+
+## Snapshot
+
+```{r}
+renderTable({
+  summary_stats()
+})
+```
+
+## Profit Trend
+
+```{r}
+renderPlot({
+  df <- daily_plot_data()
+  validate(need(nrow(df) > 0, "No rows match current filters."))
+
+  ggplot(df, aes(x = game_date)) +
+    geom_col(aes(y = total_profit), fill = "#7db3ff", alpha = 0.75) +
+    geom_line(aes(y = cumulative_profit), color = "#1f5fbf", linewidth = 1.1) +
+    geom_point(aes(y = cumulative_profit), color = "#1f5fbf", size = 1.5) +
+    labs(
+      x = "Game Date",
+      y = "Profit ($)",
+      title = "Daily Profit (Bars) and Cumulative Profit (Line)"
+    ) +
+    theme_minimal(base_size = 12)
+})
+```
+
+## Performance By Date
+
+```{r}
+renderDT({
+  df <- performance_by_date()
+  validate(need(nrow(df) > 0, "No rows match current filters."))
+
+  datatable(
+    df,
+    rownames = FALSE,
+    extensions = "Buttons",
+    options = list(
+      pageLength = 15,
+      scrollX = TRUE,
+      dom = "Bfrtip",
+      buttons = c("copy", "csv")
+    )
+  ) |>
+    formatRound(c("total_unders_profit", "total_unders_stake", "total_overs_profit", "total_overs_stake", "total_arb_profit", "total_stake"), 2) |>
+    formatRound(c("unders_roi_pct", "overs_roi_pct", "arb_roi_pct"), 2)
+})
+```
+
+## Performance By Agency Combination
+
+```{r}
+renderDT({
+  df <- performance_by_combo()
+  validate(need(nrow(df) > 0, "No rows match current filters."))
+
+  datatable(
+    df,
+    rownames = FALSE,
+    extensions = "Buttons",
+    options = list(
+      pageLength = 15,
+      scrollX = TRUE,
+      dom = "Bfrtip",
+      buttons = c("copy", "csv")
+    )
+  ) |>
+    formatRound(c("total_unders_profit", "total_unders_stake", "total_overs_profit", "total_overs_stake", "total_arb_profit", "total_stake"), 2) |>
+    formatRound(c("unders_roi_pct", "overs_roi_pct", "arb_roi_pct"), 2)
+})
+```
+
+## Performance By Market
+
+```{r}
+renderDT({
+  df <- performance_by_market()
+  validate(need(nrow(df) > 0, "No rows match current filters."))
+
+  datatable(
+    df,
+    rownames = FALSE,
+    extensions = "Buttons",
+    options = list(
+      pageLength = 15,
+      scrollX = TRUE,
+      dom = "Bfrtip",
+      buttons = c("copy", "csv")
+    )
+  ) |>
+    formatRound(c("total_unders_profit", "total_unders_stake", "total_overs_profit", "total_overs_stake", "total_arb_profit", "total_stake"), 2) |>
+    formatRound(c("unders_roi_pct", "overs_roi_pct", "arb_roi_pct"), 2)
+})
+```
+
+## Filtered Bets
+
+```{r}
+renderDT({
+  df <- filtered_data() |>
+    select(
+      game_date,
+      match,
+      player_name,
+      market_name,
+      line,
+      over_agency,
+      under_agency,
+      margin,
+      outcome,
+      over_price,
+      under_price,
+      over_profit,
+      under_profit,
+      total_profit
+    ) |>
+    arrange(desc(game_date), desc(margin))
+
+  validate(need(nrow(df) > 0, "No rows match current filters."))
+
+  datatable(
+    df,
+    rownames = FALSE,
+    extensions = "Buttons",
+    options = list(
+      pageLength = 20,
+      scrollX = TRUE,
+      dom = "Bfrtip",
+      buttons = c("copy", "csv")
+    )
+  ) |>
+    formatRound(c("line", "margin", "over_price", "under_price", "over_profit", "under_profit", "total_profit"), 2)
+})
+```
