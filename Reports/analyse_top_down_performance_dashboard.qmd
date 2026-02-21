@@ -133,18 +133,14 @@ if (nrow(analysis_data) == 0) {
 
 date_min <- min(analysis_data$game_date, na.rm = TRUE)
 date_max <- max(analysis_data$game_date, na.rm = TRUE)
-margin_min <- floor(min(analysis_data$margin, na.rm = TRUE))
-margin_max <- ceiling(max(analysis_data$margin, na.rm = TRUE))
-
-all_combos <- analysis_data |>
-  distinct(agency_combo) |>
-  arrange(agency_combo) |>
-  pull(agency_combo)
+default_date_from <- max(as_date("2025-10-01"), date_min)
 
 all_markets <- analysis_data |>
   distinct(market_name) |>
   arrange(market_name) |>
   pull(market_name)
+
+all_agencies <- sort(unique(c(analysis_data$over_agency, analysis_data$under_agency)))
 ```
 
 ## {.sidebar}
@@ -152,22 +148,38 @@ all_markets <- analysis_data |>
 ### Filters
 
 ```{r}
-dateRangeInput(
-  inputId = "date_range",
-  label = "Game Date",
-  start = date_min,
-  end = date_max,
+dateInput(
+  inputId = "date_from",
+  label = "Game Date From",
+  value = default_date_from,
+  min = date_min,
+  max = date_max
+)
+
+dateInput(
+  inputId = "date_to",
+  label = "Game Date To (optional)",
+  value = NULL,
   min = date_min,
   max = date_max
 )
 
 selectizeInput(
-  inputId = "agency_combo",
-  label = "Over/Under Agency Combo",
-  choices = all_combos,
-  selected = all_combos,
+  inputId = "over_agencies",
+  label = "Over Agency",
+  choices = all_agencies,
+  selected = all_agencies,
   multiple = TRUE,
-  options = list(placeholder = "Select agency combinations")
+  options = list(placeholder = "Select over agencies")
+)
+
+selectizeInput(
+  inputId = "under_agencies",
+  label = "Under Agency",
+  choices = all_agencies,
+  selected = all_agencies,
+  multiple = TRUE,
+  options = list(placeholder = "Select under agencies")
 )
 
 selectizeInput(
@@ -179,25 +191,50 @@ selectizeInput(
   options = list(placeholder = "Select markets")
 )
 
-sliderInput(
-  inputId = "margin_range",
-  label = "Margin Range",
-  min = margin_min,
-  max = margin_max,
-  value = c(max(0, margin_min), margin_max),
+numericInput(
+  inputId = "margin_lower",
+  label = "Margin Lower",
+  value = 0,
+  step = 0.1
+)
+
+numericInput(
+  inputId = "margin_upper",
+  label = "Margin Upper",
+  value = 10,
   step = 0.1
 )
 ```
 
 ```{r}
 filtered_data <- reactive({
-  req(input$date_range, input$agency_combo, input$market_name, input$margin_range)
+  req(input$date_from, input$over_agencies, input$under_agencies, input$market_name)
 
-  analysis_data |>
-    filter(game_date >= input$date_range[1], game_date <= input$date_range[2]) |>
-    filter(agency_combo %in% input$agency_combo) |>
-    filter(market_name %in% input$market_name) |>
-    filter(margin >= input$margin_range[1], margin <= input$margin_range[2])
+  margin_lower <- if (is.null(input$margin_lower) || is.na(input$margin_lower)) 0 else input$margin_lower
+  margin_upper <- if (is.null(input$margin_upper) || is.na(input$margin_upper)) 10 else input$margin_upper
+  if (margin_lower > margin_upper) {
+    tmp <- margin_lower
+    margin_lower <- margin_upper
+    margin_upper <- tmp
+  }
+
+  date_to <- input$date_to
+  if (!is.null(date_to) && !is.na(date_to) && date_to < input$date_from) {
+    date_to <- input$date_from
+  }
+
+  df <- analysis_data |>
+    filter(game_date >= input$date_from) |>
+    filter(over_agency %in% input$over_agencies) |>
+    filter(under_agency %in% input$under_agencies) |>
+    filter(market_name %in% input$market_name)
+
+  if (!is.null(date_to) && !is.na(date_to)) {
+    df <- df |> filter(game_date <= date_to)
+  }
+
+  df |>
+    filter(margin >= margin_lower, margin <= margin_upper)
 })
 
 summary_stats <- reactive({
