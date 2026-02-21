@@ -21,6 +21,8 @@ library(lubridate)
 library(DT)
 library(scales)
 library(shiny)
+library(furrr)
+library(future)
 
 `%notin%` <- Negate(`%in%`)
 
@@ -59,11 +61,28 @@ if (length(history_files) == 0) {
   stop("No .rds files found in ../Data/all_arbs_history")
 }
 
-combined <- map_dfr(history_files, function(f) {
+read_history_file <- function(f) {
   df <- read_rds(f)
   df$git_datetime <- parse_git_datetime(f)
   df
-})
+}
+
+combined <- {
+  workers <- max(1L, as.integer(future::availableCores()) - 1L)
+  if (length(history_files) > 1 && workers > 1) {
+    old_plan <- future::plan()
+    on.exit(future::plan(old_plan), add = TRUE)
+
+    tryCatch({
+      future::plan(future::multicore, workers = workers)
+      furrr::future_map_dfr(history_files, read_history_file, .progress = FALSE)
+    }, error = function(e) {
+      purrr::map_dfr(history_files, read_history_file)
+    })
+  } else {
+    purrr::map_dfr(history_files, read_history_file)
+  }
+}
 
 combined_sb <- combined |>
   filter(over_agency == "Sportsbet" | under_agency == "Sportsbet") |>
@@ -133,7 +152,8 @@ if (nrow(analysis_data) == 0) {
 
 date_min <- min(analysis_data$game_date, na.rm = TRUE)
 date_max <- max(analysis_data$game_date, na.rm = TRUE)
-default_date_from <- max(as_date("2025-10-01"), date_min)
+default_date_from <- as_date("2025-10-01")
+date_input_min <- min(default_date_from, date_min, na.rm = TRUE)
 
 all_markets <- analysis_data |>
   distinct(market_name) |>
@@ -151,17 +171,17 @@ all_agencies <- sort(unique(c(analysis_data$over_agency, analysis_data$under_age
 dateInput(
   inputId = "date_from",
   label = "Game Date From",
-  value = default_date_from,
-  min = date_min,
-  max = date_max
+  value = format(default_date_from, "%Y-%m-%d"),
+  min = format(date_input_min, "%Y-%m-%d"),
+  max = format(date_max, "%Y-%m-%d")
 )
 
 dateInput(
   inputId = "date_to",
   label = "Game Date To (optional)",
   value = NULL,
-  min = date_min,
-  max = date_max
+  min = format(date_input_min, "%Y-%m-%d"),
+  max = format(date_max, "%Y-%m-%d")
 )
 
 selectizeInput(
