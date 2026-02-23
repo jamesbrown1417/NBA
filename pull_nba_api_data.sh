@@ -7,10 +7,10 @@ export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 cd ~/Projects/NBA || exit
 
 # Get squads updated
-/Users/jamesbrown/.pyenv/versions/3.12.5/bin/python3 Scripts/get_team_details.py
+# /Users/jamesbrown/.pyenv/versions/3.12.5/bin/python3 Scripts/get_team_details.py
 
 # Get updated fixture
-/Users/jamesbrown/.pyenv/versions/3.12.5/bin/python3 Scripts/get_fixtures_current_season.py
+/Users/jamesbrown/.pyenv/versions/3.12.5/bin/python3 Scripts/get_schedule.py
 
 # Execute the Python script for API data
 /Users/jamesbrown/.pyenv/versions/3.12.5/bin/python3 Scripts/get_all_data_current_season.py
