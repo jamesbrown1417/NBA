@@ -12,349 +12,6 @@
   },
   "matches": [
     {
-      "id": "MemvSac",
-      "name": "Memphis v Sacramento",
-      "spectrumId": "MemvSac",
-      "spectrumUniqueId": 3191332,
-      "competitionSpectrumId": "1001",
-      "round": null,
-      "broadcastChannel": "Tab.com.au",
-      "broadcastChannels": [
-        "Tab.com.au"
-      ],
-      "startTime": "2026-02-24T01:10:00.000Z",
-      "_links": {
-        "self": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/Memphis%20v%20Sacramento?jurisdiction=SA",
-        "selfTemplate": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/Memphis%20v%20Sacramento?jurisdiction={jurisdiction}{&amp;returnPromo,returnOffers,returnMultiOnly,channelType,cashSales,homeState}",
-        "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/Memphis%20v%20Sacramento/markets?jurisdiction=SA"
-      },
-      "contestants": [
-        {
-          "name": "Memphis",
-          "position": "HOME",
-          "isHome": true,
-          "image": [
-            {
-              "size": "svg",
-              "url": "https://metadata.beta.tab.com.au/icons/NBA%20logos/Memphis%20Grizzlies.svg"
-            },
-            {
-              "size": "xxhdpi",
-              "url": "https://metadata.beta.tab.com.au/icons/NBA%20logos/Memphis%20Grizzlies_xxhdpi.png"
-            },
-            {
-              "size": "2x",
-              "url": "https://metadata.beta.tab.com.au/icons/NBA%20logos/Memphis%20Grizzlies%402x.png"
-            }
-          ]
-        },
-        {
-          "name": "Sacramento",
-          "position": "AWAY",
-          "isHome": false,
-          "image": [
-            {
-              "size": "svg",
-              "url": "https://metadata.beta.tab.com.au/icons/NBA%20logos/Sacramento%20Kings.svg"
-            },
-            {
-              "size": "xxhdpi",
-              "url": "https://metadata.beta.tab.com.au/icons/NBA%20logos/Sacramento%20Kings_xxhdpi.png"
-            },
-            {
-              "size": "2x",
-              "url": "https://metadata.beta.tab.com.au/icons/NBA%20logos/Sacramento%20Kings%402x.png"
-            }
-          ]
-        }
-      ],
-      "competitors": [
-        "Memphis",
-        "Sacramento"
-      ],
-      "openMarketCount": 5,
-      "futureMarketCount": 0,
-      "nonFutureMarketCount": 5,
-      "markets": [
-        {
-          "id": "128964875",
-          "name": "NBA Memphis-Scrmnto Hd to Hd",
-          "shortName": "NBA Mem-Sac Hd to Hd",
-          "betOption": "Head To Head",
-          "betOptionSpectrumId": "72",
-          "betOptionPriority": 465,
-          "marketUniqueId": 128964875,
-          "closeTime": "2026-02-24T01:10:00.000Z",
-          "bettingStatus": "Suspended",
-          "message": null,
-          "informationMessage": null,
-          "isFuture": false,
-          "onlineBetting": false,
-          "phoneBettingOnly": true,
-          "inPlay": true,
-          "goingInPlay": false,
-          "allowWin": true,
-          "allowPlace": false,
-          "allowEachWay": false,
-          "allowMulti": true,
-          "allowMultiWin": true,
-          "allowMultiPlace": false,
-          "allowMultiEachWay": false,
-          "numberOfPlaces": 0,
-          "cashOutEligibility": "Enabled",
-          "allowBundle": false,
-          "propositions": [
-            {
-              "id": "759627",
-              "name": "Memphis",
-              "returnWin": 17,
-              "returnPlace": 0,
-              "differential": null,
-              "bettingStatus": "Suspended",
-              "allowPlace": false,
-              "number": 759627,
-              "isOpen": false,
-              "sortOrder": 1,
-              "position": "HOME"
-            },
-            {
-              "id": "759628",
-              "name": "Sacramento",
-              "returnWin": 1.02,
-              "returnPlace": 0,
-              "differential": null,
-              "bettingStatus": "Suspended",
-              "allowPlace": false,
-              "number": 759628,
-              "isOpen": false,
-              "sortOrder": 2,
-              "position": "AWAY"
-            }
-          ]
-        },
-        {
-          "id": "129120796",
-          "name": "NBA Mem-Sac ExtrLine +7.5",
-          "shortName": "NBA Mem-Sac ExtrLine +7.5",
-          "betOption": "Extra Line",
-          "betOptionSpectrumId": "464",
-          "betOptionPriority": 1410,
-          "marketUniqueId": 129120796,
-          "closeTime": "2026-02-24T01:10:00.000Z",
-          "bettingStatus": "Suspended",
-          "message": null,
-          "informationMessage": null,
-          "isFuture": false,
-          "onlineBetting": false,
-          "phoneBettingOnly": true,
-          "inPlay": true,
-          "goingInPlay": false,
-          "allowWin": true,
-          "allowPlace": false,
-          "allowEachWay": false,
-          "allowMulti": true,
-          "allowMultiWin": true,
-          "allowMultiPlace": false,
-          "allowMultiEachWay": false,
-          "numberOfPlaces": 0,
-          "cashOutEligibility": "Disabled",
-          "allowBundle": false,
-          "propositions": [
-            {
-              "id": "561549",
-              "name": "Memphis +7.5",
-              "returnWin": 1.85,
-              "returnPlace": 0,
-              "differential": null,
-              "bettingStatus": "Suspended",
-              "allowPlace": false,
-              "number": 561549,
-              "isOpen": false,
-              "sortOrder": 1,
-              "line": "+7.5"
-            },
-            {
-              "id": "561550",
-              "name": "Sacramento -7.5",
-              "returnWin": 1.85,
-              "returnPlace": 0,
-              "differential": null,
-              "bettingStatus": "Suspended",
-              "allowPlace": false,
-              "number": 561550,
-              "isOpen": false,
-              "sortOrder": 2,
-              "line": "-7.5"
-            }
-          ]
-        },
-        {
-          "id": "129129458",
-          "name": "NBA Mem-Sac D DeRozan PlrPts",
-          "shortName": "NBA Mem-Sac D DeRozan Pts",
-          "betOption": "Player Points Live",
-          "betOptionSpectrumId": "1933",
-          "betOptionPriority": 2780,
-          "marketUniqueId": 129129458,
-          "closeTime": "2026-02-24T01:10:00.000Z",
-          "bettingStatus": "Suspended",
-          "message": null,
-          "informationMessage": null,
-          "isFuture": false,
-          "onlineBetting": false,
-          "phoneBettingOnly": true,
-          "inPlay": true,
-          "goingInPlay": false,
-          "allowWin": true,
-          "allowPlace": false,
-          "allowEachWay": false,
-          "allowMulti": true,
-          "allowMultiWin": true,
-          "allowMultiPlace": false,
-          "allowMultiEachWay": false,
-          "numberOfPlaces": 0,
-          "cashOutEligibility": "Disabled",
-          "allowBundle": false,
-          "propositions": [
-            {
-              "id": "568376",
-              "name": "D DeRozan Over 19.5",
-              "returnWin": 2.1,
-              "returnPlace": 0,
-              "differential": null,
-              "bettingStatus": "Suspended",
-              "allowPlace": false,
-              "number": 568376,
-              "isOpen": false,
-              "sortOrder": 35
-            },
-            {
-              "id": "568377",
-              "name": "D DeRozan Under 19.5",
-              "returnWin": 1.68,
-              "returnPlace": 0,
-              "differential": null,
-              "bettingStatus": "Suspended",
-              "allowPlace": false,
-              "number": 568377,
-              "isOpen": false,
-              "sortOrder": 36
-            }
-          ]
-        },
-        {
-          "id": "129129480",
-          "name": "NBA Mem-Sac Ke Murray PlrPts",
-          "shortName": "NBA Mem-Sac Ke Murray Pts",
-          "betOption": "Player Points Live",
-          "betOptionSpectrumId": "1933",
-          "betOptionPriority": 2780,
-          "marketUniqueId": 129129480,
-          "closeTime": "2026-02-24T01:10:00.000Z",
-          "bettingStatus": "Suspended",
-          "message": null,
-          "informationMessage": null,
-          "isFuture": false,
-          "onlineBetting": false,
-          "phoneBettingOnly": true,
-          "inPlay": true,
-          "goingInPlay": false,
-          "allowWin": true,
-          "allowPlace": false,
-          "allowEachWay": false,
-          "allowMulti": true,
-          "allowMultiWin": true,
-          "allowMultiPlace": false,
-          "allowMultiEachWay": false,
-          "numberOfPlaces": 0,
-          "cashOutEligibility": "Disabled",
-          "allowBundle": false,
-          "propositions": [
-            {
-              "id": "568786",
-              "name": "Ke Murray Over 6.5",
-              "returnWin": 2.8,
-              "returnPlace": 0,
-              "differential": null,
-              "bettingStatus": "Suspended",
-              "allowPlace": false,
-              "number": 568786,
-              "isOpen": false,
-              "sortOrder": 9
-            },
-            {
-              "id": "568787",
-              "name": "Ke Murray Under 6.5",
-              "returnWin": 1.4,
-              "returnPlace": 0,
-              "differential": null,
-              "bettingStatus": "Suspended",
-              "allowPlace": false,
-              "number": 568787,
-              "isOpen": false,
-              "sortOrder": 10
-            }
-          ]
-        },
-        {
-          "id": "129129476",
-          "name": "NBA Mem-Sac Malik Monk PlrPts",
-          "shortName": "NBA Mem-Sac Malik Monk Pts",
-          "betOption": "Player Points Live",
-          "betOptionSpectrumId": "1933",
-          "betOptionPriority": 2780,
-          "marketUniqueId": 129129476,
-          "closeTime": "2026-02-24T01:10:00.000Z",
-          "bettingStatus": "Suspended",
-          "message": null,
-          "informationMessage": null,
-          "isFuture": false,
-          "onlineBetting": false,
-          "phoneBettingOnly": true,
-          "inPlay": true,
-          "goingInPlay": false,
-          "allowWin": true,
-          "allowPlace": false,
-          "allowEachWay": false,
-          "allowMulti": true,
-          "allowMultiWin": true,
-          "allowMultiPlace": false,
-          "allowMultiEachWay": false,
-          "numberOfPlaces": 0,
-          "cashOutEligibility": "Disabled",
-          "allowBundle": false,
-          "propositions": [
-            {
-              "id": "568666",
-              "name": "Malik Monk Over 10.5",
-              "returnWin": 2.5,
-              "returnPlace": 0,
-              "differential": null,
-              "bettingStatus": "Suspended",
-              "allowPlace": false,
-              "number": 568666,
-              "isOpen": false,
-              "sortOrder": 17
-            },
-            {
-              "id": "568667",
-              "name": "Malik Monk Under 10.5",
-              "returnWin": 1.5,
-              "returnPlace": 0,
-              "differential": null,
-              "bettingStatus": "Suspended",
-              "allowPlace": false,
-              "number": 568667,
-              "isOpen": false,
-              "sortOrder": 18
-            }
-          ]
-        }
-      ],
-      "inPlay": true,
-      "goingInPlay": false
-    },
-    {
       "id": "HouvUta",
       "name": "Houston v Utah",
       "spectrumId": "HouvUta",
@@ -450,7 +107,7 @@
             {
               "id": "759631",
               "name": "Houston",
-              "returnWin": 1.04,
+              "returnWin": 1.02,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -463,7 +120,7 @@
             {
               "id": "759632",
               "name": "Utah",
-              "returnWin": 10,
+              "returnWin": 12,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -472,62 +129,6 @@
               "isOpen": true,
               "sortOrder": 2,
               "position": "AWAY"
-            }
-          ]
-        },
-        {
-          "id": "129129132",
-          "name": "NBA Hou-Uta ExtrLine -13.5",
-          "shortName": "NBA Hou-Uta ExtrLine -13.5",
-          "betOption": "Extra Line",
-          "betOptionSpectrumId": "464",
-          "betOptionPriority": 1410,
-          "marketUniqueId": 129129132,
-          "closeTime": "2026-02-24T02:40:00.000Z",
-          "bettingStatus": "Open",
-          "message": null,
-          "informationMessage": null,
-          "isFuture": false,
-          "onlineBetting": false,
-          "phoneBettingOnly": true,
-          "inPlay": true,
-          "goingInPlay": false,
-          "allowWin": true,
-          "allowPlace": false,
-          "allowEachWay": false,
-          "allowMulti": true,
-          "allowMultiWin": true,
-          "allowMultiPlace": false,
-          "allowMultiEachWay": false,
-          "numberOfPlaces": 0,
-          "cashOutEligibility": "Disabled",
-          "allowBundle": false,
-          "propositions": [
-            {
-              "id": "567229",
-              "name": "Houston -13.5",
-              "returnWin": 1.58,
-              "returnPlace": 0,
-              "differential": null,
-              "bettingStatus": "Open",
-              "allowPlace": false,
-              "number": 567229,
-              "isOpen": true,
-              "sortOrder": 1,
-              "line": "-13.5"
-            },
-            {
-              "id": "567230",
-              "name": "Utah +13.5",
-              "returnWin": 2.25,
-              "returnPlace": 0,
-              "differential": null,
-              "bettingStatus": "Open",
-              "allowPlace": false,
-              "number": 567230,
-              "isOpen": true,
-              "sortOrder": 2,
-              "line": "+13.5"
             }
           ]
         },
@@ -562,7 +163,7 @@
             {
               "id": "567129",
               "name": "Houston -16.5",
-              "returnWin": 1.9,
+              "returnWin": 1.62,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -575,7 +176,7 @@
             {
               "id": "567130",
               "name": "Utah +16.5",
-              "returnWin": 1.8,
+              "returnWin": 2.15,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -618,7 +219,7 @@
             {
               "id": "567755",
               "name": "Houston -19.5",
-              "returnWin": 2.3,
+              "returnWin": 1.9,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -631,7 +232,7 @@
             {
               "id": "567756",
               "name": "Utah +19.5",
-              "returnWin": 1.55,
+              "returnWin": 1.8,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -640,6 +241,62 @@
               "isOpen": true,
               "sortOrder": 2,
               "line": "+19.5"
+            }
+          ]
+        },
+        {
+          "id": "129129008",
+          "name": "NBA Hou-Uta ExtrLine -22.5",
+          "shortName": "NBA Hou-Uta ExtrLine -22.5",
+          "betOption": "Extra Line",
+          "betOptionSpectrumId": "464",
+          "betOptionPriority": 1410,
+          "marketUniqueId": 129129008,
+          "closeTime": "2026-02-24T02:40:00.000Z",
+          "bettingStatus": "Open",
+          "message": null,
+          "informationMessage": null,
+          "isFuture": false,
+          "onlineBetting": false,
+          "phoneBettingOnly": true,
+          "inPlay": true,
+          "goingInPlay": false,
+          "allowWin": true,
+          "allowPlace": false,
+          "allowEachWay": false,
+          "allowMulti": true,
+          "allowMultiWin": true,
+          "allowMultiPlace": false,
+          "allowMultiEachWay": false,
+          "numberOfPlaces": 0,
+          "cashOutEligibility": "Disabled",
+          "allowBundle": false,
+          "propositions": [
+            {
+              "id": "567850",
+              "name": "Houston -22.5",
+              "returnWin": 2.3,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 567850,
+              "isOpen": true,
+              "sortOrder": 1,
+              "line": "-22.5"
+            },
+            {
+              "id": "567851",
+              "name": "Utah +22.5",
+              "returnWin": 1.55,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 567851,
+              "isOpen": true,
+              "sortOrder": 2,
+              "line": "+22.5"
             }
           ]
         },
@@ -674,7 +331,7 @@
             {
               "id": "641978",
               "name": "Houston by 11+",
-              "returnWin": 1.35,
+              "returnWin": 1.22,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -686,7 +343,7 @@
             {
               "id": "641979",
               "name": "Houston by 1-10",
-              "returnWin": 3.5,
+              "returnWin": 4.25,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -698,7 +355,7 @@
             {
               "id": "641980",
               "name": "Utah by 1-10",
-              "returnWin": 10,
+              "returnWin": 15,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -710,7 +367,7 @@
             {
               "id": "641981",
               "name": "Utah by 11+",
-              "returnWin": 41,
+              "returnWin": 67,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -752,7 +409,7 @@
             {
               "id": "642180",
               "name": "Houston by 7+",
-              "returnWin": 1.15,
+              "returnWin": 1.09,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -764,7 +421,7 @@
             {
               "id": "642181",
               "name": "Either Team By 6 or Less",
-              "returnWin": 5,
+              "returnWin": 6,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -776,7 +433,7 @@
             {
               "id": "642182",
               "name": "Utah by 7+",
-              "returnWin": 21,
+              "returnWin": 34,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -818,7 +475,7 @@
             {
               "id": "583451",
               "name": "A Sengun Over 18.5",
-              "returnWin": 1.75,
+              "returnWin": 1.87,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -830,7 +487,7 @@
             {
               "id": "583452",
               "name": "A Sengun Under 18.5",
-              "returnWin": 2,
+              "returnWin": 1.87,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -872,7 +529,7 @@
             {
               "id": "583084",
               "name": "C Capela Over 4.5",
-              "returnWin": 1.8,
+              "returnWin": 2.1,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -884,7 +541,7 @@
             {
               "id": "583085",
               "name": "C Capela Under 4.5",
-              "returnWin": 1.95,
+              "returnWin": 1.68,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -924,28 +581,28 @@
           "allowBundle": false,
           "propositions": [
             {
-              "id": "583593",
-              "name": "Jab Smith Over 25.5",
-              "returnWin": 1.9,
+              "id": "583597",
+              "name": "Jab Smith Over 27.5",
+              "returnWin": 1.95,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
               "allowPlace": false,
-              "number": 583593,
+              "number": 583597,
               "isOpen": true,
-              "sortOrder": 47
+              "sortOrder": 51
             },
             {
-              "id": "583594",
-              "name": "Jab Smith Under 25.5",
-              "returnWin": 1.85,
+              "id": "583598",
+              "name": "Jab Smith Under 27.5",
+              "returnWin": 1.8,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
               "allowPlace": false,
-              "number": 583594,
+              "number": 583598,
               "isOpen": true,
-              "sortOrder": 48
+              "sortOrder": 52
             }
           ]
         },
@@ -978,28 +635,28 @@
           "allowBundle": false,
           "propositions": [
             {
-              "id": "583253",
-              "name": "K Durant Over 23.5",
-              "returnWin": 1.95,
-              "returnPlace": 0,
-              "differential": null,
-              "bettingStatus": "Open",
-              "allowPlace": false,
-              "number": 583253,
-              "isOpen": true,
-              "sortOrder": 43
-            },
-            {
-              "id": "583254",
-              "name": "K Durant Under 23.5",
+              "id": "583249",
+              "name": "K Durant Over 21.5",
               "returnWin": 1.8,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
               "allowPlace": false,
-              "number": 583254,
+              "number": 583249,
               "isOpen": true,
-              "sortOrder": 44
+              "sortOrder": 39
+            },
+            {
+              "id": "583250",
+              "name": "K Durant Under 21.5",
+              "returnWin": 1.95,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 583250,
+              "isOpen": true,
+              "sortOrder": 40
             }
           ]
         },
@@ -1032,28 +689,28 @@
           "allowBundle": false,
           "propositions": [
             {
-              "id": "583940",
-              "name": "L Markkanen Over 23.5",
-              "returnWin": 1.8,
+              "id": "583942",
+              "name": "L Markkanen Over 24.5",
+              "returnWin": 1.9,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
               "allowPlace": false,
-              "number": 583940,
+              "number": 583942,
               "isOpen": true,
-              "sortOrder": 43
+              "sortOrder": 45
             },
             {
-              "id": "583941",
-              "name": "L Markkanen Under 23.5",
-              "returnWin": 1.95,
+              "id": "583943",
+              "name": "L Markkanen Under 24.5",
+              "returnWin": 1.85,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
               "allowPlace": false,
-              "number": 583941,
+              "number": 583943,
               "isOpen": true,
-              "sortOrder": 44
+              "sortOrder": 46
             }
           ]
         },
@@ -1088,7 +745,7 @@
             {
               "id": "567332",
               "name": "Houston/Over 237.5",
-              "returnWin": 2,
+              "returnWin": 2.35,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -1100,7 +757,7 @@
             {
               "id": "567333",
               "name": "Houston/Under 237.5",
-              "returnWin": 1.95,
+              "returnWin": 1.65,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -1112,7 +769,7 @@
             {
               "id": "567334",
               "name": "Utah/Over 237.5",
-              "returnWin": 15,
+              "returnWin": 21,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -1124,7 +781,7 @@
             {
               "id": "567335",
               "name": "Utah/Under 237.5",
-              "returnWin": 21,
+              "returnWin": 26,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -1166,7 +823,7 @@
             {
               "id": "566991",
               "name": "Houston-Houston",
-              "returnWin": 1.13,
+              "returnWin": 1.05,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -1178,7 +835,7 @@
             {
               "id": "566992",
               "name": "Utah-Houston",
-              "returnWin": 13,
+              "returnWin": 34,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -1202,7 +859,7 @@
             {
               "id": "566994",
               "name": "Utah-Utah",
-              "returnWin": 26,
+              "returnWin": 67,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -1214,7 +871,7 @@
             {
               "id": "566995",
               "name": "Houston-Tie",
-              "returnWin": 26,
+              "returnWin": 34,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -1226,7 +883,7 @@
             {
               "id": "566996",
               "name": "Utah-Tie",
-              "returnWin": 67,
+              "returnWin": 101,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -1250,7 +907,7 @@
             {
               "id": "566998",
               "name": "Tie-Houston",
-              "returnWin": 34,
+              "returnWin": 67,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -1304,7 +961,7 @@
             {
               "id": "567990",
               "name": "Over 241 Points",
-              "returnWin": 2.25,
+              "returnWin": 2.75,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -1316,7 +973,7 @@
             {
               "id": "567991",
               "name": "231 - 241 inc Points",
-              "returnWin": 3.3,
+              "returnWin": 3.1,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -1328,7 +985,7 @@
             {
               "id": "567992",
               "name": "Under 231 Points",
-              "returnWin": 2.5,
+              "returnWin": 2.15,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -1370,7 +1027,7 @@
             {
               "id": "567041",
               "name": "Over 246 Points",
-              "returnWin": 2.9,
+              "returnWin": 3.75,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -1382,7 +1039,7 @@
             {
               "id": "567042",
               "name": "236 - 246 inc Points",
-              "returnWin": 3.4,
+              "returnWin": 3.5,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -1394,7 +1051,7 @@
             {
               "id": "567043",
               "name": "Under 236 Points",
-              "returnWin": 1.95,
+              "returnWin": 1.67,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -1436,7 +1093,7 @@
             {
               "id": "567686",
               "name": "Over 231 Points",
-              "returnWin": 1.47,
+              "returnWin": 1.65,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -1448,7 +1105,7 @@
             {
               "id": "567687",
               "name": "221 - 231 inc Points",
-              "returnWin": 3.75,
+              "returnWin": 3.3,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -1460,7 +1117,7 @@
             {
               "id": "567688",
               "name": "Under 221 Points",
-              "returnWin": 5,
+              "returnWin": 4.25,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -1502,7 +1159,7 @@
             {
               "id": "567862",
               "name": "Over 236 Points",
-              "returnWin": 1.75,
+              "returnWin": 2.05,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -1514,7 +1171,7 @@
             {
               "id": "567863",
               "name": "226 - 236 inc Points",
-              "returnWin": 3.4,
+              "returnWin": 3.1,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -1526,7 +1183,7 @@
             {
               "id": "567864",
               "name": "Under 226 Points",
-              "returnWin": 3.5,
+              "returnWin": 2.9,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -1568,7 +1225,7 @@
             {
               "id": "567871",
               "name": "Over 251 Points",
-              "returnWin": 4,
+              "returnWin": 5,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -1580,7 +1237,7 @@
             {
               "id": "567872",
               "name": "241 - 251 inc Points",
-              "returnWin": 3.75,
+              "returnWin": 4.25,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -1592,7 +1249,7 @@
             {
               "id": "567873",
               "name": "Under 241 Points",
-              "returnWin": 1.57,
+              "returnWin": 1.4,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -1600,6 +1257,60 @@
               "number": 567873,
               "isOpen": true,
               "sortOrder": 3
+            }
+          ]
+        },
+        {
+          "id": "129128752",
+          "name": "NBA Houston-Utah LvPntOU 222.5",
+          "shortName": "NBA Hou-Uta PntOU 222.5",
+          "betOption": "Live Total Points Over/Under",
+          "betOptionSpectrumId": "543",
+          "betOptionPriority": 10815,
+          "marketUniqueId": 129128752,
+          "closeTime": "2026-02-24T02:40:00.000Z",
+          "bettingStatus": "Open",
+          "message": null,
+          "informationMessage": null,
+          "isFuture": false,
+          "onlineBetting": false,
+          "phoneBettingOnly": true,
+          "inPlay": true,
+          "goingInPlay": false,
+          "allowWin": true,
+          "allowPlace": false,
+          "allowEachWay": false,
+          "allowMulti": true,
+          "allowMultiWin": true,
+          "allowMultiPlace": false,
+          "allowMultiEachWay": false,
+          "numberOfPlaces": 0,
+          "cashOutEligibility": "Disabled",
+          "allowBundle": false,
+          "propositions": [
+            {
+              "id": "567258",
+              "name": "Over 222.5 Points",
+              "returnWin": 1.22,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 567258,
+              "isOpen": true,
+              "sortOrder": 1
+            },
+            {
+              "id": "567259",
+              "name": "Under 222.5 Points",
+              "returnWin": 3.8,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 567259,
+              "isOpen": true,
+              "sortOrder": 2
             }
           ]
         },
@@ -1634,7 +1345,7 @@
             {
               "id": "567136",
               "name": "Over 227.5 Points",
-              "returnWin": 1.3,
+              "returnWin": 1.44,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -1646,7 +1357,7 @@
             {
               "id": "567137",
               "name": "Under 227.5 Points",
-              "returnWin": 3.2,
+              "returnWin": 2.6,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -1688,7 +1399,7 @@
             {
               "id": "567807",
               "name": "Over 232.5 Points",
-              "returnWin": 1.52,
+              "returnWin": 1.72,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -1700,7 +1411,7 @@
             {
               "id": "567808",
               "name": "Under 232.5 Points",
-              "returnWin": 2.35,
+              "returnWin": 2,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -1742,7 +1453,7 @@
             {
               "id": "567005",
               "name": "Over 237.5 Points",
-              "returnWin": 1.85,
+              "returnWin": 2.25,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -1754,7 +1465,7 @@
             {
               "id": "567006",
               "name": "Under 237.5 Points",
-              "returnWin": 1.85,
+              "returnWin": 1.58,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -1796,7 +1507,7 @@
             {
               "id": "567680",
               "name": "Over 242.5 Points",
-              "returnWin": 2.35,
+              "returnWin": 3,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -1808,7 +1519,7 @@
             {
               "id": "567681",
               "name": "Under 242.5 Points",
-              "returnWin": 1.52,
+              "returnWin": 1.34,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -1820,13 +1531,13 @@
           ]
         },
         {
-          "id": "129128933",
-          "name": "NBA Houston-Utah LvPntOU 247.5",
-          "shortName": "NBA Hou-Uta PntOU 247.5",
-          "betOption": "Live Total Points Over/Under",
-          "betOptionSpectrumId": "543",
-          "betOptionPriority": 10815,
-          "marketUniqueId": 129128933,
+          "id": "129129084",
+          "name": "NBA Hou-Uta TmPtsOU 100.5",
+          "shortName": "NBA Hou-Uta TTPL 100.5",
+          "betOption": "Team Points Over/Under",
+          "betOptionSpectrumId": "2103",
+          "betOptionPriority": 10820,
+          "marketUniqueId": 129129084,
           "closeTime": "2026-02-24T02:40:00.000Z",
           "bettingStatus": "Open",
           "message": null,
@@ -1848,26 +1559,26 @@
           "allowBundle": false,
           "propositions": [
             {
-              "id": "567676",
-              "name": "Over 247.5 Points",
-              "returnWin": 3.2,
+              "id": "568027",
+              "name": "Utah Over 100.5",
+              "returnWin": 1.32,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
               "allowPlace": false,
-              "number": 567676,
+              "number": 568027,
               "isOpen": true,
               "sortOrder": 1
             },
             {
-              "id": "567677",
-              "name": "Under 247.5 Points",
-              "returnWin": 1.3,
+              "id": "568028",
+              "name": "Utah Under 100.5",
+              "returnWin": 3,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
               "allowPlace": false,
-              "number": 567677,
+              "number": 568028,
               "isOpen": true,
               "sortOrder": 2
             }
@@ -1904,7 +1615,7 @@
             {
               "id": "567011",
               "name": "Utah Over 103.5",
-              "returnWin": 1.32,
+              "returnWin": 1.48,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -1916,7 +1627,7 @@
             {
               "id": "567012",
               "name": "Utah Under 103.5",
-              "returnWin": 3,
+              "returnWin": 2.4,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -1958,7 +1669,7 @@
             {
               "id": "567058",
               "name": "Utah Over 106.5",
-              "returnWin": 1.5,
+              "returnWin": 1.77,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -1970,7 +1681,7 @@
             {
               "id": "567059",
               "name": "Utah Under 106.5",
-              "returnWin": 2.35,
+              "returnWin": 1.9,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -2012,7 +1723,7 @@
             {
               "id": "567785",
               "name": "Utah Over 109.5",
-              "returnWin": 1.77,
+              "returnWin": 2.2,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -2024,7 +1735,7 @@
             {
               "id": "567786",
               "name": "Utah Under 109.5",
-              "returnWin": 1.9,
+              "returnWin": 1.57,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -2066,7 +1777,7 @@
             {
               "id": "567775",
               "name": "Utah Over 112.5",
-              "returnWin": 2.15,
+              "returnWin": 2.8,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -2078,7 +1789,7 @@
             {
               "id": "567776",
               "name": "Utah Under 112.5",
-              "returnWin": 1.6,
+              "returnWin": 1.37,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -2090,13 +1801,13 @@
           ]
         },
         {
-          "id": "129129090",
-          "name": "NBA Hou-Uta TmPtsOU 115.5",
-          "shortName": "NBA Hou-Uta TTPL 115.5",
+          "id": "129128721",
+          "name": "NBA Hou-Uta TmPtsOU 119.5",
+          "shortName": "NBA Hou-Uta TTPL 119.5",
           "betOption": "Team Points Over/Under",
           "betOptionSpectrumId": "2103",
           "betOptionPriority": 10820,
-          "marketUniqueId": 129129090,
+          "marketUniqueId": 129128721,
           "closeTime": "2026-02-24T02:40:00.000Z",
           "bettingStatus": "Open",
           "message": null,
@@ -2118,26 +1829,26 @@
           "allowBundle": false,
           "propositions": [
             {
-              "id": "568040",
-              "name": "Utah Over 115.5",
-              "returnWin": 2.8,
+              "id": "567175",
+              "name": "Houston Over 119.5",
+              "returnWin": 1.18,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
               "allowPlace": false,
-              "number": 568040,
+              "number": 567175,
               "isOpen": true,
               "sortOrder": 1
             },
             {
-              "id": "568041",
-              "name": "Utah Under 115.5",
-              "returnWin": 1.37,
+              "id": "567176",
+              "name": "Houston Under 119.5",
+              "returnWin": 4.2,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
               "allowPlace": false,
-              "number": 568041,
+              "number": 567176,
               "isOpen": true,
               "sortOrder": 2
             }
@@ -2228,7 +1939,7 @@
             {
               "id": "567937",
               "name": "Houston Over 125.5",
-              "returnWin": 1.6,
+              "returnWin": 1.67,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -2240,7 +1951,7 @@
             {
               "id": "567938",
               "name": "Houston Under 125.5",
-              "returnWin": 2.15,
+              "returnWin": 2.05,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -2282,7 +1993,7 @@
             {
               "id": "567817",
               "name": "Houston Over 128.5",
-              "returnWin": 2,
+              "returnWin": 2.1,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -2294,7 +2005,7 @@
             {
               "id": "567818",
               "name": "Houston Under 128.5",
-              "returnWin": 1.7,
+              "returnWin": 1.63,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -2336,7 +2047,7 @@
             {
               "id": "567803",
               "name": "Houston Over 131.5",
-              "returnWin": 2.6,
+              "returnWin": 2.8,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -2348,66 +2059,12 @@
             {
               "id": "567804",
               "name": "Houston Under 131.5",
-              "returnWin": 1.42,
+              "returnWin": 1.37,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
               "allowPlace": false,
               "number": 567804,
-              "isOpen": true,
-              "sortOrder": 2
-            }
-          ]
-        },
-        {
-          "id": "129129085",
-          "name": "NBA Hou-Uta TmPtsOU 134.5",
-          "shortName": "NBA Hou-Uta TTPL 134.5",
-          "betOption": "Team Points Over/Under",
-          "betOptionSpectrumId": "2103",
-          "betOptionPriority": 10820,
-          "marketUniqueId": 129129085,
-          "closeTime": "2026-02-24T02:40:00.000Z",
-          "bettingStatus": "Open",
-          "message": null,
-          "informationMessage": null,
-          "isFuture": false,
-          "onlineBetting": false,
-          "phoneBettingOnly": true,
-          "inPlay": true,
-          "goingInPlay": false,
-          "allowWin": true,
-          "allowPlace": false,
-          "allowEachWay": false,
-          "allowMulti": true,
-          "allowMultiWin": true,
-          "allowMultiPlace": false,
-          "allowMultiEachWay": false,
-          "numberOfPlaces": 0,
-          "cashOutEligibility": "Disabled",
-          "allowBundle": false,
-          "propositions": [
-            {
-              "id": "568029",
-              "name": "Houston Over 134.5",
-              "returnWin": 3.6,
-              "returnPlace": 0,
-              "differential": null,
-              "bettingStatus": "Open",
-              "allowPlace": false,
-              "number": 568029,
-              "isOpen": true,
-              "sortOrder": 1
-            },
-            {
-              "id": "568030",
-              "name": "Houston Under 134.5",
-              "returnWin": 1.23,
-              "returnPlace": 0,
-              "differential": null,
-              "bettingStatus": "Open",
-              "allowPlace": false,
-              "number": 568030,
               "isOpen": true,
               "sortOrder": 2
             }
@@ -2444,19 +2101,19 @@
             {
               "id": "550265",
               "name": "Houston",
-              "returnWin": 1.05,
+              "returnWin": 1.01,
               "returnPlace": 0,
               "differential": null,
-              "bettingStatus": "Open",
+              "bettingStatus": "Suspended",
               "allowPlace": false,
               "number": 550265,
-              "isOpen": true,
+              "isOpen": false,
               "sortOrder": 1
             },
             {
               "id": "550266",
               "name": "Draw",
-              "returnWin": 26,
+              "returnWin": 41,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -2468,78 +2125,12 @@
             {
               "id": "550267",
               "name": "Utah",
-              "returnWin": 8.5,
+              "returnWin": 21,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
               "allowPlace": false,
               "number": 550267,
-              "isOpen": true,
-              "sortOrder": 3
-            }
-          ]
-        },
-        {
-          "id": "129128911",
-          "name": "NBA Houston-Utah 1stHf3Wy",
-          "shortName": "NBA Hou-Uta 1stHf3Wy",
-          "betOption": "Live 1st Half Total Pts 3-Way",
-          "betOptionSpectrumId": "771",
-          "betOptionPriority": 11090,
-          "marketUniqueId": 129128911,
-          "closeTime": "2026-02-24T02:40:00.000Z",
-          "bettingStatus": "Open",
-          "message": null,
-          "informationMessage": null,
-          "isFuture": false,
-          "onlineBetting": false,
-          "phoneBettingOnly": true,
-          "inPlay": true,
-          "goingInPlay": false,
-          "allowWin": true,
-          "allowPlace": false,
-          "allowEachWay": false,
-          "allowMulti": true,
-          "allowMultiWin": true,
-          "allowMultiPlace": false,
-          "allowMultiEachWay": false,
-          "numberOfPlaces": 0,
-          "cashOutEligibility": "Disabled",
-          "allowBundle": false,
-          "propositions": [
-            {
-              "id": "567626",
-              "name": "Over 123 Points",
-              "returnWin": 2.25,
-              "returnPlace": 0,
-              "differential": null,
-              "bettingStatus": "Open",
-              "allowPlace": false,
-              "number": 567626,
-              "isOpen": true,
-              "sortOrder": 1
-            },
-            {
-              "id": "567627",
-              "name": "Exactly 123 Points",
-              "returnWin": 15,
-              "returnPlace": 0,
-              "differential": null,
-              "bettingStatus": "Open",
-              "allowPlace": false,
-              "number": 567627,
-              "isOpen": true,
-              "sortOrder": 2
-            },
-            {
-              "id": "567628",
-              "name": "Under 123 Points",
-              "returnWin": 1.6,
-              "returnPlace": 0,
-              "differential": null,
-              "bettingStatus": "Open",
-              "allowPlace": false,
-              "number": 567628,
               "isOpen": true,
               "sortOrder": 3
             }
@@ -2576,7 +2167,7 @@
             {
               "id": "567491",
               "name": "Over 117 Points",
-              "returnWin": 1.4,
+              "returnWin": 1.7,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -2588,7 +2179,7 @@
             {
               "id": "567492",
               "name": "Exactly 117 Points",
-              "returnWin": 15,
+              "returnWin": 12,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -2600,12 +2191,78 @@
             {
               "id": "567493",
               "name": "Under 117 Points",
-              "returnWin": 2.75,
+              "returnWin": 2.1,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
               "allowPlace": false,
               "number": 567493,
+              "isOpen": true,
+              "sortOrder": 3
+            }
+          ]
+        },
+        {
+          "id": "129128827",
+          "name": "NBA Houston-Utah 1stHf3Wy",
+          "shortName": "NBA Hou-Uta 1stHf3Wy",
+          "betOption": "Live 1st Half Total Pts 3-Way",
+          "betOptionSpectrumId": "771",
+          "betOptionPriority": 11090,
+          "marketUniqueId": 129128827,
+          "closeTime": "2026-02-24T02:40:00.000Z",
+          "bettingStatus": "Open",
+          "message": null,
+          "informationMessage": null,
+          "isFuture": false,
+          "onlineBetting": false,
+          "phoneBettingOnly": true,
+          "inPlay": true,
+          "goingInPlay": false,
+          "allowWin": true,
+          "allowPlace": false,
+          "allowEachWay": false,
+          "allowMulti": true,
+          "allowMultiWin": true,
+          "allowMultiPlace": false,
+          "allowMultiEachWay": false,
+          "numberOfPlaces": 0,
+          "cashOutEligibility": "Disabled",
+          "allowBundle": false,
+          "propositions": [
+            {
+              "id": "567437",
+              "name": "Over 114 Points",
+              "returnWin": 1.37,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 567437,
+              "isOpen": true,
+              "sortOrder": 1
+            },
+            {
+              "id": "567438",
+              "name": "Exactly 114 Points",
+              "returnWin": 11,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 567438,
+              "isOpen": true,
+              "sortOrder": 2
+            },
+            {
+              "id": "567439",
+              "name": "Under 114 Points",
+              "returnWin": 3.1,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 567439,
               "isOpen": true,
               "sortOrder": 3
             }
@@ -2642,7 +2299,7 @@
             {
               "id": "567706",
               "name": "Over 120 Points",
-              "returnWin": 1.75,
+              "returnWin": 2.25,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -2654,7 +2311,7 @@
             {
               "id": "567707",
               "name": "Exactly 120 Points",
-              "returnWin": 15,
+              "returnWin": 13,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -2666,7 +2323,7 @@
             {
               "id": "567708",
               "name": "Under 120 Points",
-              "returnWin": 2,
+              "returnWin": 1.65,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -2708,7 +2365,7 @@
             {
               "id": "552269",
               "name": "Houston",
-              "returnWin": 3.25,
+              "returnWin": 2.25,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -2720,7 +2377,7 @@
             {
               "id": "552270",
               "name": "Draw",
-              "returnWin": 15,
+              "returnWin": 11,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -2732,7 +2389,7 @@
             {
               "id": "552271",
               "name": "Utah",
-              "returnWin": 1.33,
+              "returnWin": 1.67,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -2740,60 +2397,6 @@
               "number": 552271,
               "isOpen": true,
               "sortOrder": 3
-            }
-          ]
-        },
-        {
-          "id": "129128826",
-          "name": "NBA Hou-Uta Lv2QLine",
-          "shortName": "NBA Hou-Uta Lv2QLn",
-          "betOption": "Live 2nd Quarter Line",
-          "betOptionSpectrumId": "1638",
-          "betOptionPriority": 15975,
-          "marketUniqueId": 129128826,
-          "closeTime": "2026-02-24T02:40:00.000Z",
-          "bettingStatus": "Open",
-          "message": null,
-          "informationMessage": null,
-          "isFuture": false,
-          "onlineBetting": false,
-          "phoneBettingOnly": true,
-          "inPlay": true,
-          "goingInPlay": false,
-          "allowWin": true,
-          "allowPlace": false,
-          "allowEachWay": false,
-          "allowMulti": true,
-          "allowMultiWin": true,
-          "allowMultiPlace": false,
-          "allowMultiEachWay": false,
-          "numberOfPlaces": 0,
-          "cashOutEligibility": "Enabled",
-          "allowBundle": false,
-          "propositions": [
-            {
-              "id": "567435",
-              "name": "Houston +5.5",
-              "returnWin": 1.72,
-              "returnPlace": 0,
-              "differential": null,
-              "bettingStatus": "Open",
-              "allowPlace": false,
-              "number": 567435,
-              "isOpen": true,
-              "sortOrder": 1
-            },
-            {
-              "id": "567436",
-              "name": "Utah -5.5",
-              "returnWin": 1.95,
-              "returnPlace": 0,
-              "differential": null,
-              "bettingStatus": "Open",
-              "allowPlace": false,
-              "number": 567436,
-              "isOpen": true,
-              "sortOrder": 2
             }
           ]
         },
@@ -2828,7 +2431,7 @@
             {
               "id": "567120",
               "name": "Houston +1.5",
-              "returnWin": 2.6,
+              "returnWin": 1.85,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -2840,7 +2443,7 @@
             {
               "id": "567121",
               "name": "Utah -1.5",
-              "returnWin": 1.42,
+              "returnWin": 1.85,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -2882,7 +2485,7 @@
             {
               "id": "567663",
               "name": "Houston +3.5",
-              "returnWin": 2.05,
+              "returnWin": 1.52,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -2894,12 +2497,66 @@
             {
               "id": "567664",
               "name": "Utah -3.5",
-              "returnWin": 1.67,
+              "returnWin": 2.3,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
               "allowPlace": false,
               "number": 567664,
+              "isOpen": true,
+              "sortOrder": 2
+            }
+          ]
+        },
+        {
+          "id": "129129001",
+          "name": "NBA Hou-Uta Lv2QLine",
+          "shortName": "NBA Hou-Uta Lv2QLn",
+          "betOption": "Live 2nd Quarter Line",
+          "betOptionSpectrumId": "1638",
+          "betOptionPriority": 15975,
+          "marketUniqueId": 129129001,
+          "closeTime": "2026-02-24T02:40:00.000Z",
+          "bettingStatus": "Open",
+          "message": null,
+          "informationMessage": null,
+          "isFuture": false,
+          "onlineBetting": false,
+          "phoneBettingOnly": true,
+          "inPlay": true,
+          "goingInPlay": false,
+          "allowWin": true,
+          "allowPlace": false,
+          "allowEachWay": false,
+          "allowMulti": true,
+          "allowMultiWin": true,
+          "allowMultiPlace": false,
+          "allowMultiEachWay": false,
+          "numberOfPlaces": 0,
+          "cashOutEligibility": "Enabled",
+          "allowBundle": false,
+          "propositions": [
+            {
+              "id": "567834",
+              "name": "Houston -2.5",
+              "returnWin": 3,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 567834,
+              "isOpen": true,
+              "sortOrder": 1
+            },
+            {
+              "id": "567835",
+              "name": "Utah +2.5",
+              "returnWin": 1.32,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 567835,
               "isOpen": true,
               "sortOrder": 2
             }
@@ -2936,7 +2593,7 @@
             {
               "id": "567978",
               "name": "Q2 Under 61 Points",
-              "returnWin": 1.85,
+              "returnWin": 1.5,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -2960,7 +2617,7 @@
             {
               "id": "567980",
               "name": "Q2 Over 61 Points",
-              "returnWin": 1.9,
+              "returnWin": 2.5,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -3002,7 +2659,7 @@
             {
               "id": "567809",
               "name": "Q2 Under 59 Points",
-              "returnWin": 2.2,
+              "returnWin": 1.75,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -3026,7 +2683,7 @@
             {
               "id": "567811",
               "name": "Q2 Over 59 Points",
-              "returnWin": 1.65,
+              "returnWin": 2,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -3038,13 +2695,13 @@
           ]
         },
         {
-          "id": "129128982",
+          "id": "129128798",
           "name": "NBA Hou-Uta Lv2Q3Way",
           "shortName": "NBA Hou-Uta Lv2Q3W",
           "betOption": "Live 2nd Quarter Total 3-Way",
           "betOptionSpectrumId": "3597",
           "betOptionPriority": 15980,
-          "marketUniqueId": 129128982,
+          "marketUniqueId": 129128798,
           "closeTime": "2026-02-24T02:40:00.000Z",
           "bettingStatus": "Open",
           "message": null,
@@ -3066,40 +2723,94 @@
           "allowBundle": false,
           "propositions": [
             {
-              "id": "567789",
-              "name": "Q2 Under 63 Points",
-              "returnWin": 1.6,
+              "id": "567370",
+              "name": "Q2 Under 57 Points",
+              "returnWin": 2.1,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
               "allowPlace": false,
-              "number": 567789,
+              "number": 567370,
               "isOpen": true,
               "sortOrder": 1
             },
             {
-              "id": "567790",
-              "name": "Q2 Exactly 63 Points",
-              "returnWin": 15,
+              "id": "567371",
+              "name": "Q2 Exactly 57 Points",
+              "returnWin": 12,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
               "allowPlace": false,
-              "number": 567790,
+              "number": 567371,
               "isOpen": true,
               "sortOrder": 2
             },
             {
-              "id": "567791",
-              "name": "Q2 Over 63 Points",
-              "returnWin": 2.25,
+              "id": "567372",
+              "name": "Q2 Over 57 Points",
+              "returnWin": 1.7,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
               "allowPlace": false,
-              "number": 567791,
+              "number": 567372,
               "isOpen": true,
               "sortOrder": 3
+            }
+          ]
+        },
+        {
+          "id": "129128642",
+          "name": "NBA Hou-Uta Lv2QPtOU",
+          "shortName": "NBA Hou-Uta Lv2QOU",
+          "betOption": "Live 2nd Quarter Total Points Over/Under",
+          "betOptionSpectrumId": "3593",
+          "betOptionPriority": 15985,
+          "marketUniqueId": 129128642,
+          "closeTime": "2026-02-24T02:40:00.000Z",
+          "bettingStatus": "Open",
+          "message": null,
+          "informationMessage": null,
+          "isFuture": false,
+          "onlineBetting": false,
+          "phoneBettingOnly": true,
+          "inPlay": true,
+          "goingInPlay": false,
+          "allowWin": true,
+          "allowPlace": false,
+          "allowEachWay": false,
+          "allowMulti": true,
+          "allowMultiWin": true,
+          "allowMultiPlace": false,
+          "allowMultiEachWay": false,
+          "numberOfPlaces": 0,
+          "cashOutEligibility": "Enabled",
+          "allowBundle": false,
+          "propositions": [
+            {
+              "id": "566951",
+              "name": "Q2 Over 56.5 Points",
+              "returnWin": 1.57,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 566951,
+              "isOpen": true,
+              "sortOrder": 1
+            },
+            {
+              "id": "566952",
+              "name": "Q2 Under 56.5 Points",
+              "returnWin": 2.2,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 566952,
+              "isOpen": true,
+              "sortOrder": 2
             }
           ]
         },
@@ -3134,7 +2845,7 @@
             {
               "id": "566983",
               "name": "Q2 Over 60.5 Points",
-              "returnWin": 1.77,
+              "returnWin": 2.3,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -3146,66 +2857,12 @@
             {
               "id": "566984",
               "name": "Q2 Under 60.5 Points",
-              "returnWin": 1.9,
+              "returnWin": 1.52,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
               "allowPlace": false,
               "number": 566984,
-              "isOpen": true,
-              "sortOrder": 2
-            }
-          ]
-        },
-        {
-          "id": "129128717",
-          "name": "NBA Hou-Uta Lv2QPtOU",
-          "shortName": "NBA Hou-Uta Lv2QOU",
-          "betOption": "Live 2nd Quarter Total Points Over/Under",
-          "betOptionSpectrumId": "3593",
-          "betOptionPriority": 15985,
-          "marketUniqueId": 129128717,
-          "closeTime": "2026-02-24T02:40:00.000Z",
-          "bettingStatus": "Open",
-          "message": null,
-          "informationMessage": null,
-          "isFuture": false,
-          "onlineBetting": false,
-          "phoneBettingOnly": true,
-          "inPlay": true,
-          "goingInPlay": false,
-          "allowWin": true,
-          "allowPlace": false,
-          "allowEachWay": false,
-          "allowMulti": true,
-          "allowMultiWin": true,
-          "allowMultiPlace": false,
-          "allowMultiEachWay": false,
-          "numberOfPlaces": 0,
-          "cashOutEligibility": "Enabled",
-          "allowBundle": false,
-          "propositions": [
-            {
-              "id": "567165",
-              "name": "Q2 Over 62.5 Points",
-              "returnWin": 2.1,
-              "returnPlace": 0,
-              "differential": null,
-              "bettingStatus": "Open",
-              "allowPlace": false,
-              "number": 567165,
-              "isOpen": true,
-              "sortOrder": 1
-            },
-            {
-              "id": "567166",
-              "name": "Q2 Under 62.5 Points",
-              "returnWin": 1.63,
-              "returnPlace": 0,
-              "differential": null,
-              "bettingStatus": "Open",
-              "allowPlace": false,
-              "number": 567166,
               "isOpen": true,
               "sortOrder": 2
             }
@@ -3242,7 +2899,7 @@
             {
               "id": "567735",
               "name": "Q2 Over 58.5 Points",
-              "returnWin": 1.55,
+              "returnWin": 1.9,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -3254,7 +2911,7 @@
             {
               "id": "567736",
               "name": "Q2 Under 58.5 Points",
-              "returnWin": 2.25,
+              "returnWin": 1.77,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -3296,7 +2953,7 @@
             {
               "id": "567959",
               "name": "Hou Q2 Over 29.5 Points",
-              "returnWin": 2.25,
+              "returnWin": 2.2,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -3308,66 +2965,12 @@
             {
               "id": "567960",
               "name": "Hou Q2 Under 29.5 Points",
-              "returnWin": 1.55,
+              "returnWin": 1.57,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
               "allowPlace": false,
               "number": 567960,
-              "isOpen": true,
-              "sortOrder": 2
-            }
-          ]
-        },
-        {
-          "id": "129129087",
-          "name": "NBA Hou-Uta 2QTmPtOU",
-          "shortName": "NBA Hou-Uta 2QTPOU 2QTPOU",
-          "betOption": "2nd Quarter Team Points Over/Under",
-          "betOptionSpectrumId": "4784",
-          "betOptionPriority": 15990,
-          "marketUniqueId": 129129087,
-          "closeTime": "2026-02-24T02:40:00.000Z",
-          "bettingStatus": "Open",
-          "message": null,
-          "informationMessage": null,
-          "isFuture": false,
-          "onlineBetting": false,
-          "phoneBettingOnly": true,
-          "inPlay": true,
-          "goingInPlay": false,
-          "allowWin": true,
-          "allowPlace": false,
-          "allowEachWay": false,
-          "allowMulti": true,
-          "allowMultiWin": true,
-          "allowMultiPlace": false,
-          "allowMultiEachWay": false,
-          "numberOfPlaces": 0,
-          "cashOutEligibility": "Enabled",
-          "allowBundle": false,
-          "propositions": [
-            {
-              "id": "568034",
-              "name": "Uta Q2 Over 33.5 Points",
-              "returnWin": 2.05,
-              "returnPlace": 0,
-              "differential": null,
-              "bettingStatus": "Open",
-              "allowPlace": false,
-              "number": 568034,
-              "isOpen": true,
-              "sortOrder": 1
-            },
-            {
-              "id": "568035",
-              "name": "Uta Q2 Under 33.5 Points",
-              "returnWin": 1.67,
-              "returnPlace": 0,
-              "differential": null,
-              "bettingStatus": "Open",
-              "allowPlace": false,
-              "number": 568035,
               "isOpen": true,
               "sortOrder": 2
             }
@@ -3404,7 +3007,7 @@
             {
               "id": "567620",
               "name": "Hou Q2 Over 27.5 Points",
-              "returnWin": 1.72,
+              "returnWin": 1.67,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -3416,7 +3019,7 @@
             {
               "id": "567621",
               "name": "Hou Q2 Under 27.5 Points",
-              "returnWin": 1.95,
+              "returnWin": 2.05,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -3458,7 +3061,7 @@
             {
               "id": "567513",
               "name": "Hou Q2 Over 25.5 Points",
-              "returnWin": 1.42,
+              "returnWin": 1.34,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -3470,12 +3073,66 @@
             {
               "id": "567514",
               "name": "Hou Q2 Under 25.5 Points",
-              "returnWin": 2.6,
+              "returnWin": 2.9,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
               "allowPlace": false,
               "number": 567514,
+              "isOpen": true,
+              "sortOrder": 2
+            }
+          ]
+        },
+        {
+          "id": "129128668",
+          "name": "NBA Hou-Uta 2QTmPtOU",
+          "shortName": "NBA Hou-Uta 2QTPOU 2QTPOU",
+          "betOption": "2nd Quarter Team Points Over/Under",
+          "betOptionSpectrumId": "4784",
+          "betOptionPriority": 15990,
+          "marketUniqueId": 129128668,
+          "closeTime": "2026-02-24T02:40:00.000Z",
+          "bettingStatus": "Open",
+          "message": null,
+          "informationMessage": null,
+          "isFuture": false,
+          "onlineBetting": false,
+          "phoneBettingOnly": true,
+          "inPlay": true,
+          "goingInPlay": false,
+          "allowWin": true,
+          "allowPlace": false,
+          "allowEachWay": false,
+          "allowMulti": true,
+          "allowMultiWin": true,
+          "allowMultiPlace": false,
+          "allowMultiEachWay": false,
+          "numberOfPlaces": 0,
+          "cashOutEligibility": "Enabled",
+          "allowBundle": false,
+          "propositions": [
+            {
+              "id": "567039",
+              "name": "Uta Q2 Over 27.5 Points",
+              "returnWin": 1.4,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 567039,
+              "isOpen": true,
+              "sortOrder": 1
+            },
+            {
+              "id": "567040",
+              "name": "Uta Q2 Under 27.5 Points",
+              "returnWin": 2.7,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Open",
+              "allowPlace": false,
+              "number": 567040,
               "isOpen": true,
               "sortOrder": 2
             }
@@ -3512,7 +3169,7 @@
             {
               "id": "567531",
               "name": "Uta Q2 Over 31.5 Points",
-              "returnWin": 1.6,
+              "returnWin": 2.4,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -3524,7 +3181,7 @@
             {
               "id": "567532",
               "name": "Uta Q2 Under 31.5 Points",
-              "returnWin": 2.15,
+              "returnWin": 1.48,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -3566,7 +3223,7 @@
             {
               "id": "568012",
               "name": "Uta Q2 Over 29.5 Points",
-              "returnWin": 1.34,
+              "returnWin": 1.72,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -3578,7 +3235,7 @@
             {
               "id": "568013",
               "name": "Uta Q2 Under 29.5 Points",
-              "returnWin": 2.9,
+              "returnWin": 1.95,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -3728,7 +3385,7 @@
             {
               "id": "567573",
               "name": "Overtime: Yes",
-              "returnWin": 17,
+              "returnWin": 26,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -3782,7 +3439,7 @@
             {
               "id": "567830",
               "name": "Utah Odd",
-              "returnWin": 1.9,
+              "returnWin": 1.95,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -3794,7 +3451,7 @@
             {
               "id": "567831",
               "name": "Utah Even",
-              "returnWin": 1.9,
+              "returnWin": 1.85,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -3836,7 +3493,7 @@
             {
               "id": "567150",
               "name": "Houston Odd",
-              "returnWin": 1.9,
+              "returnWin": 1.85,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -3848,7 +3505,7 @@
             {
               "id": "567151",
               "name": "Houston Even",
-              "returnWin": 1.9,
+              "returnWin": 1.95,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -3890,7 +3547,7 @@
             {
               "id": "642106",
               "name": "Odd",
-              "returnWin": 1.95,
+              "returnWin": 1.9,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -3902,7 +3559,7 @@
             {
               "id": "642108",
               "name": "Even",
-              "returnWin": 1.85,
+              "returnWin": 1.9,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -64091,6 +63748,237 @@
       "goingInPlay": true,
       "sameGame": true,
       "stats": true
+    },
+    {
+      "id": "MemvSac",
+      "name": "Memphis v Sacramento",
+      "spectrumId": "MemvSac",
+      "spectrumUniqueId": 3191332,
+      "competitionSpectrumId": "1001",
+      "round": null,
+      "broadcastChannel": "Tab.com.au",
+      "broadcastChannels": [
+        "Tab.com.au"
+      ],
+      "startTime": "2026-02-24T01:10:00.000Z",
+      "_links": {
+        "self": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/Memphis%20v%20Sacramento?jurisdiction=SA",
+        "selfTemplate": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/Memphis%20v%20Sacramento?jurisdiction={jurisdiction}{&amp;returnPromo,returnOffers,returnMultiOnly,channelType,cashSales,homeState}",
+        "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/Memphis%20v%20Sacramento/markets?jurisdiction=SA"
+      },
+      "contestants": [
+        {
+          "name": "Memphis",
+          "position": "HOME",
+          "isHome": true,
+          "image": [
+            {
+              "size": "svg",
+              "url": "https://metadata.beta.tab.com.au/icons/NBA%20logos/Memphis%20Grizzlies.svg"
+            },
+            {
+              "size": "xxhdpi",
+              "url": "https://metadata.beta.tab.com.au/icons/NBA%20logos/Memphis%20Grizzlies_xxhdpi.png"
+            },
+            {
+              "size": "2x",
+              "url": "https://metadata.beta.tab.com.au/icons/NBA%20logos/Memphis%20Grizzlies%402x.png"
+            }
+          ]
+        },
+        {
+          "name": "Sacramento",
+          "position": "AWAY",
+          "isHome": false,
+          "image": [
+            {
+              "size": "svg",
+              "url": "https://metadata.beta.tab.com.au/icons/NBA%20logos/Sacramento%20Kings.svg"
+            },
+            {
+              "size": "xxhdpi",
+              "url": "https://metadata.beta.tab.com.au/icons/NBA%20logos/Sacramento%20Kings_xxhdpi.png"
+            },
+            {
+              "size": "2x",
+              "url": "https://metadata.beta.tab.com.au/icons/NBA%20logos/Sacramento%20Kings%402x.png"
+            }
+          ]
+        }
+      ],
+      "competitors": [
+        "Memphis",
+        "Sacramento"
+      ],
+      "openMarketCount": 3,
+      "futureMarketCount": 0,
+      "nonFutureMarketCount": 3,
+      "markets": [
+        {
+          "id": "129129458",
+          "name": "NBA Mem-Sac D DeRozan PlrPts",
+          "shortName": "NBA Mem-Sac D DeRozan Pts",
+          "betOption": "Player Points Live",
+          "betOptionSpectrumId": "1933",
+          "betOptionPriority": 2780,
+          "marketUniqueId": 129129458,
+          "closeTime": "2026-02-24T01:10:00.000Z",
+          "bettingStatus": "Suspended",
+          "message": null,
+          "informationMessage": null,
+          "isFuture": false,
+          "onlineBetting": false,
+          "phoneBettingOnly": true,
+          "inPlay": true,
+          "goingInPlay": false,
+          "allowWin": true,
+          "allowPlace": false,
+          "allowEachWay": false,
+          "allowMulti": true,
+          "allowMultiWin": true,
+          "allowMultiPlace": false,
+          "allowMultiEachWay": false,
+          "numberOfPlaces": 0,
+          "cashOutEligibility": "Disabled",
+          "allowBundle": false,
+          "propositions": [
+            {
+              "id": "568376",
+              "name": "D DeRozan Over 19.5",
+              "returnWin": 4.5,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Suspended",
+              "allowPlace": false,
+              "number": 568376,
+              "isOpen": false,
+              "sortOrder": 35
+            },
+            {
+              "id": "568377",
+              "name": "D DeRozan Under 19.5",
+              "returnWin": 1.18,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Suspended",
+              "allowPlace": false,
+              "number": 568377,
+              "isOpen": false,
+              "sortOrder": 36
+            }
+          ]
+        },
+        {
+          "id": "129129480",
+          "name": "NBA Mem-Sac Ke Murray PlrPts",
+          "shortName": "NBA Mem-Sac Ke Murray Pts",
+          "betOption": "Player Points Live",
+          "betOptionSpectrumId": "1933",
+          "betOptionPriority": 2780,
+          "marketUniqueId": 129129480,
+          "closeTime": "2026-02-24T01:10:00.000Z",
+          "bettingStatus": "Suspended",
+          "message": null,
+          "informationMessage": null,
+          "isFuture": false,
+          "onlineBetting": false,
+          "phoneBettingOnly": true,
+          "inPlay": true,
+          "goingInPlay": false,
+          "allowWin": true,
+          "allowPlace": false,
+          "allowEachWay": false,
+          "allowMulti": true,
+          "allowMultiWin": true,
+          "allowMultiPlace": false,
+          "allowMultiEachWay": false,
+          "numberOfPlaces": 0,
+          "cashOutEligibility": "Disabled",
+          "allowBundle": false,
+          "propositions": [
+            {
+              "id": "568786",
+              "name": "Ke Murray Over 6.5",
+              "returnWin": 7.5,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Suspended",
+              "allowPlace": false,
+              "number": 568786,
+              "isOpen": false,
+              "sortOrder": 9
+            },
+            {
+              "id": "568787",
+              "name": "Ke Murray Under 6.5",
+              "returnWin": 1.07,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Suspended",
+              "allowPlace": false,
+              "number": 568787,
+              "isOpen": false,
+              "sortOrder": 10
+            }
+          ]
+        },
+        {
+          "id": "129129476",
+          "name": "NBA Mem-Sac Malik Monk PlrPts",
+          "shortName": "NBA Mem-Sac Malik Monk Pts",
+          "betOption": "Player Points Live",
+          "betOptionSpectrumId": "1933",
+          "betOptionPriority": 2780,
+          "marketUniqueId": 129129476,
+          "closeTime": "2026-02-24T01:10:00.000Z",
+          "bettingStatus": "Suspended",
+          "message": null,
+          "informationMessage": null,
+          "isFuture": false,
+          "onlineBetting": false,
+          "phoneBettingOnly": true,
+          "inPlay": true,
+          "goingInPlay": false,
+          "allowWin": true,
+          "allowPlace": false,
+          "allowEachWay": false,
+          "allowMulti": true,
+          "allowMultiWin": true,
+          "allowMultiPlace": false,
+          "allowMultiEachWay": false,
+          "numberOfPlaces": 0,
+          "cashOutEligibility": "Disabled",
+          "allowBundle": false,
+          "propositions": [
+            {
+              "id": "568666",
+              "name": "Malik Monk Over 10.5",
+              "returnWin": 41,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Suspended",
+              "allowPlace": false,
+              "number": 568666,
+              "isOpen": false,
+              "sortOrder": 17
+            },
+            {
+              "id": "568667",
+              "name": "Malik Monk Under 10.5",
+              "returnWin": 1.01,
+              "returnPlace": 0,
+              "differential": null,
+              "bettingStatus": "Suspended",
+              "allowPlace": false,
+              "number": 568667,
+              "isOpen": false,
+              "sortOrder": 18
+            }
+          ]
+        }
+      ],
+      "inPlay": true,
+      "goingInPlay": false
     }
   ],
   "tournaments": [],
@@ -64159,7 +64047,7 @@
     {
       "name": "Head To Head",
       "hasFutureMarket": false,
-      "openMarketCount": 13,
+      "openMarketCount": 12,
       "_links": {
         "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/markets?jurisdiction=SA&amp;betOptionName=Head%20To%20Head"
       }
@@ -64175,7 +64063,7 @@
     {
       "name": "Extra Line",
       "hasFutureMarket": false,
-      "openMarketCount": 4,
+      "openMarketCount": 3,
       "_links": {
         "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/markets?jurisdiction=SA&amp;betOptionName=Extra%20Line"
       }
