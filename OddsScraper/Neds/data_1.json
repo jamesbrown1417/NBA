@@ -1,5 +1,13 @@
 {
     "entrants": {
+        "3834b1eb-9f93-4b79-8913-7c340e2ca3cc": {
+            "id": "3834b1eb-9f93-4b79-8913-7c340e2ca3cc",
+            "name": "Detroit Pistons",
+            "home_away": "AWAY",
+            "visible": true,
+            "sort_order": 20,
+            "market_id": "fc29f3c2-acdf-411c-bc7c-978fc1202f25"
+        },
         "4b65a102-69fe-4e55-8d1e-330a0d163002": {
             "id": "4b65a102-69fe-4e55-8d1e-330a0d163002",
             "name": "Orlando Magic",
@@ -15,6 +23,28 @@
             "visible": true,
             "sort_order": 20,
             "market_id": "35589148-281d-4ba8-a8f7-6cdd471a3c10"
+        },
+        "75c4b147-82ab-4a58-89ae-d0fee64eaceb": {
+            "id": "75c4b147-82ab-4a58-89ae-d0fee64eaceb",
+            "name": "Under",
+            "visible": true,
+            "sort_order": 20,
+            "market_id": "7771d017-21d5-4178-9fd0-1512d510ac8b"
+        },
+        "807d53d6-2c97-4c03-a61b-7f9d4f8be671": {
+            "id": "807d53d6-2c97-4c03-a61b-7f9d4f8be671",
+            "name": "Orlando Magic",
+            "home_away": "HOME",
+            "visible": true,
+            "sort_order": 10,
+            "market_id": "fc29f3c2-acdf-411c-bc7c-978fc1202f25"
+        },
+        "c0017cce-d99a-4ec5-8e2c-94c9bcb7928e": {
+            "id": "c0017cce-d99a-4ec5-8e2c-94c9bcb7928e",
+            "name": "Over",
+            "visible": true,
+            "sort_order": 10,
+            "market_id": "7771d017-21d5-4178-9fd0-1512d510ac8b"
         }
     },
     "event_participants": {
@@ -42,8 +72,8 @@
                 "name": "Match"
             },
             "match_status": "BettingOpen",
-            "advertised_start": "2026-03-01T23:00:00Z",
-            "actual_start": "2026-03-01T23:00:00Z",
+            "advertised_start": "2026-03-01T23:10:00Z",
+            "actual_start": "2026-03-01T23:10:00Z",
             "visible": true,
             "slug": "orlando-magic-vs-detroit-pistons",
             "competition": {
@@ -61,16 +91,20 @@
                 {
                     "market_type_group_id": "43c990d1-7471-4055-9a7a-e71409494486",
                     "market_ids": [
-                        "35589148-281d-4ba8-a8f7-6cdd471a3c10"
+                        "35589148-281d-4ba8-a8f7-6cdd471a3c10",
+                        "fc29f3c2-acdf-411c-bc7c-978fc1202f25",
+                        "7771d017-21d5-4178-9fd0-1512d510ac8b"
                     ]
                 }
             ],
-            "market_count": 1,
+            "market_count": 3,
             "main_markets": [
                 "35589148-281d-4ba8-a8f7-6cdd471a3c10"
             ],
             "market_ids": [
-                "35589148-281d-4ba8-a8f7-6cdd471a3c10"
+                "35589148-281d-4ba8-a8f7-6cdd471a3c10",
+                "fc29f3c2-acdf-411c-bc7c-978fc1202f25",
+                "7771d017-21d5-4178-9fd0-1512d510ac8b"
             ],
             "live_betting_markets_available": true,
             "category_id": "3c34d075-dc14-436d-bfc4-9272a49c2b39",
@@ -97,10 +131,10 @@
             "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
             "name": "Head To Head",
             "advertised_start": {
-                "seconds": 1772406000
+                "seconds": 1772406600
             },
             "actual_start": {
-                "seconds": 1772406000
+                "seconds": 1772406600
             },
             "live_betting_available": true,
             "is_primary": true,
@@ -111,12 +145,66 @@
                 "62c8ef0b-f13e-4bd5-978d-f565c43615c8"
             ],
             "num_winners": 1
+        },
+        "7771d017-21d5-4178-9fd0-1512d510ac8b": {
+            "id": "7771d017-21d5-4178-9fd0-1512d510ac8b",
+            "event_id": "1ed5041c-55a6-4a29-8af4-b39c8383b025",
+            "market_type_id": "28d679c2-8cae-4fc6-a564-a5937865b1b6",
+            "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
+            "name": "Total",
+            "advertised_start": {
+                "seconds": 1772406600
+            },
+            "actual_start": {
+                "seconds": 1772406600
+            },
+            "live_betting_available": true,
+            "handicap": 220.5,
+            "same_game_multi_available": true,
+            "comments": "If the Total market results in a refund, the whole SGM bet will be refunded.",
+            "visible": true,
+            "entrant_ids": [
+                "c0017cce-d99a-4ec5-8e2c-94c9bcb7928e",
+                "75c4b147-82ab-4a58-89ae-d0fee64eaceb"
+            ],
+            "num_winners": 1
+        },
+        "fc29f3c2-acdf-411c-bc7c-978fc1202f25": {
+            "id": "fc29f3c2-acdf-411c-bc7c-978fc1202f25",
+            "event_id": "1ed5041c-55a6-4a29-8af4-b39c8383b025",
+            "market_type_id": "8fcc394e-b974-4328-af74-57d423de7a7b",
+            "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
+            "name": "Line",
+            "advertised_start": {
+                "seconds": 1772406600
+            },
+            "actual_start": {
+                "seconds": 1772406600
+            },
+            "live_betting_available": true,
+            "handicap": -6.5,
+            "same_game_multi_available": true,
+            "comments": "If the Line market results in a refund, the whole SGM bet will be refunded.",
+            "visible": true,
+            "entrant_ids": [
+                "807d53d6-2c97-4c03-a61b-7f9d4f8be671",
+                "3834b1eb-9f93-4b79-8913-7c340e2ca3cc"
+            ],
+            "num_winners": 1
         }
     },
     "markets_allow_cashout": {
-        "35589148-281d-4ba8-a8f7-6cdd471a3c10": true
+        "35589148-281d-4ba8-a8f7-6cdd471a3c10": true,
+        "7771d017-21d5-4178-9fd0-1512d510ac8b": false,
+        "fc29f3c2-acdf-411c-bc7c-978fc1202f25": false
     },
     "prices": {
+        "3834b1eb-9f93-4b79-8913-7c340e2ca3cc:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 19,
+                "denominator": 20
+            }
+        },
         "4b65a102-69fe-4e55-8d1e-330a0d163002:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
                 "numerator": 19,
@@ -127,6 +215,24 @@
             "odds": {
                 "numerator": 21,
                 "denominator": 50
+            }
+        },
+        "75c4b147-82ab-4a58-89ae-d0fee64eaceb:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 19,
+                "denominator": 20
+            }
+        },
+        "807d53d6-2c97-4c03-a61b-7f9d4f8be671:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 87,
+                "denominator": 100
+            }
+        },
+        "c0017cce-d99a-4ec5-8e2c-94c9bcb7928e:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 87,
+                "denominator": 100
             }
         }
     },
