@@ -26,7 +26,8 @@
       "_links": {
         "self": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/Orlando%20v%20Cleveland?jurisdiction=SA",
         "selfTemplate": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/Orlando%20v%20Cleveland?jurisdiction={jurisdiction}{&amp;returnPromo,returnOffers,returnMultiOnly,channelType,cashSales,homeState}",
-        "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/Orlando%20v%20Cleveland/markets?jurisdiction=SA"
+        "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/Orlando%20v%20Cleveland/markets?jurisdiction=SA",
+        "stats": "https://api.beta.tab.com.au/v1/stats-service/sports/Basketball/competitions/NBA/matches/3210740/h2h/stats"
       },
       "contestants": [
         {
@@ -72,9 +73,9 @@
         "Orlando",
         "Cleveland"
       ],
-      "openMarketCount": 219,
+      "openMarketCount": 218,
       "futureMarketCount": 0,
-      "nonFutureMarketCount": 219,
+      "nonFutureMarketCount": 218,
       "markets": [
         {
           "id": "129846428",
@@ -4700,7 +4701,7 @@
             {
               "id": "671386",
               "name": "D Schroder 10+ Pts/Cle Win",
-              "returnWin": 3.1,
+              "returnWin": 3,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -4838,7 +4839,7 @@
             {
               "id": "671329",
               "name": "Don Mitchel 30+ Pts/Cle Win",
-              "returnWin": 3,
+              "returnWin": 2.9,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -4880,7 +4881,7 @@
             {
               "id": "671396",
               "name": "Evan Mobley 15+ Pts/Cle Win",
-              "returnWin": 2.3,
+              "returnWin": 2.4,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -4892,7 +4893,7 @@
             {
               "id": "671397",
               "name": "Evan Mobley 20+ Pts/Cle Win",
-              "returnWin": 3.8,
+              "returnWin": 4,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -5000,7 +5001,7 @@
             {
               "id": "671317",
               "name": "Jalen Suggs 15+ Pts/Orl Win",
-              "returnWin": 3.6,
+              "returnWin": 3.8,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -5138,7 +5139,7 @@
             {
               "id": "671305",
               "name": "M Wagner 5+ Pts/Orl Win",
-              "returnWin": 2.7,
+              "returnWin": 2.8,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -5150,7 +5151,7 @@
             {
               "id": "671306",
               "name": "M Wagner 10+ Pts/Orl Win",
-              "returnWin": 4.2,
+              "returnWin": 4.5,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -5204,7 +5205,7 @@
             {
               "id": "671298",
               "name": "P Banchero 25+ Pts/Orl Win",
-              "returnWin": 3.8,
+              "returnWin": 3.6,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -5327,18 +5328,6 @@
           "cashOutEligibility": "PreMatch",
           "allowBundle": false,
           "propositions": [
-            {
-              "id": "671365",
-              "name": "W Carter 5+ Pts/Orl Win",
-              "returnWin": 2.6,
-              "returnPlace": 0,
-              "differential": null,
-              "bettingStatus": "Open",
-              "allowPlace": false,
-              "number": 671365,
-              "isOpen": true,
-              "sortOrder": 1
-            },
             {
               "id": "671366",
               "name": "W Carter 10+ Pts/Orl Win",
@@ -10221,51 +10210,6 @@
           "sameGameMultipleSelections": true
         },
         {
-          "id": "129964054",
-          "name": "NBA Orl-Cle Desmnd Bane DblDbl",
-          "shortName": "NBA Orl-Cle Desmnd Bane DbDb",
-          "betOption": "Double-Double",
-          "betOptionSpectrumId": "1792",
-          "betOptionPriority": 6690,
-          "marketUniqueId": 129964054,
-          "closeTime": "2026-03-11T23:40:00.000Z",
-          "bettingStatus": "Open",
-          "message": null,
-          "informationMessage": null,
-          "isFuture": false,
-          "onlineBetting": true,
-          "phoneBettingOnly": false,
-          "inPlay": false,
-          "goingInPlay": false,
-          "allowWin": true,
-          "allowPlace": false,
-          "allowEachWay": false,
-          "allowMulti": true,
-          "allowMultiWin": true,
-          "allowMultiPlace": false,
-          "allowMultiEachWay": false,
-          "numberOfPlaces": 0,
-          "cashOutEligibility": "PreMatch",
-          "allowBundle": false,
-          "propositions": [
-            {
-              "id": "730688",
-              "name": "Desmnd Bane Double-Double",
-              "returnWin": 14,
-              "returnPlace": 0,
-              "differential": null,
-              "bettingStatus": "Open",
-              "allowPlace": false,
-              "number": 730688,
-              "isOpen": true,
-              "sortOrder": 1,
-              "sameGame": true
-            }
-          ],
-          "sameGame": true,
-          "sameGameMultipleSelections": false
-        },
-        {
           "id": "129964060",
           "name": "NBA Orl-Cle Don Mitchel DblDbl",
           "shortName": "NBA Orl-Cle Don Mitchel DbDb",
@@ -10296,7 +10240,7 @@
             {
               "id": "730704",
               "name": "Don Mitchel Double-Double",
-              "returnWin": 11,
+              "returnWin": 10,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -10386,7 +10330,7 @@
             {
               "id": "730698",
               "name": "J Harden Double-Double",
-              "returnWin": 3.3,
+              "returnWin": 3.2,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -10521,7 +10465,7 @@
             {
               "id": "730706",
               "name": "P Banchero Double-Double",
-              "returnWin": 2.25,
+              "returnWin": 2.3,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -11239,7 +11183,7 @@
             {
               "id": "730692",
               "name": "J Harden Triple-Double",
-              "returnWin": 16,
+              "returnWin": 15,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -11284,7 +11228,7 @@
             {
               "id": "730694",
               "name": "P Banchero Triple-Double",
-              "returnWin": 14,
+              "returnWin": 15,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -23878,7 +23822,8 @@
       ],
       "inPlay": false,
       "goingInPlay": true,
-      "sameGame": true
+      "sameGame": true,
+      "stats": true
     },
     {
       "id": "NOPvTor",
@@ -23895,7 +23840,8 @@
       "_links": {
         "self": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/New%20Orleans%20v%20Toronto?jurisdiction=SA",
         "selfTemplate": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/New%20Orleans%20v%20Toronto?jurisdiction={jurisdiction}{&amp;returnPromo,returnOffers,returnMultiOnly,channelType,cashSales,homeState}",
-        "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/New%20Orleans%20v%20Toronto/markets?jurisdiction=SA"
+        "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/New%20Orleans%20v%20Toronto/markets?jurisdiction=SA",
+        "stats": "https://api.beta.tab.com.au/v1/stats-service/sports/Basketball/competitions/NBA/matches/3210739/h2h/stats"
       },
       "contestants": [
         {
@@ -47159,7 +47105,8 @@
       ],
       "inPlay": false,
       "goingInPlay": true,
-      "sameGame": true
+      "sameGame": true,
+      "stats": true
     },
     {
       "id": "UtavNYK",
@@ -47176,7 +47123,8 @@
       "_links": {
         "self": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/Utah%20v%20New%20York?jurisdiction=SA",
         "selfTemplate": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/Utah%20v%20New%20York?jurisdiction={jurisdiction}{&amp;returnPromo,returnOffers,returnMultiOnly,channelType,cashSales,homeState}",
-        "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/Utah%20v%20New%20York/markets?jurisdiction=SA"
+        "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/Utah%20v%20New%20York/markets?jurisdiction=SA",
+        "stats": "https://api.beta.tab.com.au/v1/stats-service/sports/Basketball/competitions/NBA/matches/3210742/h2h/stats"
       },
       "contestants": [
         {
@@ -69568,7 +69516,8 @@
       ],
       "inPlay": false,
       "goingInPlay": true,
-      "sameGame": true
+      "sameGame": true,
+      "stats": true
     },
     {
       "id": "DenvHou",
@@ -69585,7 +69534,8 @@
       "_links": {
         "self": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/Denver%20v%20Houston?jurisdiction=SA",
         "selfTemplate": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/Denver%20v%20Houston?jurisdiction={jurisdiction}{&amp;returnPromo,returnOffers,returnMultiOnly,channelType,cashSales,homeState}",
-        "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/Denver%20v%20Houston/markets?jurisdiction=SA"
+        "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/Denver%20v%20Houston/markets?jurisdiction=SA",
+        "stats": "https://api.beta.tab.com.au/v1/stats-service/sports/Basketball/competitions/NBA/matches/3210737/h2h/stats"
       },
       "contestants": [
         {
@@ -93390,7 +93340,8 @@
       ],
       "inPlay": false,
       "goingInPlay": true,
-      "sameGame": true
+      "sameGame": true,
+      "stats": true
     },
     {
       "id": "SacvCha",
@@ -93407,7 +93358,8 @@
       "_links": {
         "self": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/Sacramento%20v%20Charlotte?jurisdiction=SA",
         "selfTemplate": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/Sacramento%20v%20Charlotte?jurisdiction={jurisdiction}{&amp;returnPromo,returnOffers,returnMultiOnly,channelType,cashSales,homeState}",
-        "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/Sacramento%20v%20Charlotte/markets?jurisdiction=SA"
+        "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/Sacramento%20v%20Charlotte/markets?jurisdiction=SA",
+        "stats": "https://api.beta.tab.com.au/v1/stats-service/sports/Basketball/competitions/NBA/matches/3210741/h2h/stats"
       },
       "contestants": [
         {
@@ -95321,7 +95273,7 @@
             {
               "id": "719226",
               "name": "Over 234.5",
-              "returnWin": 3,
+              "returnWin": 2.9,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -95334,7 +95286,7 @@
             {
               "id": "719227",
               "name": "Under 234.5",
-              "returnWin": 1.36,
+              "returnWin": 1.38,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -97850,7 +97802,7 @@
             {
               "id": "698544",
               "name": "K Knueppel 20+ Pts/Cha Win",
-              "returnWin": 2.05,
+              "returnWin": 2.1,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -98024,7 +97976,7 @@
             {
               "id": "698553",
               "name": "Mil Bridges 15+ Pts/Cha Win",
-              "returnWin": 1.8,
+              "returnWin": 1.85,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -99710,7 +99662,7 @@
             {
               "id": "687977",
               "name": "Sac 90-99 / Cha 100-109",
-              "returnWin": 10,
+              "returnWin": 11,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -99854,7 +99806,7 @@
             {
               "id": "687989",
               "name": "Sac 110-119 / Cha 120+",
-              "returnWin": 4.2,
+              "returnWin": 4,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -104574,7 +104526,7 @@
             {
               "id": "687888",
               "name": "235 to 236",
-              "returnWin": 17,
+              "returnWin": 16,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -114092,7 +114044,7 @@
             {
               "id": "560516",
               "name": "61 to 70",
-              "returnWin": 3.2,
+              "returnWin": 3.1,
               "returnPlace": 0,
               "differential": null,
               "bettingStatus": "Open",
@@ -115751,7 +115703,8 @@
       ],
       "inPlay": false,
       "goingInPlay": true,
-      "sameGame": true
+      "sameGame": true,
+      "stats": true
     },
     {
       "id": "LACvMin0",
@@ -115768,7 +115721,8 @@
       "_links": {
         "self": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/LA%20Clippers%20v%20Minnesota?jurisdiction=SA",
         "selfTemplate": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/LA%20Clippers%20v%20Minnesota?jurisdiction={jurisdiction}{&amp;returnPromo,returnOffers,returnMultiOnly,channelType,cashSales,homeState}",
-        "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/LA%20Clippers%20v%20Minnesota/markets?jurisdiction=SA"
+        "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/LA%20Clippers%20v%20Minnesota/markets?jurisdiction=SA",
+        "stats": "https://api.beta.tab.com.au/v1/stats-service/sports/Basketball/competitions/NBA/matches/3210738/h2h/stats"
       },
       "contestants": [
         {
@@ -139623,7 +139577,8 @@
       ],
       "inPlay": false,
       "goingInPlay": true,
-      "sameGame": true
+      "sameGame": true,
+      "stats": true
     },
     {
       "id": "OKCvBos",
@@ -139640,7 +139595,8 @@
       "_links": {
         "self": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/Oklahoma%20City%20v%20Boston?jurisdiction=SA",
         "selfTemplate": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/Oklahoma%20City%20v%20Boston?jurisdiction={jurisdiction}{&amp;returnPromo,returnOffers,returnMultiOnly,channelType,cashSales,homeState}",
-        "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/Oklahoma%20City%20v%20Boston/markets?jurisdiction=SA"
+        "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/matches/Oklahoma%20City%20v%20Boston/markets?jurisdiction=SA",
+        "stats": "https://api.beta.tab.com.au/v1/stats-service/sports/Basketball/competitions/NBA/matches/3212143/h2h/stats"
       },
       "contestants": [
         {
@@ -142960,7 +142916,8 @@
         }
       ],
       "inPlay": false,
-      "goingInPlay": true
+      "goingInPlay": true,
+      "stats": true
     }
   ],
   "tournaments": [],
@@ -143679,7 +143636,7 @@
     {
       "name": "Double-Double",
       "hasFutureMarket": false,
-      "openMarketCount": 49,
+      "openMarketCount": 48,
       "_links": {
         "markets": "https://api.beta.tab.com.au/v1/tab-info-service/sports/Basketball/competitions/NBA/markets?jurisdiction=SA&amp;betOptionName=Double-Double"
       }
