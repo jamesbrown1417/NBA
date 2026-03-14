@@ -1,51 +1,51 @@
 {
     "entrants": {
-        "658c8c2a-c421-413f-b515-18ba8f07c00c": {
-            "id": "658c8c2a-c421-413f-b515-18ba8f07c00c",
-            "name": "Los Angeles Lakers",
-            "home_away": "HOME",
-            "visible": true,
-            "sort_order": 10,
-            "market_id": "da5298f3-ad5b-4c08-b850-886810529948"
-        },
-        "7d246906-4bbf-446c-9036-af6b299f7860": {
-            "id": "7d246906-4bbf-446c-9036-af6b299f7860",
-            "name": "Denver Nuggets",
+        "29adbde1-3383-44ca-a8d0-6a15a22350a2": {
+            "id": "29adbde1-3383-44ca-a8d0-6a15a22350a2",
+            "name": "Brooklyn Nets",
             "home_away": "AWAY",
             "visible": true,
             "sort_order": 20,
-            "market_id": "da5298f3-ad5b-4c08-b850-886810529948"
+            "market_id": "4d228c59-a88d-4018-9aba-c1ee138a3fcc"
+        },
+        "834b10fb-a5ca-445f-bc5e-e40ad04a89db": {
+            "id": "834b10fb-a5ca-445f-bc5e-e40ad04a89db",
+            "name": "Philadelphia 76ers",
+            "home_away": "HOME",
+            "visible": true,
+            "sort_order": 10,
+            "market_id": "4d228c59-a88d-4018-9aba-c1ee138a3fcc"
         }
     },
     "event_participants": {
-        "62521c02-cc57-4367-9fd3-b49d85f563a7": {
-            "id": "62521c02-cc57-4367-9fd3-b49d85f563a7",
-            "event_id": "997dd885-656a-4ee5-ac0a-dca56cf457ab",
-            "name": "Denver Nuggets",
-            "home_away": "AWAY",
-            "colour": "#0e2240"
-        },
-        "9db57cab-c56d-4928-81cd-1f5ddaa92e54": {
-            "id": "9db57cab-c56d-4928-81cd-1f5ddaa92e54",
-            "event_id": "997dd885-656a-4ee5-ac0a-dca56cf457ab",
-            "name": "Los Angeles Lakers",
+        "675da9f4-d951-45c5-8f97-3fc5eb3d9fd8": {
+            "id": "675da9f4-d951-45c5-8f97-3fc5eb3d9fd8",
+            "event_id": "ca2a4c18-0d6e-40fc-bfed-7815a5ed116f",
+            "name": "Philadelphia 76ers",
             "home_away": "HOME",
-            "colour": "#552583"
+            "colour": "#006bb6"
+        },
+        "c0ac8a66-dc18-42c9-b0cb-7ea0a5e03d17": {
+            "id": "c0ac8a66-dc18-42c9-b0cb-7ea0a5e03d17",
+            "event_id": "ca2a4c18-0d6e-40fc-bfed-7815a5ed116f",
+            "name": "Brooklyn Nets",
+            "home_away": "AWAY",
+            "colour": "#000000"
         }
     },
     "events": {
-        "997dd885-656a-4ee5-ac0a-dca56cf457ab": {
-            "id": "997dd885-656a-4ee5-ac0a-dca56cf457ab",
-            "name": "Los Angeles Lakers vs Denver Nuggets",
+        "ca2a4c18-0d6e-40fc-bfed-7815a5ed116f": {
+            "id": "ca2a4c18-0d6e-40fc-bfed-7815a5ed116f",
+            "name": "Philadelphia 76ers vs Brooklyn Nets",
             "event_type": {
                 "id": "6bfa0efc-05df-4ae1-9b1e-152365290cfd",
                 "name": "Match"
             },
             "match_status": "BettingOpen",
-            "advertised_start": "2026-03-15T00:30:00Z",
-            "actual_start": "2026-03-15T00:30:00Z",
+            "advertised_start": "2026-03-14T17:00:00Z",
+            "actual_start": "2026-03-14T17:00:00Z",
             "visible": true,
-            "slug": "los-angeles-lakers-vs-denver-nuggets",
+            "slug": "philadelphia-76ers-vs-brooklyn-nets",
             "competition": {
                 "id": "2d20a25b-6b96-4651-a523-442834136e2d",
                 "name": "NBA",
@@ -61,22 +61,22 @@
                 {
                     "market_type_group_id": "43c990d1-7471-4055-9a7a-e71409494486",
                     "market_ids": [
-                        "da5298f3-ad5b-4c08-b850-886810529948"
+                        "4d228c59-a88d-4018-9aba-c1ee138a3fcc"
                     ]
                 }
             ],
             "market_count": 1,
             "main_markets": [
-                "da5298f3-ad5b-4c08-b850-886810529948"
+                "4d228c59-a88d-4018-9aba-c1ee138a3fcc"
             ],
             "market_ids": [
-                "da5298f3-ad5b-4c08-b850-886810529948"
+                "4d228c59-a88d-4018-9aba-c1ee138a3fcc"
             ],
             "live_betting_markets_available": true,
             "category_id": "3c34d075-dc14-436d-bfc4-9272a49c2b39",
             "participant_ids": [
-                "62521c02-cc57-4367-9fd3-b49d85f563a7",
-                "9db57cab-c56d-4928-81cd-1f5ddaa92e54"
+                "675da9f4-d951-45c5-8f97-3fc5eb3d9fd8",
+                "c0ac8a66-dc18-42c9-b0cb-7ea0a5e03d17"
             ]
         }
     },
@@ -90,43 +90,43 @@
         }
     },
     "markets": {
-        "da5298f3-ad5b-4c08-b850-886810529948": {
-            "id": "da5298f3-ad5b-4c08-b850-886810529948",
-            "event_id": "997dd885-656a-4ee5-ac0a-dca56cf457ab",
+        "4d228c59-a88d-4018-9aba-c1ee138a3fcc": {
+            "id": "4d228c59-a88d-4018-9aba-c1ee138a3fcc",
+            "event_id": "ca2a4c18-0d6e-40fc-bfed-7815a5ed116f",
             "market_type_id": "3dc4ca49-3190-43b2-a328-60e0c9460187",
             "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
             "name": "Head To Head",
             "advertised_start": {
-                "seconds": 1773534600
+                "seconds": 1773507600
             },
             "actual_start": {
-                "seconds": 1773534600
+                "seconds": 1773507600
             },
             "live_betting_available": true,
             "is_primary": true,
             "same_game_multi_available": true,
             "visible": true,
             "entrant_ids": [
-                "658c8c2a-c421-413f-b515-18ba8f07c00c",
-                "7d246906-4bbf-446c-9036-af6b299f7860"
+                "834b10fb-a5ca-445f-bc5e-e40ad04a89db",
+                "29adbde1-3383-44ca-a8d0-6a15a22350a2"
             ],
             "num_winners": 1
         }
     },
     "markets_allow_cashout": {
-        "da5298f3-ad5b-4c08-b850-886810529948": true
+        "4d228c59-a88d-4018-9aba-c1ee138a3fcc": true
     },
     "prices": {
-        "658c8c2a-c421-413f-b515-18ba8f07c00c:940b8704-e497-4a76-b390-00918ff7d282:": {
+        "29adbde1-3383-44ca-a8d0-6a15a22350a2:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 23,
-                "denominator": 20
+                "numerator": 13,
+                "denominator": 4
             }
         },
-        "7d246906-4bbf-446c-9036-af6b299f7860:940b8704-e497-4a76-b390-00918ff7d282:": {
+        "834b10fb-a5ca-445f-bc5e-e40ad04a89db:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 18,
-                "denominator": 25
+                "numerator": 11,
+                "denominator": 50
             }
         }
     },
