@@ -8,6 +8,22 @@
             "sort_order": 10,
             "market_id": "d607e3e8-2005-4dee-a01d-f020181364fc"
         },
+        "1ade249a-77a9-4af1-adc8-0bc2a21cebc0": {
+            "id": "1ade249a-77a9-4af1-adc8-0bc2a21cebc0",
+            "name": "Portland Trail Blazers",
+            "home_away": "AWAY",
+            "visible": true,
+            "sort_order": 20,
+            "market_id": "7a5a27f3-5a8a-4734-af7d-c4a885135927"
+        },
+        "1ae518ab-1d51-444e-8d75-ee343d54b1f4": {
+            "id": "1ae518ab-1d51-444e-8d75-ee343d54b1f4",
+            "name": "Philadelphia 76ers",
+            "home_away": "HOME",
+            "visible": true,
+            "sort_order": 10,
+            "market_id": "7a5a27f3-5a8a-4734-af7d-c4a885135927"
+        },
         "73e36c54-fa53-4a86-bc57-32b480dbdf8b": {
             "id": "73e36c54-fa53-4a86-bc57-32b480dbdf8b",
             "name": "Portland Trail Blazers",
@@ -55,7 +71,8 @@
             },
             "competition_id": "2d20a25b-6b96-4651-a523-442834136e2d",
             "market_type_group_ids": [
-                "43c990d1-7471-4055-9a7a-e71409494486"
+                "43c990d1-7471-4055-9a7a-e71409494486",
+                "d04f2072-794e-45ba-bc2e-b6be0363418d"
             ],
             "market_type_group_markets": [
                 {
@@ -63,14 +80,21 @@
                     "market_ids": [
                         "d607e3e8-2005-4dee-a01d-f020181364fc"
                     ]
+                },
+                {
+                    "market_type_group_id": "d04f2072-794e-45ba-bc2e-b6be0363418d",
+                    "market_ids": [
+                        "7a5a27f3-5a8a-4734-af7d-c4a885135927"
+                    ]
                 }
             ],
-            "market_count": 1,
+            "market_count": 2,
             "main_markets": [
                 "d607e3e8-2005-4dee-a01d-f020181364fc"
             ],
             "market_ids": [
-                "d607e3e8-2005-4dee-a01d-f020181364fc"
+                "d607e3e8-2005-4dee-a01d-f020181364fc",
+                "7a5a27f3-5a8a-4734-af7d-c4a885135927"
             ],
             "live_betting_markets_available": true,
             "category_id": "3c34d075-dc14-436d-bfc4-9272a49c2b39",
@@ -87,9 +111,37 @@
             "name": "Top Markets",
             "priority": 988,
             "type": "MARKET_TYPE_GROUP_TYPE_EVENT"
+        },
+        "d04f2072-794e-45ba-bc2e-b6be0363418d": {
+            "id": "d04f2072-794e-45ba-bc2e-b6be0363418d",
+            "category_id": "3c34d075-dc14-436d-bfc4-9272a49c2b39",
+            "name": "First Half Markets",
+            "priority": 90,
+            "type": "MARKET_TYPE_GROUP_TYPE_EVENT"
         }
     },
     "markets": {
+        "7a5a27f3-5a8a-4734-af7d-c4a885135927": {
+            "id": "7a5a27f3-5a8a-4734-af7d-c4a885135927",
+            "event_id": "58019c8b-8c58-4903-a575-60ae915f264d",
+            "market_type_id": "bf65d9b5-5526-45cd-a488-22e92cf76b28",
+            "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
+            "name": "1st Half Head To Head",
+            "advertised_start": {
+                "seconds": 1773612000
+            },
+            "actual_start": {
+                "seconds": 1773612000
+            },
+            "live_betting_available": true,
+            "same_game_multi_available": true,
+            "visible": true,
+            "entrant_ids": [
+                "1ae518ab-1d51-444e-8d75-ee343d54b1f4",
+                "1ade249a-77a9-4af1-adc8-0bc2a21cebc0"
+            ],
+            "num_winners": 1
+        },
         "d607e3e8-2005-4dee-a01d-f020181364fc": {
             "id": "d607e3e8-2005-4dee-a01d-f020181364fc",
             "event_id": "58019c8b-8c58-4903-a575-60ae915f264d",
@@ -114,6 +166,7 @@
         }
     },
     "markets_allow_cashout": {
+        "7a5a27f3-5a8a-4734-af7d-c4a885135927": true,
         "d607e3e8-2005-4dee-a01d-f020181364fc": true
     },
     "prices": {
@@ -121,6 +174,18 @@
             "odds": {
                 "numerator": 2,
                 "denominator": 1
+            }
+        },
+        "1ade249a-77a9-4af1-adc8-0bc2a21cebc0:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 1,
+                "denominator": 2
+            }
+        },
+        "1ae518ab-1d51-444e-8d75-ee343d54b1f4:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 8,
+                "denominator": 5
             }
         },
         "73e36c54-fa53-4a86-bc57-32b480dbdf8b:940b8704-e497-4a76-b390-00918ff7d282:": {
