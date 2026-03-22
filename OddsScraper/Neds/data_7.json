@@ -8,6 +8,22 @@
             "sort_order": 20,
             "market_id": "2b2a8fa8-29bd-492b-acc4-091c7efecd0b"
         },
+        "845c2c2a-a9bd-4468-ae40-24fe748e30c7": {
+            "id": "845c2c2a-a9bd-4468-ae40-24fe748e30c7",
+            "name": "Sacramento Kings",
+            "home_away": "HOME",
+            "visible": true,
+            "sort_order": 10,
+            "market_id": "6809dd52-6181-4ede-97cb-1e1fceb6688f"
+        },
+        "9b85002c-ef5d-4556-a930-fedce99368a0": {
+            "id": "9b85002c-ef5d-4556-a930-fedce99368a0",
+            "name": "Brooklyn Nets",
+            "home_away": "AWAY",
+            "visible": true,
+            "sort_order": 20,
+            "market_id": "6809dd52-6181-4ede-97cb-1e1fceb6688f"
+        },
         "a9dc7d6a-adfc-4b8d-bf6b-28bd98795881": {
             "id": "a9dc7d6a-adfc-4b8d-bf6b-28bd98795881",
             "name": "Sacramento Kings",
@@ -55,7 +71,8 @@
             },
             "competition_id": "2d20a25b-6b96-4651-a523-442834136e2d",
             "market_type_group_ids": [
-                "43c990d1-7471-4055-9a7a-e71409494486"
+                "43c990d1-7471-4055-9a7a-e71409494486",
+                "d04f2072-794e-45ba-bc2e-b6be0363418d"
             ],
             "market_type_group_markets": [
                 {
@@ -63,14 +80,21 @@
                     "market_ids": [
                         "2b2a8fa8-29bd-492b-acc4-091c7efecd0b"
                     ]
+                },
+                {
+                    "market_type_group_id": "d04f2072-794e-45ba-bc2e-b6be0363418d",
+                    "market_ids": [
+                        "6809dd52-6181-4ede-97cb-1e1fceb6688f"
+                    ]
                 }
             ],
-            "market_count": 1,
+            "market_count": 3,
             "main_markets": [
                 "2b2a8fa8-29bd-492b-acc4-091c7efecd0b"
             ],
             "market_ids": [
-                "2b2a8fa8-29bd-492b-acc4-091c7efecd0b"
+                "2b2a8fa8-29bd-492b-acc4-091c7efecd0b",
+                "6809dd52-6181-4ede-97cb-1e1fceb6688f"
             ],
             "live_betting_markets_available": true,
             "category_id": "3c34d075-dc14-436d-bfc4-9272a49c2b39",
@@ -86,6 +110,13 @@
             "category_id": "3c34d075-dc14-436d-bfc4-9272a49c2b39",
             "name": "Top Markets",
             "priority": 988,
+            "type": "MARKET_TYPE_GROUP_TYPE_EVENT"
+        },
+        "d04f2072-794e-45ba-bc2e-b6be0363418d": {
+            "id": "d04f2072-794e-45ba-bc2e-b6be0363418d",
+            "category_id": "3c34d075-dc14-436d-bfc4-9272a49c2b39",
+            "name": "First Half Markets",
+            "priority": 90,
             "type": "MARKET_TYPE_GROUP_TYPE_EVENT"
         }
     },
@@ -111,10 +142,32 @@
                 "3db51106-c24e-4824-88ec-1a4df1ccfb5c"
             ],
             "num_winners": 1
+        },
+        "6809dd52-6181-4ede-97cb-1e1fceb6688f": {
+            "id": "6809dd52-6181-4ede-97cb-1e1fceb6688f",
+            "event_id": "f67b34ee-8afd-46b9-88d8-ed45fb0a1304",
+            "market_type_id": "bf65d9b5-5526-45cd-a488-22e92cf76b28",
+            "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
+            "name": "1st Half Head To Head",
+            "advertised_start": {
+                "seconds": 1774216800
+            },
+            "actual_start": {
+                "seconds": 1774216800
+            },
+            "live_betting_available": true,
+            "same_game_multi_available": true,
+            "visible": true,
+            "entrant_ids": [
+                "845c2c2a-a9bd-4468-ae40-24fe748e30c7",
+                "9b85002c-ef5d-4556-a930-fedce99368a0"
+            ],
+            "num_winners": 1
         }
     },
     "markets_allow_cashout": {
-        "2b2a8fa8-29bd-492b-acc4-091c7efecd0b": true
+        "2b2a8fa8-29bd-492b-acc4-091c7efecd0b": true,
+        "6809dd52-6181-4ede-97cb-1e1fceb6688f": true
     },
     "prices": {
         "3db51106-c24e-4824-88ec-1a4df1ccfb5c:940b8704-e497-4a76-b390-00918ff7d282:": {
@@ -123,10 +176,22 @@
                 "denominator": 2
             }
         },
+        "845c2c2a-a9bd-4468-ae40-24fe748e30c7:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 53,
+                "denominator": 100
+            }
+        },
+        "9b85002c-ef5d-4556-a930-fedce99368a0:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 3,
+                "denominator": 2
+            }
+        },
         "a9dc7d6a-adfc-4b8d-bf6b-28bd98795881:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 11,
-                "denominator": 20
+                "numerator": 53,
+                "denominator": 100
             }
         }
     },
