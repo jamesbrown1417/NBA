@@ -1,5 +1,13 @@
 {
     "entrants": {
+        "308c8483-0319-42c6-bca4-e1aa80946ea1": {
+            "id": "308c8483-0319-42c6-bca4-e1aa80946ea1",
+            "name": "Washington Wizards",
+            "home_away": "AWAY",
+            "visible": true,
+            "sort_order": 20,
+            "market_id": "b2dd1c5d-0344-40a0-b137-7581554bcd82"
+        },
         "3100c80c-e673-408d-82c3-5bfb09222311": {
             "id": "3100c80c-e673-408d-82c3-5bfb09222311",
             "name": "New York Knicks",
@@ -7,6 +15,14 @@
             "visible": true,
             "sort_order": 10,
             "market_id": "9d74ed5d-c3c3-450a-9f8b-b721e0fa463b"
+        },
+        "3352de44-967e-4b33-8f14-1b92d4dd4cad": {
+            "id": "3352de44-967e-4b33-8f14-1b92d4dd4cad",
+            "name": "New York Knicks",
+            "home_away": "HOME",
+            "visible": true,
+            "sort_order": 10,
+            "market_id": "b2dd1c5d-0344-40a0-b137-7581554bcd82"
         },
         "515c0f4a-1e97-48ba-a4ea-c19ed28b9c58": {
             "id": "515c0f4a-1e97-48ba-a4ea-c19ed28b9c58",
@@ -55,7 +71,8 @@
             },
             "competition_id": "2d20a25b-6b96-4651-a523-442834136e2d",
             "market_type_group_ids": [
-                "43c990d1-7471-4055-9a7a-e71409494486"
+                "43c990d1-7471-4055-9a7a-e71409494486",
+                "d04f2072-794e-45ba-bc2e-b6be0363418d"
             ],
             "market_type_group_markets": [
                 {
@@ -63,14 +80,21 @@
                     "market_ids": [
                         "9d74ed5d-c3c3-450a-9f8b-b721e0fa463b"
                     ]
+                },
+                {
+                    "market_type_group_id": "d04f2072-794e-45ba-bc2e-b6be0363418d",
+                    "market_ids": [
+                        "b2dd1c5d-0344-40a0-b137-7581554bcd82"
+                    ]
                 }
             ],
-            "market_count": 1,
+            "market_count": 3,
             "main_markets": [
                 "9d74ed5d-c3c3-450a-9f8b-b721e0fa463b"
             ],
             "market_ids": [
-                "9d74ed5d-c3c3-450a-9f8b-b721e0fa463b"
+                "9d74ed5d-c3c3-450a-9f8b-b721e0fa463b",
+                "b2dd1c5d-0344-40a0-b137-7581554bcd82"
             ],
             "live_betting_markets_available": true,
             "category_id": "3c34d075-dc14-436d-bfc4-9272a49c2b39",
@@ -86,6 +110,13 @@
             "category_id": "3c34d075-dc14-436d-bfc4-9272a49c2b39",
             "name": "Top Markets",
             "priority": 988,
+            "type": "MARKET_TYPE_GROUP_TYPE_EVENT"
+        },
+        "d04f2072-794e-45ba-bc2e-b6be0363418d": {
+            "id": "d04f2072-794e-45ba-bc2e-b6be0363418d",
+            "category_id": "3c34d075-dc14-436d-bfc4-9272a49c2b39",
+            "name": "First Half Markets",
+            "priority": 90,
             "type": "MARKET_TYPE_GROUP_TYPE_EVENT"
         }
     },
@@ -111,22 +142,56 @@
                 "515c0f4a-1e97-48ba-a4ea-c19ed28b9c58"
             ],
             "num_winners": 1
+        },
+        "b2dd1c5d-0344-40a0-b137-7581554bcd82": {
+            "id": "b2dd1c5d-0344-40a0-b137-7581554bcd82",
+            "event_id": "896c432f-a561-4de3-9c2b-4930a74b9238",
+            "market_type_id": "bf65d9b5-5526-45cd-a488-22e92cf76b28",
+            "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
+            "name": "1st Half Head To Head",
+            "advertised_start": {
+                "seconds": 1774222200
+            },
+            "actual_start": {
+                "seconds": 1774222200
+            },
+            "live_betting_available": true,
+            "same_game_multi_available": true,
+            "visible": true,
+            "entrant_ids": [
+                "3352de44-967e-4b33-8f14-1b92d4dd4cad",
+                "308c8483-0319-42c6-bca4-e1aa80946ea1"
+            ],
+            "num_winners": 1
         }
     },
     "markets_allow_cashout": {
-        "9d74ed5d-c3c3-450a-9f8b-b721e0fa463b": true
+        "9d74ed5d-c3c3-450a-9f8b-b721e0fa463b": true,
+        "b2dd1c5d-0344-40a0-b137-7581554bcd82": true
     },
     "prices": {
+        "308c8483-0319-42c6-bca4-e1aa80946ea1:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
+                "numerator": 25,
+                "denominator": 4
+            }
+        },
         "3100c80c-e673-408d-82c3-5bfb09222311:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
+                "numerator": 3,
+                "denominator": 100
+            }
+        },
+        "3352de44-967e-4b33-8f14-1b92d4dd4cad:940b8704-e497-4a76-b390-00918ff7d282:": {
+            "odds": {
                 "numerator": 1,
-                "denominator": 25
+                "denominator": 10
             }
         },
         "515c0f4a-1e97-48ba-a4ea-c19ed28b9c58:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 11,
-                "denominator": 1
+                "numerator": 23,
+                "denominator": 2
             }
         }
     },
