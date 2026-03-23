@@ -1,51 +1,51 @@
 {
     "entrants": {
-        "0ea8c622-f5a9-4b66-9d8b-eed537048ea1": {
-            "id": "0ea8c622-f5a9-4b66-9d8b-eed537048ea1",
-            "name": "Toronto Raptors",
-            "home_away": "AWAY",
-            "visible": true,
-            "sort_order": 20,
-            "market_id": "da80fddc-86de-451d-ada6-af9d86047d12"
-        },
-        "3639da7a-652d-46b6-a205-7c66b35ff7fd": {
-            "id": "3639da7a-652d-46b6-a205-7c66b35ff7fd",
-            "name": "Utah Jazz",
+        "0f7e7163-05c5-4e4d-a4f6-1f1f1f69e1ef": {
+            "id": "0f7e7163-05c5-4e4d-a4f6-1f1f1f69e1ef",
+            "name": "Chicago Bulls",
             "home_away": "HOME",
             "visible": true,
             "sort_order": 10,
-            "market_id": "da80fddc-86de-451d-ada6-af9d86047d12"
+            "market_id": "6d9bfa8b-5909-47cf-a676-a8126eb3cf49"
+        },
+        "b76e044c-4f77-45bf-887d-480ebb138786": {
+            "id": "b76e044c-4f77-45bf-887d-480ebb138786",
+            "name": "Houston Rockets",
+            "home_away": "AWAY",
+            "visible": true,
+            "sort_order": 20,
+            "market_id": "6d9bfa8b-5909-47cf-a676-a8126eb3cf49"
         }
     },
     "event_participants": {
-        "56115df6-318b-4b53-b6fc-292aca48ff57": {
-            "id": "56115df6-318b-4b53-b6fc-292aca48ff57",
-            "event_id": "b49c0e01-1740-48b0-96ff-03148de1b821",
-            "name": "Utah Jazz",
+        "30724ac3-9b0a-4091-82b2-55b405d9a09e": {
+            "id": "30724ac3-9b0a-4091-82b2-55b405d9a09e",
+            "event_id": "cf6c2dfc-daf2-410b-85f5-23e767af401b",
+            "name": "Chicago Bulls",
             "home_away": "HOME",
-            "colour": "#002b5c"
-        },
-        "67687a78-68e3-4a6f-9a0b-2300513894ee": {
-            "id": "67687a78-68e3-4a6f-9a0b-2300513894ee",
-            "event_id": "b49c0e01-1740-48b0-96ff-03148de1b821",
-            "name": "Toronto Raptors",
-            "home_away": "AWAY",
             "colour": "#ce1141"
+        },
+        "b20bc4c2-2384-4eff-bfd0-14e893da8994": {
+            "id": "b20bc4c2-2384-4eff-bfd0-14e893da8994",
+            "event_id": "cf6c2dfc-daf2-410b-85f5-23e767af401b",
+            "name": "Houston Rockets",
+            "home_away": "AWAY",
+            "colour": "#000000"
         }
     },
     "events": {
-        "b49c0e01-1740-48b0-96ff-03148de1b821": {
-            "id": "b49c0e01-1740-48b0-96ff-03148de1b821",
-            "name": "Utah Jazz vs Toronto Raptors",
+        "cf6c2dfc-daf2-410b-85f5-23e767af401b": {
+            "id": "cf6c2dfc-daf2-410b-85f5-23e767af401b",
+            "name": "Chicago Bulls vs Houston Rockets",
             "event_type": {
                 "id": "6bfa0efc-05df-4ae1-9b1e-152365290cfd",
                 "name": "Match"
             },
             "match_status": "BettingOpen",
-            "advertised_start": "2026-03-24T01:00:00Z",
-            "actual_start": "2026-03-24T01:00:00Z",
+            "advertised_start": "2026-03-24T00:00:00Z",
+            "actual_start": "2026-03-24T00:00:00Z",
             "visible": true,
-            "slug": "utah-jazz-vs-toronto-raptors",
+            "slug": "chicago-bulls-vs-houston-rockets",
             "competition": {
                 "id": "2d20a25b-6b96-4651-a523-442834136e2d",
                 "name": "NBA",
@@ -61,22 +61,22 @@
                 {
                     "market_type_group_id": "43c990d1-7471-4055-9a7a-e71409494486",
                     "market_ids": [
-                        "da80fddc-86de-451d-ada6-af9d86047d12"
+                        "6d9bfa8b-5909-47cf-a676-a8126eb3cf49"
                     ]
                 }
             ],
             "market_count": 1,
             "main_markets": [
-                "da80fddc-86de-451d-ada6-af9d86047d12"
+                "6d9bfa8b-5909-47cf-a676-a8126eb3cf49"
             ],
             "market_ids": [
-                "da80fddc-86de-451d-ada6-af9d86047d12"
+                "6d9bfa8b-5909-47cf-a676-a8126eb3cf49"
             ],
             "live_betting_markets_available": true,
             "category_id": "3c34d075-dc14-436d-bfc4-9272a49c2b39",
             "participant_ids": [
-                "56115df6-318b-4b53-b6fc-292aca48ff57",
-                "67687a78-68e3-4a6f-9a0b-2300513894ee"
+                "30724ac3-9b0a-4091-82b2-55b405d9a09e",
+                "b20bc4c2-2384-4eff-bfd0-14e893da8994"
             ]
         }
     },
@@ -90,43 +90,43 @@
         }
     },
     "markets": {
-        "da80fddc-86de-451d-ada6-af9d86047d12": {
-            "id": "da80fddc-86de-451d-ada6-af9d86047d12",
-            "event_id": "b49c0e01-1740-48b0-96ff-03148de1b821",
+        "6d9bfa8b-5909-47cf-a676-a8126eb3cf49": {
+            "id": "6d9bfa8b-5909-47cf-a676-a8126eb3cf49",
+            "event_id": "cf6c2dfc-daf2-410b-85f5-23e767af401b",
             "market_type_id": "3dc4ca49-3190-43b2-a328-60e0c9460187",
             "market_status_id": "4bc8fe96-296b-4b4c-aea4-85c94f63b9c6",
             "name": "Head To Head",
             "advertised_start": {
-                "seconds": 1774314000
+                "seconds": 1774310400
             },
             "actual_start": {
-                "seconds": 1774314000
+                "seconds": 1774310400
             },
             "live_betting_available": true,
             "is_primary": true,
             "same_game_multi_available": true,
             "visible": true,
             "entrant_ids": [
-                "3639da7a-652d-46b6-a205-7c66b35ff7fd",
-                "0ea8c622-f5a9-4b66-9d8b-eed537048ea1"
+                "0f7e7163-05c5-4e4d-a4f6-1f1f1f69e1ef",
+                "b76e044c-4f77-45bf-887d-480ebb138786"
             ],
             "num_winners": 1
         }
     },
     "markets_allow_cashout": {
-        "da80fddc-86de-451d-ada6-af9d86047d12": true
+        "6d9bfa8b-5909-47cf-a676-a8126eb3cf49": true
     },
     "prices": {
-        "0ea8c622-f5a9-4b66-9d8b-eed537048ea1:940b8704-e497-4a76-b390-00918ff7d282:": {
+        "0f7e7163-05c5-4e4d-a4f6-1f1f1f69e1ef:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 13,
-                "denominator": 100
+                "numerator": 3,
+                "denominator": 1
             }
         },
-        "3639da7a-652d-46b6-a205-7c66b35ff7fd:940b8704-e497-4a76-b390-00918ff7d282:": {
+        "b76e044c-4f77-45bf-887d-480ebb138786:940b8704-e497-4a76-b390-00918ff7d282:": {
             "odds": {
-                "numerator": 5,
-                "denominator": 1
+                "numerator": 1,
+                "denominator": 4
             }
         }
     },
