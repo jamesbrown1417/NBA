@@ -31,31 +31,37 @@ if not username or not password:
         "Missing Bet365 credentials. Set BET365USER and BET365PW in .env or env, or export them in the environment."
     )
 
-# Player prop URL suffixes and their corresponding market buttons
+# Player prop categories on the match page and the market groups to expand.
 PROP_CATEGORIES = {
     'I43': {
         'name': 'Points',
+        'tab': 'Points',
         'buttons': ['Points O/U', 'Points High', 'Points Low']
     },
     'I45': {
         'name': 'Threes',
+        'tab': 'Threes',
         'buttons': ['Threes Made O/U']
     },
     'I46': {
         'name': 'Assists',
+        'tab': 'Assists',
         'buttons': ['Assists O/U']
     },
     'I47': {
         'name': 'Rebounds',
+        'tab': 'Rebounds',
         'buttons': ['Rebounds O/U']
     },
     'I48': {
         'name': 'Combos',
-        'buttons': ['Points, Assists & Rebounds', 'Points, Assists & Rebounds O/U']
+        'tab': 'Combos',
+        'buttons': ['Double Double', 'Triple Double']
     },
     'I49': {
         'name': 'Defence',
-        'buttons': ['Steals & Blocks O/U']
+        'tab': 'Defence',
+        'buttons': ['Steals O/U', 'Blocks O/U']
     },
 }
 
@@ -104,8 +110,24 @@ async def find_first_element(driver, locator_candidates, timeout_per_candidate=3
     raise RuntimeError("No locator candidates provided")
 
 
+async def click_element(driver, element):
+    """Scroll to an element and click it with a JS fallback."""
+    try:
+        await driver.execute_script(
+            "arguments[0].scrollIntoView({block: 'center'});", element
+        )
+        await driver.execute_script("window.scrollBy(0, -150)")
+    except Exception:
+        pass
+
+    try:
+        await element.click()
+    except Exception:
+        await driver.execute_script("arguments[0].click();", element)
+
+
 async def collect_h2h_and_urls(driver):
-    """Navigate to main page, save H2H HTML, and return list of player URLs per match."""
+    """Navigate to main page, save H2H HTML, and return match page URLs."""
     await driver.get('https://www.bet365.com.au/#/AC/B18/C20604387/D48/E1453/F10/')
     await driver.sleep(2)
     # Always perform login each run
@@ -222,14 +244,11 @@ async def collect_h2h_and_urls(driver):
         await driver.back()
         await driver.sleep(0.5)
 
-    # Optionally persist URL list for debugging/traceability
+    # Persist match page URLs for debugging/traceability.
     try:
-        all_urls = []
-        for match in match_data:
-            for suffix in PROP_CATEGORIES.keys():
-                all_urls.append(f"{match['base_url']}{suffix}/")
-        with open("OddsScraper/Bet365/player_urls.csv", 'w') as f:
-            f.write('\n'.join(all_urls))
+        pd.DataFrame(match_data).to_csv(
+            "OddsScraper/Bet365/player_urls.csv", index=False
+        )
     except Exception:
         pass
 
@@ -237,18 +256,62 @@ async def collect_h2h_and_urls(driver):
 
 
 async def scrape_player_pages(driver, match_data):
-    """Iterate matches and their category URLs, expand relevant sections, and save HTML."""
-    
-    async def maybe_click(xpath_text, label):
-        """Attempt to click a market expansion button by its text."""
+    """Iterate matches, click category tabs, expand markets, and save HTML."""
+
+    async def click_market_tab(tab_label, expected_labels):
+        """Open a match-page category tab and wait for its markets to render."""
+        expected_xpath = " or ".join(
+            [f"normalize-space()='{label}'" for label in expected_labels]
+        )
+        tab_element = await driver.find_element(
+            By.XPATH,
+            (
+                "//div[contains(@class, 'sph-MarketGroupNavBarButton_Content') "
+                f"and normalize-space()='{tab_label}']"
+            ),
+            timeout=10,
+        )
+        await click_element(driver, tab_element)
+        await driver.find_element(
+            By.XPATH,
+            (
+                "//div["
+                "(contains(@class, 'cm-MarketGroupWithIconsButton_Text') "
+                "or contains(@class, 'sc-MarketGroupButtonWithStats_Text')) "
+                f"and ({expected_xpath})]"
+            ),
+            timeout=10,
+        )
+        print(f"  Opened '{tab_label}' tab")
+
+    async def maybe_expand_market(xpath_text, label):
+        """Expand a market group by its text if it is currently collapsed."""
         try:
-            el = await driver.find_element(
-                By.XPATH, 
-                f"//div[contains(@class, 'cm-MarketGroupWithIconsButton_Text') and text()='{xpath_text}']"
+            text_element = await driver.find_element(
+                By.XPATH,
+                (
+                    "//div["
+                    "(contains(@class, 'cm-MarketGroupWithIconsButton_Text') "
+                    "or contains(@class, 'sc-MarketGroupButtonWithStats_Text')) "
+                    f"and normalize-space()='{xpath_text}']"
+                ),
+                timeout=3,
             )
-            await driver.execute_script("arguments[0].scrollIntoView(true);", el)
-            await driver.execute_script("window.scrollBy(0, -150)")
-            await el.click()
+            toggle_button = await text_element.find_element(
+                By.XPATH,
+                (
+                    "./ancestor::div["
+                    "contains(@class, 'cm-MarketGroupWithIconsButton') "
+                    "or contains(@class, 'sc-MarketGroupButtonWithStats')"
+                    "][1]"
+                ),
+            )
+            classes = await toggle_button.get_attribute('class') or ''
+            if 'gl-MarketGroup_Open' in classes:
+                print(f"  '{label}' already expanded")
+                return
+
+            await click_element(driver, toggle_button)
             print(f"  Clicked '{label}'")
             await driver.sleep(1.5)
         except Exception:
@@ -256,18 +319,27 @@ async def scrape_player_pages(driver, match_data):
 
     async def click_show_more_buttons():
         """Click all visible 'Show more' buttons on the page."""
-        button_elements = await driver.find_elements(
-            By.XPATH, 
-            "//div[contains(@class, 'msl-ShowMore_Link ') and contains(text(), 'Show more')]"
-        )
-        for button_element in button_elements:
-            try:
-                await driver.execute_script("arguments[0].scrollIntoView(true);", button_element)
-                await driver.execute_script("window.scrollBy(0, -150)")
-                await button_element.click()
-                await driver.sleep(1)
-            except Exception:
-                pass
+        for _ in range(10):
+            button_elements = await driver.find_elements(
+                By.XPATH,
+                (
+                    "//div[contains(@class, 'msl-ShowMore_Link') "
+                    "and contains(normalize-space(), 'Show more')]"
+                ),
+            )
+
+            clicked = False
+            for button_element in button_elements:
+                try:
+                    await click_element(driver, button_element)
+                    await driver.sleep(1)
+                    clicked = True
+                    break
+                except Exception:
+                    continue
+
+            if not clicked:
+                break
 
     for match in match_data:
         match_index = match['match_index']
@@ -277,37 +349,39 @@ async def scrape_player_pages(driver, match_data):
         print(f"Processing match {match_index}")
         print(f"{'='*60}")
         
-        for suffix, category_info in PROP_CATEGORIES.items():
+        for _, category_info in PROP_CATEGORIES.items():
             category_name = category_info['name']
+            tab_label = category_info['tab']
             buttons_to_click = category_info['buttons']
-            url = f"{base_url}{suffix}/"
             
             try:
-                print(f"\n--- {category_name} ({suffix}) ---")
-                print(f"URL: {url}")
+                print(f"\n--- {category_name} ---")
+                print(f"Match URL: {base_url}")
                 
-                await driver.get(url)
-
-                # Wait for a market group button to appear
+                await driver.get(base_url)
                 await driver.find_element(
-                    By.XPATH, 
-                    "//div[contains(@class, 'cm-MarketGroupWithIconsButton_Text ')]", 
-                    timeout=5
+                    By.XPATH,
+                    "//div[contains(@class, 'sph-MarketGroupNavBarButton_Content')]",
+                    timeout=10,
                 )
-                
                 await driver.sleep(1.5)
+
+                # Open the correct category tab on the match page.
+                await click_market_tab(tab_label, buttons_to_click)
+                await driver.sleep(1)
                 
                 # Click only the buttons relevant to this category
                 for button_text in buttons_to_click:
-                    await maybe_click(button_text, button_text)
+                    await maybe_expand_market(button_text, button_text)
                 
                 # Click all "Show more" buttons
                 await click_show_more_buttons()
 
                 # Grab and write the player page HTML for this match/category
                 elem = await driver.find_element(
-                    By.XPATH, 
-                    "//div[contains(@class, 'wcl-PageContainer_Colcontainer ')]"
+                    By.XPATH,
+                    "//div[contains(@class, 'wcl-PageContainer_Colcontainer')]",
+                    timeout=10,
                 )
                 body_html_players = await elem.get_attribute('outerHTML')
                 
@@ -317,7 +391,9 @@ async def scrape_player_pages(driver, match_data):
                 print(f"  Saved: {filename}")
 
             except Exception as e:
-                print(f"  Error with {category_name}: {e}. Continuing...")
+                print(
+                    f"  Error with {category_name}: {type(e).__name__}: {e!r}. Continuing..."
+                )
                 continue
 
 
